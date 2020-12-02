@@ -23,7 +23,7 @@ namespace Advent_of_Code_2020
         [Test]
         public void part_one()
         {
-            var numbers = Input.ForPuzzle(2020, 01, Part.one);
+            var numbers = Input.For(2020, 01, Part.one);
             Puzzle.HasAnswer(786811, Day01.One, with: numbers);
         }
   
@@ -43,7 +43,7 @@ namespace Advent_of_Code_2020
         [Test]
         public void part_two()
         {
-            var numbers = Input.ForPuzzle(2020, 01, Part.two);
+            var numbers = Input.For(2020, 01, Part.two);
             Puzzle.HasAnswer(199068980L, Day01.Two, with: numbers);
         }
     }

@@ -12,9 +12,12 @@ namespace AdventOfCode.Tests
     {
         private Input() => Do.Nothing();
 
-        public static string ForPuzzle(int year, int day, Part part)
+        public static string For(int year, int day, Part part = default)
         {
-            var path = $"AdventOfCode.Tests.Inputs._{year}.{day:00}_{part.ToString()}.txt";
+            var path = part == default
+                ? $"AdventOfCode.Tests.Inputs._{year}.{day:00}.txt"
+                : $"AdventOfCode.Tests.Inputs._{year}.{day:00}_{part}.txt";
+
             using (var stream = typeof(Input).Assembly.GetManifestResourceStream(path))
             {
                 var reader = new StreamReader(stream, Encoding.UTF8);

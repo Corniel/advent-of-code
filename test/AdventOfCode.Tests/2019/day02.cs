@@ -8,7 +8,7 @@ namespace Advent_of_Code_2019
     public class day02
     {
         [Test]
-        public void part_one_example_returns_x()
+        public void part_one_example()
         {
             var input = @"1,9,10,3,2,3,11,0,99,30,40,50";
             Puzzle.HasAnswer(3500, Day02.OneExample, with: input);
@@ -17,22 +17,15 @@ namespace Advent_of_Code_2019
         [Test]
         public void part_one()
         {
-            var input = Input.For(2019, 02, Part.one);
+            var input = Input.For(2019, 02);
             Puzzle.HasAnswer(5110675, Day02.One, with: input);
         }
   
         [Test]
-        public void part_two_example_returns_X()
-        {
-            var input = @"";
-            Puzzle.HasAnswer(0, Day02.Two, with: input);
-        }
-
-        [Test]
         public void part_two()
         {
-            var input = Input.For(2019, 02, Part.two);
-            Puzzle.HasAnswer(0, Day02.Two, with: input);
+            var input = Input.For(2019, 02);
+            Puzzle.HasAnswer(4847, Day02.Two, with: input);
         }
     }
 }

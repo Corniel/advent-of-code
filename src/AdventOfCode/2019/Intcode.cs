@@ -38,10 +38,9 @@ namespace AdventOfCode._2019
             return this[0].Value;
         }
 
-        public Intcode SetNounAndVerb(int noun, int verb)
+        public Intcode Update(int position, int value)
         {
-            memory[1] = noun.Opcode();
-            memory[2] = verb.Opcode();
+            memory[position] = value.Opcode();
             return this;
         }
 

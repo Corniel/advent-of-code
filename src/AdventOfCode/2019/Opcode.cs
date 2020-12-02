@@ -21,7 +21,7 @@ namespace AdventOfCode._2019
             var l = program.Value(program.Position + 1);
             var r = program.Value(program.Position + 2);
             var target = program.Value(program.Position + 3);
-            program[target] = (program.Value(l) + program.Value(r)).Opcode();
+            program.Update(target, program.Value(l) + program.Value(r));
         }
 
         public override string ToString() => nameof(Add);
@@ -35,7 +35,7 @@ namespace AdventOfCode._2019
             var l = program.Value(program.Position + 1);
             var r = program.Value(program.Position + 2);
             var target = program.Value(program.Position + 3);
-            program[target] = (program.Value(l) * program.Value(r)).Opcode();
+            program.Update(target, program.Value(l) * program.Value(r));
         }
 
         public override string ToString() => nameof(Multiply);

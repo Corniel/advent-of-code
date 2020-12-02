@@ -18,7 +18,7 @@ namespace Advent_of_Code_2019
         [Test]
         public void part_one()
         {
-            var input = Input.For(2019, 99, Part.one);
+            var input = Input.For(2019, 99);
             Puzzle.HasAnswer(0, Day99.One, with: input);
         }
   
@@ -32,7 +32,7 @@ namespace Advent_of_Code_2019
         [Test]
         public void part_two()
         {
-            var input = Input.For(2019, 99, Part.two);
+            var input = Input.For(2019, 99);
             Puzzle.HasAnswer(0, Day99.Two, with: input);
         }
     }

@@ -16,6 +16,9 @@ namespace AdventOfCode
             => Lines(str)
             .Select(Int);
 
+        public static IEnumerable<string> CommaSeperated(this string str)
+            => str.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+
         public static IEnumerable<string> Lines(this string str)
             => str.Split(new[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
     }

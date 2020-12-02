@@ -9,7 +9,7 @@ namespace Advent_of_Code_2019
     public class day99
     {
         [Test]
-        public void part_one_example_returns_x()
+        public void part_one_example()
         {
             var input = @"";
             Puzzle.HasAnswer(0, Day99.One, with: input);
@@ -23,7 +23,7 @@ namespace Advent_of_Code_2019
         }
   
         [Test]
-        public void part_two_example_returns_X()
+        public void part_two_example()
         {
             var input = @"";
             Puzzle.HasAnswer(0, Day99.Two, with: input);

@@ -8,9 +8,9 @@ namespace AdventOfCode._2019
         public static IList<int> Run(this IList<int> memory)
         {
             var pointer = 0;
-            var state = State.Running;
+            var state = StateType.Running;
 
-            while (state == State.Running)
+            while (state == StateType.Running)
             {
                 var instruction = memory[pointer++].GetInstruction();
                 state = instruction(
@@ -19,9 +19,9 @@ namespace AdventOfCode._2019
                     p1: memory[pointer++],
                     p2: memory[pointer++]);
 
-                if (pointer + 4 >= memory.Count) state = State.Exit;
+                if (pointer + 4 >= memory.Count) state = StateType.Exit;
             }
-            return state == State.Exit
+            return state == StateType.Exit
                 ? memory
                 : null;
         }
@@ -31,42 +31,47 @@ namespace AdventOfCode._2019
             ? throw new NoAnswer()
             : memory.FirstOrDefault();
 
-        internal enum State
+        internal readonly struct State
         {
-            OutOfMemory = -2,
-            UnknownInstruction = -1,
-            Exit = 0,
-            Running = 1,
+            public static readonly State OutOfMemory = new State(-2, default, default);
+            public static readonly State UnknownInstruction = new State(-1, default, default);
+            public static readonly State Exit = new State(-1, default, default);
+
+            public State(int type, int pointer, int output)
+            {
+                this.Type = type;
+                this.Pointer = pointer;
+                this.Output = output;
+            }
+
+            public int Type { get; }
+            public int Pointer { get; }
+            public int Output { get; }
         }
 
-        internal static bool OutOf(this IList<int> memory, int p0, int p1, int p2)
-            => p0 < 0 || p0 >= memory.Count
-            || p1 < 0 || p1 >= memory.Count
-            || p2 < 0 || p2 >= memory.Count;
-
-        internal static State Add(IList<int> memory, int p0, int p1, int p2)
+        internal static State Add(IList<int> memory, State state)
         {
-            if (memory.OutOf(p0, p1, p2)) return State.OutOfMemory;
+            if (memory.OutOf(p0, p1, p2)) return StateType.OutOfMemory;
             var l = memory[p0];
             var r = memory[p1];
             memory[p2] = l + r;
-            return State.Running;
+            return StateType.Running;
         }
 
-        internal static State Multiply(IList<int> memory, int p0, int p1, int p2)
+        internal static State Multiply(IList<int> memory, State state)
         {
-            if (memory.OutOf(p0, p1, p2)) return State.OutOfMemory;
+            if (memory.OutOf(p0, p1, p2)) return StateType.OutOfMemory;
             var l = memory[p0];
             var r = memory[p1];
             memory[p2] = l * r;
-            return State.Running;
+            return StateType.Running;
         }
 
-        internal static State Exit(IList<int> memory, int p0, int p1, int p2) => State.Exit;
+        internal static State Exit(IList<int> memory, State state) => State.Exit;
 
-        internal static State Unknown(IList<int> memory, int p0, int p1, int p2) => State.UnknownInstruction;
+        internal static State Unknown(IList<int> memory, State state) => State.UnknownInstruction;
 
-        internal delegate State Instruction(IList<int> memory, int p0, int p1, int p2);
+        internal delegate State Instruction(IList<int> memory, State state);
 
         internal static Instruction GetInstruction(this int value)
             => value switch

@@ -18,7 +18,7 @@ namespace AdventOfCode._2019
                 .Max(input => program
                         .Copy()
                         .Run(input)
-                        .Outputs.FirstOrDefault());
+                        .Outputs.LastOrDefault());
         }
 
         [Puzzle(2019, 07, Part.two)]

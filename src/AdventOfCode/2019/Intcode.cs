@@ -37,11 +37,22 @@ namespace AdventOfCode._2019
             return this;
         }
 
-        public bool Read(out int value)
-        {
-            if(InMemory(Pointer))
+        public Instruction Instruct()
+            => Memory[Pointer++] switch
             {
-                value = Memory[Pointer++];
+                1 => Instruction.Add,
+                2 => Instruction.Multiply,
+                99 => Instruction.Exit,
+                _ => Instruction.Unknown,
+            };
+
+        public bool Read(out int value) => Read(Pointer++, out value);
+
+        public bool Read(int pointer, out int value)
+        {
+            if (InMemory(pointer))
+            {
+                value = Memory[pointer];
                 return true;
             }
             else
@@ -51,6 +62,7 @@ namespace AdventOfCode._2019
                 return false;
             }
         }
+
         public bool Write(int pointer, int value)
         {
             if(InMemory(pointer))
@@ -81,14 +93,7 @@ namespace AdventOfCode._2019
             state = State.Exit;
         }
 
-        public Instruction Instruct()
-            => Memory[Pointer++] switch
-            {
-                1 => Instruction.Add,
-                2 => Instruction.Multiply,
-                99 => Instruction.Exit,
-                _ => Instruction.Unknown,
-            };
+        public override string ToString() => $"Pointer: {Pointer}, {string.Join(',', Memory)}";
 
         public static Intcode Parse(string input)
         {

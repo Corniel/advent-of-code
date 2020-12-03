@@ -7,9 +7,9 @@ namespace AdventOfCode._2019
     {
         public static IList<int> Run(this Intcode code)
         {
-            while(code.Running())
+            while (code.Running())
             {
-                switch(code.Instruct())
+                switch (code.Instruct())
                 {
                     case Instruction.Add: code.Add(); break;
                     case Instruction.Multiply: code.Multipy(); break;
@@ -22,7 +22,11 @@ namespace AdventOfCode._2019
 
         internal static Intcode Add(this Intcode code)
         {
-            if (code.Read(out var l) && code.Read(out var r) && code.Read(out var target))
+            if (code.Read(out var p0) && 
+                code.Read(out var p1) &&
+                code.Read(out var target) &&
+                code.Read(p0, out var l) &&
+                code.Read(p1, out var r))
             {
                 code.Write(target, l + r);
             }
@@ -31,7 +35,11 @@ namespace AdventOfCode._2019
 
         internal static Intcode Multipy(this Intcode code)
         {
-            if (code.Read(out var l) && code.Read(out var r) && code.Read(out var target))
+            if (code.Read(out var p0) &&
+                code.Read(out var p1) &&
+                code.Read(out var target) &&
+                code.Read(p0, out var l) &&
+                code.Read(p1, out var r))
             {
                 code.Write(target, l * r);
             }

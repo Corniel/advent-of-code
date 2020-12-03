@@ -35,7 +35,7 @@ namespace Advent_of_Code_2020
         public void part_two()
         {
             var input = Input.For(2020, 03);
-            Puzzle.HasAnswer(2138320800, Day03.Two, with: input);
+            Puzzle.HasAnswer(2138320800L, Day03.Two, with: input);
         }
     }
 }

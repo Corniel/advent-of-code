@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 
 namespace AdventOfCode._2019.Intcoding
 {
@@ -21,6 +16,6 @@ namespace AdventOfCode._2019.Intcoding
 
         public override string ToString() => $"{value / 100:000} {Instruction}";
 
-        private Mode Mode(int devide) => (Mode)((value / 100) % 10);
+        private Mode Mode(int devide) => (Mode)((value / devide) % 10);
     }
 }

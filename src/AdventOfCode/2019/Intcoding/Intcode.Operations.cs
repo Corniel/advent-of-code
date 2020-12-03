@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AdventOfCode._2019.Intcoding
 {
@@ -22,49 +19,53 @@ namespace AdventOfCode._2019.Intcoding
             return this;
         }
 
-        public Intcode Run()
+        public Intcode Run(params int[] inputs)
         {
+            Inputs.Clear();
+            foreach(var input in inputs)
+            {
+                Inputs.Enqueue(input);
+            }
+
+            state = State.Running;
+
             while (Running())
             {
-                var opcode = Opcode();
-
-                switch (opcode.Instruction)
-                {
-                    case Instruction.Add: Add(opcode); break;
-                    case Instruction.Multiply: Multiply(opcode); break;
-                    case Instruction.Input: Input(opcode); break;
-                    case Instruction.Output: Output(opcode); break;
-                    case Instruction.Exit: Exit(); break;
-                    default: Unknown(); break;
-                }
+                Step(Opcode());
             }
-            return Succeeded() ?this : null;
+            return this;
         }
+        
+        private Intcode Step(Opcode opcode)
+            => opcode.Instruction switch
+            {
+                Instruction.Add => Add(opcode),
+                Instruction.Multiply => Multiply(opcode),
+                Instruction.Input => Input(),
+                Instruction.Output => Output(),
+                Instruction.JumpIfFalse => JumpIf(false, opcode),
+                Instruction.JumpIfTrue => JumpIf(true, opcode),
+                Instruction.LessThen => LessThen(opcode),
+                Instruction.Equals => Equals(opcode),
+                Instruction.Exit => Exit(),
+                _ => Unknown(),
+            };
 
         public Intcode Add(Opcode opcode)
-        {
-            if (Read(out var p1) &&
-                Read(out var p2) &&
-                Read(out var target))
-            {
-                if (opcode.P1 == Mode.Position)
-                {
-                    Read(p1, out p1);
-                }
-                if (opcode.P2 == Mode.Position)
-                {
-                    Read(p2, out p2);
-                }
-
-                Write(target, p1 + p2);
-            }
-            return this;
-        }
+        => Execute(opcode, (p1, p2) => p1 + p2);
 
         public Intcode Multiply(Opcode opcode)
+            => Execute(opcode, (p1, p2) => p1 * p2);
+
+        public Intcode LessThen(Opcode opcode)
+            => Execute(opcode, (p1, p2) => p1 < p2 ? 1 : 0);
+
+        public Intcode Equals(Opcode opcode)
+            => Execute(opcode, (p1, p2) => p1 == p2 ? 1 : 0);
+
+        public Intcode JumpIf(bool condition, Opcode opcode)
         {
             if (Read(out var p1) &&
-                Read(out var p2) &&
                 Read(out var target))
             {
                 if (opcode.P1 == Mode.Position)
@@ -73,15 +74,21 @@ namespace AdventOfCode._2019.Intcoding
                 }
                 if (opcode.P2 == Mode.Position)
                 {
-                    Read(p2, out p2);
+                    Read(target, out target);
                 }
-
-                Write(target, p1 * p2);
+                if ((p1 != 0) == condition)
+                {
+                    if (InMemory(target))
+                    {
+                        Pointer = target;
+                    }
+                    else state = State.OutOfMemory;
+                }
             }
             return this;
         }
 
-        public Intcode Input(Opcode opcode)
+        public Intcode Input()
         {
             if (Read(out int p1))
             {
@@ -90,7 +97,8 @@ namespace AdventOfCode._2019.Intcoding
             }
             return this;
         }
-        public Intcode Output(Opcode opcode)
+        
+        public Intcode Output()
         {
             if (Read(out int p1) && Read(p1, out int value))
             {
@@ -105,6 +113,7 @@ namespace AdventOfCode._2019.Intcoding
             state = State.Unknown;
             return this;
         }
+        
         public Intcode Exit()
         {
             Pointer = Size;
@@ -112,24 +121,26 @@ namespace AdventOfCode._2019.Intcoding
             return this;
         }
 
-        public Intcode Input()
-        {
-            if (Read(out var target))
-            {
-                Write(target, Inputs.Dequeue());
-            }
-            return this;
-        }
-
-        public Intcode Outout()
-        {
-            if (Read(out var output))
-            {
-                Outputs.Add(output);
-            }
-            return this;
-        }
-
         private Opcode Opcode() => new Opcode(Memory[Pointer++]);
+
+        private Intcode Execute(Opcode opcode, Func<int, int, int> instruction)
+        {
+            if (Read(out var p1) &&
+                Read(out var p2) &&
+                Read(out var target))
+            {
+                if (opcode.P1 == Mode.Position)
+                {
+                    Read(p1, out p1);
+                }
+                if (opcode.P2 == Mode.Position)
+                {
+                    Read(p2, out p2);
+                }
+
+                Write(target, instruction(p1, p2));
+            }
+            return this;
+        }
     }
 }

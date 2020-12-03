@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 
 namespace AdventOfCode._2019.Intcoding
 {
-    
+
     public partial class Intcode
     {
         public Intcode(IList<int> memory)
@@ -13,16 +11,25 @@ namespace AdventOfCode._2019.Intcoding
         }
 
         public IList<int> Memory { get; }
-        public Queue<int> Inputs { get; }
+        public Queue<int> Inputs { get; } = new Queue<int>();
         public ICollection<int> Outputs { get; } = new List<int>();
         public int Size => Memory.Count;
         public int Pointer { get; internal set; }
 
-        public override string ToString() => $"Pointer: {Pointer}, {string.Join(',', Memory)}";
+        public override string ToString() => $"Pointer: {Pointer}, {state}, {string.Join(',', Memory)}";
+
+        public int Answer()
+            => state switch
+            {
+                State.Exit => Memory[0],
+                _ => throw new NoAnswer(),
+            };
+
 
         private bool InMemory(int pointer) => pointer >= 0 && pointer < Size;
         private bool Running() => state == State.Running;
-        private bool Succeeded() => state == State.Exit;
+        private bool Succeeded() => state >= State.Exit;
+       
         private bool Read(out int value) => Read(Pointer++, out value);
         private bool Read(int pointer, out int value)
         {
@@ -60,6 +67,6 @@ namespace AdventOfCode._2019.Intcoding
             Running = 1,
         }
 
-        private State state = State.Running;
+        private State state;
     }
 }

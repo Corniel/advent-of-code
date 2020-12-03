@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AdventOfCode.Maths
 {
@@ -20,6 +16,8 @@ namespace AdventOfCode.Maths
         public int X { get; }
         public int Y { get; }
 
+        public Point Add(Vector vector) => new Point(X + vector.X, Y + vector.Y);
+
         public override string ToString() => $"({X}, {Y})";
 
         public int ManhattanDistance(Point other)
@@ -28,6 +26,7 @@ namespace AdventOfCode.Maths
         public override bool Equals(object obj) => obj is Point other && Equals(other);
         public bool Equals(Point other) => X == other.X && Y == other.Y;
         public override int GetHashCode() => X ^ (Y << 16);
-    }
 
+        public static Point operator +(Point point, Vector vector) => point.Add(vector);
+    }
 }

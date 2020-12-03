@@ -9,11 +9,11 @@ namespace AdventOfCode._2020
     public class Day03
     {
         [Puzzle(2020, 03, Part.one)]
-        public static object One(string input)
+        public static int One(string input)
             => CountTrees(Row.Parse(input).ToArray(), new Vector(3, 1));
 
         [Puzzle(2020, 03, Part.two)]
-        public static object Two(string input)
+        public static long Two(string input)
         {
             var rows = Row.Parse(input).ToArray();
             var slopes = new[]
@@ -25,7 +25,7 @@ namespace AdventOfCode._2020
                 new Vector(1, 2),
             };
 
-            var trees = 1;
+            var trees = 1L;
             foreach(var slope in slopes)
             {
                 trees *= CountTrees(rows, slope);

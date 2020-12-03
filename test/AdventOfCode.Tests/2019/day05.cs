@@ -5,16 +5,8 @@ using NUnit.Framework;
 
 namespace Advent_of_Code_2019
 {
-    [TestFixture(Ignore = "Template")]
     public class day05
     {
-        [Test]
-        public void part_one_example()
-        {
-            var input = @"";
-            Puzzle.HasAnswer(0, Day05.One, with: input);
-        }
-
         [Test]
         public void part_one()
         {

@@ -1,4 +1,6 @@
-﻿namespace AdventOfCode._2019
+﻿using AdventOfCode._2019.Intcoding;
+
+namespace AdventOfCode._2019
 {
     public class Day02
     {
@@ -6,7 +8,7 @@
         public static int OneExample(string input)
             => Intcode.Parse(input)
             .Run()
-            .Anwser();
+            .Answer();
 
         [Puzzle(2019, 02, Part.one)]
         public static int One(string input)
@@ -14,7 +16,7 @@
             .Update(1, 12)
             .Update(2, 2)
             .Run()
-            .Anwser();
+            .Answer();
 
         [Puzzle(2019, 02, Part.two)]
         public static int Two(string input)
@@ -31,7 +33,7 @@
                         .Update(2, verb)
                         .Run();
 
-                    if (copy?.Anwser() == 19690720)
+                    if (copy?.Answer() == 19690720)
                     {
                         return noun * 100 + verb;
                     }

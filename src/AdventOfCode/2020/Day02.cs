@@ -9,7 +9,7 @@ namespace AdventOfCode._2020
     public class Day02
     {
         [Puzzle(2020, 02, Part.one)]
-        public static object One(string input)
+        public static int One(string input)
             => Password.Parse(input).Count(p => p.Policy.ValidForOne(p.Chars));
 
         [Puzzle(2020, 02, Part.two)]
@@ -29,7 +29,7 @@ namespace AdventOfCode._2020
         public int Min { get; }
         public int Max { get; }
         public char Char { get; }
-        
+
         public bool ValidForOne(string str)
         {
             var policy = this;
@@ -59,16 +59,16 @@ namespace AdventOfCode._2020
 
         public static IEnumerable<Password> Parse(string str)
         {
-            foreach(var line in Parser.Lines(str))
+            foreach (var line in Parser.Lines(str))
             {
                 var split = line.Split(':');
                 var policy = split[0].Split('-', ' ');
                 var chars = split[1].Trim();
-                yield return new Password(chars, 
+                yield return new Password(chars,
                     new PasswordPolicy(
-                        min: int.Parse(policy[0]),
-                        max: int.Parse(policy[1]),
-                        ch: policy[2][0]));
+                        min: policy[0].Int(),
+                        max: policy[1].Int(),
+                        ch: policy[2].Char()));
             }
         }
     }

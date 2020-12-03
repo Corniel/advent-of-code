@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AdventOfCode._2019.Intcoding;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,10 +11,18 @@ namespace AdventOfCode._2019
     {
         [Puzzle(2019, 05, Part.one)]
         public static int One(string input)
-            => throw new NoAnswer();
+        {
+            var program = Intcode.Parse(input);
+            program = program.Run(1);
+            return program.Outputs.Last();
+        }
 
         [Puzzle(2019, 05, Part.two)]
         public static int Two(string input)
-            => throw new NoAnswer();
+        {
+            var program = Intcode.Parse(input);
+            program = program.Run(5);
+            return program.Outputs.Last();
+        }
     }
 }

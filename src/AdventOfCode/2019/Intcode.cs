@@ -25,8 +25,8 @@ namespace AdventOfCode._2019
         public int Pointer { get; internal set; }
 
         public IList<int> Memory { get; }
-        public Queue<int> Input { get; }
-        public ICollection<int> Output { get; } = new List<int>();
+        public Queue<int> Inputs { get; }
+        public ICollection<int> Outputs { get; } = new List<int>();
         public int Size => Memory.Count;
 
         public Intcode Copy() => new Intcode(Memory.ToArray());
@@ -82,15 +82,61 @@ namespace AdventOfCode._2019
         public bool Running() => state == State.Running;
         public bool Succeeded() => state == State.Exit;
 
-        public void Unknown()
+        public Intcode Unknown()
         {
             Pointer = Size;
             state = State.Unknown;
+            return this;
         }
-        public void Exit()
+        public Intcode Exit()
         {
             Pointer = Size;
             state = State.Exit;
+            return this;
+        }
+
+        public Intcode Add()
+        {
+            if (Read(out var p0) &&
+                Read(out var p1) &&
+                Read(out var target) &&
+                Read(p0, out var l) &&
+                Read(p1, out var r))
+            {
+                Write(target, l + r);
+            }
+            return this;
+        }
+
+        public Intcode Multipy()
+        {
+            if (Read(out var p0) &&
+                Read(out var p1) &&
+                Read(out var target) &&
+                Read(p0, out var l) &&
+                Read(p1, out var r))
+            {
+                Write(target, l * r);
+            }
+            return this;
+        }
+
+        public Intcode Input()
+        {
+            if (Read(out var target))
+            {
+                Write(target, Inputs.Dequeue());
+            }
+            return this;
+        }
+
+        public Intcode Outout()
+        {
+            if (Read(out var output))
+            {
+                Outputs.Add(output);
+            }
+            return this;
         }
 
         public override string ToString() => $"Pointer: {Pointer}, {string.Join(',', Memory)}";

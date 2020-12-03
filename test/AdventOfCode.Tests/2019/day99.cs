@@ -1,15 +1,15 @@
 ﻿using AdventOfCode;
-using AdventOfCode._2020;
+using AdventOfCode._2019;
 using AdventOfCode.Tests;
 using NUnit.Framework;
 
-namespace Advent_of_Code_2020
+namespace Advent_of_Code_2019
 {
     [TestFixture(Ignore = "Template")]
     public class day99
     {
         [Test]
-        public void part_one_example_returns_x()
+        public void part_one_example()
         {
             var input = @"";
             Puzzle.HasAnswer(0, Day99.One, with: input);
@@ -18,12 +18,12 @@ namespace Advent_of_Code_2020
         [Test]
         public void part_one()
         {
-            var input = Input.For(2020, 99);
+            var input = Input.For(2019, 99);
             Puzzle.HasAnswer(0, Day99.One, with: input);
         }
   
         [Test]
-        public void part_two_example_returns_X()
+        public void part_two_example()
         {
             var input = @"";
             Puzzle.HasAnswer(0, Day99.Two, with: input);
@@ -32,7 +32,7 @@ namespace Advent_of_Code_2020
         [Test]
         public void part_two()
         {
-            var input = Input.For(2020, 99);
+            var input = Input.For(2019, 99);
             Puzzle.HasAnswer(0, Day99.Two, with: input);
         }
     }

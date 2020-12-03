@@ -47,9 +47,11 @@ namespace AdventOfCode._2020
 
         public bool Contains(int number) => contains[number] == True;
 
-        public IEnumerable<int> TakeToMax(int max) => new Enumerator(contains, Minimum, max);
-
-        public IEnumerable<int> Enumerate(int min, int max) => new Enumerator(contains, min, max);
+        public IEnumerable<int> Range(int min = 0, int max = 0) 
+            => new Enumerator(
+                contains: contains, 
+                min: min == default ? Minimum : min, 
+                max: max == default ? Maximum : max);
 
         public IEnumerator<int> GetEnumerator() => new Enumerator(contains, Minimum, Maximum);
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();

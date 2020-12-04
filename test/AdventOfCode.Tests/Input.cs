@@ -20,6 +20,7 @@ namespace AdventOfCode.Tests
 
             using (var stream = typeof(Input).Assembly.GetManifestResourceStream(path))
             {
+                if (stream is null) throw new FileNotFoundException(path);
                 var reader = new StreamReader(stream, Encoding.UTF8);
                 return reader.ReadToEnd();
             }

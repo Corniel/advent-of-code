@@ -16,10 +16,16 @@ namespace AdventOfCode
             => Lines(str)
             .Select(Int);
 
-        public static IEnumerable<string> CommaSeperated(this string str)
-            => str.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+        public static string[] Seperate(this string str, char splitter)
+            => str.Split(new[] { splitter }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 
-        public static IEnumerable<string> Lines(this string str)
-            => str.Split(new[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+        public static IEnumerable<string> CommaSeperated(this string str)
+            => str.Seperate(',');
+
+        public static IEnumerable<string> SpaceSeperated(this string str)
+            => str.Seperate(' ');
+
+        public static IEnumerable<string> Lines(this string str, StringSplitOptions options = StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+            => str.Split(new[] { "\r\n", "\n" }, options);
     }
 }

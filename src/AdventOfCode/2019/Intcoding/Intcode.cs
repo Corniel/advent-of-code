@@ -25,11 +25,11 @@ namespace AdventOfCode._2019.Intcoding
                 _ => throw new NoAnswer(),
             };
 
+        public bool Halted() => state == State.Exit;
 
         private bool InMemory(int pointer) => pointer >= 0 && pointer < Size;
-        private bool Running() => state == State.Running;
-        private bool Succeeded() => state >= State.Exit;
-       
+        private bool Running() => state == State.Running && Pointer < Size;
+
         private bool Read(out int value) => Read(Pointer++, out value);
         private bool Read(int pointer, out int value)
         {
@@ -67,6 +67,6 @@ namespace AdventOfCode._2019.Intcoding
             Running = 1,
         }
 
-        private State state;
+        private State state = State.Running;
     }
 }

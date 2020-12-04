@@ -16,6 +16,6 @@ namespace AdventOfCode._2019.Intcoding
 
         public override string ToString() => $"{value / 100:000} {Instruction}";
 
-        private Mode Mode(int devide) => (Mode)((value / devide) % 10);
+        private Mode Mode(int divide) => (Mode)((value / divide) % 10);
     }
 }

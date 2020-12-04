@@ -19,23 +19,26 @@ namespace AdventOfCode._2019.Intcoding
             return this;
         }
 
-        public Intcode Run(params int[] inputs)
+        public Intcode Run(params int[] inputs) => Run(false, inputs);
+        public Intcode Run(bool haltOnOutput, params int[] inputs)
         {
-            Inputs.Clear();
-            foreach(var input in inputs)
+            foreach (var input in inputs)
             {
                 Inputs.Enqueue(input);
             }
-
-            state = State.Running;
-
             while (Running())
             {
-                Step(Opcode());
+                var opcode = Opcode();
+                Step(opcode);
+
+                if (opcode.Instruction == Instruction.Output && haltOnOutput)
+                {
+                    break;
+                }
             }
             return this;
         }
-        
+
         private Intcode Step(Opcode opcode)
             => opcode.Instruction switch
             {
@@ -97,7 +100,7 @@ namespace AdventOfCode._2019.Intcoding
             }
             return this;
         }
-        
+
         public Intcode Output()
         {
             if (Read(out int p1) && Read(p1, out int value))
@@ -113,7 +116,7 @@ namespace AdventOfCode._2019.Intcoding
             state = State.Unknown;
             return this;
         }
-        
+
         public Intcode Exit()
         {
             Pointer = Size;

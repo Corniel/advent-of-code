@@ -1,5 +1,4 @@
-﻿using AdventOfCode;
-using AdventOfCode._2020;
+﻿using AdventOfCode._2020;
 using AdventOfCode.Tests;
 using NUnit.Framework;
 

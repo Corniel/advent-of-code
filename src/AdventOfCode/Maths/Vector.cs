@@ -15,6 +15,8 @@ namespace AdventOfCode.Maths
         public int X { get; }
         public int Y { get; }
 
+        public double Angle => Math.Atan2(Y, X);
+
         public override string ToString() => $"({X}, {Y})";
 
         public override bool Equals(object obj) => obj is Vector other && Equals(other);

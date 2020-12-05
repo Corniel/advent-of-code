@@ -7,7 +7,7 @@ namespace AdventOfCode._2019.Intcoding
     {
         public static Intcode Parse(string input)
         {
-            var memory = input.CommaSeperated().SelectMany(Parser.Ints).ToArray();
+            var memory = input.CommaSeperated().SelectMany(Parser.Int32s).ToArray();
             return new Intcode(memory);
         }
 

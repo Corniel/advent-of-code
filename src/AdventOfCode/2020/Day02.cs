@@ -66,8 +66,8 @@ namespace AdventOfCode._2020
                 var chars = split[1].Trim();
                 yield return new Password(chars,
                     new PasswordPolicy(
-                        min: policy[0].Int(),
-                        max: policy[1].Int(),
+                        min: policy[0].Int32(),
+                        max: policy[1].Int32(),
                         ch: policy[2].Char()));
             }
         }

@@ -6,13 +6,13 @@ namespace AdventOfCode._2019
     {
         [Puzzle(2019, 01, Part.one)]
         public static int One(string input)
-            => input.Ints().Sum(Fuel);
+            => input.Int32s().Sum(Fuel);
 
         private static int Fuel(int mass) => (mass / 3) - 2;
     
         [Puzzle(2019, 01, Part.two)]
         public static int Two(string input)
-            => input.Ints().Sum(RecursiveFuel);
+            => input.Int32s().Sum(RecursiveFuel);
 
         private static int RecursiveFuel(int mass)
         {

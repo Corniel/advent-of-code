@@ -56,7 +56,7 @@ namespace AdventOfCode._2020
         public IEnumerator<int> GetEnumerator() => new Enumerator(contains, Minimum, Maximum);
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
-        public static UniqueNumbers Parse(string str) => new UniqueNumbers(Parser.Ints(str));
+        public static UniqueNumbers Parse(string str) => new UniqueNumbers(Parser.Int32s(str));
 
         private class Enumerator : IEnumerator<int>, IEnumerable<int>
         {

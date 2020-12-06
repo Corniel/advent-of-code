@@ -58,17 +58,17 @@ namespace AdventOfCode._2020
 
         public static UniqueNumbers Parse(string str) => new UniqueNumbers(Parser.Int32s(str));
 
-        private class Enumerator : IEnumerator<int>, IEnumerable<int>
+        private sealed class Enumerator : IEnumerator<int>, IEnumerable<int>
         {
             private readonly byte[] contains;
             private readonly int max;
-            private int index = -1;
+            private int index;
 
             public Enumerator(byte[] contains, int min, int max)
             {
                 this.contains = contains;
-                this.index = min - 1;
                 this.max = max;
+                index = min - 1;
             }
 
             public int Current => index;

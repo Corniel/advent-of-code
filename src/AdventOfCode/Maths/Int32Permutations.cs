@@ -3,17 +3,8 @@ using System.Linq;
 
 namespace System
 {
-    public static class NumberExtensions
+    public static class Int32Permutations
     {
-        public static int Mod(this int n, int mod)
-        {
-            var m = n % mod;
-            return m < 0 ? m + mod : m;
-        }
-
-        public static bool IsEven(this int n) => (n & 1) == 0;
-        public static bool IsEven(this long n) => (n & 1) == 0;
-
         public static IEnumerable<int[]> Permutations(this int[] values)
             => values.Permutation(values.Length, 0);
         

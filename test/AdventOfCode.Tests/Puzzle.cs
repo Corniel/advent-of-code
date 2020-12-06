@@ -6,7 +6,7 @@ namespace AdventOfCode.Tests
 {
     public static class Puzzle
     {
-        public static void HasAnswer<T>(T expected, ProgrammingPuzzle<T> puzzle, string with)
+        public static void HasAnswer<T>(T expected, Puzzle<T> puzzle, string with)
         {
             var sw = Stopwatch.StartNew();
             var answer = puzzle(with);

@@ -45,17 +45,15 @@ namespace AdventOfCode._2019.Intcoding
                 return false;
             }
         }
-        private bool Write(int pointer, int value)
+        private void Write(int pointer, int value)
         {
             if (InMemory(pointer))
             {
                 Memory[pointer] = value;
-                return true;
             }
             else
             {
                 state = State.OutOfMemory;
-                return false;
             }
         }
 

@@ -27,5 +27,34 @@ namespace AdventOfCode
 
         public static IEnumerable<string> Lines(this string str, StringSplitOptions options = StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
             => str.Split(new[] { "\r\n", "\n" }, options);
+
+        public static IEnumerable<string[]> GroupedLines(this string str, StringSplitOptions options = StringSplitOptions.RemoveEmptyEntries)
+        {
+            var buffer = new List<string>();
+
+            foreach (var line in str.Lines(StringSplitOptions.None))
+            {
+                if (string.IsNullOrWhiteSpace(line))
+                {
+                    if (buffer.Any())
+                    {
+                        yield return buffer.ToArray();
+                        buffer.Clear();
+                    }
+                    else if (!options.HasFlag(StringSplitOptions.RemoveEmptyEntries))
+                    {
+                        yield return Array.Empty<string>();
+                    }
+                }
+                else
+                {
+                    buffer.Add(options.HasFlag(StringSplitOptions.TrimEntries) ? line.Trim() : line);
+                }
+            }
+            if (buffer.Any())
+            {
+                yield return buffer.ToArray();
+            }
+        }
     }
 }

@@ -10,10 +10,14 @@ namespace AdventOfCode._2020
     {
         [Puzzle(2020, 99, Part.one)]
         public static int One(string input)
-            => throw new NoAnswer();
+        {
+            throw new NoAnswer();
+        }
 
         [Puzzle(2020, 99, Part.two)]
         public static int Two(string input)
-            => throw new NoAnswer();
+        {
+            throw new NoAnswer();
+        }
     }
 }

@@ -71,19 +71,11 @@ namespace AdventOfCode._2020
 
             public static IEnumerable<Passport> Parse(string str)
             {
-                var passport = new Passport();
-
-                foreach (var line in str.Lines(StringSplitOptions.None))
+                foreach(var lines in str.GroupedLines())
                 {
-                    if (line.Trim() == string.Empty)
-                    {
-                        if (passport.Any())
-                        {
-                            yield return passport;
-                            passport = new Passport();
-                        }
-                    }
-                    else
+                    var passport = new Passport();
+
+                    foreach (var line in lines)
                     {
                         foreach (var block in line.SpaceSeperated())
                         {
@@ -94,6 +86,7 @@ namespace AdventOfCode._2020
                             passport[key] = value;
                         }
                     }
+                    yield return passport;
                 }
             }
         }

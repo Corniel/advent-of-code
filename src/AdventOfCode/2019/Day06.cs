@@ -6,11 +6,9 @@ namespace AdventOfCode._2019
 {
     public class Day06
     {
-        [Puzzle(2019, 06, Part.one)]
         public static int One(string input)
             => Space.Parse(input).Connections;
 
-        [Puzzle(2019, 06, Part.two)]
         public static int Two(string input)
         {
             var space = Space.Parse(input);

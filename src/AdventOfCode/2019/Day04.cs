@@ -5,12 +5,10 @@ namespace AdventOfCode._2019
 {
     public class Day04
     {
-        [Puzzle(2019, 04, Part.one)]
         public static int One(string input)
             => CountValidPasswords(input, PasswordForOne);
 
        
-        [Puzzle(2019, 04, Part.two)]
         public static int Two(string input)
             => CountValidPasswords(input, PasswordForTwo);
 

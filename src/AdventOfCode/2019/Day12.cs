@@ -7,7 +7,6 @@ namespace AdventOfCode._2019
 {
     public class Day12
     {
-        [Puzzle(2019, 12, Part.one)]
         public static int One(string input)
             => One(input, 1000);
         
@@ -17,13 +16,11 @@ namespace AdventOfCode._2019
             
             for(var step = 1; step <= steps; step++)
             {
-                Moon.Step(moons);
+                Moon.SetStep(moons);
             }
             return moons.Sum(moon => moon.TotalEnergy);
         }
 
-
-        [Puzzle(2019, 12, Part.two)]
         public static long Two(string input)
         {
             var moons = Moon.Parse(input).ToArray();
@@ -36,32 +33,8 @@ namespace AdventOfCode._2019
             var y = Cycle(ys);
             var z = Cycle(zs);
 
-            var xy = x * y / Gcd(x, y);
-            return xy * z / Gcd(xy, z);
-        }
-
-        /// <summary>Gets the Greatest Common Divisor.</summary>
-        /// <remarks>
-        /// See: https://en.wikipedia.org/wiki/Greatest_common_divisor
-        /// </remarks>
-        private static long Gcd(long a, long b)
-        {
-            var even = 1;
-            long remainder;
-            // while both are even.
-            while ((a & 1) == 0 && (b & 1) == 0)
-            {
-                a >>= 1;
-                b >>= 1;
-                even <<= 1;
-            }
-            while (b != 0)
-            {
-                remainder = a % b;
-                a = b;
-                b = remainder;
-            }
-            return a * even;
+            var xy = x * y / Mathematic.Gcd(x, y);
+            return xy * z / Mathematic.Gcd(xy, z);
         }
 
         internal static long Cycle(Tuple<int, int>[] pairs)
@@ -97,7 +70,6 @@ namespace AdventOfCode._2019
                 pairs[i] = new(pairs[i].Item1 + velocity, velocity);
             }
         }
-
 
         public sealed class Moon : IEquatable<Moon>
         {
@@ -148,7 +120,7 @@ namespace AdventOfCode._2019
                     return new Moon(new Point3d(xyz[0], xyz[1], xyz[2]), default);
                });
 
-            public static void Step(IEnumerable<Moon> moons)
+            public static void SetStep(IEnumerable<Moon> moons)
             {
                 foreach (var moon in moons)
                 {

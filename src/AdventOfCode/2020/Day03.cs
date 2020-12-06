@@ -8,11 +8,9 @@ namespace AdventOfCode._2020
 {
     public class Day03
     {
-        [Puzzle(2020, 03, Part.one)]
         public static int One(string input)
             => CountTrees(Row.Parse(input).ToArray(), new Vector(3, 1));
 
-        [Puzzle(2020, 03, Part.two)]
         public static long Two(string input)
         {
             var rows = Row.Parse(input).ToArray();

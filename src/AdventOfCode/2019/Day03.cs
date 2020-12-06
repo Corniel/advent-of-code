@@ -7,7 +7,6 @@ namespace AdventOfCode._2019
 {
     public class Day03
     {
-        [Puzzle(2019, 03, Part.one)]
         public static int One(string input)
         {
             var wires = input.Lines().Select(line => Move.Parse(line).ToArray()).ToArray();
@@ -43,7 +42,6 @@ namespace AdventOfCode._2019
             return distance;
         }
 
-        [Puzzle(2019, 03, Part.two)]
         public static int Two(string input)
         {
             var wires = input.Lines().Select(line => Move.Parse(line).ToArray()).ToArray();

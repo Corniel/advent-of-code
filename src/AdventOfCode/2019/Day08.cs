@@ -7,14 +7,12 @@ namespace AdventOfCode._2019
 {
     public class Day08
     {
-        [Puzzle(2019, 08, Part.one)]
         public static int One(string input)
             => Layer.Parse(25, 6, input)
             .OrderBy(layer => layer.Zeros)
             .Select(layer => layer.Ones * layer.Twos)
             .FirstOrDefault();
 
-        [Puzzle(2019, 08, Part.two)]
         public static string Two(string input)
         {
             var layers = Layer.Parse(25, 6, input).ToArray();

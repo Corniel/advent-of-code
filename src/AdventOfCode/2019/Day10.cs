@@ -7,7 +7,6 @@ namespace AdventOfCode._2019
 {
     public class Day10
     {
-        [Puzzle(2019, 10, Part.one)]
         public static int One(string input)
         {
             var astroids = Astroids.Parse(input);
@@ -18,7 +17,6 @@ namespace AdventOfCode._2019
                     .Count());
         }
 
-        [Puzzle(2019, 10, Part.two)]
         public static int Two(string input)
         {
             var astroids = Astroids.Parse(input);

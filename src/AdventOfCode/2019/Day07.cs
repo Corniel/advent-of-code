@@ -1,21 +1,16 @@
 ﻿using AdventOfCode._2019.Intcoding;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AdventOfCode._2019
 {
     public class Day07
     {
-        [Puzzle(2019, 07, Part.one)]
         public static int One(string input)
             => new[] { 0, 1, 2, 3, 4 }
             .Permutations()
             .Max(phases => Amplify(Intcode.Parse(input), phases));
 
-        [Puzzle(2019, 07, Part.two)]
         public static int Two(string input)
             => new[] { 5, 6, 7, 8, 9 }
             .Permutations()
@@ -50,14 +45,12 @@ namespace AdventOfCode._2019
 
             var signal = 0;
 
-            while (!programs[4].Halted())
+            while (!programs.Last().Halted())
             {
-                for (var i = 0; i < phases.Length; i++)
+                foreach(var prog in programs)
                 {
-                    var phase = phases[i];
-                    var selected = programs[i];
-                    selected.Run(true, signal);
-                    signal = selected.Outputs.LastOrDefault();
+                    prog.Run(true, signal);
+                    signal = prog.Outputs.LastOrDefault();
                 }
             }
             return signal;

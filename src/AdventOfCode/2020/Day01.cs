@@ -1,13 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace AdventOfCode._2020
+﻿namespace AdventOfCode._2020
 {
     public static class Day01
     {
         public const int Year = 2020;
         
-        [Puzzle(2020, 01, Part.one)]
         public static int One(string input)
         {
             var numbers = UniqueNumbers.Parse(input);
@@ -22,7 +18,6 @@ namespace AdventOfCode._2020
             throw new NoAnswer();
         }
 
-        [Puzzle(2020, 01, Part.two)]
         public static long Two(string input)
         {
             var numbers = UniqueNumbers.Parse(input);

@@ -4,11 +4,9 @@ namespace AdventOfCode._2020
 {
     public class Day05
     {
-        [Puzzle(2020, 05, Part.one)]
         public static int One(string input)
             => input.Lines().Select(Seat.Parse).Max(seat => seat.Id);
 
-        [Puzzle(2020, 05, Part.two)]
         public static int Two(string input)
         {
             var seats = input.Lines().Select(Seat.Parse).OrderBy(s => s.Id).ToArray();

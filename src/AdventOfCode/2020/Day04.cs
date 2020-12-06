@@ -7,11 +7,9 @@ namespace AdventOfCode._2020
 {
     public class Day04
     {
-        [Puzzle(2020, 04, Part.one)]
         public static int One(string input)
             => Passport.Parse(input).Count(p => p.IsValid());
 
-        [Puzzle(2020, 04, Part.two)]
         public static int Two(string input)
            => Passport.Parse(input).Count(p => p.StrictValid());
 

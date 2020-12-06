@@ -39,7 +39,7 @@ namespace AdventOfCode._2019.Intcoding
             return this;
         }
 
-        private Intcode Step(Opcode opcode)
+        internal Intcode Step(Opcode opcode)
             => opcode.Instruction switch
             {
                 Instruction.Add => Add(opcode),

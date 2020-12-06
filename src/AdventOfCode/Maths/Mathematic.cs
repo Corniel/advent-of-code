@@ -2,6 +2,13 @@
 {
     public static class Mathematic
     {
+        /// <summary>Gets a positive modulo.</summary>
+        public static int Mod(this int n, int mod)
+        {
+            var m = n % mod;
+            return m < 0 ? m + mod : m;
+        }
+
         /// <summary>Gets the Greatest Common Divisor.</summary>
         /// <remarks>
         /// See: https://en.wikipedia.org/wiki/Greatest_common_divisor

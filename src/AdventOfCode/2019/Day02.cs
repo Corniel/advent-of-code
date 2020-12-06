@@ -4,13 +4,11 @@ namespace AdventOfCode._2019
 {
     public class Day02
     {
-        [Puzzle(2019, 02, Part.one)]
         public static int OneExample(string input)
             => Intcode.Parse(input)
             .Run()
             .Answer();
 
-        [Puzzle(2019, 02, Part.one)]
         public static int One(string input)
             => Intcode.Parse(input)
             .Update(1, 12)
@@ -18,7 +16,6 @@ namespace AdventOfCode._2019
             .Run()
             .Answer();
 
-        [Puzzle(2019, 02, Part.two)]
         public static int Two(string input)
         {
             var program = Intcode.Parse(input);

@@ -3,5 +3,11 @@
 # S101: Types should be named in PascalCase
 dotnet_diagnostic.S101.severity = none
 
-# Default severity for all analyzer diagnostics
-dotnet_analyzer_diagnostic.severity = none
+# S3925: "ISerializable" should be implemented correctly
+dotnet_diagnostic.S3925.severity = none
+
+# S1118: Utility classes should not have public constructors
+dotnet_diagnostic.S1118.severity = none
+
+# S3220: Method calls should not resolve ambiguously to overloads with "params"
+dotnet_diagnostic.S3220.severity = none

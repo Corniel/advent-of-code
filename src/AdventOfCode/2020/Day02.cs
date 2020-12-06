@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AdventOfCode._2020
 {
     public class Day02
     {
-        [Puzzle(2020, 02, Part.one)]
         public static int One(string input)
             => Password.Parse(input).Count(p => p.Policy.ValidForOne(p.Chars));
 
-        [Puzzle(2020, 02, Part.two)]
         public static int Two(string input)
         => Password.Parse(input).Count(p => p.Policy.ValidForTwo(p.Chars));
     }

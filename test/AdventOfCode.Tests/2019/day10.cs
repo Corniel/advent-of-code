@@ -133,7 +133,7 @@ namespace Advent_of_Code_2019
         public void part_two()
         {
             var input = Input.For(2019, 10);
-            Puzzle.HasAnswer(0, Day10.Two, with: input);
+            Puzzle.HasAnswer(829, Day10.Two, with: input);
         }
     }
 }

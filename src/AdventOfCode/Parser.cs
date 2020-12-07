@@ -19,6 +19,9 @@ namespace AdventOfCode
         public static string[] Seperate(this string str, char splitter)
             => str.Split(new[] { splitter }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 
+        public static string[] Seperate(this string str, string splitter)
+            => str.Split(new[] { splitter }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+
         public static IEnumerable<string> CommaSeperated(this string str)
             => str.Seperate(',');
 

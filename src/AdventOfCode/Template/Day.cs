@@ -12,18 +12,6 @@ namespace Advent_of_Code_@Year
     public class Day_@Day
     {
         [Example(answer: 666, @"666")]
-        public void part_one_examples(long answer, string input)
-        {
-            part_one(answer, input);
-        }
-
-        [Test]
-        public void part_one_example()
-        {
-            part_one(666, @"
-                ");
-        }
-
         [Puzzle(answer: 666, year: @Year, day: @Day)]
         public void part_one(long answer, string input)
         {
@@ -32,18 +20,6 @@ namespace Advent_of_Code_@Year
         }
 
         [Example(answer: 666, @"666")]
-        public void part_two_examples(long answer, string input)
-        {
-            part_two(answer, input);
-        }
-
-        [Test]
-        public void part_two_example()
-        {
-            part_two(666, @"
-                ");
-        }
-
         [Puzzle(answer: 666, year: @Year, day: @Day)]
         public void part_two(long answer, string input)
         {

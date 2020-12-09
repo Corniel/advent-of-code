@@ -1,14 +1,12 @@
-﻿using SmartAss;
+﻿using Advent_of_Code;
+using SmartAss;
 using SmartAss.Diagnostics;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace AdventOfCode._2020
+namespace Advent_of_Code_2020
 {
     [DebuggerTypeProxy(typeof(CollectionDebugView))]
     [DebuggerDisplay("Count: {Count}, Min: {Minimum}, Max: {Maximum}")]

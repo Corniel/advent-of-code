@@ -2,7 +2,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace AdventOfCode
+namespace Advent_of_Code
 {
     public class NoAnswer : InvalidOperationException
     {

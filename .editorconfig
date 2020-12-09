@@ -9,6 +9,9 @@ dotnet_diagnostic.S3925.severity = none
 # S1118: Utility classes should not have public constructors
 dotnet_diagnostic.S1118.severity = none
 
+# S2699: Add at least one assertion
+dotnet_diagnostic.S2699.severity = none
+
 # S3220: Method calls should not resolve ambiguously to overloads with "params"
 dotnet_diagnostic.S3220.severity = none
 

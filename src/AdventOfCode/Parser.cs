@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AdventOfCode
+namespace Advent_of_Code
 {
     public static class Parser
     {

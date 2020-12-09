@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Advent_of_Code;
 
-namespace AdventOfCode._2019.Intcoding
+namespace Advent_of_Code_2019.Intcoding
 {
     public static class IntcodeExtensions
     {

@@ -5,6 +5,16 @@ namespace System
 {
     public static class Int32Permutations
     {
+        public static long Product(this IEnumerable<long> numbers)
+        {
+            long product = 1;
+            foreach(var number in numbers)
+            {
+                product *= number;
+            }
+            return product;
+        }
+
         public static IEnumerable<int[]> Permutations(this int[] values)
             => values.Permutation(values.Length, 0);
         

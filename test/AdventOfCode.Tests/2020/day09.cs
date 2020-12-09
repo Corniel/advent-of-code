@@ -37,21 +37,14 @@ namespace Advent_of_Code_2020
         public void part_one()
         {
             var input = Input.For(2020, 09);
-            Puzzle.HasAnswer(0, Day09.One, with: input);
-        }
-  
-        [Test]
-        public void part_two_example()
-        {
-            var input = @"";
-            Puzzle.HasAnswer(0, Day09.Two, with: input);
+            Puzzle.HasAnswer(144381670, Day09.One, with: input);
         }
 
         [Test]
         public void part_two()
         {
             var input = Input.For(2020, 09);
-            Puzzle.HasAnswer(0, Day09.Two, with: input);
+            Puzzle.HasAnswer(20532569, Day09.Two, with: input);
         }
     }
 }

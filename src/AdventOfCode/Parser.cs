@@ -12,9 +12,17 @@ namespace AdventOfCode
         public static int Int32(this string str)
             => int.Parse(str);
 
+        public static long Int64(this string str)
+         => long.Parse(str);
+
         public static IEnumerable<int> Int32s(this string str)
             => Lines(str)
             .Select(Int32);
+
+
+        public static IEnumerable<long> Int64s(this string str)
+            => Lines(str)
+            .Select(Int64);
 
         public static string[] Seperate(this string str, char splitter)
             => str.Split(new[] { splitter }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);

@@ -1,14 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using Advent_of_Code;
+using System.Collections.Generic;
 
-namespace AdventOfCode._2019.Intcoding
+namespace Advent_of_Code_2019.Intcoding
 {
-
     public partial class Intcode
     {
-        public Intcode(IList<int> memory)
-        {
-            Memory = memory;
-        }
+        public Intcode(IList<int> memory) => Memory = memory;
 
         public IList<int> Memory { get; }
         public Queue<int> Inputs { get; } = new Queue<int>();

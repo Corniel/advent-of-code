@@ -1,4 +1,4 @@
-﻿namespace AdventOfCode.Maths
+﻿namespace Advent_of_Code.Maths
 {
     public static class Mathematic
     {

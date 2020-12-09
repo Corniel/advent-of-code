@@ -1,7 +1,8 @@
-﻿using System;
+﻿using Advent_of_Code;
+using System;
 using System.Linq;
 
-namespace AdventOfCode._2019.Intcoding
+namespace Advent_of_Code_2019.Intcoding
 {
     public partial class Intcode
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AdventOfCode.Maths
+namespace Advent_of_Code.Maths
 {
     public readonly struct Vector : IEquatable<Vector>
     {

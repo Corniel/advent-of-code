@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace AdventOfCode._2019.Intcoding
+namespace Advent_of_Code_2019.Intcoding
 {
     public readonly struct Opcode
     {

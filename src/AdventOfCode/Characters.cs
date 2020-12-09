@@ -1,4 +1,4 @@
-﻿namespace AdventOfCode
+﻿namespace Advent_of_Code
 {
     public static class Characters
     {

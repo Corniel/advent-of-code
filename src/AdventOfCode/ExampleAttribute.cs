@@ -11,9 +11,6 @@ namespace Advent_of_Code
             : base(answer, input) => Do.Nothing();
 
         protected override string TestName(IMethodInfo method)
-            => $"answer is {Answer} for {method.Name.Replace("_", " ")} example:{Trimmed()}";
-
-        private string Trimmed() => string.Join(Environment.NewLine,
-            Input.Lines(StringSplitOptions.TrimEntries));
+           => $"answer is {Answer} for {method.Name.Replace("_", " ")} example with length {Input.Length}";
     }
 }

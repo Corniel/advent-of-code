@@ -53,7 +53,7 @@ namespace Advent_of_Code_2020
             return trees;
         }
 
-        internal class Row
+        private class Row
         {
             private const byte Tree = 17;
             [DebuggerBrowsable(DebuggerBrowsableState.Never)]

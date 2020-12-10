@@ -1,6 +1,5 @@
 ﻿using Advent_of_Code;
 using Advent_of_Code.Maths;
-using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,18 +12,16 @@ namespace Advent_of_Code_@Year
     {
         [Example(answer: 666, @"666")]
         [Puzzle(answer: 666, year: @Year, day: @Day)]
-        public void part_one(long answer, string input)
+        public long part_one(string input)
         {
-            var outcome = 0;
-            Assert.That(outcome, Is.EqualTo(answer));
+            throw new NoAnswer();
         }
 
         [Example(answer: 666, @"666")]
         [Puzzle(answer: 666, year: @Year, day: @Day)]
-        public void part_two(long answer, string input)
+        public long part_two(string input)
         {
-            var outcome = 0;
-            Assert.That(outcome, Is.EqualTo(answer));
+            throw new NoAnswer();
         }
     }
 }

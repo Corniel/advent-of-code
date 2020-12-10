@@ -1,4 +1,5 @@
 using Advent_of_Code;
+using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -22,7 +23,7 @@ namespace Advent_of_Code_2020
         public int part_two(string input)
             => Password.Parse(input).Count(p => p.Policy.ValidForTwo(p.Chars));
 
-        public readonly struct PasswordPolicy
+        private readonly struct PasswordPolicy
         {
             public PasswordPolicy(int min, int max, char ch)
             {
@@ -51,7 +52,7 @@ namespace Advent_of_Code_2020
             }
 
         }
-        public readonly struct Password
+        private readonly struct Password
         {
             public Password(string chars, PasswordPolicy policy)
             {

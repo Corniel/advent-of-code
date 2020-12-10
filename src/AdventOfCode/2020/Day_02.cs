@@ -19,7 +19,7 @@ namespace Advent_of_Code_2020
             1-3 b: cdefg
             2-9 c: ccccccccc")]
         [Puzzle(answer: 558, year: 2020, day: 02)]
-        public void part_two(long answer, string input)
+        public int part_two(string input)
             => Password.Parse(input).Count(p => p.Policy.ValidForTwo(p.Chars));
 
         public readonly struct PasswordPolicy

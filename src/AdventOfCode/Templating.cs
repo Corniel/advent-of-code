@@ -7,14 +7,6 @@ namespace Advent_of_Code
     public class Templating
     {
         [TestCase(2020, 10)]
-        
-        [TestCase(2019, 08)]
-        [TestCase(2019, 09)]
-        [TestCase(2019, 11)]
-        [TestCase(2019, 13)]
-        [TestCase(2019, 14)]
-        [TestCase(2019, 15)]
-        [TestCase(2019, 16)]
         public void Generate(int year, int day)
         {
             var file = new FileInfo($@".\..\..\..\{year}\Day_{day:00}.cs");

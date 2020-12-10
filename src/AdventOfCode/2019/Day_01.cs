@@ -1,5 +1,4 @@
 using Advent_of_Code;
-using NUnit.Framework;
 using System.Linq;
 
 namespace Advent_of_Code_2019
@@ -7,18 +6,12 @@ namespace Advent_of_Code_2019
     public class Day_01
     {
         [Puzzle(answer: 3291356, year: 2019, day: 01)]
-        public void part_one(long answer, string input)
-        {
-            var outcome = input.Int32s().Sum(Fuel);
-            Assert.That(outcome, Is.EqualTo(answer));
-        }
-
+        public int part_one(string input)
+            => input.Int32s().Sum(Fuel);
+        
         [Puzzle(answer: 4934153, year: 2019, day: 01)]
-        public void part_two(long answer, string input)
-        {
-            var outcome = input.Int32s().Sum(RecursiveFuel);
-            Assert.That(outcome, Is.EqualTo(answer));
-        }
+        public int part_two(string input)
+            => input.Int32s().Sum(RecursiveFuel);
 
         private static int Fuel(int mass) => (mass / 3) - 2;
 

@@ -1,5 +1,4 @@
 using Advent_of_Code;
-using NUnit.Framework;
 using System.Linq;
 
 namespace Advent_of_Code_2020
@@ -7,21 +6,13 @@ namespace Advent_of_Code_2020
     public class Day_05
     {
         [Puzzle(answer: 998, year: 2020, day: 05)]
-        public void part_one(long answer, string input)
-        {
-            var outcome = input.Lines().Select(Seat.Parse).Max(seat => seat.Id);
-            Assert.That(outcome, Is.EqualTo(answer));
-        }
+        public int part_one(string input)
+            => input.Lines().Select(Seat.Parse).Max(seat => seat.Id);
 
         [Puzzle(answer: 676, year: 2020, day: 05)]
-        public void part_two(long answer, string input)
+        public int part_two(string input)
         {
-            var outcome = Gap(input.Lines().Select(Seat.Parse).OrderBy(s => s.Id).ToArray());
-            Assert.That(outcome, Is.EqualTo(answer));
-        }
-
-        private static int Gap(Seat[] seats)
-        {
+            var seats = input.Lines().Select(Seat.Parse).OrderBy(s => s.Id).ToArray();
             var previous = seats[0];
 
             foreach (var seat in seats.Skip(1))
@@ -34,6 +25,7 @@ namespace Advent_of_Code_2020
             }
             throw new NoAnswer();
         }
+
         internal readonly struct Seat
         {
             public Seat(int row, int col)

@@ -1,6 +1,5 @@
 using Advent_of_Code;
 using Advent_of_Code.Maths;
-using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -23,14 +22,11 @@ namespace Advent_of_Code_2020
             #...##....#
             .#..#...#.#")]
         [Puzzle(answer: 220, year: 2020, day: 03)]
-        public void part_one(long answer, string input)
-        {
-            var outcome = CountTrees(Row.Parse(input).ToArray(), new Vector(3, 1));
-            Assert.That(outcome, Is.EqualTo(answer));
-        }
+        public long part_one(string input)
+            => CountTrees(Row.Parse(input).ToArray(), new Vector(3, 1));
 
         [Puzzle(answer: 2138320800, year: 2020, day: 03)]
-        public void part_two(long answer, string input)
+        public long part_two(string input)
         {
             var rows = Row.Parse(input).ToArray();
             var slopes = new[]
@@ -41,8 +37,7 @@ namespace Advent_of_Code_2020
                 new Vector(7, 1),
                 new Vector(1, 2),
             };
-            var outcome = slopes.Select(slope => CountTrees(rows, slope)).Product();
-            Assert.That(outcome, Is.EqualTo(answer));
+            return slopes.Select(slope => CountTrees(rows, slope)).Product();
         }
 
         private static long CountTrees(Row[] rows, Vector slope)

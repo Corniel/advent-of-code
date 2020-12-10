@@ -92,7 +92,7 @@ namespace Advent_of_Code_2020
         public IEnumerator<int> GetEnumerator() => new Enumerator(contains, Minimum, Maximum);
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
-        public static UniqueNumbers Parse(string str) => new UniqueNumbers(Parser.Int32s(str));
+        public static UniqueNumbers Parse(string str) => new UniqueNumbers(str.Int32s());
 
         private sealed class Enumerator : IEnumerator<int>, IEnumerable<int>
         {

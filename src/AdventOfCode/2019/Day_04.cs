@@ -1,5 +1,4 @@
 using Advent_of_Code;
-using NUnit.Framework;
 using System;
 using System.Linq;
 
@@ -8,18 +7,12 @@ namespace Advent_of_Code_2019
     public class Day_04
     {
         [Puzzle(answer: 1178,"235741-706948")]
-        public void part_one(long answer, string input)
-        {
-            var outcome = CountValidPasswords(input, PasswordForOne);
-            Assert.That(outcome, Is.EqualTo(answer));
-        }
+        public int part_one(string input)
+            => CountValidPasswords(input, PasswordForOne);
 
         [Puzzle(answer: 763,"235741-706948")]
-        public void part_two(long answer, string input)
-        {
-            var outcome = CountValidPasswords(input, PasswordForTwo);
-            Assert.That(outcome, Is.EqualTo(answer));
-        }
+        public int part_two(string input)
+            => CountValidPasswords(input, PasswordForTwo);
 
         private static int CountValidPasswords(string input, Func<int, bool> validator)
         {

@@ -15,21 +15,25 @@ namespace Advent_of_Code_2020
         private readonly byte[] contains = new byte[short.MaxValue];
         private const byte True = 255;
 
+        public static UniqueNumbers Empty => new UniqueNumbers();
+
+        private UniqueNumbers() => Do.Nothing();
+
         public UniqueNumbers(IEnumerable<int> numbers)
         {
             var minimum = int.MaxValue;
             var maximum = int.MinValue;
             var count = 0;
 
-            foreach(var item in numbers)
+            foreach (var item in numbers)
             {
                 contains[item] = True;
                 count++;
-                if(item > maximum)
+                if (item > maximum)
                 {
                     maximum = item;
                 }
-                else if(item < minimum)
+                if (item < minimum)
                 {
                     minimum = item;
                 }
@@ -39,16 +43,50 @@ namespace Advent_of_Code_2020
             Count = count;
         }
 
-        public int Minimum { get; }
-        public int Maximum { get; }
-        public int Count { get; }
+        public int Minimum { get; private set; }
+        public int Maximum { get; private set; }
+        public int Count { get; private set; }
 
         public bool Contains(int number) => contains[number] == True;
 
-        public IEnumerable<int> Range(int min = 0, int max = 0) 
+        public bool Add(int number)
+        {
+            var added = !Contains(number);
+            if (added)
+            {
+                contains[number] = True;
+                if (Count++ == 0)
+                {
+                    Minimum = number;
+                    Maximum = number;
+                }
+                else
+                {
+                    if (number < Minimum)
+                    {
+                        Minimum = number;
+                    }
+                    else if (number > Maximum)
+                    {
+                        Maximum = number;
+                    }
+                }
+            }
+            return added;
+        }
+
+        public void Clear()
+        {
+            Array.Clear(contains, Minimum, Maximum - Minimum + 1);
+            Count = 0;
+            Minimum = 0;
+            Maximum = 0;
+        }
+
+        public IEnumerable<int> Range(int min = 0, int max = 0)
             => new Enumerator(
-                contains: contains, 
-                min: min == default ? Minimum : min, 
+                contains: contains,
+                min: min == default ? Minimum : min,
                 max: max == default ? Maximum : max);
 
         public IEnumerator<int> GetEnumerator() => new Enumerator(contains, Minimum, Maximum);
@@ -79,7 +117,7 @@ namespace Advent_of_Code_2020
             {
                 do { index++; }
                 while (contains[index] == 0 && index <= max);
-                return index < max;
+                return index <= max;
             }
 
             public void Reset() => throw new NotSupportedException();

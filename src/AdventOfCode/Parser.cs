@@ -6,6 +6,8 @@ namespace Advent_of_Code
 {
     public static class Parser
     {
+        public const StringSplitOptions SplitOptions = StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries;
+
         public static char Char(this string str)
             => str[0];
 
@@ -16,19 +18,17 @@ namespace Advent_of_Code
          => long.Parse(str);
 
         public static IEnumerable<int> Int32s(this string str)
-            => Lines(str)
-            .Select(Int32);
-
+            => str.Int64s().Select(n => (int)n);
 
         public static IEnumerable<long> Int64s(this string str)
-            => Lines(str)
+            => str.Split(new [] {",", "\r\n", "\n", "\t" }, SplitOptions)
             .Select(Int64);
 
         public static string[] Seperate(this string str, char splitter)
-            => str.Split(new[] { splitter }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+            => str.Split(new[] { splitter }, SplitOptions);
 
         public static string[] Seperate(this string str, string splitter)
-            => str.Split(new[] { splitter }, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+            => str.Split(new[] { splitter }, SplitOptions);
 
         public static IEnumerable<string> CommaSeperated(this string str)
             => str.Seperate(',');
@@ -36,10 +36,10 @@ namespace Advent_of_Code
         public static IEnumerable<string> SpaceSeperated(this string str)
             => str.Seperate(' ');
 
-        public static IEnumerable<string> Lines(this string str, StringSplitOptions options = StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-            => str.Split(new[] { "\r\n", "\n" }, options);
+        public static IEnumerable<string> Lines(this string str, StringSplitOptions options = SplitOptions)
+            => str.Split(new[] { "\r\n", "\n", ";" }, options);
 
-        public static IEnumerable<string[]> GroupedLines(this string str, StringSplitOptions options = StringSplitOptions.RemoveEmptyEntries)
+        public static IEnumerable<string[]> GroupedLines(this string str, StringSplitOptions options = SplitOptions)
         {
             var buffer = new List<string>();
 

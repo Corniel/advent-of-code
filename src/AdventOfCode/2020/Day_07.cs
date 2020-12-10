@@ -1,5 +1,4 @@
 using Advent_of_Code;
-using NUnit.Framework;
 using SmartAss.Trees;
 using System.Linq;
 
@@ -18,12 +17,9 @@ namespace Advent_of_Code_2020
             faded blue bags contain no other bags.
             dotted black bags contain no other bags.")]
         [Puzzle(answer: 161, year: 2020, day: 07)]
-        public void part_one(long answer, string input)
-        {
-            var outcome = Bags.Parse(input).Values.Count(bag => bag.Search("shiny gold") != null) - 1;
-            Assert.That(outcome, Is.EqualTo(answer));
-        }
-
+        public int part_one(string input)
+            => Bags.Parse(input).Values.Count(bag => bag.Search("shiny gold") != null) - 1;
+            
         [Example(answer: 32, @"
             light red bags contain 1 bright white bag, 2 muted yellow bags.
             dark orange bags contain 3 bright white bags, 4 muted yellow bags.
@@ -43,12 +39,9 @@ namespace Advent_of_Code_2020
             dark blue bags contain 2 dark violet bags.
             dark violet bags contain no other bags.")]
         [Puzzle(answer: 30899, year: 2020, day: 07)]
-        public void part_two(long answer, string input)
-        {
-            var outcome = Bags.Parse(input)["shiny gold"].NestedCount;
-            Assert.That(outcome, Is.EqualTo(answer));
-        }
-
+        public int part_two(string input)
+            => Bags.Parse(input)["shiny gold"].NestedCount;
+            
         public class Bags : Forrest<Leaf>
         {
             public static Bags Parse(string input)

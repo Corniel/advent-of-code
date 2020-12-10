@@ -1,5 +1,4 @@
 using Advent_of_Code;
-using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,18 +23,12 @@ namespace Advent_of_Code_2020
             hcl:#cfa07d eyr:2025 pid:166559648
             iyr:2011 ecl:brn hgt:59in")]
         [Puzzle(answer: 228, year: 2020, day: 04)]
-        public void part_one(long answer, string input)
-        {
-            var outcome = Passport.Parse(input).Count(p => p.IsValid());
-            Assert.That(outcome, Is.EqualTo(answer));
-        }
+        public int part_one(string input)
+            => Passport.Parse(input).Count(p => p.IsValid());
 
         [Puzzle(answer: 175, year: 2020, day: 04)]
-        public void part_two(long answer, string input)
-        {
-            var outcome = Passport.Parse(input).Count(p => p.StrictValid());
-            Assert.That(outcome, Is.EqualTo(answer));
-        }
+        public int part_two(string input)
+            => Passport.Parse(input).Count(p => p.StrictValid());
 
         public class Passport : Dictionary<string, string>
         {

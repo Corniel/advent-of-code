@@ -1,5 +1,4 @@
 using Advent_of_Code;
-using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -12,11 +11,8 @@ namespace Advent_of_Code_2020
             1-3 b: cdefg
             2-9 c: ccccccccc")]
         [Puzzle(answer: 536, year: 2020, day: 02)]
-        public void part_one(long answer, string input)
-        {
-            var valid = Password.Parse(input).Count(p => p.Policy.ValidForOne(p.Chars));
-            Assert.That(valid, Is.EqualTo(answer));
-        }
+        public int part_one(string input)
+            => Password.Parse(input).Count(p => p.Policy.ValidForOne(p.Chars));
 
         [Example(answer: 1, @"
             1-3 a: abcde
@@ -24,10 +20,7 @@ namespace Advent_of_Code_2020
             2-9 c: ccccccccc")]
         [Puzzle(answer: 558, year: 2020, day: 02)]
         public void part_two(long answer, string input)
-        {
-            var valid = Password.Parse(input).Count(p => p.Policy.ValidForTwo(p.Chars));
-            Assert.That(valid, Is.EqualTo(answer));
-        }
+            => Password.Parse(input).Count(p => p.Policy.ValidForTwo(p.Chars));
 
         public readonly struct PasswordPolicy
         {

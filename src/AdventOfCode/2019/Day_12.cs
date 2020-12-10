@@ -1,6 +1,5 @@
 using Advent_of_Code;
 using Advent_of_Code.Maths;
-using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +23,7 @@ namespace Advent_of_Code_2019
             <x=2, y=2, z=-13>
             <x=-1, y=5, z=-1>
             <x=4, y=7, z=-7>")]
-        public void part_one(long answer, string input)
+        public int part_one(string input)
         {
             var moons = Moon.Parse(input).ToArray();
 
@@ -32,9 +31,7 @@ namespace Advent_of_Code_2019
             {
                 Moon.SetStep(moons);
             }
-            var energy = moons.Sum(moon => moon.TotalEnergy);
-
-            Assert.That(energy, Is.EqualTo(answer));
+            return moons.Sum(moon => moon.TotalEnergy);
         }
 
         [Example(answer: 2772, @"
@@ -52,7 +49,7 @@ namespace Advent_of_Code_2019
             <x=2, y=2, z=-13>
             <x=-1, y=5, z=-1>
             <x=4, y=7, z=-7>")]
-        public void part_two(long answer, string input)
+        public long part_two(string input)
         {
             var moons = Moon.Parse(input).ToArray();
 
@@ -65,8 +62,7 @@ namespace Advent_of_Code_2019
             var z = Cycle(zs);
 
             var xy = x * y / Mathematic.Gcd(x, y);
-            var cycle = xy * z / Mathematic.Gcd(xy, z);
-            Assert.That(cycle, Is.EqualTo(answer));
+            return xy * z / Mathematic.Gcd(xy, z);
         }
 
         internal static long Cycle(Tuple<int, int>[] pairs)

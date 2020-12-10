@@ -1,5 +1,4 @@
 using Advent_of_Code;
-using NUnit.Framework;
 
 namespace Advent_of_Code_2020
 {
@@ -7,7 +6,7 @@ namespace Advent_of_Code_2020
     {
         [Example(answer: 5 * 7, "16,10,15,5,1,11,7,19,6,12,4")]
         [Puzzle(answer: 2100, year: 2020, day: 10)]
-        public void part_one(long answer, string input)
+        public long part_one(string input)
         {
             var unique = new UniqueNumbers(input.Int32s());
 
@@ -27,15 +26,13 @@ namespace Advent_of_Code_2020
                 }
                 prev = num;
             }
-
-            var outcome = d1 * d3;
-            Assert.That(outcome, Is.EqualTo(answer));
+            return d1 * d3;
         }
 
         [Example(answer: 8, "16,10,15,5,1,11,7,19,6,12,4")]
         [Example(answer: 19208, "28,33,18,42,31,14,46,20,48,47,24,23,49,45,19,38,39,11,1,32,25,35,8,17,7,9,4,2,34,10,3")]
         [Puzzle(answer: 16198260678656L, year: 2020, day: 10)]
-        public void part_two(long answer, string input)
+        public long part_two(string input)
         {
             var unique = new UniqueNumbers(input.Int32s());
             unique.Add(unique.Maximum + 3);
@@ -56,7 +53,7 @@ namespace Advent_of_Code_2020
                 }
                 prev = num;
             }
-            Assert.That(combinations, Is.EqualTo(answer));
+           return combinations;
         }
     }
 }

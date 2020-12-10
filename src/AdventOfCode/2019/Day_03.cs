@@ -1,6 +1,5 @@
 using Advent_of_Code;
 using Advent_of_Code.Maths;
-using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +15,7 @@ namespace Advent_of_Code_2019
             R98,U47,R26,D63,R33,U87,L62,D20,R33,U53,R51
             U98,R91,D20,R16,D67,R40,U7,R15,U6,R7")]
         [Puzzle(answer: 1195, year: 2019, day: 03)]
-        public void part_one(long answer, string input)
+        public long part_one(string input)
         {
             var wires = input.Lines().Select(line => Move.Parse(line).ToArray()).ToArray();
             var passed = new HashSet<Point>();
@@ -45,7 +44,7 @@ namespace Advent_of_Code_2019
                     }
                 }
             }
-            Assert.That(distance, Is.EqualTo(answer));
+            return distance;
         }
 
         [Example(answer: 610, @"
@@ -55,7 +54,7 @@ namespace Advent_of_Code_2019
             R98,U47,R26,D63,R33,U87,L62,D20,R33,U53,R51
             U98,R91,D20,R16,D67,R40,U7,R15,U6,R7")]
         [Puzzle(answer: 91518, year: 2019, day: 03)]
-        public void part_two(long answer, string input)
+        public long part_two(string input)
         {
             var wires = input.Lines().Select(line => Move.Parse(line).ToArray()).ToArray();
 
@@ -90,7 +89,7 @@ namespace Advent_of_Code_2019
                     steps1++;
                 }
             }
-            Assert.That(distance, Is.EqualTo(answer));
+            return distance;
         }
 
         public readonly struct Move

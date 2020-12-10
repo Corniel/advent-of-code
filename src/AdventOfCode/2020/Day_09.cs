@@ -1,27 +1,14 @@
 ﻿using Advent_of_Code;
-using NUnit.Framework;
 using System.Linq;
 
 namespace Advent_of_Code_2020
 {
     public class Day_09
     {
-        [Puzzle(144381670L, year: 2020, day: 09)]
-        public void part_one(long answer, string input)
+        [Puzzle(answer: 144381670, year: 2020, day: 09)]
+        public long part_one(string input)
         {
-            var inconsistency = Inconsistency(input.Int64s().ToArray());
-            Assert.That(inconsistency, Is.EqualTo(answer));
-        }
-
-        [Puzzle(20532569L, year: 2020, day: 09)]
-        public void part_two(long answer, string input)
-        {
-            var weakness = Weaknmess(input.Int64s().ToArray());
-            Assert.That(weakness, Is.EqualTo(answer));
-        }
-
-        private static long Inconsistency(long[] numbers)
-        {
+            var numbers = input.Int64s().ToArray();
             for (var i = size; i < numbers.Length; i++)
             {
                 var number = numbers[i];
@@ -32,8 +19,11 @@ namespace Advent_of_Code_2020
             }
             throw new NoAnswer();
         }
-        private static long Weaknmess(long[] numbers)
+
+        [Puzzle(answer: 20532569L, year: 2020, day: 09)]
+        public long part_two(string input)
         {
+            var numbers = input.Int64s().ToArray();
             long sum = 144381670;
 
             var lo = 0;
@@ -63,6 +53,7 @@ namespace Advent_of_Code_2020
             }
             throw new NoAnswer();
         }
+
         private static bool Matches(long[] numbers, int index, long number)
         {
             for (var p0 = index - size; p0 < index; p0++)

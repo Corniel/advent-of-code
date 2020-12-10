@@ -1,5 +1,4 @@
 ﻿using Advent_of_Code;
-using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +9,11 @@ namespace Advent_of_Code_2019
     public class Day_08
     {
         [Puzzle(answer: 2480, year: 2019, day: 08)]
-        public void part_one(long answer, string input)
-        {
-            var outcome = Layer.Parse(25, 6, input)
+        public int part_one(string input)
+            => Layer.Parse(25, 6, input)
                 .OrderBy(layer => layer.Zeros)
                 .Select(layer => layer.Ones * layer.Twos)
                 .FirstOrDefault();
-            Assert.That(outcome, Is.EqualTo(answer));
-        }
 
         /// <remarks>
         /// ZYBLH
@@ -30,7 +26,7 @@ namespace Advent_of_Code_2019
 █░░░░░░█░░█░░█░█░░░░█░░█░
 ████░░░█░░███░░████░█░░█░
 ", year: 2019, day: 08)]
-        public void part_two(string answer, string input)
+        public string part_two(string input)
         {
             var layers = Layer.Parse(25, 6, input).ToArray();
             var merged = layers.Last();
@@ -38,9 +34,7 @@ namespace Advent_of_Code_2019
             {
                 merged = layer.Merge(merged);
             }
-            var message= merged.ToString(25);
-
-            Assert.That(message, Is.EqualTo(answer));
+            return merged.ToString(25);
         }
 
         public readonly struct Layer

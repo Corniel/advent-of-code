@@ -1,6 +1,5 @@
 ﻿using Advent_of_Code;
 using Advent_of_Code.Maths;
-using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -70,15 +69,14 @@ namespace Advent_of_Code_2019
             #.#.#.#####.####.###
             ###.##.####.##.#..##")]
         [Puzzle(answer: 347, year: 2019, day: 10)]
-        public void part_one(long answer, string input)
+        public int part_one(string input)
         {
             var astroids = Astroids.Parse(input);
-            var outcome = astroids
+            return astroids
                 .Max(station => Astroids.Relations(station, astroids)
                     .Select(r => r.Angle)
                     .Distinct()
                     .Count());
-            Assert.That(outcome, Is.EqualTo(answer));
         }
 
         [Example(answer: 802, @"
@@ -103,7 +101,7 @@ namespace Advent_of_Code_2019
             #.#.#.#####.####.###
             ###.##.####.##.#..##")]
         [Puzzle(answer: 829, year: 2019, day: 10)]
-        public void part_two(long answer, string input)
+        public int part_two(string input)
         {
             var astroids = Astroids.Parse(input);
             var station = astroids
@@ -135,8 +133,7 @@ namespace Advent_of_Code_2019
                 }
                 if (postion >= relations.Length) { postion = 0; }
             }
-            var outcome = last.Astroid.X * 100 + last.Astroid.Y;
-            Assert.That(outcome, Is.EqualTo(answer));
+            return last.Astroid.X * 100 + last.Astroid.Y;
         }
 
         public readonly struct Relation

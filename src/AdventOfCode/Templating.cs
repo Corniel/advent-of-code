@@ -1,17 +1,20 @@
-﻿using NUnit.Framework;
-using System.IO;
+﻿using System.IO;
 using System.Text;
 
 namespace Advent_of_Code
 {
     public class Templating
     {
-        [TestCase(2020, 10)]
-        public void Generate(int year, int day)
+        public DirectoryInfo Generate(int year, int day)
         {
-            var file = new FileInfo($@".\..\..\..\{year}\Day_{day:00}.cs");
-            var input = new FileInfo($@".\..\..\..\{year}\Day_{day:00}.txt");
-            
+            var file = new FileInfo($@".\..\..\..\..\AdventOfCode\{year}\Day_{day:00}.cs");
+            var input = new FileInfo($@".\..\..\..\..\AdventOfCode\{year}\Day_{day:00}.txt");
+
+            if (!file.Directory.Exists)
+            {
+                file.Directory.Create();
+            }
+
             if (!file.Exists)
             {
                 using var writer = new StreamWriter(file.FullName);
@@ -22,6 +25,7 @@ namespace Advent_of_Code
                 using var writer = new StreamWriter(input.FullName);
                 writer.WriteLine();
             }
+            return file.Directory;
         }
 
         private static string Template(int year, int day)

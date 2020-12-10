@@ -33,7 +33,6 @@ namespace Advent_of_Code
             var parameters = new TestCaseParameters(new[] { Input })
             {
                 ExpectedResult = Answer,
-                HasExpectedResult = true,
             };
 
             var test = new NUnitTestCaseBuilder().BuildTestMethod(method, suite, parameters);

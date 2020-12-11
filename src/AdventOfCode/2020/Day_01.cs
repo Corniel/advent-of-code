@@ -6,7 +6,7 @@ namespace Advent_of_Code_2020
     {
         [Example(answer: 514579, "1721, 979, 366, 299, 675, 1456")]
         [Puzzle(answer: 786811, year: 2020, day: 01)]
-        public long part_one( string input)
+        public long part_one(string input)
         {
             const int sum = 2020;
             var numbers = UniqueNumbers.Parse(input);

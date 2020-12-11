@@ -1,8 +1,10 @@
 using Advent_of_Code;
 using SmartAss;
+using SmartAss.Collections;
+using SmartAss.Navigation;
+using SmartAss.Parsing;
 using SmartAss.Topology;
 using System.Linq;
-using System.Text;
 
 namespace Advent_of_Code_2020
 {
@@ -60,7 +62,7 @@ namespace Advent_of_Code_2020
                 foreach (var seat in plane) { seat.Changed = false; }
                 foreach (var seat in plane)
                 {
-                    var next = seat.GetNextPartTwo(plane);
+                    var next = seat.GetNextInsight();
                     seat.Changed = next != seat.Occupied;
                     seat.Next = next;
                 }
@@ -72,34 +74,19 @@ namespace Advent_of_Code_2020
             return plane.Occupied;
         }
 
-        private class Plane : Raster<Seat>
+        private class Plane : Grid<Seat>
         {
             public Plane(int cols, int rows)
-                : base(cols, rows) => Do.Nothing();
+                : base(cols, rows, GridType.Grid | GridType.Diagonal) => Do.Nothing();
 
             public int Occupied => this.Count(seat => seat.Occupied);
 
-            public override string ToString()
-            {
-                var sb = new StringBuilder();
+            public override string ToString() => ToString(Formatter);
 
-                for (var col = 0; col < Cols; col++)
-                {
-                    for (var row = 0; row < Rows; row++)
-                    {
-                        var seat = this[col, row];
-                        if (seat is null)
-                        {
-                            sb.Append('.');
-                        }
-                        else
-                        {
-                            sb.Append(seat.Occupied ? '#' : 'L');
-                        }
-                    }
-                    sb.AppendLine();
-                }
-                return sb.ToString();
+            private static string Formatter(Seat seat)
+            {
+                if (seat is null) { return "."; }
+                else { return seat.Occupied ? "#" : "L"; }
             }
 
             protected override Seat Create(int index, int col, int row, int neighbors)
@@ -107,101 +94,55 @@ namespace Advent_of_Code_2020
 
             public static Plane Parse(string input)
             {
-                var lines = input.Lines().ToArray();
-                var plane = new Plane(lines.Length, lines[0].Length);
+                var chars = input.CharPixels();
+                var plane = new Plane(chars.Cols, chars.Rows);
 
-                for (var row = 0; row < plane.Rows; row++)
+                foreach (var tile in chars)
                 {
-                    for (var col = 0; col < plane.Cols; col++)
+                    var seat = plane[tile.Position];
+                    seat.Occupied = tile.Char == '#';
+                    if (tile.Char == '.')
                     {
-                        var seat = plane[col, row];
-                        seat.Changed = true;
-                        seat.Occupied = lines[col][row] == '#';
-                        if (lines[col][row] == '.')
-                        {
-                            plane.Remove(seat);
-                        }
+                        plane.Remove(seat);
                     }
                 }
-
-                var extra = new[] { new Point(-1, -1), new Point(-1, +1), new Point(+1, -1), new Point(+1, +1), };
-
                 foreach (var seat in plane)
                 {
-                    foreach (var delta in extra)
-                    {
-                        var row = seat.Row + delta.X;
-                        var col = seat.Col + delta.Y;
-
-                        if (row >= 0 && row < plane.Rows &&
-                            col >= 0 && col < plane.Cols)
-                        {
-                            var neighbor = plane[col, row];
-                            if (neighbor != null)
-                            {
-                                seat.Neighbors.Add(neighbor);
-                            }
-                        }
-                    }
+                    seat.InSight.AddRange(directions
+                        .Select(dir => seat.Position
+                            .Repeat(dir)
+                            .TakeWhile(p => plane.OnGrid(p))
+                            .Select(p => plane[p])
+                            .FirstOrDefault(s => s != null))
+                        .Where(s => s != null));
                 }
+
                 return plane;
             }
+            private static readonly Vector[] directions = CompassPoints.All.Select(p => p.ToVector()).ToArray();
+
         }
-        private class Seat : RasterTile<Seat>
+        private class Seat : GridTile<Seat>
         {
             public Seat(int index, int col, int row, int neighbors)
-                : base(index, col, row, neighbors + 4) => Do.Nothing();
+                : base(index, col, row, neighbors) => Do.Nothing();
 
             public bool Occupied { get; set; }
             public bool Empty => !Occupied;
             public bool Next { get; set; }
-            public bool Changed { get; set; }
+            public bool Changed { get; set; } = true;
+
+            public SimpleList<Seat> InSight { get; } = new SimpleList<Seat>(8);
 
             public bool GetNext()
                 => Empty
                 ? Neighbors.All(n => n.Empty)
                 : Neighbors.Count(n => n.Occupied) < 4;
 
-            public bool GetNextPartTwo(Plane plane)
-            {
-                var occupied_neighbors = 0;
-                var empty_neighbors = 0;
-                var position = new Point(Col, Row);
-
-                foreach (var direction in directions)
-                {
-                    var neighbor = position + direction;
-                    var found = false;
-                    while (!found &&
-                        neighbor.X >= 0 && neighbor.X < plane.Cols &&
-                        neighbor.Y >= 0 && neighbor.Y < plane.Rows)
-                    {
-                        var test = plane[neighbor];
-
-                        found = test != null;
-                        if (found)
-                        {
-                            occupied_neighbors += test.Occupied ? 1 : 0;
-                            empty_neighbors += test.Empty ? 1 : 0;
-                        }
-                        neighbor += direction;
-                    }
-                }
-                return Empty
-                    ? occupied_neighbors == 0
-                    : occupied_neighbors < 5;
-            }
-            private static readonly Vector[] directions = new[]
-            {
-                new Vector(-1, -1),
-                new Vector(-1, +0), 
-                new Vector(-1, +1),
-                new Vector(+0, -1),
-                new Vector(+0, +1), 
-                new Vector(+1, -1), 
-                new Vector(+1, +0),
-                new Vector(+1, +1),
-            };
+            public bool GetNextInsight()
+              => Empty
+                ? InSight.All(n => n.Empty)
+                : InSight.Count(n => n.Occupied) < 5;
 
             public override string ToString() => $"[{Col:00}, {Row:00}] Occupied: {Occupied} ({Next})";
         }

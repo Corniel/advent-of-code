@@ -5,6 +5,7 @@ using NUnit.Framework.Internal.Builders;
 using SmartAss;
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 
 namespace Advent_of_Code
 {
@@ -32,12 +33,23 @@ namespace Advent_of_Code
         {
             var parameters = new TestCaseParameters(new[] { Input })
             {
-                ExpectedResult = Answer,
+                ExpectedResult = ExpectedResult(method.MethodInfo.ReturnType),
             };
 
             var test = new NUnitTestCaseBuilder().BuildTestMethod(method, suite, parameters);
             test.Name = TestName(method);
             yield return test;
+        }
+        private object ExpectedResult(Type type)
+        {
+            if (type == typeof(BigInteger))
+            {
+                if (Answer is int int32) { return (BigInteger)int32; }
+                else if (Answer is long int64) { return (BigInteger)int64; }
+                else if (Answer is string str) { return BigInteger.Parse(str); }
+                else { return Answer; }
+            }
+            else { return Answer; }
         }
 
         protected virtual string TestName(IMethodInfo method)

@@ -1,5 +1,6 @@
 using Advent_of_Code;
-using Advent_of_Code.Maths;
+using SmartAss;
+using SmartAss.Topology;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,8 +62,8 @@ namespace Advent_of_Code_2019
             var y = Cycle(ys);
             var z = Cycle(zs);
 
-            var xy = x * y / Mathematic.Gcd(x, y);
-            return xy * z / Mathematic.Gcd(xy, z);
+            var xy = x * y / Maths.Gcd(x, y);
+            return xy * z / Maths.Gcd(xy, z);
         }
 
         internal static long Cycle(Tuple<int, int>[] pairs)
@@ -101,7 +102,7 @@ namespace Advent_of_Code_2019
 
         public sealed class Moon : IEquatable<Moon>
         {
-            public Moon(Point3d position, Vector3d velocity)
+            public Moon(Point3D position, Vector3D velocity)
             {
                 Position = position;
                 Velocity = velocity;
@@ -119,8 +120,8 @@ namespace Advent_of_Code_2019
                 + Math.Abs(Velocity.Y)
                 + Math.Abs(Velocity.Z);
 
-            public Point3d Position { get; set; }
-            public Vector3d Velocity { get; set; }
+            public Point3D Position { get; set; }
+            public Vector3D Velocity { get; set; }
 
             public Moon Copy() => new Moon(Position, Velocity);
 
@@ -145,7 +146,7 @@ namespace Advent_of_Code_2019
                         .Select(sub => sub.Seperate('=')[1].Int32())
                         .ToArray();
 
-                    return new Moon(new Point3d(xyz[0], xyz[1], xyz[2]), default);
+                    return new Moon(new Point3D(xyz[0], xyz[1], xyz[2]), default);
                 });
 
             public static void SetStep(IEnumerable<Moon> moons)

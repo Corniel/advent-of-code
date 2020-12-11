@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 
 namespace Advent_of_Code
 {
@@ -17,12 +18,19 @@ namespace Advent_of_Code
         public static long Int64(this string str)
          => long.Parse(str);
 
+        public static BigInteger BigInt(this string str)
+            => BigInteger.Parse(str);
+
         public static IEnumerable<int> Int32s(this string str)
             => str.Int64s().Select(n => (int)n);
 
         public static IEnumerable<long> Int64s(this string str)
             => str.Split(new [] {",", "\r\n", "\n", "\t" }, SplitOptions)
             .Select(Int64);
+
+        public static IEnumerable<BigInteger> BigInts(this string str)
+            => str.Split(new[] { ",", "\r\n", "\n", "\t" }, SplitOptions)
+            .Select(BigInt);
 
         public static string[] Seperate(this string str, char splitter)
             => str.Split(new[] { splitter }, SplitOptions);

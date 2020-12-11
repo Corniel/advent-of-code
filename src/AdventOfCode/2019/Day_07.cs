@@ -1,38 +1,40 @@
 using Advent_of_Code;
-using Advent_of_Code_2019.Intcoding;
+using Advent_of_Code_2019.IntComputing;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using Int = System.Numerics.BigInteger;
 
 namespace Advent_of_Code_2019
 {
     public class Day_07
     {
-        [Example(answer: 43210,"3,15,3,16,1002,16,10,16,1,16,15,15,4,15,99,0,0")]
-        [Example(answer: 54321,"3,23,3,24,1002,24,10,24,1002,23,-1,23,101,5,23,23,1,24,23,23,4,23,99,0,0")]
-        [Example(answer: 65210,"3,31,3,32,1002,32,10,32,1001,31,-2,31,1007,31,0,33,1002,33,7,33,1,33,31,31,1,32,31,31,4,31,99,0,0,0")]
+        [Example(answer: 43210, "3,15,3,16,1002,16,10,16,1,16,15,15,4,15,99,0,0")]
+        [Example(answer: 54321, "3,23,3,24,1002,24,10,24,1002,23,-1,23,101,5,23,23,1,24,23,23,4,23,99,0,0")]
+        [Example(answer: 65210, "3,31,3,32,1002,32,10,32,1001,31,-2,31,1007,31,0,33,1002,33,7,33,1,33,31,31,1,32,31,31,4,31,99,0,0,0")]
         [Puzzle(answer: 101490, year: 2019, day: 07)]
-        public int part_one(string input)
-            => new[] { 0, 1, 2, 3, 4 }
+        public Int part_one(string input)
+            => new Int[] { 0, 1, 2, 3, 4 }
                 .Permutations()
-                .Max(phases => Amplify(Intcode.Parse(input), phases));
+                .Max(phases => Amplify(Computer.Parse(input), phases));
 
         [Puzzle(answer: 61019896, year: 2019, day: 07)]
-        public int part_two(string input)
-            => new[] { 5, 6, 7, 8, 9 }
+        public Int part_two(string input)
+            => new Int[] { 5, 6, 7, 8, 9 }
                 .Permutations()
-                .Max(phases => AmplifyWithFeedback(Intcode.Parse(input), phases));
+                .Max(phases => AmplifyWithFeedback(Computer.Parse(input), phases));
 
-        public static int Amplify(Intcode program, int[] phases)
+        public static Int Amplify(Computer program, Int[] phases)
         {
-            var signal = 0;
+            Int signal = 0;
             foreach (var phase in phases)
             {
-                signal = program.Copy().Run(phase, signal).Outputs.First();
+                signal = program.Copy().Run(new RunArguments(phase, signal)).Output.First();
             }
             return signal;
         }
 
-        public static int AmplifyWithFeedback(Intcode program, params int[] phases)
+        public static Int AmplifyWithFeedback(Computer program, params Int[] phases)
         {
             var programs = new[]
             {
@@ -42,20 +44,31 @@ namespace Advent_of_Code_2019
                 program.Copy(),
                 program.Copy(),
             };
+            var outputs = new List<Int>[] 
+            {
+                new(),
+                new(),
+                new(),
+                new(),
+                new(),
+            };
 
+
+            Int signal = 0;
+
+            // initial set the configuration.
             for (var i = 0; i < phases.Length; i++)
             {
                 programs[i].Inputs.Enqueue(phases[i]);
             }
-
-            var signal = 0;
-
-            while (!programs.Last().Halted())
+            while (!programs.Last().Finished)
             {
+                var index = 0;
                 foreach (var prog in programs)
                 {
-                    prog.Run(true, signal);
-                    signal = prog.Outputs.LastOrDefault();
+                    var output = outputs[index];
+                    output.AddRange(prog.Run(new RunArguments(true, signal)).Output);
+                    signal = output.Last();
                 }
             }
             return signal;

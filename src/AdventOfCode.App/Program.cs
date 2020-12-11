@@ -27,10 +27,14 @@ namespace Advent_of_Code
                 Console.WriteLine($"answer: {answer}");
                 Console.WriteLine($"duration: {stopWatch.Elapsed.TotalMilliseconds:0.000} ms ({stopWatch.ElapsedTicks:#,##0} ticks)");
             }
-            catch(NoAnswer x)
+            catch(TargetInvocationException x)
             {
-                Console.WriteLine(x.Message);
-                return Failure;
+                if (x.InnerException is NoAnswer noAnswer)
+                {
+                    Console.WriteLine(noAnswer.Message);
+                    return Failure;
+                }
+                else throw x.InnerException;
             }
             return Success;
         }

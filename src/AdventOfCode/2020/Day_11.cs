@@ -1,8 +1,6 @@
 using Advent_of_Code;
-using Advent_of_Code.Maths;
 using SmartAss;
 using SmartAss.Topology;
-using System;
 using System.Linq;
 using System.Text;
 
@@ -80,8 +78,6 @@ namespace Advent_of_Code_2020
                 : base(cols, rows) => Do.Nothing();
 
             public int Occupied => this.Count(seat => seat.Occupied);
-
-            public Seat this[Point p] => this[p.X, p.Y];
 
             public override string ToString()
             {

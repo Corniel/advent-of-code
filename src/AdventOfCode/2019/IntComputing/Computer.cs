@@ -1,4 +1,5 @@
 ﻿using Advent_of_Code;
+using SmartAss;
 using SmartAss.Diagnostics;
 using System;
 using System.Collections;
@@ -153,6 +154,6 @@ namespace Advent_of_Code_2019.IntComputing
 
         public IEnumerator<Int> GetEnumerator() => memory.GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-        private static void Log(string str) => Console.Write(str);
+        private static void Log(string str) => Do.Nothing(); // Console.Write(str)
     }
 }

@@ -12,19 +12,19 @@ namespace Advent_of_Code_2020
         public int part_one(string input)
         {
             var ship = Point.O;
-            var orrientation = Action.E;
+            var orrientation = Vector.E;
 
             foreach (var i in input.Lines().Select(Instruction.Parse))
             {
                 switch (i.Action)
                 {
-                    case Action.F: ship += Direction(orrientation) * i.Distance; break;
+                    case Action.F: ship += orrientation * i.Distance; break;
                     case Action.L:
-                    case Action.R: orrientation = (Action)((int)orrientation + i.Rotation).Mod(4); break;
+                    case Action.R: orrientation = orrientation.Rotate(i.Rotation); break;
                     case Action.N:
                     case Action.E:
                     case Action.S:
-                    case Action.W: ship += Direction(i.Action) * i.Distance; break;
+                    case Action.W: ship += i.Direction * i.Distance; break;
                 }
             }
             return ship.ManhattanDistance(Point.O);
@@ -43,11 +43,11 @@ namespace Advent_of_Code_2020
                 {
                     case Action.F: ship += (waypoint - Point.O) * i.Distance; break;
                     case Action.L:
-                    case Action.R: waypoint = Rotate(waypoint, i.Rotation); break;
+                    case Action.R: waypoint = waypoint.Rotate(Point.O, i.Rotation); break;
                     case Action.N:
                     case Action.E:
                     case Action.S:
-                    case Action.W: waypoint += Direction(i.Action) * i.Distance; break;
+                    case Action.W: waypoint += i.Direction * i.Distance; break;
                 }
             }
             return ship.ManhattanDistance(Point.O);
@@ -65,6 +65,16 @@ namespace Advent_of_Code_2020
             public Action Action { get; }
             public int Distance { get; }
             public int Rotation { get; }
+            public Vector Direction
+                => Action switch
+                {
+                    Action.E => Vector.E,
+                    Action.S => Vector.S,
+                    Action.W => Vector.W,
+                    Action.N => Vector.N,
+                    _ => Vector.O,
+                };
+
             public static Instruction Parse(string str)
                 => new Instruction(Enum.Parse<Action>(str.Substring(0, 1)), str.Substring(1).Int32());
         }
@@ -75,28 +85,9 @@ namespace Advent_of_Code_2020
             E = 1,
             S = 2,
             W = 3,
-            L = -90,
-            R = +90,
+            L = +90,
+            R = -90,
             F = int.MaxValue,
         }
-
-        private static Vector Direction(Action compass)
-            => compass switch
-            {
-                Action.E => Vector.E,
-                Action.S => Vector.S,
-                Action.W => Vector.W,
-                Action.N => Vector.N,
-                _ => throw new InvalidOperationException(),
-            };
-
-        private static Point Rotate(Point point, int rotation)
-            => rotation.Mod(4) switch
-            {
-                1 => new Point(-point.Y, +point.X),
-                2 => new Point(-point.X, -point.Y),
-                3 => new Point(+point.Y, -point.X),
-                _ => new Point(+point.X, +point.Y),
-            };
     }
 }

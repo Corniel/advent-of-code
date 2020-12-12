@@ -80,19 +80,20 @@ namespace Advent_of_Code_2019.IntComputing
             var p1 = (int)ReadImmediate(opcode.P1);
             var value = Inputs.Dequeue();
             Write(p1, value);
+            Log($"({Inputs.Count})");
         }
         private void Output(Opcode opcode, ICollection<Int> output)
         {
             var p1 = Read(opcode.P1);
-            Log($"=> {p1}");
             output.Add(p1);
+            Log($"=> {p1} ({output.Count})");
         }
         private void JumpIf(bool condition, Opcode opcode)
         {
             var p1 = Read(opcode.P1);
             var target = (int)Read(opcode.P2);
             var jump = (p1 != 0) == condition;
-            Log(jump ? $"=> {target:000}" : "false");
+            Log(jump ? $"=> {target:0000}" : "false");
             if (jump)
             {
                 if (target < 0) { throw new OutOfMemory(); }
@@ -118,31 +119,26 @@ namespace Advent_of_Code_2019.IntComputing
         }
 
         private Int ReadImmediate(Mode mode)
-        {
-            return mode switch
+            => mode switch
             {
                 Mode.Position => Read(),
                 Mode.Relative => Read() + PointerOffset,
                 _ => throw new InvalidOperationException(),
             };
-        }
         private Int Read(Mode mode)
-        {
-            var p = Read();
-            return mode switch
+            => mode switch
             {
-                Mode.Position => Read((int)p),
-                Mode.Relative => Read((int)p + PointerOffset),
-                Mode.Immediate => p,
+                Mode.Position => Read((int)Read()),
+                Mode.Relative => Read((int)Read() + PointerOffset),
+                Mode.Immediate => Read(),
                 _ => throw new InvalidOperationException(),
             };
-        }
         private Int Read() => Read(Pointer++);
         private Int Read(int position) => memory[InMemory(position)];
         private void Write(int position, Int value)
         {
             position = InMemory(position);
-            Log($"=> {position:0000}: {value}");
+            Log($"=> {position:0000}: {value} ");
             memory[position] = value;
         }
         private int InMemory(int position)

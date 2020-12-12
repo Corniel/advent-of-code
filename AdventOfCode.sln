@@ -12,11 +12,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventOfCode.App", "src\AdventOfCode.App\AdventOfCode.App.csproj", "{54FD4F2C-FB0B-409B-96AF-953B88C50833}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdventOfCode.App", "src\AdventOfCode.App\AdventOfCode.App.csproj", "{54FD4F2C-FB0B-409B-96AF-953B88C50833}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartAss", "..\smart-ass\src\SmartAss\SmartAss.csproj", "{76CEB09A-C1CC-489F-8F97-884D287142D9}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartAss.UnitTests", "..\smart-ass\test\SmartAss.UnitTests\SmartAss.UnitTests.csproj", "{10ABC23E-A25B-468A-AC70-A569EFD5AB74}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,10 +34,6 @@ Global
 		{76CEB09A-C1CC-489F-8F97-884D287142D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76CEB09A-C1CC-489F-8F97-884D287142D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76CEB09A-C1CC-489F-8F97-884D287142D9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{10ABC23E-A25B-468A-AC70-A569EFD5AB74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{10ABC23E-A25B-468A-AC70-A569EFD5AB74}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{10ABC23E-A25B-468A-AC70-A569EFD5AB74}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{10ABC23E-A25B-468A-AC70-A569EFD5AB74}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -16,16 +16,9 @@ namespace Advent_of_Code_2020
 
             foreach (var i in input.Lines().Select(Instruction.Parse))
             {
-                switch (i.Action)
-                {
-                    case Action.F: ship += orrientation * i.Distance; break;
-                    case Action.L:
-                    case Action.R: orrientation = orrientation.Rotate(i.Rotation); break;
-                    case Action.N:
-                    case Action.E:
-                    case Action.S:
-                    case Action.W: ship += i.Direction * i.Distance; break;
-                }
+                if (i.Action == Action.F) { ship += orrientation * i.Distance; }
+                else if (i.Rotation != 0) { orrientation = orrientation.Rotate(i.Rotation); }
+                else { ship += i.Direction * i.Distance; }
             }
             return ship.ManhattanDistance(Point.O);
         }
@@ -39,16 +32,9 @@ namespace Advent_of_Code_2020
 
             foreach (var i in input.Lines().Select(Instruction.Parse))
             {
-                switch (i.Action)
-                {
-                    case Action.F: ship += (waypoint - Point.O) * i.Distance; break;
-                    case Action.L:
-                    case Action.R: waypoint = waypoint.Rotate(Point.O, i.Rotation); break;
-                    case Action.N:
-                    case Action.E:
-                    case Action.S:
-                    case Action.W: waypoint += i.Direction * i.Distance; break;
-                }
+                if (i.Action == Action.F) { ship += (waypoint - Point.O) * i.Distance; }
+                else if (i.Rotation != 0) { waypoint = waypoint.Rotate(Point.O, i.Rotation); }
+                else { waypoint += i.Direction * i.Distance; }
             }
             return ship.ManhattanDistance(Point.O);
         }

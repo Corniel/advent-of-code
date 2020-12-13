@@ -1,7 +1,7 @@
 using Advent_of_Code;
+using SmartAss.Parsing;
 using SmartAss.Topology;
 using System;
-using System.Linq;
 
 namespace Advent_of_Code_2020
 {
@@ -14,7 +14,7 @@ namespace Advent_of_Code_2020
             var ferry = Point.O;
             var orientation = Vector.E;
 
-            foreach (var i in input.Lines().Select(Instruction.Parse))
+            foreach (var i in input.Lines(Instruction.Parse))
             {
                 if (i.Action == Action.F) { ferry += orientation * i.Distance; }
                 else if (i.Rotation != 0) { orientation = orientation.Rotate(i.Rotation); }
@@ -30,7 +30,7 @@ namespace Advent_of_Code_2020
             var ferry = Point.O;
             var waypoint = new Point(+10, -1);
 
-            foreach (var i in input.Lines().Select(Instruction.Parse))
+            foreach (var i in input.Lines(Instruction.Parse))
             {
                 if (i.Action == Action.F) { ferry += (waypoint - Point.O) * i.Distance; }
                 else if (i.Rotation != 0) { waypoint = waypoint.Rotate(Point.O, i.Rotation); }

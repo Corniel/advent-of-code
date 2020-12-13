@@ -1,4 +1,5 @@
 using Advent_of_Code;
+using SmartAss.Parsing;
 using SmartAss.Topology;
 using System;
 using System.Collections.Generic;
@@ -68,7 +69,7 @@ namespace Advent_of_Code_2020
             public bool IsTree(Point point) => squares[point.X.Mod(Size)] == Tree;
 
             public static IEnumerable<Row> Parse(string str)
-                => str.Lines().Select(AsRow);
+                => str.Lines(AsRow);
 
             private static Row AsRow(string line)
             {

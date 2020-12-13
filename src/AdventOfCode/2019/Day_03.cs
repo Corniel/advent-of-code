@@ -1,4 +1,5 @@
 using Advent_of_Code;
+using SmartAss.Parsing;
 using SmartAss.Topology;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace Advent_of_Code_2019
         [Puzzle(answer: 1195, year: 2019, day: 03)]
         public long part_one(string input)
         {
-            var wires = input.Lines().Select(line => Move.Parse(line).ToArray()).ToArray();
+            var wires = input.Lines(line => Move.Parse(line).ToArray()).ToArray();
             var passed = new HashSet<Point>();
             var wire0 = Point.O;
 
@@ -56,12 +57,11 @@ namespace Advent_of_Code_2019
         [Puzzle(answer: 91518, year: 2019, day: 03)]
         public long part_two(string input)
         {
-            var wires = input.Lines().Select(line => Move.Parse(line).ToArray()).ToArray();
-
+            var wires = input.Lines(line => Move.Parse(line).ToArray()).ToArray();
             var steps = new Dictionary<Point, int>();
-
             var wire0 = Point.O;
             var steps0 = 1;
+
             foreach (var move in wires[0])
             {
                 for (var step = 0; step < move.Length; step++)
@@ -96,8 +96,8 @@ namespace Advent_of_Code_2019
         {
             public Move(Direction direction, int length)
             {
-                this.Direction = direction;
-                this.Length = length;
+                Direction = direction;
+                Length = length;
             }
 
             public Direction Direction { get; }
@@ -105,10 +105,9 @@ namespace Advent_of_Code_2019
             public override string ToString() => $"{Direction}{Length}";
 
             public static IEnumerable<Move> Parse(string str)
-                => str.CommaSeperated()
-                .Select(sub => new Move(
+                => str.CommaSeperated(sub => new Move(
                     direction: Enum.Parse<Direction>(sub.Substring(0, 1)),
-                    length: int.Parse(sub.Substring(1))));
+                    length: int.Parse(sub[1..])));
 
             public Point Step(Point point)
                 => Direction switch

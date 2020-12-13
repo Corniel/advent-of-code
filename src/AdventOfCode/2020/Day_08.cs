@@ -1,4 +1,5 @@
 using Advent_of_Code;
+using SmartAss.Parsing;
 using System.Linq;
 
 namespace Advent_of_Code_2020
@@ -9,7 +10,7 @@ namespace Advent_of_Code_2020
         [Puzzle(answer: 1584, year: 2020, day: 08)]
         public int part_one(string input)
         {
-            var instructions = input.Lines().Select(Instruction.Parse).ToArray();
+            var instructions = input.Lines(Instruction.Parse).ToArray();
             Execute(instructions, -1, out var accumulator);
             return accumulator;
         }
@@ -18,7 +19,7 @@ namespace Advent_of_Code_2020
         [Puzzle(answer: 920, year: 2020, day: 08)]
         public int part_two(string input)
         {
-            var instructions = input.Lines().Select(Instruction.Parse).ToArray();
+            var instructions = input.Lines(Instruction.Parse).ToArray();
 
             for (var fix_pointer = 0; fix_pointer < instructions.Length; fix_pointer++)
             {

@@ -12,8 +12,12 @@ namespace Advent_of_Code
         public static char Char(this string str)
             => str[0];
 
-        public static int Int32(this string str)
-            => int.Parse(str);
+        public static int Int32(this string str, int? fallback = null)
+        {
+            if (int.TryParse(str, out var n)) { return n; }
+            else if (fallback.HasValue) { return fallback.Value; }
+            else { throw new FormatException($"'{n}' is not a number"); }
+        }
 
         public static long Int64(this string str)
          => long.Parse(str);

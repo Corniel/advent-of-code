@@ -1,4 +1,5 @@
 using Advent_of_Code;
+using SmartAss.Parsing;
 using System.Linq;
 
 namespace Advent_of_Code_2020
@@ -7,12 +8,12 @@ namespace Advent_of_Code_2020
     {
         [Puzzle(answer: 998, year: 2020, day: 05)]
         public int part_one(string input)
-            => input.Lines().Select(Seat.Parse).Max(seat => seat.Id);
+            => input.Lines(Seat.Parse).Max(seat => seat.Id);
 
         [Puzzle(answer: 676, year: 2020, day: 05)]
         public int part_two(string input)
         {
-            var seats = input.Lines().Select(Seat.Parse).OrderBy(s => s.Id).ToArray();
+            var seats = input.Lines(Seat.Parse).OrderBy(s => s.Id).ToArray();
             var previous = seats[0];
 
             foreach (var seat in seats.Skip(1))

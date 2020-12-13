@@ -1,4 +1,5 @@
 using Advent_of_Code;
+using SmartAss.Parsing;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -64,7 +65,7 @@ namespace Advent_of_Code_2020
 
             public static IEnumerable<Password> Parse(string str)
             {
-                foreach (var line in Parser.Lines(str))
+                foreach (var line in str.Lines())
                 {
                     var split = line.Split(':');
                     var policy = split[0].Split('-', ' ');

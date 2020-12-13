@@ -1,5 +1,6 @@
 using Advent_of_Code;
 using SmartAss;
+using SmartAss.Parsing;
 using SmartAss.Topology;
 using System;
 using System.Collections.Generic;
@@ -138,7 +139,7 @@ namespace Advent_of_Code_2019
                 => $"Pos: {Position}, Vel: {Velocity}";
 
             public static IEnumerable<Moon> Parse(string str)
-                => str.Lines().Select(line =>
+                => str.Lines(line =>
                 {
                     var xyz = line
                         .Trim('<', '>')

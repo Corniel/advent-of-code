@@ -1,5 +1,4 @@
 using Advent_of_Code;
-using SmartAss.Parsing;
 
 namespace Advent_of_Code_2020
 {
@@ -9,8 +8,7 @@ namespace Advent_of_Code_2020
         [Puzzle(answer: 2100, year: 2020, day: 10)]
         public long part_one(string input)
         {
-            var unique = new UniqueNumbers(input.Int32s());
-
+            var unique = UniqueNumbers.Parse(input);
             var prev = 0;
             var d1 = 0;
             var d3 = 1;
@@ -35,12 +33,11 @@ namespace Advent_of_Code_2020
         [Puzzle(answer: 16198260678656L, year: 2020, day: 10)]
         public long part_two(string input)
         {
-            var unique = new UniqueNumbers(input.Int32s());
+            var unique = UniqueNumbers.Parse(input);
             unique.Add(unique.Maximum + 3);
             
             var size = 0;
             var prev = 0;
-
             long combinations = 1;
             var combos = new[] { 1, 1, 1, 2, 4, 7 };
 

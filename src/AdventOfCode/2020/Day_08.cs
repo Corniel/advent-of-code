@@ -88,11 +88,7 @@ namespace Advent_of_Code_2020
             public string Name { get; }
             public int Value { get; }
 
-            public static Instruction Parse(string line)
-            {
-                var parts = line.SpaceSeperated().ToArray();
-                return new Instruction(parts[0], parts[1].Int32());
-            }
+            public static Instruction Parse(string line) => new Instruction(line[0..3], line[4..].Int32());
         }
     }
 }

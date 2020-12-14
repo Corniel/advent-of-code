@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using NUnit.Framework.Interfaces;
+﻿using NUnit.Framework.Interfaces;
 using NUnit.Framework.Internal;
 using NUnit.Framework.Internal.Builders;
 using SmartAss;
@@ -10,7 +9,7 @@ using System.Numerics;
 namespace Advent_of_Code
 {
     [AttributeUsage(AttributeTargets.Method)]
-    public class PuzzleAttribute : NUnitAttribute, ITestBuilder, IImplyFixture
+    public class PuzzleAttribute : Attribute, ITestBuilder, IImplyFixture
     {
         public PuzzleAttribute(object answer, string input)
         {

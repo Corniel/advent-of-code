@@ -18,11 +18,12 @@ namespace Advent_of_Code_2019
         [Puzzle(answer: 1195, year: 2019, day: 03)]
         public long part_one(string input)
         {
-            var wires = input.Lines(line => Move.Parse(line).ToArray()).ToArray();
+            var wires0 = input.Lines()[0].CommaSeperated(Move.Parse).ToArray();
+            var wires1 = input.Lines()[1].CommaSeperated(Move.Parse).ToArray();
             var passed = new HashSet<Point>();
             var wire0 = Point.O;
 
-            foreach (var move in wires[0])
+            foreach (var move in wires0)
             {
                 for (var step = 0; step < move.Length; step++)
                 {
@@ -34,7 +35,7 @@ namespace Advent_of_Code_2019
             long distance = int.MaxValue;
             var wire1 = Point.O;
 
-            foreach (var move in wires[1])
+            foreach (var move in wires1)
             {
                 for (var step = 0; step < move.Length; step++)
                 {
@@ -57,12 +58,13 @@ namespace Advent_of_Code_2019
         [Puzzle(answer: 91518, year: 2019, day: 03)]
         public long part_two(string input)
         {
-            var wires = input.Lines(line => Move.Parse(line).ToArray()).ToArray();
+            var wires0 = input.Lines()[0].CommaSeperated(Move.Parse).ToArray();
+            var wires1 = input.Lines()[1].CommaSeperated(Move.Parse).ToArray();
             var steps = new Dictionary<Point, int>();
             var wire0 = Point.O;
             var steps0 = 1;
 
-            foreach (var move in wires[0])
+            foreach (var move in wires0)
             {
                 for (var step = 0; step < move.Length; step++)
                 {
@@ -72,11 +74,10 @@ namespace Advent_of_Code_2019
             }
 
             long distance = int.MaxValue;
-
             var wire1 = Point.O;
             var steps1 = 1;
 
-            foreach (var move in wires[1])
+            foreach (var move in wires1)
             {
                 for (var step = 0; step < move.Length; step++)
                 {
@@ -92,23 +93,8 @@ namespace Advent_of_Code_2019
             return distance;
         }
 
-        public readonly struct Move
+        private record Move(Direction Direction, int Length)
         {
-            public Move(Direction direction, int length)
-            {
-                Direction = direction;
-                Length = length;
-            }
-
-            public Direction Direction { get; }
-            public int Length { get; }
-            public override string ToString() => $"{Direction}{Length}";
-
-            public static IEnumerable<Move> Parse(string str)
-                => str.CommaSeperated(sub => new Move(
-                    direction: Enum.Parse<Direction>(sub.Substring(0, 1)),
-                    length: int.Parse(sub[1..])));
-
             public Point Step(Point point)
                 => Direction switch
                 {
@@ -118,6 +104,9 @@ namespace Advent_of_Code_2019
                     Direction.L => new Point(point.X - 1, point.Y),
                     _ => throw new InvalidOperationException(),
                 };
+
+            public static Move Parse(string str)
+                => new(Enum.Parse<Direction>(str[0..1]), str[1..].Int32());
         }
 
         public enum Direction { U, R, D, L }

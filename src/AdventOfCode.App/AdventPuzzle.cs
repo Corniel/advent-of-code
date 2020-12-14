@@ -51,7 +51,6 @@ namespace Advent_of_Code
             }
             else if (answer is string str)
             {
-                Console.WriteLine();
                 Console.WriteLine(str);
             }
             else

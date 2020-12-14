@@ -25,9 +25,9 @@ namespace Advent_of_Code_2020
                 if (line[0..2] == "ma") { mask = line[7..]; }
                 else
                 {
-                    var inputs = Input(line);
-                    var mask_bits = Bits.Parse(mask, "1", "X0");
-                    var val_bits = Bits.Parse(mask, "X", "10");
+                    var inputs = Inputs.Parse(line);
+                    var mask_bits = Bits.UInt64.Parse(mask, "1", "X0");
+                    var val_bits = Bits.UInt64.Parse(mask, "X", "10");
                     memory[inputs.Address] = (inputs.Value & val_bits) | mask_bits;
                 }
             }
@@ -49,7 +49,7 @@ namespace Advent_of_Code_2020
                 if (line[0..2] == "ma") { mask = line[7..]; }
                 else
                 {
-                    var inputs = Input(line);
+                    var inputs = Inputs.Parse(line);
 
                     foreach (var address in Addresses(mask, inputs.Address))
                     {
@@ -60,17 +60,16 @@ namespace Advent_of_Code_2020
             return memory.Values.Sum();
         }
 
-        public static IEnumerable<ulong> Addresses(string mask, ulong value)
+        private static IEnumerable<ulong> Addresses(string mask, ulong value)
         {
-            var value_bits = Bits.Parse(mask, ones: "10", zeros: "X");
-            var mask_bits = Bits.Parse(mask, ones: "1", zeros: "0X");
+            var value_bits = Bits.UInt64.Parse(mask, ones: "10", zeros: "X");
+            var mask_bits = Bits.UInt64.Parse(mask, ones: "1", zeros: "0X");
             var address = (value & value_bits) | mask_bits;
             var indexes = mask.Select((ch, i) => new { ch, i = 35 - i }).Where(p => p.ch == 'X').Select(p => p.i).ToArray();
             var permutations = 1 << indexes.Length;
 
             return Enumerable.Range(0, permutations).Select(p => address | FloatingBits(p, indexes));
         }
-
         private static ulong FloatingBits(int permutation, int[] indexes)
         {
             ulong bits = 0;
@@ -83,12 +82,13 @@ namespace Advent_of_Code_2020
             }
             return bits;
         }
-
-        private static Inputs Input(string line)
-        {
-            var split = line.IndexOf(" = ") - 1;
-            return new Inputs(line[4..split].UInt64(), line[(split + 4)..].UInt64());
+        private record Inputs(ulong Address, ulong Value)
+        { 
+            public static Inputs Parse(string line)
+            {
+                var split = line.IndexOf(" = ") - 1;
+                return new Inputs(line[4..split].UInt64(), line[(split + 4)..].UInt64());
+            }
         }
-        private record Inputs(ulong Address, ulong Value);
     }
 }

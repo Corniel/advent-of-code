@@ -31,23 +31,26 @@ namespace Advent_of_Code_2020
 
             foreach (var other in busses.Skip(1))
             {
-                bus = Merge(bus, other);
+                bus = bus.Merge(other);
             }
             return bus.Offset;
         }
 
-        private static Bus Merge(Bus bus, Bus other)
-        {
-            for (var departure = bus.Offset; /* oo */ ; departure += bus.Period)
-            {
-                if (Offset(other.Period, departure) == other.Offset)
-                {
-                    return new Bus(bus.Period * other.Period, departure);
-                }
-            }
-            throw new NoAnswer();
-        }
         private static long Offset(long bus, long depature) => (-depature).Mod(bus);
-        private record Bus(long Period, long Offset);
+
+        private record Bus(long Period, long Offset)
+        {
+            public Bus Merge(Bus other)
+            {
+                for (var departure = Offset; /* oo */ ; departure += Period)
+                {
+                    if (Offset(other.Period, departure) == other.Offset)
+                    {
+                        return new Bus(Period * other.Period, departure);
+                    }
+                }
+                throw new InfiniteLoop();
+            }
+        }
     }
 }

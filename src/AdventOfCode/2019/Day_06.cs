@@ -34,7 +34,7 @@ namespace Advent_of_Code_2019
             return minimum;
         }
 
-        internal class Space : Dictionary<string, SpaceObject>
+        private class Space : Dictionary<string, SpaceObject>
         {
             public int Connections => Values.Sum(obj => obj.Connections);
 
@@ -63,7 +63,7 @@ namespace Advent_of_Code_2019
             }
         }
 
-        internal class SpaceObject : IEquatable<SpaceObject>
+        private class SpaceObject : IEquatable<SpaceObject>
         {
             public SpaceObject(string name) => this.Name = name;
 

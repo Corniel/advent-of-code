@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
-    <AssemblyName>advent-of-code</AssemblyName>
+    <AssemblyName>aoc</AssemblyName>
     <RootNamespace>Advent_of_Code</RootNamespace>
   </PropertyGroup>
 

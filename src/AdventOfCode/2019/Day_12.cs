@@ -27,7 +27,7 @@ namespace Advent_of_Code_2019
             <x=4, y=7, z=-7>")]
         public int part_one(string input)
         {
-            var moons = Moon.Parse(input).ToArray();
+            var moons = input.Lines(Moon.Parse).ToArray();
 
             for (var step = 1; step <= 10_000; step++)
             {
@@ -53,11 +53,11 @@ namespace Advent_of_Code_2019
             <x=4, y=7, z=-7>")]
         public long part_two(string input)
         {
-            var moons = Moon.Parse(input).ToArray();
+            var moons = input.Lines(Moon.Parse).ToArray();
 
-            var xs = moons.Select(moon => new Tuple<int, int>(moon.Position.X, default)).ToArray();
-            var ys = moons.Select(moon => new Tuple<int, int>(moon.Position.Y, default)).ToArray();
-            var zs = moons.Select(moon => new Tuple<int, int>(moon.Position.Z, default)).ToArray();
+            var xs = moons.Select(moon => Pair(moon.Position.X, default)).ToArray();
+            var ys = moons.Select(moon => Pair(moon.Position.Y, default)).ToArray();
+            var zs = moons.Select(moon => Pair(moon.Position.Z, default)).ToArray();
 
             var x = Cycle(xs);
             var y = Cycle(ys);
@@ -67,7 +67,7 @@ namespace Advent_of_Code_2019
             return xy * z / Maths.Gcd(xy, z);
         }
 
-        internal static long Cycle(Tuple<int, int>[] pairs)
+        private static long Cycle((int, int)[] pairs)
         {
             var initial = pairs.ToArray();
             var steps = 0;
@@ -82,7 +82,7 @@ namespace Advent_of_Code_2019
             return steps;
         }
 
-        internal static void Step(Tuple<int, int>[] pairs)
+        private static void Step((int, int)[] pairs)
         {
             var deltas = new int[pairs.Length];
 
@@ -101,7 +101,9 @@ namespace Advent_of_Code_2019
             }
         }
 
-        public sealed class Moon : IEquatable<Moon>
+        private static (int, int) Pair(int l, int r) => (l, r);
+
+        private sealed class Moon
         {
             public Moon(Point3D position, Vector3D velocity)
             {
@@ -124,31 +126,16 @@ namespace Advent_of_Code_2019
             public Point3D Position { get; set; }
             public Vector3D Velocity { get; set; }
 
-            public Moon Copy() => new Moon(Position, Velocity);
+            public static Moon Parse(string line)
+            {
+                var xyz = line
+                    .Trim('<', '>')
+                    .CommaSeperated()
+                    .Select(sub => sub.Seperate('=')[1].Int32())
+                    .ToArray();
 
-            public override bool Equals(object obj) => obj is Moon other && Equals(other);
-            public bool Equals(Moon other)
-                => other != null
-                && Position.Equals(other.Position)
-                && Velocity.Equals(other.Velocity);
-
-            public override int GetHashCode() => throw new NotSupportedException();
-
-
-            public override string ToString()
-                => $"Pos: {Position}, Vel: {Velocity}";
-
-            public static IEnumerable<Moon> Parse(string str)
-                => str.Lines(line =>
-                {
-                    var xyz = line
-                        .Trim('<', '>')
-                        .CommaSeperated()
-                        .Select(sub => sub.Seperate('=')[1].Int32())
-                        .ToArray();
-
-                    return new Moon(new Point3D(xyz[0], xyz[1], xyz[2]), default);
-                });
+                return new Moon(new Point3D(xyz[0], xyz[1], xyz[2]), default);
+            }
 
             public static void SetStep(IEnumerable<Moon> moons)
             {

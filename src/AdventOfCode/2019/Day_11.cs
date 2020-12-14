@@ -2,7 +2,6 @@
 using Advent_of_Code_2019.IntComputing;
 using NUnit.Framework;
 using SmartAss.Topology;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -47,7 +46,6 @@ namespace Advent_of_Code_2019
             }
 
             var message = string.Join("\r\n", output.Select(l => string.Concat(l)));
-            Console.WriteLine(message);
             return "\r\n" + message;
         }
 

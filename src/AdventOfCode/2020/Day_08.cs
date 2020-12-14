@@ -46,10 +46,7 @@ namespace Advent_of_Code_2020
             {
                 executed[pointer]++;
 
-                if (executed.Any(e => e > 1))
-                {
-                    return false;
-                }
+                if (executed.Any(e => e > 1)) { return false; }
 
                 var instruction = instructions[pointer];
 
@@ -77,18 +74,10 @@ namespace Advent_of_Code_2020
             return true;
         }
 
-        public readonly struct Instruction
-        {
-            public Instruction(string name, int val)
-            {
-                Name = name;
-                Value = val;
-            }
-
-            public string Name { get; }
-            public int Value { get; }
-
-            public static Instruction Parse(string line) => new Instruction(line[0..3], line[4..].Int32());
+        private record Instruction(string Name, int Value)
+        { 
+            public static Instruction Parse(string line) 
+                => new Instruction(line[0..3], line[4..].Int32());
         }
     }
 }

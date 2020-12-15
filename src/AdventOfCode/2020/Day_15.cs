@@ -8,30 +8,30 @@ namespace Advent_of_Code_2020
     {
         [Example(answer: 436, @"0,3,6")]
         [Puzzle(answer: 620, input: "0,12,6,13,20,1,17")]
-        public long part_one(string input) => MemoryGame(input.Int32s(), 2020);
+        public int part_one(string input) => MemoryGame(input.Int32s(), 2020);
 
         [Puzzle(answer: 110871, input: "0,12,6,13,20,1,17")]
-        public long part_two(string input) => MemoryGame(input.Int32s(), 30000000);
+        public int part_two(string input) => MemoryGame(input.Int32s(), 30000000);
 
-        private static long MemoryGame(IEnumerable<int> starting, int repeats)
+        private static int MemoryGame(IEnumerable<int> starting, int rounds)
         {
             var round = 1;
-            long previous = 0;
-            var recents = new Dictionary<long, int>();
-            var befores = new Dictionary<long, int>();
+            var previous = 0;
+            var recents = new int[rounds];
+            var befores = new int[rounds];
 
             foreach (var n in starting)
             {
                 recents[n] = round++;
                 previous = n;
             }
-            while (round <= repeats)
+            while (round <= rounds)
             {
-                var number = befores.TryGetValue(previous, out var before) ? round - before - 1 : 0;
-                if (recents.TryGetValue(number, out var recent)) { befores[number] = recent; }
-                recents[number] = round;
+                var before = befores[previous];
+                var number = before == 0 ? 0: round - before - 1;
+                befores[number] = recents[number];
+                recents[number] = round++;
                 previous = number;
-                round++;
             }
             return previous;
         }

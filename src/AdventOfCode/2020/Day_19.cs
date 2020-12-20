@@ -83,11 +83,7 @@ namespace Advent_of_Code_2020
             var blocks = input.GroupedLines().ToArray();
             var patterns = Patterns.Parse(blocks[0]);
             patterns[08] = $"({patterns[42]})+";
-            // Recursion is not supported for Regex in .NET (4 repetitions turns out to be enough).
-            patterns[11] = $"(({patterns[42]}{patterns[31]})" +
-                $"|({patterns[42]}{{2}}{patterns[31]}{{2}})" +
-                $"|({patterns[42]}{{3}}{patterns[31]}{{3}})" +
-                $"|({patterns[42]}{{4}}{patterns[31]}{{4}}))";
+            patterns[11] = $"(?<special>{patterns[42]})+(?<-special>{patterns[31]})+(?(special)(?!))";
             return patterns.Matches(blocks[1]);
         }
         private class Patterns : Dictionary<int, object>

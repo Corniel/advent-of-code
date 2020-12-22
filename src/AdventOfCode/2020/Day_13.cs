@@ -25,7 +25,7 @@ namespace Advent_of_Code_2020
         public long part_two(string input)
         {
             var busses = input.Lines()[1]
-                .CommaSeperated((id, index) => new Bus(id.Int32(fallback: 0), index % id.Int32(fallback: 1)))
+                .CommaSeperated((id, index) => new Bus(id.TryInt32(fallback: 0), index % id.TryInt32(fallback: 1)))
                 .Where(b => b.Period != default);
             var bus = busses.First();
 

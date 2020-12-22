@@ -10,18 +10,7 @@ namespace Advent_of_Code_2020
 {
     public class Day_03
     {
-        [Example(answer: 7, @"
-            ..##.......
-            #...#...#..
-            .#....#..#.
-            ..#.#...#.#
-            .#...##..#.
-            ..#.##.....
-            .#.#.#....#
-            .#........#
-            #.##...#...
-            #...##....#
-            .#..#...#.#")]
+        [Example(answer: 7, year: 2020, day: 03, example: 1)]
         [Puzzle(answer: 220, year: 2020, day: 03)]
         public long part_one(string input)
             => CountTrees(Row.Parse(input).ToArray(), new Vector(3, 1));

@@ -10,17 +10,7 @@ namespace Advent_of_Code_2020
 {
     public class Day_11
     {
-        [Example(answer: 37, @"
-            L.LL.LL.LL
-            LLLLLLL.LL
-            L.L.L..L..
-            LLLL.LL.LL
-            L.LL.LL.LL
-            L.LLLLL.LL
-            ..L.L.....
-            LLLLLLLLLL
-            L.LLLLLL.L
-            L.LLLLL.LL")]
+        [Example(answer: 37, year: 2020, day: 11, example: 1)]
         [Puzzle(answer: 2481, year: 2020, day: 11)]
         public int part_one(string input)
         {
@@ -42,17 +32,7 @@ namespace Advent_of_Code_2020
             return plane.Occupied;
         }
 
-        [Example(answer: 26, @"
-            L.LL.LL.LL
-            LLLLLLL.LL
-            L.L.L..L..
-            LLLL.LL.LL
-            L.LL.LL.LL
-            L.LLLLL.LL
-            ..L.L.....
-            LLLLLLLLLL
-            L.LLLLLL.L
-            L.LLLLL.LL")]
+        [Example(answer: 26, year: 2020, day: 11, example: 1)]
         [Puzzle(answer: 2227, year: 2020, day: 11)]
         public long part_two(string input)
         {

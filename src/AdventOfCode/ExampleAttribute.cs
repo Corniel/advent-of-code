@@ -9,6 +9,8 @@ namespace Advent_of_Code
     {
         public ExampleAttribute(object answer, string input)
             : base(answer, input) => Do.Nothing();
+        public ExampleAttribute(object answer, int year, int day, int example)
+           : base(answer, Puzzle.Input(year, day, example)) => Do.Nothing();
 
         public ExampleAttribute(object answer, int year, int day, int example)
             : base(answer, Puzzle.Input(year, day, example)) => Do.Nothing();

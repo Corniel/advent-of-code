@@ -22,7 +22,7 @@ namespace Advent_of_Code
         public IEnumerable<AdventPuzzle> Matching(AdventDate date)
             => items
             .Where(puzzle => puzzle.Matches(date))
-            .OrderBy(puzzle=> puzzle.Date);
+            .OrderBy(puzzle => puzzle.Date);
 
         public static AdventPuzzles Load() => Load(typeof(Puzzle).Assembly.GetExportedTypes());
 

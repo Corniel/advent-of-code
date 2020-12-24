@@ -1,9 +1,11 @@
 using Advent_of_Code;
 using SmartAss;
 using SmartAss.Collections;
+using SmartAss.Maps;
 using SmartAss.Navigation;
+using SmartAss.Numerics;
 using SmartAss.Parsing;
-using SmartAss.Topology;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Advent_of_Code_2020
@@ -13,99 +15,65 @@ namespace Advent_of_Code_2020
         [Example(answer: 37, year: 2020, day: 11, example: 1)]
         [Puzzle(answer: 2481, year: 2020, day: 11)]
         public int part_one(string input)
-        {
-            var plane = Plane.Parse(input);
-            while (plane.Any(seat => seat.Changed))
-            {
-                foreach (var seat in plane) { seat.Changed = false; }
-                foreach (var seat in plane)
-                {
-                    var next = seat.GetNext();
-                    seat.Changed = next != seat.Occupied;
-                    seat.Next = next;
-                }
-                foreach (var seat in plane)
-                {
-                    seat.Occupied = seat.Next;
-                }
-            }
-            return plane.Occupied;
-        }
+            => Plane.Init(input, Plane.DirectNeighbors).Simulate(4);
+
 
         [Example(answer: 26, year: 2020, day: 11, example: 1)]
         [Puzzle(answer: 2227, year: 2020, day: 11)]
         public long part_two(string input)
-        {
-            var plane = Plane.Parse(input);
-            while (plane.Any(seat => seat.Changed))
-            {
-                foreach (var seat in plane) { seat.Changed = false; }
-                foreach (var seat in plane)
-                {
-                    var next = seat.GetNextInsight();
-                    seat.Changed = next != seat.Occupied;
-                    seat.Next = next;
-                }
-                foreach (var seat in plane)
-                {
-                    seat.Occupied = seat.Next;
-                }
-            }
-            return plane.Occupied;
-        }
+            => Plane.Init(input, Plane.InSightNeighbors).Simulate(5);
 
         private class Plane : Grid<Seat>
         {
-            public Plane(int cols, int rows)
-                : base(cols, rows, GridType.Grid | GridType.Diagonal) => Do.Nothing();
+            public Plane(int cols, int rows) : base(cols, rows) => Do.Nothing();
 
-            public int Occupied => this.Count(seat => seat.Occupied);
-
-            public override string ToString() => ToString(Formatter);
-
-            private static string Formatter(Seat seat)
+            public int Simulate(int occupied)
             {
-                if (seat is null) { return "."; }
-                else { return seat.Occupied ? "#" : "L"; }
+                while (Tiles.Any(seat => seat.Changed))
+                {
+                    foreach (var seat in Tiles) { seat.Changed = false; }
+                    foreach (var seat in Tiles)
+                    {
+                        var next = seat.GetNext(occupied);
+                        seat.Changed = next != seat.Occupied;
+                        seat.Next = next;
+                    }
+                    foreach (var seat in Tiles) { seat.Occupied = seat.Next; }
+                }
+                return Tiles.Count(seat => seat.Occupied);
             }
 
-            protected override Seat Create(int index, int col, int row, int neighbors)
-                => new Seat(index, col, row, neighbors);
-
-            public static Plane Parse(string input)
+            public static Plane Init(string input, GridNeighbors<Seat> neighbors)
             {
                 var chars = input.CharPixels();
                 var plane = new Plane(chars.Cols, chars.Rows);
+                var seats = chars.Where(p => p.Value == 'L').Select(p => p.Key);
 
-                foreach (var tile in chars)
-                {
-                    var seat = plane[tile.Position];
-                    seat.Occupied = tile.Char == '#';
-                    if (tile.Char == '.')
-                    {
-                        plane.Remove(seat);
-                    }
-                }
-                foreach (var seat in plane)
-                {
-                    seat.InSight.AddRange(directions
-                        .Select(dir => seat.Position
-                            .Repeat(dir)
-                            .TakeWhile(p => plane.OnGrid(p))
-                            .Select(p => plane[p])
-                            .FirstOrDefault(s => s != null))
-                        .Where(s => s != null));
-                }
-
+                plane.InitTiles(
+                    locations: seats,
+                    ctor: (id, location) => new Seat(id, location),
+                    neighbors: neighbors);
                 return plane;
             }
-            private static readonly Vector[] directions = CompassPoints.All.Select(p => p.ToVector()).ToArray();
+           
+            public static IEnumerable<Point> DirectNeighbors(Grid<Seat> plane, Point seat)
+               => seat.Projections(directions).Where(p => plane.OnGrid(p));
 
+            public static IEnumerable<Point> InSightNeighbors(Grid<Seat> plane, Point seat)
+                => directions.Select(dir => seat
+                    .Repeat(dir)
+                    .TakeWhile(seat => plane.OnGrid(seat))
+                    .Select(seat => plane[seat])
+                    .FirstOrDefault(seat => seat is not null))
+                .Where(seat => seat is not null)
+                .Select(seat => seat.Location);
+
+            private static readonly Vector[] directions = CompassPoints.All.Select(p => p.ToVector()).ToArray();
         }
         private class Seat : GridTile<Seat>
         {
-            public Seat(int index, int col, int row, int neighbors)
-                : base(index, col, row, neighbors) => Do.Nothing();
+            public Seat(int id, Point location)
+                : base(id, location, 8) => Do.Nothing();
 
             public bool Occupied { get; set; }
             public bool Empty => !Occupied;
@@ -114,15 +82,10 @@ namespace Advent_of_Code_2020
 
             public SimpleList<Seat> InSight { get; } = new SimpleList<Seat>(8);
 
-            public bool GetNext()
+            public bool GetNext(int occupied)
                 => Empty
                 ? Neighbors.All(n => n.Empty)
-                : Neighbors.Count(n => n.Occupied) < 4;
-
-            public bool GetNextInsight()
-              => Empty
-                ? InSight.All(n => n.Empty)
-                : InSight.Count(n => n.Occupied) < 5;
+                : Neighbors.Count(n => n.Occupied) < occupied;
 
             public override string ToString() => $"[{Col:00}, {Row:00}] Occupied: {Occupied} ({Next})";
         }

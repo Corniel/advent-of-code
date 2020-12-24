@@ -1,7 +1,7 @@
 ﻿using Advent_of_Code;
 using Advent_of_Code_2019.IntComputing;
 using NUnit.Framework;
-using SmartAss.Topology;
+using SmartAss.Numerics;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -63,7 +63,7 @@ namespace Advent_of_Code_2019
                 var turn = computer.Run(new RunArguments(true)).LastOrDefault();
 
                 canvas[bot] = color;
-                dir = dir.Rotate(turn == 0 ? +1 : -1);
+                dir = dir.Rotate(turn == 0 ? DiscreteRotation.Deg090 : DiscreteRotation.Deg270);
                 bot += dir;
             }
 

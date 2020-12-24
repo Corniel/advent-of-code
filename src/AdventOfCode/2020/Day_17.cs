@@ -1,7 +1,7 @@
 using Advent_of_Code;
 using SmartAss;
+using SmartAss.Numerics;
 using SmartAss.Parsing;
-using SmartAss.Topology;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -27,7 +27,7 @@ namespace Advent_of_Code_2020
             #.####..")]
         public int part_one(string input)
         {
-            var active = input.CharPixels().Where(p => p.Char == '#').Select(p => p.Position).ToArray();
+            var active = input.CharPixels().Where(p => p.Value == '#').Select(p => p.Key).ToArray();
             var space = new Space();
 
             foreach (var position in active)
@@ -67,7 +67,7 @@ namespace Advent_of_Code_2020
             #.####..")]
         public long part_two(string input)
         {
-            var active = input.CharPixels().Where(p => p.Char == '#').Select(p => p.Position).ToArray();
+            var active = input.CharPixels().Where(p => p.Value == '#').Select(p => p.Key).ToArray();
             var space = new HyperSpace();
 
             foreach (var position in active)

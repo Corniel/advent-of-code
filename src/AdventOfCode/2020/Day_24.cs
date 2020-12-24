@@ -1,7 +1,7 @@
 using Advent_of_Code;
 using NUnit.Framework;
+using SmartAss.Numerics;
 using SmartAss.Parsing;
-using SmartAss.Topology;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;

@@ -23,7 +23,7 @@ namespace Advent_of_Code_2020
         public int part_one(string input) => new Tiles().Init(input.Lines(Steps)).Flipped;
 
         [Example(answer: 2208, year: 2020, day: 24, example: 1)]
-        [Puzzle(answer: 666, year: 2020, day: 24)]
+        [Puzzle(answer: 4225, year: 2020, day: 24)]
         public long part_two(string input)
         {
             var tiles = new Tiles().Init(input.Lines(Steps));
@@ -67,7 +67,7 @@ namespace Advent_of_Code_2020
                 var off = new List<Point>();
                 foreach (var tile in this.ToArray())
                 {
-                    var count = Neighbors(tile).Count(t => tiles[t]);
+                    var count = Neighbors(tile).Count(t => this[t]);
                     if (this[tile] && (count == 0 || count > 2)) { off.Add(tile); }
                     else if (!this[tile] && count == 2) { on.Add(tile); }
                 }
@@ -78,7 +78,6 @@ namespace Advent_of_Code_2020
             IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
             private static Vector[] Directions = new[] { Vector.E * 2, Vector.SE, Vector.NE, Vector.W * 2, Vector.SW, Vector.NW };
         }
-        
         private static IEnumerable<Vector> Steps(string line)
         {
             var prev = ' ';

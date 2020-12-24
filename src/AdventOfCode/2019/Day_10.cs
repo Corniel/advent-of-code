@@ -1,5 +1,5 @@
 ﻿using Advent_of_Code;
-using SmartAss.Topology;
+using SmartAss.Numerics;
 using System;
 using System.Collections.Generic;
 using System.Linq;

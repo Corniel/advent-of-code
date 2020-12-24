@@ -1,9 +1,8 @@
 using Advent_of_Code;
 using SmartAss;
-using SmartAss.LinearAlgebra;
+using SmartAss.Collections;
+using SmartAss.Numerics;
 using SmartAss.Parsing;
-using SmartAss.Text;
-using SmartAss.Topology;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,14 +24,14 @@ namespace Advent_of_Code_2020
             foreach (var canvas in tiles.Canvases())
             {
                 var occupations = Sea.Monster.Occupations(canvas);
-                if (occupations != 0) { return canvas.Count(p => p.Char == '#') - occupations; }
+                if (occupations != 0) { return canvas.Count(p => p.Value == '#') - occupations; }
             }
             throw new NoAnswer();
         }
 
         private class Tile
         {
-            public Tile(long id, CharGrid chars)
+            public Tile(long id, Grid<char> chars)
             {
                 Id = id;
                 Grid = chars;
@@ -52,7 +51,7 @@ namespace Advent_of_Code_2020
                 return pattern;
             }
             public long Id { get; }
-            public CharGrid Grid { get; }
+            public Grid<char> Grid { get; }
             public uint N { get; }
             public uint E { get; }
             public uint S { get; }
@@ -61,18 +60,18 @@ namespace Advent_of_Code_2020
             public List<Tile> Neighbors { get; } = new();
             public bool IsCorner => Neighbors.Count == 2;
 
-            public Tile CCW() => new Tile(Id, Grid.RotateCCW());
-            public Tile Flip() => new Tile(Id, Grid.FlipHorizontal());
+            public Tile Rotate(DiscreteRotation rotation) => new Tile(Id, Grid.Rotate(rotation));
+            public Tile Flip() => new Tile(Id, Grid.Flip(true));
             public IEnumerable<Tile> Orientations()
             {
                 yield return this;
-                yield return CCW();
-                yield return CCW().CCW();
-                yield return CCW().CCW().CCW();
+                yield return Rotate(DiscreteRotation.Deg090);
+                yield return Rotate(DiscreteRotation.Deg180);
+                yield return Rotate(DiscreteRotation.Deg270);
                 yield return Flip();
-                yield return Flip().CCW();
-                yield return Flip().CCW().CCW();
-                yield return Flip().CCW().CCW().CCW();
+                yield return Flip().Rotate(DiscreteRotation.Deg090);
+                yield return Flip().Rotate(DiscreteRotation.Deg180);
+                yield return Flip().Rotate(DiscreteRotation.Deg270);
             }
             public override string ToString() => $"ID: {Id}, N: {N:000}, E: {E:000}, S: {S:000}, W: {W:000}";
 
@@ -96,13 +95,13 @@ namespace Advent_of_Code_2020
                 => tiles.Where(t => t.Id != exclude.Id);
         }
 
-        private class Tiles : Matrix<Tile>
+        private class Tiles : Grid<Tile>
         {
             public Tiles(int size) : base(size, size) => Do.Nothing();
      
-            public IEnumerable<CharGrid> Canvases()
+            public IEnumerable<Grid<char>> Canvases()
             {
-                var canvas = new CharGrid(Cols * 8, Rows * 8);
+                var canvas = new Grid<char>(Cols * 8, Rows * 8);
                 foreach(var p in Points.Grid(Cols, Rows))
                 {
                     foreach(var l in Points.Grid(8, 8))
@@ -113,13 +112,13 @@ namespace Advent_of_Code_2020
                     }
                 }
                 yield return canvas;
-                yield return canvas.RotateCCW();
-                yield return canvas.RotateCCW().RotateCCW();
-                yield return canvas.RotateCCW().RotateCCW().RotateCCW();
-                yield return canvas.FlipHorizontal();
-                yield return canvas.FlipHorizontal().RotateCCW();
-                yield return canvas.FlipHorizontal().RotateCCW().RotateCCW();
-                yield return canvas.FlipHorizontal().RotateCCW().RotateCCW().RotateCCW();
+                yield return canvas.Rotate(DiscreteRotation.Deg090);
+                yield return canvas.Rotate(DiscreteRotation.Deg180);
+                yield return canvas.Rotate(DiscreteRotation.Deg270);
+                yield return canvas.Flip(horizontal: true);
+                yield return canvas.Flip(horizontal: true).Rotate(DiscreteRotation.Deg090);
+                yield return canvas.Flip(horizontal: true).Rotate(DiscreteRotation.Deg180);
+                yield return canvas.Flip(horizontal: true).Rotate(DiscreteRotation.Deg270);
             }
             private void FillO(Tile[] tiles)
             {
@@ -137,12 +136,12 @@ namespace Advent_of_Code_2020
                     var prev = this[point];
                     var e = point + Vector.E;
                     var s = point + Vector.S;
-                    if (OnMatrix(e) && this[e] is null)
+                    if (OnGrid(e) && this[e] is null)
                     {
                         this[e] = prev.Neighbors.Single(n => prev.E == n.W);
                         points.Enqueue(e);
                     }
-                    if (OnMatrix(s) && this[s] is null)
+                    if (OnGrid(s) && this[s] is null)
                     {
                         this[s] = prev.Neighbors.Single(n => prev.S == n.N);
                         points.Enqueue(s);
@@ -164,7 +163,7 @@ namespace Advent_of_Code_2020
                 ..................#.
                 #....##....##....###
                 .#..#..#..#..#..#...
-                ".CharPixels().Where(p => p.Char == '#').Select(p => p.Position - Point.O));
+                ".CharPixels().Where(p => p.Value == '#').Select(p => p.Key - Point.O));
             private Sea(IEnumerable<Vector> points)
             {
                 AddRange(points);
@@ -173,7 +172,7 @@ namespace Advent_of_Code_2020
             }
             public int Width { get; }
             public int Height { get; }
-            public int Occupations(CharGrid image)
+            public int Occupations(Grid<char> image)
                 => Points.Grid(image.Cols - Width, image.Rows - Height)
                 .Count(offset => this.All(relative => image[offset + relative] == '#')) * Count;
         }

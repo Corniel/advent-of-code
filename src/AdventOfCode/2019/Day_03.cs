@@ -1,6 +1,6 @@
 using Advent_of_Code;
+using SmartAss.Numerics;
 using SmartAss.Parsing;
-using SmartAss.Topology;
 using System;
 using System.Collections.Generic;
 using System.Linq;

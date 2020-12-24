@@ -1,6 +1,6 @@
 using Advent_of_Code;
+using SmartAss.Numerics;
 using SmartAss.Parsing;
-using SmartAss.Topology;
 using System;
 
 namespace Advent_of_Code_2020
@@ -17,7 +17,7 @@ namespace Advent_of_Code_2020
             foreach (var i in input.Lines(Instruction.Parse))
             {
                 if (i.Action == Action.F) { ferry += orientation * i.Distance; }
-                else if (i.Rotation != 0) { orientation = orientation.Rotate(i.Rotation); }
+                else if (i.Rotation != 0) { orientation = orientation.Rotate((DiscreteRotation)i.Rotation); }
                 else { ferry += i.Direction * i.Distance; }
             }
             return ferry.ManhattanDistance(Point.O);
@@ -33,7 +33,7 @@ namespace Advent_of_Code_2020
             foreach (var i in input.Lines(Instruction.Parse))
             {
                 if (i.Action == Action.F) { ferry += (waypoint - Point.O) * i.Distance; }
-                else if (i.Rotation != 0) { waypoint = waypoint.Rotate(Point.O, i.Rotation); }
+                else if (i.Rotation != default) { waypoint = waypoint.Rotate(Point.O, i.Rotation); }
                 else { waypoint += i.Direction * i.Distance; }
             }
             return ferry.ManhattanDistance(Point.O);
@@ -44,12 +44,12 @@ namespace Advent_of_Code_2020
             public Instruction(Action action, int value)
             {
                 Action = action;
-                Rotation = action == Action.L || action == Action.R ? value / (int)action : 0;
+                Rotation = action == Action.L || action == Action.R ? (DiscreteRotation)(value / (int)action) : default;
                 Distance = Rotation == 0 ? value : 0;
             }
             public Action Action { get; }
             public int Distance { get; }
-            public int Rotation { get; }
+            public DiscreteRotation Rotation { get; }
             public Vector Direction => Action switch
             {
                 Action.E => Vector.E,

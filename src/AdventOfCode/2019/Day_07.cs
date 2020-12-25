@@ -67,7 +67,7 @@ namespace Advent_of_Code_2019
                 foreach (var prog in programs)
                 {
                     var output = outputs[index];
-                    output.AddRange(prog.Run(new RunArguments(true, signal)).Output);
+                    output.AddRange(prog.Run(new RunArguments(false, true, signal)).Output);
                     signal = output.Last();
                 }
             }

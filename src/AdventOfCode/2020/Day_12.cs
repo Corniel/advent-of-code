@@ -17,7 +17,7 @@ namespace Advent_of_Code_2020
             foreach (var i in input.Lines(Instruction.Parse))
             {
                 if (i.Action == Action.F) { ferry += orientation * i.Distance; }
-                else if (i.Rotation != 0) { orientation = orientation.Rotate((DiscreteRotation)i.Rotation); }
+                else if (i.Rotation != 0) { orientation = orientation.Rotate(i.Rotation); }
                 else { ferry += i.Direction * i.Distance; }
             }
             return ferry.ManhattanDistance(Point.O);

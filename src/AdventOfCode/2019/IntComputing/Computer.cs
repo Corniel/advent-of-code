@@ -21,10 +21,10 @@ namespace Advent_of_Code_2019.IntComputing
         public static Computer Parse(string input) => new(input.BigInts());
 
         public int Size => memory.Count;
-
         public int Pointer { get; private set; }
         public int PointerOffset { get; private set; }
-        public bool Finished { get; private set; }
+        public ComputerState State { get; private set; }
+        public bool Finished => State == ComputerState.Finished;
 
         public Queue<Int> Inputs { get; private set;  } = new();
 
@@ -32,45 +32,64 @@ namespace Advent_of_Code_2019.IntComputing
         {
             arguments ??= RunArguments.Empty();
             Inputs.EnqueueRange(arguments.Inputs);
-            var results = new Results();
-            var running = true;
+            var output = new List<Int>();
+            var continueOnInput = PreRun();
 
-            while (running && !Finished)
+            while (State == ComputerState.Running)
             {
                 var opcode = ReadOpcode();
-
                 Log($"\r\n{Pointer - 1:0000}: {opcode} ");
+                
+                if (opcode.Instruction == 03 && arguments.HaltOnInput && !continueOnInput) 
+                {
+                    State = ComputerState.HaltOnInput; break;
+                }
+                continueOnInput = false;
 
                 switch (opcode.Instruction)
                 {
                     case 01: Add(opcode); break;
                     case 02: Multiply(opcode); break;
                     case 03: Input(opcode); break;
-                    case 04: Output(opcode, results.Output); running = !arguments.HaltOnOutput; break;
+                    case 04: Output(opcode, output);
+                        if (arguments.HaltOnOutput) { State = ComputerState.HaltOnOutput; } 
+                        break;
                     case 05: JumpIf(true, opcode); break;
                     case 06: JumpIf(false, opcode); break;
                     case 07: LessThen(opcode); break;
                     case 08: Equals(opcode); break;
                     case 09: RelativeBase(opcode); break;
-                    case 99: Finished = true; break;
+                    case 99: State = ComputerState.Finished; break;
                     default: throw UnknownInstruction.For(opcode.Instruction);
                 }
-                results.Answer = memory[0];
             }
-            return results;
+            return new(memory[0], output);
         }
+       
         public Computer Copy() => new(memory)
         {
             Pointer = Pointer,
             PointerOffset = PointerOffset,
-            Finished = Finished,
+            State = State,
             Inputs = Inputs.Copy(),
         };
 
-        public Computer Update(int postion, Int value)
+        public Computer Update(int position, Int value)
         {
-            Write(postion, value);
+            Write(position, value);
             return this;
+        }
+
+        private bool PreRun()
+        {
+            if (State == ComputerState.HaltOnInput)
+            {
+                Pointer--;
+                State = ComputerState.Running;
+                return true;
+            }
+            else if (!Finished) { State = ComputerState.Running; }
+            return false;
         }
 
         private Opcode ReadOpcode() => new Opcode((int)Read());

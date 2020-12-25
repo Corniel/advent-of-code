@@ -59,8 +59,8 @@ namespace Advent_of_Code_2019
             while (!computer.Finished)
             {
                 canvas.TryGetValue(bot, out color);
-                color = (int)computer.Run(new RunArguments(true, color)).LastOrDefault();
-                var turn = computer.Run(new RunArguments(true)).LastOrDefault();
+                color = (int)computer.Run(new RunArguments(false, true, color)).LastOrDefault();
+                var turn = computer.Run(new RunArguments(false, true)).LastOrDefault();
 
                 canvas[bot] = color;
                 dir = dir.Rotate(turn == 0 ? DiscreteRotation.Deg090 : DiscreteRotation.Deg270);

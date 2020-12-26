@@ -1,5 +1,6 @@
 using Advent_of_Code;
 using NUnit.Framework;
+using SmartAss;
 using SmartAss.Numerics;
 using SmartAss.Parsing;
 using System.Collections;
@@ -14,89 +15,63 @@ namespace Advent_of_Code_2020
         public void nwwswee_makes_roundtrip()
         {
             var location = Point.O;
-            foreach(var step in Steps("nwwswee")) { location += step; }
+            foreach(var step in Cells.Steps("nwwswee")) { location += step; }
             Assert.AreEqual(Point.O, location);
         }
 
         [Example(answer: 10, year: 2020, day: 24, example: 1)]
         [Puzzle(answer: 523, year: 2020, day: 24)]
-        public int part_one(string input) => new Tiles().Init(input.Lines(Steps)).Flipped;
+        public int part_one(string input) => Cells.Parse(input).Count;
 
         [Example(answer: 2208, year: 2020, day: 24, example: 1)]
         [Puzzle(answer: 4225, year: 2020, day: 24)]
-        public long part_two(string input)
+        public int part_two(string input)
         {
-            var tiles = new Tiles().Init(input.Lines(Steps));
-            foreach(var round in Enumerable.Range(0, 100)) tiles.FlipTiles();
-            return tiles.Flipped;
+            var cells = Cells.Parse(input);
+            cells.Generations(100);
+            return cells.Count;
         }
 
-        private class Tiles : IEnumerable<Point>
+        public class Cells : GameOfLife<Point>
         {
-            private readonly Dictionary<Point, bool> tiles = new();
-            public bool this[Point point]
+            public override bool Dies(int living) => living == 0 || living > 2;
+            public override bool IntoExistence(int living) => living == 2;
+            public override IEnumerable<Point> Neighbors(Point cell) => Directions.Select(dir => cell + dir);
+            public void Toggle(Point cell)
             {
-                get
-                {
-                    if (!tiles.TryGetValue(point, out var val)) { tiles[point] = false; }
-                    return val;
-                }
-                set => tiles[point] = value;
+                if (!Add(cell)) Remove(cell);
             }
-            public int Flipped => tiles.Values.Count(v => v);
-            
-            public IEnumerable<Point> Neighbors(Point tile) => Directions.Select(dir => tile + dir);
-            public Tiles Init(IEnumerable<IEnumerable<Vector>> paths)
+
+            public static Cells Parse(string str)
             {
-                foreach(var path in paths)
+                var cells = new Cells();
+                foreach (var path in str.Lines(Steps))
                 {
-                    var start = Point.O;
-                    foreach (var step in path) { start += step; }
-                    var current = this[start];
-                    this[start] = !current;
+                    cells.Toggle(Point.O + path.Sum());
                 }
-                foreach (var tile in tiles.Keys.SelectMany(t => Neighbors(t)).ToArray())
-                {
-                    if (!tiles.ContainsKey(tile)) { tiles[tile] = false; }
-                }
-                return this;
+                return cells;
             }
-            public void FlipTiles()
+            internal static IEnumerable<Vector> Steps(string line)
             {
-                var on = new List<Point>();
-                var off = new List<Point>();
-                foreach (var tile in this.ToArray())
+                var prev = ' ';
+                foreach (var ch in line)
                 {
-                    var count = Neighbors(tile).Count(t => this[t]);
-                    if (this[tile] && (count == 0 || count > 2)) { off.Add(tile); }
-                    else if (!this[tile] && count == 2) { on.Add(tile); }
+                    if (ch == 'e')
+                    {
+                        if (prev == 's') yield return Vector.SE;
+                        else if (prev == 'n') yield return Vector.NE;
+                        else yield return Vector.E * 2;
+                    }
+                    else if (ch == 'w')
+                    {
+                        if (prev == 's') yield return Vector.SW;
+                        else if (prev == 'n') yield return Vector.NW;
+                        else yield return Vector.W * 2;
+                    }
+                    prev = ch;
                 }
-                foreach (var t in on) { this[t] = true; }
-                foreach (var t in off) { this[t] = false; }
             }
-            public IEnumerator<Point> GetEnumerator() => tiles.Keys.GetEnumerator();
-            IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
             private static Vector[] Directions = new[] { Vector.E * 2, Vector.SE, Vector.NE, Vector.W * 2, Vector.SW, Vector.NW };
-        }
-        private static IEnumerable<Vector> Steps(string line)
-        {
-            var prev = ' ';
-            foreach (var ch in line)
-            {
-                if (ch == 'e')
-                {
-                    if (prev == 's') yield return Vector.SE;
-                    else if (prev == 'n') yield return Vector.NE;
-                    else yield return Vector.E * 2;
-                }
-                else if (ch == 'w')
-                {
-                    if (prev == 's') yield return Vector.SW;
-                    else if (prev == 'n') yield return Vector.NW;
-                    else yield return Vector.W * 2;
-                }
-                prev = ch;
-            }
         }
     }
 }

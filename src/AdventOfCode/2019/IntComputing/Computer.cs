@@ -28,6 +28,11 @@ namespace Advent_of_Code_2019.IntComputing
 
         public Queue<Int> Inputs { get; private set;  } = new();
 
+        public Computer WarmUp()
+        {
+            Run(new RunArguments(true, false));
+            return this;
+        }
         public Results Run(RunArguments arguments = null)
         {
             arguments ??= RunArguments.Empty();

@@ -7,6 +7,7 @@ namespace Advent_of_Code_2020
 {
     public class Day_05
     {
+        [Example(answer: 885, "BBFBBBFRLR")]
         [Puzzle(answer: 998, year: 2020, day: 05)]
         public uint part_one(string input) => input.Lines(Seat).Max();
 

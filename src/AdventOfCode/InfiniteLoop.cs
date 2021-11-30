@@ -1,10 +1,6 @@
-﻿using SmartAss;
-using System;
+﻿namespace Advent_of_Code;
 
-namespace Advent_of_Code
+public class InfiniteLoop : InvalidOperationException
 {
-    public class InfiniteLoop : InvalidOperationException
-    {
-        public InfiniteLoop() : base("Infinite loop is occurring.") => Do.Nothing();
-    }
+    public InfiniteLoop() : base("Infinite loop is occurring.") => Do.Nothing();
 }

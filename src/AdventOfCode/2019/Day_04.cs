@@ -1,84 +1,79 @@
-using Advent_of_Code;
-using System;
-using System.Linq;
+namespace Advent_of_Code_2019;
 
-namespace Advent_of_Code_2019
+public class Day_04
 {
-    public class Day_04
+    [Puzzle(answer: 1178, "235741-706948")]
+    public int part_one(string input)
+        => CountValidPasswords(input, PasswordForOne);
+
+    [Puzzle(answer: 763, "235741-706948")]
+    public int part_two(string input)
+        => CountValidPasswords(input, PasswordForTwo);
+
+    private static int CountValidPasswords(string input, Func<int, bool> validator)
     {
-        [Puzzle(answer: 1178,"235741-706948")]
-        public int part_one(string input)
-            => CountValidPasswords(input, PasswordForOne);
+        var boundries = input.Split('-', StringSplitOptions.TrimEntries)
+            .Select(str => int.Parse(str))
+            .ToArray();
 
-        [Puzzle(answer: 763,"235741-706948")]
-        public int part_two(string input)
-            => CountValidPasswords(input, PasswordForTwo);
+        return Enumerable.Range(boundries[0], 1 + boundries[1] - boundries[0])
+            .Count(validator);
+    }
 
-        private static int CountValidPasswords(string input, Func<int, bool> validator)
+    private static bool PasswordForOne(int password)
+    {
+        if (password > 999_999) return false;
+        var adjacent = false;
+
+        var current = password % 10;
+        password /= 10;
+
+        // we go from right to left.
+        for (var digit = 1; digit <= 6; digit++)
         {
-            var boundries = input.Split('-', StringSplitOptions.TrimEntries)
-                .Select(str => int.Parse(str))
-                .ToArray();
+            var previous = password % 10;
 
-            return Enumerable.Range(boundries[0], 1 + boundries[1] - boundries[0])
-                .Count(validator);
-        }
+            // decrease
+            if (previous > current) return false;
 
-        private static bool PasswordForOne(int password)
-        {
-            if (password > 999_999) return false;
-            var adjacent = false;
+            adjacent |= previous == current;
 
-            var current = password % 10;
+            current = previous;
             password /= 10;
-
-            // we go from right to left.
-            for (var digit = 1; digit <= 6; digit++)
-            {
-                var previous = password % 10;
-
-                // decrease
-                if (previous > current) return false;
-
-                adjacent |= previous == current;
-
-                current = previous;
-                password /= 10;
-            }
-            return adjacent;
         }
+        return adjacent;
+    }
 
-        private static bool PasswordForTwo(int password)
+    private static bool PasswordForTwo(int password)
+    {
+        if (password > 999_999) return false;
+        var adjacent = false;
+
+        var group = 1;
+        var current = password % 10;
+        password /= 10;
+
+        // we go from right to left.
+        for (var digit = 1; digit <= 6; digit++)
         {
-            if (password > 999_999) return false;
-            var adjacent = false;
+            var previous = password % 10;
 
-            var group = 1;
-            var current = password % 10;
-            password /= 10;
+            // decrease
+            if (previous > current) return false;
 
-            // we go from right to left.
-            for (var digit = 1; digit <= 6; digit++)
+            if (previous == current)
             {
-                var previous = password % 10;
-
-                // decrease
-                if (previous > current) return false;
-
-                if (previous == current)
-                {
-                    group++;
-                }
-                else
-                {
-                    adjacent |= group == 2;
-                    group = 1;
-                }
-
-                current = previous;
-                password /= 10;
+                group++;
             }
-            return adjacent;
+            else
+            {
+                adjacent |= group == 2;
+                group = 1;
+            }
+
+            current = previous;
+            password /= 10;
         }
+        return adjacent;
     }
 }

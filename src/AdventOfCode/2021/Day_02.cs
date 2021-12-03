@@ -2,12 +2,7 @@ namespace Advent_of_Code_2021;
 
 public class Day_02
 {
-    [Example(answer: 150, @"forward 5
-down 5
-forward 8
-up 3
-down 8
-forward 2")]
+    [Example(answer: 150, "forward 5;down 5;forward 8;up 3;down 8;forward 2")]
     [Puzzle(answer: 2027977, year: 2021, day: 02)]
     public long part_one(string input)
     {
@@ -26,12 +21,7 @@ forward 2")]
         return h * d;
     }
 
-    [Example(answer: 900, @"forward 5
-down 5
-forward 8
-up 3
-down 8
-forward 2")]
+    [Example(answer: 900, "forward 5;down 5;forward 8;up 3;down 8;forward 2")]
     [Puzzle(answer: 1903644897, year: 2021, day: 02)]
     public long part_two(string input)
     {

@@ -26,13 +26,10 @@ public class Day_04
     [Puzzle(answer: 27027, year: 2021, day: 04)]
     public long part_one(string input)
     {
-        var groups = input.GroupedLines().ToArray();
-        var numbers = groups[0][0].Int32s();
-        var game = new Game(groups.Skip(1).Select(Card.Parse));
-
-        foreach (var number in numbers)
+        var game = Game.Parse(input);
+        foreach (var number in game.Numbers)
         {
-            if(game.Play(number) is { } bingo) return bingo.Score * number;
+            if (game.Play(number) is { } bingo) return bingo.Score * number;
         }
         throw new NoAnswer();
     }
@@ -41,11 +38,8 @@ public class Day_04
     [Puzzle(answer: 36975, year: 2021, day: 04)]
     public long part_two(string input)
     {
-        var groups = input.GroupedLines().ToArray();
-        var numbers = groups[0][0].Int32s();
-        var game = new Game(groups.Skip(1).Select(Card.Parse));
-
-        foreach (var number in numbers)
+        var game = Game.Parse(input);
+        foreach (var number in game.Numbers)
         {
             if (game.Play(number) is { } bingo && !game.Cards.Any())
             {
@@ -55,10 +49,8 @@ public class Day_04
         throw new NoAnswer();
     }
 
-    public sealed record Game(List<Card> Cards)
+    public sealed record Game(List<Card> Cards, int[] Numbers)
     {
-        public Game(IEnumerable<Card> cards) : this(cards.ToList()) { }
-
         public Card Play(int number)
         {
             foreach (var card in Cards)
@@ -72,25 +64,26 @@ public class Day_04
             }
             return bingos.FirstOrDefault();
         }
+
+        public static Game Parse(string input)
+        {
+            var groups = input.GroupedLines().ToArray();
+            return new(groups.Skip(1).Select(Card.Parse).ToList(), groups[0][0].Int32s().ToArray());
+        }
     }
 
     public sealed record Card(int[] Numbers)
     {
-        private readonly bool[] Played = new bool[25];
-
-        public bool Bingo
-            => Row(0) || Row(1) || Row(2) || Row(3) || Row(4)
-            || Column(0) || Column(1) || Column(2) || Column(3) || Column(4);
-        public int Score => Numbers.Select((n, index) => Played[index] ? 0 : n).Sum();
+        public bool Bingo => Enumerable.Range(0, 5).Any(i => Row(i) || Col(i));
+        public int Score => Numbers.Sum();
 
         public void Play(int number)
         {
             var index = Array.IndexOf(Numbers, number);
-            if (index != -1) Played[index] = true;
+            if (index != -1) Numbers[index] = 0;
         }
-        private bool Row(int r) => Played.Skip(r * 5).Take(5).All(p => p);
-        private bool Column(int c) => Played[c] && Played[c + 5] && Played[c + 10] && Played[c + 15] && Played[c + 20];
-        public static Card Parse(string[] lines)
-            => new(string.Join(" ", lines).Int32s().ToArray());
+        private bool Row(int r) => Numbers.Skip(r * 5).Take(5).All(n => n == 0);
+        private bool Col(int c) => Numbers.Skip(c).WithStep(5).Take(5).All(n => n == 0);
+        public static Card Parse(string[] lines)  => new(string.Join(" ", lines).Int32s().ToArray());
     }
 }

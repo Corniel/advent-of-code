@@ -2,7 +2,7 @@
 
 namespace Advent_of_Code;
 
-public class AdventPuzzle
+public sealed class AdventPuzzle
 {
     public AdventPuzzle(AdventDate date, MethodInfo method)
     {
@@ -17,7 +17,7 @@ public class AdventPuzzle
     private MethodInfo Method { get; }
     private string Input { get; }
 
-    public void Run()
+    public TimeSpan Run(bool log = true)
     {
         var test = Activator.CreateInstance(Method.DeclaringType);
 
@@ -35,31 +35,38 @@ public class AdventPuzzle
             else throw x.InnerException;
         }
 
-        Console.ForegroundColor = ConsoleColor.Blue;
-        Console.Write(Date);
-        Console.ForegroundColor = ConsoleColor.DarkBlue;
-        Console.Write(": ");
-        Console.ForegroundColor = ConsoleColor.White;
-        if (answer is null)
+        if (log)
         {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("no answer");
-        }
-        else if (answer is string str)
-        {
-            Console.WriteLine(str);
-        }
-        else
-        {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write(answer);
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.Write(Date);
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
+            Console.Write(": ");
+            Console.ForegroundColor = ConsoleColor.White;
+            if (answer is null)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("no answer");
+            }
+            else if (answer is string str)
+            {
+                Console.WriteLine(str);
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write(answer);
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.Write(", ");
+            }
             Console.ForegroundColor = ConsoleColor.Gray;
-            Console.Write(", ");
+
+            if (answer != null)
+            {
+                Console.WriteLine($"duration: {sw.Elapsed.Formatted()}");
+            }
         }
-        Console.ForegroundColor = ConsoleColor.Gray;
-        if (answer != null)
-        {
-            Console.WriteLine($"duration: {sw.Elapsed.TotalMilliseconds:0.000} ms ({sw.ElapsedTicks:#,##0} ticks)");
-        }
+        return sw.Elapsed;
     }
+
+    public override string ToString() => $"{Date} {Method.Name}";
 }

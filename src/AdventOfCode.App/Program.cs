@@ -17,13 +17,16 @@ public static class Program
         {
             return Generate(date);
         }
+        else if (args.Length == 2 && args[1] == "-rank")
+        {
+            return Rank(puzzles, date);
+        }
         else
         {
             var matching = puzzles.Matching(date);
             if (matching.Any())
             {
-
-                foreach (var puzzle in puzzles.Matching(date))
+                foreach (var puzzle in matching)
                 {
                     puzzle.Run();
                 }
@@ -31,6 +34,69 @@ public static class Program
             }
             else return NoMethod(date);
         }
+    }
+
+    private static int Rank(AdventPuzzles puzzles, AdventDate date)
+    {
+        var sw = Stopwatch.StartNew();
+        var total = 0;
+
+        var durations = puzzles.Matching(date)
+            .Where(puzzle => !puzzle.Date.Matches(new AdventDate(default, 25, 2)))
+            .ToDictionary(puzzle => puzzle, puzzle => new Durations());
+
+        foreach (var puzzle in durations.Keys)
+        {
+            while (durations[puzzle].Count < 100 && durations[puzzle].Total < TimeSpan.FromSeconds(1))
+            {
+                durations[puzzle].Add(puzzle.Run(false));
+                Console.Write($"\r{total++}: {sw.ElapsedMilliseconds:#,##0} ms");
+            }
+        }
+
+        var ranking = durations.OrderBy(kvp => kvp.Value.Median).Select(kvp => kvp.Key).ToArray();
+
+        var swapped = true;
+
+        while (swapped)
+        {
+            swapped = false;
+            var first = ranking[0];
+            durations[first].Add(first.Run(false));
+            Console.Write($"\r{total++}: {sw.ElapsedMilliseconds:#,##0} ms");
+
+            for (var pos = 1; pos < ranking.Length; pos++)
+            {
+                var p0 = ranking[pos - 1];
+                var p1 = ranking[pos];
+                var d0 = durations[p0];
+                var d1 = durations[p1];
+
+                if (d0.Median.TotalMilliseconds * 1.15 > d1.Median.TotalMilliseconds)
+                {
+                    durations[p0].Add(p0.Run(false));
+                    Console.Write($"\r{total++}: {sw.ElapsedMilliseconds:#,##0} ms");
+                    durations[p1].Add(p1.Run(false));
+                    Console.Write($"\r{total++}: {sw.ElapsedMilliseconds:#,##0} ms");
+
+                    if (durations[p0].Average > durations[p1].Average)
+                    {
+                        swapped = true;
+                        ranking[pos - 1] = p1;
+                        ranking[pos - 0] = p0;
+                    }
+                }
+            }
+        }
+
+        Console.WriteLine();
+        for (var pos = 0; pos < ranking.Length; pos++)
+        {
+            var puzzle = ranking[pos];
+            var ds = durations[puzzle];
+            Console.WriteLine($"{(pos + 1),3} {ds}, {puzzle}");
+        }
+        return Success;
     }
 
     private static int Generate(AdventDate date)

@@ -1,16 +1,20 @@
 ﻿namespace SmartAss;
 
 [DebuggerDisplay("{ToString()} ({Size}: {Value})")]
-public readonly struct BinaryNumber
+public readonly struct BinaryNumber : IEquatable<BinaryNumber>
 {
     public readonly int Size;
     public readonly ulong Value;
 
-    private BinaryNumber(ulong value, int size)
+    public BinaryNumber(ulong value, int size)
     {
         Size = size;
         Value = value;
     }
+
+    public int Count => Bits.UInt64.Count(Value);
+
+    public bool IsEmpty() => Value == 0;
 
     public bool HasFlag(int position) => Bits.UInt64.HasFlag(Value, position);
 
@@ -18,8 +22,30 @@ public readonly struct BinaryNumber
 
     public override string ToString() => Bits.UInt64.ToString(Value)[^Size..];
 
+    public static BinaryNumber operator &(BinaryNumber l, BinaryNumber r) => new(l.Value & r.Value, Math.Max(l.Size, r.Size));
+    public static BinaryNumber operator |(BinaryNumber l, BinaryNumber r) => new(l.Value | r.Value, Math.Max(l.Size, r.Size));
+    public static BinaryNumber operator ^(BinaryNumber l, BinaryNumber r) => new(l.Value ^ r.Value, Math.Max(l.Size, r.Size));
+    public static BinaryNumber operator ~(BinaryNumber n) => new(~n.Value, n.Size);
+
     public static BinaryNumber Empty(int size) => new(default, size);
 
     public static BinaryNumber Parse(string str)
         => new(Bits.UInt64.Parse(str), str.Count(ch => ch == '0' || ch == '1'));
+
+    public bool Equals(BinaryNumber other) => Value == other.Value;
+
+    public static bool operator ==(BinaryNumber l, BinaryNumber r) => l.Equals(r);
+    public static bool operator !=(BinaryNumber l, BinaryNumber r) => !(l == r);
+}
+public static class BinaryNumberExtensions
+{
+    public static BinaryNumber And(this IEnumerable<BinaryNumber> numbers)
+    {
+        BinaryNumber and = new(ulong.MaxValue, 0);
+        foreach(var number in numbers)
+        {
+            and &= number;
+        }
+        return and;
+    }
 }

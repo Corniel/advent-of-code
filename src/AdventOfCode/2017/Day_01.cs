@@ -8,7 +8,7 @@ public class Day_01
     [Example(answer: 9, "91212129")]
     [Puzzle(answer: 1141, year: 2017, day: 01)]
     public int part_one(string input)
-        => (input + input[0]).Digits().SelectWithPrevious().Where(pair => pair.Current == pair.Previous).Sum(pair => pair.Current);
+        => (input + input[0]).Digits().SelectWithPrevious().Where(pair => pair.Unchanged()).Sum(pair => pair.Current);
 
     [Example(answer: 6, "1212")]
     [Example(answer: 0, "1221")]

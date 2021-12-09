@@ -48,5 +48,7 @@ public readonly struct CurrentAndPrevious<T>
     public readonly T Previous;
     public readonly T Current;
 
+    public bool Unchanged() => Current.Equals(Previous);
+
     public override string ToString() => $"Current: {Current}, Previous: {Previous}";
 }

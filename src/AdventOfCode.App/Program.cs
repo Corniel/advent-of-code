@@ -101,8 +101,7 @@ public static class Program
 
     private static int Generate(AdventDate date)
     {
-        var templating = new Templating();
-        var location = templating.Generate(date.Year.Value, date.Day.Value);
+         var location = Templating.Generate(date.Year.Value, date.Day.Value);
         Console.WriteLine($"Template code generated at {location.FullName}");
         return Success;
     }

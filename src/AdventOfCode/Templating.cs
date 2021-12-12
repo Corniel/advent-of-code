@@ -1,17 +1,16 @@
 ﻿namespace Advent_of_Code;
 
-public class Templating
+public static class Templating
 {
-    public DirectoryInfo Generate(int year, int day)
+    public static DirectoryInfo Generate(int year, int day)
     {
-        var file = new FileInfo($@".\..\..\..\..\AdventOfCode\{year}\Day_{day:00}.cs");
-        var input = new FileInfo($@".\..\..\..\..\AdventOfCode\{year}\Day_{day:00}.txt");
+        var file = new FileInfo($@".\..\..\..\..\AdventOfCode.Now\{year}\Day_{day:00}.cs");
+        var input = new FileInfo($@".\..\..\..\..\AdventOfCode.Now\{year}\Day_{day:00}.txt");
 
         if (!file.Directory.Exists)
         {
             file.Directory.Create();
         }
-
         if (!file.Exists)
         {
             using var writer = new StreamWriter(file.FullName);

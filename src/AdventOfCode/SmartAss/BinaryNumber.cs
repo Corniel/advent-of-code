@@ -32,7 +32,9 @@ public readonly struct BinaryNumber : IEquatable<BinaryNumber>
     public static BinaryNumber Parse(string str)
         => new(Bits.UInt64.Parse(str), str.Count(ch => ch == '0' || ch == '1'));
 
+    public override bool Equals(object obj)=> obj is BinaryNumber other && Equals(other);
     public bool Equals(BinaryNumber other) => Value == other.Value;
+    public override int GetHashCode() => Value.GetHashCode();
 
     public static bool operator ==(BinaryNumber l, BinaryNumber r) => l.Equals(r);
     public static bool operator !=(BinaryNumber l, BinaryNumber r) => !(l == r);

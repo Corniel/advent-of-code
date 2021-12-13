@@ -26,11 +26,11 @@ public class Day_11
     {
         var grid = input.CharPixels().Grid((ch) => ch - '0');
         var dones = new Grid<bool>(grid.Cols, grid.Rows);
-        var queue = new Queue<Point>();
-        return Enumerable.Range(1, int.MaxValue).Select(step => Step(grid, dones, queue));
+        var stack = new Stack<Point>();
+        return Enumerable.Range(1, int.MaxValue).Select(step => Step(grid, dones, stack));
     }
 
-    private static int Step(Grid<int> grid, Grid<bool> dones, Queue<Point> queue)
+    private static int Step(Grid<int> grid, Grid<bool> dones, Stack<Point> stack)
     {
         foreach (var pos in grid.Positions)
         {
@@ -39,17 +39,17 @@ public class Day_11
         }
         foreach(var pos in grid.Positions.Where(p => grid[p] == 10))
         {
-            queue.Enqueue(pos);
+            stack.Push(pos);
             dones[pos] = true;
         }
-        while (queue.Any())
+        while (stack.Any())
         {
-            foreach (var neighbor in Neighbors.Grid(grid, queue.Dequeue(), diagonals: true))
+            foreach (var neighbor in Neighbors.Grid(grid, stack.Pop(), diagonals: true))
             {
                 if (++grid[neighbor] >= 10 && !dones[neighbor])
                 {
                     dones[neighbor] = true;
-                    queue.Enqueue(neighbor);
+                    stack.Push(neighbor);
                 }
             }
         }

@@ -53,7 +53,7 @@ public class Day_05
         var delta = (end - start).Sign();
 
         return diagonal || delta.X == 0 || delta.Y == 0
-            ? (start - delta).Repeat(delta).TakeWhile(point => point != end + delta)
+            ? start.Repeat(delta, true).TakeWhile(point => point != end + delta)
             : Array.Empty<Point>();
     }
 }

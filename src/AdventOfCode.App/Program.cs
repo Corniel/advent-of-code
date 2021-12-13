@@ -79,7 +79,7 @@ public static class Program
                     durations[p1].Add(p1.Run(false));
                     Console.Write($"\r{total++}: {sw.ElapsedMilliseconds:#,##0} ms");
 
-                    if (durations[p0].Average > durations[p1].Average)
+                    if (durations[p0].Median > durations[p1].Median)
                     {
                         swapped = true;
                         ranking[pos - 1] = p1;

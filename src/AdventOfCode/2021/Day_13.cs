@@ -6,19 +6,9 @@ public class Day_13
     [Puzzle(answer: 710, year: 2021, day: 13)]
     public long part_one(string input) => Fold(input, 1).Count;
        
-    [Puzzle(answer: @"
-████░███░░█░░░░░██░░███░░█░░█░█░░░░███░
-█░░░░█░░█░█░░░░█░░█░█░░█░█░░█░█░░░░█░░█
-███░░█░░█░█░░░░█░░░░█░░█░█░░█░█░░░░█░░█
-█░░░░███░░█░░░░█░██░███░░█░░█░█░░░░███░
-█░░░░█░░░░█░░░░█░░█░█░█░░█░░█░█░░░░█░█░
-████░█░░░░████░░███░█░░█░░██░░████░█░░█", year: 2021, day: 13)]
+    [Puzzle(answer: "EPLGRULR", year: 2021, day: 13)]
     public string part_two(string input)
-    {
-        var folded = Fold(input);
-        var paper = Grid<bool>.FromPoints(folded, true);
-        return "\r\n" + paper.ToString(p => p ? '█' : '░').ToString();
-    }
+        => Grid<bool>.FromPoints(Fold(input), true).AsciiText();
 
     private static HashSet<Point> Fold(string input, int foldings = int.MaxValue)
     {

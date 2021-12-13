@@ -9,17 +9,7 @@ public class Day_08
             .Select(layer => layer.Ones * layer.Twos)
             .FirstOrDefault();
 
-    /// <remarks>
-    /// ZYBLH
-    /// </remarks>
-    [Puzzle(answer: @"
-████░█░░░████░░█░░░░█░░█░
-░░░█░█░░░██░░█░█░░░░█░░█░
-░░█░░░█░█░███░░█░░░░████░
-░█░░░░░█░░█░░█░█░░░░█░░█░
-█░░░░░░█░░█░░█░█░░░░█░░█░
-████░░░█░░███░░████░█░░█░
-", year: 2019, day: 08)]
+    [Puzzle(answer: "ZYBLH", year: 2019, day: 08)]
     public string part_two(string input)
     {
         var layers = Layer.Parse(25, 6, input).ToArray();
@@ -28,7 +18,7 @@ public class Day_08
         {
             merged = layer.Merge(merged);
         }
-        return merged.ToString(25);
+        return merged.AsciiText(25);
     }
 
     public readonly struct Layer
@@ -43,7 +33,7 @@ public class Day_08
         public int Ones => pixels.Count(ch => ch == '1');
         public int Twos => pixels.Count(ch => ch == Transprant);
 
-        public string ToString(int width)
+        public string AsciiText(int width)
         {
             var sb = new StringBuilder(Size).AppendLine();
             var pos = 0;
@@ -52,9 +42,7 @@ public class Day_08
                 sb.AppendLine(pixels.Substring(pos, width));
                 pos += width;
             }
-            return sb.ToString()
-                .Replace("1", "█")
-                .Replace("0", "░");
+            return sb.ToString().CharPixels().Grid(ch => ch == '1').AsciiText();
         }
 
         public Layer Merge(Layer lower)

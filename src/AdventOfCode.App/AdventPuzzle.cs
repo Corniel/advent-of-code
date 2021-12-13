@@ -47,10 +47,6 @@ public sealed class AdventPuzzle
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("no answer");
             }
-            else if (answer is string str)
-            {
-                Console.WriteLine(str);
-            }
             else
             {
                 Console.ForegroundColor = ConsoleColor.Green;

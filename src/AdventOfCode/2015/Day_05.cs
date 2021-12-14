@@ -17,7 +17,7 @@ public class Day_05
         && AtLeast3Vowels(line)
         && !ContainsAbCdPqXy(line);
 
-    static bool Repeating(string line) => line.SelectWithPrevious().Any(pair => pair.Unchanged());
+    static bool Repeating(string line) => line.SelectWithPrevious().Any(pair => pair[0] == pair[1]);
     static bool AtLeast3Vowels(string line) => line.Count(ch => "aeiou".IndexOf(ch) != -1) >= 3;
     static bool ContainsAbCdPqXy(string line)
         => line.Contains("ab")

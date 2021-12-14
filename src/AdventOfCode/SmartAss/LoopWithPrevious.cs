@@ -2,6 +2,14 @@
 
 public static class LoopWithPrevious
 {
+    public static IEnumerable<string> SelectWithPrevious(this string str, int size = 2)
+    {
+        for (var i = 0; i <= str.Length - size; i++)
+        {
+            yield return str[i..(i + size)];
+        }
+    }
+
     public static IEnumerable<CurrentAndPrevious<T>> SelectWithPrevious<T>(this IEnumerable<T> items)
     {
         var iterator = items.GetEnumerator();

@@ -3,5 +3,5 @@
 public class Dummy
 {
     [Test]
-    public void Duh() => 1.Should().NotBe(1);
+    public void Duh() => 1.Should().NotBe(0);
 }

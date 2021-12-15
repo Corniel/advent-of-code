@@ -15,7 +15,9 @@ public class AdventPuzzles : IEnumerable<AdventPuzzle>
         .Where(puzzle => puzzle.Matches(date))
         .OrderBy(puzzle => puzzle.Date);
 
-    public static AdventPuzzles Load() => Load(typeof(Puzzle).Assembly.GetExportedTypes());
+    public static AdventPuzzles Load() => Load(
+        typeof(Puzzle).Assembly.GetExportedTypes().Concat(
+        typeof(Now.Dummy).Assembly.GetExportedTypes()));
 
     public static AdventPuzzles Load(IEnumerable<Type> types)
     {

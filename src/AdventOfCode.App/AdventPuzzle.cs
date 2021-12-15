@@ -8,7 +8,10 @@ public sealed class AdventPuzzle
     {
         Date = date;
         Method = method;
-        Input = Method.GetCustomAttributes<PuzzleAttribute>().FirstOrDefault(a => a.GetType() == typeof(PuzzleAttribute)).Input;
+        Input = Method.GetCustomAttributes<PuzzleAttribute>()
+            .FirstOrDefault(a 
+                => a.GetType() == typeof(PuzzleAttribute) 
+                || a.GetType() == typeof(Now.PuzzleAttribute)).Input;
     }
 
     public bool Matches(AdventDate date) => Date.Matches(date);

@@ -5,6 +5,15 @@ namespace Specs.Utils.Ranking_list;
 
 public class Rankings
 {
+    [Test]
+    public void Overall()
+    {
+        foreach (var rank in Ranking.Overall(Data.Participants()))
+        {
+            Console.WriteLine(rank);
+        }
+    }
+
     [TestCaseSource(nameof(Years))]
     public void Default(int year)
     {

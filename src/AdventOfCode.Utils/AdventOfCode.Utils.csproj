@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -6,8 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="**\Day_*.txt" />
-    <EmbeddedResource Include="**\Day_*.txt" />
+    <Compile Remove="Template\Day.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Template\Day.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -15,6 +18,7 @@
     <PackageReference Include="NUnit" Version="3.13.2" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.1.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
+    <PackageReference Include="Qowaiv" Version="5.1.4" />
     <PackageReference Include="SonarAnalyzer.CSharp" Version="8.33.0.40503">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -23,6 +27,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\smart-ass\src\SmartAss\SmartAss.csproj" />
+    <ProjectReference Include="..\AdventOfCode.Now\AdventOfCode.Now.csproj" />
+    <ProjectReference Include="..\AdventOfCode\AdventOfCode.csproj" />
   </ItemGroup>
+
 
 </Project>

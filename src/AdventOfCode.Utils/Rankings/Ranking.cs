@@ -2,6 +2,30 @@
 
 public static class Ranking
 {
+    public static List<OverallRanking> Overall(Participants participants)
+    {
+        var list = new List<OverallRanking>(participants
+            .Where(p => p.Value.Solutions.Any())
+            .Select(p => new OverallRanking(p.Value)));
+
+        foreach(var date in AdventDate.AllAvailable())
+        {
+            var score = list.Count(p => p.Solutions.Keys.Any(d => d.Year == date.Year));
+            foreach (var participant in list
+                .Where(p => p.Solutions.ContainsKey(date))
+                .OrderBy(p => p.Solutions[date]))
+            {
+                participant.Score += score--;
+            }
+        }
+        list.Sort();
+        var pos = 1;
+        foreach (var participant in list)
+        {
+            participant.Position = pos++;
+        }
+        return list;
+    }
     public static List<DefaultRanking> Default(Participants participants, int year)
     {
         var list = new List<DefaultRanking>(participants

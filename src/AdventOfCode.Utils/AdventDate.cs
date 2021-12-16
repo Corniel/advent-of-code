@@ -1,4 +1,6 @@
-﻿namespace Advent_of_Code;
+﻿using Qowaiv;
+
+namespace Advent_of_Code;
 
 public readonly struct AdventDate : IComparable<AdventDate>
 {
@@ -85,4 +87,18 @@ public readonly struct AdventDate : IComparable<AdventDate>
         else if (r.HasValue) { return +1; }
         else { return default; }
     }
+
+    public bool IsAvailable(DateTime? now = default)
+        => new DateTime(Year ?? 1, month: 12, Day ?? 1, hour: 05, minute: 00, second: 00, DateTimeKind.Utc)
+        <= (now ?? Clock.UtcNow());
+
+    public static IEnumerable<AdventDate> AllAvailable(DateTime? now = default)
+        => Enumerable.Range(2015, 1 + Clock.Today().Year - 2015)
+        .SelectMany(year => Enumerable.Range(1, 25).Select(d => new AdventDate(year, d, default)))
+        .SelectMany(date => new[]
+        {
+            new AdventDate(date.Year, date.Day, 1),
+            new AdventDate(date.Year, date.Day, 2)
+        })
+        .Where(date => date.IsAvailable(now));
 }

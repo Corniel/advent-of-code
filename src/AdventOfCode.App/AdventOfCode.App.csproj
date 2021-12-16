@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AdventOfCode.Now\AdventOfCode.Now.csproj" />
+    <ProjectReference Include="..\AdventOfCode.Utils\AdventOfCode.Utils.csproj" />
     <ProjectReference Include="..\AdventOfCode\AdventOfCode.csproj" />
   </ItemGroup>
 

@@ -74,7 +74,7 @@ public class Day_16
         {
             var read = Bits.UInt64.Parse(Bin.Substring(Offset, size));
             Offset += size;
-            return (int)read;
+            return (long)read;
         }
         public long Literal()
         {

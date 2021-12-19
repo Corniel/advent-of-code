@@ -20,6 +20,8 @@ public readonly struct BinaryNumber : IEquatable<BinaryNumber>
 
     public BinaryNumber Flag(int position) => new(Bits.UInt64.Flag(Value, position), Size);
 
+    public BinaryNumber Unflag(int position) => new(Bits.UInt64.Unflag(Value, position), Size);
+
     public override string ToString() => Bits.UInt64.ToString(Value).Replace(" ", "")[^Size..];
 
     public static BinaryNumber operator &(BinaryNumber l, BinaryNumber r) => new(l.Value & r.Value, Math.Max(l.Size, r.Size));

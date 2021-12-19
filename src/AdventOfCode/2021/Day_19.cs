@@ -43,9 +43,9 @@ public class Day_19
              => Observations.Select(o => pos + orientation.Transform(o));
         public IEnumerable<Point3D> Locate(HashSet<Point3D> beacons)
         {
-            foreach (var orientation in Orientation.All)
+            foreach (var beacon in beacons)
             {
-                foreach (var beacon in beacons)
+                foreach (var orientation in Orientation.All)
                 {
                     foreach (var location in Observations.Select(o => beacon - orientation.Transform(o)))
                     {

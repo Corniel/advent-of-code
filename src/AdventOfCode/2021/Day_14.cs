@@ -14,23 +14,23 @@ public class Day_14
     {
         var lines = input.Lines();
         var insertions = lines.Skip(1).Select(Insertion.Parse).ToDictionary(i => i.Pair, i => i);
-        var pairs = new ItemInt64Counter<string>();
+        var pairs = new ItemCounter<string>();
         pairs.Add(lines[0].SelectWithPrevious());
 
         for (var step = 0; step < steps; step++)
         {
-            foreach (var kvp in pairs.ToArray())
+            foreach (var pair in pairs.ToArray())
             {
-                Adjust(insertions, pairs, kvp.Key, kvp.Value);
+                Adjust(insertions, pairs, pair.Item, pair.Count);
             }
         }
-        var counter = new ItemInt64Counter<char>();
+        var counter = new ItemCounter<char>();
         counter[lines[0][^1]]++;
-        foreach (var kvp in pairs) { counter[kvp.Key[0]] += kvp.Value; }
+        foreach (var kvp in pairs) { counter[kvp.Item[0]] += kvp.Count; }
         return counter.Counts.Max() - counter.Counts.Min();
     }
 
-    private static void Adjust(Dictionary<string, Insertion> insertions, ItemInt64Counter<string> pairs, string pair, long count)
+    private static void Adjust(Dictionary<string, Insertion> insertions, ItemCounter<string> pairs, string pair, long count)
     {
         var insert = insertions[pair];
         pairs[pair] -= count;

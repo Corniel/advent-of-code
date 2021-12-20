@@ -1,5 +1,6 @@
 namespace Advent_of_Code_2015;
 
+[Category(Category.Grid, Category.Simulation)]
 public class Day_06
 {
     [Puzzle(answer: 400410, year: 2015, day: 06)]

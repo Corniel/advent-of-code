@@ -1,5 +1,6 @@
 namespace Advent_of_Code_2021;
 
+[Category(Category.VectorAlgebra)]
 public class Day_17
 {
     [Example(answer: 45, "target area: x=20..30, y=-10..-5")]

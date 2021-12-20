@@ -1,5 +1,6 @@
 namespace Advent_of_Code_2021;
 
+[Category(Category.Graph, Category.PathFinding)]
 public class Day_12
 {
     [Example(answer: 10, "start-A;start-b;A-c;A-b;b-d;A-end;b-end")]

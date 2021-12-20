@@ -1,5 +1,6 @@
 namespace Advent_of_Code_2021;
 
+[Category(Category.VectorAlgebra)]
 public class Day_02
 {
     [Example(answer: 150, "forward 5;down 5;forward 8;up 3;down 8;forward 2")]

@@ -1,5 +1,6 @@
 namespace Advent_of_Code_2021;
 
+[Category(Category.Grid, Category.PathFinding)]
 public class Day_15
 {
     private const string Example = @"

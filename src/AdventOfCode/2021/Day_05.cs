@@ -1,5 +1,6 @@
 namespace Advent_of_Code_2021;
 
+[Category(Category.VectorAlgebra)]
 public class Day_05
 {
     private const string Example = @"0,9 -> 5,9

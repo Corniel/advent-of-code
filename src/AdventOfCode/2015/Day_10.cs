@@ -1,9 +1,8 @@
 namespace Advent_of_Code_2015;
 
+[Category(Category.SequenceProgression)]
 public class Day_10
 {
-    private const string Example = @"1";
-
     [Example(answer: 82350, "1")]
     [Puzzle(answer: 329356, "3113322113")]
     public int part_one(string input) => LookAndSay(input, 40);

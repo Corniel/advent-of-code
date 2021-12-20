@@ -1,5 +1,6 @@
 namespace Advent_of_Code_2015;
 
+[Category(Category.ExpressionParsing)]
 public class Day_08
 {
     [Example(answer: 7, @"""x\""\xcaj\\xwwvpdldz""")]

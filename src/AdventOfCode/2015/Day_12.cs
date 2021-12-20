@@ -2,6 +2,7 @@ using System.Text.Json;
 
 namespace Advent_of_Code_2015;
 
+[Category(Category.ExpressionParsing)]
 public class Day_12
 {
     [Puzzle(answer: 111754, year: 2015, day: 12)]

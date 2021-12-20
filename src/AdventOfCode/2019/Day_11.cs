@@ -2,6 +2,7 @@
 
 namespace Advent_of_Code_2019;
 
+[Category(Category.IntComputer, Category.ASCII)]
 public class Day_11
 {
     [Puzzle(answer: 2184, year: 2019, day: 11)]

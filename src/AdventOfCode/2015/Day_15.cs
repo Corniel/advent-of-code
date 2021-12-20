@@ -1,5 +1,6 @@
 namespace Advent_of_Code_2015;
 
+[Category(Category.Computation)]
 public class Day_15
 {
     [Example(answer: 62842880, "Butterscotch: capacity -1, durability -2, flavor 6, texture 3, calories 8;Cinnamon: capacity 2, durability 3, flavor -2, texture -1, calories 3")]

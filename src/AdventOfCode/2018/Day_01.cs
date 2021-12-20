@@ -1,5 +1,6 @@
 namespace Advent_of_Code_2018;
 
+[Category(Category.SequenceProgression)]
 public class Day_01
 {
     [Example(answer: 3, "+1, +1, +1")]

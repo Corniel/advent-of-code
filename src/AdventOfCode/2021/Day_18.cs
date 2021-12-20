@@ -2,6 +2,7 @@ using SmartAss.Syntax;
 
 namespace Advent_of_Code_2021;
 
+[Category(Category.ExpressionParsing)]
 public partial class Day_18
 {
     [Example(answer: 3488, @"[[[0,[4,5]],[0,0]],[[[4,5],[2,6]],[9,5]]]

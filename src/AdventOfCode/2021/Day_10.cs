@@ -1,5 +1,6 @@
 namespace Advent_of_Code_2021;
 
+[Category(Category.ExpressionParsing)]
 public class Day_10
 {
 	private const string Open = "([{<";

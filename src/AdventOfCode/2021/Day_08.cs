@@ -7,6 +7,7 @@ namespace Advent_of_Code_2021;
 /// 2.1
 /// .0.
 /// </remarks>
+[Category(Category.BitManupilation, Category.Cryptography)]
 public class Day_08
 {
     private const string Example = @"

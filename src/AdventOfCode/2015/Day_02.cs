@@ -1,5 +1,6 @@
 namespace Advent_of_Code_2015;
 
+[Category(Category.ExpressionParsing)]
 public class Day_02
 {
     [Example(answer: 58, "2x3x4")]

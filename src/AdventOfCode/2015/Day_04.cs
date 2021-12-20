@@ -2,6 +2,7 @@ using System.Security.Cryptography;
 
 namespace Advent_of_Code_2015;
 
+[Category(Category.Cryptography)]
 public class Day_04
 {
     

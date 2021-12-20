@@ -1,5 +1,6 @@
 namespace Advent_of_Code_2015;
 
+[Category(Category.Computation)]
 public class Day_09
 {
     private const string Example = @"

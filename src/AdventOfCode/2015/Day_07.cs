@@ -3,6 +3,7 @@ using Circuit = SmartAss.Circuits.Circuit<ushort>;
 
 namespace Advent_of_Code_2015;
 
+[Category(Category.ExpressionParsing)]
 public class Day_07
 {
     private const string Example = @"

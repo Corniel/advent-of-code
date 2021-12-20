@@ -1,5 +1,6 @@
 namespace Advent_of_Code_2018;
 
+[Category(Category.Cryptography)]
 public class Day_02
 {
     [Puzzle(answer: 5928, year: 2018, day: 02)]

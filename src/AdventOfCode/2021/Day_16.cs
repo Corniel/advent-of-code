@@ -1,5 +1,6 @@
 namespace Advent_of_Code_2021;
 
+[Category(Category.ExpressionParsing)]
 public class Day_16
 {
     [Example(answer: 31, "A0016C880162017C3686B18A3D4780")]

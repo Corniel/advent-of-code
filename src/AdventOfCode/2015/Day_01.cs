@@ -1,5 +1,6 @@
 namespace Advent_of_Code_2015;
 
+[Category(Category.ExpressionParsing)]
 public class Day_01
 {
     [Example(answer: 3, "))(((((")]

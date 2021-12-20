@@ -1,9 +1,8 @@
 namespace Advent_of_Code_2015;
 
+[Category(Category.VectorAlgebra, Category.Simulation)]
 public class Day_03
 {
-    private const string Example = @"";
-
     [Example(answer: 4, "^>v<")]
     [Puzzle(answer: 2592, year: 2015, day: 03)]
     public int part_one(string input)

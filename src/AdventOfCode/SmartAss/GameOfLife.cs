@@ -28,7 +28,7 @@ public abstract class GameOfLife<TCell> : HashSet<TCell>
         toDie.Clear();
         intoExistance.Clear();
 
-        candidates.AddRange(this.SelectMany(alive => Neighbors(alive)).Where(n => !Contains(n)));
+        candidates.AddRange(this.SelectMany(alive => Neighbors(alive)));
         toDie.AddRange(this.Where(cell => Dies(LivingNeighbors(cell))));
         intoExistance.AddRange(candidates.Where(cell => IntoExistence(LivingNeighbors(cell))));
 

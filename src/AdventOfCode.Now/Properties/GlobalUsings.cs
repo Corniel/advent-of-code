@@ -21,4 +21,5 @@ global using System.Linq;
 global using System.Text;
 global using System.Text.RegularExpressions;
 global using FluentAssertions;
+global using CategoryAttribute = Advent_of_Code.CategoryAttribute;
 global using PuzzleAttribute = Advent_of_Code.Now.PuzzleAttribute;

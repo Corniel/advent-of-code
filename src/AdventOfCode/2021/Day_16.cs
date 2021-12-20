@@ -4,7 +4,7 @@ public class Day_16
 {
     [Example(answer: 31, "A0016C880162017C3686B18A3D4780")]
     [Puzzle(answer: 996, year: 2021, day: 16)]
-    public int part_one(string input) => new Reader(input).Read().Versions;
+    public int part_one(string input) => new Parser(input).Read().Versions;
 
     [Example(answer: 3, "C200B40A82")]
     [Example(answer: 54, "04005AC33890")]
@@ -15,78 +15,70 @@ public class Day_16
     [Example(answer: 0, "9C005AC2F8F0")]
     [Example(answer: 1, "9C0141080250320F1802104A08")]
     [Puzzle(answer: 96257984154, year: 2021, day: 16)]
-    public long part_two(string input) => new Reader(input).Read().Value;
+    public long part_two(string input) => new Parser(input).Read().Value;
 
     enum TypeId { Sum = 0, Product = 1, Min = 2, Max = 3, Literal = 4, GT = 5, LT = 6, Eq = 7 }
-    record Packet(int Version, TypeId Type)
+    class Packet : SmartAss.Syntax.SyntaxNode
     {
-        public int Versions => Version + Children.Sum(ch => ch.Versions);
+        public Packet(int version, TypeId type)
+        {
+            Version = version;
+            Type = type;
+        }
+        public int Version { get; }
+        public TypeId Type { get; }
+        public int Versions => Version + Children<Packet>().Sum(ch => ch.Versions);
         public virtual long Value => Type switch
         {
-            TypeId.Product => Children.Select(ch => ch.Value).Product(),
-            TypeId.Min => Children.Min(ch => ch.Value),
-            TypeId.Max => Children.Max(ch => ch.Value),
-            TypeId.GT => Children[0].Value > Children[1].Value ? 1 : 0,
-            TypeId.LT => Children[0].Value < Children[1].Value ? 1 : 0,
-            TypeId.Eq => Children[0].Value == Children[1].Value ? 1 : 0,
-            TypeId.Sum or _ => Children.Sum(ch => ch.Value),
+            TypeId.Product => Children<Packet>().Select(ch => ch.Value).Product(),
+            TypeId.Min => Children<Packet>().Min(ch => ch.Value),
+            TypeId.Max => Children<Packet>().Max(ch => ch.Value),
+            TypeId.GT => Children<Packet>()[0].Value >  Children<Packet>()[1].Value ? 1 : 0,
+            TypeId.LT => Children<Packet>()[0].Value <  Children<Packet>()[1].Value ? 1 : 0,
+            TypeId.Eq => Children<Packet>()[0].Value == Children<Packet>()[1].Value ? 1 : 0,
+            TypeId.Sum or _ => Children<Packet>().Sum(ch => ch.Value),
         };
-        public List<Packet> Children { get; } = new();
     }
-    record Literal(int Version, long Val) : Packet(Version, TypeId.Literal)
+    class Literal : Packet
     {
-        public override long Value => Val;
+        public Literal(int version, long val)  : base(version, TypeId.Literal) => Value = val;
+        public override long Value { get; }
     }
-    class Reader
+    class Parser : SmartAss.Syntax.SyntaxParser
     {
-        public Reader(string input) => Bin = string.Concat(input.Select(ch => bits[1 + "0123456789ABCDEF".IndexOf(ch)]));
-        public int Length => Bin.Length - Offset;
-        private readonly string Bin;
-        private int Offset;
+        public Parser(string input) : base(string.Concat(input.Select(ch => bits[1 + "0123456789ABCDEF".IndexOf(ch)]))) => Do.Nothing();
         public Packet Read()
         {
-            var version = (int)Read(3);
-            var type = (TypeId)Read(3);
+            var version = (int)ReadBinary(3);
+            var type = (TypeId)ReadBinary(3);
             if (type != TypeId.Literal)
             {
                 var packet = new Packet(version, type);
-                if (Read(1) == 0)
+                if (ReadBinary(1) == 0)
                 {
-                    var length = Length - Read(15) - 15;
-                    while (Length > length)
-                    {
-                        packet.Children.Add(Read());
-                    }
+                    var end = (int)ReadBinary(15) + Position;
+                    while (Position < end) { packet.AddChild(Read()); }
                 }
                 else
                 {
-                    var count = Read(11);
-                    while (packet.Children.Count < count)
-                    {
-                        packet.Children.Add(Read());
-                    }
+                    var count = (int)ReadBinary(11);
+                    while (packet.Children().Count < count) { packet.AddChild(Read()); }
                 }
-                return packet; 
+                return packet;
             }
-            else return new Literal(version, Literal());
+            else return new Literal(version, ReadLiteral());
         }
-        public long Read(int size)
+        public long ReadLiteral()
         {
-            var read = Bits.UInt64.Parse(Bin.Substring(Offset, size));
-            Offset += size;
-            return (long)read;
-        }
-        public long Literal()
-        {
-            long literal = 0;
-            long block;
+            ulong literal = 0;
+            ulong block;
             do
             {
-                block = Read(5);
+                block = ReadBinary(5);
                 literal = (literal << 4) | block & 0b1111;
             }
             while ((block & 0b10000) != 0);
-            return literal;
+            return (long)literal;
         }
         static readonly string[] bits = new[] { "", "0000", "0001", "0010", "0011", "0100", "0101", "0110", "0111", "1000", "1001", "1010", "1011", "1100", "1101", "1110", "1111" };
     }

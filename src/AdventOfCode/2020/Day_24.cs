@@ -25,8 +25,8 @@ public class Day_24
 
     public class Cells : GameOfLife<Point>
     {
-        public override bool Dies(int living) => living == 0 || living > 2;
-        public override bool IntoExistence(int living) => living == 2;
+        protected override bool Dies(int living) => living == 0 || living > 2;
+        protected override bool IntoExistence(int living) => living == 2;
         public override IEnumerable<Point> Neighbors(Point cell) => Directions.Select(dir => cell + dir);
         public void Toggle(Point cell)
         {

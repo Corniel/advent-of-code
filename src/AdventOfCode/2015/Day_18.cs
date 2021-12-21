@@ -34,9 +34,6 @@ public class Day_18
         }
         private readonly Grid<bool> Grid;
         private readonly Dictionary<Point, Point[]> neighbors;
-
-        public override bool Dies(int living) => living < 2 || living > 3;
-        public override bool IntoExistence(int living) => living == 3;
         public override IEnumerable<Point> Neighbors(Point cell) => neighbors[cell];
     }
 }

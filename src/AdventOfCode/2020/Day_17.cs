@@ -46,8 +46,8 @@ public class Day_17
 
     private class Space : GameOfLife<Point3D>
     {
-        public override bool Dies(int living) => living < 2 || living > 3;
-        public override bool IntoExistence(int living) => living == 3;
+        protected override bool Dies(int living) => living < 2 || living > 3;
+        protected override bool IntoExistence(int living) => living == 3;
         public override IEnumerable<Point3D> Neighbors(Point3D cell)
         {
             for (var x = -1; x <= 1; x++)
@@ -62,8 +62,8 @@ public class Day_17
 
     private class HyperSpace : GameOfLife<Point4D>
     {
-        public override bool Dies(int living) => living < 2 || living > 3;
-        public override bool IntoExistence(int living) => living == 3;
+        protected override bool Dies(int living) => living < 2 || living > 3;
+        protected override bool IntoExistence(int living) => living == 3;
         public override IEnumerable<Point4D> Neighbors(Point4D cell)
         {
             for (var x = -1; x <= 1; x++)

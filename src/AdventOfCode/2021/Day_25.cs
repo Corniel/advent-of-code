@@ -15,7 +15,7 @@ v.v..>>v.v
     [Puzzle(answer: 598, year: 2021, day: 25)]
     public int part_one(string input)
     {
-        var grid = input.CharPixels().Grid().SetNeighborsSphere();
+        var grid = input.CharPixels().Grid().SetNeighbors(Neighbors.Sphere);
         var east = new Stack<Point>(grid.Where(p => p.Value == '>').Select(p => p.Key));
         var south = new Stack<Point>(grid.Where(p => p.Value == 'v').Select(p => p.Key));
         var steps = 1;

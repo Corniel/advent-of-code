@@ -28,12 +28,11 @@ public class Day_18
     {
         public GameOfLife(Grid<bool> grid)
         {
-            Grid = grid;
+            neighbors = grid.SetNeighbors(SmartAss.Maps.Neighbors.Grid, CompassPoints.All).Neighbors;
             this.AddRange(grid.Where(tile => tile.Value).Select(tile => tile.Key));
-            neighbors = Grid.Positions.ToDictionary(p => p, p => SmartAss.Maps.Neighbors.Grid(Grid, p, true).ToArray());
         }
-        private readonly Grid<bool> Grid;
-        private readonly Dictionary<Point, Point[]> neighbors;
+        private readonly Grid<GridNeighbors> neighbors;
+
         public override IEnumerable<Point> Neighbors(Point cell) => neighbors[cell];
     }
 }

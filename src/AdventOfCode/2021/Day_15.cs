@@ -25,6 +25,7 @@ public class Day_15
 
     static int Run(Grid<int> costs)
     {
+        costs.SetNeighbors(Neighbors.Grid);
         var distances = new Grid<int>(costs.Cols, costs.Rows);
         distances.Set(short.MaxValue, distances.Positions);
         distances[Point.O] = 0;
@@ -37,7 +38,7 @@ public class Day_15
             var curr = tiles.Dequeue();
             var distance = distances[curr];
 
-            foreach (var next in Neighbors.Grid(costs, curr).OrderBy(n => costs[n] + target.ManhattanDistance(n)))
+            foreach (var next in costs.Neighbors[curr].OrderBy(n => costs[n] + target.ManhattanDistance(n)))
             {
                 if ((distance + costs[next]) is var test && test < distances[next])
                 {

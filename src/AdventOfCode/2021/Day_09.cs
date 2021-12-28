@@ -14,9 +14,9 @@ public class Day_09
     [Puzzle(answer: 588, year: 2021, day: 09)]
     public int part_one(string input)
     {
-        var map = input.CharPixels().Grid();
+        var map = input.CharPixels().Grid().SetNeighbors(Neighbors.Grid);
         return map.Positions
-            .Where(point => Neighbors.Grid(map, point)
+            .Where(point => map.Neighbors[point]
             .All(n => map[n] > map[point]))
             .Sum(p => map[p] - '0' + 1);
     }
@@ -25,7 +25,7 @@ public class Day_09
     [Puzzle(answer: 964712, year: 2021, day: 09)]
     public long part_two(string input)
     {
-        var map = input.CharPixels().Grid();
+        var map = input.CharPixels().Grid().SetNeighbors(Neighbors.Grid);
         var done = new Grid<bool>(map.Cols, map.Rows);
         var sizes = new List<long>();
         var queue = new Queue<Point>();
@@ -38,7 +38,7 @@ public class Day_09
             queue.Enqueue(point);
             while(queue.Any())
             {
-                foreach(var n in Neighbors.Grid(map, queue.Dequeue()))
+                foreach(var n in map.Neighbors[queue.Dequeue()])
                 {
                     if(!done[n] && map[n] != '9')
                     {

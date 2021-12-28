@@ -25,7 +25,7 @@ public class Day_11
 
     private static IEnumerable<int> Simulate(string input)
     {
-        var grid = input.CharPixels().Grid((ch) => ch - '0');
+        var grid = input.CharPixels().Grid((ch) => ch - '0').SetNeighbors(Neighbors.Grid, CompassPoints.All);
         var dones = new Grid<bool>(grid.Cols, grid.Rows);
         var stack = new Stack<Point>();
         return Enumerable.Range(1, int.MaxValue).Select(step => Step(grid, dones, stack));
@@ -45,7 +45,7 @@ public class Day_11
         }
         while (stack.Any())
         {
-            foreach (var neighbor in Neighbors.Grid(grid, stack.Pop(), diagonals: true))
+            foreach (var neighbor in grid.Neighbors[stack.Pop()])
             {
                 if (++grid[neighbor] >= 10 && !dones[neighbor])
                 {

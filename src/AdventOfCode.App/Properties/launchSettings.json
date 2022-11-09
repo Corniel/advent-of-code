@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "AdventOfCode.App": {
-      "commandName": "Project",
-      "commandLineArgs": "2021-17"
-    }
-  }
-}

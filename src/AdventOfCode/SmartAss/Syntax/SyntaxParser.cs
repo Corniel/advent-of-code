@@ -57,7 +57,16 @@ public class SyntaxParser
         }
         return positive ? number : 0;
     }
+
     public int ReadInt32() => (int)ReadInt64();
+
+    public void ReadWhiteSpace()
+    {
+        while (!EndOfInput && char.IsWhiteSpace(Input[Position]))
+        {
+            Position++;
+        }
+    }
    
     public ulong ReadBinary(int size, string ones = "1", string zeros = "0")
     {

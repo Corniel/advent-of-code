@@ -14,12 +14,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentAssertions" Version="6.8.0" />
-    <PackageReference Include="NUnit" Version="3.13.3" />
-    <PackageReference Include="NUnit3TestAdapter" Version="4.3.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.0" />
-    <PackageReference Include="Qowaiv" Version="6.3.0" />
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.47.0.55603 ">
+    <PackageReference Include="Qowaiv" Version="6.*" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.*" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.*" />
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.* ">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -30,6 +28,5 @@
     <ProjectReference Include="..\AdventOfCode.Now\AdventOfCode.Now.csproj" />
     <ProjectReference Include="..\AdventOfCode\AdventOfCode.csproj" />
   </ItemGroup>
-
 
 </Project>

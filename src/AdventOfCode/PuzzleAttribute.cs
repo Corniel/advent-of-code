@@ -42,6 +42,7 @@ public class PuzzleAttribute : Attribute, ITestBuilder, IImplyFixture
             else if (Answer is string str) { return BigInteger.Parse(str); }
             else { return Answer; }
         }
+        else if (type == typeof(string) && Answer is string str) { return str.Trim(); }
         else { return Answer; }
     }
 

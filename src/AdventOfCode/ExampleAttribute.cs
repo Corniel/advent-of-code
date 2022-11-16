@@ -9,5 +9,7 @@ public class ExampleAttribute : PuzzleAttribute
        : base(answer, Puzzle.Input(year, day, example)) => Do.Nothing();
 
     protected override string TestName(IMethodInfo method)
-       => $"answer is {Answer} for {method.Name.Replace("_", " ")} example with length {Input.Length}";
+       => Input.Contains('\n')
+       ? $"answer is {Answer} for {method.Name.Replace("_", " ")} example with length {Input.Length}"
+       : $"answer is {Answer} for {Input}";
 }

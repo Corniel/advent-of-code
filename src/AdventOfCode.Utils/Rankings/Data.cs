@@ -20,7 +20,7 @@ public static class Data
             {
                 if (!participants.TryGetValue(member.Id, out var participant))
                 {
-                    _ = aliases.TryGetValue(member.Name ?? string.Empty, out var alias)
+                    _ = aliases.TryGetValue(member.Name?.Trim() ?? string.Empty, out var alias)
                         || aliases.TryGetValue(member.Id.ToString(), out alias);
 
                     participant = new(member.Id, member.Name ?? $"#{member.Id}", alias);

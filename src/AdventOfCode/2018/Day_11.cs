@@ -1,5 +1,6 @@
 namespace Advent_of_Code_2018;
 
+[Category(Category.Grid)]
 public class Day_11
 {
     [Puzzle(answer: "21,77", "3999")]

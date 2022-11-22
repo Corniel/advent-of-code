@@ -1,5 +1,6 @@
 namespace Advent_of_Code_2020;
 
+[Category(Category.BitManupilation)]
 public class Day_05
 {
     [Example(answer: 885, "BBFBBBFRLR")]

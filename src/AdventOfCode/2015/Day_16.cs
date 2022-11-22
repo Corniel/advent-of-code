@@ -1,5 +1,6 @@
 namespace Advent_of_Code_2015;
 
+[Category(Category.Simulation)]
 public class Day_16
 {
     static readonly Sue Aunt = new(0)

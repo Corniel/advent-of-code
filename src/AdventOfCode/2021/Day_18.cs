@@ -1,5 +1,3 @@
-using SmartAss.Syntax;
-
 namespace Advent_of_Code_2021;
 
 [Category(Category.ExpressionParsing)]

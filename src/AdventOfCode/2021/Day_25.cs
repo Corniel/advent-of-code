@@ -1,5 +1,6 @@
 namespace Advent_of_Code_2021;
 
+[Category(Category.Simulation, Category.VectorAlgebra)]
 public class Day_25
 {
     [Example(58, @"

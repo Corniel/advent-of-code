@@ -1,7 +1,6 @@
-using SmartAss.Numerics;
-
 namespace Advent_of_Code_2018;
 
+[Category(Category.Simulation, Category.GameOfLife)]
 public class Day_12
 {
     [Example(answer: 325, year: 2018, day: 12, example: 1)]

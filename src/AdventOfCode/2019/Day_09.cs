@@ -1,8 +1,6 @@
-using Advent_of_Code_2019.IntComputing;
-using Int = System.Numerics.BigInteger;
-
 namespace Advent_of_Code_2019;
 
+[Category(Category.IntComputer)]
 public class Day_09
 {
     [Puzzle(answer: 3780860499L, year: 2019, day: 09)]

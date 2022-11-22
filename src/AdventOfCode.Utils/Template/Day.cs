@@ -1,5 +1,6 @@
 ﻿namespace Advent_of_Code_@Year;
 
+[Category(Category.None)]
 public class Day_@Day
 {
     private const string Example = @"";

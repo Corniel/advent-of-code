@@ -1,6 +1,4 @@
-﻿using System.Numerics;
-
-namespace Advent_of_Code;
+﻿namespace Advent_of_Code;
 
 [AttributeUsage(AttributeTargets.Method)]
 public class PuzzleAttribute : Attribute, ITestBuilder, IImplyFixture
@@ -35,11 +33,11 @@ public class PuzzleAttribute : Attribute, ITestBuilder, IImplyFixture
     }
     private object ExpectedResult(Type type)
     {
-        if (type == typeof(BigInteger))
+        if (type == typeof(Int))
         {
-            if (Answer is int int32) { return (BigInteger)int32; }
-            else if (Answer is long int64) { return (BigInteger)int64; }
-            else if (Answer is string str) { return BigInteger.Parse(str); }
+            if (Answer is int int32) { return (Int)int32; }
+            else if (Answer is long int64) { return (Int)int64; }
+            else if (Answer is string str) { return Int.Parse(str); }
             else { return Answer; }
         }
         else if (type == typeof(string) && Answer is string str) { return str.Trim(); }

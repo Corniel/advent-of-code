@@ -1,5 +1,6 @@
 namespace Advent_of_Code_2019;
 
+[Category(Category.Simulation)]
 public class Day_01
 {
     [Puzzle(answer: 3291356, year: 2019, day: 01)]

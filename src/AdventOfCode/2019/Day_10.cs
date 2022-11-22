@@ -1,5 +1,6 @@
 ﻿namespace Advent_of_Code_2019;
 
+[Category(Category.VectorAlgebra)]
 public class Day_10
 {
     [Example(answer: 8, @"

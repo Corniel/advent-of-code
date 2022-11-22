@@ -1,5 +1,6 @@
 namespace Advent_of_Code_2018;
 
+[Category(Category.Simulation, Category.VectorAlgebra)]
 public class Day_03
 {
     [Example(answer: 4, "#1 @ 1,3: 4x4\r\n#2 @ 3,1: 4x4\r\n#3 @ 5,5: 2x2")]

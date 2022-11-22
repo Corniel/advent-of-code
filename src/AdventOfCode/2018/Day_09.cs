@@ -1,5 +1,6 @@
 namespace Advent_of_Code_2018;
 
+[Category(Category.Simulation)]
 public class Day_09
 {
     [Example(answer: 00000_32, "9 players; last marble is worth 25 points")]

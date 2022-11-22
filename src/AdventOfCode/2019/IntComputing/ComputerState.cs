@@ -1,10 +1,9 @@
-﻿namespace Advent_of_Code_2019.IntComputing
+﻿namespace Advent_of_Code_2019;
+
+public enum ComputerState
 {
-    public enum ComputerState
-    {
-        Running = 0,
-        HaltOnInput = 1,
-        HaltOnOutput = 2,
-        Finished,
-    }
+    Running = 0,
+    HaltOnInput = 1,
+    HaltOnOutput = 2,
+    Finished,
 }

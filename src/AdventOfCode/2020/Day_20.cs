@@ -1,5 +1,6 @@
 namespace Advent_of_Code_2020;
 
+[Category(Category.Grid, Category.VectorAlgebra)]
 public class Day_20
 {
     [Example(answer: 20899048083289, year: 2020, day: 20, example: 1)]

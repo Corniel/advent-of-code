@@ -1,5 +1,6 @@
 namespace Advent_of_Code_2020;
 
+[Category(Category.Simulation)]
 public class Day_13
 {
     [Example(answer: 295, @"939;7,13,x,x,59,x,31,19")]

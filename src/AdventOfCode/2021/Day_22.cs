@@ -1,5 +1,6 @@
 ﻿namespace Advent_of_Code_2021;
 
+[Category(Category.VectorAlgebra)]
 public class Day_22
 {
     [Puzzle(answer: 644257, year: 2021, day: 22)]

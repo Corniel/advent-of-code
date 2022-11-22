@@ -2,6 +2,7 @@
 
 public enum Category
 {
+    [Obsolete("Choose an appropriate category.")]
     None,
     ASCII,
     BitManupilation,

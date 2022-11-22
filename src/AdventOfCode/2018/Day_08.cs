@@ -1,7 +1,6 @@
-using SmartAss.Syntax;
-
 namespace Advent_of_Code_2018;
 
+[Category(Category.ExpressionParsing)]
 public class Day_08
 {
     [Example(answer: 138, "2 3 0 3 10 11 12 1 1 0 1 99 2 1 1 2")]

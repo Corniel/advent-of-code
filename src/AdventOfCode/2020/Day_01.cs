@@ -1,5 +1,6 @@
 namespace Advent_of_Code_2020;
 
+[Category(Category.SequenceProgression)]
 public class Day_01
 {
     [Example(answer: 514579, "1721, 979, 366, 299, 675, 1456")]

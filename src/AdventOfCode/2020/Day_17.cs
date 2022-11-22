@@ -1,5 +1,6 @@
 namespace Advent_of_Code_2020;
 
+[Category(Category.GameOfLife, Category._3D)]
 public class Day_17
 {
     [Example(answer: 112, @"

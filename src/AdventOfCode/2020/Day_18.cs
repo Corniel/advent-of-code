@@ -1,5 +1,6 @@
 namespace Advent_of_Code_2020;
 
+[Category(Category.ExpressionParsing)]
 public class Day_18
 {
     [Example(answer: 71, "1 + 2 * 3 + 4 * 5 + 6")]

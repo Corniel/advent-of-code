@@ -1,5 +1,6 @@
 namespace Advent_of_Code_2020;
 
+[Category(Category.Simulation)]
 public class Day_08
 {
     [Example(answer: 5, "nop +0; acc +1; jmp +4; acc +3; jmp -3; acc -99; acc +1; jmp -4; acc +6")]

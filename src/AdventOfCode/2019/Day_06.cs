@@ -1,5 +1,6 @@
 namespace Advent_of_Code_2019;
 
+[Category(Category.Simulation)]
 public class Day_06
 {
     [Example(answer: 42, @"COM)B; B)C; C)D; D)E;E)F; B)G; G)H; D)I; E)J; J)K; K)L")]

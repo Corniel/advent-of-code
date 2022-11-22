@@ -1,5 +1,5 @@
-using Node = SmartAss.Circuits.CircuitNode<ushort>;
 using Circuit = SmartAss.Circuits.Circuit<ushort>;
+using Node = SmartAss.Circuits.CircuitNode<ushort>;
 
 namespace Advent_of_Code_2015;
 

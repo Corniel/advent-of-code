@@ -1,5 +1,6 @@
 namespace Advent_of_Code_2019;
 
+[Category(Category.Cryptography)]
 public class Day_04
 {
     [Puzzle(answer: 1178, "235741-706948")]

@@ -1,5 +1,6 @@
 namespace Advent_of_Code_2020;
 
+[Category(Category.ExpressionParsing)]
 public class Day_19
 {
     [Example(answer: 2, year: 2020, day: 19, example: 1)]

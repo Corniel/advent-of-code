@@ -1,8 +1,6 @@
-﻿using SmartAss;
-using SmartAss.Text;
+﻿namespace Advent_of_Code_2018;
 
-namespace Advent_of_Code_2018;
-
+[Category(Category.ASCII, Category.VectorAlgebra)]
 public class Day_10
 {
     [Puzzle(answer: @"

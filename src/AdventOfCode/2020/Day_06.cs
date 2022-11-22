@@ -1,5 +1,6 @@
 namespace Advent_of_Code_2020;
 
+[Category(Category.Cryptography)]
 public class Day_06
 {
     [Example(answer: 11, year: 2020, day: 06, example: 1)]

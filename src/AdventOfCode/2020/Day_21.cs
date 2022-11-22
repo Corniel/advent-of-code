@@ -1,5 +1,6 @@
 namespace Advent_of_Code_2020;
 
+[Category(Category.Cryptography)]
 public class Day_21
 {
     [Example(answer: 5, @"

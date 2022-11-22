@@ -1,5 +1,6 @@
 namespace Advent_of_Code_2020;
 
+[Category(Category.VectorAlgebra, Category.Simulation)]
 public class Day_12
 {
     [Example(answer: 25, "F10;N3;F7;R90;F11")]

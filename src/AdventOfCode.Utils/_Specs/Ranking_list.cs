@@ -24,9 +24,10 @@ public class Rankings
     }
 
     [TestCaseSource(nameof(Years))]
-    public void Time(int year)
+    public void TJIP(int year)
     {
-        foreach (var rank in Ranking.Time(Data.Participants(), year))
+        var partipants = new Participants(Data.Participants().Where(p => p.Value.Boards.Any(b => b.Name == "TJIP")));
+        foreach (var rank in Ranking.Default(partipants, year))
         {
             Console.WriteLine(rank);
         }

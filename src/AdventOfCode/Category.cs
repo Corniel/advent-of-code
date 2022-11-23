@@ -18,4 +18,5 @@ public enum Category
     Simulation,
     VectorAlgebra,
     _3D,
+    _4D,
 }

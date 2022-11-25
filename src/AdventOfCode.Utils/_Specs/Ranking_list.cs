@@ -26,7 +26,12 @@ public class Rankings
     [TestCaseSource(nameof(Years))]
     public void TJIP(int year)
     {
-        var partipants = new Participants(Data.Participants().Where(p => p.Value.Boards.Any(b => b.Name == "TJIP")));
+        var exclude = "grigoresc;Paul Antal;Jurgen Heeffer;Baljinnyam Sereeter;Jeff-vD;TravisMarkvh;Ralph Hendriks;Fred Hoogduin;Martijn van Maasakkers;TravisVincent;I_AM_ GWAN".Split(';');
+        var partipants = new Participants(Data.Participants()
+            .Where(p 
+                => p.Value.Boards.Any(b => b.Name == "TJIP") 
+                && !exclude.Any(name => p.Value.Matches(name))));
+
         foreach (var rank in Ranking.Default(partipants, year))
         {
             Console.WriteLine(rank);

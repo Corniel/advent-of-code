@@ -43,7 +43,6 @@ public class Day_10
                 var max = new Vector(max_x, max_y);
                 var grid = new Grid<bool>(cols: (max - min).X + 1, rows: (max - min).Y + 1);
                 grid.Set(true, dots.Select(dot => dot.Position - min));
-                Console.WriteLine(grid.ToString(b => b ? '█' : '░'));
                 return (seconds, grid);
             }
         }

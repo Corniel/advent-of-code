@@ -4,11 +4,11 @@ namespace Advent_of_Code_2017;
 public class Day_12
 {
     [Example(answer: 6, "0 <-> 2;1 <-> 1;2 <-> 0, 3, 4;3 <-> 2, 4;4 <-> 2, 3, 6;5 <-> 6;6 <-> 4, 5")]
-    [Puzzle(answer: 128, year: 2017, day: 12)]
+    [Puzzle(answer: 128)]
     public int part_one(string input) => Nodes(input)[0].SelveAndAncestors().Count;
 
     [Example(answer: 2, "0 <-> 2;1 <-> 1;2 <-> 0, 3, 4;3 <-> 2, 4;4 <-> 2, 3, 6;5 <-> 6;6 <-> 4, 5")]
-    [Puzzle(answer: 209, year: 2017, day: 12)]
+    [Puzzle(answer: 209)]
     public int part_two(string input)
     {
         var nodes = Nodes(input).Select(n => n.SelveAndAncestors()).ToArray();

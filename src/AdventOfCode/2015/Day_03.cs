@@ -4,7 +4,7 @@ namespace Advent_of_Code_2015;
 public class Day_03
 {
     [Example(answer: 4, "^>v<")]
-    [Puzzle(answer: 2592, year: 2015, day: 03)]
+    [Puzzle(answer: 2592)]
     public int part_one(string input)
     {
         var done = new HashSet<Point> { Point.O };
@@ -18,7 +18,7 @@ public class Day_03
     }
 
     [Example(answer: 11, "^v^v^v^v^v")]
-    [Puzzle(answer: 2360, year: 2015, day: 03)]
+    [Puzzle(answer: 2360)]
     public int part_two(string input)
     {
         var done = new HashSet<Point> { Point.O };

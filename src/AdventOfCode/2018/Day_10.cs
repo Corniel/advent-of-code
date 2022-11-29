@@ -13,10 +13,10 @@ public class Day_10
 █░░█░█░░█░░░░░░░░█░░█░░░█░░░░░░░█░░░░░░░█░░░█░░░░█░░█░░░█░█░░░
 █░░░██░░█░░░░░░░░█░░█░░░█░░░░░░░█░░░░░░░█░░░█░░░░█░░█░░░█░░█░░
 █░░░██░░█░░░░░░░█░░░░█░░█░░░░░░░█░░░░░░░█░░░░█░░█░░░░█░░█░░░█░
-█░░░░█░░██████░░█░░░░█░░█░░░░░░░██████░░█░░░░█░░█░░░░█░░█░░░░█", year: 2018, day: 10)]
+█░░░░█░░██████░░█░░░░█░░█░░░░░░░██████░░█░░░░█░░█░░░░█░░█░░░░█")]
     public string part_one(string input)=> Simulate(input).Grid.ToString(b => b ? '█' : '░');
 
-    [Puzzle(answer: 10459, year: 2018, day: 10)]
+    [Puzzle(answer: 10459)]
     public int part_two(string input) => Simulate(input).Seconds;
 
     private static (int Seconds, Grid<bool> Grid) Simulate(string input)

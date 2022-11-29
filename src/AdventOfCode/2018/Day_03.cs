@@ -4,12 +4,12 @@ namespace Advent_of_Code_2018;
 public class Day_03
 {
     [Example(answer: 4, "#1 @ 1,3: 4x4\r\n#2 @ 3,1: 4x4\r\n#3 @ 5,5: 2x2")]
-    [Puzzle(answer: 107043, year: 2018, day: 03)]
+    [Puzzle(answer: 107043)]
     public int part_one(string input)
         => Counters(input.Lines(Claim.Parse)).Count(c => c.Count > 1);
 
     [Example(answer: 3, "#1 @ 1,3: 4x4\r\n#2 @ 3,1: 4x4\r\n#3 @ 5,5: 2x2")]
-    [Puzzle(answer: 346, year: 2018, day: 03)]
+    [Puzzle(answer: 346)]
     public int part_two(string input)
     {
         var claims = input.Lines(Claim.Parse).ToArray();

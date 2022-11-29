@@ -3,12 +3,12 @@ namespace Advent_of_Code_2020;
 [Category(Category.VectorAlgebra)]
 public class Day_03
 {
-    [Example(answer: 7, year: 2020, day: 03, example: 1)]
-    [Puzzle(answer: 220, year: 2020, day: 03)]
+    [Example(answer: 7, example: 1)]
+    [Puzzle(answer: 220)]
     public long part_one(string input)
         => CountTrees(Row.Parse(input).ToArray(), new Vector(3, 1));
 
-    [Puzzle(answer: 2138320800, year: 2020, day: 03)]
+    [Puzzle(answer: 2138320800)]
     public long part_two(string input)
     {
         var rows = Row.Parse(input).ToArray();

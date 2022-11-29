@@ -3,8 +3,8 @@ namespace Advent_of_Code_2018;
 [Category(Category.Simulation, Category.GameOfLife)]
 public class Day_12
 {
-    [Example(answer: 325, year: 2018, day: 12, example: 1)]
-    [Puzzle(answer: 3605, year: 2018, day: 12)]
+    [Example(answer: 325, example: 1)]
+    [Puzzle(answer: 3605)]
     public long part_one(string input)
     {
         var game = new GameOfLife(input);
@@ -12,7 +12,7 @@ public class Day_12
         return game.Sum();
     }
 
-    [Puzzle(answer: 4050000000798, year: 2018, day: 12)]
+    [Puzzle(answer: 4050000000798)]
     public long part_two(string input)
     {
         var game = new GameOfLife(input);

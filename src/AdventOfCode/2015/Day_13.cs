@@ -16,10 +16,10 @@ Carol would gain 55 happiness units by sitting next to David.
 David would gain 46 happiness units by sitting next to Alice.
 David would lose 7 happiness units by sitting next to Bob.
 David would gain 41 happiness units by sitting next to Carol.")]
-    [Puzzle(answer: 664, year: 2015, day: 13)]
+    [Puzzle(answer: 664)]
     public int part_one(string input) => FindHappiness(input);
 
-    [Puzzle(answer: 640, year: 2015, day: 13)]
+    [Puzzle(answer: 640)]
     public long part_two(string input) => FindHappiness(input, +1);
 
     private static int FindHappiness(string input, int neutral = 0)

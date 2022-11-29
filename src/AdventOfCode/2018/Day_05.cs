@@ -8,11 +8,11 @@ public class Day_05
     public void Reduces(string polymer, string reduced) => Destroy(polymer).Should().Be(reduced);
 
     [Example(answer: 10, "dabAcCaCBAcCcaDA")]
-    [Puzzle(answer: 11264, year: 2018, day: 05)]
+    [Puzzle(answer: 11264)]
     public int part_one(string input) => Destroy(input).Length;
 
     [Example(answer: 4, "dabAcCaCBAcCcaDA")]
-    [Puzzle(answer: 4552, year: 2018, day: 05)]
+    [Puzzle(answer: 4552)]
     public int part_two(string input)
         => Characters.a_z.Select(ch => Strip(input, Lower(ch)))
         .Select(reduced => Destroy(reduced))

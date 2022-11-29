@@ -4,7 +4,7 @@ namespace Advent_of_Code_2021;
 public class Day_16
 {
     [Example(answer: 31, "A0016C880162017C3686B18A3D4780")]
-    [Puzzle(answer: 996, year: 2021, day: 16)]
+    [Puzzle(answer: 996)]
     public int part_one(string input) => new Parser(input).Read().Versions;
 
     [Example(answer: 3, "C200B40A82")]
@@ -15,7 +15,7 @@ public class Day_16
     [Example(answer: 0, "F600BC2D8F")]
     [Example(answer: 0, "9C005AC2F8F0")]
     [Example(answer: 1, "9C0141080250320F1802104A08")]
-    [Puzzle(answer: 96257984154, year: 2021, day: 16)]
+    [Puzzle(answer: 96257984154)]
     public long part_two(string input) => new Parser(input).Read().Value;
 
     enum TypeId { Sum = 0, Product = 1, Min = 2, Max = 3, Literal = 4, GT = 5, LT = 6, Eq = 7 }

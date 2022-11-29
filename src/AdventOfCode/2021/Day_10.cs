@@ -12,11 +12,11 @@ public class Day_10
 	[Example(answer: 57, "[{[{({}]{}}([{[{{{}}([]")]
 	[Example(answer: 3, "[<(<(<(<{}))><([]([]()")]
 	[Example(answer: 25137, "<{([([[(<>()){}]>(<<{{")]
-    [Puzzle(answer: 411471, year: 2021, day: 10)]
+    [Puzzle(answer: 411471)]
     public int part_one(string input) => input.Lines(Parse).Select(One).Sum();
 
 	[Example(answer: 288957, "[({(<(())[]>[[{[]{<()<>>")]
-	[Puzzle(answer: 3122628974, year: 2021, day: 10)]
+	[Puzzle(answer: 3122628974)]
     public long part_two(string input)
     {
 		var scores = input.Lines(Parse).Select(Two).Where(sc => sc != 0).ToList();

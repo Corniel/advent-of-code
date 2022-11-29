@@ -4,7 +4,7 @@ namespace Advent_of_Code_2020;
 public class Day_01
 {
     [Example(answer: 514579, "1721, 979, 366, 299, 675, 1456")]
-    [Puzzle(answer: 786811, year: 2020, day: 01)]
+    [Puzzle(answer: 786811)]
     public long part_one(string input)
     {
         const int sum = 2020;
@@ -22,7 +22,7 @@ public class Day_01
     }
 
     [Example(answer: 241861950L, "1721, 979, 366, 299, 675, 1456")]
-    [Puzzle(answer: 199068980L, year: 2020, day: 01)]
+    [Puzzle(answer: 199068980L)]
     public long part_two(string input)
     {
         const int sum = 2020;

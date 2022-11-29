@@ -6,7 +6,7 @@ public class Day_01
     [Example(answer: 5, "R2, L3")]
     [Example(answer: 2, "R2, R2, R2")]
     [Example(answer: 12, "R5, L5, R5, R3")]
-    [Puzzle(answer: 226, year: 2016, day: 01)]
+    [Puzzle(answer: 226)]
     public int part_one(string input)
     {
         var current = Point.O;
@@ -21,7 +21,7 @@ public class Day_01
     }
 
     [Example(answer: 4, "R8, R4, R4, R8")]
-    [Puzzle(answer: 79, year: 2016, day: 01)]
+    [Puzzle(answer: 79)]
     public int part_two(string input)
     {
         var current = Point.O;

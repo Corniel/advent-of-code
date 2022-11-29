@@ -16,11 +16,11 @@ public class Day_15
 2311944581";
 
     [Example(answer: 40, Example)]
-    [Puzzle(answer: 595, year: 2021, day: 15)]
+    [Puzzle(answer: 595)]
     public int part_one(string input)=> Run(input.CharPixels().Grid(ch => ch - '0'));
 
     [Example(answer: 315, Example)]
-    [Puzzle(answer: 2914, year: 2021, day: 15)]
+    [Puzzle(answer: 2914)]
     public int part_two(string input) => Run(Scale(input.CharPixels().Grid(ch => ch - '0')));
 
     static int Run(Grid<int> costs)

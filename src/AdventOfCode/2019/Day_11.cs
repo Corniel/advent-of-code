@@ -3,11 +3,11 @@
 [Category(Category.IntComputer, Category.ASCII)]
 public class Day_11
 {
-    [Puzzle(answer: 2184, year: 2019, day: 11)]
+    [Puzzle(answer: 2184)]
     public int part_one(string input)
         => DrawCanvas(Computer.Parse(input), 0).Count;
 
-    [Puzzle(answer: "AHCHZEPK", year: 2019, day: 11)]
+    [Puzzle(answer: "AHCHZEPK")]
     public string part_two(string input)
     {
         var computer = Computer.Parse(input);

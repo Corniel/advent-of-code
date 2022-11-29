@@ -3,7 +3,7 @@ namespace Advent_of_Code_2018;
 [Category(Category.Cryptography)]
 public class Day_02
 {
-    [Puzzle(answer: 5928, year: 2018, day: 02)]
+    [Puzzle(answer: 5928)]
     public int part_one(string input)
         => input.Lines().Count(line => Repeat(line, 2))
         * input.Lines().Count(line => Repeat(line, 3));
@@ -12,7 +12,7 @@ public class Day_02
     static bool Repeat(string line, int n) => line.Any(ch => line.Count(c => c == ch) == n);
 
     [Example(answer: "fgij", "abcde;fghij;klmno;pqrst;fguij;axcye;wvxyz")]
-    [Puzzle(answer: "bqlporuexkwzyabnmgjqctvfs", year: 2018, day: 02)]
+    [Puzzle(answer: "bqlporuexkwzyabnmgjqctvfs")]
     public string part_two(string input)
     {
         var lines = input.Lines();

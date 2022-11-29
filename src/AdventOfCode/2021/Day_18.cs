@@ -13,8 +13,8 @@ public partial class Day_18
 [1,[[[9,3],9],[[9,0],[0,7]]]]
 [[[5,[7,4]],7],1]
 [[[[4,2],2],6],[8,7]]")]
-    [Example(answer: 4207, year: 2021, day: 18, example: 1)]
-    [Puzzle(answer: 3725, year: 2021, day: 18)]
+    [Example(answer: 4207, example: 1)]
+    [Puzzle(answer: 3725)]
     public int part_one(string input)
     {
         var lines = input.Lines();
@@ -26,8 +26,8 @@ public partial class Day_18
         return expression.Magnitude;
     }
 
-    [Example(answer: 4635, year: 2021, day: 18, example: 1)]
-    [Puzzle(answer: 4832, year: 2021, day: 18)]
+    [Example(answer: 4635, example: 1)]
+    [Puzzle(answer: 4832)]
     public int part_two(string input)
     {
         var lines = input.Lines();

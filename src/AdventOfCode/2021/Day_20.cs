@@ -12,11 +12,11 @@ public class Day_20
 ..###";
 
     [Example(answer: 35, Example)]
-    [Puzzle(answer: 5765, year: 2021, day: 20)]
+    [Puzzle(answer: 5765)]
     public int part_one(string input) => Run(input, 2);
 
     [Example(answer: 3351, Example)]
-    [Puzzle(answer: 18509, year: 2021, day: 20)]
+    [Puzzle(answer: 18509)]
     public int part_two(string input) => Run(input, 50);
 
     private static int Run(string input, int turns)

@@ -24,7 +24,7 @@ public class Day_04
  2  0 12  3  7";
 
     [Example(answer: 4512, Example)]
-    [Puzzle(answer: 27027, year: 2021, day: 04)]
+    [Puzzle(answer: 27027)]
     public long part_one(string input)
     {
         var game = Game.Parse(input);
@@ -36,7 +36,7 @@ public class Day_04
     }
 
     [Example(answer: 1924, Example)]
-    [Puzzle(answer: 36975, year: 2021, day: 04)]
+    [Puzzle(answer: 36975)]
     public long part_two(string input)
     {
         var game = Game.Parse(input);

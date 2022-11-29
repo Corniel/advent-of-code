@@ -5,11 +5,17 @@ public class ExampleAttribute : PuzzleAttribute
 {
     public ExampleAttribute(object answer, string input)
         : base(answer, input) => Do.Nothing();
-    public ExampleAttribute(object answer, int year, int day, int example)
-       : base(answer, Puzzle.Input(year, day, example)) => Do.Nothing();
+    public ExampleAttribute(object answer, int example) : base(answer)
+    {
+        Example = example;
+    }
 
-    protected override string TestName(IMethodInfo method)
-       => Input.Contains('\n')
-       ? $"answer is {Answer} for {method.Name.Replace("_", " ")} example with length {Input.Length}"
-       : $"answer is {Answer} for {Input}";
+    private readonly int Example;
+
+    protected override AdventPuzzle Puzzle(IMethodInfo method) => new AdventPuzzle(method.MethodInfo, Input, Answer, Example);
+
+    protected override string TestName(IMethodInfo method, string input)
+       => input.Contains('\n')
+       ? $"answer is {Answer} for {method.Name.Replace("_", " ")} example with length {input.Length}"
+       : $"answer is {Answer} for {input}";
 }

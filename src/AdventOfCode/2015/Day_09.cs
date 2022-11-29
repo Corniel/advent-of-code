@@ -9,11 +9,11 @@ London to Belfast = 518
 Dublin to Belfast = 141";
 
     [Example(answer: 605, Example)]
-    [Puzzle(answer: 141, year: 2015, day: 09)]
+    [Puzzle(answer: 141)]
     public int part_one(string input) => Distances(input).Min();
 
     [Example(answer: 982, Example)]
-    [Puzzle(answer: 736, year: 2015, day: 09)]
+    [Puzzle(answer: 736)]
     public int part_two(string input) => Distances(input).Max();
 
     private IEnumerable<int> Distances(string input)

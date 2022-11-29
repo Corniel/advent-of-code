@@ -1,6 +1,4 @@
-﻿using Qowaiv;
-
-namespace Advent_of_Code;
+﻿namespace Advent_of_Code;
 
 public readonly struct AdventDate : IComparable<AdventDate>
 {

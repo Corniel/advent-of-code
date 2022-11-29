@@ -3,8 +3,8 @@ namespace Advent_of_Code_2020;
 [Category(Category.Simulation)]
 public class Day_16
 {
-    [Example(answer: 71, year: 2020, day: 16, example: 1)]
-    [Puzzle(answer: 27850, year: 2020, day: 16)]
+    [Example(answer: 71, example: 1)]
+    [Puzzle(answer: 27850)]
     public int part_one(string input)
     {
         var blocks = input.GroupedLines().ToArray();
@@ -13,7 +13,7 @@ public class Day_16
         return nearby.Where(number => !rules.Any(rule => rule.Valid(number))).Sum();
     }
 
-    [Puzzle(answer: 491924517533, year: 2020, day: 16)]
+    [Puzzle(answer: 491924517533)]
     public long part_two(string input)
     {
         var blocks = input.GroupedLines().ToArray();

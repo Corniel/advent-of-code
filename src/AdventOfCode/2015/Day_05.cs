@@ -3,14 +3,14 @@ namespace Advent_of_Code_2015;
 [Category(Category.Cryptography)]
 public class Day_05
 {
-    [Puzzle(answer: 236, year: 2015, day: 05)]
+    [Puzzle(answer: 236)]
     public int part_one(string input) => input.Lines().Count(IsNice1);
 
     [Example(answer: 0, "ieodomkazucvgmuy")]
     [Example(answer: 0, "uurcxstgmygtbstg")]
     [Example(answer: 1, "qjhvhtzxzqqjkmpb")]
     [Example(answer: 1, "xxyxx")]
-    [Puzzle(answer: 51, year: 2015, day: 05)]
+    [Puzzle(answer: 51)]
     public int part_two(string input) => input.Lines().Count(IsNice2);
 
     static bool IsNice1(string line)

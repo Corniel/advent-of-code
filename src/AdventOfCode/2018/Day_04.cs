@@ -23,12 +23,12 @@ public class Day_04
 [1518-11-05 00:55] wakes up";
 
     [Example(answer: 10 * 24, Example)]
-    [Puzzle(answer: 26281, year: 2018, day: 04)]
+    [Puzzle(answer: 26281)]
     public long part_one(string input) => Occurences(input)
         .OrderByDescending(c => c.Value.Total).Select(Score).First();
 
     [Example(answer: 99 * 45, Example)]
-    [Puzzle(answer: 73001, year: 2018, day: 04)]
+    [Puzzle(answer: 73001)]
     public long part_two(string input) => Occurences(input)
         .OrderByDescending(c => AsleepMostMinutes(c.Value)).Select(Score).First();
 

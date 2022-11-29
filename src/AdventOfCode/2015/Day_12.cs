@@ -5,10 +5,10 @@ namespace Advent_of_Code_2015;
 [Category(Category.ExpressionParsing)]
 public class Day_12
 {
-    [Puzzle(answer: 111754, year: 2015, day: 12)]
+    [Puzzle(answer: 111754)]
     public int part_one(string input) => input.Int32s().Sum();
 
-    [Puzzle(answer: 65402, year: 2015, day: 12)]
+    [Puzzle(answer: 65402)]
     public int part_two(string input) => Sum(JsonDocument.Parse(input).RootElement);
 
     static int Sum(JsonElement elm)

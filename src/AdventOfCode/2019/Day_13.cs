@@ -3,11 +3,11 @@ namespace Advent_of_Code_2019;
 [Category(Category.IntComputer)]
 public class Day_13
 {
-    [Puzzle(answer: 277, year: 2019, day: 13)]
+    [Puzzle(answer: 277)]
     public int part_one(string input)
         => new Arcade().Update(Computer.Parse(input).Run().Output).Blocks;
 
-    [Puzzle(answer: 12856, year: 2019, day: 13)]
+    [Puzzle(answer: 12856)]
     public Int part_two(string input)
     {
         var computer = Computer.Parse(input).Update(position: 0, value: 2);

@@ -27,11 +27,11 @@ public class Day_05
         => Select("9,7 -> 7,9").Should().BeEquivalentTo(new[] { new Point(9, 7), new Point(8, 8), new Point(7, 9) });
 
     [Example(answer: 5, Example)]
-    [Puzzle(answer: 6666, year: 2021, day: 05)]
+    [Puzzle(answer: 6666)]
     public int part_one(string input) => Run(input, diagonal: false);
   
     [Example(answer: 12, Example)]
-    [Puzzle(answer: 19081, year: 2021, day: 05)]
+    [Puzzle(answer: 19081)]
     public int part_two(string input) => Run(input, diagonal: true);
 
     private static int Run(string input, bool diagonal)

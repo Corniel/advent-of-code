@@ -3,10 +3,10 @@ namespace Advent_of_Code_2021;
 [Category(Category.ExpressionParsing)]
 public class Day_24
 {
-    [Puzzle(answer: 39999698799429, year: 2021, day: 24)]
+    [Puzzle(answer: 39999698799429)]
     public long part_one(string input) => Serial(Desc, State.Zero, input.Lines(Expression.Parse).ToArray()) ?? throw new NoAnswer();
 
-    [Puzzle(answer: 18116121134117, year: 2021, day: 24)]
+    [Puzzle(answer: 18116121134117)]
     public long part_two(string input) => Serial(Asc, State.Zero, input.Lines(Expression.Parse).ToArray()) ?? throw new NoAnswer();
 
     static readonly int[] Asc = Enumerable.Range(1, 9).ToArray();

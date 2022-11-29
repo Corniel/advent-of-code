@@ -3,12 +3,12 @@ namespace Advent_of_Code_2020;
 [Category(Category.Cryptography)]
 public class Day_04
 {
-    [Example(answer: 2, year: 2020, day: 04, example: 1)]
-    [Puzzle(answer: 228, year: 2020, day: 04)]
+    [Example(answer: 2, example: 1)]
+    [Puzzle(answer: 228)]
     public int part_one(string input)
         => Passport.Parse(input).Count(p => p.IsValid());
 
-    [Puzzle(answer: 175, year: 2020, day: 04)]
+    [Puzzle(answer: 175)]
     public int part_two(string input)
         => Passport.Parse(input).Count(p => p.StrictValid());
 

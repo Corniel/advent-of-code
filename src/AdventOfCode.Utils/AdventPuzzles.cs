@@ -1,8 +1,10 @@
-﻿namespace Advent_of_Code;
+﻿using System.Reflection;
+
+namespace Advent_of_Code;
 
 [DebuggerTypeProxy(typeof(CollectionDebugView))]
 [DebuggerDisplay("Count = {Count}")]
-public class AdventPuzzles : IEnumerable<AdventPuzzle>
+public partial class AdventPuzzles : IEnumerable<AdventPuzzle>
 {
     private readonly List<AdventPuzzle> items = new();
 
@@ -16,29 +18,28 @@ public class AdventPuzzles : IEnumerable<AdventPuzzle>
         .OrderBy(puzzle => puzzle.Date);
 
     public static AdventPuzzles Load() => Load(
-        typeof(Puzzle).Assembly.GetExportedTypes().Concat(
+        typeof(AdventPuzzle).Assembly.GetExportedTypes().Concat(
         typeof(Now.Dummy).Assembly.GetExportedTypes()));
 
     public static AdventPuzzles Load(IEnumerable<Type> types)
     {
         var puzzles = new AdventPuzzles();
-        foreach (var type in types)
+
+        foreach (var method in types.SelectMany(t => t.GetMethods().Where(IsPuzzle)))
         {
-            var match = Pattern.Match(type.FullName);
-            if (match.Success)
-            {
-                var year = match.Groups["year"].Value.Int32();
-                var day = match.Groups["day"].Value.Int32();
-                var part_one = type.GetMethod("part_one");
-                var part_two = type.GetMethod("part_two");
-                puzzles.items.Add(new AdventPuzzle(new AdventDate(year, day, 1), part_one));
-                puzzles.items.Add(new AdventPuzzle(new AdventDate(year, day, 2), part_two));
-            }
+            var input = method
+                .GetCustomAttributes<PuzzleAttribute>()
+                .Single(att => att is not ExampleAttribute).Input;
+
+            var puzzle = new AdventPuzzle(method, input, null);
+            puzzles.items.Add(puzzle);
         }
         return puzzles;
+
+        static bool IsPuzzle(MethodInfo method) => method.GetCustomAttributes<PuzzleAttribute>().Any();
     }
 
     public IEnumerator<AdventPuzzle> GetEnumerator() => items.OrderBy(item => item.Date).GetEnumerator();
+    
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-    private static readonly Regex Pattern = new("^Advent_of_Code_(?<year>[0-9]{4}).Day_(?<day>[012][0-9])$", RegexOptions.Compiled);
 }

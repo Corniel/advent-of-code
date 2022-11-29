@@ -3,12 +3,12 @@ namespace Advent_of_Code_2021;
 [Category(Category.VectorAlgebra, Category._3D)]
 public class Day_19
 {
-    [Example(answer: 79, year: 2021, day: 19, example: 1)]
-    [Puzzle(answer: 403, year: 2021, day: 19)]
+    [Example(answer: 79, example: 1)]
+    [Puzzle(answer: 403)]
     public int part_one(string input) => Run(input, out _).Count;
 
-    [Example(answer: 3621, year: 2021, day: 19, example: 1)]
-    [Puzzle(answer: 10569, year: 2021, day: 19)]
+    [Example(answer: 3621, example: 1)]
+    [Puzzle(answer: 10569)]
     public int part_two(string input)
     {
         Run(input, out var scanners);

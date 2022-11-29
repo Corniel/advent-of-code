@@ -11,7 +11,7 @@ public class Day_09
 9899965678";
 
     [Example(answer: 15, Example)]
-    [Puzzle(answer: 588, year: 2021, day: 09)]
+    [Puzzle(answer: 588)]
     public int part_one(string input)
     {
         var map = input.CharPixels().Grid().SetNeighbors(Neighbors.Grid);
@@ -22,7 +22,7 @@ public class Day_09
     }
 
     [Example(answer: 1134, Example)]
-    [Puzzle(answer: 964712, year: 2021, day: 09)]
+    [Puzzle(answer: 964712)]
     public long part_two(string input)
     {
         var map = input.CharPixels().Grid().SetNeighbors(Neighbors.Grid);

@@ -17,6 +17,7 @@ public enum Category
     SequenceProgression,
     Simulation,
     VectorAlgebra,
+    _2D,
     _3D,
     _4D,
 }

@@ -8,7 +8,7 @@ public class Day_14
             mem[8] = 11
             mem[7] = 101
             mem[8] = 0")]
-    [Puzzle(answer: 12512013221615, year: 2020, day: 14)]
+    [Puzzle(answer: 12512013221615)]
     public ulong part_one(string input)
     {
         var mask = string.Empty;
@@ -33,7 +33,7 @@ public class Day_14
             mem[42] = 100
             mask = 00000000000000000000000000000000X0XX
             mem[26] = 1")]
-    [Puzzle(answer: 3905642473893, year: 2020, day: 14)]
+    [Puzzle(answer: 3905642473893)]
     public ulong part_two(string input)
     {
         var mask = string.Empty;

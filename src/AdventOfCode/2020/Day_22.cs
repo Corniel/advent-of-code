@@ -4,7 +4,7 @@ namespace Advent_of_Code_2020;
 public class Day_22
 {
     [Example(answer: 306, "Player 1:\n9\n2\n6\n3\n1\n\nPlayer 2:\n5\n8\n4\n7\n10")]
-    [Puzzle(answer: 33403, year: 2020, day: 22)]
+    [Puzzle(answer: 33403)]
     public int part_one(string input)
     {
         var decks = input.GroupedLines().Select(Deck.Parse).ToArray();
@@ -13,7 +13,7 @@ public class Day_22
 
     [Example(answer: 105, "Player 1:\n43\n19\n\nPlayer 2:\n2\n29\n14")]
     [Example(answer: 291, "Player 1:\n9\n2\n6\n3\n1\n\nPlayer 2:\n5\n8\n4\n7\n10")]
-    [Puzzle(answer: 29177, year: 2020, day: 22)]
+    [Puzzle(answer: 29177)]
     public long part_two(string input)
     {
         var decks = input.GroupedLines().Select(Deck.Parse).ToArray();

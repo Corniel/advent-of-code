@@ -7,7 +7,7 @@ public class Day_02
             1-3 a: abcde
             1-3 b: cdefg
             2-9 c: ccccccccc")]
-    [Puzzle(answer: 536, year: 2020, day: 02)]
+    [Puzzle(answer: 536)]
     public int part_one(string input)
         => input.Lines(Password.Parse).Count(p => p.Policy.ValidForOne(p.Chars));
 
@@ -15,7 +15,7 @@ public class Day_02
             1-3 a: abcde
             1-3 b: cdefg
             2-9 c: ccccccccc")]
-    [Puzzle(answer: 558, year: 2020, day: 02)]
+    [Puzzle(answer: 558)]
     public int part_two(string input)
         => input.Lines(Password.Parse).Count(p => p.Policy.ValidForTwo(p.Chars));
 

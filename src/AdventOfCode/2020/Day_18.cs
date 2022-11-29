@@ -7,7 +7,7 @@ public class Day_18
     [Example(answer: 26, "2 * 3 + (4 * 5)")]
     [Example(answer: 437, "5 + (8 * 3 + 9 + 3 * 4 * 3)")]
     [Example(answer: 13632, "((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2")]
-    [Puzzle(answer: 21993583522852, year: 2020, day: 18)]
+    [Puzzle(answer: 21993583522852)]
     public long part_one(string input)
         => input.Lines(Parentheses.Parse).Sum(token => token.Value);
 
@@ -16,7 +16,7 @@ public class Day_18
     [Example(answer: 1445, "5 + (8 * 3 + 9 + 3 * 4 * 3)")]
     [Example(answer: 669060, "5 * 9 * (7 * 3 * 3 + 9 * 3 + (8 + 6 * 4))")]
     [Example(answer: 23340, "((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2")]
-    [Puzzle(answer: 122438593522757, year: 2020, day: 18)]
+    [Puzzle(answer: 122438593522757)]
     public long part_two(string input)
         => input.Lines(Parentheses.Parse).Sum(token => token.Parenthese().Value);
 

@@ -3,7 +3,7 @@ namespace Advent_of_Code_2015;
 [Category(Category.Grid, Category.Simulation)]
 public class Day_06
 {
-    [Puzzle(answer: 400410, year: 2015, day: 06)]
+    [Puzzle(answer: 400410)]
     public long part_one(string input)
     {
         var grid = new Grid<bool>(1000, 1000);
@@ -23,7 +23,7 @@ public class Day_06
         return grid.Count(kvp => kvp.Value);
     }
 
-    [Puzzle(answer: 15343601, year: 2015, day: 06)]
+    [Puzzle(answer: 15343601)]
     public int part_two(string input)
     {
         var grid = new Grid<int>(1000, 1000);

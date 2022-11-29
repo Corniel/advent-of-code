@@ -4,12 +4,12 @@ namespace Advent_of_Code_2019;
 public class Day_06
 {
     [Example(answer: 42, @"COM)B; B)C; C)D; D)E;E)F; B)G; G)H; D)I; E)J; J)K; K)L")]
-    [Puzzle(answer: 333679, year: 2019, day: 06)]
+    [Puzzle(answer: 333679)]
     public int part_one(string input)
         => Space.Parse(input).Connections;
 
     [Example(answer: 4, @"COM)B; B)C; C)D; D)E; E)F; B)G; G)H; D)I; E)J; J)K; K)L; K)YOU; I)SAN")]
-    [Puzzle(answer: 370, year: 2019, day: 06)]
+    [Puzzle(answer: 370)]
     public int part_two(string input)
     {
         var space = Space.Parse(input);

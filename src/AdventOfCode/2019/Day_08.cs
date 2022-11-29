@@ -3,14 +3,14 @@
 [Category(Category.Grid, Category.Cryptography, Category.ASCII)]
 public class Day_08
 {
-    [Puzzle(answer: 2480, year: 2019, day: 08)]
+    [Puzzle(answer: 2480)]
     public int part_one(string input)
         => Layer.Parse(25, 6, input)
             .OrderBy(layer => layer.Zeros)
             .Select(layer => layer.Ones * layer.Twos)
             .FirstOrDefault();
 
-    [Puzzle(answer: "ZYBLH", year: 2019, day: 08)]
+    [Puzzle(answer: "ZYBLH")]
     public string part_two(string input)
     {
         var layers = Layer.Parse(25, 6, input).ToArray();

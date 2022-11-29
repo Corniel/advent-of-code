@@ -4,6 +4,7 @@ global using NUnit.Framework;
 global using NUnit.Framework.Interfaces;
 global using NUnit.Framework.Internal;
 global using NUnit.Framework.Internal.Builders;
+global using Qowaiv;
 global using SmartAss;
 global using SmartAss.Collections;
 global using SmartAss.Diagnostics;

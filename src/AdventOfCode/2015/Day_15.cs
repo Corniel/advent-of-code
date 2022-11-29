@@ -4,12 +4,12 @@ namespace Advent_of_Code_2015;
 public class Day_15
 {
     [Example(answer: 62842880, "Butterscotch: capacity -1, durability -2, flavor 6, texture 3, calories 8;Cinnamon: capacity 2, durability 3, flavor -2, texture -1, calories 3")]
-    [Puzzle(answer: 21367368, year: 2015, day: 15)]
+    [Puzzle(answer: 21367368)]
     public long part_one(string input)
         => TotalScore(input, (distribution, ingredients) => true);
 
     [Example(answer: 57600000, "Butterscotch: capacity -1, durability -2, flavor 6, texture 3, calories 8;Cinnamon: capacity 2, durability 3, flavor -2, texture -1, calories 3")]
-    [Puzzle(answer: 1766400, year: 2015, day: 15)]
+    [Puzzle(answer: 1766400)]
     public long part_two(string input)
         => TotalScore(input, (distribution, ingredients) => Score(distribution, ingredients, i => i.Calories) == 500);
 

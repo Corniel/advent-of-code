@@ -4,7 +4,7 @@ namespace Advent_of_Code_2021;
 public class Day_03
 {
     [Example(answer: 198, "00100;11110;10110;10111;10101;01111;00111;11100;10000;11001;00010;01010")]
-    [Puzzle(answer: 845186, year: 2021, day: 03)]
+    [Puzzle(answer: 845186)]
     public ulong part_one(string input)
     {
         var numbers = input.Lines(BinaryNumber.Parse).ToArray();
@@ -29,7 +29,7 @@ public class Day_03
     }
 
     [Example(answer: 230, "00100;11110;10110;10111;10101;01111;00111;11100;10000;11001;00010;01010")]
-    [Puzzle(answer: 4636702, year: 2021, day: 03)]
+    [Puzzle(answer: 4636702)]
     public ulong part_two(string input)
     {
         var numbers = input.Lines(BinaryNumber.Parse).ToArray();

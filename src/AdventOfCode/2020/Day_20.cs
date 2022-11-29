@@ -3,13 +3,13 @@ namespace Advent_of_Code_2020;
 [Category(Category.Grid, Category.VectorAlgebra)]
 public class Day_20
 {
-    [Example(answer: 20899048083289, year: 2020, day: 20, example: 1)]
-    [Puzzle(answer: 18449208814679, year: 2020, day: 20)]
+    [Example(answer: 20899048083289, example: 1)]
+    [Puzzle(answer: 18449208814679)]
     public long part_one(string input)
         => Tile.Parse(input).Where(t => t.IsCorner).Select(c => c.Id).Distinct().Product();
 
-    [Example(answer: 273, year: 2020, day: 20, example: 1)]
-    [Puzzle(answer: 1559, year: 2020, day: 20)]
+    [Example(answer: 273, example: 1)]
+    [Puzzle(answer: 1559)]
     public int part_two(string input)
     {
         var tiles = Tiles.Create(Tile.Parse(input));

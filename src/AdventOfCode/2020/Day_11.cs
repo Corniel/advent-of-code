@@ -3,14 +3,14 @@ namespace Advent_of_Code_2020;
 [Category(Category.Grid)]
 public class Day_11
 {
-    [Example(answer: 37, year: 2020, day: 11, example: 1)]
-    [Puzzle(answer: 2481, year: 2020, day: 11)]
+    [Example(answer: 37, example: 1)]
+    [Puzzle(answer: 2481)]
     public int part_one(string input)
         => Plane.Init(input, Plane.DirectNeighbors).Simulate(4);
 
 
-    [Example(answer: 26, year: 2020, day: 11, example: 1)]
-    [Puzzle(answer: 2227, year: 2020, day: 11)]
+    [Example(answer: 26, example: 1)]
+    [Puzzle(answer: 2227)]
     public long part_two(string input)
         => Plane.Init(input, Plane.InSightNeighbors).Simulate(5);
 

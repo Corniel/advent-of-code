@@ -16,11 +16,11 @@ public class Day_11
 5283751526";
 
     [Example(answer: 1656, Example)]
-    [Puzzle(answer: 1691, year: 2021, day: 11)]
+    [Puzzle(answer: 1691)]
     public int part_one(string input) => Simulate(input).Take(100).Sum();
 
     [Example(answer: 195, Example)]
-    [Puzzle(answer: 216, year: 2021, day: 11)]
+    [Puzzle(answer: 216)]
     public int part_two(string input) => Simulate(input).TakeWhile(f => f != 100).Count() + 1;
 
     private static IEnumerable<int> Simulate(string input)

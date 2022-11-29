@@ -17,10 +17,10 @@ public class Day_16
         { Compount.perfumes, 1 },
     };
 
-    [Puzzle(answer: 103, year: 2015, day: 16)]
+    [Puzzle(answer: 103)]
     public int part_one(string input) => input.Lines(Sue.Parse).Single(sue => sue.Matches1(Aunt)).Id;
 
-    [Puzzle(answer: 405, year: 2015, day: 16)]
+    [Puzzle(answer: 405)]
     public long part_two(string input) => input.Lines(Sue.Parse).Single(sue => sue.Matches2(Aunt)).Id;
 
     class Sue: Dictionary<Compount, int>

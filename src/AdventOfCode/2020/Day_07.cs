@@ -5,14 +5,14 @@ namespace Advent_of_Code_2020;
 [Category(Category.Graph)]
 public class Day_07
 {
-    [Example(answer: 4, year: 2020, day: 07, example: 1)]
-    [Puzzle(answer: 161, year: 2020, day: 07)]
+    [Example(answer: 4, example: 1)]
+    [Puzzle(answer: 161)]
     public int part_one(string input)
         => Bags.Parse(input).Values.Count(bag => bag.Search("shiny gold") != null) - 1;
 
-    [Example(answer: 032, year: 2020, day: 07, example: 1)]
-    [Example(answer: 126, year: 2020, day: 07, example: 2)]
-    [Puzzle(answer: 30899, year: 2020, day: 07)]
+    [Example(answer: 032, example: 1)]
+    [Example(answer: 126, example: 2)]
+    [Puzzle(answer: 30899)]
     public int part_two(string input)
         => Bags.Parse(input)["shiny gold"].NestedCount;
         

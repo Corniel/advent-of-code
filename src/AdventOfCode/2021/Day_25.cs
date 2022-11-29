@@ -3,7 +3,7 @@ namespace Advent_of_Code_2021;
 [Category(Category.Simulation, Category.VectorAlgebra)]
 public class Day_25
 {
-    [Example(58, @"
+    [Example(answer:58, @"
 v...>>.vv>
 .vv>>.vv..
 >>.>v>...v
@@ -13,7 +13,7 @@ v>v.vv.v..
 .vv..>.>v.
 v.v..>>v.v
 ....v..v.>")]
-    [Puzzle(answer: 598, year: 2021, day: 25)]
+    [Puzzle(answer: 598)]
     public int part_one(string input)
     {
         var grid = input.CharPixels().Grid().SetNeighbors(Neighbors.Sphere);

@@ -11,12 +11,12 @@ public class Day_24
         Assert.AreEqual(Point.O, location);
     }
 
-    [Example(answer: 10, year: 2020, day: 24, example: 1)]
-    [Puzzle(answer: 523, year: 2020, day: 24)]
+    [Example(answer: 10, example: 1)]
+    [Puzzle(answer: 523)]
     public int part_one(string input) => Cells.Parse(input).Count;
 
-    [Example(answer: 2208, year: 2020, day: 24, example: 1)]
-    [Puzzle(answer: 4225, year: 2020, day: 24)]
+    [Example(answer: 2208, example: 1)]
+    [Puzzle(answer: 4225)]
     public int part_two(string input)
     {
         var cells = Cells.Parse(input);

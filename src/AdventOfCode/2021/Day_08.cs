@@ -23,7 +23,7 @@ egadfb cdbfeg cegd fecab cgb gbdefca cg fgcdab egfdb bfceg | gbdfcae bgc cg cgb
 gcafb gcf dcaebfg ecagb gf abcdeg gaef cafbge fdbac fegbdc | fgae cfgab fg bagce";
 
     [Example(answer: 26, Example)]
-    [Puzzle(answer: 479, year: 2021, day: 08)]
+    [Puzzle(answer: 479)]
     public int part_one(string input)
         => input.Lines(line => line[61..])
         .SelectMany(line => line.Split(' '))
@@ -31,7 +31,7 @@ gcafb gcf dcaebfg ecagb gf abcdeg gaef cafbge fdbac fegbdc | fgae cfgab fg bagce
 
     [Example(answer: 5353, "acedgfb cdfbe gcdfa fbcad dab cefabd cdfgeb eafb cagedb ab | cdfeb fcadb cdfeb cdbaf")]
     [Example(answer: 61229, Example)]
-    [Puzzle(answer: 1041746, year: 2021, day: 08)]
+    [Puzzle(answer: 1041746)]
     public int part_two(string input) => input.Lines(line => line.Split(" | ")).Sum(Decode);
 
     private readonly int[] segments = new int[7];

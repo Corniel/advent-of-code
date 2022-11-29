@@ -16,11 +16,11 @@ y RSHIFT 2 -> g
 NOT x -> h
 NOT y -> a";
     [Example(answer: 65079, Example)]
-    [Puzzle(answer: 956, year: 2015, day: 07)]
+    [Puzzle(answer: 956)]
     public ushort part_one(string input)
         => Parse(input)["a"].Output ?? throw new NoAnswer();
 
-    [Puzzle(answer: 40149, year: 2015, day: 07)]
+    [Puzzle(answer: 40149)]
     public ushort part_two(string input)
     {
         var circuit = Parse(input);

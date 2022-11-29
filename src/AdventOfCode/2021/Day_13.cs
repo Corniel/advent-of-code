@@ -4,10 +4,10 @@
 public class Day_13
 {
     [Example(answer: 17, "6,10;0,14;9,10;0,3;10,4;4,11;6,0;6,12;4,1;0,13;10,12;3,4;3,0;8,4;1,10;2,14;8,10;9,0;;fold along y=7;fold along x=5")]
-    [Puzzle(answer: 710, year: 2021, day: 13)]
+    [Puzzle(answer: 710)]
     public long part_one(string input) => Fold(input, 1).Count;
        
-    [Puzzle(answer: "EPLGRULR", year: 2021, day: 13)]
+    [Puzzle(answer: "EPLGRULR")]
     public string part_two(string input)
         => Grid<bool>.FromPoints(Fold(input), true).AsciiText();
 

@@ -3,11 +3,11 @@ namespace Advent_of_Code_2019;
 [Category(Category.VectorAlgebra, Category.PathFinding)]
 public class Day_15
 {
-    [Puzzle(answer: 222, year: 2019, day: 15)]
+    [Puzzle(answer: 222)]
     public int part_one(string input)
         => new Space().Exlore(new Computer(input.BigInts()).WarmUp()).O2Distance;
 
-    [Puzzle(answer: 394, year: 2019, day: 15)]
+    [Puzzle(answer: 394)]
     public int part_two(string input)
         => new Space().Exlore(new Computer(input.BigInts()).WarmUp()).O2Spreading;
 

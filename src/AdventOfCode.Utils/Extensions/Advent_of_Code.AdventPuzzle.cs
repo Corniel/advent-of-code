@@ -2,34 +2,19 @@
 
 namespace Advent_of_Code;
 
-public sealed class AdventPuzzle
+public static class AdventPuzzleExtensions
 {
-    public AdventPuzzle(AdventDate date, MethodInfo method)
+
+    public static TimeSpan Run(this AdventPuzzle puzzle, bool log = true)
     {
-        Date = date;
-        Method = method;
-        Input = Method.GetCustomAttributes<PuzzleAttribute>()
-            .FirstOrDefault(a 
-                => a.GetType() == typeof(PuzzleAttribute) 
-                || a.GetType() == typeof(Now.PuzzleAttribute)).Input;
-    }
-
-    public bool Matches(AdventDate date) => Date.Matches(date);
-
-    public AdventDate Date { get; }
-    private MethodInfo Method { get; }
-    private string Input { get; }
-
-    public TimeSpan Run(bool log = true)
-    {
-        var test = Activator.CreateInstance(Method.DeclaringType);
+        var test = Activator.CreateInstance(puzzle.Method.DeclaringType);
 
         object answer = null;
         var sw = new Stopwatch();
         try
         {
             sw.Start();
-            answer = Method.Invoke(test, new object[] { Input });
+            answer = puzzle.Method.Invoke(test, new object[] { puzzle.Input });
             sw.Stop();
         }
         catch (TargetInvocationException x)
@@ -41,7 +26,7 @@ public sealed class AdventPuzzle
         if (log)
         {
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.Write(Date);
+            Console.Write(puzzle.Date);
             Console.ForegroundColor = ConsoleColor.DarkBlue;
             Console.Write(": ");
             Console.ForegroundColor = ConsoleColor.White;
@@ -66,6 +51,4 @@ public sealed class AdventPuzzle
         }
         return sw.Elapsed;
     }
-
-    public override string ToString() => $"{Date} {Method.Name}";
 }

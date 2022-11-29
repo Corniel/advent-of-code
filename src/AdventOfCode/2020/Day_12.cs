@@ -4,7 +4,7 @@ namespace Advent_of_Code_2020;
 public class Day_12
 {
     [Example(answer: 25, "F10;N3;F7;R90;F11")]
-    [Puzzle(answer: 1631, year: 2020, day: 12)]
+    [Puzzle(answer: 1631)]
     public int part_one(string input)
     {
         var ferry = Point.O;
@@ -20,7 +20,7 @@ public class Day_12
     }
 
     [Example(answer: 286, "F10;N3;F7;R90;F11")]
-    [Puzzle(answer: 58606, year: 2020, day: 12)]
+    [Puzzle(answer: 58606)]
     public int part_two(string input)
     {
         var ferry = Point.O;

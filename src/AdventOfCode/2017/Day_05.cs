@@ -4,11 +4,11 @@ namespace Advent_of_Code_2017;
 public class Day_05
 {
     [Example(answer: 5, "0, 3, 0, 1, -3")]
-    [Puzzle(answer: 372671, year: 2017, day: 05)]
+    [Puzzle(answer: 372671)]
     public int part_one(string input) => Simulate(input);
 
     [Example(answer: 10, "0, 3, 0, 1, -3")]
-    [Puzzle(answer: 25608480, year: 2017, day: 05)]
+    [Puzzle(answer: 25608480)]
     public long part_two(string input) => Simulate(input, 3);
 
     private static int Simulate(string input, int threshold = int.MaxValue)

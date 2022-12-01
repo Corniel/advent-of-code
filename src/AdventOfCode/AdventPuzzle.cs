@@ -48,7 +48,14 @@ public sealed class AdventPuzzle
     private static AdventDate GetDate(MethodInfo method)
     {
         var numbers = method.DeclaringType.FullName.Int32s().ToArray();
-        return new(year: numbers[0], day: numbers[1], part: null);
+        return new(year: numbers[0], day: numbers[1], part: Day(method));
+
+        static int? Day(MethodInfo method) => method.Name switch
+        {
+            nameof(Advent_of_Code_2015.Day_01.part_one) => 1,
+            nameof(Advent_of_Code_2015.Day_01.part_two) => 2,
+            _ => null,
+        };
     }
 
     private static object GetAnswer(object answer, Type type)

@@ -34,7 +34,7 @@ public class Rankings
 
         foreach (var rank in Ranking.Default(partipants, year))
         {
-            Console.WriteLine(rank);
+            Console.WriteLine(rank.ToString("name-only", CultureInfo.CurrentCulture));
         }
     }
 

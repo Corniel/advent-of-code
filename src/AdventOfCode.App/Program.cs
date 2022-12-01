@@ -1,4 +1,7 @@
-﻿namespace Advent_of_Code;
+﻿using Advent_of_Code.Rankings;
+using System.IO;
+
+namespace Advent_of_Code;
 
 public static class Program
 {
@@ -11,15 +14,21 @@ public static class Program
 
         var puzzles = AdventPuzzles.Load();
 
-        if (!AdventDate.TryParse(args[0], out var date)) { return InvalidDay(args[0]); }
-
-        if (date.SpecifiesYearDay() && !puzzles.Contains(date))
+        if (!AdventDate.TryParse(args[0], out var date))
+        {
+            return InvalidDay(args[0]); 
+        }
+        else if (date.SpecifiesYearDay() && !puzzles.Contains(date))
         {
             return Generate(date);
         }
         else if (args.Length == 2 && args[1] == "-rank")
         {
             return Rank(puzzles, date);
+        }
+        else if (args.Length == 2 && args[1] == "-size")
+        {
+            return CodeSize(date);
         }
         else
         {
@@ -34,6 +43,12 @@ public static class Program
             }
             else return NoMethod(date);
         }
+    }
+    private static int Generate(AdventDate date)
+    {
+        var location = Templating.Generate(date.Year.Value, date.Day.Value);
+        Console.WriteLine($"Template code generated at {location.FullName}");
+        return Success;
     }
 
     private static int Rank(AdventPuzzles puzzles, AdventDate date)
@@ -99,10 +114,25 @@ public static class Program
         return Success;
     }
 
-    private static int Generate(AdventDate date)
+
+    private static int CodeSize(AdventDate date)
     {
-         var location = Templating.Generate(date.Year.Value, date.Day.Value);
-        Console.WriteLine($"Template code generated at {location.FullName}");
+        var files = AdventDate.AllAvailable()
+            .Where(d => d.Part == 1 && d.Matches(date))
+            .Select(d => new CodeFile(
+                Location: new(Path.Combine($"./../../../../AdventOfCode/{d.Year}/Day_{d.Day:00}.cs")),
+                Date: new AdventDate(d.Year, d.Day, null)))
+            .Where(code => code.Exists)
+            .OrderBy(code => code.LoC)
+            .ThenBy(code=> code.Size)
+            .ToArray();
+
+        var rank = 0;
+
+        foreach (var file in files)
+        {
+            Console.WriteLine($"{++rank,3} {file}");
+        }
         return Success;
     }
 

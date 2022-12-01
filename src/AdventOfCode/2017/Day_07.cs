@@ -23,7 +23,7 @@ cntj (57)";
     public string part_one(string input) => Root(input).Name;
 
     [Example(answer: 60, Example)]
-    [Puzzle(answer: 666)]
+    [Puzzle(answer: 193)]
     public long part_two(string input)
     {
         var sorted = Root(input).Children.OrderByDescending(c => c.Weight).ToArray();

@@ -11,7 +11,7 @@ public class Days
     [TestCaseSource(nameof(All))]
     public void Should_be_catogized(Type type)
     {
-        var categories = type.GetCustomAttribute<CategoryAttribute>()?.Categories.Where(c => c != Category.None) ?? Array.Empty<Category>();
+        var categories = type.GetCustomAttribute<CategoryAttribute>()?.Categories.Where(c => c != default) ?? Array.Empty<Category>();
         categories.Should().NotBeEmpty(because: type.FullName);
     }
 }

@@ -26,7 +26,7 @@ public class Rankings
     [TestCaseSource(nameof(Years))]
     public void TJIP(int year)
     {
-        var exclude = "grigoresc;Paul Antal;Jurgen Heeffer;Baljinnyam Sereeter;Jeff-vD;TravisMarkvh;Ralph Hendriks;Fred Hoogduin;Martijn van Maasakkers;TravisVincent;I_AM_ GWAN".Split(';');
+        var exclude = "grigoresc;Paul Antal;Jurgen Heeffer;Baljinnyam Sereeter;Jeff-vD;grigoresc;TravisMarkvh;Ralph Hendriks;Fred Hoogduin;Martijn van Maasakkers;TravisVincent;I_AM_ GWAN".Split(';');
         var partipants = new Participants(Data.Participants()
             .Where(p 
                 => p.Value.Boards.Any(b => b.Name == "TJIP") 

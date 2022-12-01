@@ -1,6 +1,6 @@
 ﻿namespace Advent_of_Code.Rankings;
 
-public sealed record DefaultRanking(Participant Participant, int Year) : IComparable<DefaultRanking>
+public sealed record DefaultRanking(Participant Participant, int Year) : IFormattable, IComparable<DefaultRanking>
 {
     public int Position { get; set; }
     public int Score { get; set; }
@@ -9,7 +9,9 @@ public sealed record DefaultRanking(Participant Participant, int Year) : ICompar
 
     public int CompareTo(DefaultRanking other) => other.Score.CompareTo(Score);
 
-    public override string ToString()
+    public override string ToString() => ToString(null, null);
+    
+    public string ToString(string format, IFormatProvider formatProvider)
     {
         var sb = new StringBuilder();
         sb.Append($"{Position,3}) ");
@@ -27,7 +29,9 @@ public sealed record DefaultRanking(Participant Participant, int Year) : ICompar
             }
             else { sb.Append('.'); }
         }
-        sb.Append($"  {Participant}");
+        sb.Append($"  {Participant.ToString(format, formatProvider)}");
         return sb.ToString();
     }
+
+    
 }

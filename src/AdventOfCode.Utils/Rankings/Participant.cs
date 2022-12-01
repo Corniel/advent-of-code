@@ -3,7 +3,7 @@
 public sealed record Participant(
     long Id,
     string Name,
-    string Alias = "")
+    string Alias = "") : IFormattable
 {
     public Dictionary<AdventDate, DateTime> Solutions { get; } = new();
     public HashSet<Board> Boards { get; } = new();
@@ -19,10 +19,12 @@ public sealed record Participant(
     }
 
 
-    public override string ToString()
+    public override string ToString() => ToString(null, null);
+
+    public string ToString(string format, IFormatProvider formatProvider)
     {
         var sb = new StringBuilder(!string.IsNullOrEmpty(Alias) ? Alias : Name);
-        if(Boards.Any())
+        if (format != "name-only" && Boards.Any())
         {
             sb.Append($" [{string.Join(",", Boards.Select(b => b.Name))}]");
         }

@@ -37,10 +37,17 @@ public static class Data
                 }
             }
         }
+        foreach (var ignore in Ignore())
+        {
+            if (participants.Values.FirstOrDefault(p => p.Matches(ignore)) is { } remove)
+            {
+                participants.Remove(remove.Id);
+            }
+        }
         return participants;
     }
 
-    public static Dictionary<int, Board> Boards()
+    static Dictionary<int, Board> Boards()
     {
         using var reader = new StreamReader(Path.Combine(Location.FullName, "boards.txt"));
         var boards = new Dictionary<int, Board>();
@@ -51,7 +58,7 @@ public static class Data
         return boards;
     }
 
-    public static Dictionary<string, string> Aliases()
+    static Dictionary<string, string> Aliases()
     {
         using var reader = new StreamReader(Path.Combine(Location.FullName, "aliases.txt"));
         var aliases = new Dictionary<string, string>();
@@ -60,6 +67,11 @@ public static class Data
             aliases[split[0]] = split[1].Trim();
         }
         return aliases;
+    }
+    static IEnumerable<string> Ignore()
+    {
+        using var reader = new StreamReader(Path.Combine(Location.FullName, "ignore.txt"));
+        return reader.ReadToEnd().Lines();
     }
 
     public static IEnumerable<RankingFile> RankingFiles()

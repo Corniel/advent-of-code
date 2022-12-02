@@ -26,7 +26,8 @@ public class Rankings
     [TestCaseSource(nameof(Years))]
     public void TJIP(int year)
     {
-        var exclude = "grigoresc;Paul Antal;Jurgen Heeffer;Baljinnyam Sereeter;Jeff-vD;grigoresc;TravisMarkvh;Ralph Hendriks;Fred Hoogduin;Martijn van Maasakkers;TravisVincent;I_AM_ GWAN".Split(';');
+        TJIP_Ignore.TryGetValue(year, out var exclude);
+        exclude ??= Array.Empty<string>();
         var partipants = new Participants(Data.Participants()
             .Where(p 
                 => p.Value.Boards.Any(b => b.Name == "TJIP") 
@@ -37,6 +38,10 @@ public class Rankings
             Console.WriteLine(rank.ToString("name-only", CultureInfo.CurrentCulture));
         }
     }
+    private static readonly Dictionary<int, string[]> TJIP_Ignore = new()
+    {
+        [2022] = "Paul Antal;Jurgen Heeffer;Baljinnyam Sereeter;Jeff-vD;Ralph Hendriks;Fred Hoogduin;Martijn van Maasakkers".Split(';'),
+    };
 
     [Test]
     public async Task Update_ranking_files()

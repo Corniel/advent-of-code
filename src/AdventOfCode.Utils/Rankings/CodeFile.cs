@@ -34,7 +34,8 @@ public record class CodeFile(FileInfo Location, AdventDate Date)
                 || line.StartsWith("public class Day_")
                 || line.StartsWith("[")
                 || line == "{"
-                || line == "}") continue;
+                || line == "}"
+                || line == "};") continue;
             loc++;
             size += line.Length;
         }

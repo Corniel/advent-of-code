@@ -98,7 +98,7 @@ public static class Data
                 {
                     using var local = new FileStream(file.Local.FullName, new FileStreamOptions { Access = FileAccess.Write, Mode = FileMode.Create });
                     var json = JsonDocument.Parse(stream);
-                    var writer = new Utf8JsonWriter(local);
+                    var writer = new Utf8JsonWriter(local, new JsonWriterOptions() { Indented = true });
                     json.WriteTo(writer);
                     writer.Flush();
                     updated.Add(file);

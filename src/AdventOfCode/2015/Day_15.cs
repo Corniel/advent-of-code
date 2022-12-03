@@ -28,8 +28,8 @@ public class Day_15
     {
         public static Ingredient Parse(string line)
         {
-            var p = line.Seperate(": capacity ", ", durability ", ", flavor ", ", texture ", ", calories ");
-            return new(p[1].Int32(), p[2].Int32(), p[3].Int32(), p[4].Int32(), p[5].Int32());
+            var p = line.Int32s().ToArray();
+            return new(p[0], p[1], p[2], p[3], p[4]);
         }
     }
 

@@ -70,9 +70,9 @@ public class Day_04
 
                 foreach (var line in lines)
                 {
-                    foreach (var block in line.SpaceSeperated())
+                    foreach (var block in line.SpaceSeparated())
                     {
-                        var kvp = block.Seperate(':');
+                        var kvp = block.Separate(':');
                         var key = kvp[0];
                         var value = kvp[1];
                         passport.duplicate = passport.ContainsKey(key);

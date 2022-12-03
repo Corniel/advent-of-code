@@ -12,8 +12,8 @@ public class Day_03
     [Puzzle(answer: 1195)]
     public long part_one(string input)
     {
-        var wires0 = input.Lines()[0].CommaSeperated(Move.Parse).ToArray();
-        var wires1 = input.Lines()[1].CommaSeperated(Move.Parse).ToArray();
+        var wires0 = input.Lines()[0].CommaSeparated(Move.Parse).ToArray();
+        var wires1 = input.Lines()[1].CommaSeparated(Move.Parse).ToArray();
         var passed = new HashSet<Point>();
         var wire0 = Point.O;
 
@@ -52,8 +52,8 @@ public class Day_03
     [Puzzle(answer: 91518)]
     public long part_two(string input)
     {
-        var wires0 = input.Lines()[0].CommaSeperated(Move.Parse).ToArray();
-        var wires1 = input.Lines()[1].CommaSeperated(Move.Parse).ToArray();
+        var wires0 = input.Lines()[0].CommaSeparated(Move.Parse).ToArray();
+        var wires1 = input.Lines()[1].CommaSeparated(Move.Parse).ToArray();
         var steps = new Dictionary<Point, int>();
         var wire0 = Point.O;
         var steps0 = 1;

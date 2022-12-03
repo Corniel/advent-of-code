@@ -10,7 +10,7 @@ public class Day_13
         var splits = input.StripChars("x").Lines();
         var departure = splits[0].Int32();
         var bus = splits[1]
-           .CommaSeperated(s => new Bus(s.Int32(), Offset(s.Int32(), departure)))
+           .CommaSeparated(s => new Bus(s.Int32(), Offset(s.Int32(), departure)))
            .OrderBy(b => b.Offset)
            .First();
         return bus.Period * bus.Offset;
@@ -21,7 +21,7 @@ public class Day_13
     public long part_two(string input)
     {
         var busses = input.Lines()[1]
-            .CommaSeperated((id, index) => new Bus(id.TryInt32(fallback: 0), index % id.TryInt32(fallback: 1)))
+            .CommaSeparated((id, index) => new Bus(id.TryInt32(fallback: 0), index % id.TryInt32(fallback: 1)))
             .Where(b => b.Period != default);
         var bus = busses.First();
 

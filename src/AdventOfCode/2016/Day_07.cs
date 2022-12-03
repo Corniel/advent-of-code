@@ -20,7 +20,7 @@ public class Day_07
     {
         var support = false;
         var odd = true;
-        foreach (var block in line.Seperate('[', ']'))
+        foreach (var block in line.Separate('[', ']'))
         {
             if (odd) support |= ABBA(block);
             else if (ABBA(block)) return false;
@@ -36,7 +36,7 @@ public class Day_07
 
     static bool SupportsSsl(string line)
     {
-        var blocks = line.Seperate('[', ']');
+        var blocks = line.Separate('[', ']');
         var odds = blocks.WithStep(2).SelectMany(line => line.SelectWithPrevious(3));
         var evens = blocks.Skip(1).WithStep(2).SelectMany(line => line.SelectWithPrevious(3)).ToArray();
         return odds.Any(odd => evens.Any(even => ABA_BAB(odd, even)));

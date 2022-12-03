@@ -43,9 +43,9 @@ public class Day_16
             var first = line.IndexOf(':');
             var id = line[..first].Int32();
             var sue = new Sue(id);
-            foreach (var block in line[(first + 2)..].Seperate(", "))
+            foreach (var block in line[(first + 2)..].CommaSeparated())
             {
-                var split = block.Seperate(": ");
+                var split = block.Separate(": ");
                 sue[Enum.Parse<Compount>(split[0])] = split[1].Int32();
             }
             return sue;

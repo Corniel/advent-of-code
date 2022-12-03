@@ -82,7 +82,7 @@ public class Day_20
             return tiles;
         }
         private static Tile Parse(string[] lines)
-           => new Tile(lines[0].Seperate(' ')[1][0..^1].Int32(), lines.Skip(1).CharPixels().Grid());
+           => new(lines[0].SpaceSeparated()[1][0..^1].Int32(), lines.Skip(1).CharPixels().Grid());
         private static IEnumerable<Tile> Others(IEnumerable<Tile> tiles, Tile exclude)
             => tiles.Where(t => t.Id != exclude.Id);
     }

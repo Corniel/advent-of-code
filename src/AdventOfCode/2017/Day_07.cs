@@ -44,12 +44,12 @@ cntj (57)";
         var nodes = new Dictionary<string, Node>();
         foreach (var line in input.Lines())
         {
-            var node = new Node(line.SpaceSeperated().First(), line.Int32s().First());
+            var node = new Node(line.SpaceSeparated().First(), line.Int32s().First());
             nodes[node.Name] = node;
         }
         foreach (var line in input.Lines())
         {
-            var items = line.SpaceSeperated().Where(n => n[0] >= 'a' && n[0] <= 'z').Select(name => nodes[name.Trim(',')]).ToArray();
+            var items = line.SpaceSeparated().Where(n => n[0] >= 'a' && n[0] <= 'z').Select(name => nodes[name.Trim(',')]).ToArray();
             items[0].Children.AddRange(items[1..]);
         }
         var children = new HashSet<string>(nodes.Values.SelectMany(n => n.Children).Select(n => n.Name));

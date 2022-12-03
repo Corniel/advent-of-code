@@ -12,13 +12,13 @@ public class Day_04
     static bool IsPrhase(string line)
     {
         var set = new HashSet<string>();
-        return line.SpaceSeperated().All(set.Add);
+        return line.SpaceSeparated().All(set.Add);
     }
 
     static bool NoAnagrams(string line)
     {
         var set = new HashSet<string>();
-        return line.SpaceSeperated().Select(Ordered).All(set.Add);
+        return line.SpaceSeparated().Select(Ordered).All(set.Add);
     }
 
     static string Ordered(string word) => new(word.OrderBy(c => c).ToArray());

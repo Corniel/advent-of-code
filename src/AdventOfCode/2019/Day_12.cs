@@ -123,8 +123,8 @@ public class Day_12
         {
             var xyz = line
                 .Trim('<', '>')
-                .CommaSeperated()
-                .Select(sub => sub.Seperate('=')[1].Int32())
+                .CommaSeparated()
+                .Select(sub => sub.Separate('=')[1].Int32())
                 .ToArray();
 
             return new Moon(new Point3D(xyz[0], xyz[1], xyz[2]), default);

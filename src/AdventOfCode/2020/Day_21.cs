@@ -67,8 +67,8 @@ public class Day_21
         {
             var splitted = line.Split(" (contains ");
             return new Food(
-                Ingredients: splitted[0].SpaceSeperated().ToArray(),
-                Allergens: splitted[1][..^1].CommaSeperated().ToArray());
+                Ingredients: splitted[0].SpaceSeparated().ToArray(),
+                Allergens: splitted[1][..^1].CommaSeparated().ToArray());
         }
     }
 }

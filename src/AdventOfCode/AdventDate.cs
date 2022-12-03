@@ -35,7 +35,7 @@ public readonly struct AdventDate : IComparable<AdventDate>
         adventDate = default;
         if (str?.ToUpperInvariant() == "ALL" || str == "*") { return true; }
 
-        var parts = str.Seperate('-');
+        var parts = str.Separate('-');
         var length = parts.Length;
 
         if (length > 3) { return false; }

@@ -68,7 +68,7 @@ public class Day_12
         var start = new Cave("start");
         var caves = new[] { start, new Cave("end") }.ToDictionary(cave => cave.Name, cave => cave);
 
-        foreach (var parts in input.Lines(line => line.Seperate("-")))
+        foreach (var parts in input.Lines(line => line.Separate("-")))
         {
             if (!caves.TryGetValue(parts[0], out var from))
             {

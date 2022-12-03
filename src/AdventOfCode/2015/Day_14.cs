@@ -46,8 +46,8 @@ Dancer can fly 16 km/s for 11 seconds, but then must rest for 162 seconds.")]
 
         public static Reindeer Parse(string line)
         {
-            var parts = line.Seperate(" can fly ", " km/s for ", " seconds, but then must rest for ", " seconds.");
-            return new(parts[1].Int32(), parts[2].Int32(), parts[3].Int32());
+            var parts = line.Int32s().ToArray();
+            return new(parts[0], parts[1], parts[2]);
         }
     }
 }

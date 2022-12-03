@@ -55,8 +55,8 @@ public class Day_16
         public bool Valid(Ticket ticket) => ticket.Parts.All(part => Valid(part));
         public static Rule Parse(string str)
         {
-            var split = str.Seperate(':');
-            return new Rule(split[0], split[1].Seperate("or").Select(Range.Parse).ToArray());
+            var split = str.Separate(':');
+            return new Rule(split[0], split[1].Separate("or").Select(Range.Parse).ToArray());
         }
     }
     private record Range(int Lower, int Upper)
@@ -64,7 +64,7 @@ public class Day_16
         public bool Valid(int number) => number >= Lower && number <= Upper;
         public static Range Parse(string str)
         {
-            var split = str.Seperate('-');
+            var split = str.Separate('-');
             return new Range(split[0].Int32(), split[1].Int32());
         }
     }

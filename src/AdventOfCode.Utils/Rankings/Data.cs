@@ -51,7 +51,7 @@ public static class Data
     {
         using var reader = new StreamReader(Path.Combine(Location.FullName, "boards.txt"));
         var boards = new Dictionary<int, Board>();
-        foreach (var split in reader.ReadToEnd().Lines(line => line.Seperate(':')))
+        foreach (var split in reader.ReadToEnd().Lines(line => line.Separate(':')))
         {
             boards[split[0].Int32()] = new Board(split[0].Int32(), split[1].Trim());
         }
@@ -62,7 +62,7 @@ public static class Data
     {
         using var reader = new StreamReader(Path.Combine(Location.FullName, "aliases.txt"));
         var aliases = new Dictionary<string, string>();
-        foreach (var split in reader.ReadToEnd().Lines(line => line.Seperate(':')))
+        foreach (var split in reader.ReadToEnd().Lines(line => line.Separate(':')))
         {
             aliases[split[0]] = split[1].Trim();
         }

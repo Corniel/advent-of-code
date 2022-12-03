@@ -49,8 +49,8 @@ David would gain 41 happiness units by sitting next to Carol.")]
     {
         public static Relation Parse(string line)
         {
-            var blocks = line[..^1].Seperate(" would ", " happiness units by sitting next to ");
-            return new(blocks[0], blocks[2], (blocks[1].StartsWith("lose ") ? -1 : +1) * blocks[1].SpaceSeperated().Last().Int32());
+            var blocks = line[..^1].Separate(" would ", " happiness units by sitting next to ");
+            return new(blocks[0], blocks[2], (blocks[1].StartsWith("lose ") ? -1 : +1) * blocks[1].SpaceSeparated().Last().Int32());
         }
     }
 }

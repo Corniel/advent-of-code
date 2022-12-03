@@ -28,14 +28,14 @@ public class Day_07
                 .Replace(".", "")
                 .Lines())
             {
-                var split = line.Seperate("contain");
+                var split = line.Separate("contain");
 
                 var bag = new Leaf(split[0]);
                 bag = bags.TryAdd(bag);
 
-                foreach (var sub in split[1].CommaSeperated())
+                foreach (var sub in split[1].CommaSeparated())
                 {
-                    var parts = sub.SpaceSeperated().ToArray();
+                    var parts = sub.SpaceSeparated().ToArray();
 
                     if (int.TryParse(parts[0], out var repeats))
                     {

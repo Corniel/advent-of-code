@@ -47,7 +47,7 @@ public class Day_24
         public override string ToString()=> $"{Op} {string.Join(' ', Args.AsEnumerable())}";
         public static Expression Parse(string line)
         {
-            var args = line.SpaceSeperated().ToArray();
+            var args = line.SpaceSeparated().ToArray();
             return new(Enum.Parse<Op>(args[0]), args[1..].Select(ParseArgument).ToArray());
         }
         static Arg ParseArgument(string str) => Enum.Parse<Arg>(str);

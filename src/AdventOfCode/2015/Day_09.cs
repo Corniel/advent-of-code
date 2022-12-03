@@ -50,7 +50,7 @@ Dublin to Belfast = 141";
 
         public static Route Parse(string line)
         {
-            var parts = line.Seperate(" to ", " = ");
+            var parts = line.Separate(" to ", " = ");
             return new(parts[0], parts[1], parts[2].Int32());
         }
     }

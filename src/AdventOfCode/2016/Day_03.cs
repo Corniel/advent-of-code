@@ -15,12 +15,7 @@ public class Day_03
             + Count(numbers.Skip(1).WithStep(3).ToArray())
             + Count(numbers.Skip(2).WithStep(3).ToArray());
 
-        static int Count(ReadOnlySpan<int> numbers)
-        {
-            var sum = 0;
-            for (var i = 0; i < numbers.Length; i += 3) sum += Triangle.Is(numbers.Slice(i, 3).ToArray());
-            return sum;
-        }
+        static int Count(int[] numbers) => numbers.ChunkBy(3).Sum(Triangle.Is);
     }
 
     static class Triangle

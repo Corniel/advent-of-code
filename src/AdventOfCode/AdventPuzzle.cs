@@ -68,6 +68,7 @@ public sealed class AdventPuzzle
             else { return answer; }
         }
         else if (type == typeof(string) && answer is string str) { return str.Trim(); }
+        else if (type == typeof(Point) && answer is string point) { return Point.Parse(point); }
         else return answer;
     }
 }

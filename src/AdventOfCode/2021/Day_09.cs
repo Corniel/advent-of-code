@@ -50,6 +50,6 @@ public class Day_09
             }
             sizes.Add(size);
         }
-        return sizes.OrderByDescending(s => s).Take(3).Product();
+        return sizes.OrderDescending().Take(3).Product();
     }
 }

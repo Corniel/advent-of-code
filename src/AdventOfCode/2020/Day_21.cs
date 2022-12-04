@@ -42,7 +42,7 @@ public class Day_21
         public static Allergen[] Init(IEnumerable<Food> foods)
         {
             var allergens = foods
-                .SelectMany(food => food.Allergens).Distinct().OrderBy(a => a)
+                .SelectMany(food => food.Allergens).Distinct().Order()
                 .Select(allergen => new Allergen(
                     Name: allergen,
                     Ingredients: foods

@@ -49,25 +49,17 @@ public class Day_16
             return new Option(rule, positions.ToList());
         }
     }
-    private record Rule(string Name, Range[] Ranges)
+    private record Rule(string Name, Int32Range[] Ranges)
     {
-        public bool Valid(int part) => Ranges.Any(range => range.Valid(part));
+        public bool Valid(int part) => Ranges.Any(range => range.Contains(part));
         public bool Valid(Ticket ticket) => ticket.Parts.All(part => Valid(part));
         public static Rule Parse(string str)
         {
             var split = str.Separate(':');
-            return new Rule(split[0], split[1].Separate("or").Select(Range.Parse).ToArray());
+            return new Rule(split[0], split[1].Separate("or").Select(Int32Range.Parse).ToArray());
         }
     }
-    private record Range(int Lower, int Upper)
-    {
-        public bool Valid(int number) => number >= Lower && number <= Upper;
-        public static Range Parse(string str)
-        {
-            var split = str.Separate('-');
-            return new Range(split[0].Int32(), split[1].Int32());
-        }
-    }
+
     private record Ticket(int[] Parts)
     {
         public bool Valid(IEnumerable<Rule> rules) => rules.Any(rule => rule.Valid(this));

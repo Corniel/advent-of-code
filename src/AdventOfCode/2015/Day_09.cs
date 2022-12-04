@@ -19,7 +19,7 @@ Dublin to Belfast = 141";
     private IEnumerable<int> Distances(string input)
     {
         var routes = input.Lines(Route.Parse).ToArray();
-        var locations = routes.SelectMany(route => route.Locations).Distinct().OrderBy(l => l).ToArray();
+        var locations = routes.SelectMany(route => route.Locations).Distinct().Order().ToArray();
         var distances = new Grid<int>(locations.Length, locations.Length);
 
         foreach (var route in routes)

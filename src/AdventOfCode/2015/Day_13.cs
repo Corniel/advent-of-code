@@ -25,7 +25,7 @@ David would gain 41 happiness units by sitting next to Carol.")]
     private static int FindHappiness(string input, int neutral = 0)
     {
         var relations = input.Lines(Relation.Parse).ToArray();
-        var people = relations.Select(h => h.Obj).Distinct().OrderBy(n => n).ToArray();
+        var people = relations.Select(h => h.Obj).Distinct().Order().ToArray();
         var likes = new Grid<int>(people.Length + neutral, people.Length + neutral);
 
         foreach (var relation in relations)

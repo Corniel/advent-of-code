@@ -22,7 +22,7 @@ public class Day_03
     {
         public static int Is(IEnumerable<int> numbers)
         {
-            var triangle = numbers.OrderBy(n => n).ToArray();
+            var triangle = numbers.Order().ToArray();
             return triangle[2] < (triangle[1] + triangle[0]) ? 1 : 0;
         }
         public static int Parse(string line) => Is(line.Int32s());

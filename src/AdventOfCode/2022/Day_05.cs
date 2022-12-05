@@ -11,22 +11,22 @@ public class Day_05
     [Puzzle(answer: "CNSFCGJSM")]
     public string part_two(string input) => Restack(input, MultiStack);
 
-    static string Restack(string input, Action<Move[], Stack<char>[]> apply)
+    static string Restack(string input, Action<IEnumerable<Move>, Stack<char>[]> apply)
     {
         var groups = input.GroupedLines(StringSplitOptions.None).ToArray();
-        var grid = groups[0].CharPixels(false).Grid();
+        var grid = groups[0].CharPixels(false);
         var stacks = Enumerable.Range(0, 2 + grid.Cols / 4).Select(_ => new Stack<char>()).ToArray();
 
-        foreach (var pixel in grid.OrderByDescending(p => p.Key.Y).Where(p => char.IsAsciiLetterUpper(grid[p.Key])))
+        foreach (var pixel in grid.OrderByDescending(p => p.Key.Y).Where(p => char.IsAsciiLetterUpper(p.Value)))
         {
-            stacks[1 + pixel.Key.X / 4].Push(grid[pixel.Key]);
+            stacks[1 + pixel.Key.X / 4].Push(pixel.Value);
         }
-        apply(groups[1..].SelectMany(g => g).Select(Move.Parse).ToArray(), stacks);
+        apply(groups[1..].SelectMany(g => g).Select(Move.Parse), stacks);
 
         return new(stacks.Skip(1).Select(s => s.Pop()).ToArray());
     }
 
-    static void SingleStack(Move[] moves, Stack<char>[] stacks)
+    static void SingleStack(IEnumerable<Move> moves, Stack<char>[] stacks)
     {
         foreach (var move in moves.SelectMany(m => Enumerable.Repeat(m, m.Repeat)))
         {
@@ -34,7 +34,7 @@ public class Day_05
         }
     }
 
-    private static void MultiStack(Move[] moves, Stack<char>[] stacks)
+    private static void MultiStack(IEnumerable<Move> moves, Stack<char>[] stacks)
     {
         var buffer = new Stack<char>();
         foreach (var move in moves)

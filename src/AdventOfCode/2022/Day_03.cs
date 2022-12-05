@@ -1,8 +1,8 @@
-using SmartAss.Parsing;
+﻿using SmartAss.Parsing;
 
 namespace Advent_of_Code_2022;
 
-[Category(Category.Cryptography)]
+[Category(Category.μs, Category.Cryptography)]
 public class Day_03
 {
     [Example(answer: 157, "vJrwpWtwJgWrhcsFMMfFFhFp;jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL;PmmdzqPrVvPwwTWBwg;wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn;ttgJtRGJQctTZtZT\r\nCrZsJsPPZsGzwwsLwLmpwMDw")]

@@ -1,4 +1,20 @@
-﻿[*.cs]
+﻿root = true
+[*]
+end_of_line = crlf
+insert_final_newline = true
+charset = utf-8-bom
+
+# Code files
+[*.{cs,cshtml,ts}]
+indent_style = space
+indent_size = 4
+
+# Project files
+[*.{csproj,props,yaml}]
+indent_style = space
+indent_size = 2
+
+[*.cs]
 
 # S101: Types should be named in PascalCase
 dotnet_diagnostic.S101.severity = none

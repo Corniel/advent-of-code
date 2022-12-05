@@ -1,6 +1,6 @@
-namespace Advent_of_Code_2022;
+﻿namespace Advent_of_Code_2022;
 
-[Category(Category.Simulation, Category.Grid)]
+[Category(Category.μs, Category.Simulation, Category.Grid)]
 public class Day_05
 {
     [Example(answer: "CMZ", 1)]

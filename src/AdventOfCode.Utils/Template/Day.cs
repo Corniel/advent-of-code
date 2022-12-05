@@ -1,6 +1,6 @@
 ﻿namespace Advent_of_Code_@Year;
 
-[Category(Category.None)]
+[Category(Category.μs, Category.None)]
 public class Day_@Day
 {
     [Example(answer: 666, "")]

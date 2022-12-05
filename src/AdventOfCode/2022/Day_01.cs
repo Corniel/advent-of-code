@@ -1,6 +1,6 @@
-namespace Advent_of_Code_2022;
+﻿namespace Advent_of_Code_2022;
 
-[Category(Category.Computation)]
+[Category(Category.μs, Category.Computation)]
 public class Day_01
 {
     [Example(answer: 24000, "1000;2000;3000;;4000;;5000;6000;;7000;8000;9000;;10000")]

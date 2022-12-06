@@ -45,7 +45,7 @@ public class Day_16
         public bool HasMultiple => Positions.Count > 1;
         public static Option New(Rule rule, IEnumerable<Ticket> tickets)
         {
-            var positions = Enumerable.Range(0, 20).Where(option => tickets.All(ticket => rule.Valid(ticket.Parts[option])));
+            var positions = Range(0, 20).Where(option => tickets.All(ticket => rule.Valid(ticket.Parts[option])));
             return new Option(rule, positions.ToList());
         }
     }

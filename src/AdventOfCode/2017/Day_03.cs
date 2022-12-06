@@ -13,7 +13,7 @@ public class Day_03
     public int part_two(string input)
     {
         var grid = new Dictionary<Point, int>() { { Point.O, 1 } };
-        var max = Enumerable.Range(2, short.MaxValue).First(n => Sum(n, grid) > input.Int32());
+        var max = Range(2, short.MaxValue).First(n => Sum(n, grid) > input.Int32());
         return grid[Location(max)];
     }
 

@@ -21,7 +21,7 @@ public abstract class GameOfLife<TCell> : HashSet<TCell>
     /// <summary>Simulates multiple generations.</summary>
     public virtual void Generations(int generations)
     {
-        foreach (var _ in Enumerable.Range(0, generations))
+        foreach (var _ in Range(0, generations))
         {
             NextGeneration();
         }

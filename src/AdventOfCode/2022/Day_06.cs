@@ -13,5 +13,5 @@ public class Day_06
     [Puzzle(answer: 2472)]
     public int part_two(string input) => Read(input, 14);
 
-    static int Read(string input, int length) => Enumerable.Range(0, input.Length).First(i => input.Substring(i, length).AllDistinct()) + length;
+    static int Read(string input, int length) => Range(0, input.Length).First(i => input.Substring(i, length).AllDistinct()) + length;
 }

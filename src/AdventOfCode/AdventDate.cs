@@ -91,8 +91,8 @@ public readonly struct AdventDate : IComparable<AdventDate>
         <= (now ?? Clock.UtcNow());
 
     public static IEnumerable<AdventDate> AllAvailable(DateTime? now = default)
-        => Enumerable.Range(2015, 1 + Clock.Today().Year - 2015)
-        .SelectMany(year => Enumerable.Range(1, 25).Select(d => new AdventDate(year, d, default)))
+        => Range(2015, 1 + Clock.Today().Year - 2015)
+        .SelectMany(year => Range(1, 25).Select(d => new AdventDate(year, d, default)))
         .SelectMany(date => new[]
         {
             new AdventDate(date.Year, date.Day, 1),

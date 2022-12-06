@@ -51,6 +51,6 @@ public class Day_12
             return nexts[pattern];
         }
 
-        public override IEnumerable<long> Neighbors(long cell) => Enumerable.Range((int)cell - 2, 5).Where(c => c != cell).Select(c => (long)c);
+        public override IEnumerable<long> Neighbors(long cell) => Range((int)cell - 2, 5).Where(c => c != cell).Select(c => (long)c);
     }
 }

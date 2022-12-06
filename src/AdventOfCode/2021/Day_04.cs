@@ -75,7 +75,7 @@ public class Day_04
 
     public sealed record Card(int[] Numbers)
     {
-        public bool Bingo => Enumerable.Range(0, 5).Any(i => Row(i) || Col(i));
+        public bool Bingo => Range(0, 5).Any(i => Row(i) || Col(i));
         public int Score => Numbers.Sum();
 
         public void Play(int number)

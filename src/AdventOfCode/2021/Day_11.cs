@@ -28,7 +28,7 @@ public class Day_11
         var grid = input.CharPixels().Grid((ch) => ch - '0').SetNeighbors(Neighbors.Grid, CompassPoints.All);
         var dones = new Grid<bool>(grid.Cols, grid.Rows);
         var stack = new Stack<Point>();
-        return Enumerable.Range(1, int.MaxValue).Select(step => Step(grid, dones, stack));
+        return Range(1, int.MaxValue).Select(step => Step(grid, dones, stack));
     }
 
     private static int Step(Grid<int> grid, Grid<bool> dones, Stack<Point> stack)

@@ -15,7 +15,7 @@ public class Day_05
     {
         var groups = input.GroupedLines(StringSplitOptions.None).ToArray();
         var grid = groups[0].CharPixels(false);
-        var stacks = Enumerable.Range(0, 2 + grid.Cols / 4).Select(_ => new Stack<char>()).ToArray();
+        var stacks = Range(0, 2 + grid.Cols / 4).Select(_ => new Stack<char>()).ToArray();
 
         foreach (var pixel in grid.OrderByDescending(p => p.Key.Y).Where(p => char.IsAsciiLetterUpper(p.Value)))
         {
@@ -28,7 +28,7 @@ public class Day_05
 
     static void SingleStack(IEnumerable<Move> moves, Stack<char>[] stacks)
     {
-        foreach (var move in moves.SelectMany(m => Enumerable.Repeat(m, m.Repeat)))
+        foreach (var move in moves.SelectMany(m => Repeat(m, m.Repeat)))
         {
             stacks[move.To].Push(stacks[move.From].Pop());
         }

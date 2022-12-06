@@ -14,30 +14,86 @@ public class Rankings
         }
     }
 
-    [TestCaseSource(nameof(Years))]
-    public void Default(int year)
+    public class Default : Rankings
     {
-        foreach (var rank in Ranking.Default(Data.Participants(), year))
+        [TestCaseSource(nameof(Years))]
+        public void All(int year)
         {
-            Console.WriteLine(rank);
+            foreach (var rank in DetailRanking.Default(Data.Participants(), year))
+            {
+                Console.WriteLine(rank);
+            }
+        }
+
+        [TestCaseSource(nameof(Years))]
+        public void TJIP(int year)
+        {
+            Participants partipants = GetTjip(year);
+
+            foreach (var rank in DetailRanking.Default(partipants, year))
+            {
+                Console.WriteLine(rank.ToString("name-only", CultureInfo.CurrentCulture));
+            }
         }
     }
 
-    [TestCaseSource(nameof(Years))]
-    public void TJIP(int year)
+    public class Top_10 : Rankings
+    {
+        [TestCaseSource(nameof(Years))]
+        public void All(int year)
+        {
+            foreach (var rank in DetailRanking.Top_10(Data.Participants(), year))
+            {
+                Console.WriteLine(rank);
+            }
+        }
+
+        [TestCaseSource(nameof(Years))]
+        public void TJIP(int year)
+        {
+            Participants partipants = GetTjip(year);
+
+            foreach (var rank in DetailRanking.Top_10(partipants, year))
+            {
+                Console.WriteLine(rank.ToString("name-only", CultureInfo.CurrentCulture));
+            }
+        }
+    }
+
+    public class _50_percent : Rankings
+    {
+        [TestCaseSource(nameof(Years))]
+        public void All(int year)
+        {
+            foreach (var rank in DetailRanking._50_percent(Data.Participants(), year))
+            {
+                Console.WriteLine(rank);
+            }
+        }
+
+        [TestCaseSource(nameof(Years))]
+        public void TJIP(int year)
+        {
+            Participants partipants = GetTjip(year);
+
+            foreach (var rank in DetailRanking._50_percent(partipants, year))
+            {
+                Console.WriteLine(rank.ToString("name-only", CultureInfo.CurrentCulture));
+            }
+        }
+    }
+
+    private static Participants GetTjip(int year)
     {
         TJIP_Ignore.TryGetValue(year, out var exclude);
         exclude ??= Array.Empty<string>();
         var partipants = new Participants(Data.Participants()
-            .Where(p 
-                => p.Value.Boards.Any(b => b.Name == "TJIP") 
+            .Where(p
+                => p.Value.Boards.Any(b => b.Name == "TJIP")
                 && !exclude.Any(name => p.Value.Matches(name))));
-
-        foreach (var rank in Ranking.Default(partipants, year))
-        {
-            Console.WriteLine(rank.ToString("name-only", CultureInfo.CurrentCulture));
-        }
+        return partipants;
     }
+
     private static readonly Dictionary<int, string[]> TJIP_Ignore = new()
     {
         [2022] = "Paul Antal;Jurgen Heeffer;Baljinnyam Sereeter;Jeff-vD;Ralph Hendriks;Fred Hoogduin;Martijn van Maasakkers".Split(';'),

@@ -12,8 +12,8 @@ public class Day_19
     public int part_two(string input)
     {
         Run(input, out var scanners);
-        return Enumerable.Range(0, scanners.Length)
-            .SelectMany(f => Enumerable.Range(0, scanners.Length).Select(s => new { f, s }))
+        return Range(0, scanners.Length)
+            .SelectMany(f => Range(0, scanners.Length).Select(s => new { f, s }))
             .Max(p => scanners[p.f].Position.ManhattanDistance(scanners[p.s].Position));
     }
 

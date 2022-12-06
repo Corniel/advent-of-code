@@ -27,10 +27,10 @@ public class Day_20
         {
             Id = id;
             Grid = chars;
-            N = Border(Enumerable.Range(0, 10).Select(i => chars[i, 0] == '#' ? 1 : 0).ToArray());
-            E = Border(Enumerable.Range(0, 10).Select(i => chars[9, i] == '#' ? 1 : 0).ToArray());
-            S = Border(Enumerable.Range(0, 10).Select(i => chars[i, 9] == '#' ? 1 : 0).ToArray());
-            W = Border(Enumerable.Range(0, 10).Select(i => chars[0, i] == '#' ? 1 : 0).ToArray());
+            N = Border(Range(0, 10).Select(i => chars[i, 0] == '#' ? 1 : 0).ToArray());
+            E = Border(Range(0, 10).Select(i => chars[9, i] == '#' ? 1 : 0).ToArray());
+            S = Border(Range(0, 10).Select(i => chars[i, 9] == '#' ? 1 : 0).ToArray());
+            W = Border(Range(0, 10).Select(i => chars[0, i] == '#' ? 1 : 0).ToArray());
             Borders = new[] { N, E, S, W };
         }
         private static uint Border(int[] bits)

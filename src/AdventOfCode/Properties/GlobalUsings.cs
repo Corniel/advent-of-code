@@ -23,3 +23,4 @@ global using System.Text;
 global using System.Text.RegularExpressions;
 global using CategoryAttribute = Advent_of_Code.CategoryAttribute;
 global using Int = System.Numerics.BigInteger;
+global using static System.Linq.Enumerable;

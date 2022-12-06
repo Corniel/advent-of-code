@@ -16,7 +16,7 @@ public class Day_12
 
         for (var id = 1; id < nodes.Length; id++)
         {
-            groups += Enumerable.Range(0, id).Any(index => nodes[index].Contains(id)) ? 0 : 1;
+            groups += Range(0, id).Any(index => nodes[index].Contains(id)) ? 0 : 1;
         }
         return groups;
     }

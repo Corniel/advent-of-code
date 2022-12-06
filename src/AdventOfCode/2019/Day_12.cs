@@ -1,4 +1,4 @@
-namespace Advent_of_Code_2019;
+﻿namespace Advent_of_Code_2019;
 
 [Category(Category.VectorAlgebra)]
 public class Day_12
@@ -70,7 +70,7 @@ public class Day_12
             Step(pairs);
             steps++;
         }
-        while (!Enumerable.SequenceEqual(initial, pairs));
+        while (!initial.SequenceEqual(pairs));
 
         return steps;
     }
@@ -119,16 +119,7 @@ public class Day_12
         public Point3D Position { get; set; }
         public Vector3D Velocity { get; set; }
 
-        public static Moon Parse(string line)
-        {
-            var xyz = line
-                .Trim('<', '>')
-                .CommaSeparated()
-                .Select(sub => sub.Separate('=')[1].Int32())
-                .ToArray();
-
-            return new Moon(new Point3D(xyz[0], xyz[1], xyz[2]), default);
-        }
+        public static Moon Parse(string line) => new(Ctor.New<Point3D>(line.Int32s()), default);
 
         public static void SetStep(IEnumerable<Moon> moons)
         {

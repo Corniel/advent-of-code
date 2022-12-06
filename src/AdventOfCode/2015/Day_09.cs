@@ -1,4 +1,4 @@
-namespace Advent_of_Code_2015;
+﻿namespace Advent_of_Code_2015;
 
 [Category(Category.Computation)]
 public class Day_09
@@ -30,7 +30,7 @@ Dublin to Belfast = 141";
             distances[to, from] = route.Distance;
         }
 
-        return Enumerable.Range(0, locations.Length).ToArray()
+        return Range(0, locations.Length).ToArray()
             .Permutations().Select(permuation => Distance(permuation, distances));
     }
 

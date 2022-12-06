@@ -1,4 +1,4 @@
-namespace Advent_of_Code_2015;
+﻿namespace Advent_of_Code_2015;
 
 [Category(Category.Computation)]
 public class Day_13
@@ -34,7 +34,7 @@ David would gain 41 happiness units by sitting next to Carol.")]
             var sub = Array.IndexOf(people, relation.Sub);
             likes[obj, sub] = relation.Val;
         }
-        return Enumerable.Range(1, people.Length + neutral - 1).ToArray()
+        return Range(1, people.Length + neutral - 1).ToArray()
            .Permutations().Where(p => p[0] < p[1]).Select(permuation => Happiness(permuation, likes)).Max();
     }
 

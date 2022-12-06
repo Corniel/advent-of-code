@@ -7,7 +7,7 @@ public class Day_17
     public int part_one(string input)
     {
         var numbers = input.Int32s().OrderDescending().ToArray();
-        return Enumerable.Range(1, (1 << numbers.Length) - 2).Count(bits => Fits((uint)bits, numbers));
+        return Range(1, (1 << numbers.Length) - 2).Count(bits => Fits((uint)bits, numbers));
     }
 
     [Puzzle(answer: 18)]
@@ -16,7 +16,7 @@ public class Day_17
         var numbers = input.Int32s().OrderDescending().ToArray();
         var min = int.MaxValue;
         var count = 0;
-        foreach (var containers in Enumerable.Range(1, (1 << numbers.Length) - 2)
+        foreach (var containers in Range(1, (1 << numbers.Length) - 2)
             .Where(bits => Fits((uint)bits, numbers))
             .Select(bits => Bits.UInt32.Count((uint)bits)))
         {

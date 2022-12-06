@@ -28,7 +28,7 @@ public class Day_05
     }
 
     static IEnumerable<byte[]> Hash(string input)
-        => Enumerable.Range(0, int.MaxValue)
+        => Range(0, int.MaxValue)
             .Select(index => md5.ComputeHash(Encoding.ASCII.GetBytes($"{input}{index}")))
             .Where(bytes => bytes[0] == 0 && bytes[1] == 0 && bytes[2] < 16)
             .Select(bytes => bytes.AsSpan().Slice(2, 2).ToArray());

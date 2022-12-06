@@ -9,7 +9,7 @@ public class Day_24
     [Puzzle(answer: 18116121134117)]
     public long part_two(string input) => Serial(Asc, State.Zero, input.Lines(Expression.Parse).ToArray()) ?? throw new NoAnswer();
 
-    static readonly int[] Asc = Enumerable.Range(1, 9).ToArray();
+    static readonly int[] Asc = Range(1, 9).ToArray();
     static readonly int[] Desc = Asc.Reverse().ToArray();
 
     long? Serial(int[] digits, State state, IReadOnlyList<Expression> exps, long serial = 0, int level = 0, int index = 0)

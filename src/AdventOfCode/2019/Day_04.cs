@@ -17,7 +17,7 @@ public class Day_04
             .Select(str => int.Parse(str))
             .ToArray();
 
-        return Enumerable.Range(boundries[0], 1 + boundries[1] - boundries[0])
+        return Range(boundries[0], 1 + boundries[1] - boundries[0])
             .Count(validator);
     }
 

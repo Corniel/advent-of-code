@@ -62,7 +62,7 @@ public class Day_14
         var indexes = mask.Select((ch, i) => new { ch, i = 35 - i }).Where(p => p.ch == 'X').Select(p => p.i).ToArray();
         var permutations = 1 << indexes.Length;
 
-        return Enumerable.Range(0, permutations).Select(p => address | FloatingBits(p, indexes));
+        return Range(0, permutations).Select(p => address | FloatingBits(p, indexes));
     }
     private static ulong FloatingBits(int permutation, int[] indexes)
     {

@@ -14,7 +14,7 @@ public class Day_11
     public string part_two(string input)
     {
         var grid = Grid(input);
-        var max = Enumerable.Range(3, 50).Select(size => FindMaximum(grid, size)).OrderByDescending(r => r.Max).First();
+        var max = Range(3, 50).Select(size => FindMaximum(grid, size)).OrderByDescending(r => r.Max).First();
         return $"{max.Point.X},{max.Point.Y},{max.Size}";
     }
 

@@ -33,7 +33,7 @@ public partial class Day_18
         var lines = input.Lines();
         return Enumerable
             .Range(0, lines.Count)
-            .SelectMany(f => Enumerable.Range(0, lines.Count).Select(s => new { f, s }))
+            .SelectMany(f => Range(0, lines.Count).Select(s => new { f, s }))
             .Where(pair => pair.f != pair.s)
             .Max(pair => (Pair.Parse(lines[pair.f]) + Pair.Parse(lines[pair.s])).Magnitude);
     }

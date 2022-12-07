@@ -1,47 +1,32 @@
 ﻿namespace Advent_of_Code.Rankings;
 
-public static class DetailRanking
+public sealed record DetailRanking<TValue>(Participant Participant, IReadOnlyCollection<Score<TValue>> Scores, int Position = 0) : IFormattable
+    where TValue : struct, IComparable<TValue>, System.Numerics.IAdditionOperators<TValue, TValue, TValue>, IFormattable
 {
-    public delegate int Score(int rank, int participants);
+    public TValue Score => Scores.Sum(s => s.Value);
 
-    public static IReadOnlyList<DetailRanking<int>> Top_10(Participants participants, int year)
-        => Calculate(participants, year, (rank, participants) => Math.Max(0, 11 - rank));
+    public override string ToString() => ToString(null, null);
 
-    public static IReadOnlyList<DetailRanking<int>> Default(Participants participants, int year)
-        => Calculate(participants, year, (rank, participants) => 1+ participants - rank);
-
-    public static IReadOnlyList<DetailRanking<int>> _50_percent(Participants participants, int year)
-        => Calculate(participants, year, (rank, participants) => 1 + participants * 2 - rank);
-
-    public static IReadOnlyList<DetailRanking<int>> Calculate(Participants participants, int year, Score score)
+    public string ToString(string format, IFormatProvider formatProvider)
     {
-        var date = new AdventDate(year, null, null);
-        var active = participants.Where(p => p.Value.Solutions.Any(s => s.Key.Year == date.Year))
-            .Select(p => new DetailRanking<int>(p.Value, new List<Score<int>>()))
-            .ToArray();
+        var sb = new StringBuilder();
+        sb.Append($"{Position,3}) ");
+        sb.Append($"{Score,5} ");
 
-        foreach (var now in AdventDate.AllAvailable().Where(d => d.Year == date.Year))
+        for (var day = 1; day <= 25; day++)
         {
-            Extend(active, now, score);
+            Append(sb, Scores.FirstOrDefault(s => s.Date.Day == day && s.Date.Part == 1));
+            Append(sb, Scores.FirstOrDefault(s => s.Date.Day == day && s.Date.Part == 2));
         }
+        sb.Append($"  {Participant.ToString(format, formatProvider)}");
+        return sb.ToString();
 
-        return active
-            .OrderByDescending(r => r.Score)
-            .Select((r, index) => r with { Position = index + 1 })
-            .ToArray();
-
-        static void Extend(DetailRanking<int>[] active, AdventDate now, Score score)
+        static void Append(StringBuilder sb, Score<TValue> score)
         {
-            var rank = 1;
-            foreach (var one in GetSolutions(active, now))
-            {
-                var editable = (List<Score<int>>)one.Scores;
-                editable.Add(new(now, rank, score(rank++, active.Length)));
-            }
+            if (score is null) sb.Append('.');
+            else if(score.Rank > 9) sb.Append('*');
+            else sb.Append(score.Rank);
         }
-
-        static IOrderedEnumerable<DetailRanking<int>> GetSolutions(DetailRanking<int>[] active, AdventDate date) => active
-            .Where(s => s.Participant.Solutions.ContainsKey(date))
-            .OrderBy(s => s.Participant.Solutions[date]);
     }
 }
+

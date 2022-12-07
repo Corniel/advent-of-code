@@ -19,7 +19,7 @@ public class Rankings
         [TestCaseSource(nameof(Years))]
         public void All(int year)
         {
-            foreach (var rank in DetailRanking.Default(Data.Participants(), year))
+            foreach (var rank in Ranking.Default(Data.Participants(), year))
             {
                 Console.WriteLine(rank);
             }
@@ -30,7 +30,7 @@ public class Rankings
         {
             Participants partipants = GetTjip(year);
 
-            foreach (var rank in DetailRanking.Default(partipants, year))
+            foreach (var rank in Ranking.Default(partipants, year))
             {
                 Console.WriteLine(rank.ToString("name-only", CultureInfo.CurrentCulture));
             }
@@ -42,7 +42,7 @@ public class Rankings
         [TestCaseSource(nameof(Years))]
         public void All(int year)
         {
-            foreach (var rank in DetailRanking.Top_10(Data.Participants(), year))
+            foreach (var rank in Ranking.Top_10(Data.Participants(), year))
             {
                 Console.WriteLine(rank);
             }
@@ -53,7 +53,7 @@ public class Rankings
         {
             Participants partipants = GetTjip(year);
 
-            foreach (var rank in DetailRanking.Top_10(partipants, year))
+            foreach (var rank in Ranking.Top_10(partipants, year))
             {
                 Console.WriteLine(rank.ToString("name-only", CultureInfo.CurrentCulture));
             }
@@ -65,7 +65,7 @@ public class Rankings
         [TestCaseSource(nameof(Years))]
         public void All(int year)
         {
-            foreach (var rank in DetailRanking._50_percent(Data.Participants(), year))
+            foreach (var rank in Ranking._50_percent(Data.Participants(), year))
             {
                 Console.WriteLine(rank);
             }
@@ -76,7 +76,7 @@ public class Rankings
         {
             Participants partipants = GetTjip(year);
 
-            foreach (var rank in DetailRanking._50_percent(partipants, year))
+            foreach (var rank in Ranking._50_percent(partipants, year))
             {
                 Console.WriteLine(rank.ToString("name-only", CultureInfo.CurrentCulture));
             }

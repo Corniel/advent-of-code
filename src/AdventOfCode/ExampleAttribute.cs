@@ -15,7 +15,10 @@ public class ExampleAttribute : PuzzleAttribute
     protected override AdventPuzzle Puzzle(IMethodInfo method) => new AdventPuzzle(method.MethodInfo, Input, Answer, Example);
 
     protected override string TestName(IMethodInfo method, string input)
-       => input.Contains('\n')
-       ? $"answer is {Answer} for {method.Name.Replace("_", " ")} example with length {input.Length}"
-       : $"answer is {Answer} for {input}";
+    {
+        if (Example != 0) return $"answer is {Answer} for example {Example}";
+        else return input.Contains('\n')
+            ? $"answer is {Answer} for {method.Name.Replace("_", " ")} example with length {input.Length}"
+            : $"answer is {Answer} for {input}";
+    }
 }

@@ -7,7 +7,12 @@ public class Day_@Day
     [Puzzle(answer: 666)]
     public long part_one(string input)
     {
-        throw new NoAnswer();
+        var lines = input.Lines();
+        var grid = input.CharPixels().Grid();
+        var group = input.GroupedLines();
+        var numbers = input.Lines().Int32s();
+
+    throw new NoAnswer();
     }
 
     [Example(answer: 666, "")]

@@ -6,6 +6,7 @@ public static class Templating
     {
         var file = new FileInfo($@".\..\..\..\..\AdventOfCode.Now\{year}\Day_{day:00}.cs");
         var input = new FileInfo($@".\..\..\..\..\AdventOfCode.Now\{year}\Day_{day:00}.txt");
+        var example = new FileInfo($@".\..\..\..\..\AdventOfCode.Now\{year}\Day_{day:00}_1.txt");
 
         if (!file.Directory.Exists)
         {
@@ -19,7 +20,10 @@ public static class Templating
         if (!input.Exists)
         {
             using var writer = new StreamWriter(input.FullName);
-            writer.WriteLine();
+        }
+        if (!input.Exists)
+        {
+            using var writer = new StreamWriter(example.FullName);
         }
         return file.Directory;
     }

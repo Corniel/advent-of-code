@@ -4,6 +4,10 @@ public static class Ranking
 {
     public delegate int DetailScore(int rank, int participants);
 
+    public static IReadOnlyList<DetailRanking<int>> Solving_1000(Participants participants, int year)
+        => Calculate(participants, year, (rank, participants) => Math.Max(0, participants + 1000 - rank));
+
+
     public static IReadOnlyList<DetailRanking<int>> Top_10(Participants participants, int year)
         => Calculate(participants, year, (rank, participants) => Math.Max(0, 11 - rank));
 

@@ -37,6 +37,29 @@ public class Rankings
         }
     }
 
+    public class Solving_1000 : Rankings
+    {
+        [TestCaseSource(nameof(Years))]
+        public void All(int year)
+        {
+            foreach (var rank in Ranking.Solving_1000(Data.Participants(), year))
+            {
+                Console.WriteLine(rank);
+            }
+        }
+
+        [TestCaseSource(nameof(Years))]
+        public void TJIP(int year)
+        {
+            Participants partipants = GetTjip(year);
+
+            foreach (var rank in Ranking.Solving_1000(partipants, year))
+            {
+                Console.WriteLine(rank.ToString("name-only", CultureInfo.CurrentCulture));
+            }
+        }
+    }
+
     public class Top_10 : Rankings
     {
         [TestCaseSource(nameof(Years))]

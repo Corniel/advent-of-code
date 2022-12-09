@@ -24,7 +24,7 @@ public class Day_08
         return map.Positions.Where(p => !map.OnEdge(p)).Select(p => Scenic(p, map)).Max();
     }
 
-    static int Scenic(Point p, Grid<char> map) => View(p, Vector.N, map) * View(p, Vector.E, map) * View(p, Vector.S, map) * View(p, Vector.W, map);
+    static int Scenic(Point p, Grid<char> map) => CompassPoints.Primary.Select(d => View(p, d.ToVector(), map)).Product();
 
     static int View(Point p, Vector dir, Grid<char> map)
     {

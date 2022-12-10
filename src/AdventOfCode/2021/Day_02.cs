@@ -1,64 +1,36 @@
-namespace Advent_of_Code_2021;
+﻿namespace Advent_of_Code_2021;
 
-[Category(Category.VectorAlgebra)]
+[Category(Category.μs, Category.VectorAlgebra)]
 public class Day_02
 {
     [Example(answer: 150, "forward 5;down 5;forward 8;up 3;down 8;forward 2")]
     [Puzzle(answer: 2027977)]
-    public long part_one(string input)
-    {
-        var d = 0;
-        var h = 0;
-
-        foreach(var instruction in input.Lines(Instruction.Parse))
-        {
-            switch (instruction.Command)
-            {
-                case Command.down: d += instruction.Velocity; break;
-                case Command.up: d -= instruction.Velocity; break;
-                case Command.forward: h += instruction.Velocity; break;
-            }
-        }
-        return h * d;
-    }
+    public long part_one(string input) => new Submarine().Transpose(input.Lines(Instruction.Parse), (s, i) => s.One(i)).Last().Produces;
 
     [Example(answer: 900, "forward 5;down 5;forward 8;up 3;down 8;forward 2")]
     [Puzzle(answer: 1903644897)]
-    public long part_two(string input)
-    {
-        var d = 0L;
-        var h = 0L;
-        var a = 0L;
+    public long part_two(string input) => new Submarine().Transpose(input.Lines(Instruction.Parse), (s, i) => s.Two(i)).Last().Produces;
 
-        foreach (var instruction in input.Lines(Instruction.Parse))
+    record Submarine(long Depth = 0, long Height = 0, long Aim = 0 ) 
+    {
+        public long Produces => Height * Depth;
+        public Submarine One(Instruction i) => i.Type switch
         {
-            switch (instruction.Command)
-            {
-                case Command.down: a += instruction.Velocity; break;
-                case Command.up: a -= instruction.Velocity; break;
-                case Command.forward:
-                    h += instruction.Velocity;
-                    d += a * instruction.Velocity;
-                    break;
-            }
-        }
-        return h * d;
+            'd' => this with { Depth = Depth + i.Velocity },
+            'u' => this with { Depth = Depth - i.Velocity },
+            _ => this with { Height = Height + i.Velocity }
+        };
+
+        public Submarine Two(Instruction i) => i.Type switch
+        {
+            'd' => this with { Aim = Aim + i.Velocity },
+            'u' => this with { Aim = Aim - i.Velocity },
+            _ => this with { Height = Height + i.Velocity, Depth = Depth + Aim * i.Velocity }
+        };
     }
 
-    private sealed record Instruction(Command Command, int Velocity)
+    record Instruction(char Type, int Velocity)
     {
-        public static Instruction Parse(string line)
-        {
-            var split = line.IndexOf(' ');
-            return new(
-                Command: (Command)Enum.Parse(typeof(Command), line[..split], true),
-                Velocity: int.Parse(line[(split + 1)..]));
-        }
-    }
-    private enum Command
-    {
-        forward,
-        down,
-        up,
+        public static Instruction Parse(string line) => new(line[0], line.Int32s().First());
     }
 }

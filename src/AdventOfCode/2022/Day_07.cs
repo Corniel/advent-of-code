@@ -31,7 +31,7 @@ public class Day_07
                 if (line == "$ cd ..") current = current.Parent;
                 else if (line.StartsWith("$ cd ")) current = current.Dirs.First(dir => dir.Name == line[5..]);
                 else if (line.StartsWith("dir ")) current.Dirs.Add(new(current, line[4..], new()));
-                else current.Files += line.Int32s().FirstOrDefault();
+                else current.Files += line.Int32();
             }
             return root;
         }

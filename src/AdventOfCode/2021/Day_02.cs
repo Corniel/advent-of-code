@@ -31,6 +31,6 @@ public class Day_02
 
     record Instruction(char Type, int Velocity)
     {
-        public static Instruction Parse(string line) => new(line[0], line.Int32s().First());
+        public static Instruction Parse(string line) => new(line[0], line.Int32());
     }
 }

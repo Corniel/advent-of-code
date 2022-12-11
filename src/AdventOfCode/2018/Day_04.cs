@@ -1,6 +1,6 @@
-namespace Advent_of_Code_2018;
+﻿namespace Advent_of_Code_2018;
 
-[Category(Category.Simulation)]
+[Category(Category.ms, Category.Simulation)]
 public class Day_04
 {
     private const string Example = @"
@@ -67,7 +67,7 @@ public class Day_04
             "falls" => Action.Sleeps,
             _ => Action.WakesUp,
         };
-        public int Id => Text.Int32s().FirstOrDefault();
+        public int Id => Text.Int32();
         public static Log Parse(string str) => new(DateTime.Parse(str[1..17]), str[19..]);
     }
     enum Action { Begins, Sleeps, WakesUp }

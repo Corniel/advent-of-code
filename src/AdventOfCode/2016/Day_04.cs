@@ -1,4 +1,4 @@
-namespace Advent_of_Code_2016;
+﻿namespace Advent_of_Code_2016;
 
 [Category(Category.Cryptography)]
 public class Day_04
@@ -28,7 +28,7 @@ public class Day_04
             var checksum = splitted[1][..^1];
             var orderded = new string(Characters.a_z.OrderByDescending(ch => splitted[0].Count(c => c == ch)).Take(checksum.Length).ToArray());
             var last = splitted[0].LastIndexOf('-');
-            return new(splitted[0][..last], checksum, checksum == orderded ? -line.Int32s().First() : 0);
+            return new(splitted[0][..last], checksum, checksum == orderded ? -line.Int32() : 0);
         }
     }
 }

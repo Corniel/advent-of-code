@@ -1,0 +1,52 @@
+﻿namespace Advent_of_Code_2022;
+
+[Category(Category.ms, Category.Simulation)]
+public class Day_11
+{
+    [Example(answer: 10605, 1)]
+    [Puzzle(answer: 121450)]
+    public long part_one(string input) => Simulate(input, 20, 3);
+
+    [Example(answer: 2713310158, 1)]
+    [Puzzle(answer: 28244037010)]
+    public long part_two(string input) => Simulate(input, 10_000, 1);
+
+    static long Simulate(string input, int simulations, int reduce)
+    {
+        var monkeys = input.GroupedLines().Select(Monkey.Parse).ToArray();
+        var modulo = monkeys.Select(m => m.Factor).Product();
+
+        foreach (var monkey in Range(1, simulations).SelectMany(_ => monkeys))
+        {
+            monkey.Play(monkeys, reduce, modulo);
+        }
+        return monkeys.Select(m => m.Inspected).OrderDescending().Take(2).Product();
+    }
+
+    record Monkey(Queue<long> Items, Operation Operation, int Divisible, int IfTrue, int IfFalse)
+    {
+        public long WorryLevel { get; set; }
+        public long Inspected { get; set; }
+        public long Factor => Divisible * Operation.Factor;
+        public void Play(Monkey[] other, int reduce, long mod)
+        {
+            foreach (var item in Items.DeuqueCurrent())
+            {
+                Inspected++;
+                WorryLevel = (Operation.Invoke(item) / reduce).Mod(mod);
+                var next = WorryLevel % Divisible == 0 ? IfTrue : IfFalse;
+                other[next].Items.Enqueue(WorryLevel);
+            }
+        }
+
+        public static Monkey Parse(string[] lines) => new(new(lines[1].Int64s()), Operation.Parse(lines[2]), lines[3].Int32(), lines[4].Int32(), lines[5].Int32());
+    }
+    record Operation(char Op, long? Right)
+    {
+        public long Invoke(long value) => Op == '+' ? value + (Right ?? value) : value * (Right ?? value);
+
+        public long Factor => Op == '*' && Right.HasValue ? Right.Value : 1L;
+
+        public static Operation Parse(string line) => new(line[21], line.Int32N());
+    }
+}

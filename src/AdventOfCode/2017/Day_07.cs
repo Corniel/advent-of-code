@@ -1,6 +1,6 @@
-namespace Advent_of_Code_2017;
+﻿namespace Advent_of_Code_2017;
 
-[Category(Category.Graph)]
+[Category(Category.ms, Category.Graph)]
 public class Day_07
 {
     private const string Example = @"
@@ -44,7 +44,7 @@ cntj (57)";
         var nodes = new Dictionary<string, Node>();
         foreach (var line in input.Lines())
         {
-            var node = new Node(line.SpaceSeparated().First(), line.Int32s().First());
+            var node = new Node(line.SpaceSeparated().First(), line.Int32());
             nodes[node.Name] = node;
         }
         foreach (var line in input.Lines())

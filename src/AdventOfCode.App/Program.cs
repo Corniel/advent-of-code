@@ -26,7 +26,7 @@ public static class Program
         {
             return Rank(puzzles, date);
         }
-        else if (args.Length == 2 && args[1] == "-size")
+        else if (args.Length == 2 && args[1] == "-loc")
         {
             return CodeSize(date);
         }

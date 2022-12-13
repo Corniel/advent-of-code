@@ -55,7 +55,7 @@ public class SyntaxParser
                 number += ReadChar() - '0';
             }
         }
-        return positive ? number : 0;
+        return positive ? number : -number;
     }
 
     public int ReadInt32() => (int)ReadInt64();

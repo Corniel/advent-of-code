@@ -69,22 +69,10 @@ public readonly struct AdventDate : IComparable<AdventDate>
     }
 
     public int CompareTo(AdventDate other)
-        => Compares(Year, other.Year)
-        ?? Compares(Day, other.Day)
-        ?? Compares(Part, other.Part)
+        => Year.ComparesTo(other.Year)
+        ?? Day.ComparesTo(other.Day)
+        ?? Part.ComparesTo(other.Part)
         ?? 0;
-
-    private static int? Compares(int? l, int? r)
-    {
-        if (l.HasValue && r.HasValue)
-        {
-            var compare = l.Value.CompareTo(r.Value);
-            return compare == 0 ? default : (int?)compare;
-        }
-        else if (l.HasValue) { return -1; }
-        else if (r.HasValue) { return +1; }
-        else { return default; }
-    }
 
     public bool IsAvailable(DateTime? now = default)
         => new DateTime(Year ?? 1, month: 12, Day ?? 1, hour: 05, minute: 00, second: 00, DateTimeKind.Utc)

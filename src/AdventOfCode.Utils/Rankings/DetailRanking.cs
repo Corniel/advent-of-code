@@ -5,6 +5,8 @@ public sealed record DetailRanking<TValue>(Participant Participant, IReadOnlyCol
 {
     public TValue Score => Scores.Sum(s => s.Value);
 
+    public decimal Rank => Scores.Select(s => (decimal)s.Rank).Average();
+
     public override string ToString() => ToString(null, null);
 
     public string ToString(string format, IFormatProvider formatProvider)
@@ -15,9 +17,11 @@ public sealed record DetailRanking<TValue>(Participant Participant, IReadOnlyCol
 
         for (var day = 1; day <= 25; day++)
         {
+            if (day.Mod(5) == 1) sb.Append('|');
             Append(sb, Scores.FirstOrDefault(s => s.Date.Day == day && s.Date.Part == 1));
             Append(sb, Scores.FirstOrDefault(s => s.Date.Day == day && s.Date.Part == 2));
         }
+        sb.Append(FormattableString.Invariant($" {Rank,5:0.0}"));
         sb.Append($"  {Participant.ToString(format, formatProvider)}");
         return sb.ToString();
 

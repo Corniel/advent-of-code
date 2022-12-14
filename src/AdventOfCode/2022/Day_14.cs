@@ -1,0 +1,65 @@
+﻿namespace Advent_of_Code_2022;
+
+[Category(Category.μs, Category.Grid)]
+public class Day_14
+{
+    [Example(answer: 24, "498,4 -> 498,6 -> 496,6;503,4 -> 502,4 -> 502,9 -> 494,9")]
+    [Puzzle(answer: 1016)]
+    public int part_one(string input) => Area.Parse(input, false).Drop();
+
+    [Example(answer: 93, "498,4 -> 498,6 -> 496,6;503,4 -> 502,4 -> 502,9 -> 494,9")]
+    [Puzzle(answer: 25402)]
+    public int part_two(string input) => Area.Parse(input, true).Drop();
+
+    record Area(HashSet<Point> Map, int Rock, int Bottom)
+    {
+        public static readonly Point Start = new(500, 0);
+
+        public int Drop()
+        {
+            while (true)
+            {
+                var sand = Start;
+
+                while (true)
+                {
+                    sand += Vector.S;
+
+                    if (Block(sand))
+                    {
+                        if (!Block(sand + Vector.W)) sand += Vector.W;
+                        else if (!Block(sand + Vector.E)) sand += Vector.E;
+                        else
+                        {
+                            Map.Add(sand - Vector.S);
+                            if (sand - Vector.S == Start)
+                            {
+                                return Map.Count - Rock;
+                            }
+                            break;
+                        }
+                    }
+                    if (sand.Y == Bottom) return Map.Count - Rock;
+                }
+            }
+            throw new InfiniteLoop();
+        }
+
+        bool Block(Point test) => Map.Contains(test);
+
+        public static Area Parse(string input, bool withBottom)
+        {
+            var map = new HashSet<Point>();
+            foreach (var pair in input.Lines(l => l.Separate(" -> ").Select(Point.Parse).ToArray()).SelectMany(p => p.SelectWithPrevious()))
+            {
+                map.Add(pair.Current);
+                map.AddRange(pair.Previous.Repeat((pair.Current - pair.Previous).Sign(), true).TakeWhile(c => c != pair.Current));
+            }
+            
+            var max = map.Max().Y + (withBottom ? 3: 0);
+            map.AddRange(new Point(Start.X - max, max - 1).Repeat(Vector.E).Take(withBottom ? max * 2 : 0));
+
+            return new(map, map.Count, max);
+        }
+    }
+}

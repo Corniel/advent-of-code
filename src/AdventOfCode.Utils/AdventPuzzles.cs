@@ -27,12 +27,13 @@ public partial class AdventPuzzles : IEnumerable<AdventPuzzle>
 
         foreach (var method in types.SelectMany(t => t.GetMethods().Where(IsPuzzle)))
         {
-            var attr = method
+            if (method
                 .GetCustomAttributes<PuzzleAttribute>()
-                .Single(att => att is not ExampleAttribute);
-
-            var puzzle = new AdventPuzzle(method, attr.Input, attr.Answer);
-            puzzles.items.Add(puzzle);
+                .SingleOrDefault(att => att is not ExampleAttribute) is { } attr)
+            {
+                var puzzle = new AdventPuzzle(method, attr.Input, attr.Answer);
+                puzzles.items.Add(puzzle);
+            }
         }
         return puzzles;
 

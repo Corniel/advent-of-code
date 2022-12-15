@@ -57,7 +57,7 @@ public static class Ranking
 
         foreach(var date in AdventDate.AllAvailable())
         {
-            var score = list.Count(p => p.Solutions.Keys.Any(d => d.Year == date.Year));
+            var score = 10000 + list.Count(p => p.Solutions.Keys.Any(d => d.Year == date.Year));
             foreach (var participant in list
                 .Where(p => p.Solutions.ContainsKey(date))
                 .OrderBy(p => p.Solutions[date]))

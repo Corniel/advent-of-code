@@ -1,17 +1,10 @@
-namespace Advent_of_Code_2021;
+﻿namespace Advent_of_Code_2021;
 
 [Category(Category.Grid, Category.PathFinding)]
 public class Day_09
 {
-    private const string Example = @"
-2199943210
-3987894921
-9856789892
-8767896789
-9899965678";
-
-    [Example(answer: 15, Example)]
-    [Puzzle(answer: 588)]
+    [Example(answer: 15, Example._1)]
+    [Puzzle(answer: 588, O.ms)]
     public int part_one(string input)
     {
         var map = input.CharPixels().Grid().SetNeighbors(Neighbors.Grid);
@@ -21,8 +14,8 @@ public class Day_09
             .Sum(p => map[p] - '0' + 1);
     }
 
-    [Example(answer: 1134, Example)]
-    [Puzzle(answer: 964712)]
+    [Example(answer: 1134, Example._1)]
+    [Puzzle(answer: 964712, O.ms)]
     public long part_two(string input)
     {
         var map = input.CharPixels().Grid().SetNeighbors(Neighbors.Grid);
@@ -36,11 +29,11 @@ public class Day_09
             var size = 1;
             done[point] = true;
             queue.Enqueue(point);
-            while(queue.Any())
+            while (queue.Any())
             {
-                foreach(var n in map.Neighbors[queue.Dequeue()])
+                foreach (var n in map.Neighbors[queue.Dequeue()])
                 {
-                    if(!done[n] && map[n] != '9')
+                    if (!done[n] && map[n] != '9')
                     {
                         size++;
                         done[n] = true;

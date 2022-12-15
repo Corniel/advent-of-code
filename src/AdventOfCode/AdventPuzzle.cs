@@ -5,31 +5,30 @@ namespace Advent_of_Code;
 
 public sealed class AdventPuzzle
 {
-    public AdventPuzzle(MethodInfo method, string input, object answer, int? example = null)
-        : this(GetDate(method), method, input, answer, example) { }
+    public AdventPuzzle(MethodInfo method, object[] input, object answer, O order, Example example = default)
+        : this(GetDate(method), method, input, answer, order, example) { }
 
-    public AdventPuzzle(AdventDate date, MethodInfo method, string input, object answer, int? example = null)
+    public AdventPuzzle(AdventDate date, MethodInfo method, object[] input, object answer, O order, Example example)
     {
         Date = date;
         Example = example;
         Method = method;
-        Input = input ?? Embedded();
+        Input = input;
         Answer = GetAnswer(answer, method.ReturnType);
+        Input[0] ??= Embedded();
+        Order = order;
     }
 
     public AdventDate Date { get; }
-    public int? Example { get; }
+    public Example Example { get; }
     public MethodInfo Method { get; }
-    public string Input { get; }
+    public object[] Input { get; }
     public object Answer { get; }
+    public O Order { get; }
 
     public bool Matches(AdventDate date) => Date.Matches(date);
 
-    public TestCaseParameters TestCaseParameters() 
-        => new(new object[] { Input })
-        {
-            ExpectedResult = Answer,
-        };
+    public TestCaseParameters TestCaseParameters()  => new(Input) { ExpectedResult = Answer };
 
     /// <inheritdoc />
     [Pure]
@@ -38,7 +37,7 @@ public sealed class AdventPuzzle
     private string Embedded()
     {
         var assembly = Method.DeclaringType.Assembly;
-        var path = $"Advent_of_Code._{Date.Year}.Day_{Date.Day:00}{(Example.HasValue ? $"_{Example}" : "")}.txt";
+        var path = $"Advent_of_Code._{Date.Year}.Day_{Date.Day:00}{(Example != Example.None ? $"_{(int)Example}" : "")}.txt";
         using var stream = assembly.GetManifestResourceStream(path);
         if (stream is null) return new FileNotFoundException(path).ToString();
         var reader = new StreamReader(stream, Encoding.UTF8);

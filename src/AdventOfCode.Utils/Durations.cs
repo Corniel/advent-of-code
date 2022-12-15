@@ -18,5 +18,5 @@ public sealed class Durations : List<TimeSpan>
         }
     }
 
-    public override string ToString() => $"Count: {Count}, Median: {Median.Formatted()}, Avg: {Average.Formatted()}";
+    public override string ToString() => $"Count: {Count,3}, Median: {Median.Formatted(),8}, Avg: {Average.Formatted(),8}";
 }

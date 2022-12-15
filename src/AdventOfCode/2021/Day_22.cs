@@ -3,10 +3,10 @@
 [Category(Category.VectorAlgebra)]
 public class Day_22
 {
-    [Puzzle(answer: 644257)]
+    [Puzzle(answer: 644257, O.μs100)]
     public long part_one(string input) => Count(input.Lines(Instruction.Parse).Take(20));
 
-    [Puzzle(answer: 1235484513229032)]
+    [Puzzle(answer: 1235484513229032, O.ms10)]
     public long part_two(string input) => Count(input.Lines(Instruction.Parse));
 
     private static long Count(IEnumerable<Instruction> instructions)

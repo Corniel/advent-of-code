@@ -1,9 +1,9 @@
-namespace Advent_of_Code_2018;
+﻿namespace Advent_of_Code_2018;
 
 [Category(Category.Simulation, Category.GameOfLife)]
 public class Day_12
 {
-    [Example(answer: 325, example: 1)]
+    [Example(answer: 325, Example._1)]
     [Puzzle(answer: 3605)]
     public long part_one(string input)
     {

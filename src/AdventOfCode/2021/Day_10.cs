@@ -1,4 +1,4 @@
-namespace Advent_of_Code_2021;
+﻿namespace Advent_of_Code_2021;
 
 [Category(Category.ExpressionParsing)]
 public class Day_10
@@ -12,11 +12,11 @@ public class Day_10
 	[Example(answer: 57, "[{[{({}]{}}([{[{{{}}([]")]
 	[Example(answer: 3, "[<(<(<(<{}))><([]([]()")]
 	[Example(answer: 25137, "<{([([[(<>()){}]>(<<{{")]
-    [Puzzle(answer: 411471)]
+    [Puzzle(answer: 411471, O.μs100)]
     public int part_one(string input) => input.Lines(Parse).Select(One).Sum();
 
 	[Example(answer: 288957, "[({(<(())[]>[[{[]{<()<>>")]
-	[Puzzle(answer: 3122628974)]
+	[Puzzle(answer: 3122628974, O.μs100)]
     public long part_two(string input)
     {
 		var scores = input.Lines(Parse).Select(Two).Where(sc => sc != 0).ToList();
@@ -29,10 +29,7 @@ public class Day_10
 	static long Two(string str)
     {
 		long score = 0;
-		foreach (var ch in str.Reverse())
-		{
-			score = score * 5 + Open.IndexOf(ch) + 1;
-		}
+		foreach (var ch in str.Reverse()) score = score * 5 + Open.IndexOf(ch) + 1;
 		return score;
 	}
 

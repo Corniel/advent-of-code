@@ -1,18 +1,18 @@
 ﻿namespace Advent_of_Code_2022;
 
-[Category(Category.ms, Category.PathFinding)]
+[Category(Category.PathFinding)]
 public class Day_12
 {
-    [Example(answer: 31, 1)]
-    [Puzzle(answer: 394)]
+    [Example(answer: 31, Example._1)]
+    [Puzzle(answer: 394, O.ms)]
     public int part_one(string input)
     {
         var area = Area.Parse(input);
         return area.Find(area.S);
     }
 
-    [Example(answer: 29, 1)]
-    [Puzzle(answer: 388)]
+    [Example(answer: 29, Example._1)]
+    [Puzzle(answer: 388, O.ms100)]
     public long part_two(string input)
     {
         var area = Area.Parse(input);

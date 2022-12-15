@@ -1,14 +1,14 @@
 ﻿namespace Advent_of_Code_2022;
 
-[Category(Category.ms, Category.Simulation)]
+[Category(Category.Simulation)]
 public class Day_11
 {
-    [Example(answer: 10605, 1)]
-    [Puzzle(answer: 121450)]
+    [Example(answer: 10605, Example._1)]
+    [Puzzle(answer: 121450, O.μs10)]
     public long part_one(string input) => Simulate(input, 20, 3);
 
-    [Example(answer: 2713310158, 1)]
-    [Puzzle(answer: 28244037010)]
+    [Example(answer: 2713310158, Example._1)]
+    [Puzzle(answer: 28244037010, O.ms10)]
     public long part_two(string input) => Simulate(input, 10_000, 1);
 
     static long Simulate(string input, int simulations, int reduce)

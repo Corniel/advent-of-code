@@ -1,14 +1,10 @@
-namespace Advent_of_Code_2020;
+﻿namespace Advent_of_Code_2020;
 
 [Category(Category.BitManupilation)]
 public class Day_14
 {
-    [Example(answer: 165, @"
-            mask = XXXXXXXXXXXXXXXXXXXXXXXXXXXXX1XXXX0X
-            mem[8] = 11
-            mem[7] = 101
-            mem[8] = 0")]
-    [Puzzle(answer: 12512013221615)]
+    [Example(answer: 165, "mask = 000000000000000000000000000000X1001X;mem[42] = 100;mask = 00000000000000000000000000000000X0XX;mem[26] = 1")]
+    [Puzzle(answer: 12512013221615, O.μs100)]
     public ulong part_one(string input)
     {
         var mask = string.Empty;
@@ -28,12 +24,8 @@ public class Day_14
         return memory.Values.Sum();
     }
 
-    [Example(answer: 208, @"
-            mask = 000000000000000000000000000000X1001X
-            mem[42] = 100
-            mask = 00000000000000000000000000000000X0XX
-            mem[26] = 1")]
-    [Puzzle(answer: 3905642473893)]
+    [Example(answer: 208, "mask = 000000000000000000000000000000X1001X;mem[42] = 100;mask = 00000000000000000000000000000000X0XX;mem[26] = 1")]
+    [Puzzle(answer: 3905642473893, O.ms)]
     public ulong part_two(string input)
     {
         var mask = string.Empty;

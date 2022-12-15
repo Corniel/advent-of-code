@@ -53,19 +53,28 @@ public static class Program
 
     private static int Rank(AdventPuzzles puzzles, AdventDate date)
     {
+        var limit = O.s;
         var sw = Stopwatch.StartNew();
         var total = 0;
 
         var durations = puzzles.Matching(date)
+            //.Where(p => p.Order == O.Unknown)
             .Where(puzzle => !puzzle.Date.Matches(new AdventDate(default, 25, 2)))
             .ToDictionary(puzzle => puzzle, puzzle => new Durations());
 
         foreach (var puzzle in durations.Keys)
         {
-            while (durations[puzzle].Count < 100 && durations[puzzle].Total < TimeSpan.FromSeconds(1))
+            if (puzzle.Order < limit)
             {
-                durations[puzzle].Add(puzzle.Run(false));
-                Console.Write($"\r{total++}: {sw.ElapsedMilliseconds:#,##0} ms");
+                while (durations[puzzle].Count < 100 && durations[puzzle].Total < TimeSpan.FromSeconds(1))
+                {
+                    durations[puzzle].Add(puzzle.Run(false));
+                    Console.Write($"\r{total++}: {sw.ElapsedMilliseconds:#,##0} ms");
+                }
+            }
+            else
+            {
+                durations[puzzle].Add(TimeSpan.FromMicroseconds(Math.Pow(10, (int)puzzle.Order - 3)));
             }
         }
 
@@ -84,6 +93,9 @@ public static class Program
             {
                 var p0 = ranking[pos - 1];
                 var p1 = ranking[pos];
+
+                if (p0.Order >= limit || p1.Order >= limit) continue;
+
                 var d0 = durations[p0];
                 var d1 = durations[p1];
 
@@ -109,11 +121,17 @@ public static class Program
         {
             var puzzle = ranking[pos];
             var ds = durations[puzzle];
-            Console.WriteLine($"{(pos + 1),3} {ds}, {puzzle}");
+            Console.Write($"{(pos + 1),3} {ds}, {puzzle}");
+            if (ds.Median.O() != puzzle.Order)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write($" O = {ds.Median.O()} not {puzzle.Order}");
+                Console.ForegroundColor = ConsoleColor.Gray;
+            }
+            Console.WriteLine();
         }
         return Success;
     }
-
 
     private static int CodeSize(AdventDate date)
     {

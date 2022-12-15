@@ -1,13 +1,13 @@
-namespace Advent_of_Code_2016;
+﻿namespace Advent_of_Code_2016;
 
 [Category(Category.Cryptography)]
 public class Day_06
 {
     [Example(answer: "easter", "eedadn;drvtee;eandsr;raavrd;atevrs;tsrnev;sdttsa;rasrtv;nssdts;ntnada;svetve;tesnvt;vntsnd;vrdear;dvrsen;enarar")]
-    [Puzzle(answer: "mshjnduc")]
+    [Puzzle(answer: "mshjnduc", O.μs100)]
     public string part_one(string input) => Decrypt(input.Lines().ToArray(), Max);
 
-    [Puzzle(answer: "apfeeebz")]
+    [Puzzle(answer: "apfeeebz", O.μs100)]
     public string part_two(string input) => Decrypt(input.Lines().ToArray(), Min);
 
     private static string Decrypt(string[] lines, Func<IEnumerable<char>, char> selector) 

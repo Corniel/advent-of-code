@@ -1,13 +1,13 @@
 ﻿namespace Advent_of_Code_2022;
 
-[Category(Category.μs, Category.ASCII)]
+[Category(Category.ASCII)]
 public class Day_10
 {
-    [Example(answer: 13140, 1)]
-    [Puzzle(answer: 12980)]
+    [Example(answer: 13140, Example._1)]
+    [Puzzle(answer: 12980, O.μs10)]
     public int part_one(string input) => Data.Parse(input).Skip(19).WithStep(40).Select(x => x.Product).Sum();
 
-    [Puzzle(answer: "BRJLFULP")]
+    [Puzzle(answer: "BRJLFULP", O.μs10)]
     public string part_two(string input)
     {
         var grid = new Grid<bool>(40, 6);

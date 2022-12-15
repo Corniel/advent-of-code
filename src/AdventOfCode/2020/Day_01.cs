@@ -1,11 +1,11 @@
-namespace Advent_of_Code_2020;
+﻿namespace Advent_of_Code_2020;
 
 [Category(Category.SequenceProgression)]
 public class Day_01
 {
     [Example(answer: 514579, "1721, 979, 366, 299, 675, 1456")]
-    [Puzzle(answer: 786811)]
-    public long part_one(string input)
+    [Puzzle(answer: 786811, O.μs10)]
+    public int part_one(string input)
     {
         const int sum = 2020;
         var numbers = UniqueNumbers.Parse(input);
@@ -22,7 +22,7 @@ public class Day_01
     }
 
     [Example(answer: 241861950L, "1721, 979, 366, 299, 675, 1456")]
-    [Puzzle(answer: 199068980L)]
+    [Puzzle(answer: 199068980L, O.μs10)]
     public long part_two(string input)
     {
         const int sum = 2020;

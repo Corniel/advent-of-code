@@ -1,4 +1,4 @@
-namespace Advent_of_Code_2021;
+﻿namespace Advent_of_Code_2021;
 
 /// <remarks>
 /// .6.  the numbering of the segments of the displays
@@ -10,39 +10,23 @@ namespace Advent_of_Code_2021;
 [Category(Category.BitManupilation, Category.Cryptography)]
 public class Day_08
 {
-    private const string Example = @"
-be cfbegad cbdgef fgaecd cgeb fdcge agebfd fecdb fabcd edb | fdgacbe cefdb cefbgd gcbe
-edbfga begcd cbg gc gcadebf fbgde acbgfd abcde gfcbed gfec | fcgedb cgb dgebacf gc
-fgaebd cg bdaec gdafb agbcfd gdcbef bgcad gfac gcb cdgabef | cg cg fdcagb cbg
-fbegcd cbd adcefb dageb afcb bc aefdc ecdab fgdeca fcdbega | efabcd cedba gadfec cb
-aecbfdg fbg gf bafeg dbefa fcge gcbea fcaegb dgceab fcbdga | gecf egdcabf bgf bfgea
-fgeab ca afcebg bdacfeg cfaedg gcfdb baec bfadeg bafgc acf | gebdcfa ecba ca fadegcb
-dbcfg fgd bdegcaf fgec aegbdf ecdfab fbedc dacgb gdcebf gf | cefg dcbef fcge gbcadfe
-bdfegc cbegaf gecbf dfcage bdacg ed bedf ced adcbefg gebcd | ed bcgafe cdgba cbgef
-egadfb cdbfeg cegd fecab cgb gbdefca cg fgcdab egfdb bfceg | gbdfcae bgc cg cgb
-gcafb gcf dcaebfg ecagb gf abcdeg gaef cafbge fdbac fegbdc | fgae cfgab fg bagce";
-
-    [Example(answer: 26, Example)]
-    [Puzzle(answer: 479)]
+    [Example(answer: 26, Example._1)]
+    [Puzzle(answer: 479, O.μs10)]
     public int part_one(string input)
         => input.Lines(line => line[61..])
         .SelectMany(line => line.Split(' '))
         .Count(w => w.Length == 2 || w.Length == 3 || w.Length == 4 || w.Length == 7);
 
     [Example(answer: 5353, "acedgfb cdfbe gcdfa fbcad dab cefabd cdfgeb eafb cagedb ab | cdfeb fcadb cdfeb cdbaf")]
-    [Example(answer: 61229, Example)]
-    [Puzzle(answer: 1041746)]
+    [Example(answer: 61229, Example._1)]
+    [Puzzle(answer: 1041746, O.μs100)]
     public int part_two(string input) => input.Lines(line => line.Split(" | ")).Sum(Decode);
 
     private readonly int[] segments = new int[7];
    
     private int Decode(string[] line)
     {
-        var sum = 0;
-        var num1 = 127;
-        var num7 = 127;
-        var len5 = 127;
-        var len6 = 127;
+        var sum = 0; var num1 = 127; var num7 = 127; var len5 = 127; var len6 = 127;
 
         foreach (var code in line[0].Split(' '))
         {

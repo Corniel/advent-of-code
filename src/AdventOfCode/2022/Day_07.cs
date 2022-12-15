@@ -1,14 +1,14 @@
 ﻿namespace Advent_of_Code_2022;
 
-[Category(Category.ms, Category.ExpressionParsing)]
+[Category(Category.ExpressionParsing)]
 public class Day_07
 {
-    [Example(answer: 95437, 1)]
-    [Puzzle(answer: 1667443)]
+    [Example(answer: 95437, Example._1)]
+    [Puzzle(answer: 1667443, O.μs100)]
     public int part_one(string input) => Dir.Parse(input).All.Where(d => d.Size <= 100_000).Sum(d => d.Size);
 
-    [Example(answer: 24933642, 1)]
-    [Puzzle(answer: 8998590)]
+    [Example(answer: 24933642, Example._1)]
+    [Puzzle(answer: 8998590, O.μs100)]
     public int part_two(string input)
     {
         var root = Dir.Parse(input);

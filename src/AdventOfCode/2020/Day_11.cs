@@ -1,16 +1,15 @@
-namespace Advent_of_Code_2020;
+﻿namespace Advent_of_Code_2020;
 
 [Category(Category.Grid)]
 public class Day_11
 {
-    [Example(answer: 37, example: 1)]
-    [Puzzle(answer: 2481)]
+    [Example(answer: 37, Example._1)]
+    [Puzzle(answer: 2481, O.ms100)]
     public int part_one(string input)
         => Plane.Init(input, Plane.DirectNeighbors).Simulate(4);
 
-
-    [Example(answer: 26, example: 1)]
-    [Puzzle(answer: 2227)]
+    [Example(answer: 26, Example._1)]
+    [Puzzle(answer: 2227, O.ms100)]
     public long part_two(string input)
         => Plane.Init(input, Plane.InSightNeighbors).Simulate(5);
 

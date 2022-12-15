@@ -1,8 +1,8 @@
-{
+﻿{
   "profiles": {
     "AdventOfCode.Now": {
       "commandName": "Project",
-      "commandLineArgs": "2022-15"
+      "commandLineArgs": "2022 -rank"
     }
   }
 }

@@ -1,18 +1,26 @@
 ﻿namespace Advent_of_Code;
 
 [AttributeUsage(AttributeTargets.Method)]
-public class PuzzleAttribute : Attribute, ITestBuilder, IImplyFixture
+public class PuzzleAttribute : Attribute, ITestBuilder, IApplyToTest, IImplyFixture
 {
-    public PuzzleAttribute(object answer, string input)
+    public PuzzleAttribute(object answer, params object[] input)
     {
+        input ??= Array.Empty<object>();
         Answer = answer;
-        Input = input;
+        Order = input.OfType<O>().FirstOrDefault();
+        Input = Filter(input);
+    }
+    static object[] Filter(IEnumerable<object> input)
+    {
+        var filtered = input.Where(o => o is not O && o is not Example).ToArray();
+        return filtered.Length == 0 ? new object[] { null } : filtered;
     }
 
-    public PuzzleAttribute(object answer) : this(answer, null) { }
-
     public object Answer { get; }
-    public string Input { get; }
+
+    public O Order { get; }
+    
+    public object[] Input { get; }
 
     /// <summary>
     /// Builds a single test from the specified method and context.
@@ -24,12 +32,20 @@ public class PuzzleAttribute : Attribute, ITestBuilder, IImplyFixture
         var puzzle = Puzzle(method);
         var parameters = puzzle.TestCaseParameters();
         var test = new NUnitTestCaseBuilder().BuildTestMethod(method, suite, parameters);
-        test.Name = TestName(method, puzzle.Input);
+        test.Name = TestName(method, puzzle.Input[0].ToString());
         yield return test;
     }
 
-    protected virtual AdventPuzzle Puzzle(IMethodInfo method) => new AdventPuzzle(method.MethodInfo, Input, Answer);
+    protected virtual AdventPuzzle Puzzle(IMethodInfo method) => new(method.MethodInfo, Input, Answer, Order);
 
     protected virtual string TestName(IMethodInfo method, string input)
         => $"answer is {Answer} for {method.Name.Replace("_", " ")}";
+
+    public void ApplyToTest(Test test)
+    {
+        if (Order != O.Unknown)
+        {
+            test.Properties.Add(PropertyNames.Category, Order);
+        }
+    }
 }

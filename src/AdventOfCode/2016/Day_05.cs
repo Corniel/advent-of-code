@@ -1,4 +1,4 @@
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 
 namespace Advent_of_Code_2016;
 
@@ -8,11 +8,11 @@ public class Day_05
     private static readonly MD5 md5 = MD5.Create();
 
     [Example(answer: "18f47a30", "abc")]
-    [Puzzle(answer: "d4cd2ee1", "ugkcyxxp")]
+    [Puzzle(answer: "d4cd2ee1", "ugkcyxxp", O.s)]
     public string part_one(string input) => new(Hash(input).Take(8).Select(hash => "0123456789abcdef"[hash[0]]).ToArray());
 
     [Example(answer: "05ace8e3", "abc")]
-    [Puzzle(answer: "f2c730e5", "ugkcyxxp")]
+    [Puzzle(answer: "f2c730e5", "ugkcyxxp", O.s)]
     public string part_two(string input)
     {
         var password = new char[8];

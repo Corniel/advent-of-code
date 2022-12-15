@@ -1,32 +1,24 @@
-using SmartAss.Trees;
-
-namespace Advent_of_Code_2020;
+﻿namespace Advent_of_Code_2020;
 
 [Category(Category.Graph)]
 public class Day_07
 {
-    [Example(answer: 4, example: 1)]
-    [Puzzle(answer: 161)]
-    public int part_one(string input)
-        => Bags.Parse(input).Values.Count(bag => bag.Search("shiny gold") != null) - 1;
+    [Example(answer: 4, Example._1)]
+    [Puzzle(answer: 161, O.ms10)]
+    public int part_one(string input) => Bags.Parse(input).Values.Count(bag => bag.Search("shiny gold") != null) - 1;
 
-    [Example(answer: 032, example: 1)]
-    [Example(answer: 126, example: 2)]
-    [Puzzle(answer: 30899)]
-    public int part_two(string input)
-        => Bags.Parse(input)["shiny gold"].NestedCount;
+    [Example(answer: 032, Example._1)]
+    [Example(answer: 126, Example._2)]
+    [Puzzle(answer: 30899, O.μs100)]
+    public int part_two(string input) => Bags.Parse(input)["shiny gold"].NestedCount;
         
-    public class Bags : Forrest<Leaf>
+    class Bags : Forrest<Leaf>
     {
         public static Bags Parse(string input)
         {
             var bags = new Bags();
 
-            foreach (var line in input
-                .Replace("bags", " ")
-                .Replace("bag", " ")
-                .Replace(".", "")
-                .Lines())
+            foreach (var line in input.Replace("bags", " ").Replace("bag", " ").Replace(".", "").Lines())
             {
                 var split = line.Separate("contain");
 

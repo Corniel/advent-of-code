@@ -1,10 +1,10 @@
-namespace Advent_of_Code_2020;
+﻿namespace Advent_of_Code_2020;
 
 [Category(Category.VectorAlgebra, Category.Simulation)]
 public class Day_12
 {
     [Example(answer: 25, "F10;N3;F7;R90;F11")]
-    [Puzzle(answer: 1631)]
+    [Puzzle(answer: 1631, O.μs100)]
     public int part_one(string input)
     {
         var ferry = Point.O;
@@ -20,7 +20,7 @@ public class Day_12
     }
 
     [Example(answer: 286, "F10;N3;F7;R90;F11")]
-    [Puzzle(answer: 58606)]
+    [Puzzle(answer: 58606, O.μs100)]
     public int part_two(string input)
     {
         var ferry = Point.O;

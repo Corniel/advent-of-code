@@ -1,14 +1,12 @@
-using SmartAss.Text;
-
-namespace Advent_of_Code_2018;
+﻿namespace Advent_of_Code_2018;
 
 public class Day_13
 {
-    [Example(answer: "7,3", 1)]
+    [Example(answer: "7,3", Example._1)]
     [Puzzle(answer: "83,121")]
     public Point part_one(string input) => Simulate(input, stopOncrash: true);
 
-    [Example(answer: "6,4", 2)]
+    [Example(answer: "6,4", Example._2)]
     [Puzzle(answer: "102, 144")]
     public Point part_two(string input) => Simulate(input);
 

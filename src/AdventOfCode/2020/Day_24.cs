@@ -1,4 +1,4 @@
-namespace Advent_of_Code_2020;
+﻿namespace Advent_of_Code_2020;
 
 [Category(Category.VectorAlgebra, Category.GameOfLife)]
 public class Day_24
@@ -11,12 +11,12 @@ public class Day_24
         Assert.AreEqual(Point.O, location);
     }
 
-    [Example(answer: 10, example: 1)]
-    [Puzzle(answer: 523)]
+    [Example(answer: 10, Example._1)]
+    [Puzzle(answer: 523, O.μs100)]
     public int part_one(string input) => Cells.Parse(input).Count;
 
-    [Example(answer: 2208, example: 1)]
-    [Puzzle(answer: 4225)]
+    [Example(answer: 2208, Example._1)]
+    [Puzzle(answer: 4225, O.ms100)]
     public int part_two(string input)
     {
         var cells = Cells.Parse(input);
@@ -60,6 +60,6 @@ public class Day_24
                 prev = ch;
             }
         }
-        private static Vector[] Directions = new[] { Vector.E * 2, Vector.SE, Vector.NE, Vector.W * 2, Vector.SW, Vector.NW };
+        static readonly Vector[] Directions = new[] { Vector.E * 2, Vector.SE, Vector.NE, Vector.W * 2, Vector.SW, Vector.NW };
     }
 }

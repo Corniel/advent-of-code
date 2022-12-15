@@ -1,4 +1,4 @@
-namespace Advent_of_Code_2020;
+﻿namespace Advent_of_Code_2020;
 
 [Category(Category.GameOfLife, Category._3D)]
 public class Day_17
@@ -7,7 +7,7 @@ public class Day_17
         .#.
         ..#
         ###")]
-    [Puzzle(answer: 291, input: @"
+    [Puzzle(answer: 291, @"
         ##.#....
         ...#...#
         .#.#.##.
@@ -15,7 +15,7 @@ public class Day_17
         .###....
         .##.#...
         #.##..##
-        #.####..")]
+        #.####..", O.ms)]
     public int part_one(string input)
     {
         var space = new Space();
@@ -28,7 +28,7 @@ public class Day_17
         .#.
         ..#
         ###")]
-    [Puzzle(answer: 1524, input: @"
+    [Puzzle(answer: 1524, @"
         ##.#....
         ...#...#
         .#.#.##.
@@ -36,7 +36,7 @@ public class Day_17
         .###....
         .##.#...
         #.##..##
-        #.####..")]
+        #.####..", O.ms100)]
     public int part_two(string input)
     {
         var space = new HyperSpace();

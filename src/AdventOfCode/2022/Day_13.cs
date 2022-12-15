@@ -1,17 +1,17 @@
 ﻿namespace Advent_of_Code_2022;
 
-[Category(Category.μs, Category.ExpressionParsing)]
+[Category(Category.ExpressionParsing)]
 public class Day_13
 {
-    [Example(answer: 13, 1)]
-    [Puzzle(answer: 6101)]
+    [Example(answer: 13, Example._1)]
+    [Puzzle(answer: 6101, O.μs100)]
     public int part_one(string input) => input.GroupedLines().Select(Ordered).Sum();
 
     static int Ordered(string[] lines, int index)
         => Package.Parse(lines[0]).CompareTo(Package.Parse(lines[1])) == +1 ? 0 : index + 1;
 
-    [Example(answer: 140, 1)]
-    [Puzzle(answer: 21909)]
+    [Example(answer: 140, Example._1)]
+    [Puzzle(answer: 21909, O.ms)]
     public int part_two(string input)
     {
         var two = Package.Parse("[[2]]");

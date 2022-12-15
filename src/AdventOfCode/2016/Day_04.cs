@@ -7,10 +7,10 @@ public class Day_04
     [Example(answer: 987, "a-b-c-d-e-f-g-h-987[abcde]")]
     [Example(answer: 404, "not-a-real-room-404[oarel]")]
     [Example(answer: 0, "totally-real-room-200[decoy]")]
-    [Puzzle(answer: 158835)]
+    [Puzzle(answer: 158835, O.ms)]
     public int part_one(string input) => input.Lines(Secret.Parse).Sum(s => s.Id);
 
-    [Puzzle(answer: 993)]
+    [Puzzle(answer: 993, O.ms)]
     public int part_two(string input) => input.Lines(Secret.Parse)
         .Where(s => s.Id != 0)
         .First(s => s.Decrypted() == "northpole object storage").Id;

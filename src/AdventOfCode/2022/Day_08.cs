@@ -1,10 +1,10 @@
 ﻿namespace Advent_of_Code_2022;
 
-[Category(Category.ms, Category.Grid, Category.VectorAlgebra)]
+[Category(Category.Grid, Category.VectorAlgebra)]
 public class Day_08
 {
     [Example(answer: 21, "30373\r\n25512\r\n65332\r\n33549\r\n35390")]
-    [Puzzle(answer: 1711)]
+    [Puzzle(answer: 1711, O.ms)]
     public int part_one(string input)
     {
         var map = input.CharPixels().Grid();
@@ -17,7 +17,7 @@ public class Day_08
     static bool IsVisible(Point p, Vector dir, Grid<char> map) => p.Repeat(dir).TakeWhile(map.OnGrid).All(o => map[o] < map[p]);
 
     [Example(answer: 8, "30373\r\n25512\r\n65332\r\n33549\r\n35390")]
-    [Puzzle(answer: 301392)]
+    [Puzzle(answer: 301392, O.ms)]
     public long part_two(string input)
     {
         var map = input.CharPixels().Grid();

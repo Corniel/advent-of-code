@@ -1,10 +1,10 @@
-namespace Advent_of_Code_2020;
+﻿namespace Advent_of_Code_2020;
 
 [Category(Category.ExpressionParsing)]
 public class Day_19
 {
-    [Example(answer: 2, example: 1)]
-    [Puzzle(answer: 239)]
+    [Example(answer: 2, Example._1)]
+    [Puzzle(answer: 239, O.ms)]
     public int part_one(string input)
     {
         var blocks = input.GroupedLines().ToArray();
@@ -12,8 +12,8 @@ public class Day_19
         return patterns.Matches(blocks[1]);
     }
 
-    [Example(answer: 12, example: 2)]
-    [Puzzle(answer: 405)]
+    [Example(answer: 12, Example._2)]
+    [Puzzle(answer: 405, O.ms)]
     public long part_two(string input)
     {
         var blocks = input.GroupedLines().ToArray();

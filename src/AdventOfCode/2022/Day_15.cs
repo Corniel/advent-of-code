@@ -1,30 +1,21 @@
 ﻿namespace Advent_of_Code_2022;
 
-[Category(Category.sec, Category.VectorAlgebra)]
+[Category(Category.VectorAlgebra)]
 public class Day_15
 {
-    [Example(answer: 26, 1)]
-    public int example_one(string input) => One(input, 10);
+    [Example(answer: 26, null, 10, Example._1)]
+    [Puzzle(answer: 4665948, null, 2_000_000, O.μs10)]
+    public int part_one(string input, int y) => input.Lines(Instruction.Parse).Select(i => i.Range(y)).Merge().Sum(r => r.Size);
 
-    [Puzzle(answer: 4665948)]
-    public int part_one(string input) =>  One(input, 2_000_000);
-
-    [Example(answer: 56000011, 1)]
-    public long example_two(string input) => Two(input, 20);
-
-    [Puzzle(answer: 13543690671045)]
-    public long part_two(string input) => Two(input, 4_000_000);
-
-    private static int One(string input, int y)  => input.Lines(Instruction.Parse).Select(i => i.Range(y)).Merge().Sum(r => r.Size);
-
-    private static long Two(string input, int max)
+    [Example(answer: 56000011, null, 20, Example._1)]
+    [Puzzle(answer: 13543690671045, null, 4_000_000, O.s)]
+    public long part_two(string input, int max)
     {
         var instr = input.Lines(Instruction.Parse).ToArray();
-        var line = new Int32Range(0, max);
 
         for (var y = 0; y <= max; y++)
         {
-            if (instr.Select(i => i.Range(y).Intersection(line)).Merge() is { Count: 2 } ranges)
+            if (instr.Select(i => i.Range(y)).Merge() is { Count: 2 } ranges)
             {
                 long x = ranges[0].Upper + 1;
                 return x * 4_000_000 + y;

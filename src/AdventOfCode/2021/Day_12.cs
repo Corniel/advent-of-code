@@ -1,16 +1,16 @@
-namespace Advent_of_Code_2021;
+﻿namespace Advent_of_Code_2021;
 
 [Category(Category.Graph, Category.PathFinding)]
 public class Day_12
 {
     [Example(answer: 10, "start-A;start-b;A-c;A-b;b-d;A-end;b-end")]
-    [Puzzle(answer: 3485)]
+    [Puzzle(answer: 3485, O.ms)]
     public int part_one(string input) => Run(input, SmallCavesOnce);
   
     [Example(answer: 36, "start-A;start-b;A-c;A-b;b-d;A-end;b-end")]
     [Example(answer: 103, "dc-end;HN-start;start-kj;dc-start;dc-HN;LN-dc;HN-end;kj-sa;kj-HN;kj-dc")]
     [Example(answer: 3509, "fs-end;he-DX;fs-he;start-DX;pj-DX;end-zg;zg-sl;zg-pj;pj-he;RW-he;fs-DX;pj-RW;zg-RW;start-pj;he-WI;zg-he;pj-fs;start-RW")]
-    [Puzzle(answer: 85062)]
+    [Puzzle(answer: 85062, O.ms100)]
     public int part_two(string input) => Run(input, OnSmallCaveTwice);
 
     static bool SmallCavesOnce(Cave cave, IEnumerable<Cave> path) => cave.IsSmall && path.Contains(cave);

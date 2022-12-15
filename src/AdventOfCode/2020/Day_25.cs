@@ -1,4 +1,4 @@
-namespace Advent_of_Code_2020;
+﻿namespace Advent_of_Code_2020;
 
 [Category(Category.Cryptography)]
 public class Day_25
@@ -17,8 +17,8 @@ public class Day_25
         Assert.AreEqual(key, EncryptionKey(subject, loops));
     }
 
-    [Example(answer: 14897079, input: "5764801\r\n17807724")]
-    [Puzzle(answer: 16902792, input: "18356117\r\n5909654")]
+    [Example(answer: 14897079,"5764801;17807724")]
+    [Puzzle(answer: 16902792, "18356117;5909654", O.ms10)]
     public long part_one(string input)
     {
         var numbers = input.Int32s().ToArray();
@@ -28,7 +28,7 @@ public class Day_25
         return key1;
     }
 
-    [Puzzle(answer: "You only have to pay 49 stars", input: "You only have to pay 49 stars")]
+    [Puzzle(answer: "You only have to pay 49 stars", "You only have to pay 49 stars")]
     public string part_two(string input) => input;
 
     private static int LoopSize(long key)

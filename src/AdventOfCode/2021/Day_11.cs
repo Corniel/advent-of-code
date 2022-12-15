@@ -1,26 +1,14 @@
-namespace Advent_of_Code_2021;
+﻿namespace Advent_of_Code_2021;
 
 [Category(Category.Grid, Category.Simulation)]
 public class Day_11
 {
-    private const string Example = @"
-5483143223
-2745854711
-5264556173
-6141336146
-6357385478
-4167524645
-2176841721
-6882881134
-4846848554
-5283751526";
-
-    [Example(answer: 1656, Example)]
-    [Puzzle(answer: 1691)]
+    [Example(answer: 1656, Example._1)]
+    [Puzzle(answer: 1691, O.ms)]
     public int part_one(string input) => Simulate(input).Take(100).Sum();
 
-    [Example(answer: 195, Example)]
-    [Puzzle(answer: 216)]
+    [Example(answer: 195, Example._1)]
+    [Puzzle(answer: 216, O.ms)]
     public int part_two(string input) => Simulate(input).TakeWhile(f => f != 100).Count() + 1;
 
     private static IEnumerable<int> Simulate(string input)

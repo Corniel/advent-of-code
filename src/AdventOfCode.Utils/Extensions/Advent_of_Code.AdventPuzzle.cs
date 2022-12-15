@@ -14,7 +14,7 @@ public static class AdventPuzzleExtensions
         try
         {
             sw.Start();
-            answer = puzzle.Method.Invoke(test, new object[] { puzzle.Input });
+            answer = puzzle.Method.Invoke(test, puzzle.Input);
             sw.Stop();
         }
         catch (TargetInvocationException x)

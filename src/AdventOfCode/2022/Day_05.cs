@@ -1,14 +1,14 @@
 ﻿namespace Advent_of_Code_2022;
 
-[Category(Category.μs, Category.Simulation, Category.Grid)]
+[Category(Category.Simulation, Category.Grid)]
 public class Day_05
 {
-    [Example(answer: "CMZ", 1)]
-    [Puzzle(answer: "RNZLFZSJH")]
+    [Example(answer: "CMZ", Example._1)]
+    [Puzzle(answer: "RNZLFZSJH", O.μs100)]
     public string part_one(string input) => Restack(input, SingleStack);
 
-    [Example(answer: "MCD", 1)]
-    [Puzzle(answer: "CNSFCGJSM")]
+    [Example(answer: "MCD", Example._1)]
+    [Puzzle(answer: "CNSFCGJSM", O.μs100)]
     public string part_two(string input) => Restack(input, MultiStack);
 
     static string Restack(string input, Action<IEnumerable<Move>, Stack<char>[]> apply)

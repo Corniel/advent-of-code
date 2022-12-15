@@ -1,10 +1,10 @@
-namespace Advent_of_Code_2020;
+﻿namespace Advent_of_Code_2020;
 
 [Category(Category.Simulation)]
 public class Day_23
 {
-    [Example(answer: "67384529", input: "389125467")]
-    [Puzzle(answer: "94238657", input: "739862541")]
+    [Example(answer: "67384529", "389125467")]
+    [Puzzle(answer: "94238657", "739862541", O.μs)]
     public string part_one(string input)
     {
         var cups = Cups.Create(input.ToCharArray().Select(ch => ch - '0'));
@@ -12,8 +12,8 @@ public class Day_23
         return cups.Answer();
     }
 
-    [Example(answer: 149245887792, input: "389125467")]
-    [Puzzle(answer: 3072905352, input: "739862541")]
+    [Example(answer: 149245887792, "389125467")]
+    [Puzzle(answer: 3072905352, "739862541", O.s)]
     public long part_two(string input)
     {
         var cups = Cups.Create(input.ToCharArray().Select(ch => ch - '0'), 1_000_000);
@@ -91,10 +91,8 @@ public class Day_23
             return sb.ToString();
         }
     }
-    private class Cup
+    record Cup(int Value)
     {
-        public Cup(int val) => Value = val;
         public Cup Next { get; set; }
-        public int Value { get; }
     }
 }

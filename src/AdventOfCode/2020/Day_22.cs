@@ -1,10 +1,10 @@
-namespace Advent_of_Code_2020;
+﻿namespace Advent_of_Code_2020;
 
 [Category(Category.Simulation)]
 public class Day_22
 {
     [Example(answer: 306, "Player 1:\n9\n2\n6\n3\n1\n\nPlayer 2:\n5\n8\n4\n7\n10")]
-    [Puzzle(answer: 33403)]
+    [Puzzle(answer: 33403, O.μs10)]
     public int part_one(string input)
     {
         var decks = input.GroupedLines().Select(Deck.Parse).ToArray();
@@ -13,7 +13,7 @@ public class Day_22
 
     [Example(answer: 105, "Player 1:\n43\n19\n\nPlayer 2:\n2\n29\n14")]
     [Example(answer: 291, "Player 1:\n9\n2\n6\n3\n1\n\nPlayer 2:\n5\n8\n4\n7\n10")]
-    [Puzzle(answer: 29177)]
+    [Puzzle(answer: 29177, O.s)]
     public long part_two(string input)
     {
         var decks = input.GroupedLines().Select(Deck.Parse).ToArray();

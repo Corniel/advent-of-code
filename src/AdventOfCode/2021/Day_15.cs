@@ -1,26 +1,14 @@
-namespace Advent_of_Code_2021;
+﻿namespace Advent_of_Code_2021;
 
 [Category(Category.Grid, Category.PathFinding)]
 public class Day_15
 {
-    private const string Example = @"
-1163751742
-1381373672
-2136511328
-3694931569
-7463417111
-1319128137
-1359912421
-3125421639
-1293138521
-2311944581";
-
-    [Example(answer: 40, Example)]
-    [Puzzle(answer: 595)]
+    [Example(answer: 40, Example._1)]
+    [Puzzle(answer: 595, O.ms10)]
     public int part_one(string input)=> Run(input.CharPixels().Grid(ch => ch - '0'));
 
-    [Example(answer: 315, Example)]
-    [Puzzle(answer: 2914)]
+    [Example(answer: 315, Example._1)]
+    [Puzzle(answer: 2914, O.s)]
     public int part_two(string input) => Run(Scale(input.CharPixels().Grid(ch => ch - '0')));
 
     static int Run(Grid<int> costs)

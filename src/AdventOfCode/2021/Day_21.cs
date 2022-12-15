@@ -1,10 +1,10 @@
-namespace Advent_of_Code_2021;
+﻿namespace Advent_of_Code_2021;
 
 [Category(Category.Computation)]
 public class Day_21
 {
     [Example(answer: 739785, "Player 1 starting position: 4;Player 2 starting position: 8")]
-    [Puzzle(answer: 597600, input: "Player 1 starting position: 8;Player 2 starting position: 5")]
+    [Puzzle(answer: 597600, "Player 1 starting position: 8;Player 2 starting position: 5", O.μs)]
     public int part_one(string input)
     {
         var numbers = input.Int32s().ToArray();
@@ -25,7 +25,7 @@ public class Day_21
     }
 
     [Example(answer: 444356092776315, "Player 1 starting position: 4;Player 2 starting position: 8")]
-    [Puzzle(answer: 634769613696613, input: "Player 1 starting position: 8;Player 2 starting position: 5")]
+    [Puzzle(answer: 634769613696613, "Player 1 starting position: 8;Player 2 starting position: 5", O.ms10)]
     public long part_two(string input)
     {
         var numbers = input.Int32s().ToArray();

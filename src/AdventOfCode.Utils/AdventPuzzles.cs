@@ -31,7 +31,7 @@ public partial class AdventPuzzles : IEnumerable<AdventPuzzle>
                 .GetCustomAttributes<PuzzleAttribute>()
                 .SingleOrDefault(att => att is not ExampleAttribute) is { } attr)
             {
-                var puzzle = new AdventPuzzle(method, attr.Input, attr.Answer);
+                var puzzle = new AdventPuzzle(method, attr.Input, attr.Answer, attr.Order);
                 puzzles.items.Add(puzzle);
             }
         }

@@ -1,4 +1,4 @@
-namespace Advent_of_Code_2016;
+﻿namespace Advent_of_Code_2016;
 
 [Category(Category.Cryptography)]
 public class Day_07
@@ -7,13 +7,13 @@ public class Day_07
     [Example(answer: 0, "abcd[bddb]xyyx")]
     [Example(answer: 1, "abba[mnop]qrst")]
     [Example(answer: 1, "ioxxoj[asdfgh]zxcvbn")]
-    [Puzzle(answer: 105)]
+    [Puzzle(answer: 105, O.ms)]
     public int part_one(string input) => input.Lines().Count(SupportsTls);
 
     [Example(answer: 0, "xyx[xyx]xyx")]
     [Example(answer: 1, "aba[bab]xyz")]
     [Example(answer: 1, "zazbz[bzb]cdb")]
-    [Puzzle(answer: 258)]
+    [Puzzle(answer: 258, O.ms10)]
     public int part_two(string input) => input.Lines().Count(SupportsSsl);
 
     static bool SupportsTls(string line)

@@ -1,6 +1,6 @@
 ﻿namespace Advent_of_Code_2017;
 
-[Category(Category.ms, Category.Graph)]
+[Category(Category.Graph)]
 public class Day_07
 {
     private const string Example = @"

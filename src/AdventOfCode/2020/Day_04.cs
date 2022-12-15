@@ -1,16 +1,14 @@
-namespace Advent_of_Code_2020;
+﻿namespace Advent_of_Code_2020;
 
 [Category(Category.Cryptography)]
 public class Day_04
 {
-    [Example(answer: 2, example: 1)]
-    [Puzzle(answer: 228)]
-    public int part_one(string input)
-        => Passport.Parse(input).Count(p => p.IsValid());
+    [Example(answer: 2, Example._1)]
+    [Puzzle(answer: 228, O.μs100)]
+    public int part_one(string input) => Passport.Parse(input).Count(p => p.IsValid());
 
-    [Puzzle(answer: 175)]
-    public int part_two(string input)
-        => Passport.Parse(input).Count(p => p.StrictValid());
+    [Puzzle(answer: 175, O.μs100)]
+    public int part_two(string input) => Passport.Parse(input).Count(p => p.StrictValid());
 
     public class Passport : Dictionary<string, string>
     {

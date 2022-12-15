@@ -1,10 +1,10 @@
-namespace Advent_of_Code_2021;
+﻿namespace Advent_of_Code_2021;
 
 [Category(Category.VectorAlgebra)]
 public class Day_17
 {
     [Example(answer: 45, "target area: x=20..30, y=-10..-5")]
-    [Puzzle(answer: 17766, input: "target area: x=48..70, y=-189..-148")]
+    [Puzzle(answer: 17766, "target area: x=48..70, y=-189..-148", O.ns100)]
     public int part_one(string input)
     {
         var area = Area.Parse(input);
@@ -12,7 +12,7 @@ public class Day_17
     }
 
     [Example(answer: 112, "target area: x=20..30, y=-10..-5")]
-    [Puzzle(answer: 1733, input: "target area: x=48..70, y=-189..-148")]
+    [Puzzle(answer: 1733, "target area: x=48..70, y=-189..-148", O.ms)]
     public long part_two(string input)
     {
         var area = Area.Parse(input);
@@ -34,12 +34,8 @@ public class Day_17
         return false;
     }
 
-    record Area(int X_hi, int X_lo, int Y_hi, int Y_lo)
+    record Area(int X_lo, int X_hi, int Y_lo, int Y_hi)
     {
-        public static Area Parse(string line)
-        {
-            var vals = line.Int32s().ToArray();
-            return new(X_hi: vals[1], X_lo: vals[0], Y_hi: vals[3], Y_lo: vals[2]);
-        }
+        public static Area Parse(string line) => Ctor.New<Area>(line.Int32s());
     }
 }

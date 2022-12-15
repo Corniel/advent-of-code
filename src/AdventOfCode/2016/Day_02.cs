@@ -1,14 +1,14 @@
-namespace Advent_of_Code_2016;
+﻿namespace Advent_of_Code_2016;
 
 [Category(Category.Cryptography)]
 public class Day_02
 {
     [Example(answer: "1985", "ULL;RRDDD;LURDL;UUUUD")]
-    [Puzzle(answer: "24862")]
+    [Puzzle(answer: "24862", O.μs100)]
     public string part_one(string input) => Solve(input, Point.O, One);
 
     [Example(answer: "5DB3", "ULL;RRDDD;LURDL;UUUUD")]
-    [Puzzle(answer: "46C91")]
+    [Puzzle(answer: "46C91", O.μs100)]
     public string part_two(string input) => Solve(input, new(-2, 0), Two);
 
     private static string Solve(string input, Point point, Dictionary<Point, char> codes)

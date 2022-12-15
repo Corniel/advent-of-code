@@ -1,15 +1,15 @@
 ﻿namespace Advent_of_Code_2022;
 
-[Category(Category.ms, Category.Grid, Category.VectorAlgebra)]
+[Category(Category.Grid, Category.VectorAlgebra)]
 public class Day_09
 {
     [Example(answer: 13, "R 4;U 4;L 3;D 1;R 4;D 1;L 5;R 2")]
-    [Puzzle(answer: 6018)]
+    [Puzzle(answer: 6018, O.μs100)]
     public int part_one(string input) => Simulate(input, 2);
 
     [Example(answer: 1, "R 4;U 4;L 3;D 1;R 4;D 1;L 5;R 2")]
     [Example(answer: 36, "R 5;U 8;L 8;D 3;R 17;D 10;L 25;U 20")]
-    [Puzzle(answer: 2619)]
+    [Puzzle(answer: 2619, O.ms)]
     public long part_two(string input) => Simulate(input, 10);
     
     private static int Simulate(string input, int size)

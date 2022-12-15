@@ -1,12 +1,12 @@
 ﻿namespace Advent_of_Code_2016;
 
-[Category(Category.μs, Category.Grid)]
+[Category(Category.Grid)]
 public class Day_08
 {
-    [Puzzle(answer: 115)]
+    [Puzzle(answer: 115, O.μs100)]
     public int part_one(string input) => Process(input).Count(c => c.Value);
 
-    [Puzzle(answer: "EFEYKFRFIJ")]
+    [Puzzle(answer: "EFEYKFRFIJ", O.μs100)]
     public string part_two(string input) => Ascii(Process(input));
 
     private static string Ascii(Dictionary<Point, bool> grid)

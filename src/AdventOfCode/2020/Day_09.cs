@@ -3,7 +3,7 @@
 [Category(Category.Simulation)]
 public class Day_09
 {
-    [Puzzle(answer: 144381670)]
+    [Puzzle(answer: 144381670, O.μs100)]
     public long part_one(string input)
     {
         var numbers = input.Int64s().ToArray();
@@ -18,7 +18,7 @@ public class Day_09
         throw new NoAnswer();
     }
 
-    [Puzzle(answer: 20532569L)]
+    [Puzzle(answer: 20532569L, O.μs10)]
     public long part_two(string input)
     {
         var numbers = input.Int64s().ToArray();

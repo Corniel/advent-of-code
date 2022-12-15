@@ -1,22 +1,14 @@
-namespace Advent_of_Code_2021;
+﻿namespace Advent_of_Code_2021;
 
 [Category(Category.GameOfLife, Category.Simulation, Category.BitManupilation)]
 public class Day_20
 {
-    private const string Example = @"..#.#..#####.#.#.#.###.##.....###.##.#..###.####..#####..#....#..#..##..###..######.###...####..#..#####..##..#.#####...##.#.#..#.##..#.#......#.###.######.###.####...#.##.##..#..#..#####.....#.#....###..#.##......#.....#..#..#..##..#...##.######.####.####.#.#...#.......#..#.#.#...####.##.#......#..#...##.#.##..#...##.#.##..###.#......#.#.......#.#.#.####.###.##...#.....####.#..#..#.##.#....##..#.####....##...##..#...#......#.#.......#.......##..####..#...#.#.#...##..#.#..###..#####........#..####......#..#
-
-#..#.
-#....
-##..#
-..#..
-..###";
-
-    [Example(answer: 35, Example)]
-    [Puzzle(answer: 5765)]
+    [Example(answer: 35, Example._1)]
+    [Puzzle(answer: 5765, O.ms10)]
     public int part_one(string input) => Run(input, 2);
 
-    [Example(answer: 3351, Example)]
-    [Puzzle(answer: 18509)]
+    [Example(answer: 3351, Example._1)]
+    [Puzzle(answer: 18509, O.ms100)]
     public int part_two(string input) => Run(input, 50);
 
     private static int Run(string input, int turns)

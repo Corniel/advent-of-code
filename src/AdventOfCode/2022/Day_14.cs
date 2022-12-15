@@ -1,14 +1,14 @@
 ﻿namespace Advent_of_Code_2022;
 
-[Category(Category.μs, Category.Grid)]
+[Category(Category.Grid)]
 public class Day_14
 {
     [Example(answer: 24, "498,4 -> 498,6 -> 496,6;503,4 -> 502,4 -> 502,9 -> 494,9")]
-    [Puzzle(answer: 1016)]
+    [Puzzle(answer: 1016, O.ms)]
     public int part_one(string input) => Area.Parse(input, false).Drop();
 
     [Example(answer: 93, "498,4 -> 498,6 -> 496,6;503,4 -> 502,4 -> 502,9 -> 494,9")]
-    [Puzzle(answer: 25402)]
+    [Puzzle(answer: 25402, O.ms10)]
     public int part_two(string input) => Area.Parse(input, true).Drop();
 
     record Area(HashSet<Point> Map, int Rock, int Bottom)

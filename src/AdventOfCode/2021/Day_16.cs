@@ -1,10 +1,10 @@
-namespace Advent_of_Code_2021;
+﻿namespace Advent_of_Code_2021;
 
 [Category(Category.ExpressionParsing)]
 public class Day_16
 {
     [Example(answer: 31, "A0016C880162017C3686B18A3D4780")]
-    [Puzzle(answer: 996)]
+    [Puzzle(answer: 996, O.μs100)]
     public int part_one(string input) => new Parser(input).Read().Versions;
 
     [Example(answer: 3, "C200B40A82")]
@@ -15,10 +15,11 @@ public class Day_16
     [Example(answer: 0, "F600BC2D8F")]
     [Example(answer: 0, "9C005AC2F8F0")]
     [Example(answer: 1, "9C0141080250320F1802104A08")]
-    [Puzzle(answer: 96257984154)]
+    [Puzzle(answer: 96257984154, O.μs100)]
     public long part_two(string input) => new Parser(input).Read().Value;
 
     enum TypeId { Sum = 0, Product = 1, Min = 2, Max = 3, Literal = 4, GT = 5, LT = 6, Eq = 7 }
+    
     class Packet : SmartAss.Syntax.SyntaxNode
     {
         public Packet(int version, TypeId type)
@@ -45,7 +46,7 @@ public class Day_16
         public Literal(int version, long val)  : base(version, TypeId.Literal) => Value = val;
         public override long Value { get; }
     }
-    class Parser : SmartAss.Syntax.SyntaxParser
+    class Parser : SyntaxParser
     {
         public Parser(string input) : base(string.Concat(input.Select(ch => bits[1 + "0123456789ABCDEF".IndexOf(ch)]))) => Do.Nothing();
         public Packet Read()

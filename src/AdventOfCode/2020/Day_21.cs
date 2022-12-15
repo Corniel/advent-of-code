@@ -1,4 +1,4 @@
-namespace Advent_of_Code_2020;
+﻿namespace Advent_of_Code_2020;
 
 [Category(Category.Cryptography)]
 public class Day_21
@@ -8,7 +8,7 @@ public class Day_21
         trh fvjkl sbzzf mxmxvkd (contains dairy)
         sqjhc fvjkl (contains soy)
         sqjhc mxmxvkd sbzzf (contains fish)")]
-    [Puzzle(answer: 2282)]
+    [Puzzle(answer: 2282, O.μs100)]
     public long part_one(string input)
     {
         var foods = input.Lines(Food.Parse).ToArray();
@@ -21,7 +21,7 @@ public class Day_21
         trh fvjkl sbzzf mxmxvkd (contains dairy)
         sqjhc fvjkl (contains soy)
         sqjhc mxmxvkd sbzzf (contains fish)")]
-    [Puzzle(answer: "vrzkz,zjsh,hphcb,mbdksj,vzzxl,ctmzsr,rkzqs,zmhnj")]
+    [Puzzle(answer: "vrzkz,zjsh,hphcb,mbdksj,vzzxl,ctmzsr,rkzqs,zmhnj", O.μs100)]
     public string part_two(string input)
     {
         var allergens = Allergen.Init(input.Lines(Food.Parse));

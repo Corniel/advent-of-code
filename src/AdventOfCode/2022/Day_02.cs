@@ -1,10 +1,10 @@
 ﻿namespace Advent_of_Code_2022;
 
-[Category(Category.μs, Category.Simulation)]
+[Category(Category.Simulation)]
 public class Day_02
 {
     [Example(answer: 15, "A Y;B X;C Z")]
-    [Puzzle(answer: 12458)]
+    [Puzzle(answer: 12458, O.μs100)]
     public int part_one(string input) => input.Lines(One).Sum();
 
     static int One(string battle) => battle switch
@@ -15,7 +15,7 @@ public class Day_02
     };
 
     [Example(answer: 12, "A Y;B X;C Z")]
-    [Puzzle(answer: 12683)]
+    [Puzzle(answer: 12683, O.μs100)]
     public int part_two(string input) => input.Lines(Two).Sum();
 
     static int Two(string battle) => battle switch

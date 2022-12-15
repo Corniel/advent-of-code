@@ -1,26 +1,18 @@
-namespace Advent_of_Code_2020;
+﻿namespace Advent_of_Code_2020;
 
 [Category(Category.VectorAlgebra)]
 public class Day_03
 {
-    [Example(answer: 7, example: 1)]
-    [Puzzle(answer: 220)]
+    [Example(answer: 7, Example._1)]
+    [Puzzle(answer: 220, O.μs10)]
     public long part_one(string input)
         => CountTrees(Row.Parse(input).ToArray(), new Vector(3, 1));
 
-    [Puzzle(answer: 2138320800)]
+    [Puzzle(answer: 2138320800, O.μs100)]
     public long part_two(string input)
     {
         var rows = Row.Parse(input).ToArray();
-        var slopes = new[]
-          {
-                new Vector(1, 1),
-                new Vector(3, 1),
-                new Vector(5, 1),
-                new Vector(7, 1),
-                new Vector(1, 2),
-            };
-        return slopes.Select(slope => CountTrees(rows, slope)).Product();
+        return new Vector[] { new(1, 1), new(3, 1), new(5, 1), new(7, 1), new(1, 2) }.Select(slope => CountTrees(rows, slope)).Product();
     }
 
     private static long CountTrees(Row[] rows, Vector slope)

@@ -1,4 +1,4 @@
-namespace Advent_of_Code_2021;
+﻿namespace Advent_of_Code_2021;
 
 [Category(Category.Simulation, Category.VectorAlgebra)]
 public class Day_25
@@ -13,7 +13,7 @@ v>v.vv.v..
 .vv..>.>v.
 v.v..>>v.v
 ....v..v.>")]
-    [Puzzle(answer: 598)]
+    [Puzzle(answer: 598, O.ms100)]
     public int part_one(string input)
     {
         var grid = input.CharPixels().Grid().SetNeighbors(Neighbors.Sphere);

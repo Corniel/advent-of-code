@@ -56,6 +56,12 @@ public static class ConsoleLogger
         return grid;
     }
 
+    public static List<T> Console<T>(this List<T> list, string seperator = ", ")
+    {
+        WriteLine(string.Join(seperator, list));
+        return list;
+    }
+
     public static T Console<T>(this T obj)
     {
         WriteLine(obj?.ToString() ?? "{null}");

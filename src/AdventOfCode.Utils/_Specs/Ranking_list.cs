@@ -37,12 +37,12 @@ public class Rankings
         }
     }
 
-    public class Solving_1000 : Rankings
+    public class Solving_Bonus : Rankings
     {
         [TestCaseSource(nameof(Years))]
         public void All(int year)
         {
-            foreach (var rank in Ranking.Solving_1000(Data.Participants(), year))
+            foreach (var rank in Ranking.Solving(Data.Participants(), year, solve: 10_000))
             {
                 Console.WriteLine(rank);
             }
@@ -53,7 +53,7 @@ public class Rankings
         {
             Participants partipants = GetTjip(year);
 
-            foreach (var rank in Ranking.Solving_1000(partipants, year))
+            foreach (var rank in Ranking.Solving(partipants, year, solve: 1000))
             {
                 Console.WriteLine(rank.ToString("name-only", CultureInfo.CurrentCulture));
             }

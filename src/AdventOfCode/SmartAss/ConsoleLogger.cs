@@ -62,9 +62,12 @@ public static class ConsoleLogger
         return list;
     }
 
-    public static T Console<T>(this T obj)
+    public static T Console<T>(this T obj, bool when = true)
     {
-        WriteLine(obj?.ToString() ?? "{null}");
+        if (when)
+        {
+            WriteLine(obj?.ToString() ?? "{null}");
+        }
         return obj;
     }
 

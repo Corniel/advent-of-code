@@ -4,11 +4,11 @@
 public class Day_17
 {
     [Example(answer: 3068, ">>><<><>><<<>><>>><<<>>><<<><<<>><>><<>>")]
-    [Puzzle(answer: 3168, O.μs100)]
+    [Puzzle(answer: 3168, O.ms)]
     public long part_one(string input) => Play(input.Lines()[0], 2022);
 
     [Example(answer: 1514285714288, ">>><<><>><<<>><>>><<<>>><<<><<<>><>><<>>")]
-    [Puzzle(answer: 1554117647070, O.μs100)]
+    [Puzzle(answer: 1554117647070, O.ms)]
     public long part_two(string input) => Play(input.Lines()[0], 1_000_000_000_000);
 
     static long Play(string shifts, long turns)

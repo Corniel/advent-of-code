@@ -1,4 +1,4 @@
-
+﻿
 namespace Advent_of_Code_2018;
 
 [Category(Category.Cryptography)]
@@ -12,7 +12,7 @@ public class Day_05
     public int part_one(string input) => Destroy(input).Length;
 
     [Example(answer: 4, "dabAcCaCBAcCcaDA")]
-    [Puzzle(answer: 4552)]
+    [Puzzle(answer: 4552, O.s)]
     public int part_two(string input)
         => Characters.a_z.Select(ch => Strip(input, Lower(ch)))
         .Select(reduced => Destroy(reduced))

@@ -1,19 +1,17 @@
-namespace Advent_of_Code_2015;
+﻿namespace Advent_of_Code_2015;
 
 [Category(Category.ExpressionParsing)]
 public class Day_08
 {
     [Example(answer: 7, @"""x\""\xcaj\\xwwvpdldz""")]
-    [Puzzle(answer: 1342)]
-    public int part_one(string input)
-        => input.Lines().Sum(line => line.Length - Decode(line));
+    [Puzzle(answer: 1342, O.μs10)]
+    public int part_one(string input) => input.Lines().Sum(line => line.Length - Decode(line));
 
     [Example(answer: 16 - 10, @"""aaa\""aaa""")]
     [Example(answer: 11 - 6, @"""\x27""")]
-    [Puzzle(answer: 2074)]
-    public int part_two(string input)
-        => input.Lines().Sum(line => Encode(line) - line.Length);
-   
+    [Puzzle(answer: 2074, O.μs10)]
+    public int part_two(string input) => input.Lines().Sum(line => Encode(line) - line.Length);
+
     static int Decode(string str)
     {
         var length = 0;
@@ -33,9 +31,8 @@ public class Day_08
                 escape = false;
             }
         }
-        return  length;
+        return length;
     }
 
-    static int Encode(string str)
-        => str.Length + 4 + str[1..^1].Count(ch => ch == '"' || ch == '\\');
+    static int Encode(string str) => str.Length + 4 + str[1..^1].Count(ch => ch == '"' || ch == '\\');
 }

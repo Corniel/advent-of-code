@@ -1,10 +1,10 @@
-namespace Advent_of_Code_2015;
+﻿namespace Advent_of_Code_2015;
 
 [Category(Category.VectorAlgebra, Category.Simulation)]
 public class Day_03
 {
     [Example(answer: 4, "^>v<")]
-    [Puzzle(answer: 2592)]
+    [Puzzle(answer: 2592, O.μs100)]
     public int part_one(string input)
     {
         var done = new HashSet<Point> { Point.O };
@@ -18,7 +18,7 @@ public class Day_03
     }
 
     [Example(answer: 11, "^v^v^v^v^v")]
-    [Puzzle(answer: 2360)]
+    [Puzzle(answer: 2360, O.μs100)]
     public int part_two(string input)
     {
         var done = new HashSet<Point> { Point.O };

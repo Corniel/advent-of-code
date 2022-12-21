@@ -1,4 +1,4 @@
-namespace Advent_of_Code_2018;
+﻿namespace Advent_of_Code_2018;
 
 [Category(Category.Grid)]
 public class Day_11
@@ -10,7 +10,7 @@ public class Day_11
         return $"{max.X},{max.Y}";
     }
 
-    [Puzzle(answer: "224,222,27", "3999")]
+    [Puzzle(answer: "224,222,27", "3999", O.s10)]
     public string part_two(string input)
     {
         var grid = Grid(input);

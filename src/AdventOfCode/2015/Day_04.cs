@@ -1,4 +1,4 @@
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 
 namespace Advent_of_Code_2015;
 
@@ -7,10 +7,10 @@ public class Day_04
 {
     
     [Example(answer: 609043, "abcdef")]
-    [Puzzle(answer: 346386, "iwrupvqb")]
+    [Puzzle(answer: 346386, "iwrupvqb", O.ms10)]
     public int part_one(string input) => Run(input, FiveZeros);
 
-    [Puzzle(answer: 9958218, "iwrupvqb")]
+    [Puzzle(answer: 9958218, "iwrupvqb", O.s)]
     public int part_two(string input) => Run(input, SixZeros);
 
     private static readonly HashAlgorithm Hash = MD5.Create();

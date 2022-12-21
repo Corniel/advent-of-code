@@ -56,7 +56,7 @@ public static class ConsoleLogger
         return grid;
     }
 
-    public static List<T> Console<T>(this List<T> list, string seperator = ", ")
+    public static List<T> Console<T>(this List<T> list, string seperator = "\n")
     {
         WriteLine(string.Join(seperator, list));
         return list;

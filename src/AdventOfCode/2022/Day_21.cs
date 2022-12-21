@@ -1,6 +1,6 @@
 ﻿namespace Advent_of_Code_2022;
 
-[Category(Category.Expressions)]
+[Category(Category.ExpressionEvaluation)]
 public class Day_21
 {
     [Example(answer: 152, Example._1)]

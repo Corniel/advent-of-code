@@ -22,6 +22,10 @@ public abstract class Expr
         "div" or "/" => new Divide(left, right),
         "add" or "+" => new Add(left, right),
         "sub" or "-" => Subtract(left, right),
+        "<<" => new ShiftLeft(left, right),
+        ">>" => new ShiftRight(left, right),
         _ => throw new NotSupportedException($"The '{op}' is not supported.")
     };
+
+   
 }

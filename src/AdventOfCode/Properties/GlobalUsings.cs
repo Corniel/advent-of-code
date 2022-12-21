@@ -8,6 +8,7 @@ global using Qowaiv;
 global using SmartAss;
 global using SmartAss.Collections;
 global using SmartAss.Diagnostics;
+global using SmartAss.Expressions;
 global using SmartAss.Maps;
 global using SmartAss.Navigation;
 global using SmartAss.Numerics;

@@ -1,4 +1,4 @@
-using Circuit = SmartAss.Circuits.Circuit<ushort>;
+﻿using Circuit = SmartAss.Circuits.Circuit<ushort>;
 using Node = SmartAss.Circuits.CircuitNode<ushort>;
 
 namespace Advent_of_Code_2015;
@@ -6,26 +6,16 @@ namespace Advent_of_Code_2015;
 [Category(Category.ExpressionParsing)]
 public class Day_07
 {
-    private const string Example = @"
-123 -> x
-456 -> y
-x AND y -> d
-x OR y -> e
-x LSHIFT 2 -> f
-y RSHIFT 2 -> g
-NOT x -> h
-NOT y -> a";
-    [Example(answer: 65079, Example)]
-    [Puzzle(answer: 956)]
-    public ushort part_one(string input)
-        => Parse(input)["a"].Output ?? throw new NoAnswer();
+    [Example(answer: 65079, "123 -> x;456 -> y;x AND y -> d;x OR y -> e;x LSHIFT 2 -> f;y RSHIFT 2 -> g;NOT x -> h;NOT y -> a")]
+    [Puzzle(answer: 956, O.μs100)]
+    public ushort part_one(string input) => Parse(input)["a"].Output.Value;
 
-    [Puzzle(answer: 40149)]
+    [Puzzle(answer: 40149, O.μs100)]
     public ushort part_two(string input)
     {
         var circuit = Parse(input);
         circuit["b"] = new Circuit.Constant(956);
-        return circuit["a"].Output ?? throw new NoAnswer();
+        return circuit["a"].Output.Value;
     }
 
     private static Circuit Parse(string input)

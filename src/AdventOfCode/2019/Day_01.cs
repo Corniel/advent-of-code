@@ -1,4 +1,4 @@
-namespace Advent_of_Code_2019;
+﻿namespace Advent_of_Code_2019;
 
 [Category(Category.Simulation)]
 public class Day_01
@@ -7,7 +7,7 @@ public class Day_01
     public int part_one(string input)
         => input.Int32s().Sum(Fuel);
 
-    [Puzzle(answer: 4934153)]
+    [Puzzle(answer: 4934153, O.μs)]
     public int part_two(string input)
         => input.Int32s().Sum(RecursiveFuel);
 

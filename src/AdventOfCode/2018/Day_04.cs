@@ -3,32 +3,13 @@
 [Category(Category.Simulation)]
 public class Day_04
 {
-    private const string Example = @"
-[1518-11-01 00:00] Guard #10 begins shift
-[1518-11-01 00:05] falls asleep
-[1518-11-01 00:25] wakes up
-[1518-11-01 00:30] falls asleep
-[1518-11-01 00:55] wakes up
-[1518-11-01 23:58] Guard #99 begins shift
-[1518-11-02 00:40] falls asleep
-[1518-11-02 00:50] wakes up
-[1518-11-03 00:05] Guard #10 begins shift
-[1518-11-03 00:24] falls asleep
-[1518-11-03 00:29] wakes up
-[1518-11-04 00:02] Guard #99 begins shift
-[1518-11-04 00:36] falls asleep
-[1518-11-04 00:46] wakes up
-[1518-11-05 00:03] Guard #99 begins shift
-[1518-11-05 00:45] falls asleep
-[1518-11-05 00:55] wakes up";
-
-    [Example(answer: 10 * 24, Example)]
+    [Example(answer: 10 * 24, Example._1)]
     [Puzzle(answer: 26281)]
     public long part_one(string input) => Occurences(input)
         .OrderByDescending(c => c.Value.Total).Select(Score).First();
 
-    [Example(answer: 99 * 45, Example)]
-    [Puzzle(answer: 73001)]
+    [Example(answer: 99 * 45, Example._1)]
+    [Puzzle(answer: 73001, O.s)]
     public long part_two(string input) => Occurences(input)
         .OrderByDescending(c => AsleepMostMinutes(c.Value)).Select(Score).First();
 

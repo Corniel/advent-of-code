@@ -1,14 +1,14 @@
-namespace Advent_of_Code_2015;
+﻿namespace Advent_of_Code_2015;
 
 [Category(Category.ExpressionParsing)]
 public class Day_01
 {
     [Example(answer: 3, "))(((((")]
-    [Puzzle(answer: 232)]
+    [Puzzle(answer: 232, O.μs10)]
     public int part_one(string input) => input.Sum(ch => ch == '(' ? 1 : -1);
 
     [Example(answer: 5, "()())")]
-    [Puzzle(answer: 1783)]
+    [Puzzle(answer: 1783, O.μs)]
     public int part_two(string input)
     {
         var level = 0;

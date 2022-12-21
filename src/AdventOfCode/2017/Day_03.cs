@@ -1,4 +1,4 @@
-namespace Advent_of_Code_2017;
+﻿namespace Advent_of_Code_2017;
 
 [Category(Category.SequenceProgression)]
 public class Day_03
@@ -6,7 +6,7 @@ public class Day_03
     [Example(answer: 3, "12")]
     [Example(answer: 2, "23")]
     [Example(answer: 4, "25")]
-    [Puzzle(answer: 438, "265149")]
+    [Puzzle(answer: 438, "265149", O.μs)]
     public int part_one(string input) => Point.O.ManhattanDistance(Location(input.Int32()));
 
     [Puzzle(answer: 266330, "265149")]

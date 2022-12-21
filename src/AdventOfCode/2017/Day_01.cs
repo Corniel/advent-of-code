@@ -1,4 +1,4 @@
-namespace Advent_of_Code_2017;
+﻿namespace Advent_of_Code_2017;
 
 [Category(Category.SequenceProgression)]
 public class Day_01
@@ -7,7 +7,7 @@ public class Day_01
     [Example(answer: 4, "1111")]
     [Example(answer: 0, "1234")]
     [Example(answer: 9, "91212129")]
-    [Puzzle(answer: 1141)]
+    [Puzzle(answer: 1141, O.μs)]
     public int part_one(string input)
         => (input + input[0]).Digits().SelectWithPrevious().Where(pair => pair.Unchanged()).Sum(pair => pair.Current);
 

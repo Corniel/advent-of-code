@@ -8,7 +8,7 @@ public enum Category
     BitManupilation,
     Cryptography,
     Computation,
-    Expressions,
+    ExpressionEvaluation,
     ExpressionParsing,
     GameOfLife,
     Graph,

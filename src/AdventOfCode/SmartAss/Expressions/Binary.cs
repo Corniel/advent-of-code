@@ -34,6 +34,10 @@ public abstract class Binary : Expr
         ? TryValue(left, right) 
         : null;
 
+    public sealed override string ToString() => $"({Left} {Operator} {Right})";
+
+    protected abstract string Operator { get; }
+
     protected abstract long Solve(long value, long? left, long? right);
 
     protected abstract long TryValue(long left, long right);

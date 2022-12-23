@@ -37,7 +37,7 @@ public class Day_19
     record struct State(int Time, Resource Curr, Resource Prod)
     {
         public State Next(Resource prod) => this with { Time = Time - 1, Curr = Curr + prod };
-        public bool Done(Blueprint p) => Time == 0 || (Prod.Obs == 0 && p.Geo.Cost.Obs > Time * 1);
+        public bool Done(Blueprint p) => Time == 0 || (Prod.Obs == 0 && p.Geo.Cost.Obs > Time * 2);
         public State Build(Bot bot) => this with { Curr = Curr - bot.Cost, Prod = Prod + bot.Prod };
         public IEnumerable<State> Nexts(Blueprint p)
         {

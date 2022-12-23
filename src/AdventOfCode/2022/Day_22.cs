@@ -7,6 +7,7 @@ public class Day_22
     [Puzzle(answer: 1428, O.ms)]
     public int part_one(string input) => Navigate(input, Donut);
 
+    [Example(answer: 162155, Example._2)]
     [Puzzle(answer: 142380, O.ms)]
     public int part_two(string input) => Navigate(input, Cube);
 
@@ -42,6 +43,7 @@ public class Day_22
     {
         var face = new Point(cursor.Pos.X / RibbonSize, cursor.Pos.Y / RibbonSize);
         var ribbon = new Ribbon(face, cursor.Dir.CompassPoint());
+
         var pos = ribbon.Direction == CompassPoint.N || ribbon.Direction == CompassPoint.S
                ? cursor.Pos.X % RibbonSize
                : cursor.Pos.Y % RibbonSize;
@@ -130,5 +132,5 @@ public class Day_22
         public int Score() => (Pos.Y + 1) * 1000 + (Pos.X + 1) * 4 + Facing[Dir];
     }
 
-    static readonly Dictionary<Vector, int> Facing = new() { [Vector.E] = 0, [Vector.S] = 1, [Vector.W] = 2, [Vector.S] = 3 };
+    static readonly Dictionary<Vector, int> Facing = new() { [Vector.E] = 0, [Vector.S] = 1, [Vector.W] = 2, [Vector.N] = 3 };
 }

@@ -41,7 +41,8 @@ public sealed class AdventPuzzle
         using var stream = assembly.GetManifestResourceStream(path);
         if (stream is null) return new FileNotFoundException(path).ToString();
         var reader = new StreamReader(stream, Encoding.UTF8);
-        return reader.ReadToEnd();
+        var text = reader.ReadToEnd();
+        return text[^2..] == "\r\n" ? text[..^2] : text;
     }
 
     private static AdventDate GetDate(MethodInfo method)

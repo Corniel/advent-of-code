@@ -1,10 +1,10 @@
 ﻿namespace Advent_of_Code_2022;
 
-[Category(Category.Grid, Category.VectorAlgebra)]
+[Category(Category.BitManupilation)]
 public class Day_17
 {
     [Example(answer: 3068, ">>><<><>><<<>><>>><<<>>><<<><<<>><>><<>>")]
-    [Puzzle(answer: 3168, O.ms)]
+    [Puzzle(answer: 3168, O.μs100)]
     public long part_one(string input) => Play(input.Lines()[0], 2022);
 
     [Example(answer: 1514285714288, ">>><<><>><<<>><>>><<<>>><<<><<<>><>><<>>")]

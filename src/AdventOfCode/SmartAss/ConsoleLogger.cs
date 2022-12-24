@@ -8,9 +8,10 @@ namespace SmartAss;
 /// </remarks>
 public static class ConsoleLogger
 {
-    public static Grid<bool> Console(this Grid<bool> grid, string chars = "█░")
+    public static Grid<bool> Console(this Grid<bool> grid, string chars = "#.")
     {
         WriteLine(grid?.ToString(c => c ? chars[0] : chars[1]));
+        WriteLine();
         return grid;
     }
 
@@ -26,7 +27,7 @@ public static class ConsoleLogger
         return grid;
     }
 
-    public static HashSet<Point> Console(this HashSet<Point> grid, string chars = "█░")
+    public static HashSet<Point> Console(this HashSet<Point> grid, string chars = "#.")
     {
         var min = new Point(int.MaxValue,int.MaxValue);
         var max = new Point(int.MinValue, int.MinValue);

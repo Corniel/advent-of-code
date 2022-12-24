@@ -2,7 +2,7 @@
 
 namespace Advent_of_Code.Rankings;
 
-public record class CodeFile(FileInfo Location, AdventDate Date)
+public record class LinesOfCode(FileInfo Location, AdventDate Date)
 {
     public StreamSize Size => Process().size;
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -18,7 +18,7 @@ public record class CodeFile(FileInfo Location, AdventDate Date)
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     private int lines;
 
-    private CodeFile Process()
+    private LinesOfCode Process()
     {
         if (lines != 0) return this;
 

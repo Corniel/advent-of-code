@@ -137,7 +137,7 @@ public static class Program
     {
         var files = AdventDate.AllAvailable()
             .Where(d => d.Part == 1 && d.Matches(date))
-            .Select(d => new CodeFile(
+            .Select(d => new LinesOfCode(
                 Location: new(Path.Combine($"./../../../../AdventOfCode/{d.Year}/Day_{d.Day:00}.cs")),
                 Date: new AdventDate(d.Year, d.Day, null)))
             .Where(code => code.Exists)

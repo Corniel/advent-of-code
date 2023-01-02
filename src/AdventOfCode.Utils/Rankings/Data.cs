@@ -1,6 +1,5 @@
 ﻿using Advent_of_Code.Http;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace Advent_of_Code.Rankings;
 
@@ -46,6 +45,24 @@ public static class Data
         }
         return participants;
     }
+
+    public static Participants Tjip(int year)
+    { 
+        TJIP_Ignore.TryGetValue(year, out var exclude);
+        exclude ??= Array.Empty<string>();
+        var partipants = new Participants(Participants()
+            .Where(p
+                => p.Value.Boards.Any(b => b.Name == "TJIP")
+                && !exclude.Any(name => p.Value.Matches(name))));
+        return partipants;
+    }
+
+    static readonly Dictionary<int, string[]> TJIP_Ignore = new()
+    {
+        [2014] = "Paul Antal".Split(';'),
+        [2021] = "Martijn van Maasakkers;Ralph Hendriks".Split(';'),
+        [2022] = "Paul Antal;Jurgen Heeffer;Baljinnyam Sereeter;Jeff-vD;Ralph Hendriks;Fred Hoogduin;Martijn van Maasakkers".Split(';'),
+    };
 
     static Dictionary<int, Board> Boards()
     {
@@ -124,5 +141,5 @@ public static class Data
         }
     }
 
-    public static readonly DirectoryInfo Location = new(Path.Combine(typeof(Data).Assembly.Location, "../../../../Rankings/Data"));
+    public static DirectoryInfo Location { get; set; } = new(Path.Combine(typeof(Data).Assembly.Location, "../../../../Rankings/Data"));
 }

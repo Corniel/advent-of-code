@@ -1,5 +1,6 @@
 ﻿using Advent_of_Code.Rankings;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace Advent_of_Code;
 
@@ -8,7 +9,7 @@ public static class Program
     private static readonly int Failure = 1;
     private static readonly int Success = 0;
 
-    public static int Main(string[] args)
+    public static async Task<int> Main(string[] args)
     {
         if (args?.Length < 1) { return Usage(); }
 
@@ -22,13 +23,17 @@ public static class Program
         {
             return Generate(date);
         }
-        else if (args.Length == 2 && args[1] == "-rank")
+        else if (args.Length == 2 && args[1] == "-benchmark" || args[1] == "-b")
         {
-            return Rank(puzzles, date);
+            return Benchmark(puzzles, date);
         }
         else if (args.Length == 2 && args[1] == "-loc")
         {
             return CodeSize(date);
+        }
+        else if (args.Length >= 2 && args[1] == "-rank" || args[1] == "-r")
+        {
+            return await Rankings(date.Year.Value, args.Length == 2 ? "" : args[2]);
         }
         else
         {
@@ -44,6 +49,26 @@ public static class Program
             else return NoMethod(date);
         }
     }
+
+    private static async Task<int> Rankings(int year, string list)
+    {
+        Console.Clear();
+        Data.Location = new DirectoryInfo("../../../../AdventOfCode.Utils/Rankings/Data");
+
+        foreach (var file in await Data.DownloadRankingFiles())
+        {
+            Console.WriteLine(file);
+        }
+
+        var participants = list.ToUpperInvariant() == "TJIP"
+            ? Data.Tjip(year)
+            : Data.Participants();
+
+        Console.WriteLine(Ranking.Solving(year, participants.Values));
+
+        return Success;
+    }
+
     private static int Generate(AdventDate date)
     {
         var location = Templating.Generate(date.Year.Value, date.Day.Value);
@@ -51,7 +76,7 @@ public static class Program
         return Success;
     }
 
-    private static int Rank(AdventPuzzles puzzles, AdventDate date)
+    private static int Benchmark(AdventPuzzles puzzles, AdventDate date)
     {
         var limit = O.s;
         var sw = Stopwatch.StartNew();

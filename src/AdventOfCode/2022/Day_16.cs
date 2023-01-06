@@ -77,7 +77,7 @@ public class Day_16
 
             while (distance++ is { } && queue.Any())
             {
-                foreach (var next in queue.DeuqueCurrent()
+                foreach (var next in queue.DequeueCurrent()
                     .SelectMany(c => c.Connections.Where(d => d.Value == 1 && Connections.TryAdd(d.Key, distance)))
                     .Select(d => d.Key))
                 {

@@ -66,7 +66,7 @@ public class Day_15
             while (queue.Any())
             {
                 distance++;
-                foreach (var tile in queue.DeuqueCurrent())
+                foreach (var tile in queue.DequeueCurrent())
                 {
                     foreach (var next in Neighbors(tile).Where(n => !distances.ContainsKey(n)))
                     {

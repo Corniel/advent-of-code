@@ -82,7 +82,7 @@ public class Day_24
         public Blizz(Point pos, Vector dir) { Pos = pos; Dir = dir; }
 
         public Point Pos { get; private set; }
-        public Vector Dir { get; private set; }
+        public Vector Dir { get; }
 
         public Point Move(Grid<bool> map)
         {

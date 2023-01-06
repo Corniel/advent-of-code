@@ -11,7 +11,7 @@ public class Day_22
     [Puzzle(answer: 142380, O.ms)]
     public int part_two(string input) => Navigate(input, Cube);
 
-    private static int Navigate(string input, Func<Grid<char>, Cursor, Cursor> offGrid)
+    private static int Navigate(string input, Func<Grid<char>, Cursor, Cursor> offMap)
     {
         var group = input.GroupedLines(StringSplitOptions.None).ToArray();
         var map = group[0].CharPixels(ignoreSpace: false).Grid();
@@ -23,7 +23,7 @@ public class Day_22
             else for (var step = 0; step < (int)instr; step++)
             {
                 var next = cursor.Move();
-                next = next.OnMap(map) ? next : offGrid(map, cursor);
+                next = next.OnMap(map) ? next : offMap(map, cursor);
                 if (map[next.Pos] != '#') cursor = next;
                 else break;
             }

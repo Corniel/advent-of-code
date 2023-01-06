@@ -33,7 +33,7 @@ public class Day_12
 
             while (queue.Any())
             {
-                foreach (var point in queue.DeuqueCurrent())
+                foreach (var point in queue.DequeueCurrent())
                 {
                     if (point == E) return distance;
                     var height = Map[point];

@@ -35,9 +35,9 @@ public class Day_24
                 Next();
                 nexts.Clear();
 
-                foreach (var curr in queue.DeuqueCurrent())
+                foreach (var curr in queue.DequeueCurrent())
                 {
-                    if (Available(curr) && !nexts[curr])
+                    if (!Occupied[curr] && !nexts[curr])
                     {
                         queue.Enqueue(curr);
                         nexts[curr] = true;
@@ -45,7 +45,7 @@ public class Day_24
                     foreach (var next in Neighbors.Grid(Occupied, curr, CompassPoints.Primary))
                     {
                         if (next == to) return this;
-                        else if (!Occupied.OnEdge(next) && Available(next) && !nexts[next])
+                        else if (!Occupied.OnEdge(next) && !Occupied[next] && !nexts[next])
                         {
                             nexts[next] = true;
                             queue.Enqueue(next);
@@ -56,15 +56,13 @@ public class Day_24
             throw new NoAnswer();
         }
 
-        bool Available(Point pos) => !Occupied[pos];
-
         void Next()
         {
             Time++;
             Occupied.Clear();
             foreach (var blizz in Blizzards)
             {
-                Occupied[blizz.Move(Occupied).Pos] = true;
+                Occupied[blizz.Move(Occupied)] = true;
             }
         }
 
@@ -86,7 +84,7 @@ public class Day_24
         public Point Pos { get; private set; }
         public Vector Dir { get; private set; }
 
-        public Blizz Move(Grid<bool> map)
+        public Point Move(Grid<bool> map)
         {
             Pos += Dir;
             if (map.OnEdge(Pos))
@@ -94,8 +92,9 @@ public class Day_24
                 Pos += Dir * 2;
                 Pos = new(Pos.X.Mod(map.Cols), Pos.Y.Mod(map.Rows));
             }
-            return this;
+            return Pos;
         }
+
         public static Blizz[] Parse(CharPixels pxs) => pxs.Select(px => px.Value switch
         {
             '^' => new Blizz(px.Key, Vector.N),

@@ -30,7 +30,7 @@ public class Day_11
         public long Factor => Divisible * Operation.Factor;
         public void Play(Monkey[] other, int reduce, long mod)
         {
-            foreach (var item in Items.DeuqueCurrent())
+            foreach (var item in Items.DequeueCurrent())
             {
                 Inspected++;
                 WorryLevel = (Operation.Invoke(item) / reduce).Mod(mod);

@@ -26,12 +26,12 @@ public class Day_19
         }
     }
 
-    record struct Resource(int Ore = 0, int Cly = 0, int Obs = 0, int Geo = 0)
+    record struct Resource(short Ore = 0, short Cly = 0, short Obs = 0, short Geo = 0)
     {
         public bool CanBuild(Bot bot) => Ore >= bot.Cost.Ore && Cly >= bot.Cost.Cly && Obs >= bot.Cost.Obs && Geo >= bot.Cost.Geo;
 
-        public static Resource operator +(Resource l, Resource r) => new(l.Ore + r.Ore, l.Cly + r.Cly, l.Obs + r.Obs, l.Geo + r.Geo);
-        public static Resource operator -(Resource l, Resource r) => new(l.Ore - r.Ore, l.Cly - r.Cly, l.Obs - r.Obs, l.Geo - r.Geo);
+        public static Resource operator +(Resource l, Resource r) => new((short)(l.Ore + r.Ore), (short)(l.Cly + r.Cly), (short)(l.Obs + r.Obs), (short)(l.Geo + r.Geo));
+        public static Resource operator -(Resource l, Resource r) => new((short)(l.Ore - r.Ore), (short)(l.Cly - r.Cly), (short)(l.Obs - r.Obs), (short)(l.Geo - r.Geo));
     }
 
     record struct State(int Time, Resource Curr, Resource Prod)
@@ -61,7 +61,7 @@ public class Day_19
     {
         public static Blueprint Parse(string line)
         {
-            var n = line.Int32s().ToArray();
+            var n = line.Int32s().Select(n => (short)n).ToArray();
             return new Blueprint(n[0],
                 Ore: new Bot(new(Ore: n[1]), new(Ore: 1)),
                 Cly: new Bot(new(Ore: n[2]), new(Cly: 1)),

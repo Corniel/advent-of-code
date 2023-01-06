@@ -43,7 +43,7 @@ public class Day_19
         {
             var prev = Curr - Prod;
 
-            if (!prev.CanBuild(p.Geo) && Curr.CanBuild(p.Geo)) { yield return Build(p.Geo); yield break; }
+            if (Curr.CanBuild(p.Geo)) { yield return Build(p.Geo); yield break; }
 
             if (!prev.CanBuild(p.Obs) && Curr.CanBuild(p.Obs)) yield return Build(p.Obs);
             if (!prev.CanBuild(p.Cly) && Curr.CanBuild(p.Cly)) yield return Build(p.Cly);

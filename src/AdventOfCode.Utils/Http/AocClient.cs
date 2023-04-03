@@ -10,7 +10,10 @@ public static class AocClient
         var handler = new HttpClientHandler { UseCookies = false };
         var client = new HttpClient(handler);
         var request = new HttpRequestMessage(HttpMethod.Get, requestUri);
-        request.Headers.Add("Cookie", string.Join(";", cookies.Select(kvp => $"{kvp.Key}={kvp.Value}")));
+        if (cookies.Any())
+        {
+            request.Headers.Add("Cookie", string.Join(";", cookies.Select(kvp => $"{kvp.Key}={kvp.Value}")));
+        }
         return client.SendAsync(request);
     }
 }

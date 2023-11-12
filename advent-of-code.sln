@@ -22,6 +22,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdventOfCode.Utils", "src\A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartAss.Specs", "..\smart-ass\specs\SmartAss.Specs\SmartAss.Specs.csproj", "{AAC88418-3FCC-47BB-B341-CB5838EF9D9A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "props", "props", "{3B9CDF95-1031-46E8-A533-D58C9FCA9F0A}"
+	ProjectSection(SolutionItems) = preProject
+		props\common.props = props\common.props
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +60,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3B9CDF95-1031-46E8-A533-D58C9FCA9F0A} = {0361B5D8-D19B-462A-A158-62EBC3E3A074}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {714C9212-E9FB-416F-87A6-D09A3C5BC3FD}

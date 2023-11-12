@@ -39,7 +39,12 @@ public sealed class AdventPuzzle
         var assembly = Method.DeclaringType.Assembly;
         var path = $"Advent_of_Code._{Date.Year}.Day_{Date.Day:00}{(Example != Example.None ? $"_{(int)Example}" : "")}.txt";
         using var stream = assembly.GetManifestResourceStream(path);
-        if (stream is null) return new FileNotFoundException(path).ToString();
+        if (stream is null)
+        {
+            var x = new FileNotFoundException(path);
+            Console.WriteLine(x);
+            return x.ToString();
+        }
         var reader = new StreamReader(stream, Encoding.UTF8);
         var text = reader.ReadToEnd();
         return text[^2..] == "\r\n" ? text[..^2] : text;

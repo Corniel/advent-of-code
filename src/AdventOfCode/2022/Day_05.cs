@@ -17,7 +17,7 @@ public class Day_05
         var grid = groups[0].CharPixels(false);
         var stacks = Range(0, 2 + grid.Cols / 4).Select(_ => new Stack<char>()).ToArray();
 
-        foreach (var pixel in grid.OrderByDescending(p => p.Key.Y).Where(p => char.IsAsciiLetterUpper(p.Value)))
+        foreach (var pixel in grid.Where(p => char.IsAsciiLetterUpper(p.Value)).OrderByDescending(p => p.Key.Y))
         {
             stacks[1 + pixel.Key.X / 4].Push(pixel.Value);
         }

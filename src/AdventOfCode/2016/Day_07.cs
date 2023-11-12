@@ -39,7 +39,7 @@ public class Day_07
         var blocks = line.Separate('[', ']');
         var odds = blocks.WithStep(2).SelectMany(line => line.SelectWithPrevious(3));
         var evens = blocks.Skip(1).WithStep(2).SelectMany(line => line.SelectWithPrevious(3)).ToArray();
-        return odds.Any(odd => evens.Any(even => ABA_BAB(odd, even)));
+        return odds.Any(odd => evens.Exists(even => ABA_BAB(odd, even)));
     }
 
     static bool ABA_BAB(string l, string r)

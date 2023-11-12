@@ -10,7 +10,7 @@ public class Day_13
         var splits = input.StripChars("x").Lines();
         var departure = splits[0].Int32();
         var bus = splits[1]
-           .CommaSeparated(s => new Bus(s.Int32(), Offset(s.Int32(), departure)))
+           .CommaSeparated(s => new Bus(s.Int32(), GetOffset(s.Int32(), departure)))
            .OrderBy(b => b.Offset)
            .First();
         return bus.Period * bus.Offset;
@@ -32,7 +32,7 @@ public class Day_13
         return bus.Offset;
     }
 
-    private static long Offset(long bus, long depature) => (-depature).Mod(bus);
+    private static long GetOffset(long bus, long depature) => (-depature).Mod(bus);
 
     private record Bus(long Period, long Offset)
     {
@@ -40,7 +40,7 @@ public class Day_13
         {
             for (var departure = Offset; /* oo */ ; departure += Period)
             {
-                if (Offset(other.Period, departure) == other.Offset)
+                if (GetOffset(other.Period, departure) == other.Offset)
                 {
                     return new Bus(Period * other.Period, departure);
                 }

@@ -45,11 +45,7 @@ public partial class SyntaxNode
             return node;
         }
 
-        private SyntaxNode NoParent(SyntaxNode node)
-        {
-            node.Parent = null;
-            return node;
-        }
+        private void NoParent(SyntaxNode node) => node.Parent = null;
     }
 
     private readonly struct Typed<TSyntax> : SyntaxNodes<TSyntax> where TSyntax : SyntaxNode

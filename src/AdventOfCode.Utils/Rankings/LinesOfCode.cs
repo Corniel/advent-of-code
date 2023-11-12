@@ -32,7 +32,7 @@ public record class LinesOfCode(FileInfo Location, AdventDate Date)
             if (line.StartsWith("//")
                 || line.StartsWith("namespace ")
                 || line.StartsWith("public class Day_")
-                || line.StartsWith("[")
+                || line.StartsWith('[')
                 || line == "{"
                 || line == "}"
                 || line == "};") continue;
@@ -42,5 +42,5 @@ public record class LinesOfCode(FileInfo Location, AdventDate Date)
         return this;
     }
 
-    public override string ToString() => FormattableString.Invariant($"{Date}: {LoC,3} LoC, {Size,9:0.00 kB}");
+    public override string ToString() => Invariant($"{Date}: {LoC,3} LoC, {Size,9:0.00 kB}");
 }

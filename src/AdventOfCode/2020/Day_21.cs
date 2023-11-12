@@ -51,7 +51,7 @@ public class Day_21
                         .ToList()))
                 .ToArray();
 
-            while (allergens.Any(allergen => !allergen.Resolved))
+            while (allergens.Exists(allergen => !allergen.Resolved))
             {
                 foreach (var allergen in allergens.Where(allergen => !allergen.Resolved))
                 {

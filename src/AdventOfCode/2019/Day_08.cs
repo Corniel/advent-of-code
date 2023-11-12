@@ -63,7 +63,7 @@ public class Day_08
         {
             var pos = 0;
             var size = width * height;
-            while (pos < str.Length - size)
+            while (pos <= str.Length - size)
             {
                 yield return new Layer(str.Substring(pos, size));
                 pos += size;

@@ -71,7 +71,7 @@ public class Day_18
                 else if (ch == '(') { tokens.Add(new ParentheseOpen()); }
                 else if (ch == ')') { tokens.Add(new ParentheseClose()); }
             }
-            while (tokens.Any(t => t is ParentheseOpen || t is ParentheseClose))
+            while (tokens.Exists(t => t is ParentheseOpen || t is ParentheseClose))
             {
                 var start = 0;
                 for (var pos = 0; pos < tokens.Count; pos++)

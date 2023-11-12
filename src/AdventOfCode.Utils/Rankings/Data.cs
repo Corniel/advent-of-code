@@ -53,7 +53,7 @@ public static class Data
         var partipants = new Participants(Participants()
             .Where(p
                 => p.Value.Boards.Any(b => b.Name == "TJIP")
-                && !exclude.Any(name => p.Value.Matches(name))));
+                && !exclude.Exists(name => p.Value.Matches(name))));
         return partipants;
     }
 

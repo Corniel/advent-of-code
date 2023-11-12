@@ -9,5 +9,7 @@ public class Day_05
 
     [Puzzle(answer: 918655)]
     public Int part_two(string input)
+#pragma warning disable S6608 // Prefer indexing instead of "Enumerable" methods on types implementing "IList"
         => Computer.Parse(input).Run(new RunArguments(5)).Output.Last();
+#pragma warning restore S6608 // Prefer indexing instead of "Enumerable" methods on types implementing "IList"
 }

@@ -30,7 +30,7 @@ cntj (57)";
         var current = sorted[0];
         var delta = current.Weight - sorted[1].Weight;
         
-        while (current.Children.Any() && current.Children.Any(c => c.Weight != current.Children[0].Weight))
+        while (current.Children.Any() && current.Children.Exists(c => c.Weight != current.Children[0].Weight))
         {
             sorted = current.Children.OrderByDescending(c => c.Weight).ToArray();
             delta = sorted[0].Weight - sorted[1].Weight;

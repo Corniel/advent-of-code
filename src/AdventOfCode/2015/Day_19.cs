@@ -1,6 +1,4 @@
 ﻿using Qowaiv.Hashing;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 
 namespace Advent_of_Code_2015;
 
@@ -32,17 +30,35 @@ public class Day_19
         var group = input.GroupedLines().ToArray();
         var molecule = new Molecule(Atom.Parse(group[1][0]).ToArray());
         var replacements = group[0].Select(Replace.Parse).ToArray();
-        
-        var molecules = new HashSet<Molecule>(new Distinct());
 
-        foreach (var r in replacements)
+        var replacement = 0;
+
+        var molecules = new HashSet<Molecule>(new Distinct()) { new Molecule(Atom.e) };
+        var candidates = new HashSet<Molecule>(new Distinct());
+        var best = 0;
+
+        while (molecules.Any())
         {
-            molecules.AddRange(molecule.Replace(r));
+            candidates.Clear();
+            replacement++;
+
+            foreach (var m in molecules)
+            {
+                foreach (var rep in replacements)
+                {
+                    foreach (var replaced in m.Replace(rep).Where(r => r.Size <= molecule.Size))
+                    {
+                        var same = replaced.SameStart(molecule);
+                        best = Math.Max(best, same);
+                        if (candidates.Add(replaced) && same == molecule.Size) return replacement;
+                    }
+                }
+            }
+            (molecules, candidates) = (candidates, molecules);
         }
-        return molecules.Count;
+        throw new NoAnswer();
     }
     
-
     public sealed record Replace(Atom Atom, Molecule Molecule, bool Containing)
     {
         public static Replace Parse(string line)
@@ -56,12 +72,29 @@ public class Day_19
 
     public sealed class Distinct : IEqualityComparer<Molecule>
     {
-        public bool Equals(Molecule x, Molecule y) => x.Atoms.SequenceEqual(y.Atoms);
+        public bool Equals(Molecule x, Molecule y) => x.Same(y);
         public int GetHashCode(Molecule obj) => Hash.Code(obj.Atoms);
     }
 
-    public record struct Molecule(Atom[] Atoms)
+    public record struct Molecule(params Atom[] Atoms)
     {
+        public int Size => Atoms.Length;
+
+        public bool Same(Molecule other) => Atoms.SequenceEqual(other.Atoms);
+
+        public int SameStart(Molecule other)
+        {
+            var shared = Math.Min(Size, other.Size);
+
+            var same = 0;
+
+            while (same < shared && Atoms[same] == other.Atoms[same])
+            {
+                same++;
+            }
+            return same;
+        }
+
         public IEnumerable<Molecule> Replace(Replace rep)
         {
             var atoms = Atoms;
@@ -77,6 +110,8 @@ public class Day_19
 
     public record struct Atom(short Val)
     {
+        public static readonly Atom e = new((short)'e');
+
         public override string ToString() => Val < 255 ? $"{(char)(Val & 255)}" : $"{(char)(Val & 255)}{(char)(Val >> 8)}";
 
 

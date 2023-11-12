@@ -37,7 +37,7 @@ public class Day_23
             {
                 foreach (var dir in Directions.Skip(round.Mod(4)).Take(4))
                 {
-                    if (Scans[dir].All(d => !elves.Contains(elf + d)))
+                    if (Scans[dir].TrueForAll(d => !elves.Contains(elf + d)))
                     {
                         moves.Add(new(elf, elf + dir));
                         count[elf + dir]++;

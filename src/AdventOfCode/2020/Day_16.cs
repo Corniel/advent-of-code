@@ -10,7 +10,7 @@ public class Day_16
         var blocks = input.GroupedLines().ToArray();
         var rules = blocks[0].Select(Rule.Parse).ToArray();
         var nearby = blocks[2][1..].Select(Ticket.Parse).SelectMany(n => n.Parts).ToArray();
-        return nearby.Where(number => !rules.Any(rule => rule.Valid(number))).Sum();
+        return nearby.Where(number => !rules.Exists(rule => rule.Valid(number))).Sum();
     }
 
     [Puzzle(answer: 491924517533, O.ms)]
@@ -51,8 +51,8 @@ public class Day_16
     }
     private record Rule(string Name, Int32Range[] Ranges)
     {
-        public bool Valid(int part) => Ranges.Any(range => range.Contains(part));
-        public bool Valid(Ticket ticket) => ticket.Parts.All(part => Valid(part));
+        public bool Valid(int part) => Ranges.Exists(range => range.Contains(part));
+        public bool Valid(Ticket ticket) => ticket.Parts.TrueForAll(Valid);
         public static Rule Parse(string str)
         {
             var split = str.Separate(':');

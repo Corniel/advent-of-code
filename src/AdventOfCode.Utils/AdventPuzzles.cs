@@ -10,7 +10,7 @@ public partial class AdventPuzzles : IEnumerable<AdventPuzzle>
 
     public int Count => items.Count;
 
-    public bool Contains(AdventDate date) => items.Any(puzzle => puzzle.Matches(date));
+    public bool Contains(AdventDate date) => items.Exists(puzzle => puzzle.Matches(date));
 
     public IEnumerable<AdventPuzzle> Matching(AdventDate date)
         => items

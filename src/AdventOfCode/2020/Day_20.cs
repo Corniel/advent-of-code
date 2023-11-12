@@ -115,8 +115,8 @@ public class Day_20
         private void FillO(Tile[] tiles)
         {
             this[Point.O] = tiles.First(t => t.IsCorner &&
-                !t.Neighbors.Any(n => t.N == n.S) &&
-                !t.Neighbors.Any(n => t.W == n.E));
+                !t.Neighbors.Exists(n => t.N == n.S) &&
+                !t.Neighbors.Exists(n => t.W == n.E));
         }
         private void Fill()
         {
@@ -166,6 +166,6 @@ public class Day_20
         public int Height { get; }
         public int Occupations(Grid<char> image)
             => Points.Grid(image.Cols - Width, image.Rows - Height)
-            .Count(offset => this.All(relative => image[offset + relative] == '#')) * Count;
+            .Count(offset => this.TrueForAll(relative => image[offset + relative] == '#')) * Count;
     }
 }

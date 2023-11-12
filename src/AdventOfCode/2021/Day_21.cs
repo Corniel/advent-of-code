@@ -1,4 +1,6 @@
-﻿namespace Advent_of_Code_2021;
+﻿using System.Collections.Generic;
+
+namespace Advent_of_Code_2021;
 
 [Category(Category.Computation)]
 public class Day_21
@@ -12,7 +14,7 @@ public class Day_21
         var position = new int[] { numbers[1], numbers[3] };
         var dice = 0;
         var turns = 0;
-        while (scores.All(n => n < 1000))
+        while (scores.TrueForAll(n => n < 1000))
         {
             for (var step = 0; step < 3; step++)
             {

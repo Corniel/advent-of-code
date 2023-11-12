@@ -1,7 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
+  <Import Project="../../props/common.props" />
+  
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
     <RootNamespace>Advent_of_Code</RootNamespace>
   </PropertyGroup>
 
@@ -14,18 +15,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="NUnit3TestAdapter" Version="4.*" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.*" />
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.* ">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\smart-ass\src\SmartAss\SmartAss.csproj" />
-    <ProjectReference Include="..\AdventOfCode.Now\AdventOfCode.Now.csproj" />
     <ProjectReference Include="..\AdventOfCode\AdventOfCode.csproj" />
+    <ProjectReference Include="..\AdventOfCode.Now\AdventOfCode.Now.csproj" />
   </ItemGroup>
 
 </Project>

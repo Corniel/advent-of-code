@@ -6,7 +6,7 @@ public class Days
 {
     public static IEnumerable<Type> All = typeof(Days).Assembly
         .GetExportedTypes()
-        .Where(tp => tp.GetMethods().Any(m => m.GetCustomAttributes<PuzzleAttribute>().Any()));
+        .Where(tp => tp.GetMethods().Exists(m => m.GetCustomAttributes<PuzzleAttribute>().Any()));
 
     [TestCaseSource(nameof(All))]
     public void Should_be_catogized(Type type)

@@ -43,7 +43,7 @@ public class Day_08
         {
             executed[pointer]++;
 
-            if (executed.Any(e => e > 1)) { return false; }
+            if (executed.Exists(e => e > 1)) { return false; }
 
             var instruction = instructions[pointer];
 

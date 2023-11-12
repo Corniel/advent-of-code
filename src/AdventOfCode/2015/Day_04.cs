@@ -13,7 +13,9 @@ public class Day_04
     [Puzzle(answer: 9958218, "iwrupvqb", O.s)]
     public int part_two(string input) => Run(input, SixZeros);
 
+#pragma warning disable NUnit1032 // An IDisposable field/property should be Disposed in a TearDown method
     private static readonly HashAlgorithm Hash = MD5.Create();
+#pragma warning restore NUnit1032 // An IDisposable field/property should be Disposed in a TearDown method
 
     private static int Run(string input, Func<byte[], bool> condition)
     {

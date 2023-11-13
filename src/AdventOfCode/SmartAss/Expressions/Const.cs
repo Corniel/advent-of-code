@@ -2,6 +2,8 @@
 
 public sealed class Const : Expr
 {
+    public static readonly Const Zero = new(0);
+
     public Const(long value) => Val = value;
 
     public long Val { get; }

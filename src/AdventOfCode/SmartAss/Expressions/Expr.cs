@@ -14,14 +14,22 @@ public abstract class Expr
 
     public static Variable Variable() => new();
 
+    internal static Add Add(Expr left, Expr right) => new(left, right);
+    
     internal static Subtract Subtract(Expr left, Expr right) => new(left, right);
 
     public static Binary Binary(Expr left, string op, Expr right) => op switch
     {
         "mul" or "*" => new Multiply(left, right),
         "div" or "/" => new Divide(left, right),
-        "add" or "+" => new Add(left, right),
+        "add" or "+" => Add(left, right),
         "sub" or "-" => Subtract(left, right),
+        "==" => new Equal(left, right),
+        "!=" => new NotEqual(left, right),
+        ">" => new GT(left, right),
+        "<" => new LT(left, right),
+        ">=" => new GE(left, right),
+        "<=" => new LE(left, right),
         "<<" => new ShiftLeft(left, right),
         ">>" => new ShiftRight(left, right),
         _ => throw new NotSupportedException($"The '{op}' is not supported.")

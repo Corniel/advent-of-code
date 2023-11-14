@@ -13,6 +13,11 @@ public class SyntaxParser
     public bool EndOfInput => Buffer.IsEmpty;
     private CharSpan Buffer => ((CharSpan)Input)[Position..];
 
+    public char? TryReadChar() 
+        => EndOfInput 
+        ? null 
+        : Input[Position++];
+
     public char ReadChar()
         => EndOfInput
         ? throw SyntaxError.EndOfInput

@@ -17,7 +17,7 @@ public class Day_12
         <x=17, y=-9, z=4>
         <x=2, y=2, z=-13>
         <x=-1, y=5, z=-1>
-        <x=4, y=7, z=-7>", O.ms)]
+        <x=4, y=7, z=-7>", O.μs100)]
     public int part_one(string input)
     {
         var moons = input.Lines(Moon.Parse).ToArray();

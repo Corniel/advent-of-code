@@ -8,7 +8,7 @@ public class Day_13
     public Point part_one(string input) => Simulate(input, stopOncrash: true);
 
     [Example(answer: "6,4", Example._2)]
-    [Puzzle(answer: "102, 144", O.ms10)]
+    [Puzzle(answer: "102, 144", O.ms)]
     public Point part_two(string input) => Simulate(input);
 
     static Point Simulate(string input, bool stopOncrash = false)

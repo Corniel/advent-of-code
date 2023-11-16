@@ -1,4 +1,4 @@
-namespace Advent_of_Code_2019;
+﻿namespace Advent_of_Code_2019;
 
 [Category(Category.VectorAlgebra)]
 public class Day_03
@@ -9,7 +9,7 @@ public class Day_03
     [Example(answer: 135, @"
             R98,U47,R26,D63,R33,U87,L62,D20,R33,U53,R51
             U98,R91,D20,R16,D67,R40,U7,R15,U6,R7")]
-    [Puzzle(answer: 1195, O.ms10)]
+    [Puzzle(answer: 1195, O.ms)]
     public long part_one(string input)
     {
         var wires0 = input.Lines()[0].CommaSeparated(Move.Parse).ToArray();
@@ -49,7 +49,7 @@ public class Day_03
     [Example(answer: 410, @"
             R98,U47,R26,D63,R33,U87,L62,D20,R33,U53,R51
             U98,R91,D20,R16,D67,R40,U7,R15,U6,R7")]
-    [Puzzle(answer: 91518, O.ms10)]
+    [Puzzle(answer: 91518, O.ms)]
     public long part_two(string input)
     {
         var wires0 = input.Lines()[0].CommaSeparated(Move.Parse).ToArray();

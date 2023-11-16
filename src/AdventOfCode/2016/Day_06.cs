@@ -4,10 +4,10 @@
 public class Day_06
 {
     [Example(answer: "easter", "eedadn;drvtee;eandsr;raavrd;atevrs;tsrnev;sdttsa;rasrtv;nssdts;ntnada;svetve;tesnvt;vntsnd;vrdear;dvrsen;enarar")]
-    [Puzzle(answer: "mshjnduc", O.μs10)]
+    [Puzzle(answer: "mshjnduc", O.μs100)]
     public string part_one(string input) => Decrypt([.. input.Lines()], Max);
 
-    [Puzzle(answer: "apfeeebz", O.μs10)]
+    [Puzzle(answer: "apfeeebz", O.μs100)]
     public string part_two(string input) => Decrypt([.. input.Lines()], Min);
 
     static string Decrypt(string[] lines, Func<IEnumerable<char>, char> selector) 

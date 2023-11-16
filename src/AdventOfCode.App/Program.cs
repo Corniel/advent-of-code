@@ -1,5 +1,7 @@
-﻿using Advent_of_Code.Rankings;
+﻿using Advent_of_Code.Benchmarking;
+using Advent_of_Code.Rankings;
 using System.IO;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Advent_of_Code;
@@ -12,6 +14,8 @@ public static class Program
     public static async Task<int> Main(string[] args)
     {
         if (args?.Length < 1) { return Usage(); }
+
+        Console.SetOut(new MultiWriter(Console.Out));
 
         var puzzles = AdventPuzzles.Load();
 
@@ -78,83 +82,12 @@ public static class Program
 
     private static int Benchmark(AdventPuzzles puzzles, AdventDate date)
     {
-        var limit = O.s;
-        var sw = Stopwatch.StartNew();
-        var total = 0;
-
-        var durations = puzzles.Matching(date)
-            //.Where(p => p.Order == O.Unknown)
+        foreach (var benchmark in puzzles
+            .Matching(date)
             .Where(puzzle => !puzzle.Date.Matches(new AdventDate(default, 25, 2)))
-            .ToDictionary(puzzle => puzzle, puzzle => new Durations());
-
-        foreach (var puzzle in durations.Keys)
+            .Select(puzzle => new Benchmark(puzzle)))
         {
-            if (puzzle.Order < limit)
-            {
-                while (durations[puzzle].Count < 100 && durations[puzzle].Total < TimeSpan.FromSeconds(1))
-                {
-                    durations[puzzle].Add(puzzle.Run(false));
-                    Console.Write($"\r{total++}: {sw.ElapsedMilliseconds:#,##0} ms");
-                }
-            }
-            else
-            {
-                durations[puzzle].Add(TimeSpan.FromMicroseconds(Math.Pow(10, (int)puzzle.Order - 3)));
-            }
-        }
-
-        var ranking = durations.OrderBy(kvp => kvp.Value.Median).Select(kvp => kvp.Key).ToArray();
-
-        var swapped = true;
-
-        while (swapped)
-        {
-            swapped = false;
-            var first = ranking[0];
-            durations[first].Add(first.Run(false));
-            Console.Write($"\r{total++}: {sw.ElapsedMilliseconds:#,##0} ms");
-
-            for (var pos = 1; pos < ranking.Length; pos++)
-            {
-                var p0 = ranking[pos - 1];
-                var p1 = ranking[pos];
-
-                if (p0.Order >= limit || p1.Order >= limit) continue;
-
-                var d0 = durations[p0];
-                var d1 = durations[p1];
-
-                if (d0.Median.TotalMilliseconds * 1.15 > d1.Median.TotalMilliseconds)
-                {
-                    durations[p0].Add(p0.Run(false));
-                    Console.Write($"\r{total++}: {sw.ElapsedMilliseconds:#,##0} ms");
-                    durations[p1].Add(p1.Run(false));
-                    Console.Write($"\r{total++}: {sw.ElapsedMilliseconds:#,##0} ms");
-
-                    if (durations[p0].Median > durations[p1].Median)
-                    {
-                        swapped = true;
-                        ranking[pos - 1] = p1;
-                        ranking[pos - 0] = p0;
-                    }
-                }
-            }
-        }
-
-        Console.WriteLine();
-        foreach(var kvp in durations)
-        {
-            var puzzle = kvp.Key;
-            var ds = kvp.Value;
-            Console.Write($"{ds}, {puzzle}");
-
-            if (ds.Median.O() != puzzle.Order)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.Write($" O = {ds.Median.O()} not {puzzle.Order}");
-                Console.ForegroundColor = ConsoleColor.Gray;
-            }
-            Console.WriteLine();
+            benchmark.Run(O.s);
         }
         return Success;
     }
@@ -167,15 +100,13 @@ public static class Program
                 Location: new(Path.Combine($"./../../../../AdventOfCode/{d.Year}/Day_{d.Day:00}.cs")),
                 Date: new AdventDate(d.Year, d.Day, null)))
             .Where(code => code.Exists)
-            .OrderBy(code => code.LoC)
-            .ThenBy(code=> code.Size)
+            //.OrderBy(code => code.LoC)
+            //.ThenBy(code=> code.Size)
             .ToArray();
-
-        var rank = 0;
 
         foreach (var file in files)
         {
-            Console.WriteLine($"{++rank,3} {file}");
+            Console.WriteLine(file);
         }
         return Success;
     }
@@ -196,5 +127,34 @@ public static class Program
     {
         Console.WriteLine($"No test method found for {date}");
         return Failure;
+    }
+
+    private sealed class MultiWriter(TextWriter writer) : TextWriter
+    {
+        private readonly TextWriter Writer = writer;
+        private readonly StreamWriter Stream = new(@"C:\TEMP\aoc.log");
+
+        public override Encoding Encoding => Encoding.UTF8;
+
+        public override void Write(char[] buffer)
+        {
+            Writer.Write(buffer);
+            Stream.Write(buffer);
+            Stream.Flush();
+        }
+
+        public override void Flush()
+        {
+            Writer.Flush();
+            Stream.Flush();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                Stream.Dispose();
+            }
+        }
     }
 }

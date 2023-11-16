@@ -4,7 +4,7 @@
 public class Day_07
 {
     [Example(answer: 37, "16,1,2,0,4,2,7,1,2,14")]
-    [Puzzle(answer: 336701, O.ms)]
+    [Puzzle(answer: 336701, O.μs100)]
     public int part_one(string input) => MinimumCosts(input.Int32s().ToArray(), n => n);
 
     [Example(answer: 168, "16,1,2,0,4,2,7,1,2,14")]

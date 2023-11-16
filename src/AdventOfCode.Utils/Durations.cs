@@ -2,6 +2,8 @@
 
 public sealed class Durations : List<TimeSpan>
 {
+    public TimeSpan Min => this.Min();
+
     public TimeSpan Total => TimeSpan.FromTicks(this.Sum(duration => duration.Ticks));
 
     public TimeSpan Average => TimeSpan.FromTicks(this.Sum(duration => duration.Ticks) / Count);
@@ -18,5 +20,5 @@ public sealed class Durations : List<TimeSpan>
         }
     }
 
-    public override string ToString() => $"Count: {Count,3}, Median: {Median.Formatted(),8}, Avg: {Average.Formatted(),8}";
+    public override string ToString() => $"Count: {Count,3}, Min: {Min.Formatted(),8}, Median: {Median.Formatted(),8}, Avg: {Average.Formatted(),8}";
 }

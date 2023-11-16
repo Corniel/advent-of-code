@@ -4,11 +4,11 @@
 public class Day_12
 {
     [Example(answer: 6, "0 <-> 2;1 <-> 1;2 <-> 0, 3, 4;3 <-> 2, 4;4 <-> 2, 3, 6;5 <-> 6;6 <-> 4, 5")]
-    [Puzzle(answer: 128, O.ms)]
+    [Puzzle(answer: 128, O.μs100)]
     public int part_one(string input) => Nodes(input)[0].SelveAndAncestors().Count;
 
     [Example(answer: 2, "0 <-> 2;1 <-> 1;2 <-> 0, 3, 4;3 <-> 2, 4;4 <-> 2, 3, 6;5 <-> 6;6 <-> 4, 5")]
-    [Puzzle(answer: 209, O.ms10)]
+    [Puzzle(answer: 209, O.ms)]
     public int part_two(string input)
     {
         var nodes = Nodes(input).Select(n => n.SelveAndAncestors()).ToArray();

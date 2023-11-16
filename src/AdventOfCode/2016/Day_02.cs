@@ -4,7 +4,7 @@
 public class Day_02
 {
     [Example(answer: "1985", "ULL;RRDDD;LURDL;UUUUD")]
-    [Puzzle(answer: "24862", O.μs10)]
+    [Puzzle(answer: "24862", O.μs100)]
     public string part_one(string input) => Solve(input, Point.O, One);
 
     [Example(answer: "5DB3", "ULL;RRDDD;LURDL;UUUUD")]

@@ -6,7 +6,7 @@ public class Day_03
     [Example(answer: 3, "12")]
     [Example(answer: 2, "23")]
     [Example(answer: 4, "25")]
-    [Puzzle(answer: 438, "265149", O.μs)]
+    [Puzzle(answer: 438, "265149", O.ns100)]
     public int part_one(string input) => Point.O.ManhattanDistance(Location(input.Int32()));
 
     [Puzzle(answer: 266330, "265149", O.μs10)]

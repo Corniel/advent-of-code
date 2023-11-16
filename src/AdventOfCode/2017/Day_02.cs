@@ -4,7 +4,7 @@
 public class Day_02
 {
     [Example(answer: 18, "5 1 9 5;7 5 3;2 4 6 8")]
-    [Puzzle(answer: 44216, O.μs10)]
+    [Puzzle(answer: 44216, O.μs)]
     public int part_one(string input) => input.Lines(AsNumbers).Select(MaxMin).Sum();
 
     [Example(answer: 9, "5 9 2 8; 9 4 7 3;3 8 6 5")]

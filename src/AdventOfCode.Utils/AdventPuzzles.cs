@@ -4,7 +4,7 @@ namespace Advent_of_Code;
 
 [DebuggerTypeProxy(typeof(CollectionDebugView))]
 [DebuggerDisplay("Count = {Count}")]
-public partial class AdventPuzzles : IEnumerable<AdventPuzzle>
+public partial class AdventPuzzles : IReadOnlyCollection<AdventPuzzle>
 {
     private readonly List<AdventPuzzle> items = [];
 

@@ -4,7 +4,7 @@
 public class Day_08
 {
     [Example(answer: 5, "nop +0; acc +1; jmp +4; acc +3; jmp -3; acc -99; acc +1; jmp -4; acc +6")]
-    [Puzzle(answer: 1584, O.μs100)]
+    [Puzzle(answer: 1584, O.μs10)]
     public int part_one(string input)
     {
         var instructions = input.Lines(Instruction.Parse).ToArray();

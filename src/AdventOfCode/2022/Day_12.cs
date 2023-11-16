@@ -4,7 +4,7 @@
 public class Day_12
 {
     [Example(answer: 31, Example._1)]
-    [Puzzle(answer: 394, O.ms)]
+    [Puzzle(answer: 394, O.μs100)]
     public int part_one(string input)
     {
         var area = Area.Parse(input);

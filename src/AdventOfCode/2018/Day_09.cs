@@ -12,7 +12,7 @@ public class Day_09
     [Puzzle(answer: 398730, "438 players; last marble is worth 71626 points", O.μs100)]
     public long part_one(string input) => Simulate(input);
 
-    [Puzzle(answer: 3349635509, "438 players; last marble is worth 71626 points", O.μs100)]
+    [Puzzle(answer: 3349635509, "438 players; last marble is worth 71626 points", O.ms100)]
     public long part_two(string input) => Simulate(input, 100);
 
     static long Simulate(string input, int factor = 1)

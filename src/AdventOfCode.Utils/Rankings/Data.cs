@@ -49,7 +49,7 @@ public static class Data
     public static Participants Tjip(int year)
     { 
         TJIP_Ignore.TryGetValue(year, out var exclude);
-        exclude ??= Array.Empty<string>();
+        exclude ??= [];
         var partipants = new Participants(Participants()
             .Where(p
                 => p.Value.Boards.Any(b => b.Name == "TJIP")

@@ -46,7 +46,7 @@ public class Day_14
         return memory.Values.Sum();
     }
 
-    private static IEnumerable<ulong> Addresses(string mask, ulong value)
+    static IEnumerable<ulong> Addresses(string mask, ulong value)
     {
         var value_bits = Bits.UInt64.Parse(mask, ones: "10", zeros: "X");
         var mask_bits = Bits.UInt64.Parse(mask, ones: "1", zeros: "0X");
@@ -56,7 +56,7 @@ public class Day_14
 
         return Range(0, permutations).Select(p => address | FloatingBits(p, indexes));
     }
-    private static ulong FloatingBits(int permutation, int[] indexes)
+    static ulong FloatingBits(int permutation, int[] indexes)
     {
         ulong bits = 0;
         for (var pos = 0; pos < indexes.Length; pos++)

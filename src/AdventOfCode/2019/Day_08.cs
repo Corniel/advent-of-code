@@ -3,14 +3,14 @@
 [Category(Category.Grid, Category.Cryptography, Category.ASCII)]
 public class Day_08
 {
-    [Puzzle(answer: 2480)]
+    [Puzzle(answer: 2480, O.μs10)]
     public int part_one(string input)
         => Layer.Parse(25, 6, input)
             .OrderBy(layer => layer.Zeros)
             .Select(layer => layer.Ones * layer.Twos)
             .FirstOrDefault();
 
-    [Puzzle(answer: "ZYBLH")]
+    [Puzzle(answer: "ZYBLH", O.μs10)]
     public string part_two(string input)
     {
         var layers = Layer.Parse(25, 6, input).ToArray();
@@ -22,12 +22,11 @@ public class Day_08
         return merged.AsciiText(25);
     }
 
-    public readonly struct Layer
+    public readonly struct Layer(string pixels)
     {
         private const char Transprant = '2';
 
-        private readonly string pixels;
-        public Layer(string pixels) => this.pixels = pixels;
+        private readonly string pixels = pixels;
 
         public int Size => pixels.Length;
         public int Zeros => pixels.Count(ch => ch == '0');

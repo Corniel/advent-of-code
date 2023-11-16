@@ -4,7 +4,7 @@
 public class Day_12
 {
     [Example(answer: 25, "F10;N3;F7;R90;F11")]
-    [Puzzle(answer: 1631, O.μs100)]
+    [Puzzle(answer: 1631, O.μs10)]
     public int part_one(string input)
     {
         var ferry = Point.O;
@@ -20,7 +20,7 @@ public class Day_12
     }
 
     [Example(answer: 286, "F10;N3;F7;R90;F11")]
-    [Puzzle(answer: 58606, O.μs100)]
+    [Puzzle(answer: 58606, O.μs10)]
     public int part_two(string input)
     {
         var ferry = Point.O;
@@ -54,7 +54,7 @@ public class Day_12
             Action.N => Vector.N,
             _ => Vector.O,
         };
-        public static Instruction Parse(string str) => new Instruction(Enum.Parse<Action>(str[0..1]), str[1..].Int32());
+        public static Instruction Parse(string str) => new(Enum.Parse<Action>(str[0..1]), str[1..].Int32());
     }
     private enum Action
     {

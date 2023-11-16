@@ -1,15 +1,15 @@
-namespace Advent_of_Code_2018;
+﻿namespace Advent_of_Code_2018;
 
 [Category(Category.Simulation, Category.VectorAlgebra)]
 public class Day_03
 {
     [Example(answer: 4, "#1 @ 1,3: 4x4\r\n#2 @ 3,1: 4x4\r\n#3 @ 5,5: 2x2")]
-    [Puzzle(answer: 107043)]
+    [Puzzle(answer: 107043, O.ms10)]
     public int part_one(string input)
         => Counters(input.Lines(Claim.Parse)).Count(c => c.Count > 1);
 
     [Example(answer: 3, "#1 @ 1,3: 4x4\r\n#2 @ 3,1: 4x4\r\n#3 @ 5,5: 2x2")]
-    [Puzzle(answer: 346)]
+    [Puzzle(answer: 346, O.ms10)]
     public int part_two(string input)
     {
         var claims = input.Lines(Claim.Parse).ToArray();
@@ -17,7 +17,7 @@ public class Day_03
         return claims.First(c => c.Squares().All(sq => counters[sq] == 1)).Id;
     }
 
-    private static ItemCounter<Point> Counters(IEnumerable<Claim> claims)
+    static ItemCounter<Point> Counters(IEnumerable<Claim> claims)
     {
         var map = new ItemCounter<Point>();
         foreach (var claim in claims) map.Add(claim.Squares());

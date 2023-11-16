@@ -14,7 +14,7 @@ public sealed partial record LeaderboardEntry(AdventDate Date, int Pos, TimeSpan
         var part = 2;
         var matches = Entry().Matches(text);
 
-        foreach (Match match in matches)
+        foreach (var match in matches.Cast<Match>())
         {
             if (match.Success && TimeSpan.TryParse(match.Groups[nameof(Time)].Value, out var time))
             {
@@ -34,7 +34,7 @@ public sealed partial record LeaderboardEntry(AdventDate Date, int Pos, TimeSpan
 
 public class Leaderboard
 {
-    public static FileInfo FileLocation(AdventDate date) => new(Path.Combine(Data.Location.FullName, $"{date.Year}/day_{date.Day:00}_leaderboard.html"));
+    static FileInfo FileLocation(AdventDate date) => new(Path.Combine(Data.Location.FullName, $"{date.Year}/day_{date.Day:00}_leaderboard.html"));
 
     [Test]
     public void Fetch_100_2022()

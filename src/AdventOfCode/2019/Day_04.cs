@@ -3,15 +3,15 @@ namespace Advent_of_Code_2019;
 [Category(Category.Cryptography)]
 public class Day_04
 {
-    [Puzzle(answer: 1178, "235741-706948")]
+    [Puzzle(answer: 1178, "235741-706948", O.ms)]
     public int part_one(string input)
         => CountValidPasswords(input, PasswordForOne);
 
-    [Puzzle(answer: 763, "235741-706948")]
+    [Puzzle(answer: 763, "235741-706948", O.ms)]
     public int part_two(string input)
         => CountValidPasswords(input, PasswordForTwo);
 
-    private static int CountValidPasswords(string input, Func<int, bool> validator)
+    static int CountValidPasswords(string input, Func<int, bool> validator)
     {
         var boundries = input.Split('-', StringSplitOptions.TrimEntries)
             .Select(str => int.Parse(str))
@@ -21,7 +21,7 @@ public class Day_04
             .Count(validator);
     }
 
-    private static bool PasswordForOne(int password)
+    static bool PasswordForOne(int password)
     {
         if (password > 999_999) return false;
         var adjacent = false;
@@ -45,7 +45,7 @@ public class Day_04
         return adjacent;
     }
 
-    private static bool PasswordForTwo(int password)
+    static bool PasswordForTwo(int password)
     {
         if (password > 999_999) return false;
         var adjacent = false;

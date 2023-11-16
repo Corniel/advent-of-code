@@ -4,7 +4,7 @@
 public class Day_12
 {
     [Example(answer: 325, Example._1)]
-    [Puzzle(answer: 3605)]
+    [Puzzle(answer: 3605, O.μs100)]
     public long part_one(string input)
     {
         var game = new GameOfLife(input);
@@ -12,7 +12,7 @@ public class Day_12
         return game.Sum();
     }
 
-    [Puzzle(answer: 4050000000798)]
+    [Puzzle(answer: 4050000000798, O.ms10)]
     public long part_two(string input)
     {
         var game = new GameOfLife(input);

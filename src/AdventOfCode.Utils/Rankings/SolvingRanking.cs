@@ -1,17 +1,10 @@
-﻿using Newtonsoft.Json.Linq;
-using Qowaiv;
-using static System.Formats.Asn1.AsnWriter;
+﻿using Qowaiv;
 
 namespace Advent_of_Code.Rankings;
 
-public sealed class SolvingRanking
+public sealed class SolvingRanking(IReadOnlyList<SolvingRankingParticipant> participants)
 {
-    public SolvingRanking(IReadOnlyList<SolvingRankingParticipant> participants)
-    {
-        Participants = participants;
-    }
-    
-    public IReadOnlyList<SolvingRankingParticipant> Participants { get; }
+    public IReadOnlyList<SolvingRankingParticipant> Participants { get; } = participants;
 
     public override string ToString()
     {
@@ -66,7 +59,7 @@ public sealed class SolvingRanking
         }
         sb.Append('|');
         sb.Append('-', avg_length + 1).Append(":|");
-        sb.Append('-', name_length + 2).Append("|");
+        sb.Append('-', name_length + 2).Append('|');
         sb.Append('-', 18).Append('|');
         sb.AppendLine();
     }
@@ -113,7 +106,7 @@ public sealed class SolvingRanking
                 .Select(kvp => new SolvingRankingResult(kvp.Key, kvp.Value))
                 .ToArray();
 
-            if (results.Any())
+            if (results.NotEmpty())
             {
                 ranked.Add(new(participant, results));
             }

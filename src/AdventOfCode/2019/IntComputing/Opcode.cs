@@ -1,11 +1,9 @@
 ﻿namespace Advent_of_Code_2019;
 
-public readonly struct Opcode
+public readonly struct Opcode(int val)
 {
-    public Opcode(int val) => value = val;
-
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    private readonly int value;
+    private readonly int value = val;
     public int Instruction => value % 100;
     public Mode P1 => Mode(100);
     public Mode P2 => Mode(1_000);

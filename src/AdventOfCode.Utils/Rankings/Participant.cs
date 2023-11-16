@@ -5,8 +5,8 @@ public sealed record Participant(
     string Name,
     string Alias = "") : IFormattable
 {
-    public Dictionary<AdventDate, DateTime> Solutions { get; } = new();
-    public HashSet<Board> Boards { get; } = new();
+    public Dictionary<AdventDate, DateTime> Solutions { get; } = [];
+    public HashSet<Board> Boards { get; } = [];
 
     public bool Matches(string name)
     {
@@ -24,7 +24,7 @@ public sealed record Participant(
     public string ToString(string format, IFormatProvider formatProvider)
     {
         var sb = new StringBuilder(!string.IsNullOrEmpty(Alias) ? Alias : Name);
-        if (format != "name-only" && Boards.Any())
+        if (format != "name-only" && Boards.NotEmpty())
         {
             sb.Append($" [{string.Join(",", Boards.Select(b => b.Name))}]");
         }

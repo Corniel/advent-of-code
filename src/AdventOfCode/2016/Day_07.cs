@@ -13,7 +13,7 @@ public class Day_07
     [Example(answer: 0, "xyx[xyx]xyx")]
     [Example(answer: 1, "aba[bab]xyz")]
     [Example(answer: 1, "zazbz[bzb]cdb")]
-    [Puzzle(answer: 258, O.ms10)]
+    [Puzzle(answer: 258, O.ms)]
     public int part_two(string input) => input.Lines().Count(SupportsSsl);
 
     static bool SupportsTls(string line)

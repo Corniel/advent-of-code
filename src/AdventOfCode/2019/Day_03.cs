@@ -9,7 +9,7 @@ public class Day_03
     [Example(answer: 135, @"
             R98,U47,R26,D63,R33,U87,L62,D20,R33,U53,R51
             U98,R91,D20,R16,D67,R40,U7,R15,U6,R7")]
-    [Puzzle(answer: 1195)]
+    [Puzzle(answer: 1195, O.ms10)]
     public long part_one(string input)
     {
         var wires0 = input.Lines()[0].CommaSeparated(Move.Parse).ToArray();
@@ -49,7 +49,7 @@ public class Day_03
     [Example(answer: 410, @"
             R98,U47,R26,D63,R33,U87,L62,D20,R33,U53,R51
             U98,R91,D20,R16,D67,R40,U7,R15,U6,R7")]
-    [Puzzle(answer: 91518)]
+    [Puzzle(answer: 91518, O.ms10)]
     public long part_two(string input)
     {
         var wires0 = input.Lines()[0].CommaSeparated(Move.Parse).ToArray();
@@ -89,15 +89,13 @@ public class Day_03
 
     private record Move(Direction Direction, int Length)
     {
-        public Point Step(Point point)
-            => Direction switch
-            {
-                Direction.U => new Point(point.X, point.Y + 1),
-                Direction.R => new Point(point.X + 1, point.Y),
-                Direction.D => new Point(point.X, point.Y - 1),
-                Direction.L => new Point(point.X - 1, point.Y),
-                _ => throw new InvalidOperationException(),
-            };
+        public Point Step(Point point) => Direction switch
+        {
+            Direction.U => new Point(point.X, point.Y + 1),
+            Direction.R => new Point(point.X + 1, point.Y),
+            Direction.D => new Point(point.X, point.Y - 1),
+            _ /* L   */ => new Point(point.X - 1, point.Y),
+        };
 
         public static Move Parse(string str)
             => new(Enum.Parse<Direction>(str[0..1]), str[1..].Int32());

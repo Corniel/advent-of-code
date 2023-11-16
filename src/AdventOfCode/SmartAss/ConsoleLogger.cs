@@ -72,6 +72,7 @@ public static class ConsoleLogger
         return obj;
     }
 
+    [Conditional("DEBUG")]
     static void WriteLine(object obj = null) 
     {
         using var _ = CultureInfo.InvariantCulture.Scoped();

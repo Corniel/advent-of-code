@@ -34,7 +34,7 @@ public class Day_05
         }
     }
 
-    private static void MultiStack(IEnumerable<Move> moves, Stack<char>[] stacks)
+    static void MultiStack(IEnumerable<Move> moves, Stack<char>[] stacks)
     {
         var buffer = new Stack<char>();
         foreach (var move in moves)
@@ -43,7 +43,7 @@ public class Day_05
             {
                 buffer.Push(stacks[move.From].Pop());
             }
-            while (buffer.Any()) stacks[move.To].Push(buffer.Pop());
+            while (buffer.NotEmpty()) stacks[move.To].Push(buffer.Pop());
         }
     }
 

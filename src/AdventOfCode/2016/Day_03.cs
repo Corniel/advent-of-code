@@ -6,7 +6,7 @@ public class Day_03
     [Puzzle(answer: 1050, O.μs100)]
     public int part_one(string input) => input.Lines(Triangle.Parse).Sum();
 
-    [Puzzle(answer: 1921, O.ms)]
+    [Puzzle(answer: 1921, O.μs100)]
     public int part_two(string input)
     {
         var numbers = input.Int32s().ToArray();

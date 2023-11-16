@@ -12,7 +12,7 @@ public class Day_19
     [Puzzle(answer: 2415, O.ms100)]
     public int part_two(string input) => input.Lines(Blueprint.Parse).Take(3).Select(p => Produces(p, 32)).Product();
 
-    static int Produces(Blueprint p, int turns) => Max(p, new State(turns, default, new(Ore: 1)), new());
+    static int Produces(Blueprint p, int turns) => Max(p, new State(turns, default, new(Ore: 1)), []);
 
     static int Max(Blueprint p, State state, Dictionary<State, int> done)
     {
@@ -28,7 +28,7 @@ public class Day_19
 
     record struct Resource(short Ore = 0, short Cly = 0, short Obs = 0, short Geo = 0)
     {
-        public bool CanBuild(Bot bot) => Ore >= bot.Cost.Ore && Cly >= bot.Cost.Cly && Obs >= bot.Cost.Obs && Geo >= bot.Cost.Geo;
+        public readonly bool CanBuild(Bot bot) => Ore >= bot.Cost.Ore && Cly >= bot.Cost.Cly && Obs >= bot.Cost.Obs && Geo >= bot.Cost.Geo;
 
         public static Resource operator +(Resource l, Resource r) => new((short)(l.Ore + r.Ore), (short)(l.Cly + r.Cly), (short)(l.Obs + r.Obs), (short)(l.Geo + r.Geo));
         public static Resource operator -(Resource l, Resource r) => new((short)(l.Ore - r.Ore), (short)(l.Cly - r.Cly), (short)(l.Obs - r.Obs), (short)(l.Geo - r.Geo));
@@ -37,7 +37,7 @@ public class Day_19
     record struct State(int Time, Resource Curr, Resource Prod)
     {
         public State Next(Resource prod) => this with { Time = Time - 1, Curr = Curr + prod };
-        public bool Done(Blueprint p) => Time == 0 || (Prod.Obs == 0 && p.Geo.Cost.Obs > Time * 2);
+        public readonly bool Done(Blueprint p) => Time == 0 || (Prod.Obs == 0 && p.Geo.Cost.Obs > Time * 2);
         public State Build(Bot bot) => this with { Curr = Curr - bot.Cost, Prod = Prod + bot.Prod };
         public IEnumerable<State> Nexts(Blueprint p)
         {
@@ -52,7 +52,7 @@ public class Day_19
             yield return this;
         }
 
-        bool NeedOre(Blueprint p) => Prod.Ore < p.Geo.Cost.Ore || Prod.Ore < p.Obs.Cost.Ore || Prod.Ore < p.Cly.Cost.Ore;
+        readonly bool NeedOre(Blueprint p) => Prod.Ore < p.Geo.Cost.Ore || Prod.Ore < p.Obs.Cost.Ore || Prod.Ore < p.Cly.Cost.Ore;
     }
 
     record Bot(Resource Cost, Resource Prod);

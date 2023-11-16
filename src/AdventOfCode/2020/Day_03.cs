@@ -8,14 +8,14 @@ public class Day_03
     public long part_one(string input)
         => CountTrees(Row.Parse(input).ToArray(), new Vector(3, 1));
 
-    [Puzzle(answer: 2138320800, O.μs100)]
+    [Puzzle(answer: 2138320800, O.μs10)]
     public long part_two(string input)
     {
         var rows = Row.Parse(input).ToArray();
         return new Vector[] { new(1, 1), new(3, 1), new(5, 1), new(7, 1), new(1, 2) }.Select(slope => CountTrees(rows, slope)).Product();
     }
 
-    private static long CountTrees(Row[] rows, Vector slope)
+    static long CountTrees(Row[] rows, Vector slope)
     {
         var position = Point.O + slope;
         var trees = 0;
@@ -28,7 +28,7 @@ public class Day_03
         return trees;
     }
 
-    private class Row
+    class Row
     {
         private const byte Tree = 17;
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -45,7 +45,7 @@ public class Day_03
         public static IEnumerable<Row> Parse(string str)
             => str.Lines(AsRow);
 
-        private static Row AsRow(string line)
+        static Row AsRow(string line)
         {
             var sqs = new byte[line.Length];
             for (var p = 0; p < sqs.Length; p++)

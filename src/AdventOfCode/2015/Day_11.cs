@@ -3,17 +3,17 @@ namespace Advent_of_Code_2015;
 [Category(Category.Cryptography)]
 public class Day_11
 {
-    [Puzzle(answer: "vzbxxyzz", input: "vzbxkghb")]
+    [Puzzle(answer: "vzbxxyzz", "vzbxkghb", O.ms)]
     public char[] part_one(string input) => new NextPass(input).First();
 
-    [Puzzle(answer: "vzcaabcc", input: "vzbxkghb")]
+    [Puzzle(answer: "vzcaabcc", "vzbxkghb", O.ms)]
     public char[] part_two(string input) => new NextPass(input).Skip(1).First();
 
-    struct NextPass : Iterator<char[]>
+    struct NextPass(string chars) : Iterator<char[]>
     {
-        public NextPass(string chars) => Current = chars.Replace('i', 'j').Replace('o', 'p').Replace('l', 'm').ToCharArray();
+        public char[] Current { get; private set; } = chars.Replace('i', 'j').Replace('o', 'p').Replace('l', 'm').ToCharArray();
 
-        public bool MoveNext()
+        public readonly bool MoveNext()
         {
             while(PlusOne())
             {
@@ -29,7 +29,7 @@ public class Day_11
             throw new InfiniteLoop();
         }
         
-        private bool PlusOne()
+        readonly bool PlusOne()
         {
             var pos = Current.Length - 1;
             do Current[pos] = Next[Current[pos]];
@@ -37,9 +37,9 @@ public class Day_11
             return true;
         }
 
-        public char[] Current { get; private set; }
-        public void Dispose() => Do.Nothing();
-        public void Reset() => Do.Nothing();
-        private static readonly string Next = new string(' ', (int)'a') + "bcdefghjjkmmnppqrstuvwxyza";
+        public readonly void Dispose() => Do.Nothing();
+        public readonly void Reset() => Do.Nothing();
+        
+        static readonly string Next = new string(' ', (int)'a') + "bcdefghjjkmmnppqrstuvwxyza";
     }
 }

@@ -10,7 +10,7 @@ public class Day_15
     [Puzzle(answer: 110871, "0,12,6,13,20,1,17", O.ms100)]
     public int part_two(string input) => MemoryGame(input.Int32s(), 30000000);
 
-    private static int MemoryGame(IEnumerable<int> starting, int rounds)
+    static int MemoryGame(IEnumerable<int> starting, int rounds)
     {
         var round = 1;
         var previous = 0;

@@ -11,7 +11,7 @@ public class Day_22
     [Puzzle(answer: 142380, O.ms)]
     public int part_two(string input) => Navigate(input, Cube);
 
-    private static int Navigate(string input, Func<Grid<char>, Cursor, Cursor> offMap)
+    static int Navigate(string input, Func<Grid<char>, Cursor, Cursor> offMap)
     {
         var group = input.GroupedLines(StringSplitOptions.None).ToArray();
         var map = group[0].CharPixels(ignoreSpace: false).Grid();
@@ -125,11 +125,11 @@ public class Day_22
 
     record struct Cursor(Point Pos, Vector Dir)
     {
-        public Cursor Move() => new(Pos + Dir, Dir);
-        public Cursor Rotate(char dir) => new(Pos, dir == 'R' ? Dir.TurnRight() : Dir.TurnLeft());
-        public bool OnMap(Grid<char> map) => map.OnGrid(Pos) && map[Pos] != ' ';
-        public Cursor Modulo(Grid<char> map) => new(new(Pos.X.Mod(map.Cols), Pos.Y.Mod(map.Rows)), Dir);
-        public int Score() => (Pos.Y + 1) * 1000 + (Pos.X + 1) * 4 + Facing[Dir];
+        public readonly Cursor Move() => new(Pos + Dir, Dir);
+        public readonly Cursor Rotate(char dir) => new(Pos, dir == 'R' ? Dir.TurnRight() : Dir.TurnLeft());
+        public readonly bool OnMap(Grid<char> map) => map.OnGrid(Pos) && map[Pos] != ' ';
+        public readonly Cursor Modulo(Grid<char> map) => new(new(Pos.X.Mod(map.Cols), Pos.Y.Mod(map.Rows)), Dir);
+        public readonly int Score() => (Pos.Y + 1) * 1000 + (Pos.X + 1) * 4 + Facing[Dir];
     }
 
     static readonly Dictionary<Vector, int> Facing = new() { [Vector.E] = 0, [Vector.S] = 1, [Vector.W] = 2, [Vector.N] = 3 };

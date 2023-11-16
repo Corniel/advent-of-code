@@ -11,7 +11,7 @@ public class Day_20
     [Puzzle(answer: 3390007892081, O.ms100)]
     public long part_two(string input) => Decrypt(input, 811589153, 10);
 
-    private static long Decrypt(string input, int key, int times)
+    static long Decrypt(string input, int key, int times)
     {
         var ns = Loop.New(input.Int64s().Select(n => n * key));
         var sort = ns.ToArray();

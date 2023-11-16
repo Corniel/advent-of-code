@@ -3,14 +3,14 @@
 [Category(Category.Grid)]
 public class Day_23
 {
-    static readonly Vector[] Directions = new[] { Vector.E, Vector.N, Vector.S, Vector.W, Vector.E, Vector.N, Vector.S, Vector.W };
+    static readonly Vector[] Directions = [Vector.E, Vector.N, Vector.S, Vector.W, Vector.E, Vector.N, Vector.S, Vector.W];
     static readonly Vector[] Neighbors = CompassPoints.All.Select(p => p.ToVector()).ToArray();
     static readonly Dictionary<Vector, Vector[]> Scans = new()
     {
-        [Vector.N] = new[] { Vector.N, Vector.NE, Vector.NW },
-        [Vector.E] = new[] { Vector.E, Vector.NE, Vector.SE },
-        [Vector.S] = new[] { Vector.S, Vector.SE, Vector.SW },
-        [Vector.W] = new[] { Vector.W, Vector.NW, Vector.SW },
+        [Vector.N] = [Vector.N, Vector.NE, Vector.NW],
+        [Vector.E] = [Vector.E, Vector.NE, Vector.SE],
+        [Vector.S] = [Vector.S, Vector.SE, Vector.SW],
+        [Vector.W] = [Vector.W, Vector.NW, Vector.SW],
     };
 
     [Example(answer: 110, Example._1)]
@@ -21,7 +21,7 @@ public class Day_23
     [Puzzle(answer: 997, O.ms100)]
     public long part_two(string input) => Run(input, int.MaxValue);
    
-    private static int Run(string input, int rounds)
+    static int Run(string input, int rounds)
     {
         var elves = input.CharPixels().Where(p => p.Value == '#').Select(p => p.Key).ToHashSet();
         var moves = new List<Move>();

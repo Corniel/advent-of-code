@@ -4,9 +4,9 @@ namespace Advent_of_Code;
 
 public class Days
 {
-    public static IEnumerable<Type> All = typeof(Days).Assembly
+    static readonly IEnumerable<Type> All = typeof(Days).Assembly
         .GetExportedTypes()
-        .Where(tp => tp.GetMethods().Exists(m => m.GetCustomAttributes<PuzzleAttribute>().Any()));
+        .Where(tp => tp.GetMethods().Exists(m => m.GetCustomAttributes<PuzzleAttribute>().NotEmpty()));
 
     [TestCaseSource(nameof(All))]
     public void Should_be_catogized(Type type)

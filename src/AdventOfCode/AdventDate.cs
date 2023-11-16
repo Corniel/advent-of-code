@@ -1,18 +1,12 @@
 ﻿namespace Advent_of_Code;
 
-public readonly struct AdventDate : IComparable<AdventDate>
+public readonly struct AdventDate(int? year, int? day, int? part) : IComparable<AdventDate>
 {
     public static readonly AdventDate All;
-    public AdventDate(int? year, int? day, int? part)
-    {
-        Year = year;
-        Day = day;
-        Part = part;
-    }
 
-    public int? Year { get; }
-    public int? Day { get; }
-    public int? Part { get; }
+    public readonly int? Year = year;
+    public readonly int? Day = day;
+    public readonly int? Part = part;
 
     public bool SpecifiesYearDay() => Year.HasValue && Day.HasValue && !Part.HasValue;
 
@@ -21,7 +15,7 @@ public readonly struct AdventDate : IComparable<AdventDate>
         && Matches(Day, other.Day)
         && Matches(Part, other.Part);
 
-    private static bool Matches(int? l, int? r) => !l.HasValue || !r.HasValue || l.Value == r.Value;
+    static bool Matches(int? l, int? r) => !l.HasValue || !r.HasValue || l.Value == r.Value;
 
     public override string ToString()
     {

@@ -4,7 +4,7 @@
 public class Day_17
 {
     [Example(answer: 45, "target area: x=20..30, y=-10..-5")]
-    [Puzzle(answer: 17766, "target area: x=48..70, y=-189..-148", O.ns100)]
+    [Puzzle(answer: 17766, "target area: x=48..70, y=-189..-148", O.μs10)]
     public int part_one(string input)
     {
         var area = Area.Parse(input);
@@ -12,7 +12,7 @@ public class Day_17
     }
 
     [Example(answer: 112, "target area: x=20..30, y=-10..-5")]
-    [Puzzle(answer: 1733, "target area: x=48..70, y=-189..-148", O.ms)]
+    [Puzzle(answer: 1733, "target area: x=48..70, y=-189..-148", O.μs100)]
     public long part_two(string input)
     {
         var area = Area.Parse(input);

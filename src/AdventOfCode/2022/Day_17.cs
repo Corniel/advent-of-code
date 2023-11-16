@@ -8,14 +8,14 @@ public class Day_17
     public long part_one(string input) => Play(input, 2022);
 
     [Example(answer: 1514285714288, ">>><<><>><<<>><>>><<<>>><<<><<<>><>><<>>")]
-    [Puzzle(answer: 1554117647070, O.ms)]
+    [Puzzle(answer: 1554117647070, O.μs100)]
     public long part_two(string input) => Play(input, 1_000_000_000_000);
 
     static long Play(string shifts, long turns)
     {
         long extra = -1; long shift = 0;
         var hashes = new Dictionary<Last14, Snapshot>();
-        var wall = new List<Row>() { new Row(255) };
+        List<Row> wall = [new(255)];
 
         for (long turn = 0; turn < turns; turn++)
         {
@@ -74,7 +74,7 @@ public class Day_17
             return block;
         }
 
-        public bool Overlaps(IReadOnlyList<Row> other, int offset)
+        public readonly bool Overlaps(IReadOnlyList<Row> other, int offset)
         {
             for (var i = 0; i < Rows.Length; i++)
             {
@@ -85,27 +85,27 @@ public class Day_17
             return false;
         }
 
-        public Block Shift(string shifts, ref long shift) => shifts[(int)(shift++ % shifts.Length)] == '<' ? Left() : Right();
-        Block Left() => Rows.Select(r => r.Left()).ToArray() is { } rows && rows.All(r => r != default) ? new(rows) : this;
-        Block Right() => Rows.Select(r => r.Right()).ToArray() is { } rows && rows.All(r => r != default) ? new(rows) : this;
+        public readonly Block Shift(string shifts, ref long shift) => shifts[(int)(shift++ % shifts.Length)] == '<' ? Left() : Right();
+        readonly Block Left() => Rows.Select(r => r.Left()).ToArray() is { } rows && rows.TrueForAll(r => r != default) ? new(rows) : this;
+        readonly Block Right() => Rows.Select(r => r.Right()).ToArray() is { } rows && rows.TrueForAll(r => r != default) ? new(rows) : this;
 
-        readonly static Block[] Init = new Block[]
-        {
+        readonly static Block[] Init =
+        [
             /* - */ new(new Row(0b_00_111_10)),
             /* + */ new(new Row(0b_00_010_00), new Row(0b_00_111_00), new Row(0b_00_010_00)),
             /* J */ new(new Row(0b_00_111_00), new Row(0b_00_001_00), new Row(0b_00_001_00)),
             /* | */ new(new Row(0b_00_100_00), new Row(0b_00_100_00), new Row(0b_00_100_00), new Row(0b_00_100_00)),
             /* O */ new(new Row(0b_00_110_00), new Row(0b_00_110_00)),
-        };
+        ];
     }
 
-    record struct Row(byte Cells)
+    record struct Row(byte cells)
     {
-        public long Index => Cells;
-        public bool Overlaps(Row other) => (Cells & other.Cells) != 0;
-        public Row Merge(Row other) => new((byte)(Cells | other.Cells));
-        public Row Left() => (Cells << 1) is var r && r < 128 ? new((byte)r) : default;
-        public Row Right() => (Cells >> 1) is var l && (l << 1) == Cells ? new((byte)l) : default;
-        public override string ToString() => Bits.Byte.ToString(Cells)[1..];
+        public readonly byte Cells = cells;
+        public readonly long Index => Cells;
+        public readonly bool Overlaps(Row other) => (Cells & other.Cells) != 0;
+        public readonly Row Merge(Row other) => new((byte)(Cells | other.Cells));
+        public readonly Row Left() => (Cells << 1) is var r && r < 128 ? new((byte)r) : default;
+        public readonly Row Right() => (Cells >> 1) is var l && (l << 1) == Cells ? new((byte)l) : default;
     }
 }

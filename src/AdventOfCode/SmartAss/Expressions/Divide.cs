@@ -1,9 +1,7 @@
 ﻿namespace SmartAss.Expressions;
 
-public sealed class Divide : Binary
+public sealed class Divide(Expr left, Expr right) : Binary(left, right)
 {
-    public Divide(Expr left, Expr right) : base(left, right) { }
-
     protected override string Operator => "/";
 
     protected override long TryValue(long left, long right) => left / right;

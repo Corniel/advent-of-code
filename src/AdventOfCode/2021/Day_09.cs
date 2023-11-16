@@ -29,7 +29,7 @@ public class Day_09
             var size = 1;
             done[point] = true;
             queue.Enqueue(point);
-            while (queue.Any())
+            while (queue.NotEmpty())
             {
                 foreach (var n in map.Neighbors[queue.Dequeue()])
                 {

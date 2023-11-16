@@ -30,7 +30,7 @@ public class Day_24
             var nexts = new Grid<bool>(Occupied.Cols, Occupied.Rows);
             var queue = new Queue<Point>(new[] { from });
 
-            while (queue.Any())
+            while (queue.NotEmpty())
             {
                 Next();
                 nexts.Clear();
@@ -77,12 +77,10 @@ public class Day_24
         }
     }
 
-    class Blizz
+    class Blizz(Point pos, Vector dir)
     {
-        public Blizz(Point pos, Vector dir) { Pos = pos; Dir = dir; }
-
-        public Point Pos { get; private set; }
-        public Vector Dir { get; }
+        public Point Pos { get; private set; } = pos;
+        public Vector Dir { get; } = dir;
 
         public Point Move(Grid<bool> map)
         {

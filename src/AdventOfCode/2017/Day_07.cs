@@ -3,48 +3,33 @@
 [Category(Category.Graph)]
 public class Day_07
 {
-    private const string Example = @"
-pbga (66)
-xhth (57)
-ebii (61)
-havc (66)
-ktlj (57)
-fwft (72) -> ktlj, cntj, xhth
-qoyq (66)
-padx (45) -> pbga, havc, qoyq
-tknk (41) -> ugml, padx, fwft
-jptl (61)
-ugml (68) -> gyxo, ebii, jptl
-gyxo (61)
-cntj (57)";
-
-    [Example(answer: "tknk", Example)]
-    [Puzzle(answer: "cyrupz")]
+    [Example(answer: "tknk", Example._1)]
+    [Puzzle(answer: "cyrupz", O.ms)]
     public string part_one(string input) => Root(input).Name;
 
-    [Example(answer: 60, Example)]
-    [Puzzle(answer: 193)]
+    [Example(answer: 60, Example._1)]
+    [Puzzle(answer: 193, O.ms)]
     public long part_two(string input)
     {
         var sorted = Root(input).Children.OrderByDescending(c => c.Weight).ToArray();
         var current = sorted[0];
         var delta = current.Weight - sorted[1].Weight;
         
-        while (current.Children.Any() && current.Children.Exists(c => c.Weight != current.Children[0].Weight))
+        while (current.Children.NotEmpty() && current.Children.Exists(c => c.Weight != current.Children[0].Weight))
         {
-            sorted = current.Children.OrderByDescending(c => c.Weight).ToArray();
+            sorted = [.. current.Children.OrderByDescending(c => c.Weight)];
             delta = sorted[0].Weight - sorted[1].Weight;
             current = sorted[0];
         }
         return current.Own - delta;
     }
 
-    private static Node Root(string input)
+    static Node Root(string input)
     {
         var nodes = new Dictionary<string, Node>();
         foreach (var line in input.Lines())
         {
-            var node = new Node(line.SpaceSeparated().First(), line.Int32());
+            var node = new Node(line.SpaceSeparated()[0], line.Int32());
             nodes[node.Name] = node;
         }
         foreach (var line in input.Lines())
@@ -56,10 +41,9 @@ cntj (57)";
         return nodes.Values.First(n => !children.Contains(n.Name));
     }
 
-    [DebuggerDisplay("{Name}: {Weight} ({Children.Count})")]
     record Node(string Name, int Own)
     {
-        public readonly List<Node> Children = new();
+        public readonly List<Node> Children = [];
         public int Weight => Own + Children.Sum(c => c.Weight);
     }
 }

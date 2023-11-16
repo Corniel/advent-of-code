@@ -11,7 +11,7 @@ public class Day_13
         => Package.Parse(lines[0]).CompareTo(Package.Parse(lines[1])) == +1 ? 0 : index + 1;
 
     [Example(answer: 140, Example._1)]
-    [Puzzle(answer: 21909, O.ms)]
+    [Puzzle(answer: 21909, O.μs100)]
     public int part_two(string input)
     {
         var two = Package.Parse("[[2]]");
@@ -44,10 +44,8 @@ public class Day_13
         public override string ToString()=> Value.ToString();
     }
 
-    class Parser : SyntaxParser
+    class Parser(string input) : SyntaxParser(input)
     {
-        public Parser(string input) : base(input) { }
-
         public Package Read()
         {
             if (ReadAhead() == '[')

@@ -1,4 +1,4 @@
-namespace Advent_of_Code_2018;
+﻿namespace Advent_of_Code_2018;
 
 [Category(Category.Simulation)]
 public class Day_09
@@ -9,13 +9,13 @@ public class Day_09
     [Example(answer: 000_2764, "17 players; last marble is worth 1104 points")]
     [Example(answer: 00_54718, "21 players; last marble is worth 6111 points")]
     [Example(answer: 00_37305, "30 players; last marble is worth 5807 points")]
-    [Puzzle(answer: 398730, "438 players; last marble is worth 71626 points")]
+    [Puzzle(answer: 398730, "438 players; last marble is worth 71626 points", O.μs100)]
     public long part_one(string input) => Simulate(input);
 
-    [Puzzle(answer: 3349635509, "438 players; last marble is worth 71626 points")]
+    [Puzzle(answer: 3349635509, "438 players; last marble is worth 71626 points", O.μs100)]
     public long part_two(string input) => Simulate(input, 100);
 
-    private static long Simulate(string input, int factor = 1)
+    static long Simulate(string input, int factor = 1)
     {
         var numbers = input.Int32s().ToArray();
         var players = numbers[0];

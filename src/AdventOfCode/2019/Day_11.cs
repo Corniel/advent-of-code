@@ -3,11 +3,11 @@
 [Category(Category.IntComputer, Category.ASCII)]
 public class Day_11
 {
-    [Puzzle(answer: 2184)]
+    [Puzzle(answer: 2184, O.ms)]
     public int part_one(string input)
         => DrawCanvas(Computer.Parse(input), 0).Count;
 
-    [Puzzle(answer: "AHCHZEPK")]
+    [Puzzle(answer: "AHCHZEPK", O.μs100)]
     public string part_two(string input)
     {
         var computer = Computer.Parse(input);
@@ -17,7 +17,7 @@ public class Day_11
         return Grid<bool>.FromPoints(dots, true).AsciiText(trim: true);
     }
 
-    private static Dictionary<Point, int> DrawCanvas(Computer computer, int color)
+    static Dictionary<Point, int> DrawCanvas(Computer computer, int color)
     {
         var canvas = new Dictionary<Point, int> { { Point.O, color } };
         var bot = Point.O;

@@ -3,7 +3,7 @@
 [Category(Category.Simulation)]
 public class Day_01
 {
-    [Puzzle(answer: 3291356)]
+    [Puzzle(answer: 3291356, O.μs)]
     public int part_one(string input)
         => input.Int32s().Sum(Fuel);
 
@@ -11,9 +11,9 @@ public class Day_01
     public int part_two(string input)
         => input.Int32s().Sum(RecursiveFuel);
 
-    private static int Fuel(int mass) => (mass / 3) - 2;
+    static int Fuel(int mass) => (mass / 3) - 2;
 
-    private static int RecursiveFuel(int mass)
+    static int RecursiveFuel(int mass)
     {
         var total = 0;
         while (true)

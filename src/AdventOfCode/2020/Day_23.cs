@@ -21,17 +21,13 @@ public class Day_23
         return (long)cups.Search(1).Next.Value * cups.Search(1).Next.Next.Value;
     }
 
-    private class Cups
+    class Cups(int size)
     {
-        private readonly Cup[] search;
-        public Cups(int size)
-        {
-            Size = size;
-            search = new Cup[size + 1];
-        }
-        public int Size { get; }
+        private readonly Cup[] search = new Cup[size + 1];
+        public readonly int Size = size;
         public int Turn { get; private set; }
         public Cup Curr { get; private set; }
+
         public Cup Search(int value) => search[value];
         public void Next()
         {

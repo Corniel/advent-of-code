@@ -22,7 +22,7 @@ public class Day_04
         var game = Game.Parse(input);
         foreach (var number in game.Numbers)
         {
-            if (game.Play(number) is { } bingo && !game.Cards.Any())
+            if (game.Play(number) is { } bingo && !game.Cards.NotEmpty())
             {
                 return bingo.Score * number;
             }

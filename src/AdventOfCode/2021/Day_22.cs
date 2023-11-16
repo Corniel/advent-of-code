@@ -9,7 +9,7 @@ public class Day_22
     [Puzzle(answer: 1235484513229032, O.ms10)]
     public long part_two(string input) => Count(input.Lines(Instruction.Parse));
 
-    private static long Count(IEnumerable<Instruction> instructions)
+    static long Count(IEnumerable<Instruction> instructions)
     {
         var cubes = new ItemCounter<Cube>();
         var buffer = new ItemCounter<Cube>();
@@ -30,7 +30,7 @@ public class Day_22
             }
             cubes[instruction.Cube] += instruction.IsOn ? 1 : 0;
         }
-        return cubes.Sum(record => record.Item.Count * record.Count);
+        return cubes.Sum(record => record.Item.Points * record.Count);
     }
 
     record Instruction(bool IsOn, Cube Cube)
@@ -41,19 +41,14 @@ public class Day_22
             return new(line.StartsWith("on"), new(numbers[0], numbers[1], numbers[2], numbers[3], numbers[4], numbers[5]));
         }
     }
-    readonly struct Cube : IEquatable<Cube>
+    
+    readonly struct Cube(int x_min, int x_max, int y_min, int y_max, int z_min, int z_max) : IEquatable<Cube>
     {
-        public Cube(int x_min, int x_max, int y_min, int y_max, int z_min, int z_max)
-        {
-            Xmin = x_min; Xmax = x_max;
-            Ymin = y_min; Ymax = y_max;
-            Zmin = z_min; Zmax = z_max;
-        }
-        public readonly int Xmin; public readonly int Xmax;
-        public readonly int Ymin; public readonly int Ymax;
-        public readonly int Zmin; public readonly int Zmax;
+        public readonly int Xmin = x_min; public readonly int Xmax = x_max;
+        public readonly int Ymin = y_min; public readonly int Ymax = y_max;
+        public readonly int Zmin = z_min; public readonly int Zmax = z_max;
         public bool IsEmpty => Xmin > Xmax || Ymin > Ymax || Zmin > Zmax;
-        public long Count => IsEmpty ? 0 : 1L * (1 + Xmax - Xmin) * (1 + Ymax - Ymin) * (1 + Zmax - Zmin);
+        public long Points => IsEmpty ? 0 : 1L * (1 + Xmax - Xmin) * (1 + Ymax - Ymin) * (1 + Zmax - Zmin);
 
         public bool Intersect(Cube other, out Cube intersection)
         {

@@ -6,7 +6,7 @@ namespace Advent_of_Code;
 [DebuggerDisplay("Count = {Count}")]
 public partial class AdventPuzzles : IEnumerable<AdventPuzzle>
 {
-    private readonly List<AdventPuzzle> items = new();
+    private readonly List<AdventPuzzle> items = [];
 
     public int Count => items.Count;
 

@@ -31,8 +31,10 @@ public static class Templating
     private static string Template(int year, int day)
     {
         var path = "Advent_of_Code.Template.Day.cs";
-        using var stream = typeof(Templating).Assembly.GetManifestResourceStream(path);
-        if (stream is null) throw new FileNotFoundException(path);
+
+        using var stream = typeof(Templating).Assembly.GetManifestResourceStream(path) 
+            ?? throw new FileNotFoundException(path);
+
         var reader = new StreamReader(stream, Encoding.UTF8);
         return reader.ReadToEnd()
             .Replace("@Year", year.ToString())

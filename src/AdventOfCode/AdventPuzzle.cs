@@ -50,7 +50,7 @@ public sealed class AdventPuzzle
         return text[^2..] == "\r\n" ? text[..^2] : text;
     }
 
-    private static AdventDate GetDate(MethodInfo method)
+    static AdventDate GetDate(MethodInfo method)
     {
         var numbers = method.DeclaringType.FullName.Int32s().ToArray();
         return new(year: numbers[0], day: numbers[1], part: Day(method));
@@ -63,7 +63,7 @@ public sealed class AdventPuzzle
         };
     }
 
-    private static object GetAnswer(object answer, Type type)
+    static object GetAnswer(object answer, Type type)
     {
         if (type == typeof(Int))
         {

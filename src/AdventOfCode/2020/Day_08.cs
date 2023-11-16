@@ -13,14 +13,14 @@ public class Day_08
     }
 
     [Example(answer: 8, "nop +0; acc +1; jmp +4; acc +3; jmp -3; acc -99;acc +1; jmp -4; acc +6")]
-    [Puzzle(answer: 920, O.ms10)]
+    [Puzzle(answer: 920, O.ms)]
     public int part_two(string input)
     {
         var instructions = input.Lines(Instruction.Parse).ToArray();
 
         for (var fix_pointer = 0; fix_pointer < instructions.Length; fix_pointer++)
         {
-            if (instructions[fix_pointer].Name == "acc") { continue; }
+            if (instructions[fix_pointer].Name == "acc") continue;
             if (Execute(instructions, fix_pointer, out var accumulator))
             {
                 return accumulator;
@@ -29,7 +29,7 @@ public class Day_08
         throw new NoAnswer();
     }
 
-    private static bool Execute(
+    static bool Execute(
         Instruction[] instructions,
         int fix_pointer,
         out int accumulator)
@@ -74,6 +74,6 @@ public class Day_08
     private record Instruction(string Name, int Value)
     {
         public static Instruction Parse(string line)
-            => new Instruction(line[0..3], line[4..].Int32());
+            => new(line[0..3], line[4..].Int32());
     }
 }

@@ -17,7 +17,7 @@ public class Day_12
         <x=17, y=-9, z=4>
         <x=2, y=2, z=-13>
         <x=-1, y=5, z=-1>
-        <x=4, y=7, z=-7>")]
+        <x=4, y=7, z=-7>", O.ms)]
     public int part_one(string input)
     {
         var moons = input.Lines(Moon.Parse).ToArray();
@@ -43,7 +43,7 @@ public class Day_12
         <x=17, y=-9, z=4>
         <x=2, y=2, z=-13>
         <x=-1, y=5, z=-1>
-        <x=4, y=7, z=-7>")]
+        <x=4, y=7, z=-7>", O.ms10)]
     public long part_two(string input)
     {
         var moons = input.Lines(Moon.Parse).ToArray();
@@ -60,7 +60,7 @@ public class Day_12
         return xy * z / Maths.Gcd(xy, z);
     }
 
-    private static long Cycle((int, int)[] pairs)
+    static long Cycle((int, int)[] pairs)
     {
         var initial = pairs.ToArray();
         var steps = 0;
@@ -75,7 +75,7 @@ public class Day_12
         return steps;
     }
 
-    private static void Step((int, int)[] pairs)
+    static void Step((int, int)[] pairs)
     {
         var deltas = new int[pairs.Length];
 
@@ -94,15 +94,12 @@ public class Day_12
         }
     }
 
-    private static (int, int) Pair(int l, int r) => (l, r);
+    static (int, int) Pair(int l, int r) => (l, r);
 
-    private sealed class Moon
+    private sealed class Moon(Point3D position, Vector3D velocity)
     {
-        public Moon(Point3D position, Vector3D velocity)
-        {
-            Position = position;
-            Velocity = velocity;
-        }
+        public Point3D Position { get; set; } = position;
+        public Vector3D Velocity { get; set; } = velocity;
 
         public int TotalEnergy => PotentialEnergy * KeneticEnergy;
 
@@ -115,9 +112,6 @@ public class Day_12
             => Math.Abs(Velocity.X)
             + Math.Abs(Velocity.Y)
             + Math.Abs(Velocity.Z);
-
-        public Point3D Position { get; set; }
-        public Vector3D Velocity { get; set; }
 
         public static Moon Parse(string line) => new(Ctor.New<Point3D>(line.Int32s()), default);
 

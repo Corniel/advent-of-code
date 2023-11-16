@@ -8,7 +8,7 @@ public class Day_05
     public void Reduces(string polymer, string reduced) => Destroy(polymer).Should().Be(reduced);
 
     [Example(answer: 10, "dabAcCaCBAcCcaDA")]
-    [Puzzle(answer: 11264)]
+    [Puzzle(answer: 11264, O.ms10)]
     public int part_one(string input) => Destroy(input).Length;
 
     [Example(answer: 4, "dabAcCaCBAcCcaDA")]
@@ -18,7 +18,7 @@ public class Day_05
         .Select(reduced => Destroy(reduced))
         .Min(polymer => polymer.Length);
 
-    public static string Destroy(string polymer)
+    static string Destroy(string polymer)
     {
         var buffer = new char[polymer.Length];
         buffer[0] = polymer[0];
@@ -40,7 +40,7 @@ public class Day_05
         }
         return polymer.Length == length ? polymer : Destroy(new(buffer, 0, length));
     }
-    public static string Strip(string polymer, int ch) => new(polymer.Where(c => Lower(c) != ch).ToArray());
-    private static bool IsDestroy(char l, char r) => l != r && Lower(l) == Lower(r);
-    private static int Lower(char ch) => ch & 0b11111;
+    static string Strip(string polymer, int ch) => new(polymer.Where(c => Lower(c) != ch).ToArray());
+    static bool IsDestroy(char l, char r) => l != r && Lower(l) == Lower(r);
+    static int Lower(char ch) => ch & 0b11111;
 }

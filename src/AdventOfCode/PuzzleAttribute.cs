@@ -5,7 +5,7 @@ public class PuzzleAttribute : Attribute, ITestBuilder, IApplyToTest, IImplyFixt
 {
     public PuzzleAttribute(object answer, params object[] input)
     {
-        input ??= Array.Empty<object>();
+        input ??= [];
         Answer = answer;
         Order = input.OfType<O>().FirstOrDefault();
         Input = Filter(input);
@@ -13,7 +13,7 @@ public class PuzzleAttribute : Attribute, ITestBuilder, IApplyToTest, IImplyFixt
     static object[] Filter(IEnumerable<object> input)
     {
         var filtered = input.Where(o => o is not O && o is not Example).ToArray();
-        return filtered.Length == 0 ? new object[] { null } : filtered;
+        return filtered.Length == 0 ? [null] : filtered;
     }
 
     public object Answer { get; }

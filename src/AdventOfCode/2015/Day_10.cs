@@ -1,14 +1,14 @@
-namespace Advent_of_Code_2015;
+﻿namespace Advent_of_Code_2015;
 
 [Category(Category.SequenceProgression)]
 public class Day_10
 {
     [Example(answer: 82350, "1")]
-    [Puzzle(answer: 329356, "3113322113")]
+    [Puzzle(answer: 329356, "3113322113", O.ms)]
     public int part_one(string input) => LookAndSay(input, 40);
     
     [Example(answer: 1166642, "1")]
-    [Puzzle(answer: 4666278, "3113322113")]
+    [Puzzle(answer: 4666278, "3113322113", O.ms100)]
     public long part_two(string input) => LookAndSay(input, 50);
 
     static int LookAndSay(string input, int rounds)

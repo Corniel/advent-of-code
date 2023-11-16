@@ -4,14 +4,14 @@
 public class Day_13
 {
     [Example(answer: "7,3", Example._1)]
-    [Puzzle(answer: "83,121")]
+    [Puzzle(answer: "83,121", O.ms)]
     public Point part_one(string input) => Simulate(input, stopOncrash: true);
 
     [Example(answer: "6,4", Example._2)]
-    [Puzzle(answer: "102, 144")]
+    [Puzzle(answer: "102, 144", O.ms10)]
     public Point part_two(string input) => Simulate(input);
 
-    private static Point Simulate(string input, bool stopOncrash = false)
+    static Point Simulate(string input, bool stopOncrash = false)
     {
         var grid = input.CharPixels(ignoreSpace: false).Grid();
         var carts = grid.Positions
@@ -43,16 +43,10 @@ public class Day_13
         return carts.Single().Pos;
     }
 
-    class Cart
+    class Cart(Point pos, char ch)
     {
-        public Cart(Point pos, char ch)
-        {
-            Pos = pos;
-            Dir = ((CompassPoint)" ^>v<".IndexOf(ch)).ToVector();
-        }
-
-        public Point Pos { get; private set; }
-        public Vector Dir { get; private set; }
+        public Point Pos { get; private set; } = pos;
+        public Vector Dir { get; private set; } = ((CompassPoint)" ^>v<".IndexOf(ch)).ToVector();
         public int Intersections { get; private set; }
         public void Next() => Pos += Dir;
         public void Intersect() => Dir = (Intersections++.Mod(3)) switch
@@ -60,7 +54,7 @@ public class Day_13
             0 => Dir.TurnLeft(),  2 => Dir.TurnRight(),  _ => Dir
         };
         public void TurnTlBr() => Dir = TlBr[Dir];
-        private static readonly Dictionary<Vector, Vector> TlBr = new()
+        static readonly Dictionary<Vector, Vector> TlBr = new()
         {
             [Vector.N] = Vector.E,
             [Vector.E] = Vector.N,
@@ -68,7 +62,7 @@ public class Day_13
             [Vector.W] = Vector.S,
         };
         public void TurnTrBl() => Dir = TrBl[Dir];
-        private static readonly Dictionary<Vector, Vector> TrBl = new()
+        static readonly Dictionary<Vector, Vector> TrBl = new()
         {
             [Vector.N] = Vector.W,
             [Vector.E] = Vector.S,

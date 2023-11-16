@@ -1,15 +1,15 @@
-namespace Advent_of_Code_2015;
+﻿namespace Advent_of_Code_2015;
 
 [Category(Category.Computation)]
 public class Day_15
 {
     [Example(answer: 62842880, "Butterscotch: capacity -1, durability -2, flavor 6, texture 3, calories 8;Cinnamon: capacity 2, durability 3, flavor -2, texture -1, calories 3")]
-    [Puzzle(answer: 21367368)]
+    [Puzzle(answer: 21367368, O.ms10)]
     public long part_one(string input)
         => TotalScore(input, (distribution, ingredients) => true);
 
     [Example(answer: 57600000, "Butterscotch: capacity -1, durability -2, flavor 6, texture 3, calories 8;Cinnamon: capacity 2, durability 3, flavor -2, texture -1, calories 3")]
-    [Puzzle(answer: 1766400)]
+    [Puzzle(answer: 1766400, O.ms10)]
     public long part_two(string input)
         => TotalScore(input, (distribution, ingredients) => Score(distribution, ingredients, i => i.Calories) == 500);
 
@@ -33,17 +33,11 @@ public class Day_15
         }
     }
 
-    struct Distribution : Iterator<int[]>
+    struct Distribution(int elements) : Iterator<int[]>
     {
-        private int Number;
+        private int Number = -1;
 
-        public Distribution(int elements)
-        {
-            Current = new int[elements];
-            Number = -1;
-        }
-
-        public int[] Current { get; private set; }
+        public int[] Current { get; private set; } = new int[elements];
 
         public bool MoveNext()
         {
@@ -55,7 +49,7 @@ public class Day_15
             throw new InfiniteLoop();
         }
 
-        private bool Fill(int remainder)
+        readonly bool Fill(int remainder)
         {
             Current[0] = 100;
             var pos = 1;
@@ -71,7 +65,7 @@ public class Day_15
             return remainder == 0;
         }
 
-        public void Reset() => Do.Nothing();
-        public void Dispose() => Do.Nothing();
+        public readonly void Reset() => Do.Nothing();
+        public readonly void Dispose() => Do.Nothing();
     }
 }

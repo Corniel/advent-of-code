@@ -4,7 +4,7 @@
 public class Day_01
 {
     [Example(answer: 514579, "1721, 979, 366, 299, 675, 1456")]
-    [Puzzle(answer: 786811, O.μs10)]
+    [Puzzle(answer: 786811, O.μs)]
     public int part_one(string input)
     {
         const int sum = 2020;
@@ -22,7 +22,7 @@ public class Day_01
     }
 
     [Example(answer: 241861950L, "1721, 979, 366, 299, 675, 1456")]
-    [Puzzle(answer: 199068980L, O.μs10)]
+    [Puzzle(answer: 199068980L, O.μs)]
     public long part_two(string input)
     {
         const int sum = 2020;

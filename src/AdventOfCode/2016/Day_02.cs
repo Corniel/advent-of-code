@@ -4,14 +4,14 @@
 public class Day_02
 {
     [Example(answer: "1985", "ULL;RRDDD;LURDL;UUUUD")]
-    [Puzzle(answer: "24862", O.μs100)]
+    [Puzzle(answer: "24862", O.μs10)]
     public string part_one(string input) => Solve(input, Point.O, One);
 
     [Example(answer: "5DB3", "ULL;RRDDD;LURDL;UUUUD")]
-    [Puzzle(answer: "46C91", O.μs100)]
+    [Puzzle(answer: "46C91", O.μs10)]
     public string part_two(string input) => Solve(input, new(-2, 0), Two);
 
-    private static string Solve(string input, Point point, Dictionary<Point, char> codes)
+    static string Solve(string input, Point point, Dictionary<Point, char> codes)
     {
         var code = new StringBuilder();
         foreach (var moves in input.Lines().Select(line => line.Select(Parse)))
@@ -26,7 +26,7 @@ public class Day_02
         return code.ToString();
     }
 
-    private static Vector Parse(char ch) => ch switch
+    static Vector Parse(char ch) => ch switch
     {
        'U' => Vector.N,
        'D' => Vector.S,
@@ -35,7 +35,7 @@ public class Day_02
         _ => Vector.O
     };
 
-    private static readonly Dictionary<Point, char> One = new()
+    static readonly Dictionary<Point, char> One = new()
     {
         [new(-1, -1)] = '1',
         [new(+0, -1)] = '2',
@@ -48,7 +48,7 @@ public class Day_02
         [new(+1, +1)] = '9',
     };
 
-    private static readonly Dictionary<Point, char> Two = new()
+    static readonly Dictionary<Point, char> Two = new()
     {
         [new(+0, -2)] = '1',
         [new(-1, -1)] = '2',

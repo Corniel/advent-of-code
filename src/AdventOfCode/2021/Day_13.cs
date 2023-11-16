@@ -11,7 +11,7 @@ public class Day_13
     public string part_two(string input)
         => Grid<bool>.FromPoints(Fold(input), true).AsciiText();
 
-    private static HashSet<Point> Fold(string input, int foldings = int.MaxValue)
+    static HashSet<Point> Fold(string input, int foldings = int.MaxValue)
     {
         var groups = input.GroupedLines().ToArray();
         var points = new HashSet<Point>(groups[0].Select(Point.Parse));

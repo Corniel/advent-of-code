@@ -10,7 +10,7 @@ public class Day_25
     [Puzzle(answer: "You only need 49 stars to boost it", "You only need 49 stars to boost it")]
     public string part_two(string input) => input;
 
-    private static long Number(string input)
+    static long Number(string input)
     {
         long n = 0;
         foreach (var ch in input) n = n * 5 + "=-012".IndexOf(ch) - 2;

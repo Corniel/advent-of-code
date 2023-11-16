@@ -1,12 +1,12 @@
-namespace Advent_of_Code_2017;
+﻿namespace Advent_of_Code_2017;
 
 [Category(Category.Cryptography)]
 public class Day_04
 {
-    [Puzzle(answer: 383)]
+    [Puzzle(answer: 383, O.μs100)]
     public int part_one(string input) => input.Lines().Count(IsPrhase);
     
-    [Puzzle(answer: 265)]
+    [Puzzle(answer: 265, O.μs100)]
     public int part_two(string input) => input.Lines().Count(NoAnagrams);
 
     static bool IsPrhase(string line)

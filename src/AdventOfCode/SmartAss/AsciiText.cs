@@ -16,9 +16,9 @@ public static class AsciiText
         }
     }
 
-    private static readonly Dictionary<ulong, char> Lookup = Init();
+    static readonly Dictionary<ulong, char> Lookup = Init();
 
-    private static Dictionary<ulong, char> Init()
+    static Dictionary<ulong, char> Init()
     {
         var grid = @"
 ░██░░███░░░██░░███░░████░████░░██░░█░░█░░███░░░██░█░░█░█░░░░█░░░██░░█░░██░░███░░░██░░███░░░███░░███░█░░█░█░░░██░░░██░░░██░░░█████░
@@ -38,20 +38,11 @@ public static class AsciiText
         return lookup;
     }
 
-    private struct TextIterator : Iterator<ulong>
+    private struct TextIterator(Grid<bool> grid, bool trim) : Iterator<ulong>
     {
-        private readonly Grid<bool> Grid;
-        private bool Trim;
-        private int Col;
-
-        public TextIterator(Grid<bool> grid, bool trim)
-        {
-            Grid = grid;
-            Col = 0;
-            Current = 0;
-            Trim = trim;
-        }
-
+        private readonly Grid<bool> Grid = grid;
+        private bool Trim = trim;
+        private int Col = 0;
         public ulong Current { get; private set; }
 
         public bool MoveNext()
@@ -92,7 +83,7 @@ public static class AsciiText
             }
         }
 
-        public void Dispose() => Do.Nothing();
+        public readonly void Dispose() => Do.Nothing();
         public void Reset() => throw new NotSupportedException();
     }
 }

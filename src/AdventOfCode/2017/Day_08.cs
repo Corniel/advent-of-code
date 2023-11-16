@@ -11,7 +11,7 @@ public class Day_08
     [Puzzle(answer: 6619, O.μs100)]
     public long part_two(string input) => MaxValue(input, true);
 
-    private static long MaxValue(string input, bool intermediate = false)
+    static long MaxValue(string input, bool intermediate = false)
     {
         var instructions = input.Lines().Select(Instruction.Parse).ToArray();
         var paramaters = Params.New(instructions.Select(instr => instr.Name).Distinct().Select(n => new Param(n, Const.Zero)));

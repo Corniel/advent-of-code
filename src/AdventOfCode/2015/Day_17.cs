@@ -3,14 +3,14 @@ namespace Advent_of_Code_2015;
 [Category(Category.Computation, Category.BitManupilation)]
 public class Day_17
 {
-    [Puzzle(answer: 1304)]
+    [Puzzle(answer: 1304, O.ms10)]
     public int part_one(string input)
     {
         var numbers = input.Int32s().OrderDescending().ToArray();
         return Range(1, (1 << numbers.Length) - 2).Count(bits => Fits((uint)bits, numbers));
     }
 
-    [Puzzle(answer: 18)]
+    [Puzzle(answer: 18, O.ms10)]
     public int part_two(string input)
     {
         var numbers = input.Int32s().OrderDescending().ToArray();

@@ -4,16 +4,16 @@
 public class Day_11
 {
     [Example(answer: 37, Example._1)]
-    [Puzzle(answer: 2481, O.ms100)]
+    [Puzzle(answer: 2481, O.ms10)]
     public int part_one(string input)
         => Plane.Init(input, Plane.DirectNeighbors).Simulate(4);
 
     [Example(answer: 26, Example._1)]
-    [Puzzle(answer: 2227, O.ms100)]
+    [Puzzle(answer: 2227, O.ms10)]
     public long part_two(string input)
         => Plane.Init(input, Plane.InSightNeighbors).Simulate(5);
 
-    private class Plane : Grid<Seat>
+    class Plane : Grid<Seat>
     {
         public Plane(int cols, int rows) : base(cols, rows) => Do.Nothing();
 
@@ -58,9 +58,9 @@ public class Day_11
             .Where(seat => seat is not null)
             .Select(seat => seat.Location);
 
-        private static readonly Vector[] directions = CompassPoints.All.Select(p => p.ToVector()).ToArray();
+        static readonly Vector[] directions = CompassPoints.All.Select(p => p.ToVector()).ToArray();
     }
-    private class Seat : GridTile<Seat>
+    class Seat : GridTile<Seat>
     {
         public Seat(int id, Point location)
             : base(id, location, 8) => Do.Nothing();

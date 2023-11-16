@@ -2,14 +2,12 @@
 
 namespace SmartAss.Trees;
 
-public class Leaf<TLeaf, TLabel> : IEquatable<Leaf<TLeaf, TLabel>>
+public class Leaf<TLeaf, TLabel>(TLabel label) : IEquatable<Leaf<TLeaf, TLabel>>
     where TLeaf : Leaf<TLeaf, TLabel>
 {
-    public Leaf(TLabel label) => Label = label;
+    public TLabel Label { get; } = label;
 
-    public TLabel Label { get; }
-
-    public Leaves<TLeaf, TLabel> Leaves { get; } = new();
+    public Leaves<TLeaf, TLabel> Leaves { get; } = [];
 
     public int Count => Leaves.Sum(child => child.Repeats);
 

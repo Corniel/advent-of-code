@@ -7,7 +7,7 @@ public class UniqueNumbers : IEnumerable<int>
     private readonly byte[] contains = new byte[short.MaxValue];
     private const byte True = 255;
 
-    public static UniqueNumbers Empty => new UniqueNumbers();
+    public static UniqueNumbers Empty => new();
 
     private UniqueNumbers() => Do.Nothing();
 
@@ -84,20 +84,13 @@ public class UniqueNumbers : IEnumerable<int>
     public IEnumerator<int> GetEnumerator() => new Enumerator(contains, Minimum, Maximum);
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
-    public static UniqueNumbers Parse(string str) => new UniqueNumbers(str.Int32s());
+    public static UniqueNumbers Parse(string str) => new(str.Int32s());
 
-    private sealed class Enumerator : IEnumerator<int>, IEnumerable<int>
+    private sealed class Enumerator(byte[] contains, int min, int max) : IEnumerator<int>, IEnumerable<int>
     {
-        private readonly byte[] contains;
-        private readonly int max;
-        private int index;
-
-        public Enumerator(byte[] contains, int min, int max)
-        {
-            this.contains = contains;
-            this.max = max;
-            index = min - 1;
-        }
+        private readonly byte[] contains = contains;
+        private readonly int max = max;
+        private int index = min - 1;
 
         public int Current => index;
 

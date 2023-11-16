@@ -1,9 +1,7 @@
 ﻿namespace SmartAss.Expressions;
 
-public sealed class Multiply : Binary
+public sealed class Multiply(Expr left, Expr right) : Binary(left, right)
 {
-    public Multiply(Expr left, Expr right) : base(left, right) { }
-
     protected override string Operator => "*";
 
     protected override long Solve(long value, long? left, long? right)

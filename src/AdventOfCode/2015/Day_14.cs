@@ -1,4 +1,4 @@
-namespace Advent_of_Code_2015;
+﻿namespace Advent_of_Code_2015;
 
 [Category(Category.Simulation)]
 public class Day_14
@@ -6,13 +6,13 @@ public class Day_14
     [Example(answer: 2660, @"
 Comet can fly 14 km/s for 10 seconds, but then must rest for 127 seconds.
 Dancer can fly 16 km/s for 11 seconds, but then must rest for 162 seconds.")]
-    [Puzzle(answer: 2640)]
+    [Puzzle(answer: 2640, O.μs)]
     public int part_one(string input) => input.Lines(Reindeer.Parse).Select(r => r.Travel(2503)).Max();
 
     [Example(answer: 1564, @"
 Comet can fly 14 km/s for 10 seconds, but then must rest for 127 seconds.
 Dancer can fly 16 km/s for 11 seconds, but then must rest for 162 seconds.")]
-    [Puzzle(answer: 1102)]
+    [Puzzle(answer: 1102, O.ms)]
     public int part_two(string input)
     {
         var distances = input.Lines(Reindeer.Parse).ToDictionary(r => r, r => 0);

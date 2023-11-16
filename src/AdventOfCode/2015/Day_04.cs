@@ -14,10 +14,10 @@ public class Day_04
     public int part_two(string input) => Run(input, SixZeros);
 
 #pragma warning disable NUnit1032 // An IDisposable field/property should be Disposed in a TearDown method
-    private static readonly HashAlgorithm Hash = MD5.Create();
+    static readonly HashAlgorithm Hash = MD5.Create();
 #pragma warning restore NUnit1032 // An IDisposable field/property should be Disposed in a TearDown method
 
-    private static int Run(string input, Func<byte[], bool> condition)
+    static int Run(string input, Func<byte[], bool> condition)
     {
         for (var n = 0; n < int.MaxValue; n++)
         {
@@ -31,12 +31,12 @@ public class Day_04
         throw new InfiniteLoop();
     }
 
-    private static bool FiveZeros(byte[] hashed)
+    static bool FiveZeros(byte[] hashed)
         => hashed[0] == 0 
         && hashed[1] == 0 
         && hashed[2] != 0 && hashed[2] <= 15;
 
-    private static bool SixZeros(byte[] hashed)
+    static bool SixZeros(byte[] hashed)
         => hashed[0] == 0
         && hashed[1] == 0
         && hashed[2] == 0;

@@ -9,7 +9,7 @@ public class Day_08
     [Puzzle(answer: "EFEYKFRFIJ", O.μs100)]
     public string part_two(string input) => Ascii(Process(input));
 
-    private static string Ascii(Dictionary<Point, bool> grid)
+    static string Ascii(Dictionary<Point, bool> grid)
     {
         var max = grid.Where(k => k.Value).Select(kvp => kvp.Key).Max();
         var canvas = new Grid<bool>(max);
@@ -17,7 +17,7 @@ public class Day_08
         return canvas.AsciiText();
     }
 
-    private static Dictionary<Point, bool> Process(string input)
+    static Dictionary<Point, bool> Process(string input)
     {
         var grid = new Dictionary<Point, bool>();
         foreach (var inst in input.Lines(Instruction.Parse)) inst.Transform(grid);

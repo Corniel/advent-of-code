@@ -21,7 +21,7 @@ public class Day_20
         throw new NoAnswer();
     }
 
-    private class Tile
+    class Tile
     {
         public Tile(long id, Grid<char> chars)
         {
@@ -31,9 +31,9 @@ public class Day_20
             E = Border(Range(0, 10).Select(i => chars[9, i] == '#' ? 1 : 0).ToArray());
             S = Border(Range(0, 10).Select(i => chars[i, 9] == '#' ? 1 : 0).ToArray());
             W = Border(Range(0, 10).Select(i => chars[0, i] == '#' ? 1 : 0).ToArray());
-            Borders = new[] { N, E, S, W };
+            Borders = [N, E, S, W];
         }
-        private static uint Border(int[] bits)
+        static uint Border(int[] bits)
         {
             uint pattern = default;
             for (var i = 0; i < bits.Length; i++)
@@ -49,11 +49,11 @@ public class Day_20
         public uint S { get; }
         public uint W { get; }
         public uint[] Borders { get; }
-        public List<Tile> Neighbors { get; } = new();
+        public List<Tile> Neighbors { get; } = [];
         public bool IsCorner => Neighbors.Count == 2;
 
-        public Tile Rotate(DiscreteRotation rotation) => new Tile(Id, Grid.Rotate(rotation));
-        public Tile Flip() => new Tile(Id, Grid.Flip(true));
+        public Tile Rotate(DiscreteRotation rotation) => new(Id, Grid.Rotate(rotation));
+        public Tile Flip() => new(Id, Grid.Flip(true));
         public IEnumerable<Tile> Orientations()
         {
             yield return this;
@@ -81,13 +81,13 @@ public class Day_20
             }
             return tiles;
         }
-        private static Tile Parse(string[] lines)
+        static Tile Parse(string[] lines)
            => new(lines[0].SpaceSeparated()[1][0..^1].Int32(), lines.Skip(1).CharPixels().Grid());
-        private static IEnumerable<Tile> Others(IEnumerable<Tile> tiles, Tile exclude)
+        static IEnumerable<Tile> Others(IEnumerable<Tile> tiles, Tile exclude)
             => tiles.Where(t => t.Id != exclude.Id);
     }
 
-    private class Tiles : Grid<Tile>
+    class Tiles : Grid<Tile>
     {
         public Tiles(int size) : base(size, size) => Do.Nothing();
 
@@ -122,7 +122,7 @@ public class Day_20
         {
             var points = new Queue<Point>(new[] { Point.O });
 
-            while (points.Any())
+            while (System.Collections.CollectionExtensions.NotEmpty(points))
             {
                 var point = points.Dequeue();
                 var prev = this[point];
@@ -151,7 +151,7 @@ public class Day_20
     }
     private sealed class Sea : List<Vector>
     {
-        public static readonly Sea Monster = new Sea(@"
+        public static readonly Sea Monster = new(@"
                 ..................#.
                 #....##....##....###
                 .#..#..#..#..#..#...

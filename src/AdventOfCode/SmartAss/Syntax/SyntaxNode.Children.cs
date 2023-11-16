@@ -4,14 +4,12 @@ public partial class SyntaxNode
 {
     [DebuggerDisplay("Count = {Count}")]
     [DebuggerTypeProxy(typeof(CollectionDebugView))]
-    private class NodeChildren : SyntaxNodes<SyntaxNode>
+    class NodeChildren(SyntaxNode parent) : SyntaxNodes<SyntaxNode>
     {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private readonly List<SyntaxNode> Nodes = new();
+        private readonly List<SyntaxNode> Nodes = [];
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        public readonly SyntaxNode Parent;
-
-        public NodeChildren(SyntaxNode parent) => Parent = parent;
+        public readonly SyntaxNode Parent = parent;
 
         public int Count => Nodes.Count;
 
@@ -45,13 +43,12 @@ public partial class SyntaxNode
             return node;
         }
 
-        private void NoParent(SyntaxNode node) => node.Parent = null;
+        static void NoParent(SyntaxNode node) => node.Parent = null;
     }
 
-    private readonly struct Typed<TSyntax> : SyntaxNodes<TSyntax> where TSyntax : SyntaxNode
+    private readonly struct Typed<TSyntax>(SyntaxNodes<SyntaxNode> nodes) : SyntaxNodes<TSyntax> where TSyntax : SyntaxNode
     {
-        private readonly SyntaxNodes<SyntaxNode> Nodes;
-        public Typed(SyntaxNodes<SyntaxNode> nodes) => Nodes = nodes;
+        private readonly SyntaxNodes<SyntaxNode> Nodes = nodes;
         public int Count => Nodes.Count;
         public TSyntax this[int index] => (TSyntax)Nodes[index];
         public IEnumerator<TSyntax> GetEnumerator() => Nodes.Cast<TSyntax>().GetEnumerator();

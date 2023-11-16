@@ -1,15 +1,15 @@
-namespace Advent_of_Code_2019;
+﻿namespace Advent_of_Code_2019;
 
 [Category(Category.Simulation)]
 public class Day_06
 {
     [Example(answer: 42, @"COM)B; B)C; C)D; D)E;E)F; B)G; G)H; D)I; E)J; J)K; K)L")]
-    [Puzzle(answer: 333679)]
+    [Puzzle(answer: 333679, O.ms10)]
     public int part_one(string input)
         => Space.Parse(input).Connections;
 
     [Example(answer: 4, @"COM)B; B)C; C)D; D)E; E)F; B)G; G)H; D)I; E)J; J)K; K)L; K)YOU; I)SAN")]
-    [Puzzle(answer: 370)]
+    [Puzzle(answer: 370, O.ms10)]
     public int part_two(string input)
     {
         var space = Space.Parse(input);
@@ -29,7 +29,7 @@ public class Day_06
         return minimum;
     }
 
-    private class Space : Dictionary<string, SpaceObject>
+    class Space : Dictionary<string, SpaceObject>
     {
         public int Connections => Values.Sum(obj => obj.Connections);
 
@@ -58,13 +58,11 @@ public class Day_06
         }
     }
 
-    private class SpaceObject : IEquatable<SpaceObject>
+    class SpaceObject(string name) : IEquatable<SpaceObject>
     {
-        public SpaceObject(string name) => this.Name = name;
+        public string Name { get; } = name;
 
-        public string Name { get; }
-
-        public ICollection<SpaceObject> Children { get; } = new List<SpaceObject>();
+        public ICollection<SpaceObject> Children { get; } = [];
 
         public int Connections => Children.Count + Children.Sum(ch => ch.Connections);
 

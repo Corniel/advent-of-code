@@ -22,7 +22,7 @@ public class Day_19
         patterns[11] = $"(?<special>{patterns[42]})+(?<-special>{patterns[31]})+(?(special)(?!))";
         return patterns.Matches(blocks[1]);
     }
-    private class Patterns : Dictionary<int, object>
+    class Patterns : Dictionary<int, object>
     {
         public int Matches(IEnumerable<string> messages)
         {
@@ -56,6 +56,6 @@ public class Day_19
     {
         public override string ToString() => string.Concat(Sequance.Select(s => s.ToString()));
         public static Combined Parse(string str, Patterns patterns)
-            => new Combined(str.SpaceSeparated(r => new Reference(r.Int32(), patterns)).ToArray());
+            => new(str.SpaceSeparated(r => new Reference(r.Int32(), patterns)).ToArray());
     }
 }

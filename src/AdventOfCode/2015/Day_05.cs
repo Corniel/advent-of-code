@@ -26,9 +26,7 @@ public class Day_05
         || line.Contains("pq")
         || line.Contains("xy");
 
-    static bool IsNice2(string line)
-        => RepeatingPair(line)
-        && RepeatAt2(line);
+    static bool IsNice2(string line) => RepeatingPair(line) && RepeatAt2(line);
 
     static bool RepeatAt2(string line)
     {
@@ -39,6 +37,5 @@ public class Day_05
         return false;
     }
 
-    static bool RepeatingPair(string line)
-        => line.SelectWithPrevious(3).Any(history => history[0] == history[2]);
+    static bool RepeatingPair(string line) => line.SelectWithPrevious(3).Any(history => history[0] == history[2]);
 }

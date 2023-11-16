@@ -2,26 +2,9 @@
 
 public static class LoopWithPrevious
 {
-    public static IEnumerable<string> SelectWithPrevious(this string str, int size = 2)
-    {
-        for (var i = 0; i <= str.Length - size; i++)
-        {
-            yield return str[i..(i + size)];
-        }
-    }
+    public static CurrentAndPreviouses SelectWithPrevious(this string str, int size = 2) => new(str, size);
 
-    public static IEnumerable<CurrentAndPrevious<T>> SelectWithPrevious<T>(this IEnumerable<T> items)
-    {
-        var iterator = items.GetEnumerator();
-        iterator.MoveNext();
-        var previous = iterator.Current;
-
-        while (iterator.MoveNext())
-        {
-            yield return new(previous, iterator.Current);
-            previous = iterator.Current;
-        }
-    }
+    public static CurrentAndPreviouses<T> SelectWithPrevious<T>(this IEnumerable<T> items) => new(items);
 
     public static IEnumerable<IReadOnlyList<T>> SelectWithPrevious<T>(this IEnumerable<T> items, int size)
     {
@@ -43,6 +26,76 @@ public static class LoopWithPrevious
             previous = current;
         }
     }
+}
+
+public struct CurrentAndPreviouses : IEnumerator<string>, IEnumerable<string>
+{
+    private readonly string Str;
+    private readonly int Size;
+    private int Pos;
+
+    public CurrentAndPreviouses(string str, int size)
+    {
+        Str = str;
+        Size = size;
+        Pos = -1;
+    }
+    public string Current { get; private set; }
+
+    readonly object IEnumerator.Current => Current;
+
+    public bool MoveNext()
+    {
+        if(++Pos <= Str.Length - Size)
+        {
+            Current = Str[Pos..(Pos + Size)];
+            return true;
+        }
+        else return false;
+    }
+
+    public IEnumerator<string> GetEnumerator() => this;
+
+    IEnumerator IEnumerable.GetEnumerator() => this;
+
+    public void Reset() => throw new NotSupportedException();
+
+    public void Dispose() { /* Nothing to dispose. */ }
+}
+
+public struct CurrentAndPreviouses<T> : IEnumerator<CurrentAndPrevious<T>>, IEnumerable<CurrentAndPrevious<T>>
+{
+    private readonly IEnumerator<T> Iterator;
+    private T Previous;
+
+    public CurrentAndPreviouses(IEnumerable<T> enumerable)
+    {
+        Iterator = enumerable.GetEnumerator();
+        Previous = Iterator.MoveNext() ? Iterator.Current : default;
+    }
+
+    public CurrentAndPrevious<T> Current { get; private set; }
+
+    readonly object IEnumerator.Current => Current;
+
+    public bool MoveNext()
+    {
+        if (Iterator.MoveNext())
+        {
+            Current = new(Previous, Iterator.Current);
+            Previous = Iterator.Current;
+            return true;
+        }
+        else return false;
+    }
+
+    public IEnumerator<CurrentAndPrevious<T>> GetEnumerator() => this;
+
+    IEnumerator IEnumerable.GetEnumerator() => this;
+
+    public void Reset() => throw new NotSupportedException();
+
+    public void Dispose() { /* Nothing to dispose. */ }
 }
 
 public readonly struct CurrentAndPrevious<T>(T prev, T curr)

@@ -32,11 +32,8 @@ public class Day_14
                         else
                         {
                             Map.Add(sand - Vector.S);
-                            if (sand - Vector.S == Start)
-                            {
-                                return Map.Count - Rock;
-                            }
-                            break;
+                            if (sand - Vector.S == Start) return Map.Count - Rock;
+                            else break;
                         }
                     }
                     if (sand.Y == Bottom) return Map.Count - Rock;
@@ -55,8 +52,8 @@ public class Day_14
                 map.Add(pair.Current);
                 map.AddRange(pair.Previous.Repeat((pair.Current - pair.Previous).Sign(), true).TakeWhile(c => c != pair.Current));
             }
-            
-            var max = map.Max().Y + (withBottom ? 3: 0);
+
+            var max = map.Max().Y + (withBottom ? 3 : 0);
             map.AddRange(new Point(Start.X - max, max - 1).Repeat(Vector.E).Take(withBottom ? max * 2 : 0));
 
             return new(map, map.Count, max);

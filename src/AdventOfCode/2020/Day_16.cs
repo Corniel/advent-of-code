@@ -63,6 +63,6 @@ public class Day_16
     private record Ticket(int[] Parts)
     {
         public bool Valid(IEnumerable<Rule> rules) => rules.Any(rule => rule.Valid(this));
-        public static Ticket Parse(string str) => new Ticket(str.Int32s().ToArray());
+        public static Ticket Parse(string str) => new([.. str.Int32s()]);
     }
 }

@@ -8,7 +8,7 @@ public class Day_11
     public long part_one(string input) => Simulate(input, 20, 3);
 
     [Example(answer: 2713310158, Example._1)]
-    [Puzzle(answer: 28244037010, O.ms10)]
+    [Puzzle(answer: 28244037010, O.ms)]
     public long part_two(string input) => Simulate(input, 10_000, 1);
 
     static long Simulate(string input, int simulations, int reduce)

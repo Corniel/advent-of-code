@@ -16,6 +16,8 @@ indent_size = 2
 
 [*.cs]
 
+dotnet_diagnostic.IDE1006.severity = none # Naming Styles
+
 dotnet_diagnostic.NUnit1032.severity  = none # An IDisposable field/property should be Disposed in a TearDown method
 
 dotnet_diagnostic.S101.severity  = none # Types should be named in PascalCase

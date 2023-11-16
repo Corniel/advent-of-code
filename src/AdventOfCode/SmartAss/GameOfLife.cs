@@ -43,7 +43,7 @@ public abstract class GameOfLife<TCell> : HashSet<TCell>
     }
     private int LivingNeighbors(TCell cell) => Neighbors(cell).Count(n => Contains(n));
 
-    private readonly HashSet<TCell> candidates = new();
-    private readonly HashSet<TCell> toDie = new();
-    private readonly HashSet<TCell> intoExistance = new();
+    private readonly HashSet<TCell> candidates = [];
+    private readonly HashSet<TCell> toDie = [];
+    private readonly HashSet<TCell> intoExistance = [];
 }

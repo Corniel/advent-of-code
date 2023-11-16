@@ -11,7 +11,7 @@ public class Day_06
     [Puzzle(answer: 1675781200288, O.μs)]
     public long part_two(string input) => Simulate(input, 256);
 
-    private static long Simulate(string input, int days)
+    static long Simulate(string input, int days)
     {
         var ages = new long[9];
         foreach (var age in input.Int32s()) ages[age] += 1;

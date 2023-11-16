@@ -1,16 +1,10 @@
 ﻿namespace SmartAss;
 
 [DebuggerDisplay("{ToString()} ({Size}: {Value})")]
-public readonly struct BinaryNumber : IEquatable<BinaryNumber>
+public readonly struct BinaryNumber(ulong value, int size) : IEquatable<BinaryNumber>
 {
-    public readonly int Size;
-    public readonly ulong Value;
-
-    public BinaryNumber(ulong value, int size)
-    {
-        Size = size;
-        Value = value;
-    }
+    public readonly int Size = size;
+    public readonly ulong Value = value;
 
     public int Count => Bits.UInt64.Count(Value);
 

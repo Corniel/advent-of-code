@@ -1,16 +1,10 @@
 ﻿namespace Advent_of_Code.Rankings;
 
-public sealed class SolvingRankingParticipant : IComparable<SolvingRankingParticipant>
+public sealed class SolvingRankingParticipant(Participant participant, IReadOnlyCollection<SolvingRankingResult> results) : IComparable<SolvingRankingParticipant>
 {
-    public SolvingRankingParticipant(Participant participant, IReadOnlyCollection<SolvingRankingResult> results)
-    {
-        Participant = participant;
-        Results = results;
-    }
+    public Participant Participant { get; } = participant;
 
-    public Participant Participant { get; }
-
-    public IReadOnlyCollection<SolvingRankingResult> Results { get; }
+    public IReadOnlyCollection<SolvingRankingResult> Results { get; } = results;
 
     public SolvingRankingResult Result(AdventDate date) => Results.FirstOrDefault(r => r.Date.Matches(date));
 

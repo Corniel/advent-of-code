@@ -4,8 +4,8 @@
 [DebuggerDisplay("Count = {Count}")]
 public sealed class Params : IReadOnlyCollection<Param>
 {
-    private readonly Dictionary<string, Expr> Lookup = new();
-    private readonly Dictionary<string, long> Cache = new();
+    private readonly Dictionary<string, Expr> Lookup = [];
+    private readonly Dictionary<string, long> Cache = [];
     private bool WithCache;
 
     public int Count => Lookup.Count;

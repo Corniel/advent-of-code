@@ -1,6 +1,4 @@
-﻿using System.Runtime.Serialization;
-
-namespace SmartAss.Syntax;
+﻿namespace SmartAss.Syntax;
 
 public class SyntaxError : FormatException
 {
@@ -8,8 +6,6 @@ public class SyntaxError : FormatException
     public SyntaxError(string message) : base(message) => Do.Nothing();
     public SyntaxError(string message, Exception innerException)
         : base(message, innerException) => Do.Nothing();
-    protected SyntaxError(SerializationInfo info, StreamingContext context)
-        : base(info, context) => Do.Nothing();
 
     public static SyntaxError EndOfInput => new("End of input reached.");
 

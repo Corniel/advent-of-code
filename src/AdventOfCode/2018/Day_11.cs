@@ -3,7 +3,7 @@
 [Category(Category.Grid)]
 public class Day_11
 {
-    [Puzzle(answer: "21,77", "3999")]
+    [Puzzle(answer: "21,77", "3999", O.ms10)]
     public string part_one(string input)
     {
         var max = FindMaximum(Grid(input)).Point;
@@ -18,7 +18,7 @@ public class Day_11
         return $"{max.Point.X},{max.Point.Y},{max.Size}";
     }
 
-    private static Result FindMaximum(Grid<int> grid, int size = 3)
+    static Result FindMaximum(Grid<int> grid, int size = 3)
     {
         var vectors = Points.Range(Point.O, new(size - 1, size - 1)).Select(p => p.Vector()).ToArray();
         return grid.Positions.Where(p => p.X <= 300 - size && p.Y <= 300 - size)

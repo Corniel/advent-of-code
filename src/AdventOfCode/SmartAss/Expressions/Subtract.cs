@@ -1,9 +1,7 @@
 ﻿namespace SmartAss.Expressions;
 
-public sealed class Subtract : Binary
+public sealed class Subtract(Expr left, Expr right) : Binary(left, right)
 {
-    public Subtract(Expr left, Expr right) : base(left, right) { }
-
     protected override string Operator => "-";
 
     protected override long TryValue(long left, long right) => left - right;

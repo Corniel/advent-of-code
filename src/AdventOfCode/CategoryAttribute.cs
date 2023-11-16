@@ -1,10 +1,9 @@
 ﻿namespace Advent_of_Code
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
-    public class CategoryAttribute : Attribute, IApplyToTest
+    public class CategoryAttribute(params Category[] catagories) : Attribute, IApplyToTest
     {
-        public CategoryAttribute(params Category[] catagories) => Categories = catagories;
-        public IReadOnlyCollection<Category> Categories { get; }
+        public IReadOnlyCollection<Category> Categories { get; } = catagories;
 
         public void ApplyToTest(Test test)
         {

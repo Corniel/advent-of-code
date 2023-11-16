@@ -1,12 +1,9 @@
 ﻿namespace Advent_of_Code;
 
 [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
-public class ExampleAttribute : PuzzleAttribute
+public class ExampleAttribute(object answer, params object[] input) : PuzzleAttribute(answer, input)
 {
-    public ExampleAttribute(object answer, params object[] input)
-        : base(answer, input) => Example = input.OfType<Example>().FirstOrDefault();
-
-    private readonly Example Example;
+    private readonly Example Example = input.OfType<Example>().FirstOrDefault();
 
     protected override AdventPuzzle Puzzle(IMethodInfo method) => new(method.MethodInfo, Input, Answer, Order, Example);
 

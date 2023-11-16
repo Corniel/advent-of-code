@@ -9,7 +9,7 @@ public class Day_03
     [Puzzle(answer: 438, "265149", O.μs)]
     public int part_one(string input) => Point.O.ManhattanDistance(Location(input.Int32()));
 
-    [Puzzle(answer: 266330, "265149")]
+    [Puzzle(answer: 266330, "265149", O.μs10)]
     public int part_two(string input)
     {
         var grid = new Dictionary<Point, int>() { { Point.O, 1 } };

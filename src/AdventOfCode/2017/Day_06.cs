@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Advent_of_Code_2017;
 
@@ -6,7 +6,7 @@ namespace Advent_of_Code_2017;
 public class Day_06
 {
     [Example(answer: 5, "0 2 7 0")]
-    [Puzzle(answer: 6681, "4 1 15 12 0 9 9 5 5 8 7 3 14 5 12 3")]
+    [Puzzle(answer: 6681, "4 1 15 12 0 9 9 5 5 8 7 3 14 5 12 3", O.μs100)]
     public int part_one(string input)
     {
         var banks = new Banks(input.Int32s().Select(n => (byte)n).ToArray());
@@ -16,7 +16,7 @@ public class Day_06
     }
 
     [Example(answer: 4, "0 2 7 0")]
-    [Puzzle(answer: 2392, "4 1 15 12 0 9 9 5 5 8 7 3 14 5 12 3")]
+    [Puzzle(answer: 2392, "4 1 15 12 0 9 9 5 5 8 7 3 14 5 12 3", O.μs100)]
     public long part_two(string input)
     {
         var banks = new Banks(input.Int32s().Select(n => (byte)n).ToArray());
@@ -25,11 +25,9 @@ public class Day_06
         return set.Count - set[banks];
     }
 
-    private readonly struct Banks : IEquatable<Banks>
+    private readonly struct Banks(byte[] numbers) : IEquatable<Banks>
     {
-        private readonly byte[] Numbers;
-
-        public Banks(byte[] numbers) => Numbers = numbers;
+        private readonly byte[] Numbers = numbers;
 
         public Banks Next()
         {

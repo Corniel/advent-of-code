@@ -1,13 +1,13 @@
-namespace Advent_of_Code_2019;
+﻿namespace Advent_of_Code_2019;
 
 [Category(Category.IntComputer)]
 public class Day_13
 {
-    [Puzzle(answer: 277)]
+    [Puzzle(answer: 277, O.μs100)]
     public int part_one(string input)
         => new Arcade().Update(Computer.Parse(input).Run().Output).Blocks;
 
-    [Puzzle(answer: 12856)]
+    [Puzzle(answer: 12856, O.ms100)]
     public Int part_two(string input)
     {
         var computer = Computer.Parse(input).Update(position: 0, value: 2);
@@ -26,7 +26,7 @@ public class Day_13
         return game.Score;
     }
 
-    private class Arcade : Grid<Tile>
+    class Arcade : Grid<Tile>
     {
         public Arcade() : base(42, 23) { }
         public Point Paddle => this.FirstOrDefault(t => t.Value == Tile.Paddle).Key;

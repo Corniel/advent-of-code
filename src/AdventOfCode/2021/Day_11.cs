@@ -11,7 +11,7 @@ public class Day_11
     [Puzzle(answer: 216, O.ms)]
     public int part_two(string input) => Simulate(input).TakeWhile(f => f != 100).Count() + 1;
 
-    private static IEnumerable<int> Simulate(string input)
+    static IEnumerable<int> Simulate(string input)
     {
         var grid = input.CharPixels().Grid((ch) => ch - '0').SetNeighbors(Neighbors.Grid, CompassPoints.All);
         var dones = new Grid<bool>(grid.Cols, grid.Rows);
@@ -19,7 +19,7 @@ public class Day_11
         return Range(1, int.MaxValue).Select(step => Step(grid, dones, stack));
     }
 
-    private static int Step(Grid<int> grid, Grid<bool> dones, Stack<Point> stack)
+    static int Step(Grid<int> grid, Grid<bool> dones, Stack<Point> stack)
     {
         foreach (var pos in grid.Positions)
         {
@@ -31,7 +31,7 @@ public class Day_11
             stack.Push(pos);
             dones[pos] = true;
         }
-        while (stack.Any())
+        while (stack.NotEmpty())
         {
             foreach (var neighbor in grid.Neighbors[stack.Pop()])
             {

@@ -17,14 +17,14 @@ public class Day_19
             .Max(p => scanners[p.f].Position.ManhattanDistance(scanners[p.s].Position));
     }
 
-    private static ISet<Point3D> Run(string input, out Scanner[] scanners)
+    static HashSet<Point3D> Run(string input, out Scanner[] scanners)
     {
         scanners = input.GroupedLines().Select(Scanner.Parse).ToArray();
         var beacons = new HashSet<Point3D>(scanners[0].Beacons(Point3D.O, Orientation.All[0]));
         var queue = new Queue<Scanner>();
         queue.EnqueueRange(scanners[1..]);
 
-        while (queue.Any())
+        while (queue.NotEmpty())
         {
             var scanner = queue.Dequeue();
             if (!beacons.AddRange(scanner.Locate(beacons)))
@@ -61,10 +61,11 @@ public class Day_19
             return Array.Empty<Point3D>();
 
             bool IsCandidate(Point3D location, Orientation orientation, HashSet<Point3D> beacons)
-                => !Beacons(location, orientation).Where(c => !beacons.Contains(c)).Skip(Observations.Length - 12).Any();
+                => !Beacons(location, orientation).Where(c => !beacons.Contains(c)).Skip(Observations.Length - 12).NotEmpty();
         }
         public static Scanner Parse(string[] lines) => new() { Observations = lines[1..].Select(Vector3D.Parse).ToArray() };
     }
+    
     record Orientation(int[] Order, int[] Multiplier)
     {
         public Vector3D Transform(Vector3D vector) => new(
@@ -72,17 +73,18 @@ public class Day_19
             y: vector[Order[1]] * Multiplier[1],
             z: vector[Order[2]] * Multiplier[2]);
         public static readonly Orientation[] All = Init();
-        private static Orientation[] Init()
+        static Orientation[] Init()
         {
+            int[] numbers = [0, 1, 2];
             var all = new List<Orientation>(48);
-            foreach (var order in (new int[] { 0, 1, 2 }).Permutations())
+            foreach (var order in numbers.Permutations())
             {
                 for (var bits = 0; bits < 8; bits++)
                 {
-                    all.Add(new(order.ToArray(), new int[] { (bits & 1) == 0 ? +1 : -1, (bits & 2) == 0 ? +1 : -1, (bits & 4) == 0 ? +1 : -1 }));
+                    all.Add(new([.. order], [(bits & 1) == 0 ? +1 : -1, (bits & 2) == 0 ? +1 : -1, (bits & 4) == 0 ? +1 : -1]));
                 }
             }
-            return all.ToArray();
+            return [.. all];
         }
     }
 }

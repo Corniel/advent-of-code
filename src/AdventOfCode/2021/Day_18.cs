@@ -131,13 +131,9 @@ public partial class Day_18
         }
     }
 
-    class Const : Node
+    class Const(int val) : Node
     {
-        public Const(int val)
-        {
-            Magnitude = val;
-        }
-        public override int Magnitude { get; }
+        public override int Magnitude { get; } = val;
 
         public override bool Split() => Magnitude > 9;
         public Pair Splitted()

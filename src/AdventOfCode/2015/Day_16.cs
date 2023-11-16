@@ -1,36 +1,35 @@
-namespace Advent_of_Code_2015;
+﻿namespace Advent_of_Code_2015;
 
 [Category(Category.Simulation)]
 public class Day_16
 {
     static readonly Sue Aunt = new(0)
     {
-        { Compount.children, 3 },
-        { Compount.cats, 7 },
-        { Compount.samoyeds, 2 },
-        { Compount.pomeranians, 3 },
-        { Compount.akitas, 0 },
-        { Compount.vizslas, 0 },
-        { Compount.goldfish, 5 },
-        { Compount.trees, 3 },
-        { Compount.cars, 2 },
-        { Compount.perfumes, 1 },
+        [Compount.children] = 3,
+        [Compount.cats] = 7,
+        [Compount.samoyeds] = 2,
+        [Compount.pomeranians] = 3,
+        [Compount.akitas] = 0,
+        [Compount.vizslas] = 0,
+        [Compount.goldfish] = 5,
+        [Compount.trees] = 3,
+        [Compount.cars] = 2,
+        [Compount.perfumes] = 1,
     };
 
-    [Puzzle(answer: 103)]
+    [Puzzle(answer: 103, O.μs100)]
     public int part_one(string input) => input.Lines(Sue.Parse).Single(sue => sue.Matches1(Aunt)).Id;
 
-    [Puzzle(answer: 405)]
+    [Puzzle(answer: 405, O.μs100)]
     public long part_two(string input) => input.Lines(Sue.Parse).Single(sue => sue.Matches2(Aunt)).Id;
 
-    class Sue: Dictionary<Compount, int>
+    class Sue(int id) : Dictionary<Compount, int>
     {
-        public Sue(int id) => Id = id;
-        public int Id { get; }
+        public int Id { get; } = id;
 
         public bool Matches1(Sue aunt) => this.All(kvp => aunt[kvp.Key] == kvp.Value);
         public bool Matches2(Sue aunt) => this.All(kvp => Matches2(kvp, aunt));
-        bool Matches2(KeyValuePair<Compount, int> kvp, Sue aunt)
+        static bool Matches2(KeyValuePair<Compount, int> kvp, Sue aunt)
             => kvp.Key switch
             {
                 Compount.cats or Compount.trees => kvp.Value > aunt[kvp.Key],

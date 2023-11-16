@@ -23,14 +23,14 @@ public class Day_07
         public IEnumerable<Dir> All => Dirs.SelectMany(dir => dir.All).Concat(Repeat(this, 1));
         public static Dir Parse(string input)
         {
-            var root = new Dir(null, "/", new());
+            var root = new Dir(null, "/", []);
             var current = root;
 
             foreach (var line in input.Lines().Skip(1))
             {
                 if (line == "$ cd ..") current = current.Parent;
                 else if (line.StartsWith("$ cd ")) current = current.Dirs.First(dir => dir.Name == line[5..]);
-                else if (line.StartsWith("dir ")) current.Dirs.Add(new(current, line[4..], new()));
+                else if (line.StartsWith("dir ")) current.Dirs.Add(new(current, line[4..], []));
                 else current.Files += line.Int32();
             }
             return root;

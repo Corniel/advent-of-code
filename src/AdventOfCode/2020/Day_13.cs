@@ -32,7 +32,7 @@ public class Day_13
         return bus.Offset;
     }
 
-    private static long GetOffset(long bus, long depature) => (-depature).Mod(bus);
+    static long GetOffset(long bus, long depature) => (-depature).Mod(bus);
 
     private record Bus(long Period, long Offset)
     {

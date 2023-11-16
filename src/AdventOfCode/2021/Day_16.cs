@@ -4,7 +4,7 @@
 public class Day_16
 {
     [Example(answer: 31, "A0016C880162017C3686B18A3D4780")]
-    [Puzzle(answer: 996, O.μs100)]
+    [Puzzle(answer: 996, O.μs10)]
     public int part_one(string input) => new Parser(input).Read().Versions;
 
     [Example(answer: 3, "C200B40A82")]
@@ -15,20 +15,15 @@ public class Day_16
     [Example(answer: 0, "F600BC2D8F")]
     [Example(answer: 0, "9C005AC2F8F0")]
     [Example(answer: 1, "9C0141080250320F1802104A08")]
-    [Puzzle(answer: 96257984154, O.μs100)]
+    [Puzzle(answer: 96257984154, O.μs10)]
     public long part_two(string input) => new Parser(input).Read().Value;
 
     enum TypeId { Sum = 0, Product = 1, Min = 2, Max = 3, Literal = 4, GT = 5, LT = 6, Eq = 7 }
     
-    class Packet : SmartAss.Syntax.SyntaxNode
+    class Packet(int version, TypeId type) : SyntaxNode
     {
-        public Packet(int version, TypeId type)
-        {
-            Version = version;
-            Type = type;
-        }
-        public int Version { get; }
-        public TypeId Type { get; }
+        public int Version { get; } = version;
+        public TypeId Type { get; } = type;
         public int Versions => Version + Children<Packet>().Sum(ch => ch.Versions);
         public virtual long Value => Type switch
         {
@@ -41,10 +36,9 @@ public class Day_16
             TypeId.Sum or _ => Children<Packet>().Sum(ch => ch.Value),
         };
     }
-    class Literal : Packet
+    class Literal(int version, long val) : Packet(version, TypeId.Literal)
     {
-        public Literal(int version, long val)  : base(version, TypeId.Literal) => Value = val;
-        public override long Value { get; }
+        public override long Value { get; } = val;
     }
     class Parser : SyntaxParser
     {
@@ -82,6 +76,6 @@ public class Day_16
             while ((block & 0b10000) != 0);
             return (long)literal;
         }
-        static readonly string[] bits = new[] { "", "0000", "0001", "0010", "0011", "0100", "0101", "0110", "0111", "1000", "1001", "1010", "1011", "1100", "1101", "1110", "1111" };
+        static readonly string[] bits = ["", "0000", "0001", "0010", "0011", "0100", "0101", "0110", "0111", "1000", "1001", "1010", "1011", "1100", "1101", "1110", "1111"];
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Advent_of_Code_2021;
+﻿namespace Advent_of_Code_2021;
 
 [Category(Category.Computation)]
 public class Day_21
@@ -27,7 +25,7 @@ public class Day_21
     }
 
     [Example(answer: 444356092776315, "Player 1 starting position: 4;Player 2 starting position: 8")]
-    [Puzzle(answer: 634769613696613, "Player 1 starting position: 8;Player 2 starting position: 5", O.ms10)]
+    [Puzzle(answer: 634769613696613, "Player 1 starting position: 8;Player 2 starting position: 5", O.ms)]
     public long part_two(string input)
     {
         var numbers = input.Int32s().ToArray();
@@ -38,8 +36,8 @@ public class Day_21
 
         foreach (var setup in Setups)
         {
-            universe[0][setup.X][setup.Y] = new();
-            universe[1][setup.X][setup.Y] = new();
+            universe[0][setup.X][setup.Y] = [];
+            universe[1][setup.X][setup.Y] = [];
         }
         universe[player][numbers[1]][numbers[3]][default] += 1;
 
@@ -82,6 +80,6 @@ public class Day_21
 
     static readonly int[] Modulo10 = Range(0, 110).Select(n => ((n - 1) % 10) + 1).ToArray();
     static readonly int[] Modulo100 = Range(0, 200).Select(n => ((n - 1) % 100) + 1).ToArray();
-    static readonly int[] Weight = new int[] { 0, 0, 0, 1, 3, 6, 7, 6, 3, 1 };
+    static readonly int[] Weight = [0, 0, 0, 1, 3, 6, 7, 6, 3, 1];
     static readonly Point[] Setups = Points.Range(new Point(1, 1), new Point(10, 10)).ToArray();
 }

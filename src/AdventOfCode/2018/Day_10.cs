@@ -13,13 +13,13 @@ public class Day_10
 █░░█░█░░█░░░░░░░░█░░█░░░█░░░░░░░█░░░░░░░█░░░█░░░░█░░█░░░█░█░░░
 █░░░██░░█░░░░░░░░█░░█░░░█░░░░░░░█░░░░░░░█░░░█░░░░█░░█░░░█░░█░░
 █░░░██░░█░░░░░░░█░░░░█░░█░░░░░░░█░░░░░░░█░░░░█░░█░░░░█░░█░░░█░
-█░░░░█░░██████░░█░░░░█░░█░░░░░░░██████░░█░░░░█░░█░░░░█░░█░░░░█")]
+█░░░░█░░██████░░█░░░░█░░█░░░░░░░██████░░█░░░░█░░█░░░░█░░█░░░░█", O.ms10)]
     public string part_one(string input)=> Simulate(input).Grid.ToString(b => b ? '█' : '░');
 
-    [Puzzle(answer: 10459)]
+    [Puzzle(answer: 10459, O.ms10)]
     public int part_two(string input) => Simulate(input).Seconds;
 
-    private static (int Seconds, Grid<bool> Grid) Simulate(string input)
+    static (int Seconds, Grid<bool> Grid) Simulate(string input)
     {
         var dots = input.Lines(Dot.Parse).ToArray();
         var seconds = 0;

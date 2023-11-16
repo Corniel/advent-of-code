@@ -142,11 +142,12 @@ public static class Program
         }
 
         Console.WriteLine();
-        for (var pos = 0; pos < ranking.Length; pos++)
+        foreach(var kvp in durations)
         {
-            var puzzle = ranking[pos];
-            var ds = durations[puzzle];
-            Console.Write($"{(pos + 1),3} {ds}, {puzzle}");
+            var puzzle = kvp.Key;
+            var ds = kvp.Value;
+            Console.Write($"{ds}, {puzzle}");
+
             if (ds.Median.O() != puzzle.Order)
             {
                 Console.ForegroundColor = ConsoleColor.Red;

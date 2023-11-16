@@ -45,7 +45,7 @@ public class Day_17
         return space.Count;
     }
 
-    private class Space : GameOfLife<Point3D>
+    class Space : GameOfLife<Point3D>
     {
         protected override bool Dies(int living) => living < 2 || living > 3;
         protected override bool IntoExistence(int living) => living == 3;
@@ -61,7 +61,7 @@ public class Day_17
         }
     }
 
-    private class HyperSpace : GameOfLife<Point4D>
+    class HyperSpace : GameOfLife<Point4D>
     {
         protected override bool Dies(int living) => living < 2 || living > 3;
         protected override bool IntoExistence(int living) => living == 3;
@@ -77,20 +77,13 @@ public class Day_17
                         }
         }
     }
-    private readonly struct Point4D : IEquatable<Point4D>
+    private readonly struct Point4D(int x, int y, int z, int w) : IEquatable<Point4D>
     {
-        public Point4D(int x, int y, int z, int w)
-        {
-            X = x;
-            Y = y;
-            Z = z;
-            W = w;
-        }
-        public int X { get; }
-        public int Y { get; }
-        public int Z { get; }
-        public int W { get; }
-        public Point4D Add(int x, int y, int z, int w) => new Point4D(X + x, Y + y, Z + z, W + w);
+        public readonly int X = x;
+        public readonly int Y = y;
+        public readonly int Z = z;
+        public readonly int W = w;
+        public Point4D Add(int x, int y, int z, int w) => new(X + x, Y + y, Z + z, W + w);
         public override bool Equals(object obj) => obj is Point4D other && Equals(other);
         public bool Equals(Point4D other)
             => X == other.X

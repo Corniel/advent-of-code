@@ -31,7 +31,7 @@ public class Day_12
             var queue = new Queue<Point>();
             queue.Enqueue(current);
 
-            while (queue.Any())
+            while (queue.NotEmpty())
             {
                 foreach (var point in queue.DequeueCurrent())
                 {

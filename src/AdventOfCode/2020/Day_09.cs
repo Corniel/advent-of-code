@@ -3,7 +3,7 @@
 [Category(Category.Simulation)]
 public class Day_09
 {
-    [Puzzle(answer: 144381670, O.μs100)]
+    [Puzzle(answer: 144381670, O.μs10)]
     public long part_one(string input)
     {
         var numbers = input.Int64s().ToArray();
@@ -52,7 +52,7 @@ public class Day_09
         throw new NoAnswer();
     }
 
-    private static bool Matches(long[] numbers, int index, long number)
+    static bool Matches(long[] numbers, int index, long number)
     {
         for (var p0 = index - size; p0 < index; p0++)
         {

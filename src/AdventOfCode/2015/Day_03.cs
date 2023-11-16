@@ -42,7 +42,7 @@ public class Day_03
         return done.Count;
     }
 
-    private static Vector Parse(char ch)
+    static Vector Parse(char ch)
     => ch switch 
     {
         '^' => Vector.N,

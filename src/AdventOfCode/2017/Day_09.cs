@@ -34,10 +34,8 @@ public class Day_09
         public int Garbages => Garbage + ChildGroups.Sum(ch => ch.Garbages);
     }
 
-    class Parser : SyntaxParser
+    class Parser(string input) : SyntaxParser(input)
     {
-        public Parser(string input) : base(input) { }
-
         public Input Input()
         {
             var stream = new Input();

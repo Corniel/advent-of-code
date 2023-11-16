@@ -4,7 +4,7 @@
 public class Day_04
 {
     [Example(answer: 10 * 24, Example._1)]
-    [Puzzle(answer: 26281)]
+    [Puzzle(answer: 26281, O.μs100)]
     public long part_one(string input) => Occurences(input)
         .OrderByDescending(c => c.Value.Total).Select(Score).First();
 

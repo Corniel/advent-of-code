@@ -1,17 +1,17 @@
-namespace Advent_of_Code_2019;
+﻿namespace Advent_of_Code_2019;
 
 [Category(Category.VectorAlgebra, Category.PathFinding)]
 public class Day_15
 {
-    [Puzzle(answer: 222)]
+    [Puzzle(answer: 222, O.ms100)]
     public int part_one(string input)
         => new Space().Exlore(new Computer(input.BigInts()).WarmUp()).O2Distance;
 
-    [Puzzle(answer: 394)]
+    [Puzzle(answer: 394, O.ms100)]
     public int part_two(string input)
         => new Space().Exlore(new Computer(input.BigInts()).WarmUp()).O2Spreading;
 
-    private class Space : Dictionary<Point, Tile>
+    class Space : Dictionary<Point, Tile>
     {
         public Space() => Add(default, Tile.Empty);
         public int O2Distance => Navigate(Point.O, new Point[] { O2 }).Distance;
@@ -24,15 +24,15 @@ public class Day_15
         {
             var droid = Point.O;
             Navigation nav = null;
-            while (Unknowns.Any())
+            while (Unknowns.NotEmpty())
             {
                 nav = null;
-                if (distances.Any())
+                if (System.Collections.CollectionExtensions.NotEmpty(distances))
                 {
                     var target = Neighbors(droid).FirstOrDefault(n => distances.ContainsKey(n) && distances[n] < distances[droid]);
                     if (target != default) { nav = new(target - droid, default); }
                 }
-                if (nav is null) { nav = Navigate(droid, Unknowns); }
+                nav ??= Navigate(droid, Unknowns);
                 droid = Exlore(droid, nav, program);
             }
             return this;
@@ -63,7 +63,7 @@ public class Day_15
                 distances[target] = distance;
                 queue.Enqueue(target);
             }
-            while (queue.Any())
+            while (System.Collections.CollectionExtensions.NotEmpty(queue))
             {
                 distance++;
                 foreach (var tile in queue.DequeueCurrent())
@@ -82,7 +82,7 @@ public class Day_15
             return new(Vector.O, distance - 1);
         }
         private readonly Queue<Point> queue = new();
-        private readonly Dictionary<Point, int> distances = new Dictionary<Point, int>();
+        private readonly Dictionary<Point, int> distances = [];
     }
     private enum Tile
     {
@@ -94,7 +94,7 @@ public class Day_15
     {
         public int Instruction => Dirs[Direction];
     }
-    private static readonly Dictionary<Vector, int> Dirs = new()
+    static readonly Dictionary<Vector, int> Dirs = new()
     {
         { Vector.N, 1 },
         { Vector.S, 2 },

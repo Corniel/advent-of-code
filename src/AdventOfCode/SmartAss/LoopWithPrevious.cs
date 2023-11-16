@@ -45,16 +45,10 @@ public static class LoopWithPrevious
     }
 }
 
-public readonly struct CurrentAndPrevious<T>
+public readonly struct CurrentAndPrevious<T>(T prev, T curr)
 {
-    public CurrentAndPrevious(T prev, T curr)
-    {
-        Previous = prev;
-        Current = curr;
-    }
-
-    public readonly T Previous;
-    public readonly T Current;
+    public readonly T Previous = prev;
+    public readonly T Current = curr;
 
     public bool Unchanged() => Current.Equals(Previous);
 

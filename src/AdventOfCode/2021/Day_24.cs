@@ -12,7 +12,7 @@ public class Day_24
     static readonly int[] Asc = Range(1, 9).ToArray();
     static readonly int[] Desc = Asc.Reverse().ToArray();
 
-    long? Serial(int[] digits, State state, IReadOnlyList<Expression> exps, long serial = 0, int level = 0, int index = 0)
+    static long? Serial(int[] digits, State state, IReadOnlyList<Expression> exps, long serial = 0, int level = 0, int index = 0)
     {
         var seri = serial * 10;
         foreach(var digit in digits)
@@ -43,7 +43,7 @@ public class Day_24
     record Expression(Op Op, Arg[] Args)
     {
         public Arg this[int index] => index >= Args.Length ? 0 : Args[index];
-        public Expression Set(int val) => this with { Op = Op.set, Args = new[] { Args[0], (Arg)val } };
+        public Expression Set(int val) => this with { Op = Op.set, Args = [Args[0], (Arg)val] };
         public override string ToString()=> $"{Op} {string.Join(' ', Args.AsEnumerable())}";
         public static Expression Parse(string line)
         {

@@ -27,7 +27,7 @@ v.v..>>v.v
     bool Move(Grid<char> grid, Stack<Point> candidates, CompassPoint dir)
     {
         var ch = grid[candidates.Peek()];
-        while (candidates.Any() && candidates.Pop() is var tile)
+        while (candidates.NotEmpty() && candidates.Pop() is var tile)
         {
             if (grid.Neighbors[tile][dir] is var target && grid[target] == '.')
             {
@@ -36,7 +36,7 @@ v.v..>>v.v
             }
             else { Stay.Push(tile); }
         }
-        var moved = Clear.Any();
+        var moved = Clear.NotEmpty();
         while (Clear.Count > 0)
         {
             var move = Step.Pop();

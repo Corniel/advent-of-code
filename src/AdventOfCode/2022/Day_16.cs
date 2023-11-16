@@ -43,11 +43,11 @@ public class Day_16
 
     record struct State(uint Closed, int Score, int Rate, int Turn1, int Turn2, byte Id1, byte Id2)
     {
-        public bool IsClosed(Valve valve) => Bits.UInt32.HasFlag(Closed, valve.Id);
+        public readonly bool IsClosed(Valve valve) => Bits.UInt32.HasFlag(Closed, valve.Id);
 
-        public int Maximum(int turns, int max) => Score + (max - Rate) * (turns - Turn1 - 2);
+        public readonly int Maximum(int turns, int max) => Score + (max - Rate) * (turns - Turn1 - 2);
 
-        public State Move(Valve valve, int steps, int turns, bool solo)
+        public readonly State Move(Valve valve, int steps, int turns, bool solo)
         {
             var closed = Closed; var id1 = Id1; var rate = Rate; var score = Score;
 
@@ -75,7 +75,7 @@ public class Day_16
             var queue = new Queue<Valve>(Connections.Keys);
             var distance = 1;
 
-            while (distance++ is { } && queue.Any())
+            while (distance++ is { } && queue.NotEmpty())
             {
                 foreach (var next in queue.DequeueCurrent()
                     .SelectMany(c => c.Connections.Where(d => d.Value == 1 && Connections.TryAdd(d.Key, distance)))
@@ -89,7 +89,7 @@ public class Day_16
         public static Valve[] Parse(string input)
         {
             var lines = input.Replace(";", "").Replace("to valve ", "to valves ").Lines(Line.Parse).OrderBy(l => l.Name).ToArray();
-            var tmp = lines.ToDictionary(l => l.Name, l => new Valve(l.Name, l.Rate, new()));
+            var tmp = lines.ToDictionary(l => l.Name, l => new Valve(l.Name, l.Rate, []));
 
             foreach (var line in lines)
             {
@@ -105,7 +105,7 @@ public class Day_16
             }
             byte id = 0;
             foreach (var valve in tmp.Values) valve.Id = id++;
-            return tmp.Values.ToArray();
+            return [.. tmp.Values];
         }
     }
     record Line(string Name, int Rate, IReadOnlyList<string> Connections)

@@ -23,7 +23,7 @@ public class Day_04
             && year >= 2010 && year <= 2020;
 
         public bool hgt => TryGetValue(nameof(hgt), out var str)
-           && int.TryParse(str.Substring(0, str.Length - 2), out var length)
+           && int.TryParse(str[..^2], out var length)
            && ((str.EndsWith("cm") && length >= 150 && length <= 193) ||
             (str.EndsWith("in") && length >= 59 && length <= 76));
 
@@ -32,13 +32,15 @@ public class Day_04
           && year >= 2020 && year <= 2030;
 
         public bool ecl => TryGetValue(nameof(ecl), out var str)
-          && (new[] { "amb", "blu", "brn", "gry", "grn", "hzl", "oth" }).Contains(str);
+            && Ecls.Contains(str);
 
         public bool hcl => TryGetValue(nameof(hcl), out var str)
           && Regex.IsMatch(str, "^#[0-9a-f]{6}$");
 
         public bool pid => TryGetValue(nameof(pid), out var str)
           && Regex.IsMatch(str, "^[0-9]{9}$");
+
+        static readonly string[] Ecls = ["amb", "blu", "brn", "gry", "grn", "hzl", "oth"];
 
         public bool StrictValid() => IsValid()
             && byr

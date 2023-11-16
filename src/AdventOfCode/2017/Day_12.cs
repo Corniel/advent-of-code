@@ -4,11 +4,11 @@
 public class Day_12
 {
     [Example(answer: 6, "0 <-> 2;1 <-> 1;2 <-> 0, 3, 4;3 <-> 2, 4;4 <-> 2, 3, 6;5 <-> 6;6 <-> 4, 5")]
-    [Puzzle(answer: 128)]
+    [Puzzle(answer: 128, O.ms)]
     public int part_one(string input) => Nodes(input)[0].SelveAndAncestors().Count;
 
     [Example(answer: 2, "0 <-> 2;1 <-> 1;2 <-> 0, 3, 4;3 <-> 2, 4;4 <-> 2, 3, 6;5 <-> 6;6 <-> 4, 5")]
-    [Puzzle(answer: 209)]
+    [Puzzle(answer: 209, O.ms10)]
     public int part_two(string input)
     {
         var nodes = Nodes(input).Select(n => n.SelveAndAncestors()).ToArray();
@@ -41,8 +41,8 @@ public class Day_12
     [DebuggerDisplay("{Id}")]
     record Node(int Id)
     {
-        public readonly List<Node> Children = new();
-        public HashSet<int> SelveAndAncestors() => Visit(new());
+        public readonly List<Node> Children = [];
+        public HashSet<int> SelveAndAncestors() => Visit([]);
         private HashSet<int> Visit(HashSet<int> visted)
         {
             if (visted.Add(Id)) { foreach (var child in Children) child.Visit(visted); }

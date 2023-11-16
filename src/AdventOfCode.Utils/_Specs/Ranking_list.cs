@@ -1,5 +1,4 @@
 ﻿using Advent_of_Code.Rankings;
-using System.Threading.Tasks;
 
 namespace Specs.Utils.Ranking_list;
 

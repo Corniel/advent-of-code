@@ -1,10 +1,8 @@
 ﻿namespace SmartAss.Expressions;
 
-public sealed class Ref : Expr
+public sealed class Ref(string name) : Expr
 {
-    public Ref(string name) => Name = name;
-
-    public string Name { get; }
+    public string Name { get; } = name;
 
     public override void Solve(long value, Params pars) => pars[Name].Solve(value, pars);
 

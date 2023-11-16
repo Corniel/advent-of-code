@@ -43,9 +43,9 @@ public class Day_22
                 return score;
             }
         }
-        public Deck Copy(int cards) => new Deck(this.Take(cards));
+        public Deck Copy(int cards) => new(this.Take(cards));
         public override string ToString() => string.Join(',', this);
-        public static Deck Parse(string[] str) => new Deck(str.Skip(1).Select(NumberParsing.Int32));
+        public static Deck Parse(string[] str) => new(str.Skip(1).Select(NumberParsing.Int32));
 
         public static int Play(Deck player1, Deck player2)
             => Player1Wins(player1, player2) ? player1.Score : player2.Score;
@@ -53,7 +53,7 @@ public class Day_22
         public static int RecursivePlay(Deck player1, Deck player2)
             => Players1WinsRecursive(player1, player2) ? player1.Score : player2.Score;
 
-        private static bool Player1Wins(Deck player1, Deck player2)
+        static bool Player1Wins(Deck player1, Deck player2)
         {
             while (player1.HasAny && player2.HasAny)
             {

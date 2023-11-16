@@ -8,7 +8,7 @@ public class Day_02
     [Puzzle(answer: 1586300, O.μs100)]
     public int part_one(string input) => input.Lines(WrappingPaper).Sum();
 
-    private static int WrappingPaper(string line)
+    static int WrappingPaper(string line)
     {
         var pars = line.Int32s().ToArray();
         var area0 = pars[0] * pars[1];
@@ -22,7 +22,7 @@ public class Day_02
     [Puzzle(answer: 3737498, O.μs100)]
     public int part_two(string input) => input.Lines(WrappingRibbon).Sum();
 
-    private static int WrappingRibbon(string line)
+    static int WrappingRibbon(string line)
     {
         var pars = line.Int32s().ToArray();
         var bow = pars[0] * pars[1] * pars[2];

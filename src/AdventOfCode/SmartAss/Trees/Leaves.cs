@@ -6,7 +6,7 @@ public class Leaves<TLeaf, TLabel> : IEnumerable<RepeatingLeaf<TLeaf, TLabel>>
     where TLeaf : Leaf<TLeaf, TLabel>
 {
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    private readonly Dictionary<TLabel, RepeatingLeaf<TLeaf, TLabel>> leaves = new();
+    private readonly Dictionary<TLabel, RepeatingLeaf<TLeaf, TLabel>> leaves = [];
 
     public void Add(TLeaf leaf, int repeats)
     {

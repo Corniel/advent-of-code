@@ -1,9 +1,7 @@
 ﻿namespace SmartAss.Expressions;
 
-public sealed class ShiftRight : Binary
+public sealed class ShiftRight(Expr left, Expr right) : Binary(left, right)
 {
-    public ShiftRight(Expr left, Expr right) : base(left, right) { }
-
     protected override string Operator => ">>";
 
     protected override long Solve(long value, long? left, long? right) => throw new NotImplementedException();

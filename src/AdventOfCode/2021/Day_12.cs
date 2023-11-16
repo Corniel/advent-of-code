@@ -37,15 +37,15 @@ public class Day_12
         }
         return false;
     }
-    static readonly HashSet<Cave> Unique = new();
+    static readonly HashSet<Cave> Unique = [];
 
-    private static int Run(string input, Func<Cave, IEnumerable<Cave>, bool> invalidPath)
+    static int Run(string input, Func<Cave, IEnumerable<Cave>, bool> invalidPath)
     {
         var paths = 0;
         var stack = new Stack<List<Cave>>();
-        stack.Push(new List<Cave> { Start(input) });
+        stack.Push([Start(input)]);
 
-        while (stack.Any())
+        while (System.Collections.CollectionExtensions.NotEmpty(stack))
         {
             var path = stack.Pop();
 
@@ -97,7 +97,7 @@ public class Day_12
         public string Name { get; }
         public bool IsSmall { get; }
         public bool IsEnd { get; }
-        public HashSet<Cave> Neighbors { get; } = new();
+        public HashSet<Cave> Neighbors { get; } = [];
         public override string ToString() => Name;
     }
 }

@@ -1,9 +1,9 @@
-namespace Advent_of_Code_2019;
+﻿namespace Advent_of_Code_2019;
 
 [Category(Category.IntComputer)]
 public class Day_02
 {
-    [Puzzle(answer: 5110675)]
+    [Puzzle(answer: 5110675, O.μs10)]
     public Int part_one(string input)
         => Computer.Parse(input)
             .Update(1, 12)
@@ -11,7 +11,7 @@ public class Day_02
             .Run()
             .Answer;
 
-    [Puzzle(answer: 4847)]
+    [Puzzle(answer: 4847, O.ms)]
     public int part_two(string input)
     {
         var program = Computer.Parse(input);

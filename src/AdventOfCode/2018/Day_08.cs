@@ -1,22 +1,22 @@
-namespace Advent_of_Code_2018;
+﻿namespace Advent_of_Code_2018;
 
 [Category(Category.ExpressionParsing)]
 public class Day_08
 {
     [Example(answer: 138, "2 3 0 3 10 11 12 1 1 0 1 99 2 1 1 2")]
-    [Puzzle(answer: 36027)]
+    [Puzzle(answer: 36027, O.μs100)]
     public long part_one(string input) => new Parser(input).Read().Sum;
 
     [Example(answer: 66, "2 3 0 3 10 11 12 1 1 0 1 99 2 1 1 2")]
-    [Puzzle(answer: 23960)]
+    [Puzzle(answer: 23960, O.μs100)]
     public long part_two(string input) => new Parser(input).Read().Value;
 
     record Node()
     {
-        public readonly List<Node> Children = new();
-        public readonly List<int> MetaData = new();
+        public readonly List<Node> Children = [];
+        public readonly List<int> MetaData = [];
         public int Sum => MetaData.Sum() + Children.Sum(ch => ch.Sum);
-        public int Value => Children.Any()
+        public int Value => Children.NotEmpty()
             ? MetaData.Where(i => i <= Children.Count).Sum(i => Children[i - 1].Value)
             : MetaData.Sum();
     }

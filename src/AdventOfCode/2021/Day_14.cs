@@ -4,19 +4,18 @@
 public class Day_14
 {
     [Example(answer: 1588, "NNCB;CH -> B;HH -> N;CB -> H;NH -> C;HB -> C;HC -> B;HN -> C;NN -> C;BH -> H;NC -> B;NB -> B;BN -> B;BB -> N;BC -> B;CC -> N;CN -> C")]
-    [Puzzle(answer: 3247, O.μs100)]
+    [Puzzle(answer: 3247, O.μs10)]
     public long part_one(string input) => Run(input, 10);
 
     [Example(answer: 2188189693529, "NNCB;CH -> B;HH -> N;CB -> H;NH -> C;HB -> C;HC -> B;HN -> C;NN -> C;BH -> H;NC -> B;NB -> B;BN -> B;BB -> N;BC -> B;CC -> N;CN -> C")]
     [Puzzle(answer: 4110568157153, O.μs100)]
     public long part_two(string input) => Run(input, 40);
 
-    private static long Run(string input, int steps)
+    static long Run(string input, int steps)
     {
         var lines = input.Lines();
         var insertions = lines.Skip(1).Select(Insertion.Parse).ToDictionary(i => i.Pair, i => i);
-        var pairs = new ItemCounter<string>();
-        pairs.Add(lines[0].SelectWithPrevious());
+        var pairs = new ItemCounter<string> { lines[0].SelectWithPrevious() };
 
         for (var step = 0; step < steps; step++)
         {
@@ -31,7 +30,7 @@ public class Day_14
         return counter.Counts.Max() - counter.Counts.Min();
     }
 
-    private static void Adjust(Dictionary<string, Insertion> insertions, ItemCounter<string> pairs, string pair, long count)
+    static void Adjust(Dictionary<string, Insertion> insertions, ItemCounter<string> pairs, string pair, long count)
     {
         var insert = insertions[pair];
         pairs[pair] -= count;

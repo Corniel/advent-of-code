@@ -1,14 +1,14 @@
-using System.Text.Json;
+﻿using System.Text.Json;
 
 namespace Advent_of_Code_2015;
 
 [Category(Category.ExpressionParsing)]
 public class Day_12
 {
-    [Puzzle(answer: 111754)]
+    [Puzzle(answer: 111754, O.μs10)]
     public int part_one(string input) => input.Int32s().Sum();
 
-    [Puzzle(answer: 65402)]
+    [Puzzle(answer: 65402, O.μs100)]
     public int part_two(string input) => Sum(JsonDocument.Parse(input).RootElement);
 
     static int Sum(JsonElement elm)

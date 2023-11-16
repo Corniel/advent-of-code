@@ -1,19 +1,13 @@
 ﻿namespace Advent_of_Code_2019;
 
-public class RunArguments
+public class RunArguments(bool haltOnInput, bool haltOnOutput, params Int[] inputs)
 {
-    public static RunArguments Empty() => new RunArguments();
+    public static RunArguments Empty() => new();
 
     public RunArguments(params Int[] inputs)
         : this(false, false, inputs) => Do.Nothing();
 
-    public RunArguments(bool haltOnInput, bool haltOnOutput, params Int[] inputs)
-    {
-        HaltOnInput = haltOnInput;
-        HaltOnOutput = haltOnOutput;
-        Inputs = inputs.ToArray();
-    }
-    public bool HaltOnInput { get; }
-    public bool HaltOnOutput { get; }
-    public IReadOnlyCollection<Int> Inputs { get; }
+    public bool HaltOnInput { get; } = haltOnInput;
+    public bool HaltOnOutput { get; } = haltOnOutput;
+    public IReadOnlyCollection<Int> Inputs { get; } = [.. inputs];
 }

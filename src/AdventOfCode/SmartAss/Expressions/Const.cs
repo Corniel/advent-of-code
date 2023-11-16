@@ -1,12 +1,10 @@
 ﻿namespace SmartAss.Expressions;
 
-public sealed class Const : Expr
+public sealed class Const(long value) : Expr
 {
     public static readonly Const Zero = new(0);
 
-    public Const(long value) => Val = value;
-
-    public long Val { get; }
+    public long Val { get; } = value;
 
     public override void Solve(long value, Params pars) => throw new NotSolved();
 

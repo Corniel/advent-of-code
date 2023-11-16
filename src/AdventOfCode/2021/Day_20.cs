@@ -4,14 +4,14 @@
 public class Day_20
 {
     [Example(answer: 35, Example._1)]
-    [Puzzle(answer: 5765, O.ms10)]
+    [Puzzle(answer: 5765, O.ms)]
     public int part_one(string input) => Run(input, 2);
 
     [Example(answer: 3351, Example._1)]
     [Puzzle(answer: 18509, O.ms100)]
     public int part_two(string input) => Run(input, 50);
 
-    private static int Run(string input, int turns)
+    static int Run(string input, int turns)
     {
         var lines = input.GroupedLines().ToArray();
         var lookup_odd = lines[0][0].Select(ch => ch == '#').ToArray();
@@ -52,10 +52,10 @@ public class Day_20
         return map.Values.Count(v => v);
     }
 
-    private static readonly Vector[] Neighbors = new[] 
-    {
+    static readonly Vector[] Neighbors =
+    [
         Vector.NW, Vector.N, Vector.NE,
         Vector.W, Vector.O, Vector.E, 
         Vector.SW, Vector.S, Vector.SE 
-    };
+    ];
 }

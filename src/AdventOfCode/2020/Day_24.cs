@@ -8,7 +8,7 @@ public class Day_24
     {
         var location = Point.O;
         foreach (var step in Cells.Steps("nwwswee")) { location += step; }
-        Assert.AreEqual(Point.O, location);
+        location.Should().Be(Point.O);
     }
 
     [Example(answer: 10, Example._1)]
@@ -60,6 +60,6 @@ public class Day_24
                 prev = ch;
             }
         }
-        static readonly Vector[] Directions = new[] { Vector.E * 2, Vector.SE, Vector.NE, Vector.W * 2, Vector.SW, Vector.NW };
+        static readonly Vector[] Directions = [Vector.E * 2, Vector.SE, Vector.NE, Vector.W * 2, Vector.SW, Vector.NW];
     }
 }

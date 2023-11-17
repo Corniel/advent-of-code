@@ -52,7 +52,7 @@ public class Day_17
         return wall.Count + extra;
     }
 
-    record Snapshot(long Turn, int Count);
+    record struct Snapshot(long Turn, int Count);
 
     record struct Last14(long Lo, long Hi)
     {

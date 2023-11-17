@@ -63,6 +63,11 @@ public static class ConsoleLogger
         return list;
     }
 
+    public static char[] Console(this char[] chars, bool when = true)
+    {
+        Console(new string(chars), when);
+        return chars;
+    }
     public static T Console<T>(this T obj, bool when = true)
     {
         if (when)

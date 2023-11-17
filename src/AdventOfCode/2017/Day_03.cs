@@ -3,17 +3,17 @@
 [Category(Category.SequenceProgression)]
 public class Day_03
 {
-    [Example(answer: 3, "12")]
-    [Example(answer: 2, "23")]
-    [Example(answer: 4, "25")]
-    [Puzzle(answer: 438, "265149", O.ns100)]
-    public int part_one(string input) => Point.O.ManhattanDistance(Location(input.Int32()));
+    [Example(answer: 3, 12)]
+    [Example(answer: 2, 23)]
+    [Example(answer: 4, 25)]
+    [Puzzle(answer: 438, 265149, O.ns100)]
+    public int part_one(int input) => Point.O.ManhattanDistance(Location(input));
 
-    [Puzzle(answer: 266330, "265149", O.μs10)]
-    public int part_two(string input)
+    [Puzzle(answer: 266330, 265149, O.μs10)]
+    public int part_two(int input)
     {
         var grid = new Dictionary<Point, int>() { { Point.O, 1 } };
-        var max = Range(2, short.MaxValue).First(n => Sum(n, grid) > input.Int32());
+        var max = Range(2, short.MaxValue).First(n => Sum(n, grid) > input);
         return grid[Location(max)];
     }
 

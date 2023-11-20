@@ -18,5 +18,5 @@ public record RankingFile(int Year, Board Board)
 
     private bool LastYear() => Clock.UtcNow() - new Date(Year, 12, 25) < TimeSpan.FromDays(35);
 
-    public override string ToString() => $"Year: {Year}, Board: {Board}";
+    public override string ToString() => $"Year: {Year}, ID: {Board.Id,7}, Updated: {Local.LastAccessTimeUtc:yyyy-MM-dd HH:mm}, Name: {Board.Name}";
 }

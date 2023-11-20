@@ -8,6 +8,8 @@ public sealed class SolvingRanking(IReadOnlyList<SolvingRankingParticipant> part
 
     public override string ToString()
     {
+        if(!Participants.Any()) return "* No participants *";
+
         using var _ = CultureInfo.InvariantCulture.Scoped();
 
         var rank_length = Math.Max(3, Size(Participants.Count));

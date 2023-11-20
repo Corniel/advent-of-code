@@ -13,7 +13,7 @@ public class Rankings
     [TestCaseSource(nameof(Years))]
     public void TJIP(int year)
     {
-        var drieKoningen = new DateTime(2023, 01, 06, 05, 00, 00, DateTimeKind.Utc);
+        var drieKoningen = new DateTime(year + 1, 01, 06, 05, 00, 00, DateTimeKind.Utc);
         Ranking.Solving(year, Data.Tjip(year).Values, drieKoningen).Console();
     }
 

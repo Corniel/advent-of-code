@@ -60,6 +60,7 @@ public static class Data
     static readonly Dictionary<int, string[]> TJIP_Ignore = new()
     {
         [2014] = "Paul Antal".Split(';'),
+        [2020] = "Wesley Baartman".Split(';'),
         [2021] = "Martijn van Maasakkers;Ralph Hendriks".Split(';'),
         [2022] = "Paul Antal;Jurgen Heeffer;Baljinnyam Sereeter;Jeff-vD;Ralph Hendriks;Fred Hoogduin;Martijn van Maasakkers".Split(';'),
     };
@@ -99,12 +100,22 @@ public static class Data
             .SelectMany(year => Boards().Values
                 .Select(board => new RankingFile(year, board)));
 
-    public static async Task<IEnumerable<RankingFile>> DownloadRankingFiles()
+    public static async Task<IReadOnlyCollection<RankingFile>> DownloadRankingFiles()
     {
         var updated = new List<RankingFile>();
         var session = Session();
 
-        foreach (var file in RankingFiles().Where(f => f.MayCheckForUpdate))
+        foreach (var file in RankingFiles())
+        {
+            if (file.MayCheckForUpdate)
+            {
+                await CheckFroUpdate(updated, session, file);
+            }
+            else updated.Add(file);
+        }
+        return updated;
+
+        static async Task CheckFroUpdate(List<RankingFile> updated, string session, RankingFile file)
         {
             var response = await AocClient.GetAsync(file.Remote, KeyValuePair.Create(nameof(session), session));
             if (response.IsSuccessStatusCode)
@@ -132,7 +143,6 @@ public static class Data
                 Console.WriteLine($"{response.StatusCode}: {await response.Content.ReadAsStringAsync()}");
             }
         }
-        return updated;
 
         static string Session()
         {

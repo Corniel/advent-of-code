@@ -24,8 +24,8 @@ Dublin to Belfast = 141";
 
         foreach (var route in routes)
         {
-            var from = Array.IndexOf(locations, route.From);
-            var to = Array.IndexOf(locations, route.To);
+            var from = locations.IndexOf(route.From);
+            var to = locations.IndexOf(route.To);
             distances[from, to] = route.Distance;
             distances[to, from] = route.Distance;
         }

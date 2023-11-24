@@ -34,12 +34,18 @@ public sealed partial record LeaderboardEntry(AdventDate Date, int Pos, TimeSpan
 
 public class Leaderboard
 {
+    public static IEnumerable<int> Years
+       => Data.RankingFiles()
+       .Where(f => f.Local.Exists)
+       .Select(f => f.Year)
+       .Distinct();
+
     static FileInfo FileLocation(AdventDate date) => new(Path.Combine(Data.Location.FullName, $"{date.Year}/day_{date.Day:00}_leaderboard.html"));
 
-    [Test]
-    public void Fetch_100_2022()
+    [TestCaseSource(nameof(Years))]
+    public void Fetch_100(int year)
     {
-        var reference = new AdventDate(2022, null, 2);
+        var reference = new AdventDate(year, null, 2);
 
         var enties = new List<LeaderboardEntry>();
 

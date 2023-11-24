@@ -30,8 +30,8 @@ David would gain 41 happiness units by sitting next to Carol.")]
 
         foreach (var relation in relations)
         {
-            var obj = Array.IndexOf(people, relation.Obj);
-            var sub = Array.IndexOf(people, relation.Sub);
+            var obj = people.IndexOf(relation.Obj);
+            var sub = people.IndexOf(relation.Sub);
             likes[obj, sub] = relation.Val;
         }
         return Range(1, people.Length + neutral - 1).ToArray()

@@ -60,7 +60,7 @@ public class Day_04
 
         public void Play(int number)
         {
-            var index = Array.IndexOf(Numbers, number);
+            var index = Numbers.IndexOf(number);
             if (index != -1) Numbers[index] = 0;
         }
         private bool Row(int r) => Numbers.Skip(r * 5).Take(5).All(n => n == 0);

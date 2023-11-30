@@ -47,7 +47,7 @@ public sealed class AdventPuzzle
         }
         var reader = new StreamReader(stream, Encoding.UTF8);
         var text = reader.ReadToEnd();
-        return text[^2..] == "\r\n" ? text[..^2] : text;
+        return text.Length >= 2 && text[^2..] == "\r\n" ? text[..^2] : text;
     }
 
     static AdventDate GetDate(MethodInfo method)

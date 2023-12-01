@@ -5,15 +5,15 @@ public class Day_08
 {
     [Example(answer: 1, "b inc 5 if a > 1;a inc 1 if b < 5;c dec -10 if a >= 1;c inc -20 if c == 10")]
     [Puzzle(answer: 6611, O.μs100)]
-    public long part_one(string input) => MaxValue(input);
+    public long part_one(Lines input) => MaxValue(input);
 
     [Example(answer: 10, "b inc 5 if a > 1;a inc 1 if b < 5;c dec -10 if a >= 1;c inc -20 if c == 10")]
     [Puzzle(answer: 6619, O.μs100)]
-    public long part_two(string input) => MaxValue(input, true);
+    public long part_two(Lines input) => MaxValue(input, true);
 
-    static long MaxValue(string input, bool intermediate = false)
+    static long MaxValue(Lines input, bool intermediate = false)
     {
-        var instructions = input.Lines().Select(Instruction.Parse).ToArray();
+        var instructions = input.Select(Instruction.Parse).ToArray();
         var paramaters = Params.New(instructions.Select(instr => instr.Name).Distinct().Select(n => new Param(n, Const.Zero)));
         var max = 0L;
 

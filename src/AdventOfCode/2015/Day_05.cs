@@ -4,14 +4,14 @@
 public class Day_05
 {
     [Puzzle(answer: 236, O.μs100)]
-    public int part_one(string input) => input.Lines().Count(IsNice1);
+    public int part_one(Lines input) => input.Count(IsNice1);
 
     [Example(answer: 0, "ieodomkazucvgmuy")]
     [Example(answer: 0, "uurcxstgmygtbstg")]
     [Example(answer: 1, "qjhvhtzxzqqjkmpb")]
     [Example(answer: 1, "xxyxx")]
     [Puzzle(answer: 51, O.μs100)]
-    public int part_two(string input) => input.Lines().Count(IsNice2);
+    public int part_two(Lines input) => input.Count(IsNice2);
 
     static bool IsNice1(string line)
         => Repeating(line)

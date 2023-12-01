@@ -5,12 +5,12 @@ public class Day_08
 {
     [Example(answer: 7, @"""x\""\xcaj\\xwwvpdldz""")]
     [Puzzle(answer: 1342, O.μs10)]
-    public int part_one(string input) => input.Lines().Sum(line => line.Length - Decode(line));
+    public int part_one(Lines input) => input.Sum(line => line.Length - Decode(line));
 
     [Example(answer: 16 - 10, @"""aaa\""aaa""")]
     [Example(answer: 11 - 6, @"""\x27""")]
     [Puzzle(answer: 2074, O.μs10)]
-    public int part_two(string input) => input.Lines().Sum(line => Encode(line) - line.Length);
+    public int part_two(Lines input) => input.Sum(line => Encode(line) - line.Length);
 
     static int Decode(string str)
     {

@@ -5,7 +5,7 @@ public class Day_12
 {
     [Example(answer: 325, Example._1)]
     [Puzzle(answer: 3605, O.μs100)]
-    public long part_one(string input)
+    public long part_one(Lines input)
     {
         var game = new GameOfLife(input);
         game.Generations(20);
@@ -13,7 +13,7 @@ public class Day_12
     }
 
     [Puzzle(answer: 4050000000798, O.ms10)]
-    public long part_two(string input)
+    public long part_two(Lines input)
     {
         var game = new GameOfLife(input);
         game.Generations(1000);
@@ -22,14 +22,14 @@ public class Day_12
 
     class GameOfLife : GameOfLife<long>
     {
-        public GameOfLife(string input)
+        public GameOfLife(Lines input)
         {
-            foreach (var mask in input.Lines().Skip(1).Select(line => Bits.UInt32.Parse(line, "#", ".")))
+            foreach (var mask in input.Skip(1).Select(line => Bits.UInt32.Parse(line, "#", ".")))
             {
                 nexts[mask >> 1] = (mask & 1) == 1;
             }
             var index = 0;
-            foreach (var ch in input.Lines().First().Where(ch => "#.".Contains(ch)))
+            foreach (var ch in input[0].Where(ch => "#.".Contains(ch)))
             {
                 if (ch == '#') Add(index);
                 index++;

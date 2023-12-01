@@ -13,10 +13,19 @@ public sealed class AdventPuzzle
         Date = date;
         Example = example;
         Method = method;
-        Input = input;
+        Input = Tweak(input);
         Answer = GetAnswer(answer, method.ReturnType);
-        Input[0] ??= Embedded();
         Order = order;
+    }
+
+    object[] Tweak(object[] input)
+    {
+        input[0] ??= Embedded();
+        if (input[0] is string str && Method.GetParameters()[0].ParameterType == typeof(Lines))
+        {
+            input[0] = new Lines(str.Lines());
+        }
+        return input;
     }
 
     public AdventDate Date { get; }
@@ -28,7 +37,11 @@ public sealed class AdventPuzzle
 
     public bool Matches(AdventDate date) => Date.Matches(date);
 
-    public TestCaseParameters TestCaseParameters()  => new(Input) { ExpectedResult = Answer };
+
+    public TestCaseParameters TestCaseParameters()
+    {
+        return new TestCaseParameters(Input) { ExpectedResult = Answer };
+    }
 
     /// <inheritdoc />
     [Pure]

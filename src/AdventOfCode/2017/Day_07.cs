@@ -4,12 +4,12 @@
 public class Day_07
 {
     [Example(answer: "tknk", Example._1)]
-    [Puzzle(answer: "cyrupz", O.ms)]
-    public string part_one(string input) => Root(input).Name;
+    [Puzzle(answer: "cyrupz", O.μs100)]
+    public string part_one(Lines input) => Root(input).Name;
 
     [Example(answer: 60, Example._1)]
-    [Puzzle(answer: 193, O.ms)]
-    public long part_two(string input)
+    [Puzzle(answer: 193, O.μs100)]
+    public long part_two(Lines input)
     {
         var sorted = Root(input).Children.OrderByDescending(c => c.Weight).ToArray();
         var current = sorted[0];
@@ -24,15 +24,15 @@ public class Day_07
         return current.Own - delta;
     }
 
-    static Node Root(string input)
+    static Node Root(Lines input)
     {
         var nodes = new Dictionary<string, Node>();
-        foreach (var line in input.Lines())
+        foreach (var line in input)
         {
             var node = new Node(line.SpaceSeparated()[0], line.Int32());
             nodes[node.Name] = node;
         }
-        foreach (var line in input.Lines())
+        foreach (var line in input)
         {
             var items = line.SpaceSeparated().Where(n => n[0] >= 'a' && n[0] <= 'z').Select(name => nodes[name.Trim(',')]).ToArray();
             items[0].Children.AddRange(items[1..]);

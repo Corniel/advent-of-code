@@ -100,8 +100,6 @@ public static class Program
                 Location: new(Path.Combine($"./../../../../AdventOfCode/{d.Year}/Day_{d.Day:00}.cs")),
                 Date: new AdventDate(d.Year, d.Day, null)))
             .Where(code => code.Exists)
-            //.OrderBy(code => code.LoC)
-            //.ThenBy(code=> code.Size)
             .ToArray();
 
         foreach (var file in files)

@@ -5,11 +5,11 @@ public class Day_12
 {
     [Example(answer: 6, "0 <-> 2;1 <-> 1;2 <-> 0, 3, 4;3 <-> 2, 4;4 <-> 2, 3, 6;5 <-> 6;6 <-> 4, 5")]
     [Puzzle(answer: 128, O.μs100)]
-    public int part_one(string input) => Nodes(input)[0].SelveAndAncestors().Count;
+    public int part_one(Lines input) => Nodes(input)[0].SelveAndAncestors().Count;
 
     [Example(answer: 2, "0 <-> 2;1 <-> 1;2 <-> 0, 3, 4;3 <-> 2, 4;4 <-> 2, 3, 6;5 <-> 6;6 <-> 4, 5")]
     [Puzzle(answer: 209, O.ms)]
-    public int part_two(string input)
+    public int part_two(Lines input)
     {
         var nodes = Nodes(input).Select(n => n.SelveAndAncestors()).ToArray();
         var groups = 1;
@@ -21,9 +21,8 @@ public class Day_12
         return groups;
     }
 
-    static Node[] Nodes(string input)
+    static Node[] Nodes(Lines lines)
     {
-        var lines = input.Lines();
         var nodes = new Node[lines.Count];
         foreach (var line in lines)
         {
@@ -31,7 +30,7 @@ public class Day_12
             nodes[node.Id] = node;
         }
         var id = 0;
-        foreach (var line in input.Lines())
+        foreach (var line in lines)
         {
             nodes[id++].Children.AddRange(line.Int32s().Skip(1).Select(i => nodes[i]));
         }

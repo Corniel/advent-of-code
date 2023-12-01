@@ -5,12 +5,11 @@ public class Day_06
 {
     [Example(answer: 42, @"COM)B; B)C; C)D; D)E;E)F; B)G; G)H; D)I; E)J; J)K; K)L")]
     [Puzzle(answer: 333679, O.ms)]
-    public int part_one(string input)
-        => Space.Parse(input).Connections;
+    public int part_one(Lines input) => Space.Parse(input).Connections;
 
     [Example(answer: 4, @"COM)B; B)C; C)D; D)E; E)F; B)G; G)H; D)I; E)J; J)K; K)L; K)YOU; I)SAN")]
     [Puzzle(answer: 370, O.ms10)]
-    public int part_two(string input)
+    public int part_two(Lines input)
     {
         var space = Space.Parse(input);
 
@@ -43,11 +42,11 @@ public class Day_06
             return obj;
         }
 
-        public static Space Parse(string str)
+        public static Space Parse(Lines lines)
         {
             var space = new Space();
 
-            foreach (var line in str.Lines())
+            foreach (var line in lines)
             {
                 var split = line.Split(')');
                 var parent = space.Get(split[0]);

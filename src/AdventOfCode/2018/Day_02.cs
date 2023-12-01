@@ -4,24 +4,22 @@
 public class Day_02
 {
     [Puzzle(answer: 5928, O.μs100)]
-    public int part_one(string input)
-        => input.Lines().Count(line => Repeat(line, 2))
-        * input.Lines().Count(line => Repeat(line, 3));
+    public int part_one(Lines input)
+        => input.Count(line => Repeat(line, 2))
+        * input.Count(line => Repeat(line, 3));
 
 
     static bool Repeat(string line, int n) => line.Any(ch => line.Count(c => c == ch) == n);
 
     [Example(answer: "fgij", "abcde;fghij;klmno;pqrst;fguij;axcye;wvxyz")]
     [Puzzle(answer: "bqlporuexkwzyabnmgjqctvfs", O.μs100)]
-    public string part_two(string input)
+    public string part_two(Lines input)
     {
-        var lines = input.Lines();
-        
-        for(var f = 0; f < lines.Count; f++)
+        for(var f = 0; f < input.Count; f++)
         {
-            for(var s = f+1; s < lines.Count; s++)
+            for(var s = f+1; s < input.Count; s++)
             {
-                if (Matching(lines[f], lines[s]) is { } match) return match;
+                if (Matching(input[f], input[s]) is { } match) return match;
             }
         }
         throw new NoAnswer();

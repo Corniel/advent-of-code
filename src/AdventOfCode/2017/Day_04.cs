@@ -4,10 +4,10 @@
 public class Day_04
 {
     [Puzzle(answer: 383, O.μs100)]
-    public int part_one(string input) => input.Lines().Count(IsPrhase);
+    public int part_one(Lines input) => input.Count(IsPrhase);
     
     [Puzzle(answer: 265, O.μs100)]
-    public int part_two(string input) => input.Lines().Count(NoAnagrams);
+    public int part_two(Lines input) => input.Count(NoAnagrams);
 
     static bool IsPrhase(string line)
     {

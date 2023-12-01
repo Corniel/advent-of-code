@@ -5,10 +5,10 @@ public class Day_10
 {
     [Example(answer: 13140, Example._1)]
     [Puzzle(answer: 12980, O.μs10)]
-    public int part_one(string input) => Data.Parse(input).Skip(19).WithStep(40).Select(x => x.Product).Sum();
+    public int part_one(Lines input) => Data.Parse(input).Skip(19).WithStep(40).Select(x => x.Product).Sum();
 
     [Puzzle(answer: "BRJLFULP", O.μs10)]
-    public string part_two(string input)
+    public string part_two(Lines input)
     {
         var grid = new Grid<bool>(40, 6);
         grid.Set(true, Data.Parse(input).Where(d => d.Draw).Select(s => s.Point));
@@ -21,10 +21,10 @@ public class Day_10
         public Point Point => new((Cycle - 1).Mod(40), Cycle / 40);
         public bool Draw => (Point.X - Strength).Abs() <= 1;
 
-        public static IEnumerable<Data> Parse(string input)
+        public static IEnumerable<Data> Parse(Lines input)
         {
             var strength = 1; var cycle = 1;
-            foreach (var line in input.Lines())
+            foreach (var line in input)
             {
                 if (line == "noop") yield return new(cycle++, strength);
                 else

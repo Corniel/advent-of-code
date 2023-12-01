@@ -13,4 +13,16 @@ public static class CollectionExtensions
     public static bool NotEmpty<T>(this Queue<T> queue) => queue.Count != 0;
 
     public static bool NotEmpty<T>(this Stack<T> stack) => stack.Count != 0;
+
+    public static T? FirstOrNone<T>(this IEnumerable<T> enumerable, Predicate<T> predicate) where T : struct
+    {
+        foreach(var item in enumerable) 
+        { 
+            if(predicate(item)) return item;
+        }
+        return null;
+    }
+
+    public static IEnumerable<T> WithValue<T>(this IEnumerable<T?> enumerable) where T : struct
+        => enumerable.OfType<T>();
 }

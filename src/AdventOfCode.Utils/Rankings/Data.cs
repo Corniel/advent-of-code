@@ -63,6 +63,7 @@ public static class Data
         [2020] = "Wesley Baartman".Split(';'),
         [2021] = "Martijn van Maasakkers;Ralph Hendriks".Split(';'),
         [2022] = "Paul Antal;Jurgen Heeffer;Baljinnyam Sereeter;Jeff-vD;Ralph Hendriks;Fred Hoogduin;Martijn van Maasakkers".Split(';'),
+        [2023] = "Paul Antal;Jurgen Heeffer;Baljinnyam Sereeter;Jeff-vD;Ralph Hendriks;Fred Hoogduin;Martijn van Maasakkers".Split(';'),
     };
 
     static Dictionary<int, Board> Boards()

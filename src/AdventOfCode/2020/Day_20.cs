@@ -23,7 +23,7 @@ public class Day_20
 
     class Tile
     {
-        public Tile(long id, Grid<char> chars)
+        public Tile(long id, CharGrid chars)
         {
             Id = id;
             Grid = chars;
@@ -43,7 +43,7 @@ public class Day_20
             return pattern;
         }
         public long Id { get; }
-        public Grid<char> Grid { get; }
+        public CharGrid Grid { get; }
         public uint N { get; }
         public uint E { get; }
         public uint S { get; }
@@ -91,9 +91,9 @@ public class Day_20
     {
         public Tiles(int size) : base(size, size) => Do.Nothing();
 
-        public IEnumerable<Grid<char>> Canvases()
+        public IEnumerable<CharGrid> Canvases()
         {
-            var canvas = new Grid<char>(Cols * 8, Rows * 8);
+            var canvas = new CharGrid(Cols * 8, Rows * 8);
             foreach (var p in Points.Grid(Cols, Rows))
             {
                 foreach (var l in Points.Grid(8, 8))
@@ -164,7 +164,7 @@ public class Day_20
         }
         public int Width { get; }
         public int Height { get; }
-        public int Occupations(Grid<char> image)
+        public int Occupations(CharGrid image)
             => Points.Grid(image.Cols - Width, image.Rows - Height)
             .Count(offset => this.TrueForAll(relative => image[offset + relative] == '#')) * Count;
     }

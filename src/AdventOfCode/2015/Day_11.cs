@@ -1,9 +1,9 @@
-namespace Advent_of_Code_2015;
+﻿namespace Advent_of_Code_2015;
 
 [Category(Category.Cryptography)]
 public class Day_11
 {
-    [Puzzle(answer: "vzbxxyzz", "vzbxkghb", O.ms)]
+    [Puzzle(answer: "vzbxxyzz", "vzbxkghb", O.μs100)]
     public char[] part_one(string input) => new NextPass(input).First();
 
     [Puzzle(answer: "vzcaabcc", "vzbxkghb", O.ms)]

@@ -21,13 +21,13 @@ public static class Program
 
         if (!AdventDate.TryParse(args[0], out var date))
         {
-            return InvalidDay(args[0]); 
+            return InvalidDay(args[0]);
         }
         else if (date.SpecifiesYearDay() && !puzzles.Contains(date))
         {
             return Generate(date);
         }
-        else if (args.Length == 2 && args[1] == "-benchmark" || args[1] == "-b")
+        else if (args.Length == 2 && (args[1] == "-benchmark" || args[1] == "-b"))
         {
             return Benchmark(puzzles, date);
         }
@@ -35,7 +35,7 @@ public static class Program
         {
             return CodeSize(date);
         }
-        else if (args.Length >= 2 && args[1] == "-rank" || args[1] == "-r")
+        else if (args.Length >= 2 && (args[1] == "-rank" || args[1] == "-r"))
         {
             return await Rankings(date.Year.Value, args.Length == 2 ? "" : args[2]);
         }

@@ -21,11 +21,19 @@ public sealed class AdventPuzzle
     object[] Tweak(object[] input)
     {
         input[0] ??= Embedded();
-        if (input[0] is string str && Method.GetParameters()[0].ParameterType == typeof(Lines))
+        var targets = Method.GetParameters().Select(p => p.ParameterType).ToArray();
+        return input.Select((obj, i) => Tweak(obj, targets[i])).ToArray();
+    }
+    static object Tweak(object obj, Type target)
+    {
+        if (obj is string str)
         {
-            input[0] = new Lines(str.Lines());
+            if (target == typeof(Lines)) return new Lines(str.Lines());
+            else if (target == typeof(CharPixels)) return str.CharPixels();
+            else if (target == typeof(CharGrid)) return str.CharPixels().Grid();
+            else return str;
         }
-        return input;
+        else return obj;
     }
 
     public AdventDate Date { get; }

@@ -11,7 +11,7 @@ public class Day_22
     [Puzzle(answer: 142380, O.ms)]
     public int part_two(string input) => Navigate(input, Cube);
 
-    static int Navigate(string input, Func<Grid<char>, Cursor, Cursor> offMap)
+    static int Navigate(string input, Func<CharGrid, Cursor, Cursor> offMap)
     {
         var group = input.GroupedLines(StringSplitOptions.None).ToArray();
         var map = group[0].CharPixels(ignoreSpace: false).Grid();
@@ -31,7 +31,7 @@ public class Day_22
         return cursor.Score();
     }
 
-    static Cursor Donut(Grid<char> map, Cursor cursor)
+    static Cursor Donut(CharGrid map, Cursor cursor)
     {
         cursor = cursor.Move();
         do cursor = map.OnGrid(cursor.Pos) ? cursor.Move() : cursor.Modulo(map);
@@ -39,7 +39,7 @@ public class Day_22
         return cursor;
     }
     
-    static Cursor Cube(Grid<char> map, Cursor cursor)
+    static Cursor Cube(CharGrid map, Cursor cursor)
     {
         var face = new Point(cursor.Pos.X / RibbonSize, cursor.Pos.Y / RibbonSize);
         var ribbon = new Ribbon(face, cursor.Dir.CompassPoint());
@@ -127,8 +127,8 @@ public class Day_22
     {
         public readonly Cursor Move() => new(Pos + Dir, Dir);
         public readonly Cursor Rotate(char dir) => new(Pos, dir == 'R' ? Dir.TurnRight() : Dir.TurnLeft());
-        public readonly bool OnMap(Grid<char> map) => map.OnGrid(Pos) && map[Pos] != ' ';
-        public readonly Cursor Modulo(Grid<char> map) => new(new(Pos.X.Mod(map.Cols), Pos.Y.Mod(map.Rows)), Dir);
+        public readonly bool OnMap(CharGrid map) => map.OnGrid(Pos) && map[Pos] != ' ';
+        public readonly Cursor Modulo(CharGrid map) => new(new(Pos.X.Mod(map.Cols), Pos.Y.Mod(map.Rows)), Dir);
         public readonly int Score() => (Pos.Y + 1) * 1000 + (Pos.X + 1) * 4 + Facing[Dir];
     }
 

@@ -5,17 +5,17 @@ public class Day_15
 {
     [Example(answer: 62842880, "Butterscotch: capacity -1, durability -2, flavor 6, texture 3, calories 8;Cinnamon: capacity 2, durability 3, flavor -2, texture -1, calories 3")]
     [Puzzle(answer: 21367368, O.ms10)]
-    public long part_one(string input)
+    public long part_one(Lines input)
         => TotalScore(input, (distribution, ingredients) => true);
 
     [Example(answer: 57600000, "Butterscotch: capacity -1, durability -2, flavor 6, texture 3, calories 8;Cinnamon: capacity 2, durability 3, flavor -2, texture -1, calories 3")]
     [Puzzle(answer: 1766400, O.ms10)]
-    public long part_two(string input)
+    public long part_two(Lines input)
         => TotalScore(input, (distribution, ingredients) => Score(distribution, ingredients, i => i.Calories) == 500);
 
-    static long TotalScore(string input, Func<int[], Ingredient[], bool> where)
+    static long TotalScore(Lines input, Func<int[], Ingredient[], bool> where)
     {
-        var ingredients = input.Lines(Ingredient.Parse).ToArray();
+        var ingredients = input.As(Ingredient.Parse).ToArray();
         var selectors = new Func<Ingredient, long>[] { i => i.Capacity, i => i.Durability, i => i.Flavor, i => i.Texture };
         return new Distribution(ingredients.Length)
             .Where(d => where(d, ingredients))

@@ -10,15 +10,15 @@ Dublin to Belfast = 141";
 
     [Example(answer: 605, Example)]
     [Puzzle(answer: 141, O.ms)]
-    public int part_one(string input) => Distances(input).Min();
+    public int part_one(Lines input) => Distances(input).Min();
 
     [Example(answer: 982, Example)]
     [Puzzle(answer: 736, O.ms)]
-    public int part_two(string input) => Distances(input).Max();
+    public int part_two(Lines input) => Distances(input).Max();
 
-    static IEnumerable<int> Distances(string input)
+    static IEnumerable<int> Distances(Lines input)
     {
-        var routes = input.Lines(Route.Parse).ToArray();
+        var routes = input.As(Route.Parse).ToArray();
         var locations = routes.SelectMany(route => route.Locations).Distinct().Order().ToArray();
         var distances = new Grid<int>(locations.Length, locations.Length);
 

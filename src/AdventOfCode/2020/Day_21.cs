@@ -9,9 +9,9 @@ public class Day_21
         sqjhc fvjkl (contains soy)
         sqjhc mxmxvkd sbzzf (contains fish)")]
     [Puzzle(answer: 2282, O.μs100)]
-    public long part_one(string input)
+    public long part_one(Lines input)
     {
-        var foods = input.Lines(Food.Parse).ToArray();
+        var foods = input.As(Food.Parse).ToArray();
         var allergens = Allergen.Init(foods).Select(allergen => allergen.Ingredient).ToArray();
         return foods.SelectMany(f => f.Ingredients).Count(i => !allergens.Contains(i));
     }
@@ -22,9 +22,9 @@ public class Day_21
         sqjhc fvjkl (contains soy)
         sqjhc mxmxvkd sbzzf (contains fish)")]
     [Puzzle(answer: "vrzkz,zjsh,hphcb,mbdksj,vzzxl,ctmzsr,rkzqs,zmhnj", O.μs100)]
-    public string part_two(string input)
+    public string part_two(Lines input)
     {
-        var allergens = Allergen.Init(input.Lines(Food.Parse));
+        var allergens = Allergen.Init(input.As(Food.Parse));
         return string.Join(',', allergens.OrderBy(m => m.Name).Select(m => m.Ingredient));
     }
 

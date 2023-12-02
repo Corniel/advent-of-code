@@ -5,13 +5,13 @@ public class Day_12
 {
     [Example(answer: 10, "start-A;start-b;A-c;A-b;b-d;A-end;b-end")]
     [Puzzle(answer: 3485, O.ms)]
-    public int part_one(string input) => Run(input, SmallCavesOnce);
+    public int part_one(Lines input) => Run(input, SmallCavesOnce);
   
     [Example(answer: 36, "start-A;start-b;A-c;A-b;b-d;A-end;b-end")]
     [Example(answer: 103, "dc-end;HN-start;start-kj;dc-start;dc-HN;LN-dc;HN-end;kj-sa;kj-HN;kj-dc")]
     [Example(answer: 3509, "fs-end;he-DX;fs-he;start-DX;pj-DX;end-zg;zg-sl;zg-pj;pj-he;RW-he;fs-DX;pj-RW;zg-RW;start-pj;he-WI;zg-he;pj-fs;start-RW")]
     [Puzzle(answer: 85062, O.ms100)]
-    public int part_two(string input) => Run(input, OnSmallCaveTwice);
+    public int part_two(Lines input) => Run(input, OnSmallCaveTwice);
 
     static bool SmallCavesOnce(Cave cave, IEnumerable<Cave> path) => cave.IsSmall && path.Contains(cave);
 
@@ -39,7 +39,7 @@ public class Day_12
     }
     static readonly HashSet<Cave> Unique = [];
 
-    static int Run(string input, Func<Cave, IEnumerable<Cave>, bool> invalidPath)
+    static int Run(Lines input, Func<Cave, IEnumerable<Cave>, bool> invalidPath)
     {
         var paths = 0;
         var stack = new Stack<List<Cave>>();
@@ -63,12 +63,12 @@ public class Day_12
         return paths;
     }
 
-    static Cave Start(string input)
+    static Cave Start(Lines input)
     {
         var start = new Cave("start");
         var caves = new[] { start, new Cave("end") }.ToDictionary(cave => cave.Name, cave => cave);
 
-        foreach (var parts in input.Lines(line => line.Separate("-")))
+        foreach (var parts in input.As(line => line.Separate("-")))
         {
             if (!caves.TryGetValue(parts[0], out var from))
             {

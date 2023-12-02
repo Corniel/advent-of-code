@@ -13,13 +13,13 @@ public class Day_10
 	[Example(answer: 3, "[<(<(<(<{}))><([]([]()")]
 	[Example(answer: 25137, "<{([([[(<>()){}]>(<<{{")]
     [Puzzle(answer: 411471, O.μs100)]
-    public int part_one(string input) => input.Lines(Parse).Select(One).Sum();
+    public int part_one(Lines input) => input.As(Parse).Select(One).Sum();
 
 	[Example(answer: 288957, "[({(<(())[]>[[{[]{<()<>>")]
 	[Puzzle(answer: 3122628974, O.μs100)]
-    public long part_two(string input)
+    public long part_two(Lines input)
     {
-		var scores = input.Lines(Parse).Select(Two).Where(sc => sc != 0).ToList();
+		var scores = input.As(Parse).Select(Two).Where(sc => sc != 0).ToList();
 		scores.Sort();
         return scores[scores.Count / 2];
     }

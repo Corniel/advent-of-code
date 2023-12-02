@@ -12,15 +12,14 @@ public class Day_08
 {
     [Example(answer: 26, Example._1)]
     [Puzzle(answer: 479, O.μs10)]
-    public int part_one(string input)
-        => input.Lines(line => line[61..])
+    public int part_one(Lines input) => input.As(line => line[61..])
         .SelectMany(line => line.Split(' '))
         .Count(w => w.Length == 2 || w.Length == 3 || w.Length == 4 || w.Length == 7);
 
     [Example(answer: 5353, "acedgfb cdfbe gcdfa fbcad dab cefabd cdfgeb eafb cagedb ab | cdfeb fcadb cdfeb cdbaf")]
     [Example(answer: 61229, Example._1)]
     [Puzzle(answer: 1041746, O.μs100)]
-    public int part_two(string input) => input.Lines(line => line.Split(" | ")).Sum(Decode);
+    public int part_two(Lines input) => input.As(line => line.Split(" | ")).Sum(Decode);
 
     private readonly int[] segments = new int[7];
    

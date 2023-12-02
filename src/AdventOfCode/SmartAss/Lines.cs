@@ -12,6 +12,11 @@ public readonly struct Lines(IReadOnlyList<string> lines) : IReadOnlyList<string
     
     public override string ToString() => string.Join(';', collection);
 
+    [Obsolete("Use As().", error: true)]
+    public IEnumerable<T> Select<T>(Func<string, T> selector) => As(selector);
+
+    public IEnumerable<T> As<T>(Func<string, T> selector) => collection.Select(selector);
+
     public IEnumerator<string> GetEnumerator() => lines.GetEnumerator();
 
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();

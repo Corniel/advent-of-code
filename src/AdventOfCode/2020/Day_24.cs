@@ -13,11 +13,11 @@ public class Day_24
 
     [Example(answer: 10, Example._1)]
     [Puzzle(answer: 523, O.μs100)]
-    public int part_one(string input) => Cells.Parse(input).Count;
+    public int part_one(Lines input) => Cells.Parse(input).Count;
 
     [Example(answer: 2208, Example._1)]
     [Puzzle(answer: 4225, O.ms100)]
-    public int part_two(string input)
+    public int part_two(Lines input)
     {
         var cells = Cells.Parse(input);
         cells.Generations(100);
@@ -31,10 +31,10 @@ public class Day_24
         public override IEnumerable<Point> Neighbors(Point cell) => Directions.Select(dir => cell + dir);
         public void Toggle(Point cell) { if (!Add(cell)) Remove(cell);}
 
-        public static Cells Parse(string str)
+        public static Cells Parse(Lines str)
         {
             var cells = new Cells();
-            foreach (var path in str.Lines(Steps))
+            foreach (var path in str.As(Steps))
             {
                 cells.Toggle(Point.O + path.Sum());
             }

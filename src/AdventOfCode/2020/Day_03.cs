@@ -5,11 +5,11 @@ public class Day_03
 {
     [Example(answer: 7, Example._1)]
     [Puzzle(answer: 220, O.μs10)]
-    public long part_one(string input)
+    public long part_one(Lines input)
         => CountTrees(Row.Parse(input).ToArray(), new Vector(3, 1));
 
     [Puzzle(answer: 2138320800, O.μs10)]
-    public long part_two(string input)
+    public long part_two(Lines input)
     {
         var rows = Row.Parse(input).ToArray();
         return new Vector[] { new(1, 1), new(3, 1), new(5, 1), new(7, 1), new(1, 2) }.Select(slope => CountTrees(rows, slope)).Product();
@@ -42,8 +42,7 @@ public class Day_03
 
         public bool IsTree(Point point) => squares[point.X.Mod(Size)] == Tree;
 
-        public static IEnumerable<Row> Parse(string str)
-            => str.Lines(AsRow);
+        public static IEnumerable<Row> Parse(Lines str) => str.As(AsRow);
 
         static Row AsRow(string line)
         {

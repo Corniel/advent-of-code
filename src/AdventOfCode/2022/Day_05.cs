@@ -5,15 +5,14 @@ public class Day_05
 {
     [Example(answer: "CMZ", Example._1)]
     [Puzzle(answer: "RNZLFZSJH", O.μs100)]
-    public string part_one(string input) => Restack(input, SingleStack);
+    public string part_one(GroupedLines input) => Restack(input, SingleStack);
 
     [Example(answer: "MCD", Example._1)]
     [Puzzle(answer: "CNSFCGJSM", O.μs100)]
-    public string part_two(string input) => Restack(input, MultiStack);
+    public string part_two(GroupedLines input) => Restack(input, MultiStack);
 
-    static string Restack(string input, Action<IEnumerable<Move>, Stack<char>[]> apply)
+    static string Restack(GroupedLines groups, Action<IEnumerable<Move>, Stack<char>[]> apply)
     {
-        var groups = input.GroupedLines(StringSplitOptions.None).ToArray();
         var grid = groups[0].CharPixels(false);
         var stacks = Range(0, 2 + grid.Cols / 4).Select(_ => new Stack<char>()).ToArray();
 
@@ -21,7 +20,7 @@ public class Day_05
         {
             stacks[1 + pixel.Key.X / 4].Push(pixel.Value);
         }
-        apply(groups[1..].SelectMany(g => g).Select(Move.Parse), stacks);
+        apply(groups.Skip(1).SelectMany(g => g).Select(Move.Parse), stacks);
 
         return new(stacks.Skip(1).Select(s => s.Pop()).ToArray());
     }

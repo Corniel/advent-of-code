@@ -5,10 +5,10 @@ public class Day_04
 {
     [Example(answer: 2, Example._1)]
     [Puzzle(answer: 228, O.μs100)]
-    public int part_one(string input) => Passport.Parse(input).Count(p => p.IsValid());
+    public int part_one(GroupedLines input) => input.Select(Passport.Parse).Count(p => p.IsValid());
 
     [Puzzle(answer: 175, O.μs100)]
-    public int part_two(string input) => Passport.Parse(input).Count(p => p.StrictValid());
+    public int part_two(GroupedLines input) => input.Select(Passport.Parse).Count(p => p.StrictValid());
 
     public class Passport : Dictionary<string, string>
     {
@@ -62,25 +62,22 @@ public class Day_04
             && ContainsKey(nameof(pid))
             && ((ContainsKey("cid") && Count == 8) || Count == 7);
 
-        public static IEnumerable<Passport> Parse(string str)
+        public static Passport Parse(string[] lines)
         {
-            foreach (var lines in str.GroupedLines())
-            {
-                var passport = new Passport();
+            var passport = new Passport();
 
-                foreach (var line in lines)
+            foreach (var line in lines)
+            {
+                foreach (var block in line.SpaceSeparated())
                 {
-                    foreach (var block in line.SpaceSeparated())
-                    {
-                        var kvp = block.Separate(':');
-                        var key = kvp[0];
-                        var value = kvp[1];
-                        passport.duplicate = passport.ContainsKey(key);
-                        passport[key] = value;
-                    }
+                    var kvp = block.Separate(':');
+                    var key = kvp[0];
+                    var value = kvp[1];
+                    passport.duplicate = passport.ContainsKey(key);
+                    passport[key] = value;
                 }
-                yield return passport;
             }
+            return passport;
         }
     }
 }

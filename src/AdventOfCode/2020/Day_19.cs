@@ -5,22 +5,16 @@ public class Day_19
 {
     [Example(answer: 2, Example._1)]
     [Puzzle(answer: 239, O.ms)]
-    public int part_one(string input)
-    {
-        var blocks = input.GroupedLines().ToArray();
-        var patterns = Patterns.Parse(blocks[0]);
-        return patterns.Matches(blocks[1]);
-    }
+    public int part_one(GroupedLines input) => Patterns.Parse(input[0]).Matches(input[1]);
 
     [Example(answer: 12, Example._2)]
     [Puzzle(answer: 405, O.ms)]
-    public long part_two(string input)
+    public long part_two(GroupedLines input)
     {
-        var blocks = input.GroupedLines().ToArray();
-        var patterns = Patterns.Parse(blocks[0]);
+        var patterns = Patterns.Parse(input[0]);
         patterns[08] = $"({patterns[42]})+";
         patterns[11] = $"(?<special>{patterns[42]})+(?<-special>{patterns[31]})+(?(special)(?!))";
-        return patterns.Matches(blocks[1]);
+        return patterns.Matches(input[1]);
     }
     class Patterns : Dictionary<int, object>
     {

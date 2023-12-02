@@ -5,15 +5,14 @@ public class Day_22
 {
     [Example(answer: 6032, Example._1)]
     [Puzzle(answer: 1428, O.ms)]
-    public int part_one(string input) => Navigate(input, Donut);
+    public int part_one(GroupedLines input) => Navigate(input, Donut);
 
     [Example(answer: 162155, Example._2)]
     [Puzzle(answer: 142380, O.ms)]
-    public int part_two(string input) => Navigate(input, Cube);
+    public int part_two(GroupedLines input) => Navigate(input, Cube);
 
-    static int Navigate(string input, Func<CharGrid, Cursor, Cursor> offMap)
+    static int Navigate(GroupedLines group, Func<CharGrid, Cursor, Cursor> offMap)
     {
-        var group = input.GroupedLines(StringSplitOptions.None).ToArray();
         var map = group[0].CharPixels(ignoreSpace: false).Grid();
         var cursor = new Cursor(map.First(t => t.Value == '.').Key, Vector.E);
 

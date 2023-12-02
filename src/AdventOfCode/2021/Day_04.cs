@@ -5,7 +5,7 @@ public class Day_04
 {
     [Example(answer: 4512, Example._1)]
     [Puzzle(answer: 27027, O.ms)]
-    public int part_one(string input)
+    public int part_one(GroupedLines input)
     {
         var game = Game.Parse(input);
         foreach (var number in game.Numbers)
@@ -17,7 +17,7 @@ public class Day_04
 
     [Example(answer: 1924, Example._1)]
     [Puzzle(answer: 36975, O.ms)]
-    public int part_two(string input)
+    public int part_two(GroupedLines input)
     {
         var game = Game.Parse(input);
         foreach (var number in game.Numbers)
@@ -46,11 +46,7 @@ public class Day_04
             return bingos.FirstOrDefault();
         }
 
-        public static Game Parse(string input)
-        {
-            var groups = input.GroupedLines().ToArray();
-            return new(groups.Skip(1).Select(Card.Parse).ToList(), groups[0][0].Int32s().ToArray());
-        }
+        public static Game Parse(GroupedLines groups) => new(groups.Skip(1).Select(Card.Parse).ToList(), groups[0][0].Int32s().ToArray());
     }
 
     public sealed record Card(int[] Numbers)

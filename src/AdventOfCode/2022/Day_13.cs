@@ -5,7 +5,7 @@ public class Day_13
 {
     [Example(answer: 13, Example._1)]
     [Puzzle(answer: 6101, O.μs100)]
-    public int part_one(string input) => input.GroupedLines().Select(Ordered).Sum();
+    public int part_one(GroupedLines input) => input.Select(Ordered).Sum();
 
     static int Ordered(string[] lines, int index)
         => Package.Parse(lines[0]).CompareTo(Package.Parse(lines[1])) == +1 ? 0 : index + 1;
@@ -16,7 +16,7 @@ public class Day_13
     {
         var two = Package.Parse("[[2]]");
         var six = Package.Parse("[[6]]");
-        var packages = (input).Lines(Package.Parse).Concat(new[] { two, six }).Order().ToList();
+        var packages = input.Lines(Package.Parse).Concat(new[] { two, six }).Order().ToList();
         return (packages.IndexOf(two) + 1) * (packages.IndexOf(six) + 1);
     }
 

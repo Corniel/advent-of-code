@@ -5,15 +5,14 @@ public class Day_13
 {
     [Example(answer: 17, "6,10;0,14;9,10;0,3;10,4;4,11;6,0;6,12;4,1;0,13;10,12;3,4;3,0;8,4;1,10;2,14;8,10;9,0;;fold along y=7;fold along x=5")]
     [Puzzle(answer: 710, O.μs100)]
-    public long part_one(string input) => Fold(input, 1).Count;
+    public long part_one(GroupedLines input) => Fold(input, 1).Count;
        
     [Puzzle(answer: "EPLGRULR", O.μs100)]
-    public string part_two(string input)
+    public string part_two(GroupedLines input)
         => Grid<bool>.FromPoints(Fold(input), true).AsciiText();
 
-    static HashSet<Point> Fold(string input, int foldings = int.MaxValue)
+    static HashSet<Point> Fold(GroupedLines groups, int foldings = int.MaxValue)
     {
-        var groups = input.GroupedLines().ToArray();
         var points = new HashSet<Point>(groups[0].Select(Point.Parse));
         foreach (var instruction in groups[1].Select(line => line[11..]).Take(foldings))
         {

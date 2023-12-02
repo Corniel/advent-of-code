@@ -5,21 +5,19 @@ public class Day_16
 {
     [Example(answer: 71, Example._1)]
     [Puzzle(answer: 27850, O.μs100)]
-    public int part_one(string input)
+    public int part_one(GroupedLines input)
     {
-        var blocks = input.GroupedLines().ToArray();
-        var rules = blocks[0].Select(Rule.Parse).ToArray();
-        var nearby = blocks[2][1..].Select(Ticket.Parse).SelectMany(n => n.Parts).ToArray();
+        var rules = input[0].Select(Rule.Parse).ToArray();
+        var nearby = input[2][1..].Select(Ticket.Parse).SelectMany(n => n.Parts).ToArray();
         return nearby.Where(number => !rules.Exists(rule => rule.Valid(number))).Sum();
     }
 
     [Puzzle(answer: 491924517533, O.ms)]
-    public long part_two(string input)
+    public long part_two(GroupedLines input)
     {
-        var blocks = input.GroupedLines().ToArray();
-        var rules = blocks[0].Select(Rule.Parse).ToArray();
-        var tickets = new List<Ticket> { Ticket.Parse(blocks[1][1]) };
-        tickets.AddRange(blocks[2][1..].Select(Ticket.Parse).Where(ticket => ticket.Valid(rules)));
+        var rules = input[0].Select(Rule.Parse).ToArray();
+        var tickets = new List<Ticket> { Ticket.Parse(input[1][1]) };
+        tickets.AddRange(input[2][1..].Select(Ticket.Parse).Where(ticket => ticket.Valid(rules)));
         var options = rules.Select(rule => Option.New(rule, tickets)).ToArray();
 
         while (options.Take(6).Any(option => option.HasMultiple))

@@ -5,12 +5,12 @@ public class Day_20
 {
     [Example(answer: 20899048083289, Example._1)]
     [Puzzle(answer: 18449208814679, O.ms10)]
-    public long part_one(string input)
+    public long part_one(GroupedLines input)
         => Tile.Parse(input).Where(t => t.IsCorner).Select(c => c.Id).Distinct().Product();
 
     [Example(answer: 273, Example._1)]
     [Puzzle(answer: 1559, O.ms10)]
-    public int part_two(string input)
+    public int part_two(GroupedLines input)
     {
         var tiles = Tiles.Create(Tile.Parse(input));
         foreach (var canvas in tiles.Canvases())
@@ -67,9 +67,9 @@ public class Day_20
         }
         public override string ToString() => $"ID: {Id}, N: {N:000}, E: {E:000}, S: {S:000}, W: {W:000}";
 
-        public static Tile[] Parse(string input)
+        public static Tile[] Parse(GroupedLines input)
         {
-            var tiles = input.GroupedLines().Select(Parse)
+            var tiles = input.Select(Parse)
                 .SelectMany(i => i.Orientations())
                 .ToArray();
             foreach (var tile in tiles)

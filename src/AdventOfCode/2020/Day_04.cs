@@ -5,10 +5,10 @@ public class Day_04
 {
     [Example(answer: 2, Example._1)]
     [Puzzle(answer: 228, O.μs100)]
-    public int part_one(GroupedLines input) => input.Select(Passport.Parse).Count(p => p.IsValid());
+    public int part_one(GroupedLines groups) => groups.Select(Passport.Parse).Count(p => p.IsValid());
 
     [Puzzle(answer: 175, O.μs100)]
-    public int part_two(GroupedLines input) => input.Select(Passport.Parse).Count(p => p.StrictValid());
+    public int part_two(GroupedLines groups) => groups.Select(Passport.Parse).Count(p => p.StrictValid());
 
     public class Passport : Dictionary<string, string>
     {

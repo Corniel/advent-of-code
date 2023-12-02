@@ -5,13 +5,13 @@ public class Day_11
 {
     [Example(answer: 37, Example._1)]
     [Puzzle(answer: 2481, O.ms10)]
-    public int part_one(CharPixels input)
-        => Plane.Init(input, Plane.DirectNeighbors).Simulate(4);
+    public int part_one(CharPixels chars)
+        => Plane.Init(chars, Plane.DirectNeighbors).Simulate(4);
 
     [Example(answer: 26, Example._1)]
     [Puzzle(answer: 2227, O.ms10)]
-    public long part_two(CharPixels input)
-        => Plane.Init(input, Plane.InSightNeighbors).Simulate(5);
+    public long part_two(CharPixels chars)
+        => Plane.Init(chars, Plane.InSightNeighbors).Simulate(5);
 
     class Plane : Grid<Seat>
     {

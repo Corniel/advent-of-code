@@ -5,11 +5,11 @@ namespace Advent_of_Code_2015;
 [Category(Category.ExpressionParsing)]
 public class Day_12
 {
-    [Puzzle(answer: 111754, O.μs10)]
-    public int part_one(string input) => input.Int32s().Sum();
+    [Puzzle(answer: 111754, O.μs)]
+    public int part_one(Ints numbers) => numbers.Sum();
 
     [Puzzle(answer: 65402, O.μs100)]
-    public int part_two(string input) => Sum(JsonDocument.Parse(input).RootElement);
+    public int part_two(string str) => Sum(JsonDocument.Parse(str).RootElement);
 
     static int Sum(JsonElement elm)
     {
@@ -26,4 +26,3 @@ public class Day_12
         => elm.EnumerateObject()
         .Any(prop => prop.Value.ValueKind == JsonValueKind.String && prop.Value.GetString() == "red");
  }
- 

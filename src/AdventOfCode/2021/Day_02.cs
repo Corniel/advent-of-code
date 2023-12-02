@@ -5,11 +5,11 @@ public class Day_02
 {
     [Example(answer: 150, "forward 5;down 5;forward 8;up 3;down 8;forward 2")]
     [Puzzle(answer: 2027977, O.μs10)]
-    public long part_one(Lines input) => new Submarine().Transpose(input.As(Instruction.Parse), (s, i) => s.One(i)).Last().Produces;
+    public long part_one(Lines lines) => new Submarine().Transpose(lines.As(Instruction.Parse), (s, i) => s.One(i)).Last().Produces;
 
     [Example(answer: 900, "forward 5;down 5;forward 8;up 3;down 8;forward 2")]
     [Puzzle(answer: 1903644897, O.μs10)]
-    public long part_two(Lines input) => new Submarine().Transpose(input.As(Instruction.Parse), (s, i) => s.Two(i)).Last().Produces;
+    public long part_two(Lines lines) => new Submarine().Transpose(lines.As(Instruction.Parse), (s, i) => s.Two(i)).Last().Produces;
 
     record Submarine(long Depth = 0, long Height = 0, long Aim = 0 ) 
     {

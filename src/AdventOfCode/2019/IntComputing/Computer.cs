@@ -9,7 +9,7 @@ public class Computer : IEnumerable<Int>
 
     public Computer(IEnumerable<Int> numbers) => memory.AddRange(numbers);
 
-    public static Computer Parse(string input) => new(input.BigInts());
+    public static Computer Parse(string str) => new(str.BigInts());
 
     public int Size => memory.Count;
     public int Pointer { get; private set; }

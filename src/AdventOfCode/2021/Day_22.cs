@@ -4,10 +4,10 @@
 public class Day_22
 {
     [Puzzle(answer: 644257, O.μs100)]
-    public long part_one(Lines input) => Count(input.As(Instruction.Parse).Take(20));
+    public long part_one(Lines lines) => Count(lines.As(Instruction.Parse).Take(20));
 
     [Puzzle(answer: 1235484513229032, O.ms10)]
-    public long part_two(Lines input) => Count(input.As(Instruction.Parse));
+    public long part_two(Lines lines) => Count(lines.As(Instruction.Parse));
 
     static long Count(IEnumerable<Instruction> instructions)
     {

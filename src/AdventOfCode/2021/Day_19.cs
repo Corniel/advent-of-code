@@ -5,21 +5,21 @@ public class Day_19
 {
     [Example(answer: 79, Example._1)]
     [Puzzle(answer: 403, O.s)]
-    public int part_one(GroupedLines input) => Run(input, out _).Count;
+    public int part_one(GroupedLines groups) => Run(groups, out _).Count;
 
     [Example(answer: 3621, Example._1)]
     [Puzzle(answer: 10569, O.s)]
-    public int part_two(GroupedLines input)
+    public int part_two(GroupedLines groups)
     {
-        Run(input, out var scanners);
+        Run(groups, out var scanners);
         return Range(0, scanners.Length)
             .SelectMany(f => Range(0, scanners.Length).Select(s => new { f, s }))
             .Max(p => scanners[p.f].Position.ManhattanDistance(scanners[p.s].Position));
     }
 
-    static HashSet<Point3D> Run(GroupedLines input, out Scanner[] scanners)
+    static HashSet<Point3D> Run(GroupedLines groups, out Scanner[] scanners)
     {
-        scanners = input.Select(Scanner.Parse).ToArray();
+        scanners = groups.Select(Scanner.Parse).ToArray();
         var beacons = new HashSet<Point3D>(scanners[0].Beacons(Point3D.O, Orientation.All[0]));
         var queue = new Queue<Scanner>();
         queue.EnqueueRange(scanners[1..]);

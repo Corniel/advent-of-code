@@ -5,11 +5,11 @@ public class Day_08
 {
     [Example(answer: 138, "2 3 0 3 10 11 12 1 1 0 1 99 2 1 1 2")]
     [Puzzle(answer: 36027, O.μs100)]
-    public long part_one(string input) => new Parser(input).Read().Sum;
+    public long part_one(string str) => new Parser(str).Read().Sum;
 
     [Example(answer: 66, "2 3 0 3 10 11 12 1 1 0 1 99 2 1 1 2")]
     [Puzzle(answer: 23960, O.μs100)]
-    public long part_two(string input) => new Parser(input).Read().Value;
+    public long part_two(string str) => new Parser(str).Read().Value;
 
     record Node()
     {

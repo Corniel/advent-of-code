@@ -5,11 +5,11 @@ public class Day_05
 {
     [Example(answer: "CMZ", Example._1)]
     [Puzzle(answer: "RNZLFZSJH", O.μs100)]
-    public string part_one(GroupedLines input) => Restack(input, SingleStack);
+    public string part_one(GroupedLines groups) => Restack(groups, SingleStack);
 
     [Example(answer: "MCD", Example._1)]
     [Puzzle(answer: "CNSFCGJSM", O.μs100)]
-    public string part_two(GroupedLines input) => Restack(input, MultiStack);
+    public string part_two(GroupedLines groups) => Restack(groups, MultiStack);
 
     static string Restack(GroupedLines groups, Action<IEnumerable<Move>, Stack<char>[]> apply)
     {

@@ -5,18 +5,18 @@ public class Day_13
 {
     [Example(answer: 13, Example._1)]
     [Puzzle(answer: 6101, O.μs100)]
-    public int part_one(GroupedLines input) => input.Select(Ordered).Sum();
+    public int part_one(GroupedLines groups) => groups.Select(Ordered).Sum();
 
     static int Ordered(string[] lines, int index)
         => Package.Parse(lines[0]).CompareTo(Package.Parse(lines[1])) == +1 ? 0 : index + 1;
 
     [Example(answer: 140, Example._1)]
     [Puzzle(answer: 21909, O.μs100)]
-    public int part_two(Lines input)
+    public int part_two(Lines lines)
     {
         var two = Package.Parse("[[2]]");
         var six = Package.Parse("[[6]]");
-        var packages = input.As(Package.Parse).Concat(new[] { two, six }).Order().ToList();
+        var packages = lines.As(Package.Parse).Concat(new[] { two, six }).Order().ToList();
         return (packages.IndexOf(two) + 1) * (packages.IndexOf(six) + 1);
     }
 
@@ -44,7 +44,7 @@ public class Day_13
         public override string ToString()=> Value.ToString();
     }
 
-    class Parser(string input) : SyntaxParser(input)
+    class Parser(string str) : SyntaxParser(str)
     {
         public Package Read()
         {

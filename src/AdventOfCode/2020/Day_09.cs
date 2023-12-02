@@ -4,10 +4,9 @@
 public class Day_09
 {
     [Puzzle(answer: 144381670, O.μs100)]
-    public long part_one(string input)
+    public long part_one(Longs numbers)
     {
-        var numbers = input.Int64s().ToArray();
-        for (var i = size; i < numbers.Length; i++)
+        for (var i = 25; i < numbers.Count; i++)
         {
             var number = numbers[i];
             if (!Matches(numbers, i, number))
@@ -19,9 +18,8 @@ public class Day_09
     }
 
     [Puzzle(answer: 20532569L, O.μs10)]
-    public long part_two(string input)
+    public long part_two(Longs numbers)
     {
-        var numbers = input.Int64s().ToArray();
         long sum = 144381670;
 
         var lo = 0;
@@ -30,7 +28,7 @@ public class Day_09
         var top = numbers[hi];
         var test = bottom + top;
 
-        while (hi < numbers.Length)
+        while (hi < numbers.Count)
         {
             if (test == sum)
             {
@@ -52,9 +50,9 @@ public class Day_09
         throw new NoAnswer();
     }
 
-    static bool Matches(long[] numbers, int index, long number)
+    static bool Matches(Longs numbers, int index, long number)
     {
-        for (var p0 = index - size; p0 < index; p0++)
+        for (var p0 = index - 25; p0 < index; p0++)
         {
             var n0 = numbers[p0];
 
@@ -67,8 +65,6 @@ public class Day_09
                 }
             }
         }
-
         return false;
     }
-    private const int size = 25;
 }

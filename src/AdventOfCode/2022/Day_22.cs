@@ -5,11 +5,11 @@ public class Day_22
 {
     [Example(answer: 6032, Example._1)]
     [Puzzle(answer: 1428, O.ms)]
-    public int part_one(GroupedLines input) => Navigate(input, Donut);
+    public int part_one(GroupedLines groups) => Navigate(groups, Donut);
 
     [Example(answer: 162155, Example._2)]
     [Puzzle(answer: 142380, O.ms)]
-    public int part_two(GroupedLines input) => Navigate(input, Cube);
+    public int part_two(GroupedLines groups) => Navigate(groups, Cube);
 
     static int Navigate(GroupedLines group, Func<CharGrid, Cursor, Cursor> offMap)
     {

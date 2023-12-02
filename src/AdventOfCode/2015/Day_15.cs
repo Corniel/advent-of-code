@@ -5,23 +5,23 @@ public class Day_15
 {
     [Example(answer: 62842880, "Butterscotch: capacity -1, durability -2, flavor 6, texture 3, calories 8;Cinnamon: capacity 2, durability 3, flavor -2, texture -1, calories 3")]
     [Puzzle(answer: 21367368, O.ms10)]
-    public long part_one(Lines input)
-        => TotalScore(input, (distribution, ingredients) => true);
+    public int part_one(Lines lines)
+        => Total(lines, (distribution, ingredients) => true);
 
     [Example(answer: 57600000, "Butterscotch: capacity -1, durability -2, flavor 6, texture 3, calories 8;Cinnamon: capacity 2, durability 3, flavor -2, texture -1, calories 3")]
     [Puzzle(answer: 1766400, O.ms10)]
-    public long part_two(Lines input)
-        => TotalScore(input, (distribution, ingredients) => Score(distribution, ingredients, i => i.Calories) == 500);
+    public int part_two(Lines lines)
+        => Total(lines, (distribution, ingredients) => Score(distribution, ingredients, i => i.Calories) == 500);
 
-    static long TotalScore(Lines input, Func<int[], Ingredient[], bool> where)
+    static int Total(Lines lines, Func<int[], Ingredient[], bool> where)
     {
-        var ingredients = input.As(Ingredient.Parse).ToArray();
-        var selectors = new Func<Ingredient, long>[] { i => i.Capacity, i => i.Durability, i => i.Flavor, i => i.Texture };
+        var ingredients = lines.As(Ingredient.Parse).ToArray();
+        var selectors = new Func<Ingredient, int>[] { i => i.Capacity, i => i.Durability, i => i.Flavor, i => i.Texture };
         return new Distribution(ingredients.Length)
             .Where(d => where(d, ingredients))
             .Max(distribution => selectors.Select(selector => Score(distribution, ingredients, selector)).Product());
     }
-    static long Score(int[] distribution, Ingredient[] ingredients, Func<Ingredient, long> selector)
+    static int Score(int[] distribution, Ingredient[] ingredients, Func<Ingredient, int> selector)
         => Math.Max(0, distribution.Select((count, index) => count * selector(ingredients[index])).Sum());
 
     record Ingredient(int Capacity, int Durability, int Flavor, int Texture, int Calories)

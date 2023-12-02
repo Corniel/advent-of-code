@@ -5,9 +5,9 @@ public class Day_04
 {
     [Example(answer: 4512, Example._1)]
     [Puzzle(answer: 27027, O.ms)]
-    public int part_one(GroupedLines input)
+    public int part_one(GroupedLines groups)
     {
-        var game = Game.Parse(input);
+        var game = Game.Parse(groups);
         foreach (var number in game.Numbers)
         {
             if (game.Play(number) is { } bingo) return bingo.Score * number;
@@ -17,9 +17,9 @@ public class Day_04
 
     [Example(answer: 1924, Example._1)]
     [Puzzle(answer: 36975, O.ms)]
-    public int part_two(GroupedLines input)
+    public int part_two(GroupedLines groups)
     {
-        var game = Game.Parse(input);
+        var game = Game.Parse(groups);
         foreach (var number in game.Numbers)
         {
             if (game.Play(number) is { } bingo && !game.Cards.NotEmpty())

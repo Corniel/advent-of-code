@@ -4,19 +4,15 @@
 public class Day_03
 {
     [Puzzle(answer: 1050, O.μs100)]
-    public int part_one(Lines input) => input.As(Triangle.Parse).Sum();
+    public int part_one(Lines lines) => lines.As(Triangle.Parse).Sum();
 
     [Puzzle(answer: 1921, O.μs100)]
-    public int part_two(string input)
-    {
-        var numbers = input.Int32s().ToArray();
-        return 0 
-            + Count(numbers.Skip(0).WithStep(3).ToArray())
-            + Count(numbers.Skip(1).WithStep(3).ToArray())
-            + Count(numbers.Skip(2).WithStep(3).ToArray());
+    public int part_two(Ints numbers) => 0
+        + Count(numbers.Skip(0).WithStep(3).ToArray())
+        + Count(numbers.Skip(1).WithStep(3).ToArray())
+        + Count(numbers.Skip(2).WithStep(3).ToArray());
 
-        static int Count(int[] numbers) => numbers.ChunkBy(3).Sum(Triangle.Is);
-    }
+    static int Count(int[] numbers) => numbers.ChunkBy(3).Sum(Triangle.Is);
 
     static class Triangle
     {

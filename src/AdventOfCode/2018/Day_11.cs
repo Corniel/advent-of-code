@@ -4,16 +4,12 @@
 public class Day_11
 {
     [Puzzle(answer: "21,77", "3999", O.ms10)]
-    public string part_one(string input)
-    {
-        var max = FindMaximum(Grid(input)).Point;
-        return $"{max.X},{max.Y}";
-    }
-
+    public Point part_one(string str) => FindMaximum(Grid(str)).Point;
+    
     [Puzzle(answer: "224,222,27", "3999", O.s10)]
-    public string part_two(string input)
+    public string part_two(string str)
     {
-        var grid = Grid(input);
+        var grid = Grid(str);
         var max = Range(3, 50).Select(size => FindMaximum(grid, size)).OrderByDescending(r => r.Max).First();
         return $"{max.Point.X},{max.Point.Y},{max.Size}";
     }

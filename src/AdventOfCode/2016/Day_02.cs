@@ -5,16 +5,16 @@ public class Day_02
 {
     [Example(answer: "1985", "ULL;RRDDD;LURDL;UUUUD")]
     [Puzzle(answer: "24862", O.μs100)]
-    public string part_one(Lines input) => Solve(input, Point.O, One);
+    public string part_one(Lines lines) => Solve(lines, Point.O, One);
 
     [Example(answer: "5DB3", "ULL;RRDDD;LURDL;UUUUD")]
     [Puzzle(answer: "46C91", O.μs10)]
-    public string part_two(Lines input) => Solve(input, new(-2, 0), Two);
+    public string part_two(Lines lines) => Solve(lines, new(-2, 0), Two);
 
-    static string Solve(Lines input, Point point, Dictionary<Point, char> codes)
+    static string Solve(Lines lines, Point point, Dictionary<Point, char> codes)
     {
         var code = new StringBuilder();
-        foreach (var moves in input.As(line => line.Select(Parse)))
+        foreach (var moves in lines.As(line => line.Select(Parse)))
         {
             foreach (var move in moves)
             {

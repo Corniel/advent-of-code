@@ -4,16 +4,16 @@
 public class Day_08
 {
     [Puzzle(answer: 2480, O.μs10)]
-    public int part_one(string input)
-        => Layer.Parse(25, 6, input)
+    public int part_one(string str)
+        => Layer.Parse(25, 6, str)
             .OrderBy(layer => layer.Zeros)
             .Select(layer => layer.Ones * layer.Twos)
             .FirstOrDefault();
 
     [Puzzle(answer: "ZYBLH", O.μs100)]
-    public string part_two(string input)
+    public string part_two(string str)
     {
-        var layers = Layer.Parse(25, 6, input).ToArray();
+        var layers = Layer.Parse(25, 6, str).ToArray();
         var merged = layers.Last();
         foreach (var layer in layers.Reverse().Skip(1))
         {

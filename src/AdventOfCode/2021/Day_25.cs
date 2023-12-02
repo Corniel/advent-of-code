@@ -14,13 +14,13 @@ v>v.vv.v..
 v.v..>>v.v
 ....v..v.>")]
     [Puzzle(answer: 598, O.ms)]
-    public int part_one(CharGrid input)
+    public int part_one(CharGrid map)
     {
-        var grid = input.SetNeighbors(Neighbors.Sphere);
-        var east = new Stack<Point>(grid.Where(p => p.Value == '>').Select(p => p.Key));
-        var south = new Stack<Point>(grid.Where(p => p.Value == 'v').Select(p => p.Key));
+        map.SetNeighbors(Neighbors.Sphere);
+        var east = new Stack<Point>(map.Where(p => p.Value == '>').Select(p => p.Key));
+        var south = new Stack<Point>(map.Where(p => p.Value == 'v').Select(p => p.Key));
         var steps = 1;
-        while (Move(grid, east, CompassPoint.E) | Move(grid, south, CompassPoint.S)) { steps++; }
+        while (Move(map, east, CompassPoint.E) | Move(map, south, CompassPoint.S)) { steps++; }
         return steps;
     }
 
@@ -52,5 +52,5 @@ v.v..>>v.v
     readonly Stack<Point> Clear = new();
 
     [Puzzle(answer: "You only need 49 stars to boost it", input: "You only need 49 stars to boost it")]
-    public string part_two(string input) => input;
+    public string part_two(string str) => str;
 }

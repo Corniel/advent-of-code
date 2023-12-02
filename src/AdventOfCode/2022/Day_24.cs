@@ -6,18 +6,18 @@ public class Day_24
     [Example(answer: 18, Example._1)]
     [Example(answer: 255, Example._2)]
     [Puzzle(answer: 295, O.ms10)]
-    public long part_one(CharPixels input)
+    public long part_one(CharPixels chars)
     {
-        var state = State.Parse(input);
+        var state = State.Parse(chars);
         return state.Nav(state.P1, state.P2).Time;
     }
 
     [Example(answer: 54, Example._1)]
     [Example(answer: 809, Example._2)]
     [Puzzle(answer: 851, O.ms100)]
-    public long part_two(CharPixels input)
+    public long part_two(CharPixels chars)
     {
-        var state = State.Parse(input);
+        var state = State.Parse(chars);
         return state.Nav(state.P1, state.P2).Nav(state.P2, state.P1).Nav(state.P1, state.P2).Time;
     }
 

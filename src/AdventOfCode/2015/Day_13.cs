@@ -17,14 +17,14 @@ David would gain 46 happiness units by sitting next to Alice.
 David would lose 7 happiness units by sitting next to Bob.
 David would gain 41 happiness units by sitting next to Carol.")]
     [Puzzle(answer: 664, O.μs100)]
-    public int part_one(Lines input) => FindHappiness(input);
+    public int part_one(Lines lines) => FindHappiness(lines);
 
     [Puzzle(answer: 640, O.ms)]
-    public long part_two(Lines input) => FindHappiness(input, +1);
+    public long part_two(Lines lines) => FindHappiness(lines, +1);
 
-    static int FindHappiness(Lines input, int neutral = 0)
+    static int FindHappiness(Lines lines, int neutral = 0)
     {
-        var relations = input.As(Relation.Parse).ToArray();
+        var relations = lines.As(Relation.Parse).ToArray();
         var people = relations.Select(h => h.Obj).Distinct().Order().ToArray();
         var likes = new Grid<int>(people.Length + neutral, people.Length + neutral);
 

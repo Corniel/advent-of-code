@@ -5,18 +5,18 @@ public class Day_23
 {
     [Example(answer: "67384529", "389125467")]
     [Puzzle(answer: "94238657", "739862541", O.μs)]
-    public string part_one(string input)
+    public string part_one(string str)
     {
-        var cups = Cups.Create(input.ToCharArray().Select(ch => ch - '0'));
+        var cups = Cups.Create(str.Digits());
         while (cups.Turn < 100) { cups.Next(); }
         return cups.Answer();
     }
 
     [Example(answer: 149245887792, "389125467")]
     [Puzzle(answer: 3072905352, "739862541", O.s)]
-    public long part_two(string input)
+    public long part_two(string str)
     {
-        var cups = Cups.Create(input.ToCharArray().Select(ch => ch - '0'), 1_000_000);
+        var cups = Cups.Create(str.Digits(), 1_000_000);
         while (cups.Turn < 10_000_000) { cups.Next(); }
         return (long)cups.Search(1).Next.Value * cups.Search(1).Next.Next.Value;
     }

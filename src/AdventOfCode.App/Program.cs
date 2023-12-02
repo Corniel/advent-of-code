@@ -17,7 +17,7 @@ public static class Program
 
         Console.SetOut(new MultiWriter(Console.Out));
 
-        var puzzles = AdventPuzzles.Load();
+        var puzzles = AdventPuzzles.Load(typeof(Now.Dummy).Assembly);
 
         if (!AdventDate.TryParse(args[0], out var date))
         {

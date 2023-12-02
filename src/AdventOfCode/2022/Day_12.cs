@@ -5,17 +5,17 @@ public class Day_12
 {
     [Example(answer: 31, Example._1)]
     [Puzzle(answer: 394, O.μs100)]
-    public int part_one(CharPixels input)
+    public int part_one(CharPixels chars)
     {
-        var area = Area.Parse(input);
+        var area = Area.Parse(chars);
         return area.Find(area.S);
     }
 
     [Example(answer: 29, Example._1)]
     [Puzzle(answer: 388, O.ms100)]
-    public long part_two(CharPixels input)
+    public long part_two(CharPixels chars)
     {
-        var area = Area.Parse(input);
+        var area = Area.Parse(chars);
         var starts = area.Map.Where(p => p.Value == 'a').Select(p => p.Key);
         return starts.Select(a => area.Find(a)).Min();
     }

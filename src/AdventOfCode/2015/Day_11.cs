@@ -4,10 +4,10 @@
 public class Day_11
 {
     [Puzzle(answer: "vzbxxyzz", "vzbxkghb", O.μs100)]
-    public char[] part_one(string input) => new NextPass(input).First();
+    public char[] part_one(string str) => new NextPass(str).First();
 
     [Puzzle(answer: "vzcaabcc", "vzbxkghb", O.ms)]
-    public char[] part_two(string input) => new NextPass(input).Skip(1).First();
+    public char[] part_two(string str) => new NextPass(str).Skip(1).First();
 
     struct NextPass(string chars) : Iterator<char[]>
     {

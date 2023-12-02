@@ -10,14 +10,13 @@ public class Day_09
     [Example(answer: 00_54718, "21 players; last marble is worth 6111 points")]
     [Example(answer: 00_37305, "30 players; last marble is worth 5807 points")]
     [Puzzle(answer: 398730, "438 players; last marble is worth 71626 points", O.μs100)]
-    public long part_one(string input) => Simulate(input);
+    public long part_one(Ints numbers) => Simulate(numbers, 1);
 
     [Puzzle(answer: 3349635509, "438 players; last marble is worth 71626 points", O.ms100)]
-    public long part_two(string input) => Simulate(input, 100);
+    public long part_two(Ints numbers) => Simulate(numbers, 100);
 
-    static long Simulate(string input, int factor = 1)
+    static long Simulate(Ints numbers, int factor)
     {
-        var numbers = input.Int32s().ToArray();
         var players = numbers[0];
         var last = numbers[1] * factor;
         var scores = new long[players];

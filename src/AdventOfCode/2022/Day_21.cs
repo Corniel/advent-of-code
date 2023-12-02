@@ -5,20 +5,20 @@ public class Day_21
 {
     [Example(answer: 152, Example._1)]
     [Puzzle(answer: 158731561459602, O.μs100)]
-    public long part_one(Lines input) => Expressions(input).Value("root");
+    public long part_one(Lines lines) => Expressions(lines).Value("root");
 
     [Example(answer: 301, Example._1)]
     [Puzzle(answer: 3769668716709, O.μs100)]
-    public long part_two(Lines input)
+    public long part_two(Lines lines)
     {
-        var pars = Expressions(input);
+        var pars = Expressions(lines);
         pars["humn"] = Expr.Variable();
         var root = (Binary)pars["root"];
         Expr.Subtract(root.Left, root.Right).Solve(0, pars);
         return pars["humn"].Value(pars);
     }
 
-    static Params Expressions(Lines input) => Params.New(input.As(Param));
+    static Params Expressions(Lines lines) => Params.New(lines.As(Param));
 
     static Param Param(string line) => new(line[0..4], line.Int32N() is { } n 
         ? Expr.Const(n) 

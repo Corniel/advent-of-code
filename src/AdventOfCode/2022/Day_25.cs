@@ -5,15 +5,15 @@ public class Day_25
 {
     [Example(answer: "1=-0-2", "1=-0-2")]
     [Puzzle(answer: "2=222-2---22=1=--1-2", O.μs10)]
-    public string part_one(Lines input) => SNAFU(input.As(Number).Sum());
+    public string part_one(Lines lines) => SNAFU(lines.As(Number).Sum());
 
     [Puzzle(answer: "You only need 49 stars to boost it", "You only need 49 stars to boost it")]
-    public string part_two(string input) => input;
+    public string part_two(string str) => str;
 
-    static long Number(string input)
+    static long Number(string str)
     {
         long n = 0;
-        foreach (var ch in input) n = n * 5 + "=-012".IndexOf(ch) - 2;
+        foreach (var ch in str) n = n * 5 + "=-012".IndexOf(ch) - 2;
         return n;
     }
 

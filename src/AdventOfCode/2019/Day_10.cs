@@ -64,14 +64,14 @@ public class Day_10
             #.#.#.#####.####.###
             ###.##.####.##.#..##")]
     [Puzzle(answer: 347, O.ms10)]
-    public int part_one(string input)
+    public int part_one(string str)
     {
-        var astroids = Astroids.Parse(input);
+        var astroids = Astroids.Parse(str);
         return astroids
             .Max(station => Astroids.Relations(station, astroids)
-                .Select(r => r.Angle)
-                .Distinct()
-                .Count());
+            .Select(r => r.Angle)
+            .Distinct()
+            .Count());
     }
 
     [Example(answer: 802, @"
@@ -96,9 +96,9 @@ public class Day_10
             #.#.#.#####.####.###
             ###.##.####.##.#..##")]
     [Puzzle(answer: 829, O.ms)]
-    public int part_two(string input)
+    public int part_two(string str)
     {
-        var astroids = Astroids.Parse(input);
+        var astroids = Astroids.Parse(str);
         var station = astroids
             .OrderByDescending(s =>
                 Astroids.Relations(s, astroids)

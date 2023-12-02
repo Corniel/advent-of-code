@@ -8,20 +8,20 @@ public class Day_04
     
     [Example(answer: 609043, "abcdef")]
     [Puzzle(answer: 346386, "iwrupvqb", O.ms10)]
-    public int part_one(string input) => Run(input, FiveZeros);
+    public int part_one(string str) => Run(str, FiveZeros);
 
     [Puzzle(answer: 9958218, "iwrupvqb", O.s)]
-    public int part_two(string input) => Run(input, SixZeros);
+    public int part_two(string str) => Run(str, SixZeros);
 
 #pragma warning disable NUnit1032 // An IDisposable field/property should be Disposed in a TearDown method
     static readonly HashAlgorithm Hash = MD5.Create();
 #pragma warning restore NUnit1032 // An IDisposable field/property should be Disposed in a TearDown method
 
-    static int Run(string input, Func<byte[], bool> condition)
+    static int Run(string str, Func<byte[], bool> condition)
     {
         for (var n = 0; n < int.MaxValue; n++)
         {
-            var bytes = Encoding.UTF8.GetBytes(input + n.ToString());
+            var bytes = Encoding.UTF8.GetBytes(str + n.ToString());
             var hashed = Hash.ComputeHash(bytes);
             if (condition(hashed))
             {

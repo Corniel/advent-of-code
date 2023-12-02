@@ -15,23 +15,22 @@ public partial class Day_18
 [[[[4,2],2],6],[8,7]]")]
     [Example(answer: 4207, Example._1)]
     [Puzzle(answer: 3725, O.ms10)]
-    public int part_one(Lines input)
+    public int part_one(Lines lines)
     {
-        var expression = Pair.Parse(input[0]);
-        for (var i = 1; i < input.Count; i++)
+        var expression = Pair.Parse(lines[0]);
+        for (var i = 1; i < lines.Count; i++)
         {
-            expression += Pair.Parse(input[i]);
+            expression += Pair.Parse(lines[i]);
         }
         return expression.Magnitude;
     }
 
     [Example(answer: 4635, Example._1)]
     [Puzzle(answer: 4832, O.ms100)]
-    public int part_two(Lines input)
-        => Range(0, input.Count)
-            .SelectMany(f => Range(0, input.Count).Select(s => new { f, s }))
-            .Where(pair => pair.f != pair.s)
-            .Max(pair => (Pair.Parse(input[pair.f]) + Pair.Parse(input[pair.s])).Magnitude);
+    public int part_two(Lines lines) => Range(0, lines.Count)
+        .SelectMany(f => Range(0, lines.Count).Select(s => new { f, s }))
+        .Where(pair => pair.f != pair.s)
+        .Max(pair => (Pair.Parse(lines[pair.f]) + Pair.Parse(lines[pair.s])).Magnitude);
 
     abstract class Node : SyntaxNode
     {

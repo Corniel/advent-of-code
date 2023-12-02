@@ -5,11 +5,11 @@ public class Day_14
 {
     [Example(answer: 24, "498,4 -> 498,6 -> 496,6;503,4 -> 502,4 -> 502,9 -> 494,9")]
     [Puzzle(answer: 1016, O.ms)]
-    public int part_one(Lines input) => Area.Parse(input, false).Drop();
+    public int part_one(Lines lines) => Area.Parse(lines, false).Drop();
 
     [Example(answer: 93, "498,4 -> 498,6 -> 496,6;503,4 -> 502,4 -> 502,9 -> 494,9")]
     [Puzzle(answer: 25402, O.ms10)]
-    public int part_two(Lines input) => Area.Parse(input, true).Drop();
+    public int part_two(Lines lines) => Area.Parse(lines, true).Drop();
 
     record Area(HashSet<Point> Map, int Rock, int Bottom)
     {
@@ -44,10 +44,10 @@ public class Day_14
 
         bool Block(Point test) => Map.Contains(test);
 
-        public static Area Parse(Lines input, bool withBottom)
+        public static Area Parse(Lines lines, bool withBottom)
         {
             var map = new HashSet<Point>();
-            foreach (var pair in input.As(l => l.Separate(" -> ").Select(Point.Parse).ToArray()).SelectMany(p => p.SelectWithPrevious()))
+            foreach (var pair in lines.As(l => l.Separate(" -> ").Select(Point.Parse).ToArray()).SelectMany(p => p.SelectWithPrevious()))
             {
                 map.Add(pair.Current);
                 map.AddRange(pair.Previous.Repeat((pair.Current - pair.Previous).Sign(), true).TakeWhile(c => c != pair.Current));

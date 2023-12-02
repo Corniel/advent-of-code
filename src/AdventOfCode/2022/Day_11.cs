@@ -5,15 +5,15 @@ public class Day_11
 {
     [Example(answer: 10605, Example._1)]
     [Puzzle(answer: 121450, O.μs10)]
-    public long part_one(GroupedLines input) => Simulate(input, 20, 3);
+    public long part_one(GroupedLines groups) => Simulate(groups, 20, 3);
 
     [Example(answer: 2713310158, Example._1)]
     [Puzzle(answer: 28244037010, O.ms)]
-    public long part_two(GroupedLines input) => Simulate(input, 10_000, 1);
+    public long part_two(GroupedLines groups) => Simulate(groups, 10_000, 1);
 
-    static long Simulate(GroupedLines input, int simulations, int reduce)
+    static long Simulate(GroupedLines groups, int simulations, int reduce)
     {
-        var monkeys = input.Select(Monkey.Parse).ToArray();
+        var monkeys = groups.Select(Monkey.Parse).ToArray();
         var modulo = monkeys.Select(m => m.Factor).Product();
 
         foreach (var monkey in Range(1, simulations).SelectMany(_ => monkeys))

@@ -4,13 +4,12 @@
 public class Day_11
 {
     [Puzzle(answer: 2184, O.ms)]
-    public int part_one(string input)
-        => DrawCanvas(Computer.Parse(input), 0).Count;
+    public int part_one(string str) => DrawCanvas(Computer.Parse(str), 0).Count;
 
     [Puzzle(answer: "AHCHZEPK", O.μs100)]
-    public string part_two(string input)
+    public string part_two(string str)
     {
-        var computer = Computer.Parse(input);
+        var computer = Computer.Parse(str);
         var dots = DrawCanvas(computer, 1)
             .Where(kvp => kvp.Value == 1)
             .Select(kvp => kvp.Key);

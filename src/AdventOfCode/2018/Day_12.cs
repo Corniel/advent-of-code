@@ -5,31 +5,31 @@ public class Day_12
 {
     [Example(answer: 325, Example._1)]
     [Puzzle(answer: 3605, O.μs100)]
-    public long part_one(Lines input)
+    public long part_one(Lines lines)
     {
-        var game = new GameOfLife(input);
+        var game = new GameOfLife(lines);
         game.Generations(20);
         return game.Sum();
     }
 
     [Puzzle(answer: 4050000000798, O.ms10)]
-    public long part_two(Lines input)
+    public long part_two(Lines lines)
     {
-        var game = new GameOfLife(input);
+        var game = new GameOfLife(lines);
         game.Generations(1000);
         return game.Sum() + (50_000_000_000 - 1000) * game.Count;
     }
 
     class GameOfLife : GameOfLife<long>
     {
-        public GameOfLife(Lines input)
+        public GameOfLife(Lines lines)
         {
-            foreach (var mask in input.Skip(1).Select(line => Bits.UInt32.Parse(line, "#", ".")))
+            foreach (var mask in lines.Skip(1).Select(line => Bits.UInt32.Parse(line, "#", ".")))
             {
                 nexts[mask >> 1] = (mask & 1) == 1;
             }
             var index = 0;
-            foreach (var ch in input[0].Where(ch => "#.".Contains(ch)))
+            foreach (var ch in lines[0].Where(ch => "#.".Contains(ch)))
             {
                 if (ch == '#') Add(index);
                 index++;

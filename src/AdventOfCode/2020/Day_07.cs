@@ -5,20 +5,20 @@ public class Day_07
 {
     [Example(answer: 4, Example._1)]
     [Puzzle(answer: 161, O.ms)]
-    public int part_one(string input) => Bags.Parse(input).Values.Count(bag => bag.Search("shiny gold") != null) - 1;
+    public int part_one(string str) => Bags.Parse(str).Values.Count(bag => bag.Search("shiny gold") != null) - 1;
 
     [Example(answer: 032, Example._1)]
     [Example(answer: 126, Example._2)]
     [Puzzle(answer: 30899, O.μs100)]
-    public int part_two(string input) => Bags.Parse(input)["shiny gold"].NestedCount;
+    public int part_two(string str) => Bags.Parse(str)["shiny gold"].NestedCount;
         
     class Bags : Forrest<Leaf>
     {
-        public static Bags Parse(string input)
+        public static Bags Parse(string str)
         {
             var bags = new Bags();
 
-            foreach (var line in input.Replace("bags", " ").Replace("bag", " ").Replace(".", "").Lines())
+            foreach (var line in str.Replace("bags", " ").Replace("bag", " ").Replace(".", "").Lines())
             {
                 var split = line.Separate("contain");
 

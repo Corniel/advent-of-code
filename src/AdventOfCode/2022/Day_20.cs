@@ -5,15 +5,15 @@ public class Day_20
 {
     [Example(answer: 3, "1,2,-3,3,-2,0,4")]
     [Puzzle(answer: 5498, O.ms10)]
-    public long part_one(string input) => Decrypt(input, 1, 1);
+    public long part_one(Longs numbers) => Decrypt(numbers, 1, 1);
 
     [Example(answer: 1623178306, "1,2,-3,3,-2,0,4")]
     [Puzzle(answer: 3390007892081, O.ms100)]
-    public long part_two(string input) => Decrypt(input, 811589153, 10);
+    public long part_two(Longs str) => Decrypt(str, 811589153, 10);
 
-    static long Decrypt(string input, int key, int times)
+    static long Decrypt(Longs numbers, int key, int times)
     {
-        var ns = Loop.New(input.Int64s().Select(n => n * key));
+        var ns = Loop.New(numbers.As(n => n * key));
         var sort = ns.ToArray();
         var zero = ns.First(n => n.Value == 0);
 

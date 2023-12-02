@@ -4,13 +4,12 @@
 public class Day_13
 {
     [Puzzle(answer: 277, O.μs100)]
-    public int part_one(string input)
-        => new Arcade().Update(Computer.Parse(input).Run().Output).Blocks;
+    public int part_one(string str) => new Arcade().Update(Computer.Parse(str).Run().Output).Blocks;
 
     [Puzzle(answer: 12856, O.ms100)]
-    public Int part_two(string input)
+    public Int part_two(string str)
     {
-        var computer = Computer.Parse(input).Update(position: 0, value: 2);
+        var computer = Computer.Parse(str).Update(position: 0, value: 2);
         var game = new Arcade().Update(computer.Run(new RunArguments(
                 haltOnInput: true,
                 haltOnOutput: false)).Output);

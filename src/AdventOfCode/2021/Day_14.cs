@@ -5,11 +5,11 @@ public class Day_14
 {
     [Example(answer: 1588, "NNCB;CH -> B;HH -> N;CB -> H;NH -> C;HB -> C;HC -> B;HN -> C;NN -> C;BH -> H;NC -> B;NB -> B;BN -> B;BB -> N;BC -> B;CC -> N;CN -> C")]
     [Puzzle(answer: 3247, O.μs10)]
-    public long part_one(Lines input) => Run(input, 10);
+    public long part_one(Lines lines) => Run(lines, 10);
 
     [Example(answer: 2188189693529, "NNCB;CH -> B;HH -> N;CB -> H;NH -> C;HB -> C;HC -> B;HN -> C;NN -> C;BH -> H;NC -> B;NB -> B;BN -> B;BB -> N;BC -> B;CC -> N;CN -> C")]
     [Puzzle(answer: 4110568157153, O.μs100)]
-    public long part_two(Lines input) => Run(input, 40);
+    public long part_two(Lines lines) => Run(lines, 40);
 
     static long Run(Lines lines, int steps)
     {

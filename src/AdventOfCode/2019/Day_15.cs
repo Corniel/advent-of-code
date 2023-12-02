@@ -4,12 +4,10 @@
 public class Day_15
 {
     [Puzzle(answer: 222, O.ms100)]
-    public int part_one(string input)
-        => new Space().Exlore(new Computer(input.BigInts()).WarmUp()).O2Distance;
+    public int part_one(string str) => new Space().Exlore(new Computer(str.BigInts()).WarmUp()).O2Distance;
 
     [Puzzle(answer: 394, O.ms100)]
-    public int part_two(string input)
-        => new Space().Exlore(new Computer(input.BigInts()).WarmUp()).O2Spreading;
+    public int part_two(string str) => new Space().Exlore(new Computer(str.BigInts()).WarmUp()).O2Spreading;
 
     class Space : Dictionary<Point, Tile>
     {

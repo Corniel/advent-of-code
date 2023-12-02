@@ -5,15 +5,15 @@ public class Day_13
 {
     [Example(answer: "7,3", Example._1)]
     [Puzzle(answer: "83,121", O.ms)]
-    public Point part_one(string input) => Simulate(input, stopOncrash: true);
+    public Point part_one(string str) => Simulate(str, stopOncrash: true);
 
     [Example(answer: "6,4", Example._2)]
     [Puzzle(answer: "102, 144", O.ms)]
-    public Point part_two(string input) => Simulate(input);
+    public Point part_two(string str) => Simulate(str);
 
-    static Point Simulate(string input, bool stopOncrash = false)
+    static Point Simulate(string str, bool stopOncrash = false)
     {
-        var grid = input.CharPixels(ignoreSpace: false).Grid();
+        var grid = str.CharPixels(ignoreSpace: false).Grid();
         var carts = grid.Positions
             .Select(p => new Cart(p, grid[p]))
             .Where(c => c.Dir != default)

@@ -14,14 +14,14 @@ public class Day_10
 █░░░██░░█░░░░░░░░█░░█░░░█░░░░░░░█░░░░░░░█░░░█░░░░█░░█░░░█░░█░░
 █░░░██░░█░░░░░░░█░░░░█░░█░░░░░░░█░░░░░░░█░░░░█░░█░░░░█░░█░░░█░
 █░░░░█░░██████░░█░░░░█░░█░░░░░░░██████░░█░░░░█░░█░░░░█░░█░░░░█", O.ms10)]
-    public string part_one(Lines input)=> Simulate(input).Grid.ToString(b => b ? '█' : '░');
+    public string part_one(Lines lines)=> Simulate(lines).Grid.ToString(b => b ? '█' : '░');
 
     [Puzzle(answer: 10459, O.ms10)]
-    public int part_two(Lines input) => Simulate(input).Seconds;
+    public int part_two(Lines lines) => Simulate(lines).Seconds;
 
-    static (int Seconds, Grid<bool> Grid) Simulate(Lines input)
+    static (int Seconds, Grid<bool> Grid) Simulate(Lines lines)
     {
-        var dots = input.As(Dot.Parse).ToArray();
+        var dots = lines.As(Dot.Parse).ToArray();
         var seconds = 0;
         while (true)
         {

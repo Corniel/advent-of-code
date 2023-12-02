@@ -4,19 +4,19 @@ namespace Advent_of_Code_2018;
 [Category(Category.Cryptography)]
 public class Day_05
 {
-    [TestCase("dabAcCaCBAcCcaDA", "dabCBAcaDA")]
-    public void Reduces(string polymer, string reduced) => Destroy(polymer).Should().Be(reduced);
-
     [Example(answer: 10, "dabAcCaCBAcCcaDA")]
     [Puzzle(answer: 11264, O.ms10)]
-    public int part_one(string input) => Destroy(input).Length;
+    public int part_one(string str) => Destroy(str).Length;
 
     [Example(answer: 4, "dabAcCaCBAcCcaDA")]
     [Puzzle(answer: 4552, O.s)]
-    public int part_two(string input)
-        => Characters.a_z.Select(ch => Strip(input, Lower(ch)))
-        .Select(reduced => Destroy(reduced))
+    public int part_two(string str)
+        => Characters.a_z.Select(ch => Strip(str, Lower(ch)))
+        .Select(Destroy)
         .Min(polymer => polymer.Length);
+
+    [TestCase("dabAcCaCBAcCcaDA", "dabCBAcaDA")]
+    public void Reduces(string polymer, string reduced) => Destroy(polymer).Should().Be(reduced);
 
     static string Destroy(string polymer)
     {

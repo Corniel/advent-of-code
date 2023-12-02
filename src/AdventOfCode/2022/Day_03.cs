@@ -5,11 +5,11 @@ public class Day_03
 {
     [Example(answer: 157, "vJrwpWtwJgWrhcsFMMfFFhFp;jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL;PmmdzqPrVvPwwTWBwg;wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn;ttgJtRGJQctTZtZT;CrZsJsPPZsGzwwsLwLmpwMDw")]
     [Puzzle(answer: 7742, O.μs10)]
-    public int part_one(Lines input) => input.As(Shared).Sum();
+    public int part_one(Lines lines) => lines.As(Shared).Sum();
 
     [Example(answer: 70, "vJrwpWtwJgWrhcsFMMfFFhFp;jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL;PmmdzqPrVvPwwTWBwg;wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn;ttgJtRGJQctTZtZT;CrZsJsPPZsGzwwsLwLmpwMDw")]
     [Puzzle(answer: 2276, O.μs10)]
-    public int part_two(Lines input) => input.ChunkBy(3).Select(Shared).Sum();
+    public int part_two(Lines lines) => lines.ChunkBy(3).Select(Shared).Sum();
 
     static int Score(char ch) => char.IsUpper(ch) ? ch - 'A' + 27 : ch - 'a' + 1;
 

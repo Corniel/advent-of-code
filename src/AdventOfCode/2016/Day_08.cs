@@ -4,10 +4,10 @@
 public class Day_08
 {
     [Puzzle(answer: 115, O.μs100)]
-    public int part_one(Lines input) => Process(input).Count(c => c.Value);
+    public int part_one(Lines lines) => Process(lines).Count(c => c.Value);
 
     [Puzzle(answer: "EFEYKFRFIJ", O.μs100)]
-    public string part_two(Lines input) => Ascii(Process(input));
+    public string part_two(Lines lines) => Ascii(Process(lines));
 
     static string Ascii(Dictionary<Point, bool> grid)
     {
@@ -17,10 +17,10 @@ public class Day_08
         return canvas.AsciiText();
     }
 
-    static Dictionary<Point, bool> Process(Lines input)
+    static Dictionary<Point, bool> Process(Lines lines)
     {
         var grid = new Dictionary<Point, bool>();
-        foreach (var inst in input.As(Instruction.Parse)) inst.Transform(grid);
+        foreach (var inst in lines.As(Instruction.Parse)) inst.Transform(grid);
         return grid;
     }
 

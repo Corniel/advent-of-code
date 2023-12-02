@@ -8,13 +8,13 @@ public class Day_07
     [Example(answer: 1, "abba[mnop]qrst")]
     [Example(answer: 1, "ioxxoj[asdfgh]zxcvbn")]
     [Puzzle(answer: 105, O.ms)]
-    public int part_one(Lines input) => input.Count(SupportsTls);
+    public int part_one(Lines lines) => lines.Count(SupportsTls);
 
     [Example(answer: 0, "xyx[xyx]xyx")]
     [Example(answer: 1, "aba[bab]xyz")]
     [Example(answer: 1, "zazbz[bzb]cdb")]
     [Puzzle(answer: 258, O.ms)]
-    public int part_two(Lines input) => input.Count(SupportsSsl);
+    public int part_two(Lines lines) => lines.Count(SupportsSsl);
 
     static bool SupportsTls(string line)
     {

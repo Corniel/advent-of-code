@@ -3,25 +3,25 @@
 [Category(Category.VectorAlgebra, Category.GameOfLife)]
 public class Day_24
 {
+    [Example(answer: 10, Example._1)]
+    [Puzzle(answer: 523, O.μs100)]
+    public int part_one(Lines lines) => Cells.Parse(lines).Count;
+
+    [Example(answer: 2208, Example._1)]
+    [Puzzle(answer: 4225, O.ms100)]
+    public int part_two(Lines lines)
+    {
+        var cells = Cells.Parse(lines);
+        cells.Generations(100);
+        return cells.Count;
+    }
+
     [Test]
     public void nwwswee_makes_roundtrip()
     {
         var location = Point.O;
         foreach (var step in Cells.Steps("nwwswee")) { location += step; }
         location.Should().Be(Point.O);
-    }
-
-    [Example(answer: 10, Example._1)]
-    [Puzzle(answer: 523, O.μs100)]
-    public int part_one(Lines input) => Cells.Parse(input).Count;
-
-    [Example(answer: 2208, Example._1)]
-    [Puzzle(answer: 4225, O.ms100)]
-    public int part_two(Lines input)
-    {
-        var cells = Cells.Parse(input);
-        cells.Generations(100);
-        return cells.Count;
     }
 
     public class Cells : GameOfLife<Point>

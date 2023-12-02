@@ -6,7 +6,7 @@ public class Day_02
     [Example(answer: 58, "2x3x4")]
     [Example(answer: 43, "1x1x10")]
     [Puzzle(answer: 1586300, O.μs100)]
-    public int part_one(Lines input) => input.As(WrappingPaper).Sum();
+    public int part_one(Lines lines) => lines.As(WrappingPaper).Sum();
 
     static int WrappingPaper(string line)
     {
@@ -20,7 +20,7 @@ public class Day_02
     [Example(answer: 34, "2x3x4")]
     [Example(answer: 14, "1x1x10")]
     [Puzzle(answer: 3737498, O.μs100)]
-    public int part_two(Lines input) => input.As(WrappingRibbon).Sum();
+    public int part_two(Lines lines) => lines.As(WrappingRibbon).Sum();
 
     static int WrappingRibbon(string line)
     {

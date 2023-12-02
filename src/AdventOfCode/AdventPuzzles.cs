@@ -17,9 +17,9 @@ public partial class AdventPuzzles : IReadOnlyCollection<AdventPuzzle>
         .Where(puzzle => puzzle.Matches(date))
         .OrderBy(puzzle => puzzle.Date);
 
-    public static AdventPuzzles Load() => Load(
+    public static AdventPuzzles Load(params Assembly[] additional) => Load(
         typeof(AdventPuzzle).Assembly.GetExportedTypes().Concat(
-        typeof(Now.Dummy).Assembly.GetExportedTypes()));
+        additional.SelectMany(a => a.GetExportedTypes())));
 
     public static AdventPuzzles Load(IEnumerable<Type> types)
     {

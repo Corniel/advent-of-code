@@ -5,19 +5,19 @@ public class Day_09
 {
     [Example(answer: 13, "R 4;U 4;L 3;D 1;R 4;D 1;L 5;R 2")]
     [Puzzle(answer: 6018, O.μs100)]
-    public int part_one(Lines input) => Simulate(input, 2);
+    public int part_one(Lines lines) => Simulate(lines, 2);
 
     [Example(answer: 1, "R 4;U 4;L 3;D 1;R 4;D 1;L 5;R 2")]
     [Example(answer: 36, "R 5;U 8;L 8;D 3;R 17;D 10;L 25;U 20")]
     [Puzzle(answer: 2619, O.μs100)]
-    public long part_two(Lines input) => Simulate(input, 10);
+    public long part_two(Lines lines) => Simulate(lines, 10);
     
-    static int Simulate(Lines input, int size)
+    static int Simulate(Lines lines, int size)
     {
         var rope = Repeat(Point.O, size).ToArray();
         var visited = new HashSet<Point>();
 
-        foreach (var move in input.SelectMany(l => Repeat(Move(l[0]), l[2..].Int32())))
+        foreach (var move in lines.SelectMany(l => Repeat(Move(l[0]), l[2..].Int32())))
         {
             rope[0] += move;
 

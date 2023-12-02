@@ -5,10 +5,10 @@ public class Day_01
 {
     [Example(answer: 514579, "1721, 979, 366, 299, 675, 1456")]
     [Puzzle(answer: 786811, O.μs)]
-    public int part_one(string input)
+    public int part_one(string str)
     {
         const int sum = 2020;
-        var numbers = UniqueNumbers.Parse(input);
+        var numbers = UniqueNumbers.Parse(str);
 
         foreach (var number0 in numbers.Range(max: sum / 2))
         {
@@ -23,10 +23,10 @@ public class Day_01
 
     [Example(answer: 241861950L, "1721, 979, 366, 299, 675, 1456")]
     [Puzzle(answer: 199068980L, O.μs)]
-    public long part_two(string input)
+    public long part_two(string str)
     {
         const int sum = 2020;
-        var numbers = UniqueNumbers.Parse(input);
+        var numbers = UniqueNumbers.Parse(str);
 
         foreach (var number0 in numbers.Range(max: sum / 3))
         {

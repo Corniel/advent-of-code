@@ -5,11 +5,11 @@ public class Day_20
 {
     [Example(answer: 35, Example._1)]
     [Puzzle(answer: 5765, O.ms)]
-    public int part_one(GroupedLines input) => Run(input, 2);
+    public int part_one(GroupedLines groups) => Run(groups, 2);
 
     [Example(answer: 3351, Example._1)]
     [Puzzle(answer: 18509, O.ms100)]
-    public int part_two(GroupedLines input) => Run(input, 50);
+    public int part_two(GroupedLines groups) => Run(groups, 50);
 
     static int Run(GroupedLines lines, int turns)
     {

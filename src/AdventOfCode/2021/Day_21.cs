@@ -5,9 +5,8 @@ public class Day_21
 {
     [Example(answer: 739785, "Player 1 starting position: 4;Player 2 starting position: 8")]
     [Puzzle(answer: 597600, "Player 1 starting position: 8;Player 2 starting position: 5", O.μs)]
-    public int part_one(string input)
+    public int part_one(Ints numbers)
     {
-        var numbers = input.Int32s().ToArray();
         var scores = new int[2];
         var position = new int[] { numbers[1], numbers[3] };
         var dice = 0;
@@ -26,9 +25,8 @@ public class Day_21
 
     [Example(answer: 444356092776315, "Player 1 starting position: 4;Player 2 starting position: 8")]
     [Puzzle(answer: 634769613696613, "Player 1 starting position: 8;Player 2 starting position: 5", O.ms)]
-    public long part_two(string input)
+    public long part_two(Ints numbers)
     {
-        var numbers = input.Int32s().ToArray();
         var universe = Jagged.Array<ItemCounter<Point>>(2, 11, 11);
         var player = 0;
         long active = 1;

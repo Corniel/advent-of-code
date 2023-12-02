@@ -37,6 +37,7 @@ public static class AdventPuzzleExtensions
             }
             else
             {
+                answer = answer is char[] chars ? new string(chars) : answer;
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write(answer);
                 Console.ForegroundColor = ConsoleColor.Gray;

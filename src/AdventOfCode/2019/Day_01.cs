@@ -4,12 +4,10 @@
 public class Day_01
 {
     [Puzzle(answer: 3291356, O.μs)]
-    public int part_one(string input)
-        => input.Int32s().Sum(Fuel);
+    public int part_one(Ints numbers) => numbers.Sum(Fuel);
 
     [Puzzle(answer: 4934153, O.μs)]
-    public int part_two(string input)
-        => input.Int32s().Sum(RecursiveFuel);
+    public int part_two(Ints numbers) => numbers.Sum(RecursiveFuel);
 
     static int Fuel(int mass) => (mass / 3) - 2;
 

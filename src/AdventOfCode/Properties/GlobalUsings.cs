@@ -27,3 +27,6 @@ global using static System.Linq.Enumerable;
 global using CategoryAttribute = Advent_of_Code.CategoryAttribute;
 global using Int = System.Numerics.BigInteger;
 global using CharGrid = SmartAss.Collections.Grid<char>;
+global using Ints = SmartAss.Inputs<int>;
+global using Longs = SmartAss.Inputs<long>;
+global using Lines = SmartAss.Inputs<string>;

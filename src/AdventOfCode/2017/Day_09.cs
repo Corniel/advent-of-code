@@ -11,13 +11,13 @@ public class Day_09
     [Example(answer: 1, "{<a>,<a>,<a>,<a>}")]
     [Example(answer: 1 + 2 + 2 + 2 + 2, "{{<ab>},{<ab>},{<ab>},{<ab>}}")]
     [Puzzle(answer: 9662, O.μs100)]
-    public int part_one(string input) => new Parser(input).Input().Score;
+    public int part_one(string str) => new Parser(str).Input().Score;
 
     [Example(answer: 17, "{<random characters>}")]
     [Example(answer: 2, "{<{!>}>}")]
     [Example(answer: 3, "{<<<<>}")]
     [Puzzle(answer: 4903, O.μs100)]
-    public int part_two(string input) => new Parser(input).Input().Garbage;
+    public int part_two(string str) => new Parser(str).Input().Garbage;
 
     class Input : SyntaxNode
     {
@@ -34,7 +34,7 @@ public class Day_09
         public int Garbages => Garbage + ChildGroups.Sum(ch => ch.Garbages);
     }
 
-    class Parser(string input) : SyntaxParser(input)
+    class Parser(string str) : SyntaxParser(str)
     {
         public Input Input()
         {

@@ -6,13 +6,13 @@ public class Day_18
     [Example(answer: 10, "1,1,1;2,1,1")]
     [Example(answer: 64, "2,2,2;1,2,2;3,2,2;2,1,2;2,3,2;2,2,1;2,2,3;2,2,4;2,2,6;1,2,5;3,2,5;2,1,5;2,3,5")]
     [Puzzle(answer: 4348, O.μs100)]
-    public int part_one(Lines input) => Surface(input.As(Point3D.Parse).ToHashSet());
+    public int part_one(Lines lines) => Surface(lines.As(Point3D.Parse).ToHashSet());
 
     [Example(answer: 58, "2,2,2;1,2,2;3,2,2;2,1,2;2,3,2;2,2,1;2,2,3;2,2,4;2,2,6;1,2,5;3,2,5;2,1,5;2,3,5")]
     [Puzzle(answer: 2546, O.ms)]
-    public int part_two(Lines input)
+    public int part_two(Lines lines)
     {
-        var min = 0;  var max = 21; var cubes = input.As(Point3D.Parse).ToHashSet();
+        var min = 0;  var max = 21; var cubes = lines.As(Point3D.Parse).ToHashSet();
         return Surface(cubes) - Surface(Todo(cubes, min, max));
     }
 

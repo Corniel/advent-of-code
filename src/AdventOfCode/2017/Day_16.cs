@@ -7,14 +7,14 @@ public class Day_16
     [Example(answer: "cdeab", "s3", 5)]
     [Example(answer: "baedc", "s1,x3/4,pe/b", 5)]
     [Puzzle(answer: "hmefajngplkidocb", null, 16, O.μs100)]
-    public string part_one(string input, int size) => Simulate(input, size, 1);
+    public string part_one(string str, int size) => Simulate(str, size, 1);
 
     [Puzzle(answer: "fbidepghmjklcnoa", null, 16, O.ms)]
-    public string part_two(string input, int size) => Simulate(input, size, 1_000_000_000);
+    public string part_two(string str, int size) => Simulate(str, size, 1_000_000_000);
 
-    private string Simulate(string input, int size, int turns)
+    private string Simulate(string str, int size, int turns)
     {
-        var moves = input.CommaSeparated().Select(Parse).ToArray();
+        var moves = str.CommaSeparated().Select(Parse).ToArray();
         var period = Simulation.WithPeriod(
             initial: Characters.a_z[0..size].ToCharArray(),
             simulate: (d, _) => Dance(d, moves),

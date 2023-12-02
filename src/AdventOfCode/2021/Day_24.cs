@@ -4,10 +4,10 @@
 public class Day_24
 {
     [Puzzle(answer: 39999698799429, O.μs100)]
-    public long part_one(Lines input) => Serial(Desc, State.Zero, input.As(Expression.Parse).ToArray()) ?? throw new NoAnswer();
+    public long part_one(Lines lines) => Serial(Desc, State.Zero, lines.As(Expression.Parse).ToArray()) ?? throw new NoAnswer();
 
     [Puzzle(answer: 18116121134117, O.s10)]
-    public long part_two(Lines input) => Serial(Asc, State.Zero, input.As(Expression.Parse).ToArray()) ?? throw new NoAnswer();
+    public long part_two(Lines lines) => Serial(Asc, State.Zero, lines.As(Expression.Parse).ToArray()) ?? throw new NoAnswer();
 
     static readonly int[] Asc = Range(1, 9).ToArray();
     static readonly int[] Desc = Asc.Reverse().ToArray();

@@ -1,19 +1,17 @@
-namespace Advent_of_Code_2019;
+﻿namespace Advent_of_Code_2019;
 
 [Category(Category.Cryptography)]
 public class Day_04
 {
     [Puzzle(answer: 1178, "235741-706948", O.ms)]
-    public int part_one(string input)
-        => CountValidPasswords(input, PasswordForOne);
+    public int part_one(string str) => CountValidPasswords(str, PasswordForOne);
 
     [Puzzle(answer: 763, "235741-706948", O.ms)]
-    public int part_two(string input)
-        => CountValidPasswords(input, PasswordForTwo);
+    public int part_two(string str) => CountValidPasswords(str, PasswordForTwo);
 
-    static int CountValidPasswords(string input, Func<int, bool> validator)
+    static int CountValidPasswords(string str, Func<int, bool> validator)
     {
-        var boundries = input.Split('-', StringSplitOptions.TrimEntries)
+        var boundries = str.Split('-', StringSplitOptions.TrimEntries)
             .Select(str => int.Parse(str))
             .ToArray();
 

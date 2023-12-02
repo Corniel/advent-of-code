@@ -5,13 +5,13 @@ public class Day_07
 {
     [Example(answer: "tknk", Example._1)]
     [Puzzle(answer: "cyrupz", O.μs100)]
-    public string part_one(Lines input) => Root(input).Name;
+    public string part_one(Lines lines) => Root(lines).Name;
 
     [Example(answer: 60, Example._1)]
     [Puzzle(answer: 193, O.μs100)]
-    public long part_two(Lines input)
+    public long part_two(Lines lines)
     {
-        var sorted = Root(input).Children.OrderByDescending(c => c.Weight).ToArray();
+        var sorted = Root(lines).Children.OrderByDescending(c => c.Weight).ToArray();
         var current = sorted[0];
         var delta = current.Weight - sorted[1].Weight;
         
@@ -24,15 +24,15 @@ public class Day_07
         return current.Own - delta;
     }
 
-    static Node Root(Lines input)
+    static Node Root(Lines lines)
     {
         var nodes = new Dictionary<string, Node>();
-        foreach (var line in input)
+        foreach (var line in lines)
         {
             var node = new Node(line.SpaceSeparated()[0], line.Int32());
             nodes[node.Name] = node;
         }
-        foreach (var line in input)
+        foreach (var line in lines)
         {
             var items = line.SpaceSeparated().Where(n => n[0] >= 'a' && n[0] <= 'z').Select(name => nodes[name.Trim(',')]).ToArray();
             items[0].Children.AddRange(items[1..]);

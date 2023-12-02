@@ -3,25 +3,11 @@
 [Category(Category.Simulation)]
 public class Day_16
 {
-    static readonly Sue Aunt = new(0)
-    {
-        [Compount.children] = 3,
-        [Compount.cats] = 7,
-        [Compount.samoyeds] = 2,
-        [Compount.pomeranians] = 3,
-        [Compount.akitas] = 0,
-        [Compount.vizslas] = 0,
-        [Compount.goldfish] = 5,
-        [Compount.trees] = 3,
-        [Compount.cars] = 2,
-        [Compount.perfumes] = 1,
-    };
-
     [Puzzle(answer: 103, O.μs100)]
-    public int part_one(Lines input) => input.As(Sue.Parse).Single(sue => sue.Matches1(Aunt)).Id;
+    public int part_one(Lines lines) => lines.As(Sue.Parse).Single(sue => sue.Matches1(Aunt)).Id;
 
     [Puzzle(answer: 405, O.μs100)]
-    public long part_two(Lines input) => input.As(Sue.Parse).Single(sue => sue.Matches2(Aunt)).Id;
+    public long part_two(Lines lines) => lines.As(Sue.Parse).Single(sue => sue.Matches2(Aunt)).Id;
 
     class Sue(int id) : Dictionary<Compount, int>
     {
@@ -51,5 +37,18 @@ public class Day_16
         }
     }
 
+    static readonly Sue Aunt = new(0)
+    {
+        [Compount.children] = 3,
+        [Compount.cats] = 7,
+        [Compount.samoyeds] = 2,
+        [Compount.pomeranians] = 3,
+        [Compount.akitas] = 0,
+        [Compount.vizslas] = 0,
+        [Compount.goldfish] = 5,
+        [Compount.trees] = 3,
+        [Compount.cars] = 2,
+        [Compount.perfumes] = 1,
+    };
     enum Compount { children, cats, samoyeds, pomeranians, akitas, vizslas, goldfish, trees, cars, perfumes }
 }

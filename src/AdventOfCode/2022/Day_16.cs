@@ -5,15 +5,15 @@ public class Day_16
 {
     [Example(answer: 1651, Example._1)]
     [Puzzle(answer: 1940, O.ms)]
-    public int part_one(string input) => Presure(input, 30, true);
+    public int part_one(string str) => Presure(str, 30, true);
 
     [Example(answer: 1707, Example._1)]
     [Puzzle(answer: 2469, O.ms100)]
-    public int part_two(string input) => Presure(input, 26, false);
+    public int part_two(string str) => Presure(str, 26, false);
 
-    static int Presure(string input, int turns, bool solo)
+    static int Presure(string str, int turns, bool solo)
     {
-        var valves = Valve.Parse(input);
+        var valves = Valve.Parse(str);
         uint closed = (1U << (valves.Length)) - 2;
         var state = new State(closed, 0, 0, 1, 1, 0, 0);
         var queue = new PriorityQueue<State, int>();
@@ -86,9 +86,9 @@ public class Day_16
             }
         }
 
-        public static Valve[] Parse(string input)
+        public static Valve[] Parse(string str)
         {
-            var lines = input.Replace(";", "").Replace("to valve ", "to valves ").Lines(Line.Parse).OrderBy(l => l.Name).ToArray();
+            var lines = str.Replace(";", "").Replace("to valve ", "to valves ").Lines(Line.Parse).OrderBy(l => l.Name).ToArray();
             var tmp = lines.ToDictionary(l => l.Name, l => new Valve(l.Name, l.Rate, []));
 
             foreach (var line in lines)

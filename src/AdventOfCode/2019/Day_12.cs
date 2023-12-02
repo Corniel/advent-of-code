@@ -18,9 +18,9 @@ public class Day_12
         <x=2, y=2, z=-13>
         <x=-1, y=5, z=-1>
         <x=4, y=7, z=-7>", O.μs100)]
-    public int part_one(Lines input)
+    public int part_one(Lines lines)
     {
-        var moons = input.As(Moon.Parse).ToArray();
+        var moons = lines.As(Moon.Parse).ToArray();
 
         for (var step = 1; step <= 10_000; step++)
         {
@@ -44,9 +44,9 @@ public class Day_12
         <x=2, y=2, z=-13>
         <x=-1, y=5, z=-1>
         <x=4, y=7, z=-7>", O.ms10)]
-    public long part_two(Lines input)
+    public long part_two(Lines lines)
     {
-        var moons = input.As(Moon.Parse).ToArray();
+        var moons = lines.As(Moon.Parse).ToArray();
 
         var xs = moons.Select(moon => Pair(moon.Position.X, default)).ToArray();
         var ys = moons.Select(moon => Pair(moon.Position.Y, default)).ToArray();

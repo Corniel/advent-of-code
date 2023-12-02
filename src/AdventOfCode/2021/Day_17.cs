@@ -5,17 +5,17 @@ public class Day_17
 {
     [Example(answer: 45, "target area: x=20..30, y=-10..-5")]
     [Puzzle(answer: 17766, "target area: x=48..70, y=-189..-148", O.ns100)]
-    public int part_one(string input)
+    public int part_one(string str)
     {
-        var area = Area.Parse(input);
+        var area = Area.Parse(str);
         return area.Y_lo * (area.Y_lo + 1) / 2;
     }
 
     [Example(answer: 112, "target area: x=20..30, y=-10..-5")]
     [Puzzle(answer: 1733, "target area: x=48..70, y=-189..-148", O.μs100)]
-    public long part_two(string input)
+    public long part_two(string str)
     {
-        var area = Area.Parse(input);
+        var area = Area.Parse(str);
         var x_lo = (int)Math.Ceiling((-1 + Math.Sqrt(8 * area.X_lo + 1)) / 2);
         return Points
             .Range(new Point(x_lo, area.Y_lo), new Point(area.X_hi, -area.Y_lo))

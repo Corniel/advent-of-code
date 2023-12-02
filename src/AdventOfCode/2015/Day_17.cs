@@ -1,23 +1,23 @@
-namespace Advent_of_Code_2015;
+﻿namespace Advent_of_Code_2015;
 
 [Category(Category.Computation, Category.BitManupilation)]
 public class Day_17
 {
     [Puzzle(answer: 1304, O.ms10)]
-    public int part_one(string input)
+    public int part_one(Ints numbers)
     {
-        var numbers = input.Int32s().OrderDescending().ToArray();
-        return Range(1, (1 << numbers.Length) - 2).Count(bits => Fits((uint)bits, numbers));
+        var ns = numbers.OrderDescending().ToArray();
+        return Range(1, (1 << ns.Length) - 2).Count(bits => Fits((uint)bits, ns));
     }
 
     [Puzzle(answer: 18, O.ms10)]
-    public int part_two(string input)
+    public int part_two(Ints numbers)
     {
-        var numbers = input.Int32s().OrderDescending().ToArray();
+        var ns = numbers.OrderDescending().ToArray();
         var min = int.MaxValue;
         var count = 0;
-        foreach (var containers in Range(1, (1 << numbers.Length) - 2)
-            .Where(bits => Fits((uint)bits, numbers))
+        foreach (var containers in Range(1, (1 << ns.Length) - 2)
+            .Where(bits => Fits((uint)bits, ns))
             .Select(bits => Bits.UInt32.Count((uint)bits)))
         {
             if (containers < min)

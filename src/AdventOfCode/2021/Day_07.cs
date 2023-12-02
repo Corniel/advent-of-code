@@ -1,17 +1,19 @@
-﻿namespace Advent_of_Code_2021;
+﻿using SmartAss.Numerics;
+
+namespace Advent_of_Code_2021;
 
 [Category(Category.Simulation)]
 public class Day_07
 {
     [Example(answer: 37, "16,1,2,0,4,2,7,1,2,14")]
     [Puzzle(answer: 336701, O.μs100)]
-    public int part_one(string input) => MinimumCosts(input.Int32s().ToArray(), n => n);
+    public int part_one(Ints numbers) => MinimumCosts(numbers, n => n);
 
     [Example(answer: 168, "16,1,2,0,4,2,7,1,2,14")]
     [Puzzle(answer: 95167302, O.μs100)]
-    public int part_two(string input) => MinimumCosts(input.Int32s().ToArray(), n => n * (n + 1) / 2);
+    public int part_two(Ints numbers) => MinimumCosts(numbers, n => n * (n + 1) / 2);
 
-    static int MinimumCosts(int[] crabs, Func<int, int> costs)
+    static int MinimumCosts(Ints crabs, Func<int, int> costs)
     {
         var optimum = int.MaxValue;
         var height = 0;

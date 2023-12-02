@@ -10,10 +10,10 @@ public class Day_03
             R98,U47,R26,D63,R33,U87,L62,D20,R33,U53,R51
             U98,R91,D20,R16,D67,R40,U7,R15,U6,R7")]
     [Puzzle(answer: 1195, O.ms)]
-    public long part_one(Lines input)
+    public long part_one(Lines lines)
     {
-        var wires0 = input[0].CommaSeparated(Move.Parse).ToArray();
-        var wires1 = input[1].CommaSeparated(Move.Parse).ToArray();
+        var wires0 = lines[0].CommaSeparated(Move.Parse).ToArray();
+        var wires1 = lines[1].CommaSeparated(Move.Parse).ToArray();
         var passed = new HashSet<Point>();
         var wire0 = Point.O;
 
@@ -50,10 +50,10 @@ public class Day_03
             R98,U47,R26,D63,R33,U87,L62,D20,R33,U53,R51
             U98,R91,D20,R16,D67,R40,U7,R15,U6,R7")]
     [Puzzle(answer: 91518, O.ms)]
-    public long part_two(Lines input)
+    public long part_two(Lines lines)
     {
-        var wires0 = input[0].CommaSeparated(Move.Parse).ToArray();
-        var wires1 = input[1].CommaSeparated(Move.Parse).ToArray();
+        var wires0 = lines[0].CommaSeparated(Move.Parse).ToArray();
+        var wires1 = lines[1].CommaSeparated(Move.Parse).ToArray();
         var steps = new Dictionary<Point, int>();
         var wire0 = Point.O;
         var steps0 = 1;

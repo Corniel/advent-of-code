@@ -5,14 +5,14 @@ public class Day_20
 {
     [Example(answer: 20899048083289, Example._1)]
     [Puzzle(answer: 18449208814679, O.ms10)]
-    public long part_one(GroupedLines input)
-        => Tile.Parse(input).Where(t => t.IsCorner).Select(c => c.Id).Distinct().Product();
+    public long part_one(GroupedLines groups)
+        => Tile.Parse(groups).Where(t => t.IsCorner).Select(c => c.Id).Distinct().Product();
 
     [Example(answer: 273, Example._1)]
     [Puzzle(answer: 1559, O.ms10)]
-    public int part_two(GroupedLines input)
+    public int part_two(GroupedLines groups)
     {
-        var tiles = Tiles.Create(Tile.Parse(input));
+        var tiles = Tiles.Create(Tile.Parse(groups));
         foreach (var canvas in tiles.Canvases())
         {
             var occupations = Sea.Monster.Occupations(canvas);
@@ -23,14 +23,14 @@ public class Day_20
 
     class Tile
     {
-        public Tile(long id, CharGrid chars)
+        public Tile(long id, CharGrid map)
         {
             Id = id;
-            Grid = chars;
-            N = Border(Range(0, 10).Select(i => chars[i, 0] == '#' ? 1 : 0).ToArray());
-            E = Border(Range(0, 10).Select(i => chars[9, i] == '#' ? 1 : 0).ToArray());
-            S = Border(Range(0, 10).Select(i => chars[i, 9] == '#' ? 1 : 0).ToArray());
-            W = Border(Range(0, 10).Select(i => chars[0, i] == '#' ? 1 : 0).ToArray());
+            Grid = map;
+            N = Border(Range(0, 10).Select(i => map[i, 0] == '#' ? 1 : 0).ToArray());
+            E = Border(Range(0, 10).Select(i => map[9, i] == '#' ? 1 : 0).ToArray());
+            S = Border(Range(0, 10).Select(i => map[i, 9] == '#' ? 1 : 0).ToArray());
+            W = Border(Range(0, 10).Select(i => map[0, i] == '#' ? 1 : 0).ToArray());
             Borders = [N, E, S, W];
         }
         static uint Border(int[] bits)
@@ -67,9 +67,9 @@ public class Day_20
         }
         public override string ToString() => $"ID: {Id}, N: {N:000}, E: {E:000}, S: {S:000}, W: {W:000}";
 
-        public static Tile[] Parse(GroupedLines input)
+        public static Tile[] Parse(GroupedLines groups)
         {
-            var tiles = input.Select(Parse)
+            var tiles = groups.Select(Parse)
                 .SelectMany(i => i.Orientations())
                 .ToArray();
             foreach (var tile in tiles)
@@ -166,6 +166,6 @@ public class Day_20
         public int Height { get; }
         public int Occupations(CharGrid image)
             => Points.Grid(image.Cols - Width, image.Rows - Height)
-            .Count(offset => this.TrueForAll(relative => image[offset + relative] == '#')) * Count;
+            .Count(offset => TrueForAll(relative => image[offset + relative] == '#')) * Count;
     }
 }

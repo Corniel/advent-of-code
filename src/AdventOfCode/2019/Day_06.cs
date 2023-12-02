@@ -5,13 +5,13 @@ public class Day_06
 {
     [Example(answer: 42, @"COM)B; B)C; C)D; D)E;E)F; B)G; G)H; D)I; E)J; J)K; K)L")]
     [Puzzle(answer: 333679, O.ms)]
-    public int part_one(Lines input) => Space.Parse(input).Connections;
+    public int part_one(Lines lines) => Space.Parse(lines).Connections;
 
     [Example(answer: 4, @"COM)B; B)C; C)D; D)E; E)F; B)G; G)H; D)I; E)J; J)K; K)L; K)YOU; I)SAN")]
     [Puzzle(answer: 370, O.ms10)]
-    public int part_two(Lines input)
+    public int part_two(Lines lines)
     {
-        var space = Space.Parse(input);
+        var space = Space.Parse(lines);
 
         var you = space.Get("YOU");
         var san = space.Get("SAN");

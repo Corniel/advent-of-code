@@ -8,8 +8,8 @@ public class Day_01
     [Example(answer: 0, "1234")]
     [Example(answer: 9, "91212129")]
     [Puzzle(answer: 1141, O.μs10)]
-    public int part_one(string input)
-        => (input + input[0]).Digits().SelectWithPrevious().Where(pair => pair.Unchanged()).Sum(pair => pair.Current);
+    public int part_one(string str)
+        => (str + str[0]).Digits().SelectWithPrevious().Where(pair => pair.Unchanged()).Sum(pair => pair.Current);
 
     [Example(answer: 6, "1212")]
     [Example(answer: 0, "1221")]
@@ -17,9 +17,9 @@ public class Day_01
     [Example(answer: 12, "123123")]
     [Example(answer: 4, "12131415")]
     [Puzzle(answer: 950, O.μs10)]
-    public int part_two(string input)
+    public int part_two(string str)
     {
-        var digits = input.Digits().ToArray();
+        var digits = str.Digits().ToArray();
         var half = digits.Length / 2;
         return digits.Where((digit, index) => digits[(index + half) % digits.Length] == digit).Sum();
     }

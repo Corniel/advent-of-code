@@ -15,7 +15,7 @@ public static class ConsoleLogger
         return grid;
     }
 
-    public static Grid<char> Console(this Grid<char> grid)
+    public static CharGrid Console(this CharGrid grid)
     {
         WriteLine(grid?.ToString(c => c));
         return grid;

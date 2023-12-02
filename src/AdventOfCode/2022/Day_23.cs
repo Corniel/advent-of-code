@@ -15,15 +15,15 @@ public class Day_23
 
     [Example(answer: 110, Example._1)]
     [Puzzle(answer: 3762, O.ms)]
-    public int part_one(string input) => Run(input, 10);
+    public int part_one(CharPixels input) => Run(input, 10);
 
     [Example(answer: 20, Example._1)]
     [Puzzle(answer: 997, O.ms100)]
-    public long part_two(string input) => Run(input, int.MaxValue);
+    public long part_two(CharPixels input) => Run(input, int.MaxValue);
    
-    static int Run(string input, int rounds)
+    static int Run(CharPixels input, int rounds)
     {
-        var elves = input.CharPixels().Where(p => p.Value == '#').Select(p => p.Key).ToHashSet();
+        var elves = input.Where(p => p.Value == '#').Select(p => p.Key).ToHashSet();
         var moves = new List<Move>();
         var count = new ItemCounter<Point>();
 

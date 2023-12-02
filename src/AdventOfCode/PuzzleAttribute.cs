@@ -32,13 +32,13 @@ public class PuzzleAttribute : Attribute, ITestBuilder, IApplyToTest, IImplyFixt
         var puzzle = Puzzle(method);
         var parameters = puzzle.TestCaseParameters();
         var test = new NUnitTestCaseBuilder().BuildTestMethod(method, suite, parameters);
-        test.Name = TestName(method, puzzle.Input[0].ToString());
+        test.Name = TestName(method, puzzle.Input[0]);
         yield return test;
     }
 
     protected virtual AdventPuzzle Puzzle(IMethodInfo method) => new(method.MethodInfo, Input, Answer, Order);
 
-    protected virtual string TestName(IMethodInfo method, string input)
+    protected virtual string TestName(IMethodInfo method, object input)
         => $"answer is {Answer} for {method.Name.Replace("_", " ")}";
 
     public void ApplyToTest(Test test)

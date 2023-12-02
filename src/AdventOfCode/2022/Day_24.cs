@@ -6,7 +6,7 @@ public class Day_24
     [Example(answer: 18, Example._1)]
     [Example(answer: 255, Example._2)]
     [Puzzle(answer: 295, O.ms10)]
-    public long part_one(string input)
+    public long part_one(CharPixels input)
     {
         var state = State.Parse(input);
         return state.Nav(state.P1, state.P2).Time;
@@ -15,7 +15,7 @@ public class Day_24
     [Example(answer: 54, Example._1)]
     [Example(answer: 809, Example._2)]
     [Puzzle(answer: 851, O.ms100)]
-    public long part_two(string input)
+    public long part_two(CharPixels input)
     {
         var state = State.Parse(input);
         return state.Nav(state.P1, state.P2).Nav(state.P2, state.P1).Nav(state.P1, state.P2).Time;
@@ -66,15 +66,11 @@ public class Day_24
             }
         }
 
-        public static State Parse(string input)
-        {
-            var pxs = input.CharPixels();
-            return new(
-                Blizzards: Blizz.Parse(pxs), 
-                Occupied: new Grid<bool>(pxs.Cols, pxs.Rows),
-                P1: pxs.First(p => p.Value == '.').Key,
-                P2: pxs.Last(p => p.Value == '.').Key);
-        }
+        public static State Parse(CharPixels pxs) => new(
+            Blizzards: Blizz.Parse(pxs),
+            Occupied: new Grid<bool>(pxs.Cols, pxs.Rows),
+            P1: pxs.First(p => p.Value == '.').Key,
+            P2: pxs.Last(p => p.Value == '.').Key);
     }
 
     class Blizz(Point pos, Vector dir)

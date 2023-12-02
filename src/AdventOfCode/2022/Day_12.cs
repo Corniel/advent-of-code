@@ -5,7 +5,7 @@ public class Day_12
 {
     [Example(answer: 31, Example._1)]
     [Puzzle(answer: 394, O.μs100)]
-    public int part_one(string input)
+    public int part_one(CharPixels input)
     {
         var area = Area.Parse(input);
         return area.Find(area.S);
@@ -13,14 +13,14 @@ public class Day_12
 
     [Example(answer: 29, Example._1)]
     [Puzzle(answer: 388, O.ms100)]
-    public long part_two(string input)
+    public long part_two(CharPixels input)
     {
         var area = Area.Parse(input);
         var starts = area.Map.Where(p => p.Value == 'a').Select(p => p.Key);
         return starts.Select(a => area.Find(a)).Min();
     }
 
-    record Area(Grid<char> Map, Point S, Point E)
+    record Area(CharGrid Map, Point S, Point E)
     {
         public int Find(Point current)
         {
@@ -48,9 +48,9 @@ public class Day_12
             return int.MaxValue;
         }
 
-        public static Area Parse(string input)
+        public static Area Parse(CharPixels pixels)
         {
-            var map = input.CharPixels().Grid();
+            var map = pixels.Grid();
             var s = map.First(p => p.Value == 'S').Key;
             var e = map.First(p => p.Value == 'E').Key;
             map[s] = 'a';

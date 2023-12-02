@@ -2,7 +2,7 @@
   "profiles": {
     "AdventOfCode.Now": {
       "commandName": "Project",
-      "commandLineArgs": "2022 -rank"
+      "commandLineArgs": "2022-12 -b"
     }
   }
 }

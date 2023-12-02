@@ -5,15 +5,15 @@ public class Day_11
 {
     [Example(answer: 1656, Example._1)]
     [Puzzle(answer: 1691, O.ms)]
-    public int part_one(string input) => Simulate(input).Take(100).Sum();
+    public int part_one(CharPixels input) => Simulate(input).Take(100).Sum();
 
     [Example(answer: 195, Example._1)]
     [Puzzle(answer: 216, O.ms)]
-    public int part_two(string input) => Simulate(input).TakeWhile(f => f != 100).Count() + 1;
+    public int part_two(CharPixels input) => Simulate(input).TakeWhile(f => f != 100).Count() + 1;
 
-    static IEnumerable<int> Simulate(string input)
+    static IEnumerable<int> Simulate(CharPixels input)
     {
-        var grid = input.CharPixels().Grid((ch) => ch - '0').SetNeighbors(Neighbors.Grid, CompassPoints.All);
+        var grid = input.Grid((ch) => ch - '0').SetNeighbors(Neighbors.Grid, CompassPoints.All);
         var dones = new Grid<bool>(grid.Cols, grid.Rows);
         var stack = new Stack<Point>();
         return Range(1, int.MaxValue).Select(step => Step(grid, dones, stack));

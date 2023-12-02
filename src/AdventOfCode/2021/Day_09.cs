@@ -5,9 +5,9 @@ public class Day_09
 {
     [Example(answer: 15, Example._1)]
     [Puzzle(answer: 588, O.ms)]
-    public int part_one(string input)
+    public int part_one(CharGrid input)
     {
-        var map = input.CharPixels().Grid().SetNeighbors(Neighbors.Grid);
+        var map = input.SetNeighbors(Neighbors.Grid);
         return map.Positions
             .Where(point => map.Neighbors[point]
             .All(n => map[n] > map[point]))
@@ -16,9 +16,9 @@ public class Day_09
 
     [Example(answer: 1134, Example._1)]
     [Puzzle(answer: 964712, O.ms)]
-    public long part_two(string input)
+    public long part_two(CharGrid input)
     {
-        var map = input.CharPixels().Grid().SetNeighbors(Neighbors.Grid);
+        var map = input.SetNeighbors(Neighbors.Grid);
         var done = new Grid<bool>(map.Cols, map.Rows);
         var sizes = new List<long>();
         var queue = new Queue<Point>();

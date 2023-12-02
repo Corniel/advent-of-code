@@ -13,10 +13,10 @@ v>v.vv.v..
 .vv..>.>v.
 v.v..>>v.v
 ....v..v.>")]
-    [Puzzle(answer: 598, O.ms100)]
-    public int part_one(string input)
+    [Puzzle(answer: 598, O.ms)]
+    public int part_one(CharGrid input)
     {
-        var grid = input.CharPixels().Grid().SetNeighbors(Neighbors.Sphere);
+        var grid = input.SetNeighbors(Neighbors.Sphere);
         var east = new Stack<Point>(grid.Where(p => p.Value == '>').Select(p => p.Key));
         var south = new Stack<Point>(grid.Where(p => p.Value == 'v').Select(p => p.Key));
         var steps = 1;
@@ -24,7 +24,7 @@ v.v..>>v.v
         return steps;
     }
 
-    bool Move(Grid<char> grid, Stack<Point> candidates, CompassPoint dir)
+    bool Move(CharGrid grid, Stack<Point> candidates, CompassPoint dir)
     {
         var ch = grid[candidates.Peek()];
         while (candidates.NotEmpty() && candidates.Pop() is var tile)

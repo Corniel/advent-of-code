@@ -5,12 +5,12 @@ public class Day_11
 {
     [Example(answer: 37, Example._1)]
     [Puzzle(answer: 2481, O.ms10)]
-    public int part_one(string input)
+    public int part_one(CharPixels input)
         => Plane.Init(input, Plane.DirectNeighbors).Simulate(4);
 
     [Example(answer: 26, Example._1)]
     [Puzzle(answer: 2227, O.ms10)]
-    public long part_two(string input)
+    public long part_two(CharPixels input)
         => Plane.Init(input, Plane.InSightNeighbors).Simulate(5);
 
     class Plane : Grid<Seat>
@@ -33,9 +33,8 @@ public class Day_11
             return Tiles.Count(seat => seat.Occupied);
         }
 
-        public static Plane Init(string input, GridNeighbors<Seat> neighbors)
+        public static Plane Init(CharPixels chars, GridNeighbors<Seat> neighbors)
         {
-            var chars = input.CharPixels();
             var plane = new Plane(chars.Cols, chars.Rows);
             var seats = chars.Where(p => p.Value == 'L').Select(p => p.Key);
 

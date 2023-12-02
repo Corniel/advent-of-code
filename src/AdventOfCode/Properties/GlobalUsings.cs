@@ -26,3 +26,4 @@ global using System.Text.RegularExpressions;
 global using static System.Linq.Enumerable;
 global using CategoryAttribute = Advent_of_Code.CategoryAttribute;
 global using Int = System.Numerics.BigInteger;
+global using CharGrid = SmartAss.Collections.Grid<char>;

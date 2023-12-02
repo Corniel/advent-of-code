@@ -16,10 +16,10 @@ public class Day_17
         .##.#...
         #.##..##
         #.####..", O.ms)]
-    public int part_one(string input)
+    public int part_one(CharPixels input)
     {
         var space = new Space();
-        space.AddRange(input.CharPixels().Where(p => p.Value == '#').Select(p => new Point3D(p.Key.X, p.Key.Y, 0)));
+        space.AddRange(input.Where(p => p.Value == '#').Select(p => new Point3D(p.Key.X, p.Key.Y, 0)));
         space.Generations(6);
         return space.Count;
     }
@@ -37,10 +37,10 @@ public class Day_17
         .##.#...
         #.##..##
         #.####..", O.ms100)]
-    public int part_two(string input)
+    public int part_two(CharPixels input)
     {
         var space = new HyperSpace();
-        space.AddRange(input.CharPixels().Where(p => p.Value == '#').Select(p => new Point4D(p.Key.X, p.Key.Y, 0, 0)));
+        space.AddRange(input.Where(p => p.Value == '#').Select(p => new Point4D(p.Key.X, p.Key.Y, 0, 0)));
         space.Generations(6);
         return space.Count;
     }

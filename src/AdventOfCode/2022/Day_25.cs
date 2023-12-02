@@ -5,7 +5,7 @@ public class Day_25
 {
     [Example(answer: "1=-0-2", "1=-0-2")]
     [Puzzle(answer: "2=222-2---22=1=--1-2", O.μs10)]
-    public string part_one(string input) => SNAFU(input.Lines(Number).Sum());
+    public string part_one(Lines input) => SNAFU(input.As(Number).Sum());
 
     [Puzzle(answer: "You only need 49 stars to boost it", "You only need 49 stars to boost it")]
     public string part_two(string input) => input;

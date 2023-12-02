@@ -7,15 +7,15 @@ public class Day_14
 Comet can fly 14 km/s for 10 seconds, but then must rest for 127 seconds.
 Dancer can fly 16 km/s for 11 seconds, but then must rest for 162 seconds.")]
     [Puzzle(answer: 2640, O.μs)]
-    public int part_one(string input) => input.Lines(Reindeer.Parse).Select(r => r.Travel(2503)).Max();
+    public int part_one(Lines input) => input.As(Reindeer.Parse).Select(r => r.Travel(2503)).Max();
 
     [Example(answer: 1564, @"
 Comet can fly 14 km/s for 10 seconds, but then must rest for 127 seconds.
 Dancer can fly 16 km/s for 11 seconds, but then must rest for 162 seconds.")]
     [Puzzle(answer: 1102, O.μs100)]
-    public int part_two(string input)
+    public int part_two(Lines input)
     {
-        var distances = input.Lines(Reindeer.Parse).ToDictionary(r => r, r => 0);
+        var distances = input.As(Reindeer.Parse).ToDictionary(r => r, r => 0);
         var points = distances.ToDictionary(kvp => kvp.Key, kvp => 0);
 
         for (var s = 0; s < 2503; s++)

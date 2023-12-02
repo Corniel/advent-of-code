@@ -5,12 +5,12 @@ public class Day_12
 {
     [Example(answer: 25, "F10;N3;F7;R90;F11")]
     [Puzzle(answer: 1631, O.μs10)]
-    public int part_one(string input)
+    public int part_one(Lines input)
     {
         var ferry = Point.O;
         var orientation = Vector.E;
 
-        foreach (var i in input.Lines(Instruction.Parse))
+        foreach (var i in input.As(Instruction.Parse))
         {
             if (i.Action == Action.F) { ferry += orientation * i.Distance; }
             else if (i.Rotation != 0) { orientation = orientation.Rotate(i.Rotation); }
@@ -21,12 +21,12 @@ public class Day_12
 
     [Example(answer: 286, "F10;N3;F7;R90;F11")]
     [Puzzle(answer: 58606, O.μs10)]
-    public int part_two(string input)
+    public int part_two(Lines input)
     {
         var ferry = Point.O;
         var waypoint = new Point(+10, -1);
 
-        foreach (var i in input.Lines(Instruction.Parse))
+        foreach (var i in input.As(Instruction.Parse))
         {
             if (i.Action == Action.F) { ferry += (waypoint - Point.O) * i.Distance; }
             else if (i.Rotation != default) { waypoint = waypoint.Rotate(Point.O, i.Rotation); }

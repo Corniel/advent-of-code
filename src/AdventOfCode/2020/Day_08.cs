@@ -5,18 +5,18 @@ public class Day_08
 {
     [Example(answer: 5, "nop +0; acc +1; jmp +4; acc +3; jmp -3; acc -99; acc +1; jmp -4; acc +6")]
     [Puzzle(answer: 1584, O.μs10)]
-    public int part_one(string input)
+    public int part_one(Lines input)
     {
-        var instructions = input.Lines(Instruction.Parse).ToArray();
+        var instructions = input.As(Instruction.Parse).ToArray();
         Execute(instructions, -1, out var accumulator);
         return accumulator;
     }
 
     [Example(answer: 8, "nop +0; acc +1; jmp +4; acc +3; jmp -3; acc -99;acc +1; jmp -4; acc +6")]
     [Puzzle(answer: 920, O.ms)]
-    public int part_two(string input)
+    public int part_two(Lines input)
     {
-        var instructions = input.Lines(Instruction.Parse).ToArray();
+        var instructions = input.As(Instruction.Parse).ToArray();
 
         for (var fix_pointer = 0; fix_pointer < instructions.Length; fix_pointer++)
         {

@@ -18,10 +18,10 @@ public class Day_16
     };
 
     [Puzzle(answer: 103, O.μs100)]
-    public int part_one(string input) => input.Lines(Sue.Parse).Single(sue => sue.Matches1(Aunt)).Id;
+    public int part_one(Lines input) => input.As(Sue.Parse).Single(sue => sue.Matches1(Aunt)).Id;
 
     [Puzzle(answer: 405, O.μs100)]
-    public long part_two(string input) => input.Lines(Sue.Parse).Single(sue => sue.Matches2(Aunt)).Id;
+    public long part_two(Lines input) => input.As(Sue.Parse).Single(sue => sue.Matches2(Aunt)).Id;
 
     class Sue(int id) : Dictionary<Compount, int>
     {

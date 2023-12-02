@@ -4,8 +4,8 @@
 public class Day_02
 {
     [Example(answer: 15, "A Y;B X;C Z")]
-    [Puzzle(answer: 12458, O.μs100)]
-    public int part_one(string input) => input.Lines(One).Sum();
+    [Puzzle(answer: 12458, O.μs10)]
+    public int part_one(Lines lines) => lines.As(One).Sum();
 
     static int One(string battle) => battle switch
     {
@@ -15,8 +15,8 @@ public class Day_02
     };
 
     [Example(answer: 12, "A Y;B X;C Z")]
-    [Puzzle(answer: 12683, O.μs100)]
-    public int part_two(string input) => input.Lines(Two).Sum();
+    [Puzzle(answer: 12683, O.μs10)]
+    public int part_two(Lines lines) => lines.As(Two).Sum();
 
     static int Two(string battle) => battle switch
     {

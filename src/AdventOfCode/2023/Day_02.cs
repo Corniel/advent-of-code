@@ -8,11 +8,11 @@ public class Day_02
     [Example(answer: 8, Example._1)]
     [Puzzle(answer: 2551, O.μs100)]
     public int part_one(Lines input)
-        => input.Select(Game.parse).Where(g => g.Hands.TrueForAll(h => h.Fits(fit))).Sum(g => g.Id);
+        => input.As(Game.parse).Where(g => g.Hands.TrueForAll(h => h.Fits(fit))).Sum(g => g.Id);
     
     [Example(answer: 2286, Example._1)]
     [Puzzle(answer: 62811, O.μs100)]
-    public int part_two(Lines input) => input.Select(Game.parse).Select(g => g.Smallest.Pow).Sum();
+    public int part_two(Lines input) => input.As(Game.parse).Select(g => g.Smallest.Pow).Sum();
 
     record Game(int Id, Hand[] Hands)
     {

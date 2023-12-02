@@ -13,7 +13,7 @@ public class Day_08
 
     static long MaxValue(Lines input, bool intermediate = false)
     {
-        var instructions = input.Select(Instruction.Parse).ToArray();
+        var instructions = input.As(Instruction.Parse).ToArray();
         var paramaters = Params.New(instructions.Select(instr => instr.Name).Distinct().Select(n => new Param(n, Const.Zero)));
         var max = 0L;
 

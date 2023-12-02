@@ -4,11 +4,11 @@
 public class Day_06
 {
     [Puzzle(answer: 400410, O.ms100)]
-    public long part_one(string input)
+    public long part_one(Lines input)
     {
         var grid = new Grid<bool>(1000, 1000);
         
-        foreach (var instruction in input.Lines(Instruction.Parse))
+        foreach (var instruction in input.As(Instruction.Parse))
         {
             foreach(var point in Points.Range(instruction.Start, instruction.End))
             {
@@ -24,11 +24,11 @@ public class Day_06
     }
 
     [Puzzle(answer: 15343601, O.ms100)]
-    public int part_two(string input)
+    public int part_two(Lines input)
     {
         var grid = new Grid<int>(1000, 1000);
 
-        foreach (var instruction in input.Lines(Instruction.Parse))
+        foreach (var instruction in input.As(Instruction.Parse))
         {
             foreach (var point in Points.Range(instruction.Start, instruction.End))
             {

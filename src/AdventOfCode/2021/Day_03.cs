@@ -5,9 +5,9 @@ public class Day_03
 {
     [Example(answer: 198, "00100;11110;10110;10111;10101;01111;00111;11100;10000;11001;00010;01010")]
     [Puzzle(answer: 845186, O.μs100)]
-    public ulong part_one(string input)
+    public ulong part_one(Lines input)
     {
-        var numbers = input.Lines(BinaryNumber.Parse).ToArray();
+        var numbers = input.As(BinaryNumber.Parse).ToArray();
         var size = numbers[0].Size;
         var threshold = numbers.Length / 2;
         var gamma = BinaryNumber.Empty(size);
@@ -30,9 +30,9 @@ public class Day_03
 
     [Example(answer: 230, "00100;11110;10110;10111;10101;01111;00111;11100;10000;11001;00010;01010")]
     [Puzzle(answer: 4636702, O.μs100)]
-    public ulong part_two(string input)
+    public ulong part_two(Lines input)
     {
-        var numbers = input.Lines(BinaryNumber.Parse).ToArray();
+        var numbers = input.As(BinaryNumber.Parse).ToArray();
         var oxygen = Select(numbers, true, numbers[0].Size);
         var co2 = Select(numbers, false, numbers[0].Size);
         return oxygen.Value * co2.Value;

@@ -12,11 +12,11 @@ public class Day_13
 
     [Example(answer: 140, Example._1)]
     [Puzzle(answer: 21909, O.μs100)]
-    public int part_two(string input)
+    public int part_two(Lines input)
     {
         var two = Package.Parse("[[2]]");
         var six = Package.Parse("[[6]]");
-        var packages = input.Lines(Package.Parse).Concat(new[] { two, six }).Order().ToList();
+        var packages = input.As(Package.Parse).Concat(new[] { two, six }).Order().ToList();
         return (packages.IndexOf(two) + 1) * (packages.IndexOf(six) + 1);
     }
 

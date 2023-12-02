@@ -5,11 +5,11 @@ public class Day_21
 {
     [Example(answer: 152, Example._1)]
     [Puzzle(answer: 158731561459602, O.μs100)]
-    public long part_one(string input) => Expressions(input).Value("root");
+    public long part_one(Lines input) => Expressions(input).Value("root");
 
     [Example(answer: 301, Example._1)]
     [Puzzle(answer: 3769668716709, O.μs100)]
-    public long part_two(string input)
+    public long part_two(Lines input)
     {
         var pars = Expressions(input);
         pars["humn"] = Expr.Variable();
@@ -18,7 +18,7 @@ public class Day_21
         return pars["humn"].Value(pars);
     }
 
-    static Params Expressions(string input) => Params.New(input.Lines(Param));
+    static Params Expressions(Lines input) => Params.New(input.As(Param));
 
     static Param Param(string line) => new(line[0..4], line.Int32N() is { } n 
         ? Expr.Const(n) 

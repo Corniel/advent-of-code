@@ -5,13 +5,13 @@ public class Day_15
 {
     [Example(answer: 26, null, 10, Example._1)]
     [Puzzle(answer: 4665948, null, 2_000_000, O.μs10)]
-    public int part_one(string input, int y) => input.Lines(Instruction.Parse).Select(i => i.Range(y)).Merge().Sum(r => r.Size);
+    public int part_one(Lines input, int y) => input.As(Instruction.Parse).Select(i => i.Range(y)).Merge().Sum(r => r.Size);
 
     [Example(answer: 56000011, null, 20, Example._1)]
     [Puzzle(answer: 13543690671045, null, 4_000_000, O.s)]
-    public long part_two(string input, int max)
+    public long part_two(Lines input, int max)
     {
-        var instr = input.Lines(Instruction.Parse).ToArray();
+        var instr = input.As(Instruction.Parse).ToArray();
 
         for (var y = 0; y <= max; y++)
         {

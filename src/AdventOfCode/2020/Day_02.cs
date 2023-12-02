@@ -5,11 +5,11 @@ public class Day_02
 {
     [Example(answer: 2, "1-3 a: abcde;1-3 b: cdefg;2-9 c: ccccccccc")]
     [Puzzle(answer: 536, O.μs100)]
-    public int part_one(string input) => input.Lines(Password.Parse).Count(p => p.Policy.ValidForOne(p.Chars));
+    public int part_one(Lines input) => input.As(Password.Parse).Count(p => p.Policy.ValidForOne(p.Chars));
 
     [Example(answer: 1, "1-3 a: abcde;1-3 b: cdefg;2-9 c: ccccccccc")]
     [Puzzle(answer: 558, O.μs100)]
-    public int part_two(string input) => input.Lines(Password.Parse).Count(p => p.Policy.ValidForTwo(p.Chars));
+    public int part_two(Lines input) => input.As(Password.Parse).Count(p => p.Policy.ValidForTwo(p.Chars));
 
     record PasswordPolicy(int Min, int Max, char Char)
     {

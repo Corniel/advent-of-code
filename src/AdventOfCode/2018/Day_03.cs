@@ -5,14 +5,14 @@ public class Day_03
 {
     [Example(answer: 4, "#1 @ 1,3: 4x4\r\n#2 @ 3,1: 4x4\r\n#3 @ 5,5: 2x2")]
     [Puzzle(answer: 107043, O.ms10)]
-    public int part_one(string input)
-        => Counters(input.Lines(Claim.Parse)).Count(c => c.Count > 1);
+    public int part_one(Lines input)
+        => Counters(input.As(Claim.Parse)).Count(c => c.Count > 1);
 
     [Example(answer: 3, "#1 @ 1,3: 4x4\r\n#2 @ 3,1: 4x4\r\n#3 @ 5,5: 2x2")]
     [Puzzle(answer: 346, O.ms10)]
-    public int part_two(string input)
+    public int part_two(Lines input)
     {
-        var claims = input.Lines(Claim.Parse).ToArray();
+        var claims = input.As(Claim.Parse).ToArray();
         var counters = Counters(claims);
         return claims.First(c => c.Squares().All(sq => counters[sq] == 1)).Id;
     }

@@ -5,17 +5,17 @@ public class Day_07
 {
     [Example(answer: 65079, "123 -> x;456 -> y;x AND y -> d;x OR y -> e;x LSHIFT 2 -> f;y RSHIFT 2 -> g;NOT x -> h;NOT y -> a")]
     [Puzzle(answer: 956, O.μs100)]
-    public long part_one(string input) => Pars(input).Value("a");
+    public long part_one(Lines input) => Pars(input).Value("a");
 
     [Puzzle(answer: 40149, O.μs100)]
-    public long part_two(string input)
+    public long part_two(Lines input)
     {
         var pars = Pars(input);
         pars["b"] = SmartAss.Expressions.Expr.Const(956);
         return pars.Value("a");
     }
 
-    public static Params Pars(string input) => Params.New(input.Lines(Param));
+    public static Params Pars(Lines input) => Params.New(input.As(Param));
 
     static Param Param(string line)
     {

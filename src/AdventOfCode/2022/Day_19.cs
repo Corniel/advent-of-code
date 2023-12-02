@@ -7,10 +7,10 @@ public class Day_19
     [Example(answer: 12, "Blueprint 1: Each ore robot costs 2 ore. Each clay robot costs 3 ore. Each obsidian robot costs 3 ore and 08 clay. Each geode robot costs 3 ore and 12 obsidian.")]
     [Example(answer: 00, "Blueprint 1: Each ore robot costs 3 ore. Each clay robot costs 9 ore. Each obsidian robot costs 2 ore and 19 clay. Each geode robot costs 9 ore and 13 obsidian.")]
     [Puzzle(answer: 1081, O.ms100)]
-    public int part_one(string input) => input.Lines(Blueprint.Parse).Sum(p => Produces(p, 24) * p.Id);
+    public int part_one(Lines input) => input.As(Blueprint.Parse).Sum(p => Produces(p, 24) * p.Id);
 
     [Puzzle(answer: 2415, O.ms100)]
-    public int part_two(string input) => input.Lines(Blueprint.Parse).Take(3).Select(p => Produces(p, 32)).Product();
+    public int part_two(Lines input) => input.As(Blueprint.Parse).Take(3).Select(p => Produces(p, 32)).Product();
 
     static int Produces(Blueprint p, int turns) => Max(p, new State(turns, default, new(Ore: 1)), []);
 

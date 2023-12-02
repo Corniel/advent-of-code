@@ -14,7 +14,7 @@ public class Day_02
     static string Solve(Lines input, Point point, Dictionary<Point, char> codes)
     {
         var code = new StringBuilder();
-        foreach (var moves in input.Select(line => line.Select(Parse)))
+        foreach (var moves in input.As(line => line.Select(Parse)))
         {
             foreach (var move in moves)
             {

@@ -5,11 +5,11 @@ public class Day_15
 {
     [Example(answer: 40, Example._1)]
     [Puzzle(answer: 595, O.ms10)]
-    public int part_one(CharPixels chars)=> Run(chars.Grid(ch => ch - '0'));
+    public int part_one(CharPixels chars)=> Run(chars.Grid(c => c.Digit()));
 
     [Example(answer: 315, Example._1)]
     [Puzzle(answer: 2914, O.s)]
-    public int part_two(CharPixels chars) => Run(Scale(chars.Grid(ch => ch - '0')));
+    public int part_two(CharPixels chars) => Run(Scale(chars.Grid(c => c.Digit())));
 
     static int Run(Grid<int> costs)
     {

@@ -117,7 +117,7 @@ public class Day_22
                 yield return ch;
                 factor = 0;
             }
-            else factor = factor * 10 + ch - '0';
+            else factor = factor * 10 + ch.Digit();
         }
         yield return factor;
     }

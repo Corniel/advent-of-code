@@ -52,7 +52,7 @@ public class SyntaxParser
 
         if (number < 0 || number > 9) throw SyntaxError.UnexpectedToken((char)(number + '0'), "[0123456789]", Position - 1);
 
-        while (!EndOfInput && char.IsDigit(ReadAhead()))
+        while (!EndOfInput && ReadAhead().IsDigit())
         {
             checked
             {

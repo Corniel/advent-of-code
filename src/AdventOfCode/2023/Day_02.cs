@@ -3,12 +3,10 @@
 [Category(Category.ExpressionParsing)]
 public class Day_02
 {
-    readonly Hand fit = new(12, 13, 14);
-
     [Example(answer: 8, Example._1)]
     [Puzzle(answer: 2551, O.μs100)]
     public int part_one(Lines lines)
-        => lines.As(Game.parse).Where(g => g.Hands.TrueForAll(h => h.Fits(fit))).Sum(g => g.Id);
+        => lines.As(Game.parse).Where(g => g.Hands.TrueForAll(h => h.Fits)).Sum(g => g.Id);
     
     [Example(answer: 2286, Example._1)]
     [Puzzle(answer: 62811, O.μs100)]
@@ -27,7 +25,7 @@ public class Day_02
     {
         public int Pow => R * G * B;
 
-        public bool Fits(Hand other) => other.R >= R && other.G >= G && other.B >= B;
+        public bool Fits => 12 >= R && 13 >= G && 14 >= B;
 
         public static Hand Parse(string str)
         {

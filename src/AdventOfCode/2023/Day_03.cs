@@ -6,13 +6,13 @@ public class Day_03
     [Example(answer: 4361, Example._1)]
     [Example(answer: 517021, Example._2)]
     [Puzzle(answer: 544664, O.ms10)]
-    public int part_one(CharGrid grid) => Scan(grid).Parts;
+    public int part_one(CharGrid grid) => Scan(grid, 1);
 
     [Example(answer: 467835, Example._1)]
     [Puzzle(answer: 84495585, O.ms10)]
-    public int part_two(CharGrid grid) => Scan(grid).Ratio;
+    public int part_two(CharGrid grid) => Scan(grid, 2);
 
-    private static Result Scan(CharGrid grid)
+    private static int Scan(CharGrid grid, int part)
     {
         grid.SetNeighbors(Neighbors.Grid, CompassPoints.All);
 
@@ -30,6 +30,7 @@ public class Day_03
             }
             else sum += Score(grid, ref n, span, parts);
         }
+        if (part == 1) return sum;
 
         foreach (var tile in grid.Where(p => p.Value == '*'))
         {
@@ -40,7 +41,7 @@ public class Day_03
                 ratio += ps.Product(p => p.Val);
             }
         }
-        return new(sum, ratio);
+        return ratio;
 
         int Score(CharGrid grid, ref int n, List<Point> span, List<Part> parts)
         {
@@ -55,6 +56,4 @@ public class Day_03
     }
 
     record struct Part(int Val, Point[] Span);
-
-    record struct Result(int Parts, int Ratio);
 }

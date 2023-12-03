@@ -8,19 +8,17 @@ public class Day_02
     [Puzzle(answer: 1586300, O.μs100)]
     public int part_one(Lines lines) => lines.As(WrappingPaper).Sum();
 
-    static int WrappingPaper(string line)
-    {
-        var pars = line.Int32s().ToArray();
-        var area0 = pars[0] * pars[1];
-        var area1 = pars[0] * pars[2];
-        var area2 = pars[1] * pars[2];
-        return 2 * (area0 + area1 + area2) + Math.Min(area0, Math.Min(area1, area2));
-    }
-
     [Example(answer: 34, "2x3x4")]
     [Example(answer: 14, "1x1x10")]
     [Puzzle(answer: 3737498, O.μs100)]
     public int part_two(Lines lines) => lines.As(WrappingRibbon).Sum();
+
+    static int WrappingPaper(string line)
+    {
+        var pars = line.Int32s().ToArray();
+        int[] areas = [pars[0] * pars[1], pars[0] * pars[2], pars[1] * pars[2]];
+        return 2 * areas.Sum() + areas.Min();
+    }
 
     static int WrappingRibbon(string line)
     {

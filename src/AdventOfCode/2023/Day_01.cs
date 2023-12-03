@@ -21,7 +21,7 @@ public class Day_01
 
         int? Digit(char ch, int i)
         {
-            if (char.IsDigit(ch)) return ch - '0';
+            if (ch.TryDigit() is { } d) return d;
             else return words && line[i..] is { Length: >= 3 } ln
                 ? Range(1, 9).FirstOrNone(n => ln.StartsWith(ws[n]))
                 : null;

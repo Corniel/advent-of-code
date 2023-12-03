@@ -9,7 +9,7 @@ public class Day_09
         => map.SetNeighbors(Neighbors.Grid).Positions
             .Where(point => map.Neighbors[point]
             .All(n => map[n] > map[point]))
-            .Sum(p => map[p] - '0' + 1);
+            .Sum(p => map[p].Digit() + 1);
 
     [Example(answer: 1134, Example._1)]
     [Puzzle(answer: 964712, O.ms)]

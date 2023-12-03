@@ -65,7 +65,7 @@ public class Day_18
             var tokens = new List<Token>();
             foreach (var ch in str.StripChars(" \r\n"))
             {
-                if (char.IsDigit(ch)) { tokens.Add(new Number(ch - '0')); }
+                if (ch.IsDigit()) { tokens.Add(new Number(ch.Digit())); }
                 else if (ch == '+') { tokens.Add(new Add()); }
                 else if (ch == '*') { tokens.Add(new Multiply()); }
                 else if (ch == '(') { tokens.Add(new ParentheseOpen()); }

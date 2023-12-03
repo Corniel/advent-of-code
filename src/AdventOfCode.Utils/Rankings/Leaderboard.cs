@@ -38,28 +38,34 @@ public class Leaderboard
        => Data.RankingFiles()
        .Where(f => f.Local.Exists)
        .Select(f => f.Year)
+        .Where(y => y >= 2017)
        .Distinct();
 
     static FileInfo FileLocation(AdventDate date) => new(Path.Combine(Data.Location.FullName, $"{date.Year}/day_{date.Day:00}_leaderboard.html"));
 
-    [TestCaseSource(nameof(Years))]
-    public void Fetch_100(int year)
-    {
-        var reference = new AdventDate(year, null, 2);
+    [Test]
+    public void Fetch_all() => Fetch(new AdventDate(null, null, 2));
 
+    [TestCaseSource(nameof(Years))]
+    public void Fetch_100(int year) => Fetch(new AdventDate(year, null, 2));
+
+    private static void Fetch(AdventDate reference)
+    {
         var enties = new List<LeaderboardEntry>();
 
-        foreach (var date in AdventDate.AllAvailable().Where(d => d.Matches(reference)))
+        foreach (var date in AdventDate.AllAvailable().Where(d => d.Matches(reference) && d.Year >= 2017))
         {
             using var reader = FileLocation(date).OpenText();
             enties.AddRange(LeaderboardEntry.Read(date.Year.Value, reader.ReadToEnd())
                 .Where(e => e.Date.Matches(reference) && e.Pos == 100));
         }
-        var factor = 42d / enties.Max(e => e.Time.Ticks);
+        var factor = 50d / enties.Max(e => e.Time.Ticks);
 
-        foreach(var entry in enties)
+        foreach (var entry in enties)
         {
-            var stars = new string('*', (int)(entry.Time.Ticks * factor));
+            var n = (int)Math.Ceiling(entry.Time.Ticks * factor);
+
+            var stars = new string('*', n);
 
             $"{entry.Date.Year}\t{entry.Date.Day}\t{entry.Date.Part}\t{entry.Pos}\t{entry.Time}\t{stars}".Console();
         }

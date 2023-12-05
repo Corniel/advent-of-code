@@ -11,7 +11,7 @@ public class Day_02
     [Puzzle(answer: 1903644897, O.μs10)]
     public long part_two(Lines lines) => new Submarine().Transpose(lines.As(Instruction.Parse), (s, i) => s.Two(i)).Last().Produces;
 
-    record Submarine(long Depth = 0, long Height = 0, long Aim = 0 ) 
+    record Submarine(long Depth = 0, long Height = 0, long Aim = 0) 
     {
         public long Produces => Height * Depth;
         public Submarine One(Instruction i) => i.Type switch

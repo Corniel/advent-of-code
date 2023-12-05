@@ -11,18 +11,14 @@ public class Day_12
     [Puzzle(answer: 65402, O.μs100)]
     public int part_two(string str) => Sum(JsonDocument.Parse(str).RootElement);
 
-    static int Sum(JsonElement elm)
+    static int Sum(JsonElement elm) => elm.ValueKind switch
     {
-        return elm.ValueKind switch
-        {
-            JsonValueKind.Number => elm.GetInt32(),
-            JsonValueKind.Object => IsRed(elm) ? 0 : elm.EnumerateObject().Sum(child => Sum(child.Value)),
-            JsonValueKind.Array => elm.EnumerateArray().Sum(child => Sum(child)),
-            _ => 0,
-        };
-    }
+        JsonValueKind.Number => elm.GetInt32(),
+        JsonValueKind.Object => IsRed(elm) ? 0 : elm.EnumerateObject().Sum(child => Sum(child.Value)),
+        JsonValueKind.Array => elm.EnumerateArray().Sum(child => Sum(child)),
+        _ => 0,
+    };
 
-    static bool IsRed(JsonElement elm)
-        => elm.EnumerateObject()
+    static bool IsRed(JsonElement elm) => elm.EnumerateObject()
         .Any(prop => prop.Value.ValueKind == JsonValueKind.String && prop.Value.GetString() == "red");
  }

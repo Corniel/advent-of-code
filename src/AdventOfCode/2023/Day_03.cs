@@ -6,35 +6,35 @@ public class Day_03
     [Example(answer: 4361, Example._1)]
     [Example(answer: 517021, Example._2)]
     [Puzzle(answer: 544664, O.ms10)]
-    public int part_one(CharGrid grid) => Scan(grid, 1);
+    public int part_one(CharGrid map) => Scan(map, 1);
 
     [Example(answer: 467835, Example._1)]
     [Puzzle(answer: 84495585, O.ms10)]
-    public int part_two(CharGrid grid) => Scan(grid, 2);
+    public int part_two(CharGrid map) => Scan(map, 2);
 
-    private static int Scan(CharGrid grid, int part)
+    private static int Scan(CharGrid map, int part)
     {
-        grid.SetNeighbors(Neighbors.Grid, CompassPoints.All);
+        map.SetNeighbors(Neighbors.Grid, CompassPoints.All);
 
         var span = new List<Point>();
         var parts = new List<Part>();
         var n = 0; var sum = 0; var ratio = 0;
 
-        foreach (var tile in grid)
+        foreach (var tile in map)
         {
-            if (tile.Key.X == 0) sum += Score(grid, ref n, span, parts);
+            if (tile.Key.X == 0) sum += Score(map, ref n, span, parts);
             if (tile.Value.TryDigit() is { } d)
             {
                 span.Add(tile.Key);
                 n = n * 10 + d;
             }
-            else sum += Score(grid, ref n, span, parts);
+            else sum += Score(map, ref n, span, parts);
         }
         if (part == 1) return sum;
 
-        foreach (var tile in grid.Where(p => p.Value == '*'))
+        foreach (var tile in map.Where(p => p.Value == '*'))
         {
-            var neighbors = grid.Neighbors[tile.Key].ToArray();
+            var neighbors = map.Neighbors[tile.Key].ToArray();
 
             if (parts.Where(p => p.Span.Exists(x => neighbors.Contains(x))).ToArray() is { Length: 2 } ps)
             {
@@ -52,7 +52,7 @@ public class Day_03
             return score;
         }
 
-        bool IsSimbol(Point p) => grid[p] is { } c && !c.IsDigit() && c != '.';
+        bool IsSimbol(Point p) => map[p] is { } c && !c.IsDigit() && c != '.';
     }
 
     record struct Part(int Val, Point[] Span);

@@ -9,7 +9,7 @@ public class Day_20
 
     [Example(answer: 1623178306, "1,2,-3,3,-2,0,4")]
     [Puzzle(answer: 3390007892081, O.ms100)]
-    public long part_two(Longs str) => Decrypt(str, 811589153, 10);
+    public long part_two(Longs numbers) => Decrypt(numbers, 811589153, 10);
 
     static long Decrypt(Longs numbers, int key, int times)
     {

@@ -1,6 +1,6 @@
 ﻿namespace Advent_of_Code;
 
-[AttributeUsage(AttributeTargets.Method)]
+[AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
 public class PuzzleAttribute : Attribute, ITestBuilder, IApplyToTest, IImplyFixture
 {
     public PuzzleAttribute(object answer, params object[] input)

@@ -19,7 +19,7 @@ public class Day_03
 
     static Point Location(int n)
     {
-        int depth = (1 + (n - 1).Sqrt()) / 2;
+        int depth = (1 + (n - 1).Sqrt().Floor()) / 2;
         var size = depth * 2;
         var index = n - (size - 1).Sqr();
         var rot = (DiscreteRotation)(index / size);

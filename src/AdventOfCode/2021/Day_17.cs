@@ -16,7 +16,7 @@ public class Day_17
     public long part_two(string str)
     {
         var area = Area.Parse(str);
-        var x_lo = (int)Math.Ceiling((-1 + Math.Sqrt(8 * area.X_lo + 1)) / 2);
+        var x_lo = ((-1 + (8 * area.X_lo + 1).Sqrt()) / 2).Ceil();
         return Points
             .Range(new Point(x_lo, area.Y_lo), new Point(area.X_hi, -area.Y_lo))
             .Count(v => Hits(v.Vector(), area));

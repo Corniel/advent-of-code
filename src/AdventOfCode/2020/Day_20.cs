@@ -143,7 +143,7 @@ public class Day_20
 
         public static Tiles Create(Tile[] tiles)
         {
-            var matrix = new Tiles((int)Math.Sqrt(tiles.Length / 8d));
+            var matrix = new Tiles((tiles.Length / 8d).Sqrt().Floor());
             matrix.FillO(tiles);
             matrix.Fill();
             return matrix;

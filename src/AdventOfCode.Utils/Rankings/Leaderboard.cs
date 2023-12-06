@@ -63,7 +63,7 @@ public class Leaderboard
 
         foreach (var entry in enties)
         {
-            var n = (int)Math.Ceiling(entry.Time.Ticks * factor);
+            var n = (entry.Time.Ticks * factor).Ceil();
 
             var stars = new string('*', n);
 

@@ -19,7 +19,7 @@ public class Day_07
         var height = 0;
         while (height++ < int.MaxValue)
         {
-            var fuel = crabs.Sum(crab => costs(Math.Abs(crab - height)));
+            var fuel = crabs.Sum(crab => costs((crab - height).Abs()));
             if (fuel > optimum) return optimum;
             else { optimum = fuel; }
         }

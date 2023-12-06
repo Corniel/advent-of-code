@@ -103,15 +103,9 @@ public class Day_12
 
         public int TotalEnergy => PotentialEnergy * KeneticEnergy;
 
-        public int PotentialEnergy
-            => Math.Abs(Position.X)
-            + Math.Abs(Position.Y)
-            + Math.Abs(Position.Z);
+        public int PotentialEnergy => Position.X.Abs() + Position.Y.Abs() + Position.Z.Abs();
 
-        public int KeneticEnergy
-            => Math.Abs(Velocity.X)
-            + Math.Abs(Velocity.Y)
-            + Math.Abs(Velocity.Z);
+        public int KeneticEnergy => Velocity.X.Abs() + Velocity.Y.Abs() + Velocity.Z.Abs();
 
         public static Moon Parse(string line) => new(Ctor.New<Point3D>(line.Int32s()), default);
 
@@ -121,9 +115,9 @@ public class Day_12
             {
                 foreach (var other in moons)
                 {
-                    var x = Math.Sign(other.Position.X - moon.Position.X);
-                    var y = Math.Sign(other.Position.Y - moon.Position.Y);
-                    var z = Math.Sign(other.Position.Z - moon.Position.Z);
+                    var x = (other.Position.X - moon.Position.X).Sign();
+                    var y = (other.Position.Y - moon.Position.Y).Sign();
+                    var z = (other.Position.Z - moon.Position.Z).Sign();
                     moon.Velocity = moon.Velocity.Adjust(x, y, z);
                 }
             }

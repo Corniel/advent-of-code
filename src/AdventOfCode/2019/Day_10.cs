@@ -131,9 +131,9 @@ public class Day_10
         return last.Astroid.X * 100 + last.Astroid.Y;
     }
 
-    public readonly struct Relation
+    readonly struct Relation
     {
-        private Relation(Point astroid, double angle, double distance)
+        Relation(Point astroid, double angle, double distance)
         {
             Astroid = astroid;
             Angle = angle;
@@ -149,11 +149,11 @@ public class Day_10
         public static Relation Create(Point station, Point astroid)
         {
             var v = station - astroid;
-            return new Relation(astroid, v.Angle, Math.Sqrt(v.X * v.X + v.Y * v.Y));
+            return new Relation(astroid, v.Angle, (v.X.Sqr() + v.Y.Sqr()).Sqrt());
         }
     }
 
-    public static class Astroids
+    static class Astroids
     {
         public static IEnumerable<Relation> Relations(Point station, IEnumerable<Point> androids)
             => androids

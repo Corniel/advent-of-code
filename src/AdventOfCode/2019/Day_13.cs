@@ -16,7 +16,7 @@ public class Day_13
 
         while (!computer.Finished)
         {
-            var move = Math.Sign(game.Ball.X - game.Paddle.X);
+            var move = (game.Ball.X - game.Paddle.X).Sign();
             var results = computer.Run(new RunArguments(
                 haltOnInput: true,
                 haltOnOutput: false, move));

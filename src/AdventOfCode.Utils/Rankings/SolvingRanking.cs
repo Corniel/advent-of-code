@@ -20,6 +20,9 @@ public sealed class SolvingRanking(IReadOnlyList<SolvingRankingParticipant> part
 
         var sb = new StringBuilder();
 
+        sb.AppendLine($"# {Participants[0].Results.First().Date.Year}");
+        sb.AppendLine();
+
         AppendHeader(rank_length, score_length, avg_length, name_length, days, sb);
         AppendHeaderLine(rank_length, score_length, avg_length, name_length, days, sb);
 
@@ -28,6 +31,8 @@ public sealed class SolvingRanking(IReadOnlyList<SolvingRankingParticipant> part
         {
             Append(p, ++pos, rank_length, score_length, avg_length, name_length, days, sb);
         }
+        sb.AppendLine();
+        sb.AppendLine($"Last solved: {Participants.SelectMany(p => p.Results).Max(r => r.Solved):yyyy-MM-dd HH:mm}");
         return sb.ToString();
     }
 

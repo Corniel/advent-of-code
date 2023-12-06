@@ -4,7 +4,7 @@
 public class Day_11
 {
     [Example(answer: 10605, Example._1)]
-    [Puzzle(answer: 121450, O.μs10)]
+    [Puzzle(answer: 121450L, O.μs10)]
     public long part_one(GroupedLines groups) => Simulate(groups, 20, 3);
 
     [Example(answer: 2713310158, Example._1)]

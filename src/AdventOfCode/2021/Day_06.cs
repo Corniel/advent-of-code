@@ -4,7 +4,7 @@
 public class Day_06
 {
     [Example(answer: 5934, @"3,4,3,1,2")]
-    [Puzzle(answer: 372300, O.μs)]
+    [Puzzle(answer: 372300L, O.μs)]
     public long part_one(Ints numbers) => Simulate(numbers, 80);
 
     [Example(answer: 26984457539, @"3,4,3,1,2")]

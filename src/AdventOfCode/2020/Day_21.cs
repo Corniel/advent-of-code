@@ -9,7 +9,7 @@ public class Day_21
         sqjhc fvjkl (contains soy)
         sqjhc mxmxvkd sbzzf (contains fish)")]
     [Puzzle(answer: 2282, O.μs100)]
-    public long part_one(Lines lines)
+    public int part_one(Lines lines)
     {
         var foods = lines.As(Food.Parse).ToArray();
         var allergens = Allergen.Init(foods).Select(allergen => allergen.Ingredient).ToArray();

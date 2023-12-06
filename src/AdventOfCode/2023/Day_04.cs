@@ -5,7 +5,7 @@ public class Day_04
 {
     [Example(answer: 13, Example._1)]
     [Puzzle(answer: 28750, O.μs100)]
-    public long part_one(Lines lines) => lines.As(Card.Parse).Sum(c => c.Points);
+    public int part_one(Lines lines) => lines.As(Card.Parse).Sum(c => c.Points);
 
     [Example(answer: 30, Example._1)]
     [Puzzle(answer: 10212704, O.μs100)]

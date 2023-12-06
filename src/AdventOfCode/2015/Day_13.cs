@@ -20,7 +20,7 @@ David would gain 41 happiness units by sitting next to Carol.")]
     public int part_one(Lines lines) => FindHappiness(lines);
 
     [Puzzle(answer: 640, O.ms)]
-    public long part_two(Lines lines) => FindHappiness(lines, +1);
+    public int part_two(Lines lines) => FindHappiness(lines, +1);
 
     static int FindHappiness(Lines lines, int neutral = 0)
     {

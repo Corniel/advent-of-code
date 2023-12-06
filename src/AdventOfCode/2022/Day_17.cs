@@ -4,7 +4,7 @@
 public class Day_17
 {
     [Example(answer: 3068, ">>><<><>><<<>><>>><<<>>><<<><<<>><>><<>>")]
-    [Puzzle(answer: 3168, O.μs100)]
+    [Puzzle(answer: 3168L, O.μs100)]
     public long part_one(string str) => Play(str, 2022);
 
     [Example(answer: 1514285714288, ">>><<><>><<<>><>>><<<>>><<<><<<>><>><<>>")]

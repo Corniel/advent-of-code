@@ -4,7 +4,7 @@
 public class Day_14
 {
     [Example(answer: 1588, "NNCB;CH -> B;HH -> N;CB -> H;NH -> C;HB -> C;HC -> B;HN -> C;NN -> C;BH -> H;NC -> B;NB -> B;BN -> B;BB -> N;BC -> B;CC -> N;CN -> C")]
-    [Puzzle(answer: 3247, O.μs10)]
+    [Puzzle(answer: 3247L, O.μs10)]
     public long part_one(Lines lines) => Run(lines, 10);
 
     [Example(answer: 2188189693529, "NNCB;CH -> B;HH -> N;CB -> H;NH -> C;HB -> C;HC -> B;HN -> C;NN -> C;BH -> H;NC -> B;NB -> B;BN -> B;BB -> N;BC -> B;CC -> N;CN -> C")]

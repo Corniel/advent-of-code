@@ -9,7 +9,7 @@ public class Day_05
 
     [Example(answer: 10, "0, 3, 0, 1, -3")]
     [Puzzle(answer: 25608480, O.ms10)]
-    public long part_two(Ints numbers) => Simulate(numbers, 3);
+    public int part_two(Ints numbers) => Simulate(numbers, 3);
 
     static int Simulate(Ints input, int threshold = int.MaxValue)
     {

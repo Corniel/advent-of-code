@@ -7,7 +7,7 @@ public class Day_16
     public int part_one(Lines lines) => lines.As(Sue.Parse).Single(sue => sue.Matches1(Aunt)).Id;
 
     [Puzzle(answer: 405, O.μs100)]
-    public long part_two(Lines lines) => lines.As(Sue.Parse).Single(sue => sue.Matches2(Aunt)).Id;
+    public int part_two(Lines lines) => lines.As(Sue.Parse).Single(sue => sue.Matches2(Aunt)).Id;
 
     class Sue(int id) : Dictionary<Compount, int>
     {

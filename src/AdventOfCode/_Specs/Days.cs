@@ -31,5 +31,14 @@ public class Are
         }
     }
 
+    [TestCaseSource(nameof(Puzzles))]
+    public void matching_return_type(AdventPuzzle puzzle) 
+    {
+        ReturnType(puzzle).Should().Be(puzzle.Answer.GetType());
 
+        static Type ReturnType(AdventPuzzle puzzle)
+            => puzzle.Method.ReturnType == typeof(char[])
+            ? typeof(string)
+            : puzzle.Method.ReturnType;
+    }
 }

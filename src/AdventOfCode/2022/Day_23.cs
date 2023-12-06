@@ -9,7 +9,7 @@ public class Day_23
 
     [Example(answer: 20, Example._1)]
     [Puzzle(answer: 997, O.ms100)]
-    public long part_two(CharPixels chars) => Run(chars, int.MaxValue);
+    public int part_two(CharPixels chars) => Run(chars, int.MaxValue);
    
     static int Run(CharPixels chars, int rounds)
     {

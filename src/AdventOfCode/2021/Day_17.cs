@@ -13,10 +13,10 @@ public class Day_17
 
     [Example(answer: 112, "target area: x=20..30, y=-10..-5")]
     [Puzzle(answer: 1733, "target area: x=48..70, y=-189..-148", O.μs100)]
-    public long part_two(string str)
+    public int part_two(string str)
     {
         var area = Area.Parse(str);
-        var x_lo = ((-1 + (8 * area.X_lo + 1).Sqrt()) / 2).Ceil();
+        var x_lo = (((8 * area.X_lo + 1).Sqrt() - 1) / 2).Ceil();
         return Points
             .Range(new Point(x_lo, area.Y_lo), new Point(area.X_hi, -area.Y_lo))
             .Count(v => Hits(v.Vector(), area));

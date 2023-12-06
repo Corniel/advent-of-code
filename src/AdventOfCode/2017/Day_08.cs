@@ -4,11 +4,11 @@
 public class Day_08
 {
     [Example(answer: 1, "b inc 5 if a > 1;a inc 1 if b < 5;c dec -10 if a >= 1;c inc -20 if c == 10")]
-    [Puzzle(answer: 6611, O.μs100)]
+    [Puzzle(answer: 6611L, O.μs100)]
     public long part_one(Lines lines) => Max(lines);
 
     [Example(answer: 10, "b inc 5 if a > 1;a inc 1 if b < 5;c dec -10 if a >= 1;c inc -20 if c == 10")]
-    [Puzzle(answer: 6619, O.μs100)]
+    [Puzzle(answer: 6619L, O.μs100)]
     public long part_two(Lines lines) => Max(lines, true);
 
     static long Max(Lines lines, bool intermediate = false)

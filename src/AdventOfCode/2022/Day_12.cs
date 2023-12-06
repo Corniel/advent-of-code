@@ -13,7 +13,7 @@ public class Day_12
 
     [Example(answer: 29, Example._1)]
     [Puzzle(answer: 388, O.ms100)]
-    public long part_two(CharPixels chars)
+    public int part_two(CharPixels chars)
     {
         var area = Area.Parse(chars);
         var starts = area.Map.Where(p => p.Value == 'a').Select(p => p.Key);

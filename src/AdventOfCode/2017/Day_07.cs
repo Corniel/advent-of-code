@@ -9,7 +9,7 @@ public class Day_07
 
     [Example(answer: 60, Example._1)]
     [Puzzle(answer: 193, O.μs100)]
-    public long part_two(Lines lines)
+    public int part_two(Lines lines)
     {
         var sorted = Root(lines).Children.OrderByDescending(c => c.Weight).ToArray();
         var current = sorted[0];

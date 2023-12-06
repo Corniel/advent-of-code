@@ -4,7 +4,7 @@
 public class Day_25
 {
     [Example(answer: 14897079, 5764801, 17807724)]
-    [Puzzle(answer: 16902792, 18356117, 5909654, O.ms10)]
+    [Puzzle(answer: 16902792L, 18356117, 5909654, O.ms10)]
     public long part_one(long loopSize, int key) => EncryptionKey(loopSize, LoopSize(key));
 
     [Puzzle(answer: "You only have to pay 49 stars", "You only have to pay 49 stars")]

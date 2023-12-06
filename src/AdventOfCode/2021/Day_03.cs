@@ -4,7 +4,7 @@
 public class Day_03
 {
     [Example(answer: 198, "00100;11110;10110;10111;10101;01111;00111;11100;10000;11001;00010;01010")]
-    [Puzzle(answer: 845186, O.μs100)]
+    [Puzzle(answer: 845186UL, O.μs100)]
     public ulong part_one(Lines lines)
     {
         var numbers = lines.As(BinaryNumber.Parse).ToArray();
@@ -29,7 +29,7 @@ public class Day_03
     }
 
     [Example(answer: 230, "00100;11110;10110;10111;10101;01111;00111;11100;10000;11001;00010;01010")]
-    [Puzzle(answer: 4636702, O.μs100)]
+    [Puzzle(answer: 4636702UL, O.μs100)]
     public ulong part_two(Lines lines)
     {
         var numbers = lines.As(BinaryNumber.Parse).ToArray();

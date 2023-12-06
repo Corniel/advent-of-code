@@ -13,11 +13,11 @@ public class Day_09
 
     [Example(answer: 1134, Example._1)]
     [Puzzle(answer: 964712, O.ms)]
-    public long part_two(CharGrid map)
+    public int part_two(CharGrid map)
     {
         map.SetNeighbors(Neighbors.Grid);
         var done = new Grid<bool>(map.Cols, map.Rows);
-        var sizes = new List<long>();
+        var sizes = new List<int>();
         var queue = new Queue<Point>();
 
         foreach (var point in map.Positions.Where(p => !done[p] && map[p] != '9'))

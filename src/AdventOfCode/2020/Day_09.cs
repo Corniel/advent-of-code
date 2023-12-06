@@ -4,7 +4,7 @@
 public class Day_09
 {
     [Puzzle(answer: 144381670, O.μs100)]
-    public long part_one(Longs numbers)
+    public int part_one(Ints numbers)
     {
         for (var i = 25; i < numbers.Count; i++)
         {
@@ -17,10 +17,10 @@ public class Day_09
         throw new NoAnswer();
     }
 
-    [Puzzle(answer: 20532569L, O.μs10)]
-    public long part_two(Longs numbers)
+    [Puzzle(answer: 20532569, O.μs10)]
+    public int part_two(Ints numbers)
     {
-        long sum = 144381670;
+        var sum = 144381670;
 
         var lo = 0;
         var hi = 1;
@@ -50,7 +50,7 @@ public class Day_09
         throw new NoAnswer();
     }
 
-    static bool Matches(Longs numbers, int index, long number)
+    static bool Matches(Ints numbers, int index, long number)
     {
         for (var p0 = index - 25; p0 < index; p0++)
         {

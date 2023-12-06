@@ -15,7 +15,7 @@ public class Day_06
 
     [Example(answer: 4, "0 2 7 0")]
     [Puzzle(answer: 2392, "4 1 15 12 0 9 9 5 5 8 7 3 14 5 12 3", O.μs100)]
-    public long part_two(Ints numbers)
+    public int part_two(Ints numbers)
     {
         var banks = new Banks(numbers.As(n => (byte)n).ToArray());
         var set = new Dictionary<Banks, int>();

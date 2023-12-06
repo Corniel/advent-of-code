@@ -9,7 +9,7 @@ public class Day_19
 
     [Example(answer: 12, Example._2)]
     [Puzzle(answer: 405, O.ms)]
-    public long part_two(GroupedLines groups)
+    public int part_two(GroupedLines groups)
     {
         var patterns = Patterns.Parse(groups[0]);
         patterns[08] = $"({patterns[42]})+";

@@ -5,22 +5,20 @@ public class Day_22
 {
     [Example(answer: 306, "Player 1:\n9\n2\n6\n3\n1\n\nPlayer 2:\n5\n8\n4\n7\n10")]
     [Puzzle(answer: 33403, O.μs10)]
-    public int part_one(GroupedLines groups)
-    {
-        var decks = groups.Select(Deck.Parse).ToArray();
-        return Deck.Play(decks[0], decks[1]);
-    }
+    public int part_one(GroupedLines groups)  => Play(groups, Deck.Play);
 
     [Example(answer: 105, "Player 1:\n43\n19\n\nPlayer 2:\n2\n29\n14")]
     [Example(answer: 291, "Player 1:\n9\n2\n6\n3\n1\n\nPlayer 2:\n5\n8\n4\n7\n10")]
     [Puzzle(answer: 29177, O.s)]
-    public long part_two(GroupedLines groups)
+    public int part_two(GroupedLines groups) => Play(groups, Deck.RecursivePlay);
+    
+    static int Play(GroupedLines groups, Func<Deck, Deck, int> play)
     {
         var decks = groups.Select(Deck.Parse).ToArray();
-        return Deck.RecursivePlay(decks[0], decks[1]);
+        return play(decks[0], decks[1]);
     }
 
-    public class Deck : Queue<int>
+    class Deck : Queue<int>
     {
         public Deck(IEnumerable<int> cards) : base(cards) => Do.Nothing();
         public bool HasAny => Count != 0;

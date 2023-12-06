@@ -10,7 +10,7 @@ public class Day_03
             R98,U47,R26,D63,R33,U87,L62,D20,R33,U53,R51
             U98,R91,D20,R16,D67,R40,U7,R15,U6,R7")]
     [Puzzle(answer: 1195, O.ms)]
-    public long part_one(Lines lines)
+    public int part_one(Lines lines)
     {
         var wires0 = lines[0].CommaSeparated(Move.Parse).ToArray();
         var wires1 = lines[1].CommaSeparated(Move.Parse).ToArray();
@@ -26,7 +26,7 @@ public class Day_03
             }
         }
 
-        long distance = int.MaxValue;
+        var distance = int.MaxValue;
         var wire1 = Point.O;
 
         foreach (var move in wires1)
@@ -50,7 +50,7 @@ public class Day_03
             R98,U47,R26,D63,R33,U87,L62,D20,R33,U53,R51
             U98,R91,D20,R16,D67,R40,U7,R15,U6,R7")]
     [Puzzle(answer: 91518, O.ms)]
-    public long part_two(Lines lines)
+    public int part_two(Lines lines)
     {
         var wires0 = lines[0].CommaSeparated(Move.Parse).ToArray();
         var wires1 = lines[1].CommaSeparated(Move.Parse).ToArray();
@@ -67,7 +67,7 @@ public class Day_03
             }
         }
 
-        long distance = int.MaxValue;
+        var distance = int.MaxValue;
         var wire1 = Point.O;
         var steps1 = 1;
 
@@ -97,8 +97,7 @@ public class Day_03
             _ /* L   */ => new Point(point.X - 1, point.Y),
         };
 
-        public static Move Parse(string str)
-            => new(Enum.Parse<Direction>(str[0..1]), str[1..].Int32());
+        public static Move Parse(string str) => new(Enum.Parse<Direction>(str[0..1]), str[1..].Int32());
     }
 
     public enum Direction { U, R, D, L }

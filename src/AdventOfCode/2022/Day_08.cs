@@ -3,7 +3,7 @@
 [Category(Category.Grid, Category.VectorAlgebra)]
 public class Day_08
 {
-    [Example(answer: 21, "30373\r\n25512\r\n65332\r\n33549\r\n35390")]
+    [Example(answer: 21, "30373\n25512\n65332\n33549\n35390")]
     [Puzzle(answer: 1711, O.ms)]
     public int part_one(CharGrid map)
         => map.Positions.Count(p => map.OnEdge(p)
@@ -14,9 +14,9 @@ public class Day_08
 
     static bool IsVisible(Point p, Vector dir, CharGrid map) => p.Repeat(dir).TakeWhile(map.OnGrid).All(o => map[o] < map[p]);
 
-    [Example(answer: 8, "30373\r\n25512\r\n65332\r\n33549\r\n35390")]
+    [Example(answer: 8, "30373\n25512\n65332\n33549\n35390")]
     [Puzzle(answer: 301392, O.ms)]
-    public long part_two(CharGrid map) => map.Positions.Where(p => !map.OnEdge(p)).Select(p => Scenic(p, map)).Max();
+    public int part_two(CharGrid map) => map.Positions.Where(p => !map.OnEdge(p)).Select(p => Scenic(p, map)).Max();
 
     static int Scenic(Point p, CharGrid map) => CompassPoints.Primary.Select(d => View(p, d.ToVector(), map)).Product();
 

@@ -13,7 +13,7 @@ public class Day_23
     }
 
     [Example(answer: 149245887792, "389125467")]
-    [Puzzle(answer: 3072905352, "739862541", O.s)]
+    [Puzzle(answer: 3072905352L, "739862541", O.s)]
     public long part_two(string str)
     {
         var cups = Cups.Create(str.Digits(), 1_000_000);

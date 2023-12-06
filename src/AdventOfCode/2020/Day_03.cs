@@ -5,17 +5,17 @@ public class Day_03
 {
     [Example(answer: 7, Example._1)]
     [Puzzle(answer: 220, O.μs10)]
-    public long part_one(Lines lines)
+    public int part_one(Lines lines)
         => CountTrees(Row.Parse(lines).ToArray(), new Vector(3, 1));
 
     [Puzzle(answer: 2138320800, O.μs10)]
-    public long part_two(Lines lines)
+    public int part_two(Lines lines)
     {
         var rows = Row.Parse(lines).ToArray();
         return new Vector[] { new(1, 1), new(3, 1), new(5, 1), new(7, 1), new(1, 2) }.Select(slope => CountTrees(rows, slope)).Product();
     }
 
-    static long CountTrees(Row[] rows, Vector slope)
+    static int CountTrees(Row[] rows, Vector slope)
     {
         var position = Point.O + slope;
         var trees = 0;

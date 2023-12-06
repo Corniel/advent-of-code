@@ -4,7 +4,7 @@
 public class Day_20
 {
     [Example(answer: 3, "1,2,-3,3,-2,0,4")]
-    [Puzzle(answer: 5498, O.ms10)]
+    [Puzzle(answer: 5498L, O.ms10)]
     public long part_one(Longs numbers) => Decrypt(numbers, 1, 1);
 
     [Example(answer: 1623178306, "1,2,-3,3,-2,0,4")]

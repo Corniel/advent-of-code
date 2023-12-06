@@ -4,7 +4,7 @@
 public class Day_12
 {
     [Example(answer: 325, Example._1)]
-    [Puzzle(answer: 3605, O.μs100)]
+    [Puzzle(answer: 3605L, O.μs100)]
     public long part_one(Lines lines)
     {
         var game = new GameOfLife(lines);

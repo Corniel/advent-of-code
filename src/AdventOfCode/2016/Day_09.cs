@@ -7,7 +7,7 @@ public class Day_09
     [Example(answer: 7, "A(1x5)BC")]
     [Example(answer: 9, "(3x3)XYZ")]
     [Example(answer: 18, "X(8x2)(3x3)ABCY")]
-    [Puzzle(answer: 152851, O.μs)]
+    [Puzzle(answer: 152851L, O.μs)]
     public long part_one(string str) => Unzip(str, false);
 
     [Example(answer: 6, "ADVENT")]

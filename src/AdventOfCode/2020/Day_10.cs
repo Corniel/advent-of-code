@@ -5,7 +5,7 @@ public class Day_10
 {
     [Example(answer: 5 * 7, "16,10,15,5,1,11,7,19,6,12,4")]
     [Puzzle(answer: 2100, O.μs)]
-    public long part_one(string str)
+    public int part_one(string str)
     {
         var unique = UniqueNumbers.Parse(str);
         var prev = 0;
@@ -14,13 +14,11 @@ public class Day_10
 
         foreach (var num in unique)
         {
-            var delta = num - prev;
-            switch (delta)
+            switch (num - prev)
             {
                 case 1: d1++; break;
                 case 2: break;
                 case 3: d3++; break;
-                default: throw new NoAnswer();
             }
             prev = num;
         }

@@ -4,7 +4,7 @@
 public class Day_06
 {
     [Puzzle(answer: 400410, O.ms100)]
-    public long part_one(Lines lines)
+    public int part_one(Lines lines)
     {
         var grid = new Grid<bool>(1000, 1000);
         

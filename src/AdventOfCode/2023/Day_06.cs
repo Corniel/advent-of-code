@@ -1,11 +1,11 @@
-namespace Advent_of_Code_2023;
+﻿namespace Advent_of_Code_2023;
 
 [Category(Category.SequenceProgression)]
 public class Day_06
 {
     [Example(answer: 288, "Time: 7 15 30; Distance: 9 40 200")]
     [Puzzle(answer: 252000, O.μs)]
-    public int part_one(Longs numbes) => Races(numbes).Product(r => r.Further());
+    public int part_one(Longs numbers) => Races(numbers).Product(r => r.Further());
 
 
     [Example(answer: 71503, "Time: 7 15 30; Distance: 9 40 200")]

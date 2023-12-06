@@ -4,7 +4,7 @@
 public class Day_18
 {
     [Puzzle(answer: 814, O.ms100)]
-    public long part_one(CharPixels chars)
+    public int part_one(CharPixels chars)
     {
         var simulation = new GameOfLife(chars.Grid(ch => ch == '#'));
         simulation.Generations(100);
@@ -12,7 +12,7 @@ public class Day_18
     }
 
     [Puzzle(answer: 924, O.ms100)]
-    public long part_two(CharPixels chars)
+    public int part_two(CharPixels chars)
     {
         var simulation = new GameOfLife(chars.Grid(ch => ch == '#'));
         simulation.AddRange([Point.O, new Point(0, 99), new Point(99, 0), new Point(99, 99)]);

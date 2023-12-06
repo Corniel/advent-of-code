@@ -8,7 +8,7 @@ public class Day_25
     [Example(answer: 3, "1,-1,0,1;2,0,-1,0;3,2,-1,0;0,0,3,1;0,0,-1,-1;2,3,-2,0;-2,2,0,0;2,-2,0,-1;1,-1,0,-1;3,2,0,2")]
     [Example(answer: 8, "1,-1,-1,-2;-2,-2,0,1;0,2,1,3;-2,3,-2,1;0,2,3,-2;-1,-1,1,-2;0,-2,-1,0;-2,2,3,-1;1,2,2,0;-1,-2,0,-2")]
     [Puzzle(answer: 318, O.ms10)]
-    public long part_one(Lines lines)
+    public int part_one(Lines lines)
     {
         var points = lines.As(Point4D.Parse).ToArray();
         var constellations = new List<Constellatetion>();

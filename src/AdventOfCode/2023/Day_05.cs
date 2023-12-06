@@ -4,11 +4,11 @@
 public class Day_05
 {
     [Example(answer: 35, Example._1)]
-    [Puzzle(answer: 3374647, O.μs100)]
+    [Puzzle(answer: 3374647L, O.μs100)]
     public long part_one(GroupedLines groups) => Process(groups, One);
 
     [Example(answer: 46, Example._1)]
-    [Puzzle(answer: 6082852, O.μs100)]
+    [Puzzle(answer: 6082852L, O.μs100)]
     public long part_two(GroupedLines groups) => Process(groups, Two);
 
     static IEnumerable<Int64Range> One(long[] ns) => ns.Select(n => new Int64Range(n));

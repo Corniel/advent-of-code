@@ -9,7 +9,7 @@ public class Day_10
     
     [Example(answer: 1166642, "1")]
     [Puzzle(answer: 4666278, "3113322113", O.ms100)]
-    public long part_two(string str) => LookAndSay(str, 50);
+    public int part_two(string str) => LookAndSay(str, 50);
 
     static int LookAndSay(string str, int rounds)
     {

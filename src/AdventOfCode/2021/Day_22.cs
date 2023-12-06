@@ -3,7 +3,7 @@
 [Category(Category.VectorAlgebra)]
 public class Day_22
 {
-    [Puzzle(answer: 644257, O.μs100)]
+    [Puzzle(answer: 644257L, O.μs100)]
     public long part_one(Lines lines) => Count(lines.As(Instruction.Parse).Take(20));
 
     [Puzzle(answer: 1235484513229032, O.ms10)]

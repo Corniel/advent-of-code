@@ -10,7 +10,7 @@ public class Day_11
 
     [Example(answer: 26, Example._1)]
     [Puzzle(answer: 2227, O.ms10)]
-    public long part_two(CharPixels chars)
+    public int part_two(CharPixels chars)
         => Plane.Init(chars, Plane.InSightNeighbors).Simulate(5);
 
     class Plane : Grid<Seat>

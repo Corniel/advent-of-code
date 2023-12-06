@@ -9,10 +9,10 @@ public class Day_09
     [Example(answer: 000_2764, "17 players; last marble is worth 1104 points")]
     [Example(answer: 00_54718, "21 players; last marble is worth 6111 points")]
     [Example(answer: 00_37305, "30 players; last marble is worth 5807 points")]
-    [Puzzle(answer: 398730, "438 players; last marble is worth 71626 points", O.μs100)]
+    [Puzzle(answer: 398730L, "438 players; last marble is worth 71626 points", O.μs100)]
     public long part_one(Ints numbers) => Simulate(numbers, 1);
 
-    [Puzzle(answer: 3349635509, "438 players; last marble is worth 71626 points", O.ms100)]
+    [Puzzle(answer: 3349635509L, "438 players; last marble is worth 71626 points", O.ms100)]
     public long part_two(Ints numbers) => Simulate(numbers, 100);
 
     static long Simulate(Ints numbers, int factor)

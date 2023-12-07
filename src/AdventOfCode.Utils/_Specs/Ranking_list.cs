@@ -1,6 +1,6 @@
 ﻿using Advent_of_Code.Rankings;
 
-namespace Specs.Utils.Ranking_list;
+namespace Specs.Ranking_list; 
 
 public class Rankings 
 {

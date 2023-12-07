@@ -1,6 +1,6 @@
 ﻿using Qowaiv;
 
-namespace Specs.Utils.Advent_date;
+namespace Specs.Advent_date;
 
 public class All_available
 {

@@ -26,7 +26,7 @@ public class Day_04
         {
             var splitted = line.Split('[');
             var checksum = splitted[1][..^1];
-            var orderded = new string(Characters.a_z.OrderByDescending(ch => splitted[0].Count(c => c == ch)).Take(checksum.Length).ToArray());
+            var orderded = new string(Characters.a_z.OrderByDescending(ch => splitted[0].Count(ch)).Take(checksum.Length).ToArray());
             var last = splitted[0].LastIndexOf('-');
             return new(splitted[0][..last], checksum, checksum == orderded ? -line.Int32() : 0);
         }

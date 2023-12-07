@@ -5,7 +5,7 @@ public class Day_07
 {
     [Example(answer: 4, Example._1)]
     [Puzzle(answer: 161, O.ms)]
-    public int part_one(string str) => Bags.Parse(str).Values.Count(bag => bag.Search("shiny gold") != null) - 1;
+    public int part_one(string str) => Bags.Parse(str).Values.Count(bag => bag.Search("shiny gold") is { }) - 1;
 
     [Example(answer: 032, Example._1)]
     [Example(answer: 126, Example._2)]

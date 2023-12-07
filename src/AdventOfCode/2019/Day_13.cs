@@ -30,7 +30,7 @@ public class Day_13
         public Arcade() : base(42, 23) { }
         public Point Paddle => this.FirstOrDefault(t => t.Value == Tile.Paddle).Key;
         public Point Ball => this.FirstOrDefault(t => t.Value == Tile.Ball).Key;
-        public int Blocks => Tiles.Count(t => t == Tile.Block);
+        public int Blocks => Tiles.Count(Tile.Block);
         public int Score { get; private set; }
         public Arcade Update(IReadOnlyList<Int> output)
         {

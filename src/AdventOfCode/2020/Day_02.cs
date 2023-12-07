@@ -16,7 +16,7 @@ public class Day_02
         public bool ValidForOne(string str)
         {
             var policy = this;
-            var occurences = str.Count(ch => ch == policy.Char);
+            var occurences = str.Count(policy.Char);
             return occurences >= Min && occurences <= Max;
         }
         public bool ValidForTwo(string str) => (str[Min - 1] == Char) ^ (str[Max - 1] == Char);

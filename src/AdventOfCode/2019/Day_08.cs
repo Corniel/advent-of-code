@@ -29,9 +29,9 @@ public class Day_08
         private readonly string pixels = pixels;
 
         public int Size => pixels.Length;
-        public int Zeros => pixels.Count(ch => ch == '0');
-        public int Ones => pixels.Count(ch => ch == '1');
-        public int Twos => pixels.Count(ch => ch == Transprant);
+        public int Zeros => pixels.Count('0');
+        public int Ones => pixels.Count('1');
+        public int Twos => pixels.Count(Transprant);
 
         public string AsciiText(int width)
         {

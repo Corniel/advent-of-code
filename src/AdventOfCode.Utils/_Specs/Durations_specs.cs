@@ -12,7 +12,7 @@ public class Reports
         var puzzles = AdventPuzzles.Load().Where(p => !p.Date.Matches(new AdventDate(null, 25, 2))).ToArray();
 
         var distrubtion = new ItemCounter<O> { puzzles.Select(p => p.Order) };
-        var factor = 50d / distrubtion.Max().Count;
+        var factor = 40d / distrubtion.Max().Count;
 
         var sb = new StringBuilder();
 
@@ -21,7 +21,7 @@ public class Reports
 
         foreach (var dis in distrubtion.OrderBy(c => c.Item))
         {
-            var bar = new string('*', (dis.Count * factor).Ceil());
+            var bar = new string('⭐', (dis.Count * factor).Ceil());
 
             sb.AppendLine($"| {dis.Item.Formatted(),7} | {dis.Count,3} | {bar,-50} |");
         }

@@ -9,7 +9,7 @@ public class Day_02
         * lines.Count(line => Repeat(line, 3));
 
 
-    static bool Repeat(string line, int n) => line.Any(ch => line.Count(c => c == ch) == n);
+    static bool Repeat(string line, int n) => line.Any(ch => line.Count(ch) == n);
 
     [Example(answer: "fgij", "abcde;fghij;klmno;pqrst;fguij;axcye;wvxyz")]
     [Puzzle(answer: "bqlporuexkwzyabnmgjqctvfs", O.μs100)]

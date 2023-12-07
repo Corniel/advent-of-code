@@ -95,7 +95,7 @@ public class Day_10
             .#.#.###########.###
             #.#.#.#####.####.###
             ###.##.####.##.#..##")]
-    [Puzzle(answer: 829, O.ms)]
+    [Puzzle(answer: 829, O.ms10)]
     public int part_two(string str)
     {
         var astroids = Astroids.Parse(str);

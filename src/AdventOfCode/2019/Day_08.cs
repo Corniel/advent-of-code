@@ -10,7 +10,7 @@ public class Day_08
             .Select(layer => layer.Ones * layer.Twos)
             .FirstOrDefault();
 
-    [Puzzle(answer: "ZYBLH", O.μs100)]
+    [Puzzle(answer: "ZYBLH", O.μs10)]
     public string part_two(string str)
     {
         var layers = Layer.Parse(25, 6, str).ToArray();

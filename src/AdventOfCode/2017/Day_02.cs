@@ -8,7 +8,7 @@ public class Day_02
     public int part_one(Lines lines) => lines.As(AsNumbers).Select(MaxMin).Sum();
 
     [Example(answer: 9, "5 9 2 8; 9 4 7 3;3 8 6 5")]
-    [Puzzle(answer: 320, O.μs10)]
+    [Puzzle(answer: 320, O.μs)]
     public int part_two(Lines lines) => lines.As(AsNumbers).Select(Checksum).Sum();
 
     static int[] AsNumbers(string line) => line.Int32s().Order().ToArray();

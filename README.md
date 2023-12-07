@@ -45,10 +45,14 @@ university coursework, practice problems, or to challenge each other.
 ## Lines of Code (LoC)
 > When a measure becomes a target, it ceases to be a good measure.
 We all know it to be true, so keeping track of the lines of code per puzzle is
-questionable, nevertheless, I do: [overview](LoC.md).
+questionable, nevertheless, I do: [LoC.md](LoC.md).
 
 Note that comments, whitespace, namespace declarations, main class declarations,
 and lines only containing brackets or attributes are ignored.
+
+## Durations
+Another measure that should not become a target (but secretly is): durations.
+An overview of my results can be found here: [Durations.md](Durations.md).
 
 ## Unit test driven
 All puzzles can be run as unit tests. To reduce plumbing code I've extended on

@@ -4,7 +4,7 @@
 public class Day_23
 {
     [Example(answer: "67384529", "389125467")]
-    [Puzzle(answer: "94238657", "739862541", O.μs)]
+    [Puzzle(answer: "94238657", "739862541", O.ns100)]
     public string part_one(string str)
     {
         var cups = Cups.Create(str.Digits());

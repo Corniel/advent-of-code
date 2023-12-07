@@ -3,17 +3,8 @@
 [Category(Category.Simulation, Category.VectorAlgebra)]
 public class Day_25
 {
-    [Example(answer:58, @"
-v...>>.vv>
-.vv>>.vv..
->>.>v>...v
->>v>>.>.v.
-v>v.vv.v..
->.>>..v...
-.vv..>.>v.
-v.v..>>v.v
-....v..v.>")]
-    [Puzzle(answer: 598, O.ms)]
+    [Example(answer: 58,Example._1)]
+    [Puzzle(answer: 598, O.ms10)]
     public int part_one(CharGrid map)
     {
         map.SetNeighbors(Neighbors.Sphere);
@@ -44,7 +35,7 @@ v.v..>>v.v
             grid[Clear.Pop()] = '.';
             grid[move] = ch;
         }
-        while(Stay.Count > 0) { candidates.Push(Stay.Pop()); }
+        while (Stay.Count > 0) { candidates.Push(Stay.Pop()); }
         return moved;
     }
     readonly Stack<Point> Stay = new();

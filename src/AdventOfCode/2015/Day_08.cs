@@ -4,7 +4,7 @@
 public class Day_08
 {
     [Example(answer: 7, @"""x\""\xcaj\\xwwvpdldz""")]
-    [Puzzle(answer: 1342, O.μs10)]
+    [Puzzle(answer: 1342, O.μs)]
     public int part_one(Lines lines) => lines.Sum(line => line.Length - Decode(line));
 
     [Example(answer: 16 - 10, @"""aaa\""aaa""")]

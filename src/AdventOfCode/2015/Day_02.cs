@@ -5,7 +5,7 @@ public class Day_02
 {
     [Example(answer: 58, "2x3x4")]
     [Example(answer: 43, "1x1x10")]
-    [Puzzle(answer: 1586300, O.μs100)]
+    [Puzzle(answer: 1586300, O.μs10)]
     public int part_one(Lines lines) => lines.As(WrappingPaper).Sum();
 
     [Example(answer: 34, "2x3x4")]

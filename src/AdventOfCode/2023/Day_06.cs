@@ -4,12 +4,12 @@
 public class Day_06
 {
     [Example(answer: 288, "Time: 7 15 30; Distance: 9 40 200")]
-    [Puzzle(answer: 252000, O.μs)]
+    [Puzzle(answer: 252000, O.ns100)]
     public int part_one(Longs numbers) => Races(numbers).Product(r => r.Further());
 
 
     [Example(answer: 71503, "Time: 7 15 30; Distance: 9 40 200")]
-    [Puzzle(answer: 36992486, O.μs)]
+    [Puzzle(answer: 36992486, O.ns100)]
     public int part_two(string str) => part_one(new(str.StripChars(" ").Int64s().ToArray()));
 
     IEnumerable<Race> Races(IReadOnlyList<long> ns)

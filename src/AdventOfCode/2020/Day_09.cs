@@ -3,7 +3,7 @@
 [Category(Category.Simulation)]
 public class Day_09
 {
-    [Puzzle(answer: 144381670, O.μs100)]
+    [Puzzle(answer: 144381670, O.μs10)]
     public int part_one(Ints numbers)
     {
         for (var i = 25; i < numbers.Count; i++)
@@ -17,7 +17,7 @@ public class Day_09
         throw new NoAnswer();
     }
 
-    [Puzzle(answer: 20532569, O.μs10)]
+    [Puzzle(answer: 20532569, O.μs)]
     public int part_two(Ints numbers)
     {
         var sum = 144381670;

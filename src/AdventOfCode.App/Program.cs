@@ -1,5 +1,6 @@
 ﻿using Advent_of_Code.Benchmarking;
 using Advent_of_Code.Rankings;
+using SmartAss;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,50 +11,39 @@ public static class Program
 {
     private static readonly int Failure = 1;
     private static readonly int Success = 0;
+    private static AdventPuzzles Puzzles;
 
     public static async Task<int> Main(string[] args)
     {
-        if (args?.Length < 1) { return Usage(); }
+        Puzzles = AdventPuzzles.Load(typeof(Now.Dummy).Assembly);
+
+        if (args?.Length < 1) return Usage();
+
+        var arg0 = args[0];
+        args = args[1..];
+
+        if (!AdventDate.TryParse(arg0, out var date)) return InvalidDay(arg0);
+
+        if (Matches.New(date, args)) return Generate(date);
+
+        if (Matches.Benchmark(date, args)) return Benchmarks(Puzzles, date);
 
         Console.SetOut(new MultiWriter(Console.Out));
 
-        var puzzles = AdventPuzzles.Load(typeof(Now.Dummy).Assembly);
+        if (Matches.BenchmarkClassic(date, args)) return BenchmarksClassic(date);
 
-        if (!AdventDate.TryParse(args[0], out var date))
-        {
-            return InvalidDay(args[0]);
-        }
-        else if (date.SpecifiesYearDay() && !puzzles.Contains(date))
-        {
-            return Generate(date);
-        }
-        else if (args.Length == 2 && (args[1] == "-benchmark" || args[1] == "-b"))
-        {
-            return Benchmark(puzzles, date);
-        }
-        else if (args.Length == 2 && args[1] == "-loc")
-        {
-            return CodeSize(date);
-        }
+        if (Matches.LoC(date, args)) return Loc(date, args);
+
         else if (args.Length >= 2 && (args[1] == "-rank" || args[1] == "-r"))
         {
             return await Rankings(date.Year.Value, args.Length == 2 ? "" : args[2]);
         }
-        else
-        {
-            var matching = puzzles.Matching(date);
-            if (matching.Any())
-            {
-                foreach (var puzzle in matching)
-                {
-                    puzzle.Run();
-                }
-                return Success;
-            }
-            else return NoMethod(date);
-        }
-    }
 
+        if (Matches.Run(date, args)) return Run(date, args);
+        
+        return NoMethod(date, args);
+    }
+    
     private static async Task<int> Rankings(int year, string list)
     {
         Console.Clear();
@@ -80,19 +70,33 @@ public static class Program
         return Success;
     }
 
-    private static int Benchmark(AdventPuzzles puzzles, AdventDate date)
+    private static int Benchmarks(AdventPuzzles puzzles, AdventDate date)
     {
-        foreach (var benchmark in puzzles
+        var selection = puzzles
             .Matching(date)
             .Where(puzzle => !puzzle.Date.Matches(new AdventDate(default, 25, 2)))
-            .Select(puzzle => new Benchmark(puzzle)))
+            .ToArray();
+
+        foreach (var result in Benchmark.Run(selection))
+        {
+            result.Console();
+        }
+        return Success;
+    }
+    
+    private static int BenchmarksClassic(AdventDate date)
+    {
+        foreach (var benchmark in Puzzles
+            .Matching(date)
+            .Where(puzzle => !puzzle.Date.Matches(new AdventDate(default, 25, 2)))
+            .Select(puzzle => new BenchmarkClassic(puzzle)))
         {
             benchmark.Run(O.s);
         }
         return Success;
     }
 
-    private static int CodeSize(AdventDate date)
+    private static int Loc(AdventDate date, string[] _)
     {
         var files = AdventDate.AllAvailable()
             .Where(d => d.Part == 1 && d.Matches(date))
@@ -109,6 +113,15 @@ public static class Program
         return Success;
     }
 
+    private static int Run(AdventDate date, string[] _)
+    {
+        foreach (var puzzle in Puzzles.Matching(date))
+        {
+            puzzle.Run();
+        }
+        return Success;
+    }
+
     private static int Usage()
     {
         Console.WriteLine("usage: advent-of-code [year-day-part]");
@@ -121,9 +134,14 @@ public static class Program
         return Failure;
     }
 
-    private static int NoMethod(AdventDate date)
+    private static int NoMethod(AdventDate date, string[] args)
     {
-        Console.WriteLine($"No test method found for {date}");
+        Console.Write($"No test method found for {date}");
+        if (args.Any())
+        {
+            Console.Write($" with args {string.Join(' ', args)}");
+        }
+        Console.WriteLine();
         return Failure;
     }
 
@@ -154,5 +172,27 @@ public static class Program
                 Stream.Dispose();
             }
         }
+    }
+
+    private static class Matches
+    {
+        public static bool New(AdventDate date, string[] _)
+            => date.SpecifiesYearDay() && !Puzzles.Contains(date);
+
+        public static bool Benchmark(AdventDate _, string[] args)
+            => Arg(args?[0], "b", "benchmark");
+
+        public static bool BenchmarkClassic(AdventDate _, string[] args)
+            => Arg(args?[0], "bc");
+
+        public static bool LoC(AdventDate _, string[] args)
+            => Arg(args?[0], "LoC");
+
+        public static bool Run(AdventDate date, string[] args)
+            => Puzzles.Matching(date).Any() && args.Length == 0;
+
+        static bool Arg(string? par, params string[] args)
+            => args.Select(arg => $"-{arg}")
+            .Any(arg => arg.Equals(par, StringComparison.OrdinalIgnoreCase));
     }
 }

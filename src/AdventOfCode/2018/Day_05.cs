@@ -9,7 +9,7 @@ public class Day_05
     public int part_one(string str) => Destroy(str).Length;
 
     [Example(answer: 4, "dabAcCaCBAcCcaDA")]
-    [Puzzle(answer: 4552, O.s)]
+    [Puzzle(answer: 4552, O.ms100)]
     public int part_two(string str)
         => Characters.a_z.Select(ch => Strip(str, Lower(ch)))
         .Select(Destroy)

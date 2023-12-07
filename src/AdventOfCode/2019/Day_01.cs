@@ -3,10 +3,10 @@
 [Category(Category.Simulation)]
 public class Day_01
 {
-    [Puzzle(answer: 3291356, O.μs)]
+    [Puzzle(answer: 3291356, O.ns100)]
     public int part_one(Ints numbers) => numbers.Sum(Fuel);
 
-    [Puzzle(answer: 4934153, O.μs)]
+    [Puzzle(answer: 4934153, O.ns100)]
     public int part_two(Ints numbers) => numbers.Sum(RecursiveFuel);
 
     static int Fuel(int mass) => (mass / 3) - 2;

@@ -4,10 +4,10 @@
 public class Day_07
 {
     [Example(answer: 65079, "123 -> x;456 -> y;x AND y -> d;x OR y -> e;x LSHIFT 2 -> f;y RSHIFT 2 -> g;NOT x -> h;NOT y -> a")]
-    [Puzzle(answer: 956L, O.μs100)]
+    [Puzzle(answer: 956L, O.μs10)]
     public long part_one(Lines lines) => Pars(lines).Value("a");
 
-    [Puzzle(answer: 40149L, O.μs100)]
+    [Puzzle(answer: 40149L, O.μs10)]
     public long part_two(Lines lines)
     {
         var pars = Pars(lines);

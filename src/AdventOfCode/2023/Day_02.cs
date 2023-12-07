@@ -4,7 +4,7 @@
 public class Day_02
 {
     [Example(answer: 8, Example._1)]
-    [Puzzle(answer: 2551, O.μs100)]
+    [Puzzle(answer: 2551, O.μs10)]
     public int part_one(Lines lines)
         => lines.As(Game.parse).Where(g => g.Hands.TrueForAll(h => h.Fits)).Sum(g => g.Id);
     

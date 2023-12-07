@@ -18,7 +18,7 @@ public class Day_08
 
     [Example(answer: 5353, "acedgfb cdfbe gcdfa fbcad dab cefabd cdfgeb eafb cagedb ab | cdfeb fcadb cdfeb cdbaf")]
     [Example(answer: 61229, Example._1)]
-    [Puzzle(answer: 1041746, O.μs100)]
+    [Puzzle(answer: 1041746, O.μs10)]
     public int part_two(Lines lines) => lines.As(line => line.Split(" | ")).Sum(Decode);
 
     private readonly int[] segments = new int[7];

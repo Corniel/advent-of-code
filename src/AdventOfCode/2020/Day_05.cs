@@ -7,7 +7,7 @@ public class Day_05
     [Puzzle(answer: 998U, O.μs10)]
     public uint part_one(Lines lines) => lines.As(Seat).Max();
 
-    [Puzzle(answer: 676U, O.μs100)]
+    [Puzzle(answer: 676U, O.μs10)]
     public uint part_two(Lines lines)
     {
         var seats = lines.As(Seat).Order().ToArray();

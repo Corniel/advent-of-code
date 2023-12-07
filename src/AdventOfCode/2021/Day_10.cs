@@ -12,11 +12,11 @@ public class Day_10
 	[Example(answer: 57, "[{[{({}]{}}([{[{{{}}([]")]
 	[Example(answer: 3, "[<(<(<(<{}))><([]([]()")]
 	[Example(answer: 25137, "<{([([[(<>()){}]>(<<{{")]
-    [Puzzle(answer: 411471, O.μs100)]
+    [Puzzle(answer: 411471, O.μs10)]
     public int part_one(Lines lines) => lines.As(Parse).Select(One).Sum();
 
 	[Example(answer: 288957, "[({(<(())[]>[[{[]{<()<>>")]
-	[Puzzle(answer: 3122628974L, O.μs100)]
+	[Puzzle(answer: 3122628974L, O.μs10)]
     public long part_two(Lines lines)
     {
 		var scores = lines.As(Parse).Select(Two).Where(sc => sc != 0).ToList();

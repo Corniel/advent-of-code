@@ -1,20 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <Import Project="../../props/common.props" />
-  
+
   <PropertyGroup>
     <RootNamespace>Advent_of_Code</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Remove="Template\Day.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <EmbeddedResource Include="Template\Day.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="BenchmarkDotNet" Version="0.*" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.*" />
   </ItemGroup>
 
@@ -22,6 +20,12 @@
     <ProjectReference Include="..\..\..\smart-ass\src\SmartAss\SmartAss.csproj" />
     <ProjectReference Include="..\AdventOfCode\AdventOfCode.csproj" />
     <ProjectReference Include="..\AdventOfCode.Now\AdventOfCode.Now.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="nuget.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

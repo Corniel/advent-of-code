@@ -9,7 +9,7 @@ public class Day_04
         .OrderByDescending(c => c.Value.Total).Select(Score).First();
 
     [Example(answer: 99 * 45, Example._1)]
-    [Puzzle(answer: 73001, O.s)]
+    [Puzzle(answer: 73001, O.μs100)]
     public int part_two(Lines lines) => Occurences(lines)
         .OrderByDescending(c => AsleepMostMinutes(c.Value)).Select(Score).First();
 

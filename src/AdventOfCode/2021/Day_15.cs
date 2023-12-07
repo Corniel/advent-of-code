@@ -8,7 +8,7 @@ public class Day_15
     public int part_one(CharPixels chars)=> Run(chars.Grid(c => c.Digit()));
 
     [Example(answer: 315, Example._1)]
-    [Puzzle(answer: 2914, O.s)]
+    [Puzzle(answer: 2914, O.ms100)]
     public int part_two(CharPixels chars) => Run(Scale(chars.Grid(c => c.Digit())));
 
     static int Run(Grid<int> costs)

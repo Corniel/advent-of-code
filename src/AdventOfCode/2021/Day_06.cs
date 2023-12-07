@@ -4,11 +4,11 @@
 public class Day_06
 {
     [Example(answer: 5934, @"3,4,3,1,2")]
-    [Puzzle(answer: 372300L, O.μs)]
+    [Puzzle(answer: 372300L, O.ns100)]
     public long part_one(Ints numbers) => Simulate(numbers, 80);
 
     [Example(answer: 26984457539, @"3,4,3,1,2")]
-    [Puzzle(answer: 1675781200288, O.μs)]
+    [Puzzle(answer: 1675781200288, O.ns100)]
     public long part_two(Ints numbers) => Simulate(numbers, 256);
 
     static long Simulate(Ints numbers, int days)

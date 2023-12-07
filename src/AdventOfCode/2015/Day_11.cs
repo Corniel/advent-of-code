@@ -3,7 +3,7 @@
 [Category(Category.Cryptography)]
 public class Day_11
 {
-    [Puzzle(answer: "vzbxxyzz", "vzbxkghb", O.μs100)]
+    [Puzzle(answer: "vzbxxyzz", "vzbxkghb", O.ms)]
     public char[] part_one(string str) => new NextPass(str).First();
 
     [Puzzle(answer: "vzcaabcc", "vzbxkghb", O.ms)]

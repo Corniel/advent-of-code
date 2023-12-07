@@ -4,11 +4,11 @@
 public class Day_07
 {
     [Example(answer: "tknk", Example._1)]
-    [Puzzle(answer: "cyrupz", O.μs100)]
+    [Puzzle(answer: "cyrupz", O.ms)]
     public string part_one(Lines lines) => Root(lines).Name;
 
     [Example(answer: 60, Example._1)]
-    [Puzzle(answer: 193, O.μs100)]
+    [Puzzle(answer: 193, O.ms)]
     public int part_two(Lines lines)
     {
         var sorted = Root(lines).Children.OrderByDescending(c => c.Weight).ToArray();

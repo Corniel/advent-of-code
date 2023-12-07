@@ -4,10 +4,10 @@
 public class Day_10
 {
     [Example(answer: 13140, Example._1)]
-    [Puzzle(answer: 12980, O.μs10)]
+    [Puzzle(answer: 12980, O.μs)]
     public int part_one(Lines lines) => Data.Parse(lines).Skip(19).WithStep(40).Select(x => x.Product).Sum();
 
-    [Puzzle(answer: "BRJLFULP", O.μs10)]
+    [Puzzle(answer: "BRJLFULP", O.μs)]
     public string part_two(Lines lines)
     {
         var grid = new Grid<bool>(40, 6);

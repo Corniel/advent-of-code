@@ -13,7 +13,7 @@ public class Day_05
 
     static string Restack(GroupedLines groups, Action<IEnumerable<Move>, Stack<char>[]> apply)
     {
-        var grid = groups[0].CharPixels(false);
+        var grid = groups[0].CharPixels();
         var stacks = Range(0, 2 + grid.Cols / 4).Select(_ => new Stack<char>()).ToArray();
 
         foreach (var pixel in grid.Where(p => char.IsAsciiLetterUpper(p.Value)).OrderByDescending(p => p.Key.Y))

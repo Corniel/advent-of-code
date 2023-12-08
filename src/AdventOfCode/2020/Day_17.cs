@@ -3,19 +3,17 @@
 [Category(Category.GameOfLife, Category._3D)]
 public class Day_17
 {
-    [Example(answer: 112, @"
-        .#.
-        ..#
-        ###")]
-    [Puzzle(answer: 291, @"
-        ##.#....
-        ...#...#
-        .#.#.##.
-        ..#.#...
-        .###....
-        .##.#...
-        #.##..##
-        #.####..", O.ms)]
+    [Example(answer: 112, @".#.
+..#
+###")]
+    [Puzzle(answer: 291, @"##.#....
+...#...#
+.#.#.##.
+..#.#...
+.###....
+.##.#...
+#.##..##
+#.####..", O.ms)]
     public int part_one(CharPixels chars)
     {
         var space = new Space();

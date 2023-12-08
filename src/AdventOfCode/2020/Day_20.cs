@@ -155,7 +155,7 @@ public class Day_20
                 ..................#.
                 #....##....##....###
                 .#..#..#..#..#..#...
-                ".CharPixels().Where(p => p.Value == '#').Select(p => p.Key - Point.O));
+                ".CharPixels(true).Where(p => p.Value == '#').Select(p => p.Key - Point.O));
         private Sea(IEnumerable<Vector> points)
         {
             AddRange(points);

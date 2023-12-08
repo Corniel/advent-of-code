@@ -1,5 +1,6 @@
 ﻿using Advent_of_Code.Http;
 using Advent_of_Code.Rankings;
+using Microsoft.Diagnostics.Tracing.Parsers.Kernel;
 using Qowaiv.IO;
 
 namespace Specs.Leaderboard_specs;
@@ -15,6 +16,20 @@ public class Leaderboard
 
     static FileInfo FileLocation(AdventDate date) => new(Path.Combine(Data.Location.FullName, $"{date.Year}/day_{date.Day:00}_leaderboard.html"));
 
+    [TestCase("Corniel")]
+    public void TODO_list(string name)
+    {
+        var entries = FetchEntries(new(null, null, 2));
+        var participant = Data.Participants().Search(name)!;
+
+        var sovled = participant.Solutions.Select(s => s.Key).ToHashSet();
+
+        foreach (var entry in entries.Where(e => !sovled.Contains(e.Date)) .OrderBy(e => e.Time))
+        {
+            $"- [ ] {entry.Date} {entry.Time.TotalMinutes,3:0}:{entry.Time.Seconds:00}".Console();
+        }
+    }
+
     [Test]
     public void Fetch_all() => Fetch(new AdventDate(null, null, 2));
 
@@ -24,16 +39,9 @@ public class Leaderboard
     [Test]
     public static Task Download_missing() => Task.WhenAll(AdventDate.AllAvailable().Where(d => d.Part == 1).Select(Download).ToArray());
 
-    static void Fetch(AdventDate reference)
+    static void Fetch(AdventDate filter)
     {
-        var enties = new List<LeaderboardEntry>();
-
-        foreach (var date in AdventDate.AllAvailable().Where(d => d.Matches(reference) && d.Year >= 2017))
-        {
-            using var reader = FileLocation(date).OpenText();
-            enties.AddRange(LeaderboardEntry.Read(date.Year.Value, reader.ReadToEnd())
-                .Where(e => e.Date.Matches(reference) && e.Pos == 100));
-        }
+        var enties = FetchEntries(filter);
         var factor = 50d / enties.Max(e => e.Time.Ticks);
 
         foreach (var entry in enties)
@@ -44,6 +52,20 @@ public class Leaderboard
 
             $"{entry.Date.Year}\t{entry.Date.Day}\t{entry.Date.Part}\t{entry.Pos}\t{entry.Time}\t{stars}".Console();
         }
+    }
+
+    private static IReadOnlyCollection<LeaderboardEntry> FetchEntries(AdventDate filter)
+    {
+        var enties = new List<LeaderboardEntry>();
+
+        foreach (var date in AdventDate.AllAvailable().Where(d => d.Matches(filter) && d.Year >= 2017))
+        {
+            using var reader = FileLocation(date).OpenText();
+            enties.AddRange(LeaderboardEntry.Read(date.Year.Value, reader.ReadToEnd())
+                .Where(e => e.Date.Matches(filter) && e.Pos == 100));
+        }
+
+        return enties;
     }
 
     static async Task Download(AdventDate date)

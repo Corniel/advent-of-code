@@ -3,20 +3,20 @@
 [Category(Category.Simulation)]
 public class Day_23
 {
-    [Example(answer: "67384529", "389125467")]
-    [Puzzle(answer: "94238657", "739862541", O.ns100)]
-    public string part_one(string str)
+    [Example(answer: 67384529, 389125467)]
+    [Puzzle(answer: 94238657, 739862541, O.ns100)]
+    public int part_one(int number)
     {
-        var cups = Cups.Create(str.Digits());
+        var cups = Cups.Create(number.Digits());
         while (cups.Turn < 100) { cups.Next(); }
-        return cups.Answer();
+        return Digits.ToInt32(cups.Answer());
     }
 
-    [Example(answer: 149245887792, "389125467")]
-    [Puzzle(answer: 3072905352L, "739862541", O.s)]
-    public long part_two(string str)
+    [Example(answer: 149245887792, 389125467)]
+    [Puzzle(answer: 3072905352L, 739862541, O.s)]
+    public long part_two(int number)
     {
-        var cups = Cups.Create(str.Digits(), 1_000_000);
+        var cups = Cups.Create(number.Digits(), 1_000_000);
         while (cups.Turn < 10_000_000) { cups.Next(); }
         return (long)cups.Search(1).Next.Value * cups.Search(1).Next.Next.Value;
     }
@@ -75,16 +75,14 @@ public class Day_23
             cups.Curr = first;
             return cups;
         }
-        public string Answer()
+        public IEnumerable<int> Answer()
         {
-            var sb = new StringBuilder();
             var next = Search(1).Next;
             while (next.Value != 1)
             {
-                sb.Append(next.Value);
+                yield return next.Value;
                 next = next.Next;
             }
-            return sb.ToString();
         }
     }
     record Cup(int Value)

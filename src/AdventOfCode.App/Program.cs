@@ -12,13 +12,13 @@ public static class Program
 {
     private static readonly int Failure = 1;
     private static readonly int Success = 0;
-    private static AdventPuzzles Puzzles;
+    private static AdventPuzzles Puzzles = new();
 
     public static async Task<int> Main(string[] args)
     {
         Puzzles = AdventPuzzles.Load(typeof(Now.Dummy).Assembly);
 
-        if (args?.Length < 1) return Usage();
+        if (args is not { Length: > 0 }) return Usage();
 
         var arg0 = args[0];
         args = args[1..];
@@ -35,19 +35,16 @@ public static class Program
 
         if (Matches.LoC(date, args)) return Loc(date, args);
 
-        else if (args.Length >= 2 && (args[1] == "-rank" || args[1] == "-r"))
-        {
-            return await Rankings(date.Year.Value, args.Length == 2 ? "" : args[2]);
-        }
+        if (Matches.Rank(date, args)) return await Rankings(date, args[1..].FirstOrDefault());
 
-        if (Matches.Run(date, args)) return Run(date, args);
-        
+        if (Matches.Run(date, args)) return RunPuzzle(date, args);
+
         return NoMethod(date, args);
     }
-    
-    private static async Task<int> Rankings(int year, string list)
+
+    private static async Task<int> Rankings(AdventDate date, string? list)
     {
-        Console.Clear();
+        var year = date.Year!.Value;
         Data.Location = new DirectoryInfo("../../../../AdventOfCode.Utils/Rankings/Data");
 
         foreach (var file in await Data.DownloadRankingFiles())
@@ -55,7 +52,7 @@ public static class Program
             Console.WriteLine(file);
         }
 
-        var participants = list.ToUpperInvariant() == "TJIP"
+        var participants = list?.ToUpperInvariant() == "TJIP"
             ? Data.Tjip(year)
             : Data.Participants();
 
@@ -66,7 +63,7 @@ public static class Program
 
     private static int Generate(AdventDate date)
     {
-        var location = Templating.Generate(date.Year.Value, date.Day.Value);
+        var location = Templating.Generate(date.Year!.Value, date.Day!.Value);
         Console.WriteLine($"Template code generated at {location.FullName}");
         return Success;
     }
@@ -84,7 +81,7 @@ public static class Program
         }
         return Success;
     }
-    
+
     private static int BenchmarksClassic(AdventDate date)
     {
         foreach (var benchmark in Puzzles
@@ -106,7 +103,7 @@ public static class Program
         return Success;
     }
 
-    private static int Run(AdventDate date, string[] _)
+    private static int RunPuzzle(AdventDate date, string[] _)
     {
         foreach (var puzzle in Puzzles.Matching(date))
         {
@@ -145,7 +142,7 @@ public static class Program
 
         public override Encoding Encoding => Encoding.UTF8;
 
-        public override void Write(char[] buffer)
+        public override void Write(char[]? buffer)
         {
             Writer.Write(buffer);
             Stream.Write(buffer);
@@ -167,19 +164,25 @@ public static class Program
         }
     }
 
-    private static class Matches
+    static class Matches
     {
         public static bool New(AdventDate date, string[] _)
             => date.SpecifiesYearDay() && !Puzzles.Contains(date);
 
         public static bool Benchmark(AdventDate _, string[] args)
-            => Arg(args?[0], "b", "benchmark");
+            => Arg(args[0], "b", "benchmark");
 
         public static bool BenchmarkClassic(AdventDate _, string[] args)
-            => Arg(args?[0], "bc");
+            => Arg(args[0], "bc");
 
         public static bool LoC(AdventDate _, string[] args)
-            => Arg(args?[0], "LoC");
+            => Arg(args[0], "LoC");
+
+        public static bool Rank(AdventDate date, string[] args)
+            => date.Year.HasValue
+            && !date.Day.HasValue
+            && !date.Part.HasValue
+            && Arg(args[0], "r", "rank");
 
         public static bool Run(AdventDate date, string[] args)
             => Puzzles.Matching(date).Any() && args.Length == 0;

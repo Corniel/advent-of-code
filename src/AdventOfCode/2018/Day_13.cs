@@ -5,17 +5,16 @@ public class Day_13
 {
     [Example(answer: "7,3", Example._1)]
     [Puzzle(answer: "83,121", O.ms)]
-    public Point part_one(string str) => Simulate(str, stopOncrash: true);
+    public Point part_one(CharGrid map) => Simulate(map, stopOncrash: true);
 
     [Example(answer: "6,4", Example._2)]
     [Puzzle(answer: "102, 144", O.ms)]
-    public Point part_two(string str) => Simulate(str);
+    public Point part_two(CharGrid map) => Simulate(map);
 
-    static Point Simulate(string str, bool stopOncrash = false)
+    static Point Simulate(CharGrid map, bool stopOncrash = false)
     {
-        var grid = str.CharPixels(ignoreSpace: false).Grid();
-        var carts = grid.Positions
-            .Select(p => new Cart(p, grid[p]))
+        var carts = map.Positions
+            .Select(p => new Cart(p, map[p]))
             .Where(c => c.Dir != default)
             .ToList();
 
@@ -32,7 +31,7 @@ public class Day_13
                     if (stopOncrash) return cart.Pos;
                 }
 
-                switch (grid[cart.Pos])
+                switch (map[cart.Pos])
                 {
                     case '+': cart.Intersect(); break;
                     case '/': cart.TurnTlBr(); break;

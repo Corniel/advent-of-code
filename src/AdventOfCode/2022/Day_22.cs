@@ -13,7 +13,7 @@ public class Day_22
 
     static int Navigate(GroupedLines group, Func<CharGrid, Cursor, Cursor> offMap)
     {
-        var map = group[0].CharPixels(ignoreSpace: false).Grid();
+        var map = group[0].CharPixels().Grid();
         var cursor = new Cursor(map.First(t => t.Value == '.').Key, Vector.E);
 
         foreach (var instr in Instructions(group[1][0]))

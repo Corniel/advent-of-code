@@ -16,23 +16,26 @@ public class Day_07
     readonly struct Hand : IComparable<Hand>
     {
         public readonly int Bid;
-        readonly string Cards;
-        readonly HandType Type;
+        readonly int Value;
 
         public Hand(string cards, int bid)
         {
             Bid = bid;
             var groups = Goups(cards);
 
-            Type = groups.Length switch
+            Value = (int)(groups.Length switch
             {
                 1 => HandType.FiveOfKind,
                 2 => groups[0] == 4 ? HandType.FourOfKind : HandType.FullHouse,
                 3 => groups[0] == 2 ? HandType.TwoPair : HandType.ThreeOfKind,
                 4 => HandType.OnePair,
                 _ => default
-            };
-            Cards = cards;
+            });
+
+            foreach (var ch in cards)
+            {
+                Value = (Value << 4) | Order.IndexOf(ch);
+            }
         }
 
         static int[] Goups(string cards)
@@ -50,18 +53,7 @@ public class Day_07
             else return [5];
         }
 
-        public int CompareTo(Hand other)
-        {
-            if (Type.ComparesTo(other.Type) is { } t) return t;
-
-            for (var i = 0; i < 5; i++)
-            {
-                var s = Order.IndexOf(other.Cards[i]);
-                var o = Order.IndexOf(Cards[i]);
-                if (o.ComparesTo(s) is { } c) return c;
-            }
-            return 0;
-        }
+        public int CompareTo(Hand other) => Value.CompareTo(other.Value);
 
         public static Hand Parse(string line) => new(line[0..5], line[6..].Int32());
     }

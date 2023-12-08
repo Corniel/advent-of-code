@@ -16,3 +16,8 @@ global using System.Linq;
 global using System.Text;
 global using System.Threading.Tasks;
 global using static System.FormattableString;
+global using Int = System.Numerics.BigInteger;
+global using CharGrid = SmartAss.Collections.Grid<char>;
+global using Ints = SmartAss.Inputs<int>;
+global using Longs = SmartAss.Inputs<long>;
+global using Lines = SmartAss.Inputs<string>;

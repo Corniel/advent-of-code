@@ -1,8 +1,8 @@
 ﻿using Qowaiv.IO;
 
-namespace Advent_of_Code.Rankings;
+namespace Advent_of_Code.Diagnostics;
 
-public record class LinesOfCode(FileInfo Location, AdventDate Date)
+public record LinesOfCode(FileInfo Location, AdventDate Date)
 {
     public StreamSize Size => Process().size;
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -43,4 +43,13 @@ public record class LinesOfCode(FileInfo Location, AdventDate Date)
     }
 
     public override string ToString() => Invariant($"{Date}: {LoC,3} LoC, {Size,9:0.00 kB}");
+
+    public static IReadOnlyCollection<LinesOfCode> Select(AdventDate filter)
+        => AdventDate.AllAvailable()
+            .Where(d => d.Part == 1 && d.Matches(filter))
+            .Select(d => new LinesOfCode(
+                Location: new(Path.Combine($"./../../../../AdventOfCode/{d.Year}/Day_{d.Day:00}.cs")),
+                Date: new AdventDate(d.Year, d.Day, null)))
+            .Where(code => code.Exists)
+            .ToArray();
 }

@@ -1,4 +1,5 @@
 ﻿using Advent_of_Code.Benchmarking;
+using Advent_of_Code.Diagnostics;
 using Advent_of_Code.Rankings;
 using SmartAss;
 using System.IO;
@@ -98,15 +99,7 @@ public static class Program
 
     private static int Loc(AdventDate date, string[] _)
     {
-        var files = AdventDate.AllAvailable()
-            .Where(d => d.Part == 1 && d.Matches(date))
-            .Select(d => new LinesOfCode(
-                Location: new(Path.Combine($"./../../../../AdventOfCode/{d.Year}/Day_{d.Day:00}.cs")),
-                Date: new AdventDate(d.Year, d.Day, null)))
-            .Where(code => code.Exists)
-            .ToArray();
-
-        foreach (var file in files)
+        foreach (var file in LinesOfCode.Select(date))
         {
             Console.WriteLine(file);
         }

@@ -26,7 +26,7 @@ public class Leaderboard
 
         foreach (var entry in entries.Where(e => !sovled.Contains(e.Date)) .OrderBy(e => e.Time))
         {
-            $"- [ ] {entry.Date} {entry.Time.TotalMinutes,3:0}:{entry.Time.Seconds:00}".Console();
+            $"- [ ] {entry.Date.Year}-{entry.Date.Day:00} {entry.Time.TotalMinutes,3:0}:{entry.Time.Seconds:00}".Console();
         }
     }
 
@@ -41,7 +41,7 @@ public class Leaderboard
 
     static void Fetch(AdventDate filter)
     {
-        var enties = FetchEntries(filter);
+        var enties = FetchEntries(filter).Where(d => d.Date.Year >= 2017).ToArray();
         var factor = 50d / enties.Max(e => e.Time.Ticks);
 
         foreach (var entry in enties)
@@ -58,7 +58,7 @@ public class Leaderboard
     {
         var enties = new List<LeaderboardEntry>();
 
-        foreach (var date in AdventDate.AllAvailable().Where(d => d.Matches(filter) && d.Year >= 2017))
+        foreach (var date in AdventDate.AllAvailable().Where(d => d.Matches(filter)))
         {
             using var reader = FileLocation(date).OpenText();
             enties.AddRange(LeaderboardEntry.Read(date.Year.Value, reader.ReadToEnd())

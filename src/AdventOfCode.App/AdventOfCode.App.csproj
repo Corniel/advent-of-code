@@ -6,6 +6,7 @@
     <OutputType>Exe</OutputType>
     <AssemblyName>aoc</AssemblyName>
     <RootNamespace>Advent_of_Code</RootNamespace>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>

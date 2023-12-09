@@ -8,7 +8,9 @@ public readonly struct AdventDate(int? year, int? day, int? part) : IComparable<
     public readonly int? Day = day;
     public readonly int? Part = part;
 
-    public bool SpecifiesYearDay() => Year.HasValue && Day.HasValue && !Part.HasValue;
+    public AdventDate YearDay => new(Year, Day, null);
+
+    public bool SpecifiesYearDay => Year.HasValue && Day.HasValue && !Part.HasValue;
 
     public bool Matches(AdventDate other)
         => Matches(Year, other.Year)

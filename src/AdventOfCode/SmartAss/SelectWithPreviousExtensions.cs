@@ -1,6 +1,8 @@
-﻿namespace SmartAss;
+﻿using System.Numerics;
 
-public static class LoopWithPrevious
+namespace SmartAss;
+
+public static class SelectWithPreviousExtensions
 {
     public static CurrentAndPreviouses SelectWithPrevious(this string str, int size = 2) => new(str, size);
 
@@ -26,6 +28,9 @@ public static class LoopWithPrevious
             previous = current;
         }
     }
+
+    public static T Delta<T>(this CurrentAndPrevious<T> pair) where T : struct, INumberBase<T>
+        => pair.Current - pair.Previous;
 }
 
 public struct CurrentAndPreviouses : IEnumerator<string>, IEnumerable<string>

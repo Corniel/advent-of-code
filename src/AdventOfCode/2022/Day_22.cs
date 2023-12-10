@@ -15,26 +15,26 @@ public class Day_22
     {
         var map = group[0].CharPixels().Grid();
         var cursor = new Cursor(map.First(t => t.Value == '.').Key, Vector.E);
-
+        
         foreach (var instr in Instructions(group[1][0]))
         {
             if (instr is char rotate) cursor = cursor.Rotate(rotate);
             else for (var step = 0; step < (int)instr; step++)
             {
                 var next = cursor.Move();
-                next = next.OnMap(map) ? next : offMap(map, cursor);
+                next = OnMap(next, map) ? next : offMap(map, cursor);
                 if (map[next.Pos] != '#') cursor = next;
                 else break;
             }
         }
-        return cursor.Score();
+        return Score(cursor);
     }
 
     static Cursor Donut(CharGrid map, Cursor cursor)
     {
         cursor = cursor.Move();
-        do cursor = map.OnGrid(cursor.Pos) ? cursor.Move() : cursor.Modulo(map);
-        while (!cursor.OnMap(map));
+        do cursor = map.OnGrid(cursor.Pos) ? cursor.Move() : Modulo(cursor, map);
+        while (!OnMap(cursor, map));
         return cursor;
     }
     
@@ -122,14 +122,11 @@ public class Day_22
         yield return factor;
     }
 
-    record struct Cursor(Point Pos, Vector Dir)
-    {
-        public readonly Cursor Move() => new(Pos + Dir, Dir);
-        public readonly Cursor Rotate(char dir) => new(Pos, dir == 'R' ? Dir.TurnRight() : Dir.TurnLeft());
-        public readonly bool OnMap(CharGrid map) => map.OnGrid(Pos) && map[Pos] != ' ';
-        public readonly Cursor Modulo(CharGrid map) => new(new(Pos.X.Mod(map.Cols), Pos.Y.Mod(map.Rows)), Dir);
-        public readonly int Score() => (Pos.Y + 1) * 1000 + (Pos.X + 1) * 4 + Facing[Dir];
-    }
+    static bool OnMap(Cursor c, CharGrid map) => map.OnGrid(c.Pos) && map[c.Pos] != ' ';
 
+    static Cursor Modulo(Cursor c, CharGrid map) => new(new(c.Pos.X.Mod(map.Cols), c.Pos.Y.Mod(map.Rows)), c.Dir);
+
+    static int Score(Cursor c) => (c.Pos.Y + 1) * 1000 + (c.Pos.X + 1) * 4 + Facing[c.Dir];
+    
     static readonly Dictionary<Vector, int> Facing = new() { [Vector.E] = 0, [Vector.S] = 1, [Vector.W] = 2, [Vector.N] = 3 };
 }

@@ -9,33 +9,30 @@ public class Day_01
     [Puzzle(answer: 226, O.μs)]
     public int part_one(string str)
     {
-        var current = Point.O;
-        var movement = Vector.N;
-        foreach(var instruction in str.Split(", "))
+        var cursor = new Cursor(Point.O, Vector.S);
+
+        foreach (var instr in str.Split(", "))
         {
-            var rotation = instruction[0] == 'R' ? DiscreteRotation.Deg090 : DiscreteRotation.Deg270;
-            movement = movement.Rotate(rotation).Sign() * int.Parse(instruction[1..]);
-            current += movement;
+            cursor = cursor.Rotate(instr[0]).Move(instr.Int32());
         }
-        return current.ManhattanDistance(Point.O);
+        return cursor.Pos.ManhattanDistance(Point.O);
     }
 
     [Example(answer: 4, "R8, R4, R4, R8")]
     [Puzzle(answer: 79, O.μs10)]
     public int part_two(string str)
     {
-        var current = Point.O;
-        var movement = Vector.N;
-        var done = new HashSet<Point> { current };
-        foreach (var instruction in str.Split(", "))
+        var cursor = new Cursor(Point.O, Vector.N);
+        var done = new HashSet<Point> { cursor.Pos };
+
+        foreach (var instr in str.Split(", "))
         {
-            var rotation = instruction[0] == 'R' ? DiscreteRotation.Deg090 : DiscreteRotation.Deg270;
-            movement = movement.Rotate(rotation);
-            var steps = int.Parse(instruction[1..]);
-            for (var step = 0; step < steps; step++)
+            cursor = cursor.Rotate(instr[0]);
+
+            foreach (var _ in Range(0, instr.Int32()))
             {
-                current += movement;
-                if (!done.Add(current)) return current.ManhattanDistance(Point.O);
+                cursor = cursor.Move();
+                if (!done.Add(cursor.Pos)) return cursor.Pos.ManhattanDistance(Point.O);
             }
         }
         throw new NoAnswer();

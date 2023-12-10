@@ -17,7 +17,7 @@ public class Day_09
         var rope = Repeat(Point.O, size).ToArray();
         var visited = new HashSet<Point>();
 
-        foreach (var move in lines.SelectMany(l => Repeat(Move(l[0]), l[2..].Int32())))
+        foreach (var move in lines.SelectMany(l => Repeat(l[0].Vector(), l.Int32())))
         {
             rope[0] += move;
 
@@ -29,8 +29,6 @@ public class Day_09
         }
         return visited.Count;
     }
-
-    static Vector Move(char c) => c switch { 'U' => Vector.N, 'D' => Vector.S, 'L' => Vector.W, _ /* R */ => Vector.E };
 
     static Point Tail(Point head, Point tail)
         => head - tail is { Length2: > 2 } delta

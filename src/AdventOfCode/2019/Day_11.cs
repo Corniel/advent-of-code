@@ -19,20 +19,17 @@ public class Day_11
     static Dictionary<Point, int> DrawCanvas(Computer computer, int color)
     {
         var canvas = new Dictionary<Point, int> { { Point.O, color } };
-        var bot = Point.O;
-        var dir = Vector.N;
+        var bot = new Cursor(Point.O, Vector.N);
 
         while (!computer.Finished)
         {
-            canvas.TryGetValue(bot, out color);
+            canvas.TryGetValue(bot.Pos, out color);
             color = (int)computer.Run(new RunArguments(false, true, color)).LastOrDefault();
             var turn = computer.Run(new RunArguments(false, true)).LastOrDefault();
 
-            canvas[bot] = color;
-            dir = dir.Rotate(turn == 0 ? DiscreteRotation.Deg090 : DiscreteRotation.Deg270);
-            bot += dir;
+            canvas[bot.Pos] = color;
+            bot = bot.Rotate(turn == 0 ? DiscreteRotation.Deg090 : DiscreteRotation.Deg270).Move();
         }
-
         return canvas;
     }
 }

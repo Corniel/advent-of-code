@@ -9,7 +9,7 @@ public class Day_03
     {
         var done = new HashSet<Point> { Point.O };
         var santa = Point.O;
-        foreach(var dir in str.Select(Parse))
+        foreach(var dir in str.Select(c => c.Vector()))
         {
             santa += dir;
             done.Add(santa);
@@ -25,7 +25,7 @@ public class Day_03
         var santa = Point.O;
         var robo = Point.O;
         var first = true;
-        foreach (var dir in str.Select(Parse))
+        foreach (var dir in str.Select(c => c.Vector()))
         {
             if (first)
             {
@@ -41,13 +41,4 @@ public class Day_03
         }
         return done.Count;
     }
-
-    static Vector Parse(char ch)
-    => ch switch 
-    {
-        '^' => Vector.N,
-        '>' => Vector.E,
-        '<' => Vector.W,
-        _ => Vector.S,
-    };
 }

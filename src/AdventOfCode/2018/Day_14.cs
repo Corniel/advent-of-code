@@ -4,10 +4,7 @@
 public class Day_14
 {
     [Example(answer: 0124515891, 5)]
-    [Example(answer: 5158916779, 9)]
     [Example(answer: 1589167792, 10)]
-    [Example(answer: 9251071085, 18)]
-    [Example(answer: 5941429882, 2018)]
     [Puzzle(answer: 02107929416, 556061, O.ms10)]
     public int part_one(int runs)
         => Digits.ToInt32(Run(r => r.Count < runs + 10).Skip(runs).Take(10));

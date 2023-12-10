@@ -18,6 +18,7 @@ public static class ConsoleLogger
     public static CharGrid Console(this CharGrid grid)
     {
         WriteLine(grid?.ToString(c => c));
+        WriteLine();
         return grid;
     }
 

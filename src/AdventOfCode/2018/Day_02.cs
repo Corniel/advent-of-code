@@ -13,27 +13,17 @@ public class Day_02
 
     [Example(answer: "fgij", "abcde;fghij;klmno;pqrst;fguij;axcye;wvxyz")]
     [Puzzle(answer: "bqlporuexkwzyabnmgjqctvfs", O.μs100)]
-    public string part_two(Lines lines)
-    {
-        for (var f = 0; f < lines.Count; f++)
-        {
-            for (var s = f + 1; s < lines.Count; s++)
-            {
-                if (Matching(lines[f], lines[s]) is { } match) return match;
-            }
-        }
-        throw new NoAnswer();
-    }
+    public string part_two(Lines lines) => lines.RoundRobin().Select(Matching).First(m => m is { });
 
-    static string Matching(string f, string s)
+    static string Matching(Pair<string> p)
     {
-        var matching = new char[f.Length - 1];
+        var matching = new char[p.First.Length - 1];
         var missing = 0;
-        for (var i = 0; i < f.Length; i++)
+        for (var i = 0; i < p.First.Length; i++)
         {
-            if (f[i] == s[i])
+            if (p.First[i] == p.Second[i])
             {
-                matching[i - missing] = f[i];
+                matching[i - missing] = p.First[i];
             }
             else if (missing++ > 0) return null;
         }

@@ -42,6 +42,12 @@ university coursework, practice problems, or to challenge each other.
 * [Lannie](https://github.com/lannieligthart/advent_of_code)
 * [Laura](https://github.com/LauraXiulan/advent-of-code)
 
+# Solving times
+I started participating in 2020. I have, since then, also solved others.
+Furthermore, living in the Netherlands, and being a night owl, getting myself
+behind a screen at 6:00 (local time) is hard. Nevertheless, I solved some of
+them within an hour. All results can fe found here:  [Solving.md](Solving.md).
+
 ## Lines of Code (LoC)
 > When a measure becomes a target, it ceases to be a good measure.
 We all know it to be true, so keeping track of the lines of code per puzzle is

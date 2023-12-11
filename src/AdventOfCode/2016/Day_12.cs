@@ -7,7 +7,7 @@ public class Day_12
     [Puzzle(answer: 318003, O.ms)]
     public int part_one(Lines lines) => Run(lines, 0);
 
-    [Puzzle(answer: 9227657, O.ms100)]
+    [Puzzle(answer: 9227657, O.ms10)]
     public int part_two(Lines lines) => Run(lines, 1);
 
     static int Run(Lines lines, int c)

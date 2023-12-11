@@ -4,7 +4,7 @@
 public class Day_01
 {
     [Example(answer: 3, "))(((((")]
-    [Puzzle(answer: 232, O.μs10)]
+    [Puzzle(answer: 232, O.μs)]
     public int part_one(string str) => str.Sum(ch => ch == '(' ? 1 : -1);
 
     [Example(answer: 5, "()())")]

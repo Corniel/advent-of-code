@@ -8,8 +8,8 @@ public class Day_25
     public int part_one(CharGrid map)
     {
         map.SetNeighbors(Neighbors.Sphere);
-        var east = new Stack<Point>(map.Where(p => p.Value == '>').Select(p => p.Key));
-        var south = new Stack<Point>(map.Where(p => p.Value == 'v').Select(p => p.Key));
+        var east = new Stack<Point>(map.Positions(t => t == '>'));
+        var south = new Stack<Point>(map.Positions(p => p == 'v'));
         var steps = 1;
         while (Move(map, east, CompassPoint.E) | Move(map, south, CompassPoint.S)) { steps++; }
         return steps;

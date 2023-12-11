@@ -32,9 +32,9 @@ public class Day_03
         }
         if (part == 1) return sum;
 
-        foreach (var tile in map.Where(p => p.Value == '*'))
+        foreach (var tile in map.Positions(t => t == '*'))
         {
-            var neighbors = map.Neighbors[tile.Key].ToArray();
+            var neighbors = map.Neighbors[tile].ToArray();
 
             if (parts.Where(p => p.Span.Exists(x => neighbors.Contains(x))).ToArray() is { Length: 2 } ps)
             {

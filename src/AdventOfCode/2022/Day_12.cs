@@ -16,8 +16,7 @@ public class Day_12
     public int part_two(CharPixels chars)
     {
         var area = Area.Parse(chars);
-        var starts = area.Map.Where(p => p.Value == 'a').Select(p => p.Key);
-        return starts.Select(a => area.Find(a)).Min();
+        return area.Map.Positions(t => t == 'a').Select(area.Find).Min();
     }
 
     record Area(CharGrid Map, Point S, Point E)

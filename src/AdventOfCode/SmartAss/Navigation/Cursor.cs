@@ -19,10 +19,19 @@ public readonly struct Cursor : IEquatable<Cursor>
     public Cursor Move(int steps = 1) => new(Pos + (Dir * steps), Dir);
 
     [Pure]
+    public Cursor TurnLeft() => new(Pos, Dir.TurnLeft());
+
+    [Pure]
+    public Cursor TurnRight() => new(Pos, Dir.TurnRight());
+
+    [Pure]
+    public Cursor UTurn() => new(Pos, Dir.UTurn());
+
+    [Pure]
     public Cursor Rotate(char ch) => ch switch
     {
-        'R' => new(Pos, Dir.TurnRight()),
-        'L' => new(Pos, Dir.TurnLeft()),
+        'R' => TurnRight(),
+        'L' => TurnLeft(),
         _ => throw new FormatException($"'{ch}' does not describe a valid rotation.")
     };
 

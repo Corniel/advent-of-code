@@ -12,6 +12,7 @@ global using SmartAss.Expressions;
 global using SmartAss.Maps;
 global using SmartAss.Navigation;
 global using SmartAss.Numerics;
+global using SmartAss.Pairings;
 global using SmartAss.Parsing;
 global using SmartAss.Syntax;
 global using SmartAss.Trees;

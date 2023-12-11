@@ -19,6 +19,8 @@ public readonly struct AdventDate(int? year, int? day, int? part) : IComparable<
 
     static bool Matches(int? l, int? r) => !l.HasValue || !r.HasValue || l.Value == r.Value;
 
+    public DateTime AvailableFrom => new(Year ?? 1, month: 12, Day ?? 1, hour: 05, minute: 00, second: 00, DateTimeKind.Utc);
+
     public override string ToString()
     {
         var str = $"{Year}-{Day:00}-{Part}".Replace("--", "*");
@@ -71,8 +73,7 @@ public readonly struct AdventDate(int? year, int? day, int? part) : IComparable<
         ?? 0;
 
     public bool IsAvailable(DateTime? now = default)
-        => new DateTime(Year ?? 1, month: 12, Day ?? 1, hour: 05, minute: 00, second: 00, DateTimeKind.Utc)
-        <= (now ?? Clock.UtcNow());
+        => AvailableFrom <= (now ?? Clock.UtcNow());
 
     public static IEnumerable<AdventDate> AllAvailable(DateTime? now = default)
         => Range(2015, 1 + Clock.Today().Year - 2015)

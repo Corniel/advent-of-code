@@ -30,16 +30,16 @@ public static class ConsoleLogger
 
     public static HashSet<Point> Console(this HashSet<Point> grid, string chars = "#.")
     {
-        var min = new Point(int.MaxValue,int.MaxValue);
+        var min = new Point(int.MaxValue, int.MaxValue);
         var max = new Point(int.MinValue, int.MinValue);
 
         foreach (var point in grid)
         {
             if (point.X < min.X) min = new(point.X, min.Y);
-            else if (point.X > max.X) max = new(point.X, max.Y);
+            if (point.X > max.X) max = new(point.X, max.Y);
 
             if (point.Y < min.Y) min = new(min.X, point.Y);
-            else if (point.Y > max.Y) max = new(max.X, point.Y);
+            if (point.Y > max.Y) max = new(max.X, point.Y);
         }
         var offset = Point.O - min;
         max += offset;

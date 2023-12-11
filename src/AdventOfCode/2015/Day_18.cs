@@ -29,7 +29,7 @@ public class Day_18
         public GameOfLife(Grid<bool> grid)
         {
             neighbors = grid.SetNeighbors(SmartAss.Maps.Neighbors.Grid, CompassPoints.All).Neighbors;
-            this.AddRange(grid.Where(tile => tile.Value).Select(tile => tile.Key));
+            this.AddRange(grid.Positions(t => t));
         }
         private readonly Grid<GridNeighbors> neighbors;
 

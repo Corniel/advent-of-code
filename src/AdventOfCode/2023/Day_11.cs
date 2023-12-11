@@ -17,7 +17,7 @@ public class Day_11
         var emptyCols = Range(0, map.Cols).Select(r => map.Col(r).All(t => t.Value == '.')).ToArray();
         var emptyRows = Range(0, map.Rows).Select(r => map.Row(r).All(t => t.Value == '.')).ToArray();
 
-        return map.PositionsWhere(c => c == '#').ToArray().RoundRobin().Sum(Distance);
+        return map.Positions(c => c == '#').ToArray().RoundRobin().Sum(Distance);
 
         long Distance(Pair<Point> p)
         {

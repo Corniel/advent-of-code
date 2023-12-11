@@ -15,7 +15,7 @@ public class Day_15
     {
         costs.SetNeighbors(Neighbors.Grid);
         var distances = new Grid<int>(costs.Cols, costs.Rows);
-        distances.Set(short.MaxValue, distances.Positions);
+        distances.Set(short.MaxValue, distances.Positions());
         distances[Point.O] = 0;
         var target = new Point(costs.Cols - 1, costs.Rows - 1);
         var tiles = new Queue<Point>();
@@ -42,7 +42,7 @@ public class Day_15
     {
         var larger = new Grid<int>(grid.Cols * 5, grid.Rows * 5);
 
-        foreach (var point in grid.Positions)
+        foreach (var point in grid.Positions())
         {
             for (var col_factor = 0; col_factor < 5; col_factor++)
             {

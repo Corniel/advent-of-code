@@ -21,12 +21,12 @@ public class Day_11
 
     static int Step(Grid<int> grid, Grid<bool> dones, Stack<Point> stack)
     {
-        foreach (var pos in grid.Positions)
+        foreach (var pos in grid.Positions())
         {
             grid[pos]++;
             dones[pos] = false;
         }
-        foreach(var pos in grid.Positions.Where(p => grid[p] == 10))
+        foreach(var pos in grid.Positions(t => t == 10))
         {
             stack.Push(pos);
             dones[pos] = true;
@@ -43,7 +43,7 @@ public class Day_11
             }
         }
         var flashes = 0;
-        foreach (var ten in grid.Positions.Where(p => grid[p] >= 10))
+        foreach (var ten in grid.Positions(t => t >= 10))
         {
             flashes++;
             grid[ten] = 0;

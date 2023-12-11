@@ -13,7 +13,7 @@ public class Day_13
 
     static Point Simulate(CharGrid map, bool stopOncrash = false)
     {
-        var carts = map.Positions
+        var carts = map.Positions()
             .Select(p => new Cart(p, map[p]))
             .Where(c => c.Dir != default)
             .ToList();

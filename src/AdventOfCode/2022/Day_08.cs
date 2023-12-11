@@ -6,7 +6,7 @@ public class Day_08
     [Example(answer: 21, "30373\n25512\n65332\n33549\n35390")]
     [Puzzle(answer: 1711, O.ms)]
     public int part_one(CharGrid map)
-        => map.Positions.Count(p => map.OnEdge(p)
+        => map.Positions().Count(p => map.OnEdge(p)
         || IsVisible(p, Vector.N, map)
         || IsVisible(p, Vector.E, map)
         || IsVisible(p, Vector.S, map)
@@ -16,7 +16,7 @@ public class Day_08
 
     [Example(answer: 8, "30373\n25512\n65332\n33549\n35390")]
     [Puzzle(answer: 301392, O.ms)]
-    public int part_two(CharGrid map) => map.Positions.Where(p => !map.OnEdge(p)).Select(p => Scenic(p, map)).Max();
+    public int part_two(CharGrid map) => map.Positions(p => !map.OnEdge(p)).Select(p => Scenic(p, map)).Max();
 
     static int Scenic(Point p, CharGrid map) => CompassPoints.Primary.Select(d => View(p, d.ToVector(), map)).Product();
 

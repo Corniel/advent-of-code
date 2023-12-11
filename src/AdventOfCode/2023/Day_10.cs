@@ -17,7 +17,7 @@ public class Day_10
         var topo = Blow(map);
         var pipe = Pipe(topo, map.First(p => p.Value == 'S').Key);
         var outside = Outside(topo, pipe);
-        return map.Positions.Select(Blow).Count(tile => !pipe.Contains(tile) && !outside.Contains(tile));
+        return map.Positions().Select(Blow).Count(tile => !pipe.Contains(tile) && !outside.Contains(tile));
     }
 
 

@@ -63,8 +63,8 @@ public class Day_12
         {
             var stars = Pattern.Length - Frequencies.Sum();
             return stars + 1 >= Frequencies.Length
-                ? Maths.Combination(stars + 1, Frequencies.Length)
-                : Maths.Combination(Frequencies.Length + 1L, stars);
+                ? Maths.Choose(stars + 1, Frequencies.Length)
+                : Maths.Choose(Frequencies.Length + 1L, stars);
         }
 
         static string Trim(string line) => line.Split(' ')[0].RegReplace("\\.{2,}", ".");

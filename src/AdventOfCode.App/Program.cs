@@ -52,10 +52,13 @@ public static class Program
             Console.WriteLine(file);
         }
 
-        var participants = list?.ToUpperInvariant() == "TJIP"
-            ? Data.Tjip(year)
-            : Data.Participants();
-
+        var participants = list?.ToUpperInvariant() switch
+        {
+            "TJIP" => Data.Tjip(year),
+            "TWEAKERS" => Data.Tweakers(),
+            _ => Data.Participants(),
+        };
+            
         Console.WriteLine(Ranking.Solving(year, participants.Values));
 
         return Success;

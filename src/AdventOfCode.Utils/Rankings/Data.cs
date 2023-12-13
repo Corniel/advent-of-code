@@ -46,6 +46,13 @@ public static class Data
         return participants;
     }
 
+    public static Participants Tweakers()
+    {
+        var partipants = new Participants(Participants()
+            .Where(p => p.Value.Boards.Any(b => b.Name == "Tweakers")));
+        return partipants;
+    }
+
     public static Participants Tjip(int year)
     { 
         TJIP_Ignore.TryGetValue(year, out var exclude);

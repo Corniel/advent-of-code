@@ -17,6 +17,13 @@ public class Rankings
         Ranking.Solving(year, Data.Tjip(year).Values, drieKoningen).Console();
     }
 
+    [TestCaseSource(nameof(Years))]
+    public void Tweakers(int year)
+    {
+        var drieKoningen = new DateTime(year + 1, 01, 06, 05, 00, 00, DateTimeKind.Utc);
+        Ranking.Solving(year, Data.Tweakers().Values, drieKoningen).Console();
+    }
+
     [Test]
     public void Overall()
     {

@@ -18,6 +18,7 @@ public enum Category
     Grid,
     IntComputer,
     PathFinding,
+    Permutations,
     SequenceProgression,
     Simulation,
     VectorAlgebra,

@@ -29,7 +29,7 @@ public class Day_02
 
         public static Hand Parse(string str)
         {
-            var parts = str.Separate(',').ToArray();
+            var parts = str.Separate(',');
             return new(
                 parts.Find(p => p.EndsWith("red"))?.Int32() ?? 0,
                 parts.Find(p => p.EndsWith("green"))?.Int32() ?? 0,

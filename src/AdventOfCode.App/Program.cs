@@ -170,19 +170,19 @@ public static class Program
             => date.SpecifiesYearDay && !Puzzles.Contains(date);
 
         public static bool Benchmark(AdventDate _, string[] args)
-            => Arg(args[0], "b", "benchmark");
+            => args.Any() && Arg(args[0], "b", "benchmark");
 
         public static bool BenchmarkClassic(AdventDate _, string[] args)
-            => Arg(args[0], "bc");
+            => args.Any() && Arg(args[0], "bc");
 
         public static bool LoC(AdventDate _, string[] args)
-            => Arg(args[0], "LoC");
+            => args.Any() && Arg(args[0], "LoC");
 
         public static bool Rank(AdventDate date, string[] args)
             => date.Year.HasValue
             && !date.Day.HasValue
             && !date.Part.HasValue
-            && Arg(args[0], "r", "rank");
+            && args.Any() && Arg(args[0], "r", "rank");
 
         public static bool Run(AdventDate date, string[] args)
             => Puzzles.Matching(date).Any() && args.Length == 0;

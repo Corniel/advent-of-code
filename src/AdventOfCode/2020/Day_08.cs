@@ -39,7 +39,7 @@ public class Day_08
         var pointer = 0;
         accumulator = 0;
 
-        while (pointer >= 0 && pointer < instructions.Length)
+        while (pointer.InRange(0, instructions.Length - 1))
         {
             executed[pointer]++;
 

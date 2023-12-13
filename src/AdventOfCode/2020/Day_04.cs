@@ -15,51 +15,34 @@ public class Day_04
         private bool duplicate;
 
         public bool byr => TryGetValue(nameof(byr), out var str)
-            && int.TryParse(str, out var year)
-            && year >= 1920 && year <= 2002;
+            && int.TryParse(str, out var year) && year.InRange(1920, 2002);
 
         public bool iyr => TryGetValue(nameof(iyr), out var str)
-            && int.TryParse(str, out var year)
-            && year >= 2010 && year <= 2020;
+            && int.TryParse(str, out var year) && year.InRange(2010, 2020);
 
         public bool hgt => TryGetValue(nameof(hgt), out var str)
            && int.TryParse(str[..^2], out var length)
-           && ((str.EndsWith("cm") && length >= 150 && length <= 193) ||
-            (str.EndsWith("in") && length >= 59 && length <= 76));
+           && (str.EndsWith("cm") && length.InRange(150, 193) ||
+            (str.EndsWith("in") && length.InRange(59, 76)));
 
         public bool eyr => TryGetValue(nameof(eyr), out var str)
-          && int.TryParse(str, out var year)
-          && year >= 2020 && year <= 2030;
+          && int.TryParse(str, out var year) && year.InRange(2020,2030);
 
         public bool ecl => TryGetValue(nameof(ecl), out var str)
             && Ecls.Contains(str);
 
-        public bool hcl => TryGetValue(nameof(hcl), out var str)
-          && Regex.IsMatch(str, "^#[0-9a-f]{6}$");
+        public bool hcl => TryGetValue(nameof(hcl), out var str) && str.IsMatch("^#[0-9a-f]{6}$");
 
-        public bool pid => TryGetValue(nameof(pid), out var str)
-          && Regex.IsMatch(str, "^[0-9]{9}$");
+        public bool pid => TryGetValue(nameof(pid), out var str) && str.IsMatch("^[0-9]{9}$");
 
         static readonly string[] Ecls = ["amb", "blu", "brn", "gry", "grn", "hzl", "oth"];
 
         public bool StrictValid() => IsValid()
-            && byr
-            && iyr
-            && eyr
-            && hgt
-            && hcl
-            && ecl
-            && pid;
+            && byr && iyr && eyr && hgt && hcl && ecl && pid;
 
-        public bool IsValid() =>
-            !duplicate
-            && ContainsKey(nameof(byr))
-            && ContainsKey(nameof(iyr))
-            && ContainsKey(nameof(eyr))
-            && ContainsKey(nameof(hgt))
-            && ContainsKey(nameof(hcl))
-            && ContainsKey(nameof(ecl))
-            && ContainsKey(nameof(pid))
+        public bool IsValid() => !duplicate
+            && ContainsKey(nameof(byr)) && ContainsKey(nameof(iyr)) && ContainsKey(nameof(eyr)) && ContainsKey(nameof(hgt))
+            && ContainsKey(nameof(hcl)) && ContainsKey(nameof(ecl)) && ContainsKey(nameof(pid))
             && ((ContainsKey("cid") && Count == 8) || Count == 7);
 
         public static Passport Parse(string[] lines)

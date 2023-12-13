@@ -27,7 +27,7 @@ public class Day_18
         }
         return Points3D.Range(new Point3D(min, min, min), new Point3D(max, max, max)).Where(p => !done.Contains(p)).ToHashSet();
 
-        static bool InRange(Point3D n, int min, int max) => n.X >= min && n.X <= max && n.Y >= min && n.Y <= max && n.Z >= min && n.Z <= max;
+        static bool InRange(Point3D n, int min, int max) => n.X.InRange(min, max) && n.Y.InRange(min, max) && n.Z.InRange(min, max);
     }
 
     static int Surface(HashSet<Point3D> cubes) => cubes.Sum(c => 6 - Neigbors.Count(v => cubes.Contains(c + v)));

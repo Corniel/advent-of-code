@@ -34,7 +34,7 @@ public class Day_07
         }
         foreach (var line in lines)
         {
-            var items = line.SpaceSeparated().Where(n => n[0] >= 'a' && n[0] <= 'z').Select(name => nodes[name.Trim(',')]).ToArray();
+            var items = line.SpaceSeparated().Where(n => n[0].InRange('a', 'z')).Select(name => nodes[name.Trim(',')]).ToArray();
             items[0].Children.AddRange(items[1..]);
         }
         var children = new HashSet<string>(nodes.Values.SelectMany(n => n.Children).Select(n => n.Name));

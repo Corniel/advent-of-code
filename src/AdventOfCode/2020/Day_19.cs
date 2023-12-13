@@ -21,7 +21,7 @@ public class Day_19
         public int Matches(IEnumerable<string> messages)
         {
             var regex = new Regex($"^{this[0]}$");
-            return messages.Count(message => regex.IsMatch(message));
+            return messages.Count(regex.IsMatch);
         }
         public static Patterns Parse(IEnumerable<string> lines)
         {

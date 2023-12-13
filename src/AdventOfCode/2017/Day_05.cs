@@ -16,7 +16,7 @@ public class Day_05
         var numbers = input.Edit();
         var index = 0; var turns = 0;
 
-        while (index >= 0 && index < numbers.Length)
+        while (index.InRange(0, numbers.Length - 1))
         {
             var jump = numbers[index];
             numbers[index] += jump < threshold ? +1 : -1;

@@ -8,9 +8,9 @@ public readonly struct Inputs<T>(IReadOnlyList<T> input) : IReadOnlyList<T>
 {
     private readonly IReadOnlyList<T> collection = input;
 
-    public T this[int index] => input[index];
+    public T this[int index] => collection[index];
 
-    public int Count => input.Count;
+    public int Count => collection.Count;
     
     public override string ToString() => string.Join(';', collection);
 
@@ -25,7 +25,7 @@ public readonly struct Inputs<T>(IReadOnlyList<T> input) : IReadOnlyList<T>
 
     public IEnumerable<TOut> As<TOut>(Func<T, TOut> selector) => collection.Select(selector);
 
-    public IEnumerator<T> GetEnumerator() => input.GetEnumerator();
+    public IEnumerator<T> GetEnumerator() => collection.GetEnumerator();
 
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }

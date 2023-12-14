@@ -6,13 +6,13 @@ public readonly struct GroupedLines(IReadOnlyList<string[]> groups) : IReadOnlyL
 {
     private readonly IReadOnlyList<string[]> collection = groups;
 
-    public string[] this[int index] => groups[index];
+    public string[] this[int index] => collection[index];
 
-    public int Count => groups.Count;
+    public int Count => collection.Count;
     
     public override string ToString() => string.Join(';', collection.SelectMany(g => g));
 
-    public IEnumerator<string[]> GetEnumerator() => groups.GetEnumerator();
+    public IEnumerator<string[]> GetEnumerator() => collection.GetEnumerator();
 
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }

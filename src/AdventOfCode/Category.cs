@@ -11,6 +11,7 @@ public enum Category
     BitManupilation,
     Cryptography,
     Computation,
+    CyclusDetection,
     ExpressionEvaluation,
     ExpressionParsing,
     GameOfLife,

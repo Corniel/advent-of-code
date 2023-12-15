@@ -14,7 +14,7 @@ public class Day_16
 
     private string Simulate(string str, int size, int turns)
     {
-        var moves = str.CommaSeparated().Select(Parse).ToArray();
+        var moves = str.CommaSeparated(Parse).ToArray();
         var period = Simulation.WithPeriod(
             initial: Characters.a_z[0..size].ToCharArray(),
             simulate: (d, _) => Dance(d, moves),

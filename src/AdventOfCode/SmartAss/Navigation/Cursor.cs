@@ -8,6 +8,8 @@ public readonly struct Cursor : IEquatable<Cursor>
     public readonly Point Pos;
     public readonly Vector Dir;
 
+    public Cursor(Point pos, CompassPoint dir) : this(pos, dir.ToVector()) { }
+
     public Cursor(Point pos, Vector dir)
     {
         Pos = pos;
@@ -17,6 +19,12 @@ public readonly struct Cursor : IEquatable<Cursor>
     /// <summary>Moves the cursor.</summary>
     [Pure]
     public Cursor Move(int steps = 1) => new(Pos + (Dir * steps), Dir);
+
+    [Pure]
+    public Cursor Reverse(int steps = 1) => new(Pos - (Dir * steps), Dir);
+
+    [Pure]
+    public Cursor WithDir(Vector dir) => new(Pos, dir);
 
     [Pure]
     public Cursor TurnLeft() => new(Pos, Dir.TurnLeft());
@@ -52,5 +60,5 @@ public readonly struct Cursor : IEquatable<Cursor>
 
     /// <inheritdoc />
     [Pure]
-    public override string ToString() => $"Pos = {Pos}, Dir = {Dir}";
+    public override string ToString() => $"Pos = {Pos}, Dir = {Dir} ({Dir.CompassPoint()})";
 }

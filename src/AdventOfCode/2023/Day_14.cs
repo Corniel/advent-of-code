@@ -45,16 +45,15 @@ public class Day_14
     static void MoveDir(CompassPoint dir, ref HashSet<Point> rocks, ref HashSet<Point> buffer, CharGrid map)
     {
         buffer.Clear();
-        foreach (var rock in Order(rocks, dir)) buffer.Add(Move(rock, dir.ToVector(), buffer, map));
+        foreach (var rock in Order(rocks, dir)) buffer.Add(Move(new(rock, dir), buffer, map));
         (buffer, rocks) = (rocks, buffer);
     }
 
-    static Point Move(Point rock, Vector dir, HashSet<Point> occupied, CharGrid map)
+    static Cursor Move(Cursor rock, HashSet<Point> occupied, CharGrid map)
     {
-        var next = rock;
-        do { next += dir; }
-        while (!occupied.Contains(next) && map.OnGrid(next) && map[next] != '#');
-        return next - dir;
+        do { rock = rock.Move(); }
+        while (!occupied.Contains(rock) && map.OnGrid(rock) && map.Val(rock) != '#');
+        return rock.Reverse();
     }
 
     static IEnumerable<Point> Order(HashSet<Point> rocks, CompassPoint dir) => dir switch

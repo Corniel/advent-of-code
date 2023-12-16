@@ -16,6 +16,10 @@ public readonly struct Cursor : IEquatable<Cursor>
         Dir = dir;
     }
 
+    /// <summary>MOves the cursor to the new position and updates the direction.</summary>
+    [Pure]
+    public Cursor Move(Point pos) => new(pos, pos - Pos);
+
     /// <summary>Moves the cursor.</summary>
     [Pure]
     public Cursor Move(int steps = 1) => new(Pos + (Dir * steps), Dir);

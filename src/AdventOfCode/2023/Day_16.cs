@@ -31,10 +31,10 @@ public class Day_16
         var done = new HashSet<Cursor>();
         var q = new Stack<Cursor>().PushRange([start.Reverse()]);
 
-        foreach (var cur in q.PopAll().Select(c => c.Move()).Where(c => map.OnGrid(c.Pos) && done.Add(c)))
+        foreach (var cur in q.PopAll().Select(c => c.Move()).Where(c => map.OnGrid(c) && done.Add(c)))
         {
-            energized.Add(cur.Pos);
-            var m = map[cur.Pos];
+            energized.Add(cur);
+            var m = map.Val(cur);
             var horizontal = cur.Dir == Vector.W || cur.Dir == Vector.E;
 
             if ((m == '|' && horizontal) || m == '-' && !horizontal)

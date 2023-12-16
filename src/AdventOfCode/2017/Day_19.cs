@@ -1,6 +1,4 @@
-﻿using SmartAss.Text;
-
-namespace Advent_of_Code_2017;
+﻿namespace Advent_of_Code_2017;
 
 [Category(Category.Grid)]
 public class Day_19
@@ -16,20 +14,16 @@ public class Day_19
     public IEnumerable<char> Navigate(CharGrid map)
     {
         map.SetNeighbors(Neighbors.Grid);
-        var pos = map.First(kvp => kvp.Value == '|').Key;
-        var dir = Vector.S;
+        var cur = new Cursor(map.First(kvp => kvp.Value == '|').Key, Vector.S);
 
-        while (map.OnGrid(pos) && map[pos] != ' ')
+        while (map.OnGrid(cur) && map.Val(cur) != ' ')
         {
-            var ch = map[pos];
+            var ch = map.Val(cur);
             yield return ch;
 
-            if (ch == '+')
-            {
-                var next = map.Neighbors[pos].FirstOrDefault(n => map[n] != ' ' && (n + dir) != pos);
-                dir = next - pos;
-            }
-            pos += dir;
+            cur = ch == '+'
+                ? map.Neighbors(cur).Select(cur.Move).First(n => map.Val(n) != ' ' && n.Pos != cur.Reverse().Pos)
+                : cur.Move();
         }
     }
 }

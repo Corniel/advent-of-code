@@ -23,7 +23,7 @@ public class Day_01
     public int part_two(string str)
     {
         var cursor = new Cursor(Point.O, Vector.N);
-        var done = new HashSet<Point> { cursor.Pos };
+        var done = new HashSet<Point> { cursor };
 
         foreach (var instr in str.Split(", "))
         {
@@ -32,7 +32,7 @@ public class Day_01
             foreach (var _ in Range(0, instr.Int32()))
             {
                 cursor = cursor.Move();
-                if (!done.Add(cursor.Pos)) return cursor.Pos.ManhattanDistance(Point.O);
+                if (!done.Add(cursor)) return cursor.Pos.ManhattanDistance(Point.O);
             }
         }
         throw new NoAnswer();

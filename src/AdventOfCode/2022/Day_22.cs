@@ -15,17 +15,17 @@ public class Day_22
     {
         var map = group[0].CharPixels().Grid();
         var cursor = new Cursor(map.First(t => t.Value == '.').Key, Vector.E);
-        
+
         foreach (var instr in Instructions(group[1][0]))
         {
             if (instr is char rotate) cursor = cursor.Rotate(rotate);
             else for (var step = 0; step < (int)instr; step++)
-            {
-                var next = cursor.Move();
-                next = OnMap(next, map) ? next : offMap(map, cursor);
-                if (map[next.Pos] != '#') cursor = next;
-                else break;
-            }
+                {
+                    var next = cursor.Move();
+                    next = OnMap(next, map) ? next : offMap(map, cursor);
+                    if (map.Val(next) != '#') cursor = next;
+                    else break;
+                }
         }
         return Score(cursor);
     }
@@ -33,11 +33,11 @@ public class Day_22
     static Cursor Donut(CharGrid map, Cursor cursor)
     {
         cursor = cursor.Move();
-        do cursor = map.OnGrid(cursor.Pos) ? cursor.Move() : Modulo(cursor, map);
+        do cursor = map.OnGrid(cursor) ? cursor.Move() : Modulo(cursor, map);
         while (!OnMap(cursor, map));
         return cursor;
     }
-    
+
     static Cursor Cube(CharGrid map, Cursor cursor)
     {
         var face = new Point(cursor.Pos.X / RibbonSize, cursor.Pos.Y / RibbonSize);
@@ -63,26 +63,26 @@ public class Day_22
     /// </remarks>
     static readonly Dictionary<Ribbon, Flow> Flows = new()
     {
-        [new Ribbon(new(0, 2), CompassPoint.W)] = new Flow(new(1, 0), CompassPoint.W, true),
-        [new Ribbon(new(1, 0), CompassPoint.W)] = new Flow(new(0, 2), CompassPoint.W, true),
+        [new(new(0, 2), CompassPoint.W)] = new Flow(new(1, 0), CompassPoint.W, true),
+        [new(new(1, 0), CompassPoint.W)] = new Flow(new(0, 2), CompassPoint.W, true),
 
-        [new Ribbon(new(0, 2), CompassPoint.N)] = new Flow(new(1, 1), CompassPoint.W, false),
-        [new Ribbon(new(1, 1), CompassPoint.W)] = new Flow(new(0, 2), CompassPoint.N, false),
+        [new(new(0, 2), CompassPoint.N)] = new Flow(new(1, 1), CompassPoint.W, false),
+        [new(new(1, 1), CompassPoint.W)] = new Flow(new(0, 2), CompassPoint.N, false),
 
-        [new Ribbon(new(0, 3), CompassPoint.W)] = new Flow(new(1, 0), CompassPoint.N, false),
-        [new Ribbon(new(1, 0), CompassPoint.N)] = new Flow(new(0, 3), CompassPoint.W, false),
+        [new(new(0, 3), CompassPoint.W)] = new Flow(new(1, 0), CompassPoint.N, false),
+        [new(new(1, 0), CompassPoint.N)] = new Flow(new(0, 3), CompassPoint.W, false),
 
-        [new Ribbon(new(0, 3), CompassPoint.S)] = new Flow(new(2, 0), CompassPoint.N, false),
-        [new Ribbon(new(2, 0), CompassPoint.N)] = new Flow(new(0, 3), CompassPoint.S, false),
+        [new(new(0, 3), CompassPoint.S)] = new Flow(new(2, 0), CompassPoint.N, false),
+        [new(new(2, 0), CompassPoint.N)] = new Flow(new(0, 3), CompassPoint.S, false),
 
-        [new Ribbon(new(0, 3), CompassPoint.E)] = new Flow(new(1, 2), CompassPoint.S, false),
-        [new Ribbon(new(1, 2), CompassPoint.S)] = new Flow(new(0, 3), CompassPoint.E, false),
+        [new(new(0, 3), CompassPoint.E)] = new Flow(new(1, 2), CompassPoint.S, false),
+        [new(new(1, 2), CompassPoint.S)] = new Flow(new(0, 3), CompassPoint.E, false),
 
-        [new Ribbon(new(2, 0), CompassPoint.E)] = new Flow(new(1, 2), CompassPoint.E, true),
-        [new Ribbon(new(1, 2), CompassPoint.E)] = new Flow(new(2, 0), CompassPoint.E, true),
+        [new(new(2, 0), CompassPoint.E)] = new Flow(new(1, 2), CompassPoint.E, true),
+        [new(new(1, 2), CompassPoint.E)] = new Flow(new(2, 0), CompassPoint.E, true),
 
-        [new Ribbon(new(2, 0), CompassPoint.S)] = new Flow(new(1, 1), CompassPoint.E, false),
-        [new Ribbon(new(1, 1), CompassPoint.E)] = new Flow(new(2, 0), CompassPoint.S, false),
+        [new(new(2, 0), CompassPoint.S)] = new Flow(new(1, 1), CompassPoint.E, false),
+        [new(new(1, 1), CompassPoint.E)] = new Flow(new(2, 0), CompassPoint.S, false),
     };
 
     record struct Ribbon(Point Face, CompassPoint Direction);
@@ -97,7 +97,7 @@ public class Day_22
                 CompassPoint.N => Vector.E * pos,
                 CompassPoint.E => Vector.S * pos + Vector.E * Ribbon_min1,
                 CompassPoint.S => Vector.E * pos + Vector.S * Ribbon_min1,
-                CompassPoint.W or _ => Vector.S * pos,
+                _ => Vector.S * pos,
             };
             return new(loc, Ribbon.ToVector().UTurn());
         }
@@ -122,11 +122,11 @@ public class Day_22
         yield return factor;
     }
 
-    static bool OnMap(Cursor c, CharGrid map) => map.OnGrid(c.Pos) && map[c.Pos] != ' ';
+    static bool OnMap(Cursor c, CharGrid map) => map.OnGrid(c) && map[c.Pos] != ' ';
 
     static Cursor Modulo(Cursor c, CharGrid map) => new(new(c.Pos.X.Mod(map.Cols), c.Pos.Y.Mod(map.Rows)), c.Dir);
 
     static int Score(Cursor c) => (c.Pos.Y + 1) * 1000 + (c.Pos.X + 1) * 4 + Facing[c.Dir];
-    
+
     static readonly Dictionary<Vector, int> Facing = new() { [Vector.E] = 0, [Vector.S] = 1, [Vector.W] = 2, [Vector.N] = 3 };
 }

@@ -37,7 +37,7 @@ public class Are
     }
 
     [TestCaseSource(nameof(Puzzles))]
-    public void matching_return_type(AdventPuzzle puzzle) 
+    public void matching_return_type(AdventPuzzle puzzle)
     {
         ReturnType(puzzle).Should().Be(puzzle.Answer.GetType());
 
@@ -97,7 +97,7 @@ public class Reports
     {
         var days = LinesOfCode.Select(AdventDate.All);
 
-        var distribution = new ItemCounter<int> { days.Select(p => (p.LoC *0.1).Ceil()) };
+        var distribution = new ItemCounter<int> { days.Select(p => (p.LoC * 0.1).Ceil()) };
         var factor = 40d / distribution.Max().Count;
         var max = distribution.Keys.Max();
 
@@ -106,7 +106,7 @@ public class Reports
         sb.AppendLine("|  LoC |   # | Chart  |");
         sb.AppendLine("|-----:|----:|:-------|");
 
-        for(var loc = 1; loc <= max; loc++) 
+        for (var loc = 1; loc <= max; loc++)
         {
             var dis = distribution[loc];
             var bar = new string('⭐', (dis * factor).Ceil());

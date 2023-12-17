@@ -31,7 +31,6 @@ public class Day_03
     static int Sum(int n, Dictionary<Point, int> grid)
     {
         var loc = Location(n);
-        return grid[loc] = loc.Projections(CompassPoints.All.ToVectors())
-            .Sum(n => grid.TryGetValue(n, out var v) ? v : 0);
+        return grid[loc] = loc.Projections(CompassPoints.All.ToVectors()).Sum(n => grid.GetValueOrDefault(n));
     }
 }

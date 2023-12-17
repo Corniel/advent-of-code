@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using NUnit.Framework.Internal.Execution;
+using System.Globalization;
 
 namespace SmartAss;
 
@@ -22,9 +23,28 @@ public static class ConsoleLogger
         return grid;
     }
 
-    public static Grid<int> Console(this Grid<int> grid)
+    public static Grid<int> Console(this Grid<int> grid, int width = 1)
     {
-        WriteLine(grid?.ToString(c => c.ToString()[0]));
+        if (width == 1)
+        {
+            WriteLine(grid?.ToString(c => c.ToString()[0]));
+        }
+        else
+        {
+            var sb = new StringBuilder();
+
+            for (var row = 0; row < grid.Rows; row++)
+            {
+                for (var col = 0; col < grid.Cols; col++)
+                {
+                    var str = grid[col, row].ToString();
+                    if (str.Length < width) str = new string(' ', width - str.Length) + str;
+                    sb.Append(str).Append(' ');
+                }
+                sb.AppendLine();
+            }
+            WriteLine(sb);
+        }
         return grid;
     }
 
@@ -78,7 +98,7 @@ public static class ConsoleLogger
         return obj;
     }
 
-    static void WriteLine(object obj = null) 
+    static void WriteLine(object obj = null)
     {
         using var _ = CultureInfo.InvariantCulture.Scoped();
         System.Console.WriteLine(obj);

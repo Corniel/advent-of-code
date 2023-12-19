@@ -80,7 +80,7 @@ public class Reports
 
         foreach (var puzzle in puzzles)
         {
-            sb.AppendLine($"| {puzzle.Date} | {puzzle.Order.Formatted(),7} |");
+            sb.AppendLine($"| {Link(puzzle.Date)} | {puzzle.Order.Formatted(),7} |");
         }
 
         using var writer = new StreamWriter(Durations_md.FullName, new FileStreamOptions
@@ -120,7 +120,7 @@ public class Reports
 
         foreach (var day in days)
         {
-            sb.AppendLine($"| {day.Date} | {day.LoC,3} | {day.Size.ToString("0.00 kb", CultureInfo.InvariantCulture),10} |");
+            sb.AppendLine($"| {Link(day.Date)} | {day.LoC,3} | {day.Size.ToString("0.00 kb", CultureInfo.InvariantCulture),10} |");
         }
 
         using var writer = new StreamWriter(LoC_md.FullName, new FileStreamOptions
@@ -177,7 +177,7 @@ public class Reports
                 {
                     display = $"{d.TotalDays.Ceil()} days";
                 }
-                sb.AppendLine($"| {kvp.Key.YearDay} | {display,8} |");
+                sb.AppendLine($"| {Link(kvp.Key.YearDay)} | {display,8} |");
             }
         }
 
@@ -226,4 +226,6 @@ public class Reports
     }
 
     static readonly SolvingType[] Types = Enum.GetValues<SolvingType>().Order().ToArray();
+
+    static string Link(AdventDate date) => $"[{date}](src/AdventOfCode/{date.Year}/Day_{date.Day:00}.cs)";
 }

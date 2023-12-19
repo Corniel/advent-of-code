@@ -35,15 +35,15 @@ public class Day_16
         {
             energized.Add(cur);
             var m = map.Val(cur);
-            var horizontal = cur.Dir == Vector.W || cur.Dir == Vector.E;
+            var horizon = cur.Dir.IsHorizontal;
 
-            if ((m == '|' && horizontal) || m == '-' && !horizontal)
+            if ((m == '|' && horizon) || m == '-' && !horizon)
             {
                 q.Push(cur.TurnLeft());
                 q.Push(cur.TurnRight());
             }
-            else if (m == '/') q.Push(horizontal ? cur.TurnLeft() : cur.TurnRight());
-            else if (m == '\\') q.Push(horizontal ? cur.TurnRight() : cur.TurnLeft());
+            else if (m == '/') q.Push(horizon ? cur.TurnLeft() : cur.TurnRight());
+            else if (m == '\\') q.Push(horizon ? cur.TurnRight() : cur.TurnLeft());
             else q.Push(cur);
         }
         return energized.Count;

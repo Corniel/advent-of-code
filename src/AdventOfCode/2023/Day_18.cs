@@ -1,0 +1,82 @@
+﻿namespace Advent_of_Code_2023;
+
+[Category(Category.Grid)]
+public class Day_18
+{
+    [Example(answer: 62, Example._1)]
+    [Puzzle(answer: 62500L, O.μs100)]
+    public long part_one(Lines lines) => Count(lines.As(Dig.One));
+
+    [Example(answer: 952408144115, Example._1)]
+    [Puzzle(answer: 122109860712709, O.μs100)]
+    public long part_two(Lines lines) => Count(lines.As(Dig.Two));
+
+    private static long Count(IEnumerable<Dig> digs)
+    {
+        var lines = Lines(digs);
+        var total = lines.Values.Sum(gr => gr.Sum(r => r.Size));
+
+        foreach (var pair in lines.SelectWithPrevious())
+        {
+            var delta = pair.Current.Key - pair.Previous.Key - 1;
+            var line = pair.Previous.Value.Sum(r => r.Size);
+            total += delta * line;
+        }
+        return total;
+    }
+
+    private static Dictionary<long, Int64Ranges> Lines(IEnumerable<Dig> digs)
+    {
+        var horizontal = Line.Horizontals(digs).ToArray();
+        var fills = new Dictionary<long, Int64Ranges>();
+        var filled = Int64Ranges.Empty;
+
+        foreach (var y in horizontal.Select(l => l.Y).Distinct().Order())
+        {
+            var prev = filled;
+            fills.TryAdd(y - 1, prev);
+
+            foreach (var line in horizontal.Where(h => h.Y == y).Select(l => l.X))
+            {
+                if (filled.FirstOrDefault(range => range.FullyContains(line)) is { IsEmpty: false } container)
+                {
+                    var except = line;
+                    if (container.Lower < except.Lower) except = new(except.Lower + 1, except.Upper);
+                    if (container.Upper > except.Upper) except = new(except.Lower, except.Upper - 1);
+                    filled = filled.Except(except);
+                }
+                else
+                {
+                    filled = filled.Merge([line]);
+                }
+            }
+            fills[y] = filled.Merge(prev);
+            fills.Add(y + 1, filled);
+        }
+        return fills;
+    }
+
+    record Dig(Vector Dir, int Dist)
+    {
+        public static Dig One(string s) => new(V(s[0]), s.Int32());
+
+        public static Dig Two(string s) => new(V(s[^2]), Convert.ToInt32(s[^7..^2], 16));
+          
+        static Vector V(char v) => v switch {  '0' or 'R' => Vector.E, '1' or 'D' => Vector.S, '2' or 'L' => Vector.W, '3' or 'U' => Vector.N, _ => Vector.O };
+    };
+
+    record struct Line(int Y, Int64Range X)
+    {
+        public static IEnumerable<Line> Horizontals(IEnumerable<Dig> digs)
+        {
+            var prev = Point.O;
+            
+            foreach (var dig in digs)
+            {
+                var curr = prev + (dig.Dir * dig.Dist);
+                if (dig.Dir.IsHorizontal) yield return new(curr.Y, new(Math.Min(curr.X, prev.X), Math.Max(curr.X, prev.X)));
+                prev = curr;
+            }
+        }
+    }
+}

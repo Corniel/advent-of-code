@@ -16,11 +16,11 @@ public class Day_18
         var lines = Lines(digs);
         var total = lines.Values.Sum(gr => gr.Sum(r => r.Size));
 
-        foreach (var pair in lines.SelectWithPrevious())
+        foreach (var p in lines.SelectWithPrevious())
         {
-            var delta = pair.Current.Key - pair.Previous.Key - 1;
-            var line = pair.Previous.Value.Sum(r => r.Size);
-            total += delta * line;
+            var dt = p.Current.Key - p.Previous.Key - 1;
+            var ln = p.Current.Value.Sum(r => r.Size);
+            total += dt * ln;
         }
         return total;
     }

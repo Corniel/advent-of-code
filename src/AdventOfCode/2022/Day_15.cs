@@ -5,7 +5,7 @@ public class Day_15
 {
     [Example(answer: 26, null, 10, Example._1)]
     [Puzzle(answer: 4665948, null, 2_000_000, O.μs)]
-    public int part_one(Lines lines, int y) => lines.As(Instruction.Parse).Select(i => i.Range(y)).Merge().Sum(r => r.Size);
+    public int part_one(Lines lines, int y) => lines.As(Instruction.Parse).Select(i => i.Range(y)).Merge().Sum(r => r.Size) - 1;
 
     [Example(answer: 56000011, null, 20, Example._1)]
     [Puzzle(answer: 13543690671045, null, 4_000_000, O.s)]

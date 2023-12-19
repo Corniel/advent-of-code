@@ -17,26 +17,22 @@ public class Day_05
 
     private static long Process(GroupedLines groups, Func<long[], IEnumerable<Int64Range>> select)
     {
-        var sources = select(groups[0][0].Int64s().ToArray()).ToList();
-        var targets = new List<Int64Range>();
+        var sources = Int64Ranges.New(select(groups[0][0].Int64s().ToArray()));
 
         foreach (var maps in groups.Skip(1).Select(Map.Parse))
         {
-            targets.Clear();
-
-            var unchanged = sources.ToList();
+            var targets = Int64Ranges.Empty;
+            var unchanged = sources;
 
             foreach (var map in maps)
             {
                 foreach (var section in sources.Select(s => s.Intersection(map.Range)).Where(i => !i.IsEmpty))
                 {
                     unchanged = unchanged.Except(section);
-                    targets.Add(map.Next(section));
+                    targets = targets.Merge([map.Next(section)]);
                 }
             }
-            targets.AddRange(unchanged);
-
-            (sources, targets) = (targets, sources);
+            sources = targets.Merge(unchanged);
         }
         return sources.Min(t => t.Lower);
     }

@@ -24,3 +24,7 @@ global using System.Text.RegularExpressions;
 global using CategoryAttribute = Advent_of_Code.CategoryAttribute;
 global using Int = System.Numerics.BigInteger;
 global using static System.Linq.Enumerable;
+global using Int32Range = SmartAss.Numerics.NumericRange<int>;
+global using Int32Ranges = SmartAss.Numerics.NumericRanges<int>;
+global using Int64Range = SmartAss.Numerics.NumericRange<long>;
+global using Int64Ranges = SmartAss.Numerics.NumericRanges<long>;

@@ -5,39 +5,22 @@ public class Day_01
 {
     [Example(answer: 514579, "1721, 979, 366, 299, 675, 1456")]
     [Puzzle(answer: 786811, O.μs)]
-    public int part_one(string str)
+    public int part_one(Ints input)
     {
-        const int sum = 2020;
-        var numbers = UniqueNumbers.Parse(str);
-
-        foreach (var number0 in numbers.Range(max: sum / 2))
-        {
-            var number1 = sum - number0;
-            if (numbers.Contains(number1))
-            {
-                return number0 * number1;
-            }
-        }
-        throw new NoAnswer();
+        var numbers = new UniqueNumbers(input);
+        var n = numbers.Range(max: 2020 / 2).First(n => numbers.Contains(2020 - n));
+        return n * (2020 - n);
     }
 
     [Example(answer: 241861950L, "1721, 979, 366, 299, 675, 1456")]
     [Puzzle(answer: 199068980L, O.μs)]
-    public long part_two(string str)
+    public long part_two(Ints input)
     {
-        const int sum = 2020;
-        var numbers = UniqueNumbers.Parse(str);
-
-        foreach (var number0 in numbers.Range(max: sum / 3))
+        var numbers = new UniqueNumbers(input);
+        foreach (var n0 in numbers.Range(max: 2020 / 3))
         {
-            foreach (var number1 in numbers.Range(min: number0 + 1, max: (sum - number0) / 2))
-            {
-                var number2 = sum - number0 - number1;
-                if (numbers.Contains(number2))
-                {
-                    return (long)number0 * (long)number1 * (long)number2;
-                }
-            }
+            if (numbers.Range(min: n0 + 1, max: (2020 - n0) / 2).FirstOrNone(n => numbers.Contains(2020 - n0 - n)) is { } n1)
+                return 1L * n0 * n1 * (2020 - n0 - n1);
         }
         throw new NoAnswer();
     }

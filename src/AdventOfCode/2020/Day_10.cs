@@ -5,22 +5,18 @@ public class Day_10
 {
     [Example(answer: 5 * 7, "16,10,15,5,1,11,7,19,6,12,4")]
     [Puzzle(answer: 2100, O.μs)]
-    public int part_one(string str)
+    public int part_one(Ints input)
     {
-        var unique = UniqueNumbers.Parse(str);
-        var prev = 0;
-        var d1 = 0;
-        var d3 = 1;
+        var ns = new UniqueNumbers(input) { 0 };
+        var d1 = 0; var d3 = 1;
 
-        foreach (var num in unique)
+        foreach (var p in ns.SelectWithPrevious())
         {
-            switch (num - prev)
+            switch (p.Current - p.Previous)
             {
                 case 1: d1++; break;
-                case 2: break;
                 case 3: d3++; break;
             }
-            prev = num;
         }
         return d1 * d3;
     }
@@ -28,26 +24,24 @@ public class Day_10
     [Example(answer: 8, "16,10,15,5,1,11,7,19,6,12,4")]
     [Example(answer: 19208, "28,33,18,42,31,14,46,20,48,47,24,23,49,45,19,38,39,11,1,32,25,35,8,17,7,9,4,2,34,10,3")]
     [Puzzle(answer: 16198260678656L, O.μs)]
-    public long part_two(string str)
+    public long part_two(Ints input)
     {
-        var unique = UniqueNumbers.Parse(str);
-        unique.Add(unique.Maximum + 3);
+        var ns = new UniqueNumbers(input) { 0 };
+        ns.Add(ns.Maximum + 3);
 
-        var size = 0;
-        var prev = 0;
-        long combinations = 1;
-        var combos = new[] { 1, 1, 1, 2, 4, 7 };
+        var size = 0; var combo = 1L;
 
-        foreach (var num in unique)
+        foreach (var p in ns.SelectWithPrevious())
         {
             size++;
-            if (num - prev == 3)
+            if (p.Current - p.Previous == 3)
             {
-                combinations *= combos[size];
+                combo *= combos[size];
                 size = 0;
             }
-            prev = num;
         }
-        return combinations;
+        return combo;
     }
+
+    static readonly int[] combos = [1, 1, 1, 2, 4, 7];
 }

@@ -59,7 +59,7 @@ public class Reports
     {
         var puzzles = AdventPuzzles.Load().Where(p => !p.Date.Matches(new AdventDate(null, 25, 2))).ToArray();
 
-        var distribution = new ItemCounter<O> { puzzles.Select(p => p.Order) };
+        var distribution = ItemCounter.New(puzzles.Select(p => p.Order));
         var factor = 40d / distribution.Max().Count;
 
         var sb = new StringBuilder();
@@ -97,7 +97,7 @@ public class Reports
     {
         var days = LinesOfCode.Select(AdventDate.All);
 
-        var distribution = new ItemCounter<int> { days.Select(p => (p.LoC * 0.1).Ceil()) };
+        var distribution = ItemCounter.New(days.Select(p => (p.LoC * 0.1).Ceil()));
         var factor = 40d / distribution.Max().Count;
         var max = distribution.Keys.Max();
 
@@ -142,7 +142,7 @@ public class Reports
             .OrderBy(x => x.Key)
             .ToArray();
 
-        var distribution = new ItemCounter<SolvingType> { solutions.Select(kvp => GetSolvingType(kvp.Value - kvp.Key.AvailableFrom)) };
+        var distribution = ItemCounter.New(solutions.Select(kvp => GetSolvingType(kvp.Value - kvp.Key.AvailableFrom)));
         var factor = 40d / distribution.Max().Count;
 
         var sb = new StringBuilder();

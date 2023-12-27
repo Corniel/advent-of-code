@@ -13,6 +13,6 @@ public class Day_06
     static string Decrypt(Lines lines, Func<IEnumerable<char>, char> selector) 
         => new(Range(0, lines[0].Length).Select(i => selector(lines.As(line => line[i]))).ToArray());
 
-    static char Max(IEnumerable<char> chars) => new ItemCounter<char> { chars }.Max().Item;
-    static char Min(IEnumerable<char> chars) => new ItemCounter<char> { chars }.Min().Item;
+    static char Max(IEnumerable<char> chars) => ItemCounter.New(chars).Max().Item;
+    static char Min(IEnumerable<char> chars) => ItemCounter.New(chars).Min().Item;
 }

@@ -21,7 +21,7 @@ public class Day_05
     public void Parse_dxy() => Select("9,7 -> 7,9").Should().BeEquivalentTo(new Point[] { new(9, 7), new(8, 8), new(7, 9) });
 
     static int Run(Lines lines, bool diagonal)
-        => new ItemCounter<Point> { lines.As(line => Select(line, diagonal)).SelectMany(p => p) }.Count(p => p.Count >= 2);
+        => ItemCounter.New(lines.As(line => Select(line, diagonal)).SelectMany(p => p)).Count(p => p.Count >= 2);
 
     public static IEnumerable<Point> Select(string line, bool diagonal = true)
     {

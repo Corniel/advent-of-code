@@ -14,7 +14,7 @@ public class Day_14
     static long Run(Lines lines, int steps)
     {
         var insertions = lines.Skip(1).Select(Insertion.Parse).ToDictionary(i => i.Pair, i => i);
-        var pairs = new ItemCounter<string> { lines[0].SelectWithPrevious() };
+        var pairs = ItemCounter.New<string>(lines[0].SelectWithPrevious());
 
         for (var step = 0; step < steps; step++)
         {
@@ -23,8 +23,7 @@ public class Day_14
                 Adjust(insertions, pairs, pair.Item, pair.Count);
             }
         }
-        var counter = new ItemCounter<char>();
-        counter[lines[0][^1]]++;
+        var counter = ItemCounter.New(lines[0][^1]);
         foreach (var kvp in pairs) { counter[kvp.Item[0]] += kvp.Count; }
         return counter.Counts.Max() - counter.Counts.Min();
     }

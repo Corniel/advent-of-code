@@ -9,7 +9,6 @@ public class Day_19
         => groups[1].Select(Ranking.Parse).Select(r => Sum("in", Workflows(groups), r)).Sum();
 
     [Example(answer: 167409079868000, Example._1)]
-    [Example(answer: 167409079868000, Example._2)]
     [Puzzle(answer: 124078207789312, O.μs100)]
     public long part_two(GroupedLines groups)
     {

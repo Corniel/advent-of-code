@@ -5,8 +5,7 @@ public class Day_03
 {
     [Example(answer: 4, "#1 @ 1,3: 4x4\r\n#2 @ 3,1: 4x4\r\n#3 @ 5,5: 2x2")]
     [Puzzle(answer: 107043, O.ms10)]
-    public int part_one(Lines lines)
-        => Counters(lines.As(Claim.Parse)).Count(c => c.Count > 1);
+    public int part_one(Lines lines) => Counters(lines.As(Claim.Parse)).Count(c => c.Count > 1);
 
     [Example(answer: 3, "#1 @ 1,3: 4x4\r\n#2 @ 3,1: 4x4\r\n#3 @ 5,5: 2x2")]
     [Puzzle(answer: 346, O.ms10)]
@@ -17,12 +16,7 @@ public class Day_03
         return claims.First(c => c.Squares().All(sq => counters[sq] == 1)).Id;
     }
 
-    static ItemCounter<Point> Counters(IEnumerable<Claim> claims)
-    {
-        var map = new ItemCounter<Point>();
-        foreach (var claim in claims) map.Add(claim.Squares());
-        return map;
-    }
+    static ItemCounter<Point> Counters(IEnumerable<Claim> claims) => ItemCounter.New(claims.SelectMany(c => c.Squares()));
 
     sealed record Claim(int Id, Point Start, Vector Size)
     {

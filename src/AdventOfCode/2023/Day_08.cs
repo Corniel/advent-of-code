@@ -16,15 +16,9 @@ public class Day_08
     public long part_two(GroupedLines groups)
     {
         var map = Map.New(groups);
-        var simultaneously = 1L;
-
-        foreach (var steps in map.Values
+        return Maths.Lcm(map.Values
             .Where(n => n.Name[^1] == 'A')
-            .Select(n => map.Navigate(n, n => n.Name[^1] == 'Z')))
-        {
-            simultaneously *= steps / Maths.Gcd(simultaneously, steps);
-        }
-        return simultaneously;
+            .Select(n => map.Navigate(n, n => n.Name[^1] == 'Z').Long()));
     }
 
     class Map : Dictionary<string, Node>

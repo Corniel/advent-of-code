@@ -47,17 +47,10 @@ public class Day_12
     public long part_two(Lines lines)
     {
         var moons = lines.As(Moon.Parse).ToArray();
-
-        var xs = moons.Select(moon => Pair(moon.Position.X, default)).ToArray();
-        var ys = moons.Select(moon => Pair(moon.Position.Y, default)).ToArray();
-        var zs = moons.Select(moon => Pair(moon.Position.Z, default)).ToArray();
-
-        var x = Cycle(xs);
-        var y = Cycle(ys);
-        var z = Cycle(zs);
-
-        var xy = x * y / Maths.Gcd(x, y);
-        return xy * z / Maths.Gcd(xy, z);
+        return Maths.Lcm([
+            Cycle(moons.Select(moon => Pair(moon.Position.X, default)).ToArray()),
+            Cycle(moons.Select(moon => Pair(moon.Position.Y, default)).ToArray()),
+            Cycle(moons.Select(moon => Pair(moon.Position.Z, default)).ToArray())]);
     }
 
     static long Cycle((int, int)[] pairs)

@@ -1,4 +1,4 @@
-﻿#pragma warning disable S4035 // Classes implementing "IEquatable<T>" should be sealed
+#pragma warning disable S4035 // Classes implementing "IEquatable<T>" should be sealed
 
 namespace SmartAss.Trees;
 

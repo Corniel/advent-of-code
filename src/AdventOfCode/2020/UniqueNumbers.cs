@@ -1,4 +1,4 @@
-﻿namespace Advent_of_Code_2020;
+namespace Advent_of_Code_2020;
 
 [DebuggerTypeProxy(typeof(CollectionDebugView))]
 [DebuggerDisplay("Count: {Count}, Min: {Minimum}, Max: {Maximum}")]

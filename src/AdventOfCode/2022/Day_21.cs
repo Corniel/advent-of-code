@@ -1,4 +1,4 @@
-﻿namespace Advent_of_Code_2022;
+namespace Advent_of_Code_2022;
 
 [Category(Category.ExpressionEvaluation)]
 public class Day_21

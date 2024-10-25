@@ -1,4 +1,4 @@
-﻿namespace Specs.Order_of_magnitude;
+namespace Specs.Order_of_magnitude;
 
 public class From
 {

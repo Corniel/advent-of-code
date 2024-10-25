@@ -1,4 +1,4 @@
-﻿namespace SmartAss;
+namespace SmartAss;
 
 internal static class Transposer
 {

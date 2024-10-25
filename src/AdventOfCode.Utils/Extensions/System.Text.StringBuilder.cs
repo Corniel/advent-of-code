@@ -1,4 +1,4 @@
-﻿namespace System.Text;
+namespace System.Text;
 
 internal static class AoCStringBuilderExtensions
 {

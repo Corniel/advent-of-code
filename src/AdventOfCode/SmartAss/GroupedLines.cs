@@ -1,4 +1,4 @@
-﻿namespace SmartAss;
+namespace SmartAss;
 
 [DebuggerDisplay("Count = {Count}")]
 [DebuggerTypeProxy(typeof(CollectionDebugView))]

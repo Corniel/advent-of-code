@@ -1,4 +1,4 @@
-﻿namespace SmartAss.Syntax;
+namespace SmartAss.Syntax;
 using CharSpan = ReadOnlySpan<char>;
 
 public class SyntaxParser

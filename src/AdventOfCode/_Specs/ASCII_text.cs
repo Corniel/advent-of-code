@@ -1,4 +1,4 @@
-﻿namespace Specs.ASCII_text;
+namespace Specs.ASCII_text;
 
 public class Parse_from_grid_regonizes_6x5_ascii
 {

@@ -1,4 +1,4 @@
-﻿# [Advent of Code](https://adventofcode.com/)
+# [Advent of Code](https://adventofcode.com/)
 **[adventofcode.com](https://adventofcode.com)**
     
                             *

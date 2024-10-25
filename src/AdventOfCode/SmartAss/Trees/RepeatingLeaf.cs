@@ -1,4 +1,4 @@
-﻿namespace SmartAss.Trees;
+namespace SmartAss.Trees;
 
 public readonly struct RepeatingLeaf<TLeaf, TLabel>(TLeaf leaf, int repeats = 1) where TLeaf : Leaf<TLeaf, TLabel>
 {

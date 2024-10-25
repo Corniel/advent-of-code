@@ -1,4 +1,4 @@
-﻿namespace Advent_of_Code_2021;
+namespace Advent_of_Code_2021;
 
 [Category(Category.GameOfLife, Category.Simulation, Category.BitManupilation)]
 public class Day_20

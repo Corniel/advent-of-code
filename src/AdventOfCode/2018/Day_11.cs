@@ -1,4 +1,4 @@
-﻿namespace Advent_of_Code_2018;
+namespace Advent_of_Code_2018;
 
 [Category(Category.Grid)]
 public class Day_11

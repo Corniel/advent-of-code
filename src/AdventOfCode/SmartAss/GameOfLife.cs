@@ -1,4 +1,4 @@
-﻿namespace SmartAss;
+namespace SmartAss;
 
 /// <summary>A abstract implementation of Conway's Game of Life.</summary>
 public abstract class GameOfLife<TCell> : HashSet<TCell>

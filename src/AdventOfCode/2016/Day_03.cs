@@ -1,4 +1,4 @@
-﻿namespace Advent_of_Code_2016;
+namespace Advent_of_Code_2016;
 
 [Category(Category._2D)]
 public class Day_03

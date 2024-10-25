@@ -1,4 +1,4 @@
-﻿namespace Advent_of_Code_@Year;
+namespace Advent_of_Code_@Year;
 
 [Category(Category.None)]
 public class Day_@Day

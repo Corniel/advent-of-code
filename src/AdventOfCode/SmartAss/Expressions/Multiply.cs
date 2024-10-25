@@ -1,4 +1,4 @@
-﻿namespace SmartAss.Expressions;
+namespace SmartAss.Expressions;
 
 public sealed class Multiply(Expr left, Expr right) : Binary(left, right)
 {

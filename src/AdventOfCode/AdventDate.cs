@@ -1,4 +1,4 @@
-﻿namespace Advent_of_Code;
+namespace Advent_of_Code;
 
 public readonly struct AdventDate(int? year, int? day, int? part) : IComparable<AdventDate>
 {

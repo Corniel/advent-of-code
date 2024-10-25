@@ -1,4 +1,4 @@
-﻿global using Advent_of_Code;
+global using Advent_of_Code;
 global using FluentAssertions;
 global using NUnit.Framework;
 global using NUnit.Framework.Internal;

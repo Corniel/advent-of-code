@@ -1,4 +1,4 @@
-﻿namespace Advent_of_Code
+namespace Advent_of_Code
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class CategoryAttribute(params Category[] catagories) : Attribute, IApplyToTest

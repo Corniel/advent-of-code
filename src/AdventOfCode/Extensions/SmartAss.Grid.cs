@@ -1,4 +1,4 @@
-﻿namespace SmartAss;
+namespace SmartAss;
 
 public static class AoCGridExtensions
 {

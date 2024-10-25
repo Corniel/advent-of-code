@@ -1,4 +1,4 @@
-﻿namespace SmartAss;
+namespace SmartAss;
 
 [DebuggerDisplay("{ToString()} ({Size}: {Value})")]
 public readonly struct BinaryNumber(ulong value, int size) : IEquatable<BinaryNumber>

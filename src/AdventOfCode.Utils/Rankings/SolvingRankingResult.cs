@@ -1,4 +1,4 @@
-﻿namespace Advent_of_Code.Rankings;
+namespace Advent_of_Code.Rankings;
 
 public sealed record SolvingRankingResult(AdventDate Date, DateTime Solved)
 {

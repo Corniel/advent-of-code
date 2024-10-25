@@ -1,4 +1,4 @@
-﻿namespace SmartAss.Expressions;
+namespace SmartAss.Expressions;
 
 internal class BitNot(Expr expression) : Unary(expression)
 {

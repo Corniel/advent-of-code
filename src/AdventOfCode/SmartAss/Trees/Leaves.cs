@@ -1,4 +1,4 @@
-﻿namespace SmartAss.Trees;
+namespace SmartAss.Trees;
 
 [DebuggerTypeProxy(typeof(CollectionDebugView))]
 [DebuggerDisplay("{DebuggerDisplay}")]

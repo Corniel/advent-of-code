@@ -1,4 +1,4 @@
-﻿using Advent_of_Code.Http;
+using Advent_of_Code.Http;
 using Advent_of_Code.Rankings.Json;
 using Qowaiv.IO;
 using System.Text.RegularExpressions;

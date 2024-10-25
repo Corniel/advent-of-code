@@ -1,4 +1,4 @@
-﻿namespace Advent_of_Code_2020;
+namespace Advent_of_Code_2020;
 
 [Category(Category.SequenceProgression)]
 public class Day_10

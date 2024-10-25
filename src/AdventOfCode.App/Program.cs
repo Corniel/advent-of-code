@@ -1,4 +1,4 @@
-﻿using Advent_of_Code.Benchmarking;
+using Advent_of_Code.Benchmarking;
 using Advent_of_Code.Diagnostics;
 using Advent_of_Code.Rankings;
 using SmartAss;

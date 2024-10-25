@@ -1,4 +1,4 @@
-﻿namespace SmartAss.Expressions;
+namespace SmartAss.Expressions;
 
 public sealed class Ushort(Expr expression) : Unary(expression)
 {

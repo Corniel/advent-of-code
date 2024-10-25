@@ -1,25 +1,27 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <Import Project="../../props/common.props" />
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <RootNamespace>Advent_of_Code</RootNamespace>
+    <IsTestProject>true</IsTestProject>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Template\Day.cs" />
-    <EmbeddedResource Include="Template\Day.cs" />
+    <Compile Remove="Template/Day.cs" />
+    <EmbeddedResource Include="Template/Day.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BenchmarkDotNet" Version="0.*" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.*" />
+    <PackageReference Include="BenchmarkDotNet" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\smart-ass\src\SmartAss\SmartAss.csproj" />
-    <ProjectReference Include="..\AdventOfCode\AdventOfCode.csproj" />
-    <ProjectReference Include="..\AdventOfCode.Now\AdventOfCode.Now.csproj" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../../smart-ass/src/SmartAss/SmartAss.csproj" />
+    <ProjectReference Include="../AdventOfCode/AdventOfCode.csproj" />
+    <ProjectReference Include="../AdventOfCode.Now/AdventOfCode.Now.csproj" />
   </ItemGroup>
 
   <ItemGroup>

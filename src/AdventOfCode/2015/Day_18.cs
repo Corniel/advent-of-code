@@ -1,4 +1,4 @@
-﻿namespace Advent_of_Code_2015;
+namespace Advent_of_Code_2015;
 
 [Category(Category.GameOfLife)]
 public class Day_18

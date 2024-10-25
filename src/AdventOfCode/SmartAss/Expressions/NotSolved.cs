@@ -1,4 +1,4 @@
-﻿namespace SmartAss.Expressions;
+namespace SmartAss.Expressions;
 
 [Serializable]
 public class NotSolved : InvalidOperationException

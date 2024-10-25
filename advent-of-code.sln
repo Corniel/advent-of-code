@@ -1,4 +1,3 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31919.166
@@ -8,6 +7,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0361B5D8-D19B-462A-A158-62EBC3E3A074}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		Directory.Build.props = Directory.Build.props
+		Directory.Packages.props = Directory.Packages.props
 		Durations.md = Durations.md
 		LICENSE.md = LICENSE.md
 		LoC.md = LoC.md
@@ -24,11 +25,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdventOfCode.Utils", "src\AdventOfCode.Utils\AdventOfCode.Utils.csproj", "{F59CBCBB-ED53-43E2-9BC0-C597987DE24E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartAss.Specs", "..\smart-ass\specs\SmartAss.Specs\SmartAss.Specs.csproj", "{AAC88418-3FCC-47BB-B341-CB5838EF9D9A}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "props", "props", "{3B9CDF95-1031-46E8-A533-D58C9FCA9F0A}"
-	ProjectSection(SolutionItems) = preProject
-		props\common.props = props\common.props
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,9 +59,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{3B9CDF95-1031-46E8-A533-D58C9FCA9F0A} = {0361B5D8-D19B-462A-A158-62EBC3E3A074}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {714C9212-E9FB-416F-87A6-D09A3C5BC3FD}

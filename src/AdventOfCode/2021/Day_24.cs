@@ -1,4 +1,4 @@
-﻿namespace Advent_of_Code_2021;
+namespace Advent_of_Code_2021;
 
 [Category(Category.ExpressionParsing)]
 public class Day_24

@@ -1,4 +1,4 @@
-﻿#pragma warning disable S1133 // Deprecated code should be removed, but not this one.
+#pragma warning disable S1133 // Deprecated code should be removed, but not this one.
 
 namespace Advent_of_Code;
 

@@ -1,4 +1,4 @@
-﻿namespace Advent_of_Code.Now;
+namespace Advent_of_Code.Now;
 
 public class Dummy
 {

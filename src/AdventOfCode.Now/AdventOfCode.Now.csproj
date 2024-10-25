@@ -1,22 +1,21 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="../../props/common.props" />
-  
   <PropertyGroup>
     <RootNamespace>Advent_of_Code</RootNamespace>
+    <IsTestProject>true</IsTestProject>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="**\Day_*.txt" />
-    <EmbeddedResource Include="**\Day_*.txt" />
+    <None Remove="**/Day_*.txt" />
+    <EmbeddedResource Include="**/Day_*.txt" />
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.*" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" PrivateAssets="all" />
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\AdventOfCode\AdventOfCode.csproj" />
+    <ProjectReference Include="../AdventOfCode/AdventOfCode.csproj" />
   </ItemGroup>
 
 </Project>

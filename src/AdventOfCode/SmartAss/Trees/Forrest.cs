@@ -1,4 +1,4 @@
-﻿namespace SmartAss.Trees;
+namespace SmartAss.Trees;
 
 public class Forrest<TLeaf, TLabel> : Dictionary<TLabel, TLeaf>
     where TLeaf : Leaf<TLeaf, TLabel>

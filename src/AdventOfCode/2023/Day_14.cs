@@ -1,4 +1,4 @@
-﻿namespace Advent_of_Code_2023;
+namespace Advent_of_Code_2023;
 
 [Category(Category.Grid, Category.CyclusDetection)]
 public class Day_14

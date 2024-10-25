@@ -1,4 +1,4 @@
-﻿Valve ZT has flow rate=0; tunnels lead to valves QQ, DS
+Valve ZT has flow rate=0; tunnels lead to valves QQ, DS
 Valve JX has flow rate=22; tunnels lead to valves CI, ZH, UR
 Valve EM has flow rate=0; tunnels lead to valves WH, IT
 Valve AA has flow rate=0; tunnels lead to valves EQ, QD, NP, ZP, KX

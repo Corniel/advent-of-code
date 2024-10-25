@@ -1,4 +1,4 @@
-﻿using Advent_of_Code.Http;
+using Advent_of_Code.Http;
 using System.Text.Json;
 
 namespace Advent_of_Code.Rankings;

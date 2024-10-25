@@ -1,4 +1,4 @@
-﻿namespace SmartAss.Expressions;
+namespace SmartAss.Expressions;
 
 internal class BitAnd(Expr left, Expr right) : Binary(left, right)
 {

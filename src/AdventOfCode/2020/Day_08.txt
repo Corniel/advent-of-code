@@ -1,4 +1,4 @@
-﻿acc -9
+acc -9
 jmp +1
 acc +3
 acc +32

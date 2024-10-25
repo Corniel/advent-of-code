@@ -1,4 +1,4 @@
-﻿b inc 580 if bkd > -1
+b inc 580 if bkd > -1
 v inc 491 if z >= -1
 ehd inc 994 if b < 588
 oso inc -941 if kfn <= -9

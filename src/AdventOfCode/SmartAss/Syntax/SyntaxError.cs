@@ -1,4 +1,4 @@
-﻿namespace SmartAss.Syntax;
+namespace SmartAss.Syntax;
 
 public class SyntaxError : FormatException
 {

@@ -1,4 +1,4 @@
-﻿namespace Advent_of_Code_2016;
+namespace Advent_of_Code_2016;
 
 [Category(Category.SequenceProgression)]
 public class Day_15

@@ -1,4 +1,4 @@
-﻿namespace Advent_of_Code_2021;
+namespace Advent_of_Code_2021;
 
 /// <remarks>
 /// .6.  the numbering of the segments of the displays

@@ -1,4 +1,4 @@
-﻿namespace Advent_of_Code_2015;
+namespace Advent_of_Code_2015;
 
 [Category(Category.ExpressionEvaluation)]
 public class Day_07

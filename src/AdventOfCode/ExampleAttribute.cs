@@ -1,4 +1,4 @@
-﻿namespace Advent_of_Code;
+namespace Advent_of_Code;
 
 [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
 public class ExampleAttribute(object answer, params object[] input) : PuzzleAttribute(answer, input)

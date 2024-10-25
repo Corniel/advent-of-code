@@ -1,4 +1,4 @@
-﻿cgrb: gzwb * rcfd
+cgrb: gzwb * rcfd
 gfbz: bwgp - qlfm
 jrbf: 2
 gvvg: rjch + tjdp

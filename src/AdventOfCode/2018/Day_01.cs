@@ -1,4 +1,4 @@
-﻿namespace Advent_of_Code_2018;
+namespace Advent_of_Code_2018;
 
 [Category(Category.SequenceProgression)]
 public class Day_01

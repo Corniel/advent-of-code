@@ -1,4 +1,4 @@
-﻿namespace Advent_of_Code_2017;
+namespace Advent_of_Code_2017;
 
 [Category(Category.Simulation)]
 public class Day_16

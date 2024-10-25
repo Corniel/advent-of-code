@@ -1,4 +1,4 @@
-﻿bapocnysdr
+bapocnysdr
 lpandcmb
 bplndca
 

@@ -1,4 +1,4 @@
-﻿namespace Advent_of_Code_2019;
+namespace Advent_of_Code_2019;
 
 [Category(Category.VectorAlgebra)]
 public class Day_12

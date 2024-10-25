@@ -1,4 +1,4 @@
-﻿using Microsoft.Z3;
+using Microsoft.Z3;
 
 namespace Advent_of_Code_2023;
 

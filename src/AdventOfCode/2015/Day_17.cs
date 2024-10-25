@@ -1,4 +1,4 @@
-﻿namespace Advent_of_Code_2015;
+namespace Advent_of_Code_2015;
 
 [Category(Category.Computation, Category.BitManupilation)]
 public class Day_17

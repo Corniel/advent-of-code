@@ -1,8 +1,8 @@
-﻿root = true
+root = true
 [*]
 end_of_line = crlf
 insert_final_newline = true
-charset = utf-8-bom
+charset = utf-8
 
 # Code files
 [*.{cs,cshtml,ts}]

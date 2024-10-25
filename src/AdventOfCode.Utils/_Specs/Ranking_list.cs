@@ -1,4 +1,4 @@
-﻿using Advent_of_Code.Rankings;
+using Advent_of_Code.Rankings;
 
 namespace Specs.Ranking_list; 
 

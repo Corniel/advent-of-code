@@ -1,4 +1,4 @@
-﻿namespace SmartAss.Expressions;
+namespace SmartAss.Expressions;
 
 [DebuggerTypeProxy(typeof(CollectionDebugView))]
 [DebuggerDisplay("Count = {Count}")]

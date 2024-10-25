@@ -1,4 +1,4 @@
-﻿namespace Advent_of_Code_2018;
+namespace Advent_of_Code_2018;
 
 [Category(Category._4D)]
 public class Day_25

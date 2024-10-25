@@ -1,4 +1,4 @@
-﻿pid:827837505 byr:1976
+pid:827837505 byr:1976
 hgt:187cm
 iyr:2016
 hcl:#fffffd

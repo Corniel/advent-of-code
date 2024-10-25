@@ -1,4 +1,4 @@
-﻿namespace Advent_of_Code.Benchmarking;
+namespace Advent_of_Code.Benchmarking;
 
 public sealed class BenchmarkClassic(AdventPuzzle puzzle)
 {

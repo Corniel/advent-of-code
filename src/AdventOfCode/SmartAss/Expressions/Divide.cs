@@ -1,4 +1,4 @@
-﻿namespace SmartAss.Expressions;
+namespace SmartAss.Expressions;
 
 public sealed class Divide(Expr left, Expr right) : Binary(left, right)
 {

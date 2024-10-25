@@ -1,4 +1,4 @@
-﻿namespace System.Collections;
+namespace System.Collections;
 
 public static class CollectionExtensions
 {

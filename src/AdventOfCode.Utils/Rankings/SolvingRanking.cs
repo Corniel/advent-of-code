@@ -1,4 +1,4 @@
-﻿using Qowaiv;
+using Qowaiv;
 
 namespace Advent_of_Code.Rankings;
 

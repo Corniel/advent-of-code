@@ -1,4 +1,4 @@
-﻿using System.Net.Http;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Advent_of_Code.Http;

@@ -1,4 +1,4 @@
-﻿Monkey 0:
+Monkey 0:
   Starting items: 57
   Operation: new = old * 13
   Test: divisible by 11

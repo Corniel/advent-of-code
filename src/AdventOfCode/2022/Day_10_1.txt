@@ -1,4 +1,4 @@
-﻿addx 15
+addx 15
 addx -11
 addx 6
 addx -3

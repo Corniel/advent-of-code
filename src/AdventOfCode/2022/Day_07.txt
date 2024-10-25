@@ -1,4 +1,4 @@
-﻿$ cd /
+$ cd /
 $ ls
 dir blgtdv
 dir dbrfcz

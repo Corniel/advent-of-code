@@ -12,7 +12,7 @@ public class Day_04
     static int CountValidPasswords(string str, Func<int, bool> validator)
     {
         var boundries = str.Split('-', StringSplitOptions.TrimEntries)
-            .Select(str => int.Parse(str))
+            .Select(int.Parse)
             .ToArray();
 
         return Range(boundries[0], 1 + boundries[1] - boundries[0])

@@ -28,7 +28,7 @@
 | [2015-09](src/AdventOfCode/2015/Day_09.cs) |  27 |    1.22 kb |
 | [2015-10](src/AdventOfCode/2015/Day_10.cs) |  16 |    0.52 kb |
 | [2015-11](src/AdventOfCode/2015/Day_11.cs) |  21 |    1.03 kb |
-| [2015-12](src/AdventOfCode/2015/Day_12.cs) |  10 |    0.57 kb |
+| [2015-12](src/AdventOfCode/2015/Day_12.cs) |  10 |    0.55 kb |
 | [2015-13](src/AdventOfCode/2015/Day_13.cs) |  33 |    1.98 kb |
 | [2015-14](src/AdventOfCode/2015/Day_14.cs) |  25 |    1.24 kb |
 | [2015-15](src/AdventOfCode/2015/Day_15.cs) |  36 |    1.65 kb |
@@ -38,7 +38,7 @@
 | [2015-25](src/AdventOfCode/2015/Day_25.cs) |   3 |    0.24 kb |
 | [2016-01](src/AdventOfCode/2016/Day_01.cs) |  14 |    0.55 kb |
 | [2016-02](src/AdventOfCode/2016/Day_02.cs) |  18 |    0.67 kb |
-| [2016-03](src/AdventOfCode/2016/Day_03.cs) |  11 |    0.54 kb |
+| [2016-03](src/AdventOfCode/2016/Day_03.cs) |  11 |    0.52 kb |
 | [2016-04](src/AdventOfCode/2016/Day_04.cs) |  14 |    0.81 kb |
 | [2016-05](src/AdventOfCode/2016/Day_05.cs) |  15 |    0.74 kb |
 | [2016-06](src/AdventOfCode/2016/Day_06.cs) |   6 |    0.44 kb |
@@ -70,14 +70,14 @@
 | [2018-09](src/AdventOfCode/2018/Day_09.cs) |  37 |    0.93 kb |
 | [2018-10](src/AdventOfCode/2018/Day_10.cs) |  30 |    1.59 kb |
 | [2018-11](src/AdventOfCode/2018/Day_11.cs) |  21 |    0.95 kb |
-| [2018-12](src/AdventOfCode/2018/Day_12.cs) |  27 |    1.07 kb |
+| [2018-12](src/AdventOfCode/2018/Day_12.cs) |  27 |    1.05 kb |
 | [2018-13](src/AdventOfCode/2018/Day_13.cs) |  30 |    1.26 kb |
 | [2018-14](src/AdventOfCode/2018/Day_14.cs) |  20 |    0.84 kb |
 | [2018-25](src/AdventOfCode/2018/Day_25.cs) |  13 |    0.70 kb |
 | [2019-01](src/AdventOfCode/2019/Day_01.cs) |  12 |    0.31 kb |
 | [2019-02](src/AdventOfCode/2019/Day_02.cs) |  18 |    0.38 kb |
 | [2019-03](src/AdventOfCode/2019/Day_03.cs) |  35 |    1.28 kb |
-| [2019-04](src/AdventOfCode/2019/Day_04.cs) |  37 |    1.11 kb |
+| [2019-04](src/AdventOfCode/2019/Day_04.cs) |  37 |    1.10 kb |
 | [2019-05](src/AdventOfCode/2019/Day_05.cs) |   4 |    0.18 kb |
 | [2019-06](src/AdventOfCode/2019/Day_06.cs) |  50 |    1.64 kb |
 | [2019-07](src/AdventOfCode/2019/Day_07.cs) |  31 |    0.97 kb |
@@ -87,7 +87,7 @@
 | [2019-11](src/AdventOfCode/2019/Day_11.cs) |  17 |    0.81 kb |
 | [2019-12](src/AdventOfCode/2019/Day_12.cs) |  68 |    2.28 kb |
 | [2019-13](src/AdventOfCode/2019/Day_13.cs) |  33 |    1.12 kb |
-| [2019-15](src/AdventOfCode/2019/Day_15.cs) |  60 |    2.55 kb |
+| [2019-15](src/AdventOfCode/2019/Day_15.cs) |  60 |    2.52 kb |
 | [2020-01](src/AdventOfCode/2020/Day_01.cs) |  10 |    0.43 kb |
 | [2020-02](src/AdventOfCode/2020/Day_02.cs) |  17 |    0.73 kb |
 | [2020-03](src/AdventOfCode/2020/Day_03.cs) |  26 |    1.04 kb |
@@ -96,7 +96,7 @@
 | [2020-06](src/AdventOfCode/2020/Day_06.cs) |   2 |    0.28 kb |
 | [2020-07](src/AdventOfCode/2020/Day_07.cs) |  16 |    0.71 kb |
 | [2020-08](src/AdventOfCode/2020/Day_08.cs) |  41 |    1.25 kb |
-| [2020-09](src/AdventOfCode/2020/Day_09.cs) |  33 |    0.81 kb |
+| [2020-09](src/AdventOfCode/2020/Day_09.cs) |  33 |    0.78 kb |
 | [2020-10](src/AdventOfCode/2020/Day_10.cs) |  19 |    0.53 kb |
 | [2020-11](src/AdventOfCode/2020/Day_11.cs) |  47 |    1.95 kb |
 | [2020-12](src/AdventOfCode/2020/Day_12.cs) |  36 |    1.34 kb |
@@ -126,7 +126,7 @@
 | [2021-11](src/AdventOfCode/2021/Day_11.cs) |  24 |    0.95 kb |
 | [2021-12](src/AdventOfCode/2021/Day_12.cs) |  53 |    1.88 kb |
 | [2021-13](src/AdventOfCode/2021/Day_13.cs) |  13 |    0.68 kb |
-| [2021-14](src/AdventOfCode/2021/Day_14.cs) |  18 |    0.98 kb |
+| [2021-14](src/AdventOfCode/2021/Day_14.cs) |  18 |    0.97 kb |
 | [2021-15](src/AdventOfCode/2021/Day_15.cs) |  27 |    1.21 kb |
 | [2021-16](src/AdventOfCode/2021/Day_16.cs) |  41 |    1.97 kb |
 | [2021-17](src/AdventOfCode/2021/Day_17.cs) |  18 |    0.72 kb |
@@ -143,7 +143,7 @@
 | [2022-04](src/AdventOfCode/2022/Day_04.cs) |   3 |    0.30 kb |
 | [2022-05](src/AdventOfCode/2022/Day_05.cs) |  20 |    1.19 kb |
 | [2022-06](src/AdventOfCode/2022/Day_06.cs) |   3 |    0.23 kb |
-| [2022-07](src/AdventOfCode/2022/Day_07.cs) |  18 |    0.88 kb |
+| [2022-07](src/AdventOfCode/2022/Day_07.cs) |  18 |    0.87 kb |
 | [2022-08](src/AdventOfCode/2022/Day_08.cs) |  15 |    0.73 kb |
 | [2022-09](src/AdventOfCode/2022/Day_09.cs) |  15 |    0.57 kb |
 | [2022-10](src/AdventOfCode/2022/Day_10.cs) |  17 |    0.73 kb |

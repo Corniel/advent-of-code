@@ -225,7 +225,7 @@ public class Reports
         Other = int.MaxValue,
     }
 
-    static readonly SolvingType[] Types = Enum.GetValues<SolvingType>().Order().ToArray();
+    static readonly SolvingType[] Types = [.. Enum.GetValues<SolvingType>().Order()];
 
     static string Link(AdventDate date) => $"[{date}](src/AdventOfCode/{date.Year}/Day_{date.Day:00}.cs)";
 }

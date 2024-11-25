@@ -11,7 +11,7 @@ public class Day_02
     [Puzzle(answer: 320, O.μs)]
     public int part_two(Lines lines) => lines.As(AsNumbers).Select(Checksum).Sum();
 
-    static int[] AsNumbers(string line) => line.Int32s().Order().ToArray();
+    static int[] AsNumbers(string line) => [.. line.Int32s().Order()];
     
     static int MaxMin(int[] n) => n[^1] - n[0];
 

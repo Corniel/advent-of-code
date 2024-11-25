@@ -23,9 +23,9 @@ public readonly struct Inputs<T>(IReadOnlyList<T> input) : IReadOnlyList<T>
     public T[] Take(int count) => throw new NotSupportedException();
 
     [Pure]
-    public T[] Edit() => collection.ToArray();
+    public T[] Copy() => [.. collection];
 
-    [Obsolete("Use Edit() instead.", error: true)]
+    [Obsolete("Use Copy() instead.", error: true)]
     public T[] ToArray() => throw new NotSupportedException();
 
     [Obsolete("Use As() instead.", error: true)]

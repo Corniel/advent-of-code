@@ -32,6 +32,6 @@ public class Day_05
 
         return diagonal || delta.X == 0 || delta.Y == 0
             ? start.Repeat(delta, true).TakeWhile(point => point != end + delta)
-            : Array.Empty<Point>();
+            : [];
     }
 }

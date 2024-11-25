@@ -120,7 +120,7 @@ public class Day_20
         }
         private void Fill()
         {
-            var points = new Queue<Point>(new[] { Point.O });
+            var points = new Queue<Point>([Point.O]);
 
             while (System.Collections.CollectionExtensions.NotEmpty(points))
             {

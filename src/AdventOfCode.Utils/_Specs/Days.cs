@@ -14,7 +14,7 @@ public class Are
     [TestCaseSource(nameof(Puzzles))]
     public void Catogized(AdventPuzzle puzzle)
     {
-        var categories = puzzle.Method.DeclaringType.GetCustomAttribute<Advent_of_Code.CategoryAttribute>()?.Categories.Where(c => c != default) ?? Array.Empty<Category>();
+        var categories = puzzle.Method.DeclaringType.GetCustomAttribute<Advent_of_Code.CategoryAttribute>()?.Categories.Where(c => c != default) ?? [];
         categories.Should().NotBeEmpty(because: puzzle.Date.ToString());
     }
 

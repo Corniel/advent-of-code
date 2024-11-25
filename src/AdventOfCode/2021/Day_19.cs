@@ -58,7 +58,7 @@ public class Day_19
                     }
                 }
             }
-            return Array.Empty<Point3D>();
+            return [];
 
             bool IsCandidate(Point3D location, Orientation orientation, HashSet<Point3D> beacons)
                 => !Beacons(location, orientation).Where(c => !beacons.Contains(c)).Skip(Observations.Length - 12).NotEmpty();

@@ -28,7 +28,7 @@ public class Day_24
         public State Nav(Point from, Point to)
         {
             var nexts = new Grid<bool>(Occupied.Cols, Occupied.Rows);
-            var queue = new Queue<Point>(new[] { from });
+            var queue = new Queue<Point>([from]);
 
             while (queue.NotEmpty())
             {

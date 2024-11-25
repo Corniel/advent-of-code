@@ -16,7 +16,7 @@ public class Day_13
     {
         var two = Package.Parse("[[2]]");
         var six = Package.Parse("[[6]]");
-        var packages = lines.As(Package.Parse).Concat(new[] { two, six }).Order().ToList();
+        var packages = lines.As(Package.Parse).Concat([two, six]).Order().ToList();
         return (packages.IndexOf(two) + 1) * (packages.IndexOf(six) + 1);
     }
 
@@ -24,7 +24,7 @@ public class Day_13
     {
         public virtual int CompareTo(Package other)
         {
-            if (other is Number) return CompareTo(new Package(new[] { other }));
+            if (other is Number) return CompareTo(new Package([other]));
             return Range(0, Math.Min(Children.Count, other.Children.Count))
                 .Select(i => Children[i].ComparesTo(other.Children[i]))
                 .FirstOrDefault(c => c is { })
@@ -35,13 +35,13 @@ public class Day_13
 
         public static Package Parse(string line) => new Parser(line).Read();
     }
-    record Number(int Value) : Package(Array.Empty<Package>())
+    record Number(int Value) : Package([])
     {
         public override int CompareTo(Package other) => other is Number number
             ? Value.CompareTo(number.Value)
-            : new Package(new[] { this }).CompareTo(other);
+            : new Package([this]).CompareTo(other);
 
-        public override string ToString()=> Value.ToString();
+        public override string ToString() => Value.ToString();
     }
 
     class Parser(string str) : SyntaxParser(str)
@@ -52,7 +52,7 @@ public class Day_13
             {
                 ReadChar();
 
-                if (ReadAhead() == ']') return new Package(Array.Empty<Package>());
+                if (ReadAhead() == ']') return new Package([]);
 
                 var childeren = new List<Package> { Read() };
 

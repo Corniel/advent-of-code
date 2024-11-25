@@ -34,14 +34,14 @@ public abstract class GameOfLife<TCell> : HashSet<TCell>
         toDie.Clear();
         intoExistance.Clear();
 
-        candidates.AddRange(this.SelectMany(alive => Neighbors(alive)));
+        candidates.AddRange(this.SelectMany(Neighbors));
         toDie.AddRange(this.Where(Dies));
         intoExistance.AddRange(candidates.Where(IntoExistence));
 
         foreach (var dead in toDie) { Remove(dead); }
         foreach (var alive in intoExistance) { Add(alive); }
     }
-    private int LivingNeighbors(TCell cell) => Neighbors(cell).Count(n => Contains(n));
+    private int LivingNeighbors(TCell cell) => Neighbors(cell).Count(Contains);
 
     private readonly HashSet<TCell> candidates = [];
     private readonly HashSet<TCell> toDie = [];

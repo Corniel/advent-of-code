@@ -29,7 +29,7 @@ public class Day_12
                 nexts[mask >> 1] = (mask & 1) == 1;
             }
             var index = 0;
-            foreach (var ch in lines[0].Where(ch => "#.".Contains(ch)))
+            foreach (var ch in lines[0].Where("#.".Contains))
             {
                 if (ch == '#') Add(index);
                 index++;

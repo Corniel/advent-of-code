@@ -16,7 +16,7 @@ public class Day_15
         public int O2Spreading => Navigate(new Point(short.MaxValue, short.MaxValue), [O2]).Distance;
         private Point O2 => this.Single(t => t.Value == Tile.Oxygen).Key;
         private IEnumerable<Point> Empties => this.Where(kvp => kvp.Value != Tile.Wall).Select(kvp => kvp.Key);
-        private IEnumerable<Point> Unknowns => Empties.SelectMany(tile => Neighbors(tile)).Where(tile => !ContainsKey(tile));
+        private IEnumerable<Point> Unknowns => Empties.SelectMany(Neighbors).Where(tile => !ContainsKey(tile));
 
         public Space Exlore(Computer program)
         {
@@ -50,7 +50,7 @@ public class Day_15
         }
         private bool Accessable(Point location) => !TryGetValue(location, out var t) || t != Tile.Wall;
         private IEnumerable<Point> Neighbors(Point location)
-            => location.Projections(Dirs.Keys).Where(tile => Accessable(tile));
+            => location.Projections(Dirs.Keys).Where(Accessable);
         private Navigation Navigate(Point source, IEnumerable<Point> targets)
         {
             var distance = 0;

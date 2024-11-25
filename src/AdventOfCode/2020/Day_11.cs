@@ -46,7 +46,7 @@ public class Day_11
         }
 
         public static IEnumerable<Point> DirectNeighbors(Grid<Seat> plane, Point seat)
-           => seat.Projections(directions).Where(p => plane.OnGrid(p));
+           => seat.Projections(directions).Where(plane.OnGrid);
 
         public static IEnumerable<Point> InSightNeighbors(Grid<Seat> plane, Point seat)
             => directions.Select(dir => seat

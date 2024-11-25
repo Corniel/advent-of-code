@@ -15,7 +15,7 @@ public class Day_12
     {
         JsonValueKind.Number => elm.GetInt32(),
         JsonValueKind.Object => IsRed(elm) ? 0 : elm.EnumerateObject().Sum(child => Sum(child.Value)),
-        JsonValueKind.Array => elm.EnumerateArray().Sum(child => Sum(child)),
+        JsonValueKind.Array => elm.EnumerateArray().Sum(Sum),
         _ => 0,
     };
 

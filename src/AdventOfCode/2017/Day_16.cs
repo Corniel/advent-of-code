@@ -12,7 +12,7 @@ public class Day_16
     [Puzzle(answer: "fbidepghmjklcnoa", null, 16, O.ms)]
     public string part_two(string str, int size) => Simulate(str, size, 1_000_000_000);
 
-    private string Simulate(string str, int size, int turns)
+    static string Simulate(string str, int size, int turns)
     {
         var moves = str.CommaSeparated(Parse).ToArray();
         var period = Simulation.WithPeriod(
@@ -27,7 +27,7 @@ public class Day_16
         return new(dance);
     }
 
-    private static char[] Dance(char[] dance, object[] moves)
+    static char[] Dance(char[] dance, object[] moves)
     {
         foreach (var move in moves)
         {
@@ -41,7 +41,7 @@ public class Day_16
         return dance;
     }
 
-    object Parse(string str) => str[0] switch
+    static object Parse(string str) => str[0] switch
     {
         's' => new Spin(str.Int32()),
         'x' => new Exchange(str.Int32(), str.Int32s().Skip(1).First()),

@@ -11,17 +11,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="../../../smart-ass/src/SmartAss/SmartAss.csproj" />
+    <ProjectReference Include="../AdventOfCode/AdventOfCode.csproj" />
+    <ProjectReference Include="../AdventOfCode.Now/AdventOfCode.Now.csproj" />
+  </ItemGroup>
+  
+  <ItemGroup>
     <PackageReference Include="BenchmarkDotNet" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" PrivateAssets="all" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="../../../smart-ass/src/SmartAss/SmartAss.csproj" />
-    <ProjectReference Include="../AdventOfCode/AdventOfCode.csproj" />
-    <ProjectReference Include="../AdventOfCode.Now/AdventOfCode.Now.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -4,18 +4,6 @@ VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdventOfCode", "src\AdventOfCode\AdventOfCode.csproj", "{EC908C81-E5B3-44FF-8189-B6421C2CA794}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0361B5D8-D19B-462A-A158-62EBC3E3A074}"
-	ProjectSection(SolutionItems) = preProject
-		.editorconfig = .editorconfig
-		Directory.Build.props = Directory.Build.props
-		Directory.Packages.props = Directory.Packages.props
-		Durations.md = Durations.md
-		LICENSE.md = LICENSE.md
-		LoC.md = LoC.md
-		README.md = README.md
-		Solving.md = Solving.md
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdventOfCode.App", "src\AdventOfCode.App\AdventOfCode.App.csproj", "{54FD4F2C-FB0B-409B-96AF-953B88C50833}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartAss", "..\smart-ass\src\SmartAss\SmartAss.csproj", "{76CEB09A-C1CC-489F-8F97-884D287142D9}"
@@ -25,6 +13,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdventOfCode.Utils", "src\AdventOfCode.Utils\AdventOfCode.Utils.csproj", "{F59CBCBB-ED53-43E2-9BC0-C597987DE24E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartAss.Specs", "..\smart-ass\specs\SmartAss.Specs\SmartAss.Specs.csproj", "{AAC88418-3FCC-47BB-B341-CB5838EF9D9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = ".net", ".net.csproj", "{25905BA7-E2B4-460B-BDCE-2944C85C6A62}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -56,6 +46,10 @@ Global
 		{AAC88418-3FCC-47BB-B341-CB5838EF9D9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AAC88418-3FCC-47BB-B341-CB5838EF9D9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AAC88418-3FCC-47BB-B341-CB5838EF9D9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25905BA7-E2B4-460B-BDCE-2944C85C6A62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25905BA7-E2B4-460B-BDCE-2944C85C6A62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25905BA7-E2B4-460B-BDCE-2944C85C6A62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25905BA7-E2B4-460B-BDCE-2944C85C6A62}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -9,6 +9,7 @@
 |    < 1d |  12 | ⭐⭐⭐⭐⭐⭐⭐ |
 |    < 2d |   4 | ⭐⭐⭐ |
 |    < 1w |   2 | ⭐⭐ |
+|    < 1y |   1 | ⭐ |
 |    > 1y |  71 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ |
 
 |   Day   |   Solved |
@@ -178,6 +179,7 @@
 | [2023-17](src/AdventOfCode/2023/Day_17.cs) |  4:31:27 |
 | [2023-18](src/AdventOfCode/2023/Day_18.cs) | 11:04:33 |
 | [2023-19](src/AdventOfCode/2023/Day_19.cs) |  4:22:28 |
+| [2023-20](src/AdventOfCode/2023/Day_20.cs) |   9 days |
 | [2023-21](src/AdventOfCode/2023/Day_21.cs) | 16:42:54 |
 | [2023-22](src/AdventOfCode/2023/Day_22.cs) |   2 days |
 | [2023-23](src/AdventOfCode/2023/Day_23.cs) |  6:55:15 |

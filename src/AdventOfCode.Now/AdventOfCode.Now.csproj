@@ -9,13 +9,13 @@
     <None Remove="**/Day_*.txt" />
     <EmbeddedResource Include="**/Day_*.txt" />
   </ItemGroup>
-  
+
+  <ItemGroup>
+    <ProjectReference Include="../AdventOfCode/AdventOfCode.csproj" />
+  </ItemGroup>
+    
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" PrivateAssets="all" />
   </ItemGroup>
   
-  <ItemGroup>
-    <ProjectReference Include="../AdventOfCode/AdventOfCode.csproj" />
-  </ItemGroup>
-
 </Project>

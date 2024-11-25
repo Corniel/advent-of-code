@@ -13,7 +13,7 @@ public class Day_05
 
     static int Simulate(Ints input, int threshold = int.MaxValue)
     {
-        var numbers = input.Edit();
+        var numbers = input.Copy();
         var index = 0; var turns = 0;
 
         while (index.InRange(0, numbers.Length - 1))

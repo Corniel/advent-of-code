@@ -21,5 +21,5 @@ public class Day_04
         return line.SpaceSeparated().Select(Ordered).All(set.Add);
     }
 
-    static string Ordered(string word) => new(word.OrderBy(c => c).ToArray());
+    static string Ordered(string word) => new([.. word.OrderBy(c => c)]);
 }

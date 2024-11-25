@@ -23,10 +23,8 @@ public class Day_06
         return set.Count - set[banks];
     }
 
-    private readonly struct Banks(byte[] numbers) : IEquatable<Banks>
+    private readonly record struct Banks(byte[] Numbers)
     {
-        private readonly byte[] Numbers = numbers;
-
         public Banks Next()
         {
             var numbers = Numbers.ToArray();
@@ -44,24 +42,6 @@ public class Day_06
                 numbers[index]++;
             }
             return new(numbers);
-        }
-
-        public override bool Equals(object obj) => obj is Banks other && Equals(other);
-        
-        public bool Equals(Banks other) => Numbers.SequenceEqual(other.Numbers);
-        
-        public override int GetHashCode()
-        {
-            unchecked
-            {
-                int hash = Numbers[0];
-                for (var i = 1; i < Numbers.Length; i++)
-                {
-                    hash = (hash << 5) + hash;
-                    hash ^= Numbers[i];
-                }
-                return hash;
-            }
         }
     }
 }

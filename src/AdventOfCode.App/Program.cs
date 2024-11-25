@@ -173,25 +173,26 @@ public static class Program
             => date.SpecifiesYearDay && !Puzzles.Contains(date);
 
         public static bool Benchmark(AdventDate _, string[] args)
-            => args.Any() && Arg(args[0], "b", "benchmark");
+            => Arg(args, "b", "benchmark");
 
         public static bool BenchmarkClassic(AdventDate _, string[] args)
-            => args.Any() && Arg(args[0], "bc");
+            => Arg(args, "bc");
 
-        public static bool LoC(AdventDate _, string[] args)
-            => args.Any() && Arg(args[0], "LoC");
+        public static bool LoC(AdventDate _, string[] args) => Arg(args, "LoC");
 
         public static bool Rank(AdventDate date, string[] args)
             => date.Year.HasValue
             && !date.Day.HasValue
             && !date.Part.HasValue
-            && args.Any() && Arg(args[0], "r", "rank");
+            && Arg(args, "r", "rank");
 
         public static bool Run(AdventDate date, string[] args)
             => Puzzles.Matching(date).Any() && args.Length == 0;
 
-        static bool Arg(string? par, params string[] args)
-            => args.Select(arg => $"-{arg}")
-            .Any(arg => arg.Equals(par, StringComparison.OrdinalIgnoreCase));
+        static bool Arg(string[] parameters, params string[] args)
+            => parameters.FirstOrDefault() is { } par
+            && args
+                .Select(arg => $"-{arg}")
+                .Any(arg => arg.Equals(par, StringComparison.OrdinalIgnoreCase));
     }
 }

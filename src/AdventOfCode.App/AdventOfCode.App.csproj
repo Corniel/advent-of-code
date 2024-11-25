@@ -13,4 +13,10 @@
     <ProjectReference Include="../AdventOfCode.Utils/AdventOfCode.Utils.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="nuget.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

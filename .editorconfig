@@ -1,35 +1,14 @@
 root = true
+
 [*]
 end_of_line = crlf
-insert_final_newline = true
 charset = utf-8
+insert_final_newline = true
 
-# Code files
 [*.{cs,cshtml,ts}]
 indent_style = space
 indent_size = 4
 
-# Project files
-[*.{csproj,props,yaml}]
+[*.{csproj,json,props,resx,xml}]
 indent_style = space
 indent_size = 2
-
-[*.cs]
-
-dotnet_diagnostic.IDE1006.severity = none # Naming Styles
-
-dotnet_diagnostic.NUnit1032.severity  = none # An IDisposable field/property should be Disposed in a TearDown method
-
-dotnet_diagnostic.S101.severity  = none # Types should be named in PascalCase
-dotnet_diagnostic.S1118.severity = none # Utility classes should not have public constructors
-dotnet_diagnostic.S2583.severity = none # Conditionally executed code should be reachable
-dotnet_diagnostic.S2699.severity = none # Add at least one assertion
-dotnet_diagnostic.S3220.severity = none # Method calls should not resolve ambiguously to overloads with "params"
-dotnet_diagnostic.S3376.severity = none # Attribute, EventArgs, and Exception type names should end with the type being extended
-dotnet_diagnostic.S3925.severity = none # "ISerializable" should be implemented correctly
-dotnet_diagnostic.S6580.severity = none # Use a format provider when parsing date and time
-dotnet_diagnostic.S6608.severity = none # Prefer indexing instead of "Enumerable" methods on types implementing "IList"
-
-dotnet_diagnostic.S2589.severity  = suggestion # Boolean expressions should not be gratuitous
-
-dotnet_diagnostic.VSSpell001.severity = none # No spelling

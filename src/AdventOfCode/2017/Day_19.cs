@@ -11,7 +11,7 @@ public class Day_19
     [Puzzle(answer: 16204, O.ms10)]
     public int part_two(CharGrid map) => Navigate(map).Count();
 
-    public IEnumerable<char> Navigate(CharGrid map)
+    static IEnumerable<char> Navigate(CharGrid map)
     {
         map.SetNeighbors(Neighbors.Grid);
         var cur = new Cursor(map.First(kvp => kvp.Value == '|').Key, Vector.S);

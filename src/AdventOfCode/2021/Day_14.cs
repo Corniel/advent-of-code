@@ -13,7 +13,7 @@ public class Day_14
 
     static long Run(Lines lines, int steps)
     {
-        var insertions = lines.Skip(1).Select(Insertion.Parse).ToDictionary(i => i.Pair, i => i);
+        var insertions = lines[1..].Select(Insertion.Parse).ToDictionary(i => i.Pair, i => i);
         var pairs = ItemCounter.New<string>(lines[0].SelectWithPrevious());
 
         for (var step = 0; step < steps; step++)

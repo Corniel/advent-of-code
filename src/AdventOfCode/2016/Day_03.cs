@@ -8,9 +8,9 @@ public class Day_03
 
     [Puzzle(answer: 1921, O.μs100)]
     public int part_two(Ints numbers) => 0
-        + Count(numbers.Skip(0).WithStep(3).ToArray())
-        + Count(numbers.Skip(1).WithStep(3).ToArray())
-        + Count(numbers.Skip(2).WithStep(3).ToArray());
+        + Count(numbers.WithStep(3).ToArray())
+        + Count(numbers[1..].WithStep(3).ToArray())
+        + Count(numbers[2..].WithStep(3).ToArray());
 
     static int Count(int[] numbers) => numbers.ChunkBy(3).Sum(Triangle.Is);
 

@@ -24,7 +24,7 @@ public class Day_12
     {
         public GameOfLife(Lines lines)
         {
-            foreach (var mask in lines.Skip(1).Select(line => Bits.UInt32.Parse(line, "#", ".")))
+            foreach (var mask in lines[1..].Select(line => Bits.UInt32.Parse(line, "#", ".")))
             {
                 nexts[mask >> 1] = (mask & 1) == 1;
             }

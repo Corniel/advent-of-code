@@ -26,7 +26,7 @@ public class Day_07
             var root = new Dir(null, "/", []);
             var current = root;
 
-            foreach (var line in lines.Skip(1))
+            foreach (var line in lines[1..])
             {
                 if (line == "$ cd ..") current = current.Parent;
                 else if (line.StartsWith("$ cd ")) current = current.Dirs.First(dir => dir.Name == line[5..]);

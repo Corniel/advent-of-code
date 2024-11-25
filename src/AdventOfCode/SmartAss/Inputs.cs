@@ -6,26 +6,34 @@ namespace SmartAss;
 [DebuggerTypeProxy(typeof(CollectionDebugView))]
 public readonly struct Inputs<T>(IReadOnlyList<T> input) : IReadOnlyList<T>
 {
-    private readonly IReadOnlyList<T> collection = input;
+    private readonly T[] collection = input as T[] ?? [..input];
 
     public T this[int index] => collection[index];
 
-    public int Count => collection.Count;
+    public Slice<T> this[Range range] => new Slice<T>(collection)[range];
+
+    public int Count => collection.Length;
     
     public override string ToString() => string.Join(';', collection);
+
+    [Obsolete("Use [..count] instead.", error: true)]
+    public T[] Skip(int count) => throw new NotSupportedException();
+
+    [Obsolete("Use [count..] instead.", error: true)]
+    public T[] Take(int count) => throw new NotSupportedException();
 
     [Pure]
     public T[] Edit() => collection.ToArray();
 
-    [Obsolete("Use Edit().", error: true)]
+    [Obsolete("Use Edit() instead.", error: true)]
     public T[] ToArray() => throw new NotSupportedException();
 
-    [Obsolete("Use As().", error: true)]
+    [Obsolete("Use As() instead.", error: true)]
     public IEnumerable<TOut> Select<TOut>(Func<T, TOut> selector) => throw new NotSupportedException();
 
     public IEnumerable<TOut> As<TOut>(Func<T, TOut> selector) => collection.Select(selector);
 
-    public IEnumerator<T> GetEnumerator() => collection.GetEnumerator();
+    public IEnumerator<T> GetEnumerator() => ((IReadOnlyCollection<T>)collection).GetEnumerator();
 
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }

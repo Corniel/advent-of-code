@@ -32,8 +32,8 @@ public class Day_09
         {
             if (test == sum)
             {
-                var min = numbers.Skip(lo).Take(hi - lo).Min();
-                var max = numbers.Skip(lo).Take(hi - lo).Max();
+                var min = numbers[lo..hi].Min();
+                var max = numbers[lo..hi].Max();
                 return min + max;
             }
             else if (test < sum)

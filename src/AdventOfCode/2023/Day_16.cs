@@ -6,7 +6,7 @@ public class Day_16
     [Example(answer: 46, Example._1)]
     [Puzzle(answer: 7996, O.ms)]
     public int part_one(CharGrid map) => Navigate(new(Point.O, Vector.E), map);
-    
+
     [Example(answer: 51, Example._1)]
     [Puzzle(answer: 8239, O.ms100)]
     public int part_two(CharGrid map) => Starts(map).Select(c => Navigate(c, map)).Max();

@@ -9,7 +9,7 @@ public class Day_03
     {
         var done = new HashSet<Point> { Point.O };
         var santa = Point.O;
-        foreach(var dir in str.Select(c => c.Vector()))
+        foreach (var dir in str.Select(c => c.Vector()))
         {
             santa += dir;
             done.Add(santa);

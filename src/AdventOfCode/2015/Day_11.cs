@@ -15,11 +15,11 @@ public class Day_11
 
         public readonly bool MoveNext()
         {
-            while(PlusOne())
+            while (PlusOne())
             {
                 var twos = Current[0] == Current[1] || Current[1] == Current[2] ? 1 : 0;
                 var three = false;
-                for(var i = 2; i < Current.Length; i++)
+                for (var i = 2; i < Current.Length; i++)
                 {
                     three |= Current[i - 2] + 1 == Current[i - 1] && Current[i - 1] + 1 == Current[i];
                     twos += Current[i - 1] == Current[i] && Current[i - 1] != Current[i - 2] ? 1 : 0;
@@ -28,7 +28,7 @@ public class Day_11
             }
             throw new InfiniteLoop();
         }
-        
+
         readonly bool PlusOne()
         {
             var pos = Current.Length - 1;
@@ -39,7 +39,7 @@ public class Day_11
 
         public readonly void Dispose() => Do.Nothing();
         public readonly void Reset() => Do.Nothing();
-        
+
         static readonly string Next = new string(' ', (int)'a') + "bcdefghjjkmmnppqrstuvwxyza";
     }
 }

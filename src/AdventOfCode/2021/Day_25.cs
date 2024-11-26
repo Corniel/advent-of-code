@@ -3,7 +3,7 @@ namespace Advent_of_Code_2021;
 [Category(Category.Simulation, Category.VectorAlgebra)]
 public class Day_25
 {
-    [Example(answer: 58,Example._1)]
+    [Example(answer: 58, Example._1)]
     [Puzzle(answer: 598, O.ms10)]
     public int part_one(CharGrid map)
     {

@@ -64,7 +64,7 @@ public class Day_10
 
     static HashSet<Point> Outside(Grid<bool> topo, HashSet<Point> pipe)
     {
-        var outside = new HashSet<Point>() { Point.O};
+        var outside = new HashSet<Point>() { Point.O };
         var queue = new Queue<Point>().EnqueueRange(outside);
 
         foreach (var tile in queue.DequeueAll())

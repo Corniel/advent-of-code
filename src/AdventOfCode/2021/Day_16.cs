@@ -19,7 +19,7 @@ public class Day_16
     public long part_two(string str) => new Parser(str).Read().Value;
 
     enum TypeId { Sum = 0, Product = 1, Min = 2, Max = 3, Literal = 4, GT = 5, LT = 6, Eq = 7 }
-    
+
     class Packet(int version, TypeId type) : SyntaxNode
     {
         public int Version { get; } = version;
@@ -30,8 +30,8 @@ public class Day_16
             TypeId.Product => Children<Packet>().Select(ch => ch.Value).Product(),
             TypeId.Min => Children<Packet>().Min(ch => ch.Value),
             TypeId.Max => Children<Packet>().Max(ch => ch.Value),
-            TypeId.GT => Children<Packet>()[0].Value >  Children<Packet>()[1].Value ? 1 : 0,
-            TypeId.LT => Children<Packet>()[0].Value <  Children<Packet>()[1].Value ? 1 : 0,
+            TypeId.GT => Children<Packet>()[0].Value > Children<Packet>()[1].Value ? 1 : 0,
+            TypeId.LT => Children<Packet>()[0].Value < Children<Packet>()[1].Value ? 1 : 0,
             TypeId.Eq => Children<Packet>()[0].Value == Children<Packet>()[1].Value ? 1 : 0,
             TypeId.Sum or _ => Children<Packet>().Sum(ch => ch.Value),
         };

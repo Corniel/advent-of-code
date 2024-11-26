@@ -78,7 +78,7 @@ public class Day_21
 
     static long Ring(int r) => 4 * r - 4;
 
-    static long Plots(ItemCount<State> s, CharGrid map)=>  s.Count * Plots(s.Item.Start, map, s.Item.Steps);
+    static long Plots(ItemCount<State> s, CharGrid map) => s.Count * Plots(s.Item.Start, map, s.Item.Steps);
 
     static int Plots(Point start, CharGrid map, int steps)
     {
@@ -86,14 +86,14 @@ public class Day_21
         var queue = new Queue<Point>().EnqueueRange([start]);
         var done = new HashSet<Point>() { start };
         var step = 0;
-        var phase = steps % 2; 
+        var phase = steps % 2;
         var plots = 1 - phase;
 
         while (queue.Any() && ++step <= steps)
         {
             foreach (var n in queue.DequeueCurrent().SelectMany(p => map.Neighbors[p].Where(n => map[n] != '#' && done.Add(n))))
             {
-                if(step % 2 == phase) plots++;
+                if (step % 2 == phase) plots++;
                 queue.Enqueue(n);
             }
         }

@@ -15,7 +15,7 @@ public abstract class Expr
     public static Variable Variable() => new();
 
     internal static Add Add(Expr left, Expr right) => new(left, right);
-    
+
     internal static Subtract Subtract(Expr left, Expr right) => new(left, right);
 
     public static Binary Binary(Expr left, string op, Expr right) => op switch
@@ -35,5 +35,5 @@ public abstract class Expr
         _ => throw new NotSupportedException($"The '{op}' is not supported.")
     };
 
-   
+
 }

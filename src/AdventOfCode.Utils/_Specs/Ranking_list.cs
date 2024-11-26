@@ -1,8 +1,8 @@
 using Advent_of_Code.Rankings;
 
-namespace Specs.Ranking_list; 
+namespace Specs.Ranking_list;
 
-public class Rankings 
+public class Rankings
 {
     [TestCaseSource(nameof(Years))]
     public void All(int year)

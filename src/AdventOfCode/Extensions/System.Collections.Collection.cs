@@ -2,7 +2,7 @@ namespace System.Collections;
 
 public static class CollectionExtensions
 {
-    public static int Count<T>(this IEnumerable<T> enumerable, T item) => enumerable.Count(i => i.Equals(item));  
+    public static int Count<T>(this IEnumerable<T> enumerable, T item) => enumerable.Count(i => i.Equals(item));
 
     public static bool NotEmpty<T>(this IEnumerable<T> enumerable) => enumerable.Any();
 
@@ -18,9 +18,9 @@ public static class CollectionExtensions
 
     public static T? FirstOrNone<T>(this IEnumerable<T> enumerable, Predicate<T> predicate) where T : struct
     {
-        foreach(var item in enumerable) 
-        { 
-            if(predicate(item)) return item;
+        foreach (var item in enumerable)
+        {
+            if (predicate(item)) return item;
         }
         return null;
     }

@@ -38,7 +38,7 @@ public sealed class Params : IReadOnlyCollection<Param>
                 }
                 else return null;
             }
-            else return value;  
+            else return value;
         }
         else return Lookup[param].TryValue(this);
     }
@@ -48,7 +48,7 @@ public sealed class Params : IReadOnlyCollection<Param>
     public static Params New(IEnumerable<Param> pars)
     {
         var @params = new Params();
-        foreach (var par in pars) 
+        foreach (var par in pars)
         {
             @params.Lookup.Add(par.Name, par.Expr);
         }

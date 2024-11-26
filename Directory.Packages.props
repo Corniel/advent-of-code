@@ -20,7 +20,4 @@
     <PackageVersion Include="Qowaiv" Version="7.2.0" />
     <PackageVersion Include="SonarAnalyzer.CSharp" Version="*" />
   </ItemGroup>
-  <ItemGroup Label="Additional files">
-    <AdditionalFiles Include="../../Directory.Packages.props" Link="Properties/Directory.Packages.props" />
-  </ItemGroup>
 </Project>

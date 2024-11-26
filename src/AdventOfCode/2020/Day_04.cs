@@ -26,7 +26,7 @@ public class Day_04
             (str.EndsWith("in") && length.InRange(59, 76)));
 
         public bool eyr => TryGetValue(nameof(eyr), out var str)
-          && int.TryParse(str, out var year) && year.InRange(2020,2030);
+          && int.TryParse(str, out var year) && year.InRange(2020, 2030);
 
         public bool ecl => TryGetValue(nameof(ecl), out var str)
             && Ecls.Contains(str);

@@ -6,7 +6,7 @@ public class Day_05
     [Example(answer: 5, "0,9 -> 5,9;8,0 -> 0,8;9,4 -> 3,4;2,2 -> 2,1;7,0 -> 7,4;6,4 -> 2,0;0,9 -> 2,9;3,4 -> 1,4;0,0 -> 8,8;5,5 -> 8,2")]
     [Puzzle(answer: 6666, O.ms)]
     public int part_one(Lines lines) => Run(lines, diagonal: false);
-  
+
     [Example(answer: 12, "0,9 -> 5,9;8,0 -> 0,8;9,4 -> 3,4;2,2 -> 2,1;7,0 -> 7,4;6,4 -> 2,0;0,9 -> 2,9;3,4 -> 1,4;0,0 -> 8,8;5,5 -> 8,2")]
     [Puzzle(answer: 19081, O.ms10)]
     public int part_two(Lines lines) => Run(lines, diagonal: true);

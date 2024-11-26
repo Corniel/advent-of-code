@@ -15,7 +15,7 @@ public class Day_24
     static long? Serial(int[] digits, State state, IReadOnlyList<Expression> exps, long serial = 0, int level = 0, int index = 0)
     {
         var seri = serial * 10;
-        foreach(var digit in digits)
+        foreach (var digit in digits)
         {
             var index_next = -1;
             var state_next = State.Zero;
@@ -24,10 +24,10 @@ public class Day_24
             for (var i = index + 1; i < exps.Count; i++)
             {
                 var exp = exps[i];
-                if (index_next == -1 && exp.Op == Op.inp) 
+                if (index_next == -1 && exp.Op == Op.inp)
                 {
                     state_next = test;
-                    index_next = i; 
+                    index_next = i;
                 }
                 test = test.Exc(exp);
             }
@@ -44,7 +44,7 @@ public class Day_24
     {
         public Arg this[int index] => index >= Args.Length ? 0 : Args[index];
         public Expression Set(int val) => this with { Op = Op.set, Args = [Args[0], (Arg)val] };
-        public override string ToString()=> $"{Op} {string.Join(' ', Args.AsEnumerable())}";
+        public override string ToString() => $"{Op} {string.Join(' ', Args.AsEnumerable())}";
         public static Expression Parse(string line)
         {
             var args = line.SpaceSeparated().ToArray();
@@ -105,6 +105,6 @@ public class Day_24
             else if (Max < other.Min || Min > other.Max) return new(0);
             else return new(0, 1);
         }
-        public override string ToString()=> IsSingle ? Min.ToString(): $"[{Min}, {Max}]";
+        public override string ToString() => IsSingle ? Min.ToString() : $"[{Min}, {Max}]";
     }
 }

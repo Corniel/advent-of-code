@@ -31,7 +31,7 @@ public class Day_14
             var v2 = recipes[e2];
 
             recipes.AddRange((v1 + v2).Digits());
-            
+
             e1 = (e1 + v1 + 1).Mod(recipes.Count);
             e2 = (e2 + v2 + 1).Mod(recipes.Count);
         }

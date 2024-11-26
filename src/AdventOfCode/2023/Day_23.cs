@@ -34,7 +34,7 @@ public class Day_23
             foreach (var c in path.Node.Connections.Where(c => !Bits.UInt64.HasFlag(path.Done, c.Id)))
             {
                 var next = new Path(c.Target, Bits.UInt64.Flag(path.Done, c.Id), path.Distance + c.Distance);
-                
+
                 if (next.Node == graph[^1]) dis = Math.Max(next.Distance, dis);
                 else queue.Enqueue(next);
             }

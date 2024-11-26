@@ -16,7 +16,7 @@ public class Day_24
         var c = new Context();
         var s = c.MkSolver();
 
-        var x  = Const("x");  var y  = Const("y");  var z  = Const("z");
+        var x = Const("x"); var y = Const("y"); var z = Const("z");
         var Δx = Const("Δx"); var Δy = Const("Δy"); var Δz = Const("Δz");
 
         foreach (var fx in lines.As(Fx.Parse))

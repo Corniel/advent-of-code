@@ -32,7 +32,7 @@ public static class Templating
     {
         var path = "Advent_of_Code.Template.Day.cs";
 
-        using var stream = typeof(Templating).Assembly.GetManifestResourceStream(path) 
+        using var stream = typeof(Templating).Assembly.GetManifestResourceStream(path)
             ?? throw new FileNotFoundException(path);
 
         var reader = new StreamReader(stream, Encoding.UTF8);

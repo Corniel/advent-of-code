@@ -24,7 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <AdditionalFiles Include="../../props/Directory.Build.props" Link="Properties/Directory.Build.props" />
     <AdditionalFiles Include="*.??proj" Visible="false" />
   </ItemGroup>
 

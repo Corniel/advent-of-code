@@ -9,9 +9,9 @@ internal static class Duration
         O.μs => "1 μs",
         O.μs10 => "10 μs",
         O.μs100 => "100 μs",
-        O.ms =>   "1 ms",
+        O.ms => "1 ms",
         O.ms10 => "10 ms",
-        O.ms100 =>"100 ms",
+        O.ms100 => "100 ms",
         O.s => "1 sec",
         O.s10 => "10 sec",
         O.s100 => "100 sec",
@@ -25,7 +25,7 @@ internal static class Duration
         {
             return $"{(ts.Ticks / 10m):#,##0.0} μs";
         }
-        else if(ts.TotalMilliseconds < 10)
+        else if (ts.TotalMilliseconds < 10)
         {
             return $"{(ts.TotalMilliseconds):#,##0.000} ms";
         }
@@ -46,7 +46,7 @@ internal static class Duration
 
     public static TimeSpan? TryParse(string str)
     {
-        if (str.Split(' ') is { Length: 2} parts 
+        if (str.Split(' ') is { Length: 2 } parts
             && double.TryParse(parts[0], CultureInfo.InvariantCulture, out var number))
         {
             return parts[1] switch

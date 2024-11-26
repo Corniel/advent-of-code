@@ -7,15 +7,15 @@ public class SyntaxParser
 
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     private readonly string Input;
-        public char this[int index] => Input[Position + index];
+    public char this[int index] => Input[Position + index];
 
     public int Position { get; private set; }
     public bool EndOfInput => Buffer.IsEmpty;
     private CharSpan Buffer => ((CharSpan)Input)[Position..];
 
-    public char? TryReadChar() 
-        => EndOfInput 
-        ? null 
+    public char? TryReadChar()
+        => EndOfInput
+        ? null
         : Input[Position++];
 
     public char ReadChar()
@@ -23,7 +23,7 @@ public class SyntaxParser
         ? throw SyntaxError.EndOfInput
         : Input[Position++];
 
-    public char ReadAhead() 
+    public char ReadAhead()
         => EndOfInput
         ? throw SyntaxError.EndOfInput
         : Input[Position];
@@ -72,7 +72,7 @@ public class SyntaxParser
             Position++;
         }
     }
-   
+
     public ulong ReadBinary(int size, string ones = "1", string zeros = "0")
     {
         ulong binary = 0;

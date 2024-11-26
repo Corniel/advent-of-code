@@ -8,5 +8,5 @@ public sealed class Variable : Expr
 
     public override long? TryValue(Params pars) => Val;
 
-    public override string ToString()=> Val is null ? "?" : Val.ToString();
+    public override string ToString() => Val is null ? "?" : Val.ToString();
 }

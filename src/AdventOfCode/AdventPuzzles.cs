@@ -41,6 +41,6 @@ public partial class AdventPuzzles : IReadOnlyCollection<AdventPuzzle>
     }
 
     public IEnumerator<AdventPuzzle> GetEnumerator() => items.OrderBy(item => item.Date).GetEnumerator();
-    
+
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }

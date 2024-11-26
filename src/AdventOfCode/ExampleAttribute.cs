@@ -7,7 +7,7 @@ public class ExampleAttribute(object answer, params object[] input) : PuzzleAttr
 
     protected override AdventPuzzle Puzzle(IMethodInfo method) => new(method.MethodInfo, Input, Answer, Order, Example);
 
-    protected override string TestName(IMethodInfo method, object input) 
+    protected override string TestName(IMethodInfo method, object input)
         => Example != default
         ? $"answer is {Answer} for example {(int)Example}"
         : $"answer is {Answer} for {TestInput(method, input)}";
@@ -20,7 +20,7 @@ public class ExampleAttribute(object answer, params object[] input) : PuzzleAttr
             CharGrid grid => grid.ToString(c => c).Replace("\r\n", ";"),
             _ => input.ToString(),
         };
-        
+
         return str.Contains('\n')
             ? $"{method.Name.Replace("_", " ")} example with length {input.ToString().Length}"
             : str;

@@ -33,7 +33,7 @@ public class Day_25
 
             foreach (var parts in lines.As(l => l.Separate(':', ' ')))
             {
-                var node = nodes.GetValueOrDefault(parts[0])  ?? new Node(id++, []);
+                var node = nodes.GetValueOrDefault(parts[0]) ?? new Node(id++, []);
                 nodes[parts[0]] = node;
 
                 foreach (var c in parts[1..])

@@ -15,7 +15,7 @@ public class Day_04
 
     static long AsleepMostMinutes(ItemCounter<int> o) => o.OrderByDescending(kvp => kvp.Count).First().Count;
     static int MinuteAsleepMost(ItemCounter<int> o) => o.OrderByDescending(kvp => kvp.Count).Select(kvp => kvp.Item).First();
-    static int Score(KeyValuePair<int, ItemCounter<int>> o) => o.Key* MinuteAsleepMost(o.Value);
+    static int Score(KeyValuePair<int, ItemCounter<int>> o) => o.Key * MinuteAsleepMost(o.Value);
 
     static Dictionary<int, ItemCounter<int>> Occurences(Lines lines)
     {

@@ -20,7 +20,7 @@ public class Day_21
 
     static Params Expressions(Lines lines) => Params.New(lines.As(Param));
 
-    static Param Param(string line) => new(line[0..4], line.Int32N() is { } n 
-        ? Expr.Const(n) 
+    static Param Param(string line) => new(line[0..4], line.Int32N() is { } n
+        ? Expr.Const(n)
         : Expr.Binary(Expr.Ref(line[6..10]), line[11..12], Expr.Ref(line[13..17])));
 }

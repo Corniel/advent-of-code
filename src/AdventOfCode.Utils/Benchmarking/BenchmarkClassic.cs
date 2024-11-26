@@ -4,7 +4,7 @@ public sealed class BenchmarkClassic(AdventPuzzle puzzle)
 {
     private readonly AdventPuzzle Puzzle = puzzle;
     private readonly Durations Durations = new();
-    
+
     public void Run(O limit)
     {
         if (Puzzle.Order >= limit)

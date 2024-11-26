@@ -24,7 +24,7 @@ public class Leaderboard
 
         var sovled = participant.Solutions.Select(s => s.Key.YearDay).ToHashSet();
 
-        foreach (var entry in entries.Where(e => !sovled.Contains(e.Date.YearDay)) .OrderBy(e => e.Time))
+        foreach (var entry in entries.Where(e => !sovled.Contains(e.Date.YearDay)).OrderBy(e => e.Time))
         {
             $"- [ ] {entry.Date.Year}-{entry.Date.Day:00} {entry.Time.TotalMinutes,3:0}:{entry.Time.Seconds:00}".Console();
         }

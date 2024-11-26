@@ -30,7 +30,7 @@ public static class AsciiText
 
         var lookup = new Dictionary<ulong, char>();
         var ch = 'A';
-        foreach(var bits in new TextIterator(grid, false))
+        foreach (var bits in new TextIterator(grid, false))
         {
             lookup[bits] = ch++;
         }

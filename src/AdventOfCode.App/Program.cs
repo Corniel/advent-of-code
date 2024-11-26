@@ -58,7 +58,7 @@ public static class Program
             "TWEAKERS" => Data.Tweakers(),
             _ => Data.Participants(),
         };
-            
+
         Console.WriteLine(Ranking.Solving(year, participants.Values));
 
         return Success;

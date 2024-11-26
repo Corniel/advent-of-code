@@ -21,4 +21,4 @@ public class Day_12
 
     static bool IsRed(JsonElement elm) => elm.EnumerateObject()
         .Any(prop => prop.Value.ValueKind == JsonValueKind.String && prop.Value.GetString() == "red");
- }
+}

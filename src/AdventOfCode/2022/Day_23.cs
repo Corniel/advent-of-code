@@ -10,7 +10,7 @@ public class Day_23
     [Example(answer: 20, Example._1)]
     [Puzzle(answer: 997, O.ms100)]
     public int part_two(CharPixels chars) => Run(chars, int.MaxValue);
-   
+
     static int Run(CharPixels chars, int rounds)
     {
         var elves = chars.Where(p => p.Value == '#').Select(p => p.Key).ToHashSet();
@@ -47,7 +47,7 @@ public class Day_23
         var max = Points.Max(elves);
         return (1 + max.X - min.X) * (1 + max.Y - min.Y) - elves.Count;
     }
-  
+
     record struct Move(Point From, Point To);
 
     static readonly Vector[] Directions = [Vector.E, Vector.N, Vector.S, Vector.W, Vector.E, Vector.N, Vector.S, Vector.W];

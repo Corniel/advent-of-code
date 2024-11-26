@@ -10,7 +10,7 @@ public class Day_06
     [Puzzle(answer: "apfeeebz", O.μs10)]
     public string part_two(Lines lines) => Decrypt(lines, Min);
 
-    static string Decrypt(Lines lines, Func<IEnumerable<char>, char> selector) 
+    static string Decrypt(Lines lines, Func<IEnumerable<char>, char> selector)
         => new(Range(0, lines[0].Length).Select(i => selector(lines.As(line => line[i]))).ToArray());
 
     static char Max(IEnumerable<char> chars) => ItemCounter.New(chars).Max().Item;

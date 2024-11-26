@@ -65,7 +65,7 @@ public class Day_19
         }
         public static Scanner Parse(string[] lines) => new() { Observations = lines[1..].Select(Vector3D.Parse).ToArray() };
     }
-    
+
     record Orientation(int[] Order, int[] Multiplier)
     {
         public Vector3D Transform(Vector3D vector) => new(

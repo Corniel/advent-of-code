@@ -44,7 +44,7 @@ public class Day_15
     }
 
     static int Score(List<Lens> box, int i) => (i + 1) * box.Select(Score).Sum();
-    
+
     static int Score(Lens lens, int i) => lens.Length * (i + 1);
 
     record Step(string Name, int Index, int Len);

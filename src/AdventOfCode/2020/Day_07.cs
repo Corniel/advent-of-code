@@ -11,7 +11,7 @@ public class Day_07
     [Example(answer: 126, Example._2)]
     [Puzzle(answer: 30899, O.μs100)]
     public int part_two(string str) => Bags.Parse(str)["shiny gold"].NestedCount;
-        
+
     class Bags : Forrest<Leaf>
     {
         public static Bags Parse(string str)

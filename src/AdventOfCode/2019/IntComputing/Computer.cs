@@ -17,7 +17,7 @@ public class Computer : IEnumerable<Int>
     public ComputerState State { get; private set; }
     public bool Finished => State == ComputerState.Finished;
 
-    public Queue<Int> Inputs { get; private set;  } = new();
+    public Queue<Int> Inputs { get; private set; } = new();
 
     public Computer WarmUp()
     {
@@ -34,8 +34,8 @@ public class Computer : IEnumerable<Int>
         while (State == ComputerState.Running)
         {
             var opcode = ReadOpcode();
-            
-            if (opcode.Instruction == 03 && arguments.HaltOnInput && !continueOnInput) 
+
+            if (opcode.Instruction == 03 && arguments.HaltOnInput && !continueOnInput)
             {
                 State = ComputerState.HaltOnInput; break;
             }
@@ -47,7 +47,7 @@ public class Computer : IEnumerable<Int>
                 case 02: Multiply(opcode); break;
                 case 03: Input(opcode); break;
                 case 04: Output(opcode, output);
-                    if (arguments.HaltOnOutput) { State = ComputerState.HaltOnOutput; } 
+                    if (arguments.HaltOnOutput) { State = ComputerState.HaltOnOutput; }
                     break;
                 case 05: JumpIf(true, opcode); break;
                 case 06: JumpIf(false, opcode); break;
@@ -60,7 +60,7 @@ public class Computer : IEnumerable<Int>
         }
         return new(memory[0], output);
     }
-   
+
     public Computer Copy() => new(memory)
     {
         Pointer = Pointer,

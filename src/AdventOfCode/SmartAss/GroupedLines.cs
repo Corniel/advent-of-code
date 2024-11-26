@@ -9,7 +9,7 @@ public readonly struct GroupedLines(IReadOnlyList<string[]> groups) : IReadOnlyL
     public string[] this[int index] => collection[index];
 
     public int Count => collection.Count;
-    
+
     public override string ToString() => string.Join(';', collection.SelectMany(g => g));
 
     public IEnumerator<string[]> GetEnumerator() => collection.GetEnumerator();

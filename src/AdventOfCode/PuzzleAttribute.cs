@@ -19,7 +19,7 @@ public class PuzzleAttribute : Attribute, ITestBuilder, IApplyToTest, IImplyFixt
     public object Answer { get; }
 
     public O Order { get; }
-    
+
     public object[] Input { get; }
 
     /// <summary>

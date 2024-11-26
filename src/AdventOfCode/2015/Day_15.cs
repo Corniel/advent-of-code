@@ -41,7 +41,7 @@ public class Day_15
 
         public bool MoveNext()
         {
-            while(true)
+            while (true)
             {
                 if (!Fill(++Number)) return false;
                 else if (Current[0] >= 0) return true;
@@ -53,7 +53,7 @@ public class Day_15
         {
             Current[0] = 100;
             var pos = 1;
-            while(remainder > 0 && pos < Current.Length)
+            while (remainder > 0 && pos < Current.Length)
             {
                 var total = remainder & 0x7F;
                 Current[0] -= total;

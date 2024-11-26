@@ -5,7 +5,7 @@ public class Day_09
 {
     [Example(answer: 15, Example._1)]
     [Puzzle(answer: 588, O.ms)]
-    public int part_one(CharGrid map) 
+    public int part_one(CharGrid map)
         => map.SetNeighbors(Neighbors.Grid).Positions()
             .Where(point => map.Neighbors[point]
             .All(n => map[n] > map[point]))

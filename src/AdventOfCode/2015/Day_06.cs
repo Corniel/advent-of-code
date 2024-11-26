@@ -7,10 +7,10 @@ public class Day_06
     public int part_one(Lines lines)
     {
         var grid = new Grid<bool>(1000, 1000);
-        
+
         foreach (var instruction in lines.As(Instruction.Parse))
         {
-            foreach(var point in Points.Range(instruction.Start, instruction.End))
+            foreach (var point in Points.Range(instruction.Start, instruction.End))
             {
                 grid[point] = instruction.Type switch
                 {
@@ -34,7 +34,7 @@ public class Day_06
             {
                 grid[point] = instruction.Type switch
                 {
-                    InstructionType.TurnOn => grid[point]+1,
+                    InstructionType.TurnOn => grid[point] + 1,
                     InstructionType.TurnOff => Math.Max(0, grid[point] - 1),
                     _ => grid[point] + 2,
                 };

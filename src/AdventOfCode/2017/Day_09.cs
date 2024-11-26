@@ -25,7 +25,7 @@ public class Day_09
         public int Garbage => Children<Group>().Single().Garbages;
     }
 
-    class Group : SyntaxNode 
+    class Group : SyntaxNode
     {
         public SyntaxNodes<Group> ChildGroups => Children<Group>();
         public int Score => Parent is Group parent ? parent.Score + 1 : 1;
@@ -63,7 +63,7 @@ public class Day_09
                 {
                     if (ch == '{') group.AddChild(Read());
                     else if (ch == '}') return group;
-                    else if(ch == '<') garbage = true;
+                    else if (ch == '<') garbage = true;
                 }
             }
             throw SyntaxError.UnexpectedToken(ReadChar(), Position);

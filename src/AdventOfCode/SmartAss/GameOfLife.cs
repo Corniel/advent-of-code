@@ -11,7 +11,7 @@ public abstract class GameOfLife<TCell> : HashSet<TCell>
 
     /// <summary>Returns true when a non-living cell should come into existence.</summary>
     protected virtual bool IntoExistence(TCell cell) => IntoExistence(LivingNeighbors(cell));
-    
+
     /// <summary>Returns true when a non-living cell should come into existence.</summary>
     protected virtual bool IntoExistence(int living) => living == 3;
 

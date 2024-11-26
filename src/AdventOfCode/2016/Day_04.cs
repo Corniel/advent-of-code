@@ -19,7 +19,7 @@ public class Day_04
     {
         public string Decrypted() => new(Name.ToCharArray().Select(Decrypt).ToArray());
 
-        private char Decrypt(char ch) => ch.InRange('a' ,'z')
+        private char Decrypt(char ch) => ch.InRange('a', 'z')
             ? Characters.a_z[(Characters.a_z.IndexOf(ch) + Id).Mod(26)] : ' ';
 
         public static Secret Parse(string line)

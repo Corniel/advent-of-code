@@ -28,7 +28,7 @@ public readonly struct BinaryNumber(ulong value, int size) : IEquatable<BinaryNu
     public static BinaryNumber Parse(string str)
         => new(Bits.UInt64.Parse(str), str.Count(ch => ch == '0' || ch == '1'));
 
-    public override bool Equals(object obj)=> obj is BinaryNumber other && Equals(other);
+    public override bool Equals(object obj) => obj is BinaryNumber other && Equals(other);
     public bool Equals(BinaryNumber other) => Value == other.Value;
     public override int GetHashCode() => Value.GetHashCode();
 
@@ -40,7 +40,7 @@ public static class BinaryNumberExtensions
     public static BinaryNumber And(this IEnumerable<BinaryNumber> numbers)
     {
         BinaryNumber and = new(ulong.MaxValue, 0);
-        foreach(var number in numbers)
+        foreach (var number in numbers)
         {
             and &= number;
         }

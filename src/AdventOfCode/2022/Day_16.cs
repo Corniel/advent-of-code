@@ -58,7 +58,7 @@ public class Day_16
                 rate += valve.Rate;
                 id1 = valve.Id;
             }
-            else  turn1 = turns;
+            else turn1 = turns;
 
             if (solo) return new(closed, score, rate, turn1, turn1, id1, id1);
             else if (turn1 > Turn2) return new(closed, score, rate, Turn2, turn1, Id2, id1);

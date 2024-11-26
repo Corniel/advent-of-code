@@ -25,6 +25,5 @@ public class Day_02
         var pars = line.Int32s().ToArray();
         var bow = pars[0] * pars[1] * pars[2];
         return pars.OrderBy(p => p).Take(2).Sum() * 2 + bow;
-  
     }
 }

@@ -23,7 +23,7 @@ public class Day_09
         for (var pos = 0; pos < str.Length; pos++)
         {
             var ch = str[pos];
-            
+
             if (ch == '(')
             {
                 len += buf;

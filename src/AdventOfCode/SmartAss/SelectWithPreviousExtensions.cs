@@ -51,7 +51,7 @@ public struct CurrentAndPreviouses : IEnumerator<string>, IEnumerable<string>
 
     public bool MoveNext()
     {
-        if(++Pos <= Str.Length - Size)
+        if (++Pos <= Str.Length - Size)
         {
             Current = Str[Pos..(Pos + Size)];
             return true;

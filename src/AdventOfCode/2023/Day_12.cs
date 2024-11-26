@@ -49,14 +49,14 @@ public class Day_12
                 switch (ch)
                 {
                     case '.': curr.Dot(next); break;
-                    case '#': curr.Hash(next);break;
+                    case '#': curr.Hash(next); break;
                     default: curr.Dot(next); curr.Hash(next); break; // ?
                 }
                 (curr, next) = (next, curr);
             }
             return curr[^2..].Sum(s => s.Last);
         }
-        
+
         // This is part of my old implementation; it uses some combination theory
         // and is even (just slightly) faster then the fall back)
         long Blanks()

@@ -54,7 +54,7 @@ public static class Data
     }
 
     public static Participants Tjip(int year)
-    { 
+    {
         TJIP_Ignore.TryGetValue(year, out var exclude);
         exclude ??= [];
         var partipants = new Participants(Participants()

@@ -12,7 +12,7 @@ public class Day_02
     public int part_two(Lines lines) => lines.As(AsNumbers).Select(Checksum).Sum();
 
     static int[] AsNumbers(string line) => [.. line.Int32s().Order()];
-    
+
     static int MaxMin(int[] n) => n[^1] - n[0];
 
     static int Checksum(int[] n)

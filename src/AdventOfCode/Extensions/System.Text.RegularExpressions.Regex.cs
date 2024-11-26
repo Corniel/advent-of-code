@@ -9,6 +9,6 @@ public static class AoRegexExtensions
         => Regex.Replace(str, pattern, replacement);
 
     /// <inheritdoc cref="Regex.IsMatch(string, string)" />
-    public static bool IsMatch(this string str, [StringSyntax(StringSyntaxAttribute.Regex)] string pattern) 
+    public static bool IsMatch(this string str, [StringSyntax(StringSyntaxAttribute.Regex)] string pattern)
         => Regex.IsMatch(str, pattern);
 }

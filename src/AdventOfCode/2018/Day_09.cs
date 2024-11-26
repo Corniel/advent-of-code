@@ -52,11 +52,11 @@ public class Day_09
         public Marble Insert(int value)
         {
             var add = new Marble(value);
-            var l = CW; 
+            var l = CW;
             var r = CW.CW;
-            l.CW = add; 
+            l.CW = add;
             r.CCW = add;
-            add.CCW = l; 
+            add.CCW = l;
             add.CW = r;
             return add;
         }

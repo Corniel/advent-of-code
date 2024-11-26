@@ -30,7 +30,7 @@ public class Day_14
     {
         var mask = string.Empty;
         var memory = new Dictionary<ulong, ulong>();
-        
+
         foreach (var line in lines)
         {
             if (line[0..2] == "ma") { mask = line[7..]; }

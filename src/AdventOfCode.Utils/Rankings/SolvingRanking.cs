@@ -8,7 +8,7 @@ public sealed class SolvingRanking(IReadOnlyList<SolvingRankingParticipant> part
 
     public override string ToString()
     {
-        if(!Participants.Any()) return "* No participants *";
+        if (!Participants.Any()) return "* No participants *";
 
         using var _ = CultureInfo.InvariantCulture.Scoped();
 
@@ -106,8 +106,8 @@ public sealed class SolvingRanking(IReadOnlyList<SolvingRankingParticipant> part
         reference ??= Clock.UtcNow();
 
         var ranked = new List<SolvingRankingParticipant>();
-        
-        foreach (var participant in participants) 
+
+        foreach (var participant in participants)
         {
             var results = participant.Solutions.Where(kvp => date.Matches(kvp.Key) && kvp.Value <= reference)
                 .Select(kvp => new SolvingRankingResult(kvp.Key, kvp.Value))
@@ -125,8 +125,8 @@ public sealed class SolvingRanking(IReadOnlyList<SolvingRankingParticipant> part
         foreach (var puzzle in ranked.SelectMany(p => p.Results.Select(r => r.Date)).Distinct())
         {
             var rank = 0;
-            
-            foreach(var result in ranked.Select(r => r.Result(puzzle)).OfType<SolvingRankingResult>().OrderBy(r => r.Solved))
+
+            foreach (var result in ranked.Select(r => r.Result(puzzle)).OfType<SolvingRankingResult>().OrderBy(r => r.Solved))
             {
                 result.Score = (total - rank) / factor;
                 result.Rank = ++rank;

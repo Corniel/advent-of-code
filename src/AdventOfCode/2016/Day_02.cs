@@ -28,10 +28,10 @@ public class Day_02
 
     static Vector Parse(char ch) => ch switch
     {
-       'U' => Vector.N,
-       'D' => Vector.S,
-       'L' => Vector.W,
-       'R' => Vector.E,
+        'U' => Vector.N,
+        'D' => Vector.S,
+        'L' => Vector.W,
+        'R' => Vector.E,
         _ => Vector.O
     };
 

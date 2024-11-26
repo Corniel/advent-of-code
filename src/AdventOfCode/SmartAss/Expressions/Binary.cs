@@ -29,9 +29,9 @@ public abstract class Binary : Expr
     }
 
     public override long? TryValue(Params pars)
-        => Left.TryValue(pars) is { } left 
+        => Left.TryValue(pars) is { } left
         && Right.TryValue(pars) is { } right
-        ? TryValue(left, right) 
+        ? TryValue(left, right)
         : null;
 
     public sealed override string ToString() => $"({Left} {Operator} {Right})";

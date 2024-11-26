@@ -5,7 +5,7 @@ namespace Advent_of_Code_2015;
 [Category(Category.Cryptography)]
 public class Day_04
 {
-    
+
     [Example(answer: 609043, "abcdef")]
     [Puzzle(answer: 346386, "iwrupvqb", O.ms10)]
     public int part_one(string str) => Run(str, FiveZeros);
@@ -32,8 +32,8 @@ public class Day_04
     }
 
     static bool FiveZeros(byte[] hashed)
-        => hashed[0] == 0 
-        && hashed[1] == 0 
+        => hashed[0] == 0
+        && hashed[1] == 0
         && hashed[2] != 0 && hashed[2] <= 15;
 
     static bool SixZeros(byte[] hashed)

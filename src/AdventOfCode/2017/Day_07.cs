@@ -14,7 +14,7 @@ public class Day_07
         var sorted = Root(lines).Children.OrderByDescending(c => c.Weight).ToArray();
         var current = sorted[0];
         var delta = current.Weight - sorted[1].Weight;
-        
+
         while (current.Children.NotEmpty() && current.Children.Exists(c => c.Weight != current.Children[0].Weight))
         {
             sorted = [.. current.Children.OrderByDescending(c => c.Weight)];

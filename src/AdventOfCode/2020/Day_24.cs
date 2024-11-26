@@ -29,7 +29,7 @@ public class Day_24
         protected override bool Dies(int living) => living == 0 || living > 2;
         protected override bool IntoExistence(int living) => living == 2;
         public override IEnumerable<Point> Neighbors(Point cell) => Directions.Select(dir => cell + dir);
-        public void Toggle(Point cell) { if (!Add(cell)) Remove(cell);}
+        public void Toggle(Point cell) { if (!Add(cell)) Remove(cell); }
 
         public static Cells Parse(Lines str)
         {

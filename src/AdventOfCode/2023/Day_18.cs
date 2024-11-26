@@ -61,8 +61,8 @@ public class Day_18
         public static Dig One(string s) => new(V(s[0]), s.Int32());
 
         public static Dig Two(string s) => new(V(s[^2]), Convert.ToInt32(s[^7..^2], 16));
-          
-        static Vector V(char v) => v switch {  '0' or 'R' => Vector.E, '1' or 'D' => Vector.S, '2' or 'L' => Vector.W, '3' or 'U' => Vector.N, _ => Vector.O };
+
+        static Vector V(char v) => v switch { '0' or 'R' => Vector.E, '1' or 'D' => Vector.S, '2' or 'L' => Vector.W, '3' or 'U' => Vector.N, _ => Vector.O };
     };
 
     record struct Line(int Y, Int64Range X)
@@ -70,7 +70,7 @@ public class Day_18
         public static IEnumerable<Line> Horizontals(IEnumerable<Dig> digs)
         {
             var prev = Point.O;
-            
+
             foreach (var dig in digs)
             {
                 var curr = prev + (dig.Dir * dig.Dist);

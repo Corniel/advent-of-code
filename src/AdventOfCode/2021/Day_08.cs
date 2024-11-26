@@ -22,7 +22,7 @@ public class Day_08
     public int part_two(Lines lines) => lines.As(line => line.Split(" | ")).Sum(Decode);
 
     private readonly int[] segments = new int[7];
-   
+
     private int Decode(string[] line)
     {
         var sum = 0; var num1 = 127; var num7 = 127; var len5 = 127; var len6 = 127;
@@ -44,7 +44,7 @@ public class Day_08
         segments[4] = (num7 & num1) & ~seg15;
         segments[3] = len5 ^ seg06;
         segments[1] = seg15 & num1;
-        
+
         foreach (var str in line[1].Split(' '))
         {
             sum = sum * 10 + Value(str.Length, Display(str));
@@ -61,14 +61,14 @@ public class Day_08
         else if ((segments[4] & display) == 0) return 6;
         else return 9;
     }
-        
+
     private int Match5(int display)
     {
         if ((segments[1] & display) == 0) return 2;
         else if ((segments[4] & display) == 0) return 5;
         else return 3;
     }
-    
+
     public static int Display(string str)
     {
         int mask = 0;

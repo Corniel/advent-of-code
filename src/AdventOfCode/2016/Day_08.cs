@@ -26,7 +26,7 @@ public class Day_08
 
     abstract record Instruction
     {
-       public abstract void Transform(Dictionary<Point, bool> grid);
+        public abstract void Transform(Dictionary<Point, bool> grid);
 
         public static Instruction Parse(string line) => new string(line.Take(10).ToArray()) switch
         {
@@ -40,7 +40,7 @@ public class Day_08
     {
         public override void Transform(Dictionary<Point, bool> grid)
         {
-            foreach (var point in Points.Range(Point.O, new(Cols -1 , Rows - 1))) grid[point] = true;
+            foreach (var point in Points.Range(Point.O, new(Cols - 1, Rows - 1))) grid[point] = true;
         }
     }
 
@@ -50,7 +50,7 @@ public class Day_08
         {
             var column = grid.Where(p => p.Key.X == X && p.Value).Select(p => p.Key).ToArray();
             foreach (var cell in column) grid[cell] = false;
-            foreach (var cell in column) grid[new(cell.X , (cell.Y + By).Mod(6))] = true;
+            foreach (var cell in column) grid[new(cell.X, (cell.Y + By).Mod(6))] = true;
         }
     }
 

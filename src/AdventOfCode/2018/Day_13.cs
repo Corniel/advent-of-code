@@ -50,7 +50,7 @@ public class Day_13
         public void Next() => Pos += Dir;
         public void Intersect() => Dir = (Intersections++.Mod(3)) switch
         {
-            0 => Dir.TurnLeft(),  2 => Dir.TurnRight(),  _ => Dir
+            0 => Dir.TurnLeft(), 2 => Dir.TurnRight(), _ => Dir,
         };
         public void TurnTlBr() => Dir = TlBr[Dir];
         static readonly Dictionary<Vector, Vector> TlBr = new()

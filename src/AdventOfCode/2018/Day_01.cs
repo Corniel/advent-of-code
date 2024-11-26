@@ -14,7 +14,7 @@ public class Day_01
     [Puzzle(answer: 77271, O.ms)]
     public int part_two(Ints numbers)
     {
-        var frequencies = new HashSet<int>{ 0 };
+        HashSet<int> frequencies = [0];
         var current = 0;
         while (true)
         {

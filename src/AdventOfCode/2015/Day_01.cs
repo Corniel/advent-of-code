@@ -12,7 +12,7 @@ public class Day_01
     public int part_two(string str)
     {
         var level = 0;
-        for(var pos = 0; pos < str.Length; pos++)
+        for (var pos = 0; pos < str.Length; pos++)
         {
             level += str[pos] == '(' ? 1 : -1;
             if (level == -1) return pos + 1;

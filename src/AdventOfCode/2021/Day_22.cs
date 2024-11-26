@@ -41,7 +41,7 @@ public class Day_22
             return new(line.StartsWith("on"), new(numbers[0], numbers[1], numbers[2], numbers[3], numbers[4], numbers[5]));
         }
     }
-    
+
     readonly struct Cube(int x_min, int x_max, int y_min, int y_max, int z_min, int z_max) : IEquatable<Cube>
     {
         public readonly int Xmin = x_min; public readonly int Xmax = x_max;
@@ -52,7 +52,7 @@ public class Day_22
 
         public bool Intersect(Cube other, out Cube intersection)
         {
-            intersection  = new(
+            intersection = new(
                 Math.Max(Xmin, other.Xmin), Math.Min(Xmax, other.Xmax),
                 Math.Max(Ymin, other.Ymin), Math.Min(Ymax, other.Ymax),
                 Math.Max(Zmin, other.Zmin), Math.Min(Zmax, other.Zmax));

@@ -54,7 +54,7 @@ public class Day_20
     static readonly Vector[] Neighbors =
     [
         Vector.NW, Vector.N, Vector.NE,
-        Vector.W, Vector.O, Vector.E, 
-        Vector.SW, Vector.S, Vector.SE 
+        Vector.W, Vector.O, Vector.E,
+        Vector.SW, Vector.S, Vector.SE
     ];
 }

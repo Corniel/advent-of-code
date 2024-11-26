@@ -37,7 +37,7 @@ public class Day_17
             if (turn.Mod(5) == 0)
             {
                 var hash = Last14.New(wall);
-                
+
                 if (!hashes.TryAdd(hash, new(turn, wall.Count)))
                 {
                     var first = hashes[hash];
@@ -64,7 +64,7 @@ public class Day_17
             return new(lo, hi);
         }
     }
-    
+
     record struct Block(params Row[] Rows)
     {
         public static Block New(long turn, string shifts, ref long shift)

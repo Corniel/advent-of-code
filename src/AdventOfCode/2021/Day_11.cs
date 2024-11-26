@@ -26,7 +26,7 @@ public class Day_11
             grid[pos]++;
             dones[pos] = false;
         }
-        foreach(var pos in grid.Positions(t => t == 10))
+        foreach (var pos in grid.Positions(t => t == 10))
         {
             stack.Push(pos);
             dones[pos] = true;

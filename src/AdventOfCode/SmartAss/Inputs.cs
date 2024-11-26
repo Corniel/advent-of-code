@@ -6,14 +6,14 @@ namespace SmartAss;
 [DebuggerTypeProxy(typeof(CollectionDebugView))]
 public readonly struct Inputs<T>(IReadOnlyList<T> input) : IReadOnlyList<T>
 {
-    private readonly T[] collection = input as T[] ?? [..input];
+    private readonly T[] collection = input as T[] ?? [.. input];
 
     public T this[int index] => collection[index];
 
     public Slice<T> this[Range range] => new Slice<T>(collection)[range];
 
     public int Count => collection.Length;
-    
+
     public override string ToString() => string.Join(';', collection);
 
     [Obsolete("Use [..count] instead.", error: true)]

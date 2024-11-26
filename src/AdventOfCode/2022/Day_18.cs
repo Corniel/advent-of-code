@@ -12,7 +12,7 @@ public class Day_18
     [Puzzle(answer: 2546, O.ms)]
     public int part_two(Lines lines)
     {
-        var min = 0;  var max = 21; var cubes = lines.As(Point3D.Parse).ToHashSet();
+        var min = 0; var max = 21; var cubes = lines.As(Point3D.Parse).ToHashSet();
         return Surface(cubes) - Surface(Todo(cubes, min, max));
     }
 

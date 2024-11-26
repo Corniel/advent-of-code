@@ -39,7 +39,7 @@ David would gain 41 happiness units by sitting next to Carol.")]
     }
 
     static int Happiness(int[] permuation, Grid<int> likes)
-        => Happiness(0, permuation[0], likes) 
+        => Happiness(0, permuation[0], likes)
         + Happiness(0, permuation[^1], likes)
         + permuation.SelectWithPrevious().Sum(pair => Happiness(pair.Current, pair.Previous, likes));
 

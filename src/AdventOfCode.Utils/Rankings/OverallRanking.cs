@@ -15,7 +15,7 @@ public record OverallRanking(Participant Participant) : IComparable<OverallRanki
     {
         var sb = new StringBuilder();
         sb.Append($"{Position,3}) ");
-        sb.Append(Invariant($"{Score/10000d,9:0.0000} "));
+        sb.Append(Invariant($"{Score / 10000d,9:0.0000} "));
 
         var g = (int)Math.Round(Silver / 40m + Golden / 20m, 0) + 1;
         sb.Append($"{new string('*', g)}{new string(' ', 25 - g)}");

@@ -14,7 +14,7 @@ public class Day_10
 █░░░██░░█░░░░░░░░█░░█░░░█░░░░░░░█░░░░░░░█░░░█░░░░█░░█░░░█░░█░░
 █░░░██░░█░░░░░░░█░░░░█░░█░░░░░░░█░░░░░░░█░░░░█░░█░░░░█░░█░░░█░
 █░░░░█░░██████░░█░░░░█░░█░░░░░░░██████░░█░░░░█░░█░░░░█░░█░░░░█", O.ms10)]
-    public string part_one(Lines lines)=> Simulate(lines).Grid.ToString(b => b ? '█' : '░');
+    public string part_one(Lines lines) => Simulate(lines).Grid.ToString(b => b ? '█' : '░');
 
     [Puzzle(answer: 10459, O.ms10)]
     public int part_two(Lines lines) => Simulate(lines).Seconds;

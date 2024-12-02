@@ -28,3 +28,7 @@ global using Int32Range = SmartAss.Numerics.NumericRange<int>;
 global using Int32Ranges = SmartAss.Numerics.NumericRanges<int>;
 global using Int64Range = SmartAss.Numerics.NumericRange<long>;
 global using Int64Ranges = SmartAss.Numerics.NumericRanges<long>;
+global using CharGrid = SmartAss.Collections.Grid<char>;
+global using Ints = SmartAss.Inputs<int>;
+global using Longs = SmartAss.Inputs<long>;
+global using Lines = SmartAss.Inputs<string>;

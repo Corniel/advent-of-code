@@ -14,7 +14,7 @@ public class Rankings
     public void TJIP(int year)
     {
         var drieKoningen = new DateTime(year + 1, 01, 06, 05, 00, 00, DateTimeKind.Utc);
-        Ranking.Solving(year, Data.Tjip(year).Values, drieKoningen).Console();
+        Ranking.Solving(year, Data.Custom("TJIP", year).Values, drieKoningen).Console();
     }
 
     [TestCaseSource(nameof(Years))]

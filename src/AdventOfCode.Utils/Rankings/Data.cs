@@ -36,42 +36,30 @@ public static class Data
                 }
             }
         }
-        foreach (var ignore in Ignore())
-        {
-            if (participants.Values.FirstOrDefault(p => p.Matches(ignore)) is { } remove)
-            {
-                participants.Remove(remove.Id);
-            }
-        }
+        
         return participants;
     }
 
-    public static Participants Tweakers()
-    {
-        var partipants = new Participants(Participants()
-            .Where(p => p.Value.Boards.Any(b => b.Name == "Tweakers")));
-        return partipants;
-    }
+    public static Participants Tweakers() => Custom("Tweakers", 0);
 
-    public static Participants Tjip(int year)
+    public static Participants Custom(string name, int year)
     {
-        TJIP_Ignore.TryGetValue(year, out var exclude);
-        exclude ??= [];
-        var partipants = new Participants(Participants()
-            .Where(p
-                => p.Value.Boards.Any(b => b.Name == "TJIP")
-                && !exclude.Exists(name => p.Value.Matches(name))));
-        return partipants;
-    }
+        var partipants = Participants();
 
-    static readonly Dictionary<int, string[]> TJIP_Ignore = new()
-    {
-        [2014] = "Paul Antal".Split(';'),
-        [2020] = "Wesley Baartman".Split(';'),
-        [2021] = "Martijn van Maasakkers;Ralph Hendriks".Split(';'),
-        [2022] = "Paul Antal;Jurgen Heeffer;Baljinnyam Sereeter;Jeff-vD;Ralph Hendriks;Fred Hoogduin;Martijn van Maasakkers".Split(';'),
-        [2023] = "Paul Antal;Jurgen Heeffer;Baljinnyam Sereeter;Jeff-vD;Ralph Hendriks;Fred Hoogduin;Martijn van Maasakkers".Split(';'),
-    };
+        var file = new FileInfo(Path.Combine(Location.FullName, "boards", $"{name}_{year}.txt"));
+
+        if (file.Exists)
+        {
+            var custom = CustomBoard.Load(file, partipants);
+            return custom.Participants;
+        }
+        else
+        {
+            name = name.TrimEnd('*');
+            return new Participants(partipants
+                .Where(p => p.Value.Boards.Any(b => b.Name == name)));
+        }
+    }
 
     static Dictionary<int, Board> Boards()
     {
@@ -93,11 +81,6 @@ public static class Data
             aliases[split[0]] = split[1].Trim();
         }
         return aliases;
-    }
-    static IEnumerable<string> Ignore()
-    {
-        using var reader = new StreamReader(Path.Combine(Location.FullName, "ignore.txt"));
-        return reader.ReadToEnd().Lines();
     }
 
     public static IEnumerable<RankingFile> RankingFiles()

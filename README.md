@@ -37,7 +37,7 @@ university coursework, practice problems, or to challenge each other.
 
 ## Participating friends/colleagues
 * [Ad](https://github.com/advdh/AdventOfCode) _private_
-* [Chiel](https://github.com/cvooster/advent_of_code)
+* [Chiel](https://github.com/cvooster/advent-of-code)
 * [Jack](https://github.com/Sjaaky/advent-of-code)
 * [Lannie](https://github.com/lannieligthart/advent_of_code)
 * [Laura](https://github.com/LauraXiulan/advent-of-code)
@@ -46,6 +46,7 @@ university coursework, practice problems, or to challenge each other.
 ## Gathering of Tweakers.net
 * [2022](https://gathering.tweakers.net/forum/list_messages/2160536)
 * [2023](https://gathering.tweakers.net/forum/list_messages/2219872)
+* [2024](https://gathering.tweakers.net/forum/list_messages/2274266)
 
 # Solving times
 I started participating in 2020. I have, since then, also solved others.

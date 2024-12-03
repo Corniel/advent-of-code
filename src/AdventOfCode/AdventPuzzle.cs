@@ -21,8 +21,8 @@ public sealed class AdventPuzzle
     object[] Tweak(object[] input)
     {
         input[0] ??= Embedded();
-        var targets = Method.GetParameters().Select(p => p.ParameterType).ToArray();
-        return input.Select((obj, i) => Tweak(obj, targets[i])).ToArray();
+        var targets = Method.GetParameters().Select(p => p.ParameterType);
+        return [.. input.Zip(targets, Tweak)];
     }
     static object Tweak(object obj, Type target)
     {

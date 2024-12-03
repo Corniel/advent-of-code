@@ -31,15 +31,15 @@ public static class Program
 
         Console.SetOut(new MultiWriter(Console.Out));
 
-        if (Matches.BenchmarkClassic(date, args)) return BenchmarksClassic(date);
-
-        if (Matches.LoC(date, args)) return Loc(date, args);
-
-        if (Matches.Rank(date, args)) return await Rankings(date, args[1..].FirstOrDefault());
-
-        if (Matches.Run(date, args)) return RunPuzzle(date, args);
-
-        return NoMethod(date, args);
+        return date switch
+        {
+            _ when Matches.BenchmarkClassic(date, args) => BenchmarksClassic(date),
+            _ when Matches.DownloadInput(date, args) => await DownloadInput(date, args[0]),
+            _ when Matches.LoC(date, args) => Loc(date, args),
+            _ when Matches.Rank(date, args) => await Rankings(date, args[1..].FirstOrDefault()),
+            _ when Matches.Run(date, args) => RunPuzzle(date, args),
+            _ => NoMethod(date, args),
+        };
     }
 
     private static async Task<int> Rankings(AdventDate date, string? list)
@@ -91,6 +91,26 @@ public static class Program
         {
             benchmark.Run(O.s);
         }
+        return Success;
+    }
+
+    private static async Task<int> DownloadInput(AdventDate date, string arg)
+    {
+        var root = arg == "-in"
+            ? new DirectoryInfo(@".\..\..\..\..\AdventOfCode.Now")
+            : new DirectoryInfo(@".\..\..\..\..\AdventOfCode");
+
+        var input = new PuzzleInput(date, root);
+
+        if (input.ShouldDownload())
+        {
+            await input.Download();
+        }
+        else
+        {
+            Console.WriteLine($"{input.Location} already exists.");
+        }
+
         return Success;
     }
 
@@ -174,6 +194,9 @@ public static class Program
 
         public static bool BenchmarkClassic(AdventDate _, string[] args)
             => Arg(args, "bc");
+
+        public static bool DownloadInput(AdventDate _, string[] args)
+          => Arg(args, "i", "in");
 
         public static bool LoC(AdventDate _, string[] args) => Arg(args, "LoC");
 

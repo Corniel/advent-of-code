@@ -1,3 +1,5 @@
+using System.Text.Unicode;
+
 namespace Advent_of_Code;
 
 [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
@@ -31,15 +33,28 @@ public class PuzzleAttribute : Attribute, ITestBuilder, IApplyToTest, IImplyFixt
     {
         var puzzle = Puzzle(method);
         var parameters = puzzle.TestCaseParameters();
+        parameters.TestName = Hash(method, puzzle.Input);
+
         var test = new NUnitTestCaseBuilder().BuildTestMethod(method, suite, parameters);
         test.Name = TestName(method, puzzle.Input[0]);
-        yield return test;
+        return [test];
     }
 
     protected virtual AdventPuzzle Puzzle(IMethodInfo method) => new(method.MethodInfo, Input, Answer, Order);
 
     protected virtual string TestName(IMethodInfo method, object input)
         => $"answer is {Answer} for {method.Name.Replace("_", " ")}";
+
+    /// <summary>Gets a unique input based named.</summary>
+    /// <remarks>
+    /// MS Test groups unit tests based on names. However, the test display name
+    /// is not always helping to do the right thing, nor is the name that is
+    /// automatically provided. This hash name solves the problem.
+    /// </remarks>
+    private static string Hash(IMethodInfo method, object[] parameters)
+        => method.Name + string.Join(";", parameters.Select(Hash));
+
+    private static string Hash(object obj) => Uuid.GenerateWithSHA1(Encoding.UTF8.GetBytes(obj.ToString())).ToString();
 
     public void ApplyToTest(Test test)
     {

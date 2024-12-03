@@ -21,8 +21,11 @@ public class ExampleAttribute(object answer, params object[] input) : PuzzleAttr
             _ => input.ToString(),
         };
 
-        return str.Contains('\n')
-            ? $"{method.Name.Replace("_", " ")} example with length {input.ToString().Length}"
-            : str;
+        return str switch
+        {
+            _ when str.Contains('\n') => $"{method.Name.Replace("_", " ")} example with length {input.ToString().Length}",
+            _ when str.Length > 50 => str[..40] + "...",
+            _ => str,
+        };
     }
 }

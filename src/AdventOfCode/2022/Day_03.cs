@@ -20,5 +20,5 @@ public class Day_03
         return Score(l.First(r.Contains));
     }
 
-    public static int Shared(IReadOnlyList<string> lines) => Score(lines[0].First(ch => lines[1].Contains(ch) && lines[2].Contains(ch)));
+    public static int Shared(Slice<string> lines) => Score(lines[0].First(ch => lines[1].Contains(ch) && lines[2].Contains(ch)));
 }

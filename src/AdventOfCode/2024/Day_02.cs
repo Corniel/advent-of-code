@@ -16,12 +16,11 @@ public class Day_02
     static int[][] Two(string l)
     {
         int[] ns = [.. l.Int32s()];
-        var options = new int[ns.Length + 1][];
-        options[0] = ns;
+        var options = new int[ns.Length][];
 
-        for (var i = 1; i <= ns.Length; i++)
+        for (var i = 0; i < ns.Length; i++)
         {
-            options[i] = [.. ns[0..(i - 1)], .. ns[i..]];
+            options[i] = [.. ns[0..i], .. ns[(i + 1)..]];
         }
         return options;
     }

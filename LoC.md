@@ -186,5 +186,5 @@
 | [2023-24](src/AdventOfCode/2023/Day_24.cs) |  37 |    1.49 kb |
 | [2023-25](src/AdventOfCode/2023/Day_25.cs) |  23 |    0.89 kb |
 | [2024-01](src/AdventOfCode/2024/Day_01.cs) |   5 |    0.35 kb |
-| [2024-02](src/AdventOfCode/2024/Day_02.cs) |  14 |    0.60 kb |
+| [2024-02](src/AdventOfCode/2024/Day_02.cs) |  13 |    0.58 kb |
 | [2024-03](src/AdventOfCode/2024/Day_03.cs) |   9 |    0.42 kb |

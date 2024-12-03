@@ -116,10 +116,10 @@ public static class Data
                 try
                 {
                     using var local = new FileStream(file.Local.FullName, new FileStreamOptions { Access = FileAccess.Write, Mode = FileMode.Create });
-                    var json = JsonDocument.Parse(stream);
+                    var json = await JsonDocument.ParseAsync(stream);
                     var writer = new Utf8JsonWriter(local, new JsonWriterOptions() { Indented = true });
                     json.WriteTo(writer);
-                    writer.Flush();
+                    await writer.FlushAsync();
                     updated.Add(file);
                 }
                 catch (Exception ex)
@@ -134,13 +134,13 @@ public static class Data
                 Console.WriteLine($"{response.StatusCode}: {await response.Content.ReadAsStringAsync()}");
             }
         }
-
-        static string Session()
-        {
-            using var reader = new StreamReader(Path.Combine(Location.FullName, "cookie.session.txt"));
-            return reader.ReadLine();
-        }
     }
 
-    public static DirectoryInfo Location { get; set; } = new(Path.Combine(typeof(Data).Assembly.Location, "../../../../Rankings/Data"));
+    public static string Session()
+    {
+        using var reader = new StreamReader(Path.Combine(Location.FullName, "cookie.session.txt"));
+        return reader.ReadLine();
+    }
+
+    public static DirectoryInfo Location { get; set; } = new(Path.Combine(typeof(Data).Assembly.Location, "../../../../../AdventOfCode.Utils/Rankings/Data"));
 }

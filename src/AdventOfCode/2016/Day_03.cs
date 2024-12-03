@@ -12,7 +12,7 @@ public class Day_03
         + Count(numbers[1..].WithStep(3).ToArray())
         + Count(numbers[2..].WithStep(3).ToArray());
 
-    static int Count(int[] numbers) => numbers.ChunkBy(3).Sum(Triangle.Is);
+    static int Count(int[] numbers) => numbers.ChunkBy(3).Sum(n => Triangle.Is(n));
 
     static class Triangle
     {

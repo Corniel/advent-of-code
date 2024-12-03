@@ -15,7 +15,7 @@ public class Day_02
 
     static int[][] Two(string l)
     {
-        int[] ns = [.. l.Int32s()];
+        int[] ns = One(l);
         var options = new int[ns.Length][];
 
         for (var i = 0; i < ns.Length; i++)

@@ -4,22 +4,12 @@ namespace Advent_of_Code_2024;
 public class Day_04
 {
     [Example(answer: 18, Example._1)]
-    [Puzzle(answer: 2500, O.ms)]
+    [Puzzle(answer: 2500, O.μs10)]
     public int part_one(CharGrid map) => map.Positions()
-        .Where(map.OnEdge)
-        .SelectMany(p => CompassPoints.All.Select(d => new Cursor(p, d).Move(2))
-        // otherwise XMAS on edges will be count multiple times.
-        .Where(c => !map.OnEdge(c.Pos) || !map.OnGrid(c.Move(-3))))
-        .Sum(c => Scan(c, map));
-
-    static int Scan(Cursor c, CharGrid map) => c.Moves()
-        .TakeWhile(c => map.OnGrid(c)).Count(c => XMAS(c, map));
-
-    static bool XMAS(Cursor c, CharGrid map)
-        => map[c./*.....*/Pos] == 'X'
-        && map[c.Move(-1).Pos] == 'M'
-        && map[c.Move(-2).Pos] == 'A'
-        && map[c.Move(-3).Pos] == 'S';
+        .SelectMany(p => CompassPoints.All.Select(d => new Cursor(p, d)))
+        .Count(c => Str(c, map) == "XMAS");
+    
+    static string Str(Cursor c, CharGrid map) => new([.. c.Moves().Take(4).TakeWhile(map.OnGrid).Select(p => map[p.Pos])]);
 
     [Example(answer: 9, Example._1)]
     [Puzzle(answer: 1933, O.μs100)]

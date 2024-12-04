@@ -1,6 +1,5 @@
 using Advent_of_Code.Http;
 using Advent_of_Code.Rankings;
-using Microsoft.Diagnostics.Tracing.Parsers.Kernel;
 using Qowaiv.IO;
 
 namespace Specs.Leaderboard_specs;

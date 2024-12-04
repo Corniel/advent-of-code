@@ -1,5 +1,3 @@
-using System.Text.Unicode;
-
 namespace Advent_of_Code;
 
 [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
@@ -43,7 +41,7 @@ public class PuzzleAttribute : Attribute, ITestBuilder, IApplyToTest, IImplyFixt
     protected virtual AdventPuzzle Puzzle(IMethodInfo method) => new(method.MethodInfo, Input, Answer, Order);
 
     protected virtual string TestName(IMethodInfo method, object input)
-        => $"answer is {Answer} for {method.Name.Replace("_", " ")}";
+        => $"{method.Name.Replace("_", " ")}: {Answer}";
 
     /// <summary>Gets a unique input based named.</summary>
     /// <remarks>
@@ -54,7 +52,9 @@ public class PuzzleAttribute : Attribute, ITestBuilder, IApplyToTest, IImplyFixt
     private static string Hash(IMethodInfo method, object[] parameters)
         => method.Name + string.Join(";", parameters.Select(Hash));
 
-    private static string Hash(object obj) => Uuid.GenerateWithSHA1(Encoding.UTF8.GetBytes(obj.ToString())).ToString();
+    private static string Hash(object obj) => Hash(obj is CharGrid map ? map.ToString(c => c) : obj.ToString());
+
+    private static string Hash(string str) => Uuid.GenerateWithSHA1(Encoding.UTF8.GetBytes(str)).ToString();
 
     public void ApplyToTest(Test test)
     {

@@ -1,5 +1,3 @@
-using SmartAss.Numerics;
-
 namespace Advent_of_Code_2020;
 
 [Category(Category.Simulation, Category.SequenceProgression)]

@@ -1,6 +1,5 @@
 using Advent_of_Code.Http;
 using Advent_of_Code.Rankings;
-using Microsoft.CodeAnalysis;
 
 namespace Advent_of_Code;
 

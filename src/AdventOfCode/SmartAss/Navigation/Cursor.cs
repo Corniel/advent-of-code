@@ -27,6 +27,10 @@ public readonly struct Cursor : IEquatable<Cursor>
     [Pure]
     public Cursor Reverse(int steps = 1) => new(Pos - (Dir * steps), Dir);
 
+    /// <summary>Keeps on moving.</summary>
+    [Pure]
+    public IEnumerable<Cursor> Moves(int steps = 1) => new Mover(this, steps);
+
     [Pure]
     public Cursor WithDir(Vector dir) => new(Pos, dir);
 
@@ -65,4 +69,19 @@ public readonly struct Cursor : IEquatable<Cursor>
     /// <inheritdoc />
     [Pure]
     public override string ToString() => $"Pos = {Pos}, Dir = {Dir} ({Dir.CompassPoint()})";
+
+    private sealed class Mover(Cursor cursor, int steps) : Iterator<Cursor>
+    {
+        public Cursor Current { get; private set; } = cursor;
+
+        public bool MoveNext()
+        {
+            Current = Current.Move(steps);
+            return true;
+        }
+
+        public void Dispose() { /* Nothing to dispose */ }
+
+        public void Reset() => throw new NotSupportedException();
+    }
 }

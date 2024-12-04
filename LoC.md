@@ -188,4 +188,4 @@
 | [2024-01](src/AdventOfCode/2024/Day_01.cs) |   5 |    0.35 kb |
 | [2024-02](src/AdventOfCode/2024/Day_02.cs) |  13 |    0.57 kb |
 | [2024-03](src/AdventOfCode/2024/Day_03.cs) |  11 |    0.42 kb |
-| [2024-04](src/AdventOfCode/2024/Day_04.cs) |  19 |    0.81 kb |
+| [2024-04](src/AdventOfCode/2024/Day_04.cs) |  11 |    0.59 kb |

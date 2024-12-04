@@ -9,8 +9,8 @@ public class ExampleAttribute(object answer, params object[] input) : PuzzleAttr
 
     protected override string TestName(IMethodInfo method, object input)
         => Example != default
-        ? $"answer is {Answer} for example {(int)Example}"
-        : $"answer is {Answer} for {TestInput(method, input)}";
+        ? $"{base.TestName(method, input)} (example {(int)Example})"
+        : $"{base.TestName(method, input)}, {TestInput(method, input)}";
 
     static string TestInput(IMethodInfo method, object input)
     {

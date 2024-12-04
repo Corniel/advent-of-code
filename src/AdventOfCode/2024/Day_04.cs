@@ -13,7 +13,7 @@ public class Day_04
         .Sum(c => Scan(c, map));
 
     static int Scan(Cursor c, CharGrid map) => c.Moves()
-        .TakeWhile(c => map.OnGrid(c)).Count(x => XMAS(x, map));
+        .TakeWhile(c => map.OnGrid(c)).Count(c => XMAS(c, map));
 
     static bool XMAS(Cursor c, CharGrid map)
         => map[c./*.....*/Pos] == 'X'

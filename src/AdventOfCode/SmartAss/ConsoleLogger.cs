@@ -1,4 +1,3 @@
-using NUnit.Framework.Internal.Execution;
 using System.Globalization;
 
 namespace SmartAss;

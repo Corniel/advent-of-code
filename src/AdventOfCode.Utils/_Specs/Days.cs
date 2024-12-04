@@ -3,7 +3,6 @@ using Advent_of_Code.Rankings;
 using SmartAss.Collections;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
-using System.Security.Cryptography;
 
 namespace Specs.Days;
 

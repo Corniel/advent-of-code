@@ -186,8 +186,8 @@ public static class Program
 
     static class Matches
     {
-        public static bool New(AdventDate date, string[] _)
-            => date.SpecifiesYearDay && !Puzzles.Contains(date);
+        public static bool New(AdventDate date, string[] args)
+            => date.SpecifiesYearDay && !Puzzles.Contains(date) && !Arg(args, "i", "in");
 
         public static bool Benchmark(AdventDate _, string[] args)
             => Arg(args, "b", "benchmark");

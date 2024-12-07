@@ -1,9 +1,11 @@
 using System.Diagnostics.Contracts;
+using System.Runtime.CompilerServices;
 
 namespace SmartAss;
 
 [DebuggerDisplay("Count = {Count}")]
 [DebuggerTypeProxy(typeof(CollectionDebugView))]
+[CollectionBuilder(typeof(Inputs), nameof(Inputs.Create))]
 public readonly struct Inputs<T>(IReadOnlyList<T> input) : IReadOnlyList<T>
 {
     private readonly T[] collection = input as T[] ?? [.. input];
@@ -36,4 +38,10 @@ public readonly struct Inputs<T>(IReadOnlyList<T> input) : IReadOnlyList<T>
     public IEnumerator<T> GetEnumerator() => ((IReadOnlyCollection<T>)collection).GetEnumerator();
 
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+}
+
+
+public static class Inputs
+{
+    public static Inputs<T> Create<T>(ReadOnlySpan<T> values) => new([..values]);
 }

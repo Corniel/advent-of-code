@@ -72,7 +72,7 @@ public readonly struct Cursor : IEquatable<Cursor>
 
     private sealed class Mover(Cursor cursor, int steps) : Iterator<Cursor>
     {
-        public Cursor Current { get; private set; } = cursor;
+        public Cursor Current { get; private set; } = cursor.Reverse();
 
         public bool MoveNext()
         {

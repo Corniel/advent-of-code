@@ -4,7 +4,6 @@ namespace Advent_of_Code_2017;
 public class Day_16
 {
     [Example(answer: "cdeab", "s3", 5)]
-    [Example(answer: "cdeab", "s3", 5)]
     [Example(answer: "baedc", "s1,x3/4,pe/b", 5)]
     [Puzzle(answer: "hmefajngplkidocb", null, 16, O.μs100)]
     public string part_one(string str, int size) => Simulate(str, size, 1);

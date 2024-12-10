@@ -44,7 +44,7 @@ public class Day_09
             return stream;
         }
 
-        private Group Read()
+        Group Read()
         {
             var group = new Group();
             var escaped = false;

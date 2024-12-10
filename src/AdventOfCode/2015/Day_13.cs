@@ -24,7 +24,7 @@ David would gain 41 happiness units by sitting next to Carol.")]
 
     static int FindHappiness(Lines lines, int neutral = 0)
     {
-        var relations = lines.As(Relation.Parse).ToArray();
+        var relations = lines.ToArray(Relation.Parse);
         var people = relations.Select(h => h.Obj).Distinct().Order().ToArray();
         var likes = new Grid<int>(people.Length + neutral, people.Length + neutral);
 
@@ -34,8 +34,8 @@ David would gain 41 happiness units by sitting next to Carol.")]
             var sub = people.IndexOf(relation.Sub);
             likes[obj, sub] = relation.Val;
         }
-        return Range(1, people.Length + neutral - 1).ToArray()
-           .Permutations().Where(p => p[0] < p[1]).Select(permuation => Happiness(permuation, likes)).Max();
+        return Range(1, people.Length + neutral - 1)
+            .Permutations().Where(p => p[0] < p[1]).Select(permuation => Happiness(permuation, likes)).Max();
     }
 
     static int Happiness(int[] permuation, Grid<int> likes)

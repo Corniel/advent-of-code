@@ -22,7 +22,7 @@ public class Day_05
         }
         apply(groups.Skip(1).SelectMany(g => g).Select(Move.Parse), stacks);
 
-        return new(stacks.Skip(1).Select(s => s.Pop()).ToArray());
+        return new([..stacks.Skip(1).Select(s => s.Pop())]);
     }
 
     static void SingleStack(IEnumerable<Move> moves, Stack<char>[] stacks)

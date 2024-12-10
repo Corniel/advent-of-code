@@ -9,7 +9,7 @@ public class Day_05
 
     [Example(answer: "18f47a30", "abc")]
     [Puzzle(answer: "d4cd2ee1", "ugkcyxxp", O.s)]
-    public string part_one(string str) => new(Hash(str).Take(8).Select(hash => "0123456789abcdef"[hash[0]]).ToArray());
+    public string part_one(string str) => new([..Hash(str).Take(8).Select(hash => "0123456789abcdef"[hash[0]])]);
 
     [Example(answer: "05ace8e3", "abc")]
     [Puzzle(answer: "f2c730e5", "ugkcyxxp", O.s)]

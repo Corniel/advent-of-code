@@ -1,4 +1,4 @@
-﻿Begin in state A.
+Begin in state A.
 Perform a diagnostic checksum after 6 steps.
 
 In state A:

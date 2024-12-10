@@ -11,7 +11,7 @@ public class Day_21
     [Puzzle(answer: 2282, O.μs100)]
     public int part_one(Lines lines)
     {
-        var foods = lines.As(Food.Parse).ToArray();
+        var foods = lines.ToArray(Food.Parse);
         var allergens = Allergen.Init(foods).Select(allergen => allergen.Ingredient).ToArray();
         return foods.SelectMany(f => f.Ingredients).Count(i => !allergens.Contains(i));
     }
@@ -28,11 +28,11 @@ public class Day_21
         return string.Join(',', allergens.OrderBy(m => m.Name).Select(m => m.Ingredient));
     }
 
-    private record Allergen(string Name, List<string> Ingredients)
+    record Allergen(string Name, List<string> Ingredients)
     {
         public string Ingredient => Ingredients[0];
         public bool Resolved => Ingredients.Count == 1;
-        private void Reduce(IEnumerable<Allergen> allergens)
+        void Reduce(IEnumerable<Allergen> allergens)
         {
             foreach (var ingredient in allergens.Where(allergen => allergen != this && allergen.Resolved).Select(other => other.Ingredient))
             {
@@ -61,7 +61,7 @@ public class Day_21
             return allergens;
         }
     }
-    private record Food(string[] Ingredients, string[] Allergens)
+    record Food(string[] Ingredients, string[] Allergens)
     {
         public static Food Parse(string line)
         {

@@ -11,5 +11,5 @@ public class Day_04
     [Puzzle(answer: 852, O.μs100)]
     public int part_two(Lines lines) => lines.As(Parse).Count(ps => ps[0].Overlaps(ps[1]));
 
-    static Int32Range[] Parse(string line) => line.CommaSeparated(Int32Range.Parse).ToArray();
+    static Int32Range[] Parse(string line) => [..line.CommaSeparated(Int32Range.Parse)];
 }

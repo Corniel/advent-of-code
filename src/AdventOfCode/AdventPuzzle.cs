@@ -29,11 +29,11 @@ public sealed class AdventPuzzle
         if (obj is string str)
         {
             if (target == typeof(Lines)) return new Lines(str.Lines());
-            else if (target == typeof(GroupedLines)) return new GroupedLines(str.GroupedLines(StringSplitOptions.None).ToArray());
+            else if (target == typeof(GroupedLines)) return new GroupedLines([.. str.GroupedLines(StringSplitOptions.None)]);
             else if (target == typeof(CharPixels)) return str.CharPixels();
             else if (target == typeof(CharGrid)) return str.CharPixels().Grid();
-            else if (target == typeof(Ints)) return new Ints(str.Int32s().ToArray());
-            else if (target == typeof(Longs)) return new Longs(str.Int64s().ToArray());
+            else if (target == typeof(Ints)) return new Ints([.. str.Int32s()]);
+            else if (target == typeof(Longs)) return new Longs([.. str.Int64s()]);
             else return str;
         }
         else return obj;
@@ -81,7 +81,7 @@ public sealed class AdventPuzzle
 
     static AdventDate GetDate(MethodInfo method)
     {
-        var numbers = method.DeclaringType.FullName.Int32s().ToArray();
+        int[] numbers =[.. method.DeclaringType.FullName.Int32s()];
         return new(year: numbers[0], day: numbers[1], part: Day(method));
 
         static int? Day(MethodInfo method) => method.Name switch

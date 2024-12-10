@@ -21,12 +21,12 @@ public class Day_23
         _ => true
     };
 
-    bool Unrestricted(Point curr, Point next, CharGrid map) => map[next] != '#';
+    static bool Unrestricted(Point curr, Point next, CharGrid map) => map[next] != '#';
 
-    private int Navigate(CharGrid map, Func<Point, Point, CharGrid, bool> access)
+    int Navigate(CharGrid map, Func<Point, Point, CharGrid, bool> access)
     {
         var graph = Graph(map, access);
-        var queue = new Queue<Path>().EnqueueRange([new Path(graph[0], new(), 0)]);
+        var queue = new Queue<Path>().EnqueueRange(new Path(graph[0], new(), 0));
         var dis = 0;
 
         while (queue.TryDequeue(out var path))

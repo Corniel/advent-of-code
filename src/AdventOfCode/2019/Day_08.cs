@@ -24,9 +24,8 @@ public class Day_08
 
     public readonly struct Layer(string pixels)
     {
-        private const char Transprant = '2';
-
-        private readonly string pixels = pixels;
+        const char Transprant = '2';
+        readonly string pixels = pixels;
 
         public int Size => pixels.Length;
         public int Zeros => pixels.Count('0');

@@ -27,10 +27,10 @@ public class Day_20
         {
             Id = id;
             Grid = map;
-            N = Border(Range(0, 10).Select(i => map[i, 0] == '#' ? 1 : 0).ToArray());
-            E = Border(Range(0, 10).Select(i => map[9, i] == '#' ? 1 : 0).ToArray());
-            S = Border(Range(0, 10).Select(i => map[i, 9] == '#' ? 1 : 0).ToArray());
-            W = Border(Range(0, 10).Select(i => map[0, i] == '#' ? 1 : 0).ToArray());
+            N = Border([.. Range(0, 10).Select(i => map[i, 0] == '#' ? 1 : 0)]);
+            E = Border([.. Range(0, 10).Select(i => map[9, i] == '#' ? 1 : 0)]);
+            S = Border([.. Range(0, 10).Select(i => map[i, 9] == '#' ? 1 : 0)]);
+            W = Border([.. Range(0, 10).Select(i => map[0, i] == '#' ? 1 : 0)]);
             Borders = [N, E, S, W];
         }
         static uint Border(int[] bits)
@@ -112,13 +112,13 @@ public class Day_20
             yield return canvas.Flip(horizontal: true).Rotate(DiscreteRotation.Deg180);
             yield return canvas.Flip(horizontal: true).Rotate(DiscreteRotation.Deg270);
         }
-        private void FillO(Tile[] tiles)
+        void FillO(Tile[] tiles)
         {
             this[Point.O] = tiles.First(t => t.IsCorner &&
                 !t.Neighbors.Exists(n => t.N == n.S) &&
                 !t.Neighbors.Exists(n => t.W == n.E));
         }
-        private void Fill()
+        void Fill()
         {
             var points = new Queue<Point>([Point.O]);
 
@@ -149,14 +149,14 @@ public class Day_20
             return matrix;
         }
     }
-    private sealed class Sea : List<Vector>
+    sealed class Sea : List<Vector>
     {
         public static readonly Sea Monster = new(@"
                 ..................#.
                 #....##....##....###
                 .#..#..#..#..#..#...
                 ".CharPixels(true).Where(p => p.Value == '#').Select(p => p.Key - Point.O));
-        private Sea(IEnumerable<Vector> points)
+        Sea(IEnumerable<Vector> points)
         {
             AddRange(points);
             Width = this.Max(p => p.X);

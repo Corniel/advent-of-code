@@ -11,9 +11,9 @@ public class Day_15
     [Puzzle(answer: 303, "Generator A starts with 516;Generator B starts with 190", O.ms100)]
     public int part_two(Lines lines) => Match(lines, 5_000_000, n => (n & 3) == 0, n => (n & 7) == 0);
 
-    private static int Match(Lines lines, int pairs, Predicate<long> ca, Predicate<long> cb)
+    static int Match(Lines lines, int pairs, Predicate<long> ca, Predicate<long> cb)
     {
-        var numbers = lines.Int32s().ToArray();
+        int[] numbers = [..lines.Int32s()];
         var ag = new Generator(numbers[0], 16807, ca);
         var bg = new Generator(numbers[1], 48271, cb);
         var match = 0;
@@ -28,8 +28,8 @@ public class Day_15
 
     struct Generator(long value, int factor, Predicate<long> condition) : Iterator<long>
     {
-        private readonly int Factor = factor;
-        private readonly Predicate<long> Condition = condition;
+        readonly int Factor = factor;
+        readonly Predicate<long> Condition = condition;
 
         public long Current { get; private set; } = value;
 

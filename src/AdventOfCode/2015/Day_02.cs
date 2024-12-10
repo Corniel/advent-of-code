@@ -15,14 +15,14 @@ public class Day_02
 
     static int WrappingPaper(string line)
     {
-        var pars = line.Int32s().ToArray();
+        int[] pars = [.. line.Int32s()];
         int[] areas = [pars[0] * pars[1], pars[0] * pars[2], pars[1] * pars[2]];
         return 2 * areas.Sum() + areas.Min();
     }
 
     static int WrappingRibbon(string line)
     {
-        var pars = line.Int32s().ToArray();
+        int[] pars = [.. line.Int32s()];
         var bow = pars[0] * pars[1] * pars[2];
         return pars.OrderBy(p => p).Take(2).Sum() * 2 + bow;
     }

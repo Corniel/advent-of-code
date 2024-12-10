@@ -8,7 +8,7 @@ public class Day_24
     [Example(answer: 2, "19, 13, 30 @ -2,  1, -2;18, 19, 22 @ -1, -1, -2;20, 25, 34 @ -2, -2, -4;12, 31, 28 @ -1, -2, -1;20, 19, 15 @  1, -5, -3", 7, 27)]
     [Puzzle(answer: 16589, null, 200_000_000_000_000, 400_000_000_000_000, O.ms)]
     public int part_one(Lines lines, long min, long max)
-        => lines.As(Fx.Parse).ToArray().RoundRobin().Count(p => Cross(p, min, max));
+        => lines.As(Fx.Parse).RoundRobin().Count(p => Cross(p, min, max));
 
     [Puzzle(answer: 781390555762385, O.s)]
     public long part_two(Lines lines)
@@ -56,7 +56,7 @@ public class Day_24
 
         public static Fx Parse(string line)
         {
-            var ns = line.Int64s().ToArray();
+            long[] ns = [.. line.Int64s()];
             var pos = new Vec(ns[0], ns[1], ns[2]);
             var dir = new Vec(ns[3], ns[4], ns[5]);
             var a = 1d * dir.Y / dir.X;

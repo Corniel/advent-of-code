@@ -11,7 +11,7 @@ public class Day_03
     [Puzzle(answer: 346, O.ms10)]
     public int part_two(Lines lines)
     {
-        var claims = lines.As(Claim.Parse).ToArray();
+        var claims = lines.ToArray(Claim.Parse);
         var counters = Counters(claims);
         return claims.First(c => c.Squares().All(sq => counters[sq] == 1)).Id;
     }
@@ -22,7 +22,7 @@ public class Day_03
     {
         public static Claim Parse(string str)
         {
-            var ints = str.Int32s().ToArray();
+            int[] ints = [..str.Int32s()];
             return new(ints[0], new(ints[1], ints[2]), new(ints[3], ints[4]));
         }
 

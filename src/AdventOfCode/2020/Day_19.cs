@@ -44,12 +44,12 @@ public class Day_19
             return patterns;
         }
     }
-    private record Reference(int Id, Patterns Patterns) { public override string ToString() => $"{Patterns[Id]}"; }
-    private record Or(object Left, object Right) { public override string ToString() => $"({Left}|{Right})"; }
-    private record Combined(object[] Sequance)
+    record Reference(int Id, Patterns Patterns) { public override string ToString() => $"{Patterns[Id]}"; }
+    record Or(object Left, object Right) { public override string ToString() => $"({Left}|{Right})"; }
+    record Combined(object[] Sequance)
     {
         public override string ToString() => string.Concat(Sequance.Select(s => s.ToString()));
         public static Combined Parse(string str, Patterns patterns)
-            => new(str.SpaceSeparated(r => new Reference(r.Int32(), patterns)).ToArray());
+            => new([.. str.SpaceSeparated(r => new Reference(r.Int32(), patterns))]);
     }
 }

@@ -20,7 +20,7 @@ public class Day_12
         <x=4, y=7, z=-7>", O.μs100)]
     public int part_one(Lines lines)
     {
-        var moons = lines.As(Moon.Parse).ToArray();
+        var moons = lines.ToArray(Moon.Parse);
 
         for (var step = 1; step <= 10_000; step++)
         {
@@ -46,7 +46,7 @@ public class Day_12
         <x=4, y=7, z=-7>", O.ms10)]
     public long part_two(Lines lines)
     {
-        var moons = lines.As(Moon.Parse).ToArray();
+        var moons = lines.ToArray(Moon.Parse);
         return Maths.Lcm([
             Cycle(moons.Select(moon => Pair(moon.Position.X, default)).ToArray()),
             Cycle(moons.Select(moon => Pair(moon.Position.Y, default)).ToArray()),
@@ -89,7 +89,7 @@ public class Day_12
 
     static (int, int) Pair(int l, int r) => (l, r);
 
-    private sealed class Moon(Point3D position, Vector3D velocity)
+    sealed class Moon(Point3D position, Vector3D velocity)
     {
         public Point3D Position { get; set; } = position;
         public Vector3D Velocity { get; set; } = velocity;

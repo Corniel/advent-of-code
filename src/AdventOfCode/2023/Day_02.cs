@@ -18,7 +18,7 @@ public class Day_02
 
         public static Game parse(string line) => new(
             line.Int32(),
-            line[line.IndexOf(':')..].Separate(';').Select(Hand.Parse).ToArray());
+            [..line[line.IndexOf(':')..].Separate(';').Select(Hand.Parse)]);
     }
 
     record struct Hand(int R, int G, int B)

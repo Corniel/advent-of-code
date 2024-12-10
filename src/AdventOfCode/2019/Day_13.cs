@@ -45,12 +45,5 @@ public class Day_13
             return this;
         }
     }
-    private enum Tile
-    {
-        Empty = 0,
-        Wall = 1,
-        Block = 2,
-        Paddle = 3,
-        Ball = 4,
-    }
+    enum Tile { Empty = 0, Wall = 1, Block = 2, Paddle = 3, Ball = 4 }
 }

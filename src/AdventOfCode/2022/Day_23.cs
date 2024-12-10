@@ -51,7 +51,7 @@ public class Day_23
     record struct Move(Point From, Point To);
 
     static readonly Vector[] Directions = [Vector.E, Vector.N, Vector.S, Vector.W, Vector.E, Vector.N, Vector.S, Vector.W];
-    static readonly Vector[] Neighbors = CompassPoints.All.Select(p => p.ToVector()).ToArray();
+    static readonly Vector[] Neighbors = [..CompassPoints.All.Select(p => p.ToVector())];
     static readonly Dictionary<Vector, Vector[]> Scans = new()
     {
         [Vector.N] = [Vector.N, Vector.NE, Vector.NW],

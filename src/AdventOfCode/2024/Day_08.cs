@@ -11,7 +11,7 @@ public class Day_08
     [Puzzle(answer: 1067, O.μs10)]
     public int part_two(CharGrid map) => Scan(map, Two);
 
-    private static int Scan(CharGrid map, Func<Point, Point, CharGrid, IEnumerable<Point>> add) => map
+    static int Scan(CharGrid map, Func<Point, Point, CharGrid, IEnumerable<Point>> add) => map
         .Positions(p => p != '.').GroupBy(p => map[p])
         .SelectMany(ps => ps.RoundRobin())
         .SelectMany(ps => add(ps.First, ps.Second, map).Concat(add(ps.Second, ps.First, map)))

@@ -36,7 +36,7 @@ public class Day_12
             }
         }
 
-        private readonly bool[] nexts = new bool[0b10_00_00];
+        readonly bool[] nexts = new bool[0b10_00_00];
 
         protected override bool Dies(long cell) => !IntoExistence(cell);
 

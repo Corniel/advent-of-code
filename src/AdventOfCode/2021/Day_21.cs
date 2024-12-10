@@ -76,8 +76,8 @@ public class Day_21
 
     static Point Score(Point points, int player, int add) => player == 0 ? new(points.X + add, points.Y) : new Point(points.X, points.Y + add);
 
-    static readonly int[] Modulo10 = Range(0, 110).Select(n => ((n - 1) % 10) + 1).ToArray();
-    static readonly int[] Modulo100 = Range(0, 200).Select(n => ((n - 1) % 100) + 1).ToArray();
+    static readonly int[] Modulo10 = [.. Range(0, 110).Select(n => ((n - 1) % 10) + 1)];
+    static readonly int[] Modulo100 = [.. Range(0, 200).Select(n => ((n - 1) % 100) + 1)];
     static readonly int[] Weight = [0, 0, 0, 1, 3, 6, 7, 6, 3, 1];
-    static readonly Point[] Setups = Points.Range(new Point(1, 1), new Point(10, 10)).ToArray();
+    static readonly Point[] Setups = [.. Points.Range(new Point(1, 1), new Point(10, 10))];
 }

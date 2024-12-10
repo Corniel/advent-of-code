@@ -15,9 +15,9 @@ public class Day_05
 
     static IEnumerable<Int64Range> Two(long[] ns) => Range(0, ns.Length / 2).Select(i => new Int64Range(ns[2 * i], ns[2 * i] + ns[2 * i + 1]));
 
-    private static long Process(GroupedLines groups, Func<long[], IEnumerable<Int64Range>> select)
+    static long Process(GroupedLines groups, Func<long[], IEnumerable<Int64Range>> select)
     {
-        var sources = Int64Ranges.New(select(groups[0][0].Int64s().ToArray()));
+        var sources = Int64Ranges.New(select([..groups[0][0].Int64s()]));
 
         foreach (var maps in groups.Skip(1).Select(Map.Parse))
         {
@@ -43,6 +43,6 @@ public class Day_05
 
         public Int64Range Next(Int64Range start) => new(start.Lower + Dest - Source, start.Upper + Dest - Source);
 
-        public static Map[] Parse(string[] lines) => lines[1..].Select(l => Ctor.New<Map>(l.Int64s())).ToArray();
+        public static Map[] Parse(string[] lines) => [..lines[1..].Select(l => Ctor.New<Map>(l.Int64s()))];
     }
 }

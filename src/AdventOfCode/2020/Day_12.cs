@@ -35,7 +35,7 @@ public class Day_12
         return ferry.ManhattanDistance(Point.O);
     }
 
-    private readonly struct Instruction
+    readonly struct Instruction
     {
         public Instruction(Action action, int value)
         {
@@ -56,7 +56,7 @@ public class Day_12
         };
         public static Instruction Parse(string str) => new(Enum.Parse<Action>(str[0..1]), str[1..].Int32());
     }
-    private enum Action
+    enum Action
     {
         N, E, S, W,
         F,

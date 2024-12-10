@@ -11,7 +11,7 @@ public class Day_04
     [Puzzle(answer: 10212704, O.μs100)]
     public int part_two(Lines lines)
     {
-        var cards = lines.As(Card.Parse).ToArray();
+        var cards = lines.ToArray(Card.Parse);
         for (var i = 0; i < cards.Length; i++)
         {
             var card = cards[i];
@@ -33,7 +33,7 @@ public class Day_04
         public static Card Parse(string line)
         {
             var split = line.Split(':', '|');
-            return new(split[1].Int32s().ToArray(), split[2].Int32s().ToArray());
+            return new([..split[1].Int32s()], [..split[2].Int32s()]);
         }
     }
 }

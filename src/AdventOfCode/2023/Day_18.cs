@@ -11,7 +11,7 @@ public class Day_18
     [Puzzle(answer: 122109860712709, O.μs100)]
     public long part_two(Lines lines) => Count(lines.As(Dig.Two));
 
-    private static long Count(IEnumerable<Dig> digs)
+    static long Count(IEnumerable<Dig> digs)
     {
         var lines = Lines(digs);
         var total = lines.Values.Sum(gr => gr.Sum(r => r.Size));
@@ -25,7 +25,7 @@ public class Day_18
         return total;
     }
 
-    private static Dictionary<long, Int64Ranges> Lines(IEnumerable<Dig> digs)
+    static Dictionary<long, Int64Ranges> Lines(IEnumerable<Dig> digs)
     {
         var horizontal = Line.Horizontals(digs).ToArray();
         var fills = new Dictionary<long, Int64Ranges>();

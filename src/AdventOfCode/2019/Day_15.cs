@@ -14,9 +14,9 @@ public class Day_15
         public Space() => Add(default, Tile.Empty);
         public int O2Distance => Navigate(Point.O, [O2]).Distance;
         public int O2Spreading => Navigate(new Point(short.MaxValue, short.MaxValue), [O2]).Distance;
-        private Point O2 => this.Single(t => t.Value == Tile.Oxygen).Key;
-        private IEnumerable<Point> Empties => this.Where(kvp => kvp.Value != Tile.Wall).Select(kvp => kvp.Key);
-        private IEnumerable<Point> Unknowns => Empties.SelectMany(Neighbors).Where(tile => !ContainsKey(tile));
+        Point O2 => this.Single(t => t.Value == Tile.Oxygen).Key;
+        IEnumerable<Point> Empties => this.Where(kvp => kvp.Value != Tile.Wall).Select(kvp => kvp.Key);
+        IEnumerable<Point> Unknowns => Empties.SelectMany(Neighbors).Where(tile => !ContainsKey(tile));
 
         public Space Exlore(Computer program)
         {
@@ -36,7 +36,7 @@ public class Day_15
             return this;
         }
 
-        private Point Exlore(Point droid, Navigation nav, Computer program)
+        Point Exlore(Point droid, Navigation nav, Computer program)
         {
             var tile = (Tile)(int)program.Run(new RunArguments(true, false, nav.Instruction)).Output.Single();
             droid += nav.Direction;
@@ -48,10 +48,10 @@ public class Day_15
             }
             return droid;
         }
-        private bool Accessable(Point location) => !TryGetValue(location, out var t) || t != Tile.Wall;
-        private IEnumerable<Point> Neighbors(Point location)
+        bool Accessable(Point location) => !TryGetValue(location, out var t) || t != Tile.Wall;
+        IEnumerable<Point> Neighbors(Point location)
             => location.Projections(Dirs.Keys).Where(Accessable);
-        private Navigation Navigate(Point source, IEnumerable<Point> targets)
+        Navigation Navigate(Point source, IEnumerable<Point> targets)
         {
             var distance = 0;
             distances.Clear();
@@ -79,19 +79,13 @@ public class Day_15
             }
             return new(Vector.O, distance - 1);
         }
-        private readonly Queue<Point> queue = new();
-        private readonly Dictionary<Point, int> distances = [];
+        readonly Queue<Point> queue = new();
+        readonly Dictionary<Point, int> distances = [];
     }
-    private enum Tile
-    {
-        Wall = 0,
-        Empty = 1,
-        Oxygen = 2,
-    }
-    private record Navigation(Vector Direction, int Distance)
-    {
-        public int Instruction => Dirs[Direction];
-    }
+    enum Tile { Wall = 0, Empty = 1, Oxygen = 2 }
+
+    record Navigation(Vector Direction, int Distance) { public int Instruction => Dirs[Direction]; }
+
     static readonly Dictionary<Vector, int> Dirs = new()
     {
         { Vector.N, 1 },

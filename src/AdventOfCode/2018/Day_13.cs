@@ -20,7 +20,7 @@ public class Day_13
 
         while (carts.Count > 1)
         {
-            foreach (var cart in carts.OrderBy(c => c.Pos.Y).ThenBy(c => c.Pos.X).ToArray())
+            foreach (var cart in carts.OrderBy(c => c.Pos.Y).ThenBy(c => c.Pos.X))
             {
                 cart.Next();
 

@@ -4,13 +4,13 @@ namespace Advent_of_Code_2021;
 public class Day_24
 {
     [Puzzle(answer: 39999698799429, O.μs100)]
-    public long part_one(Lines lines) => Serial(Desc, State.Zero, lines.As(Expression.Parse).ToArray()) ?? throw new NoAnswer();
+    public long part_one(Lines lines) => Serial(Desc, State.Zero, lines.ToArray(Expression.Parse)) ?? throw new NoAnswer();
 
     [Puzzle(answer: 18116121134117, O.s10)]
-    public long part_two(Lines lines) => Serial(Asc, State.Zero, lines.As(Expression.Parse).ToArray()) ?? throw new NoAnswer();
+    public long part_two(Lines lines) => Serial(Asc, State.Zero, lines.ToArray(Expression.Parse)) ?? throw new NoAnswer();
 
-    static readonly int[] Asc = Range(1, 9).ToArray();
-    static readonly int[] Desc = Asc.Reverse().ToArray();
+    static readonly int[] Asc = [..Range(1, 9)];
+    static readonly int[] Desc = [..Asc.Reverse()];
 
     static long? Serial(int[] digits, State state, IReadOnlyList<Expression> exps, long serial = 0, int level = 0, int index = 0)
     {
@@ -48,7 +48,7 @@ public class Day_24
         public static Expression Parse(string line)
         {
             var args = line.SpaceSeparated().ToArray();
-            return new(Enum.Parse<Op>(args[0]), args[1..].Select(ParseArgument).ToArray());
+            return new(Enum.Parse<Op>(args[0]), [.. args[1..].Select(ParseArgument)]);
         }
         static Arg ParseArgument(string str) => Enum.Parse<Arg>(str);
     }

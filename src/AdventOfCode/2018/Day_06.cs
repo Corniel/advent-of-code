@@ -38,7 +38,7 @@ public class Day_06
     [Puzzle(answer: 46462, null, 10_000, O.ms10)]
     public int part_two(Lines lines, int max)
     {
-        var areas = lines.As(Point.Parse).ToArray();
+        var areas = lines.ToArray(Point.Parse);
         return Points.Range(areas.Min(), areas.Max()).Count(p => areas.Sum(p.ManhattanDistance) < max);
     }
 

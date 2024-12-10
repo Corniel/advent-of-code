@@ -7,7 +7,7 @@ public class Day_08
     [Puzzle(answer: 1584, O.μs10)]
     public int part_one(Lines lines)
     {
-        var instructions = lines.As(Instruction.Parse).ToArray();
+        var instructions = lines.ToArray(Instruction.Parse);
         Execute(instructions, -1, out var accumulator);
         return accumulator;
     }
@@ -16,7 +16,7 @@ public class Day_08
     [Puzzle(answer: 920, O.ms)]
     public int part_two(Lines lines)
     {
-        var instructions = lines.As(Instruction.Parse).ToArray();
+        var instructions = lines.ToArray(Instruction.Parse);
 
         for (var fix_pointer = 0; fix_pointer < instructions.Length; fix_pointer++)
         {
@@ -71,9 +71,5 @@ public class Day_08
         return true;
     }
 
-    private record Instruction(string Name, int Value)
-    {
-        public static Instruction Parse(string line)
-            => new(line[0..3], line[4..].Int32());
-    }
+    record Instruction(string Name, int Value) { public static Instruction Parse(string line) => new(line[0..3], line[4..].Int32()); }
 }

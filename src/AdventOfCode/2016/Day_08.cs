@@ -28,7 +28,7 @@ public class Day_08
     {
         public abstract void Transform(Dictionary<Point, bool> grid);
 
-        public static Instruction Parse(string line) => new string(line.Take(10).ToArray()) switch
+        public static Instruction Parse(string line) => new string([..line.Take(10)]) switch
         {
             "rotate row" => Ctor.New<RotateRow>(line.Int32s()),
             "rotate col" => Ctor.New<RotateCol>(line.Int32s()),

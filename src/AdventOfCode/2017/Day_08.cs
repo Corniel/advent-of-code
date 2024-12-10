@@ -13,7 +13,7 @@ public class Day_08
 
     static long Max(Lines lines, bool intermediate = false)
     {
-        var instructions = lines.As(Instruction.Parse).ToArray();
+        var instructions = lines.ToArray(Instruction.Parse);
         var paramaters = Params.New(instructions.Select(instr => instr.Name).Distinct().Select(n => new Param(n, Const.Zero)));
         var max = 0L;
 

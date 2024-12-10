@@ -10,14 +10,14 @@ public class Day_25
     [Puzzle(answer: 318, O.ms10)]
     public int part_one(Lines lines)
     {
-        var points = lines.As(Point4D.Parse).ToArray();
+        var points = lines.ToArray(Point4D.Parse);
         var constellations = new List<Constellatetion>();
 
         foreach (var point in points)
         {
             var extra = new Constellatetion(point, points);
 
-            if (constellations.Where(c => c.Contains(point)).ToArray() is { } existing && existing.NotEmpty())
+            if (constellations.Where(c => c.Contains(point)).ToArray() is { Length: > 0 } existing)
             {
                 existing.First().AddRange(extra.Concat(existing.Skip(1).SelectMany(c => c)));
 

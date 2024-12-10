@@ -3,13 +3,13 @@ namespace Advent_of_Code_2024;
 [Category(Category.Computation)]
 public class Day_09
 {
-    private const int Space = -1;
+    const int Space = -1;
 
     [Example(answer: 1928, "2333133121414131402")]
     [Puzzle(answer: 6461289671426, O.ms)]
     public long part_one(string str)
     {
-        var disk = str.Select(c => c.Digit()).SelectMany((d, i) => Repeat(i.IsEven() ? i / 2 : Space, d)).ToArray();
+        int[] disk = [..str.Select(c => c.Digit()).SelectMany((d, i) => Repeat(i.IsEven() ? i / 2 : Space, d))];
         var pos = 0; var end = disk.Length - 1;
 
         while (pos < end)

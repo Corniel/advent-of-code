@@ -12,7 +12,7 @@ public class Day_04
 
     public class Passport : Dictionary<string, string>
     {
-        private bool duplicate;
+        bool duplicate;
 
         public bool byr => TryGetValue(nameof(byr), out var str)
             && int.TryParse(str, out var year) && year.InRange(1920, 2002);

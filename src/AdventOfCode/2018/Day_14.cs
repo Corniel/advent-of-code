@@ -19,7 +19,7 @@ public class Day_14
         return recipes.Count - digits.Count - (EndsWith(recipes, digits, 0) ? 0 : 1);
     }
 
-    private static List<int> Run(Predicate<List<int>> @while)
+    static List<int> Run(Predicate<List<int>> @while)
     {
         var digits = 37.Digits();
         var recipes = digits.ToList();

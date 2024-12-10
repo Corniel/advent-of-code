@@ -36,7 +36,7 @@ public class Day_16
 
     }
 
-    private record Option(Rule Rule, List<int> Positions)
+    record Option(Rule Rule, List<int> Positions)
     {
         public int Position => Positions[0];
         public bool HasSingle => Positions.Count == 1;
@@ -47,7 +47,7 @@ public class Day_16
             return new Option(rule, positions.ToList());
         }
     }
-    private record Rule(string Name, Int32Range[] Ranges)
+    record Rule(string Name, Int32Range[] Ranges)
     {
         public bool Valid(int part) => Ranges.Exists(range => range.Contains(part));
         public bool Valid(Ticket ticket) => ticket.Parts.TrueForAll(Valid);
@@ -58,7 +58,7 @@ public class Day_16
         }
     }
 
-    private record Ticket(int[] Parts)
+    record Ticket(int[] Parts)
     {
         public bool Valid(IEnumerable<Rule> rules) => rules.Any(rule => rule.Valid(this));
         public static Ticket Parse(string str) => new([.. str.Int32s()]);

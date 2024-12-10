@@ -20,9 +20,9 @@ public class Day_18
     public long part_two(Lines lines)
         => lines.As(Parentheses.Parse).Sum(token => token.Parenthese().Value);
 
-    private interface Token { }
-    private interface ValueToken : Token { long Value { get; } }
-    private record Parentheses(Token[] Tokens) : ValueToken
+    interface Token { }
+    interface ValueToken : Token { long Value { get; } }
+    record Parentheses(Token[] Tokens) : ValueToken
     {
         public long Value
         {
@@ -37,7 +37,7 @@ public class Day_18
                 return total;
             }
         }
-        private ValueToken this[int index] => (ValueToken)Tokens[index];
+        ValueToken this[int index] => (ValueToken)Tokens[index];
         public Parentheses Parenthese()
         {
             var tokens = Tokens.ToList();
@@ -83,7 +83,7 @@ public class Day_18
                     else if (tokens[pos] is ParentheseClose)
                     {
                         var elements = 1 + pos - start;
-                        var operation = new Parentheses(tokens.Skip(start + 1).Take(elements - 2).ToArray());
+                        var operation = new Parentheses([..tokens.Skip(start + 1).Take(elements - 2)]);
                         tokens.RemoveRange(start, elements);
                         tokens.Insert(start, operation);
                         break;
@@ -93,13 +93,13 @@ public class Day_18
             return new Parentheses([.. tokens]);
         }
     };
-    private record Addition(ValueToken Left, ValueToken Right) : ValueToken
+    record Addition(ValueToken Left, ValueToken Right) : ValueToken
     {
         public long Value => Left.Value + Right.Value;
     }
-    private record Number(long Value) : ValueToken { }
-    private readonly struct Add : Token { }
-    private readonly struct Multiply : Token { }
-    private readonly struct ParentheseOpen : Token { }
-    private readonly struct ParentheseClose : Token { }
+    record Number(long Value) : ValueToken { }
+    readonly struct Add : Token { }
+    readonly struct Multiply : Token { }
+    readonly struct ParentheseOpen : Token { }
+    readonly struct ParentheseClose : Token { }
 }

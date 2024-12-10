@@ -31,7 +31,7 @@ public class Day_18
             neighbors = grid.SetNeighbors(SmartAss.Maps.Neighbors.Grid, CompassPoints.All).Neighbors;
             this.AddRange(grid.Positions(t => t));
         }
-        private readonly Grid<GridNeighbors> neighbors;
+        readonly Grid<GridNeighbors> neighbors;
 
         public override IEnumerable<Point> Neighbors(Point cell) => neighbors[cell];
     }

@@ -5,7 +5,7 @@ public class Day_19
 {
     [Example(answer: "ABCDEF", Example._1)]
     [Puzzle(answer: "GPALMJSOY", O.ms10)]
-    public char[] part_one(CharGrid map) => Navigate(map).Where(char.IsLetter).ToArray();
+    public char[] part_one(CharGrid map) => [..Navigate(map).Where(char.IsLetter)];
 
     [Example(answer: 38, Example._1)]
     [Puzzle(answer: 16204, O.ms10)]

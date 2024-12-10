@@ -17,16 +17,16 @@ public class Day_04
 
     record Secret(string Name, string Checksum, int Id)
     {
-        public string Decrypted() => new(Name.ToCharArray().Select(Decrypt).ToArray());
+        public string Decrypted() => new([..Name.ToCharArray().Select(Decrypt)]);
 
-        private char Decrypt(char ch) => ch.InRange('a', 'z')
+        char Decrypt(char ch) => ch.InRange('a', 'z')
             ? Characters.a_z[(Characters.a_z.IndexOf(ch) + Id).Mod(26)] : ' ';
 
         public static Secret Parse(string line)
         {
             var splitted = line.Split('[');
             var checksum = splitted[1][..^1];
-            var orderded = new string(Characters.a_z.OrderByDescending(ch => splitted[0].Count(ch)).Take(checksum.Length).ToArray());
+            var orderded = new string([..Characters.a_z.OrderByDescending(ch => splitted[0].Count(ch)).Take(checksum.Length)]);
             var last = splitted[0].LastIndexOf('-');
             return new(splitted[0][..last], checksum, checksum == orderded ? -line.Int32() : 0);
         }

@@ -6,12 +6,12 @@ public class Day_03
     [Example(answer: 7, Example._1)]
     [Puzzle(answer: 220, O.μs10)]
     public int part_one(Lines lines)
-        => CountTrees(Row.Parse(lines).ToArray(), new Vector(3, 1));
+        => CountTrees([..Row.Parse(lines)], new(3, 1));
 
     [Puzzle(answer: 2138320800, O.μs10)]
     public int part_two(Lines lines)
     {
-        var rows = Row.Parse(lines).ToArray();
+        Row[] rows = [..Row.Parse(lines)];
         return new Vector[] { new(1, 1), new(3, 1), new(5, 1), new(7, 1), new(1, 2) }.Select(slope => CountTrees(rows, slope)).Product();
     }
 
@@ -28,13 +28,10 @@ public class Day_03
         return trees;
     }
 
-    class Row
+    class Row(byte[] sqs)
     {
-        private const byte Tree = 17;
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private readonly byte[] squares;
-
-        private Row(byte[] sqs) => squares = sqs;
+        const byte Tree = 17;
+        readonly byte[] squares = sqs;
 
         public int Size => squares.Length;
 

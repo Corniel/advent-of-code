@@ -14,10 +14,10 @@ public class Day_11
 
     static long Distances(CharGrid map, int expand)
     {
-        var emptyCols = Range(0, map.Cols).Select(r => map.Col(r).All(t => t.Value == '.')).ToArray();
-        var emptyRows = Range(0, map.Rows).Select(r => map.Row(r).All(t => t.Value == '.')).ToArray();
+        bool[] emptyCols = [..Range(0, map.Cols).Select(r => map.Col(r).All(t => t.Value == '.'))];
+        bool[] emptyRows = [..Range(0, map.Rows).Select(r => map.Row(r).All(t => t.Value == '.'))];
 
-        return map.Positions(c => c == '#').ToArray().RoundRobin().Sum(Distance);
+        return map.Positions(c => c == '#').RoundRobin().Sum(Distance);
 
         long Distance(Pair<Point> p)
         {

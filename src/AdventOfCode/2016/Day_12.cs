@@ -13,7 +13,7 @@ public class Day_12
     static int Run(Lines lines, int c)
     {
         var mem = new int[] { 0, 0, c, 0 };
-        var acts = lines.As(Parse).ToArray();
+        var acts = lines.ToArray(Parse);
         var pt = 0;
 
         while (pt < acts.Length)

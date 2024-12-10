@@ -47,7 +47,7 @@ public class Day_14
         public static Area Parse(Lines lines, bool withBottom)
         {
             var map = new HashSet<Point>();
-            foreach (var pair in lines.As(l => l.Separate(" -> ").Select(Point.Parse).ToArray()).SelectMany(p => p.SelectWithPrevious()))
+            foreach (var pair in lines.As(l => l.Separate(" -> ").Select(Point.Parse)).SelectMany(p => p.SelectWithPrevious()))
             {
                 map.Add(pair.Current);
                 map.AddRange(pair.Previous.Repeat((pair.Current - pair.Previous).Sign(), true).TakeWhile(c => c != pair.Current));

@@ -44,10 +44,6 @@ Dancer can fly 16 km/s for 11 seconds, but then must rest for 162 seconds.")]
             return Speed * (Fly * periods + Math.Min(Fly, period_last));
         }
 
-        public static Reindeer Parse(string line)
-        {
-            var parts = line.Int32s().ToArray();
-            return new(parts[0], parts[1], parts[2]);
-        }
+        public static Reindeer Parse(string line) => Ctor.New<Reindeer>(line.Int32s());
     }
 }

@@ -5,11 +5,11 @@ namespace Advent_of_Code_2020;
 public class UniqueNumbers : IEnumerable<int>
 {
     private readonly byte[] contains = new byte[short.MaxValue];
-    private const byte True = 255;
+    const byte True = 255;
 
     public static UniqueNumbers Empty => new();
 
-    private UniqueNumbers() => Do.Nothing();
+    UniqueNumbers() => Do.Nothing();
 
     public UniqueNumbers(IEnumerable<int> numbers)
     {
@@ -86,11 +86,11 @@ public class UniqueNumbers : IEnumerable<int>
 
     public static UniqueNumbers Parse(string str) => new(str.Int32s());
 
-    private sealed class Enumerator(byte[] contains, int min, int max) : IEnumerator<int>, IEnumerable<int>
+    sealed class Enumerator(byte[] contains, int min, int max) : IEnumerator<int>, IEnumerable<int>
     {
-        private readonly byte[] contains = contains;
-        private readonly int max = max;
-        private int index = min - 1;
+        readonly byte[] contains = contains;
+        readonly int max = max;
+        int index = min - 1;
 
         public int Current => index;
 

@@ -63,7 +63,7 @@ public class Day_19
             bool IsCandidate(Point3D location, Orientation orientation, HashSet<Point3D> beacons)
                 => !Beacons(location, orientation).Where(c => !beacons.Contains(c)).Skip(Observations.Length - 12).NotEmpty();
         }
-        public static Scanner Parse(string[] lines) => new() { Observations = lines[1..].Select(Vector3D.Parse).ToArray() };
+        public static Scanner Parse(string[] lines) => new() { Observations = [.. lines[1..].Select(Vector3D.Parse)] };
     }
 
     record Orientation(int[] Order, int[] Multiplier)

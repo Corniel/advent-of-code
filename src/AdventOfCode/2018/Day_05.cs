@@ -40,7 +40,7 @@ public class Day_05
         }
         return polymer.Length == length ? polymer : Destroy(new(buffer, 0, length));
     }
-    static string Strip(string polymer, int ch) => new(polymer.Where(c => Lower(c) != ch).ToArray());
+    static string Strip(string polymer, int ch) => new([..polymer.Where(c => Lower(c) != ch)]);
     static bool IsDestroy(char l, char r) => l != r && Lower(l) == Lower(r);
     static int Lower(char ch) => ch & 0b11111;
 }

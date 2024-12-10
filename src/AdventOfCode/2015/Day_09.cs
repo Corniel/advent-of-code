@@ -3,7 +3,7 @@ namespace Advent_of_Code_2015;
 [Category(Category.Computation)]
 public class Day_09
 {
-    private const string Example = @"
+    const string Example = @"
 London to Dublin = 464
 London to Belfast = 518
 Dublin to Belfast = 141";
@@ -18,7 +18,7 @@ Dublin to Belfast = 141";
 
     static IEnumerable<int> Distances(Lines lines)
     {
-        var routes = lines.As(Route.Parse).ToArray();
+        var routes = lines.ToArray(Route.Parse);
         var locations = routes.SelectMany(route => route.Locations).Distinct().Order().ToArray();
         var distances = new Grid<int>(locations.Length, locations.Length);
 
@@ -30,8 +30,7 @@ Dublin to Belfast = 141";
             distances[to, from] = route.Distance;
         }
 
-        return Range(0, locations.Length).ToArray()
-            .Permutations().Select(permuation => GetDistance(permuation, distances));
+        return Range(0, locations.Length).Permutations().Select(permuation => GetDistance(permuation, distances));
     }
 
     static int GetDistance(int[] permuation, Grid<int> distances)

@@ -12,7 +12,7 @@ public class Day_17
     [Puzzle(answer: 1389, O.ms100)]
     public int part_two(CharGrid map) => Naviate(map, 4, 10);
 
-    private static int Naviate(CharGrid map, int min, int max)
+    static int Naviate(CharGrid map, int min, int max)
     {
         var tar = map.Corner(CompassPoint.SE);
         var q = new PriorityQueue<State, int>();

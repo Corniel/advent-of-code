@@ -23,7 +23,7 @@ public class Day_23
 
     class Cups(int size)
     {
-        private readonly Cup[] search = new Cup[size + 1];
+        readonly Cup[] search = new Cup[size + 1];
         public readonly int Size = size;
         public int Turn { get; private set; }
         public Cup Curr { get; private set; }
@@ -41,7 +41,7 @@ public class Day_23
             dest.Next = head;
             Curr = Curr.Next;
         }
-        private Cup Destination(int val, int p1, int p2, int p3)
+        Cup Destination(int val, int p1, int p2, int p3)
         {
             val = val == 1 ? Size : val - 1;
             return (val == p1 || val == p2 || val == p3)

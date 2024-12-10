@@ -26,7 +26,7 @@ public class Day_12
     {
         public static Condition Parse(string line, int rep) => new(
             string.Join('?', Repeat(Trim(line), rep)),
-            Repeat(line.Int32s(), rep).SelectMany(n => n).ToArray());
+            [.. Repeat(line.Int32s(), rep).SelectMany(n => n)]);
 
         // This replacement is a modification of @Renzo Baasdam's. Mine was
         // correct, but did not scale, the part two variant took 2 minutes
@@ -103,7 +103,7 @@ public class Day_12
 
     readonly struct State(int length)
     {
-        private readonly long[] Counts = new long[length];
+        readonly long[] Counts = new long[length];
 
         public long this[int index] => Counts[index];
 

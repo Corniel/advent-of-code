@@ -57,7 +57,7 @@ public class Day_11
             .Where(seat => seat is not null)
             .Select(seat => seat.Location);
 
-        static readonly Vector[] directions = CompassPoints.All.Select(p => p.ToVector()).ToArray();
+        static readonly Vector[] directions = [..CompassPoints.All.Select(p => p.ToVector())];
     }
     class Seat : GridTile<Seat>
     {

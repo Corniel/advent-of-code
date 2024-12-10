@@ -5,7 +5,7 @@ namespace Advent_of_Code_2019;
 public class Computer : IEnumerable<Int>
 {
     [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-    private readonly List<Int> memory = [];
+    readonly List<Int> memory = [];
 
     public Computer(IEnumerable<Int> numbers) => memory.AddRange(numbers);
 
@@ -75,7 +75,7 @@ public class Computer : IEnumerable<Int>
         return this;
     }
 
-    private bool PreRun()
+    bool PreRun()
     {
         if (State == ComputerState.HaltOnInput)
         {
@@ -87,21 +87,21 @@ public class Computer : IEnumerable<Int>
         return false;
     }
 
-    private Opcode ReadOpcode() => new((int)Read());
-    private void Add(Opcode opcode) => Execute(opcode, (p1, p2) => p1 + p2);
-    private void Multiply(Opcode opcode) => Execute(opcode, (p1, p2) => p1 * p2);
-    private void Input(Opcode opcode)
+    Opcode ReadOpcode() => new((int)Read());
+    void Add(Opcode opcode) => Execute(opcode, (p1, p2) => p1 + p2);
+    void Multiply(Opcode opcode) => Execute(opcode, (p1, p2) => p1 * p2);
+    void Input(Opcode opcode)
     {
         var p1 = (int)ReadImmediate(opcode.P1);
         var value = Inputs.Dequeue();
         Write(p1, value);
     }
-    private void Output(Opcode opcode, List<Int> output)
+    void Output(Opcode opcode, List<Int> output)
     {
         var p1 = Read(opcode.P1);
         output.Add(p1);
     }
-    private void JumpIf(bool condition, Opcode opcode)
+    void JumpIf(bool condition, Opcode opcode)
     {
         var p1 = Read(opcode.P1);
         var target = (int)Read(opcode.P2);
@@ -111,12 +111,11 @@ public class Computer : IEnumerable<Int>
             else { Pointer = target; }
         }
     }
-    private void LessThen(Opcode opcode) => Execute(opcode, (p1, p2) => p1 < p2 ? 1 : 0);
-    private void Equals(Opcode opcode) => Execute(opcode, (p1, p2) => p1 == p2 ? 1 : 0);
-    private void RelativeBase(Opcode opcode)
-        => PointerOffset += (int)Read(opcode.P1);
+    void LessThen(Opcode opcode) => Execute(opcode, (p1, p2) => p1 < p2 ? 1 : 0);
+    void Equals(Opcode opcode) => Execute(opcode, (p1, p2) => p1 == p2 ? 1 : 0);
+    void RelativeBase(Opcode opcode) => PointerOffset += (int)Read(opcode.P1);
 
-    private void Execute(Opcode opcode, Func<Int, Int, Int> function)
+    void Execute(Opcode opcode, Func<Int, Int, Int> function)
     {
         var p1 = Read(opcode.P1);
         var p2 = Read(opcode.P2);
@@ -125,29 +124,27 @@ public class Computer : IEnumerable<Int>
         Write(target, value);
     }
 
-    private Int ReadImmediate(Mode mode)
-        => mode switch
-        {
-            Mode.Position => Read(),
-            Mode.Relative => Read() + PointerOffset,
-            _ => throw new InvalidOperationException(),
-        };
-    private Int Read(Mode mode)
-        => mode switch
-        {
-            Mode.Position => Read((int)Read()),
-            Mode.Relative => Read((int)Read() + PointerOffset),
-            Mode.Immediate => Read(),
-            _ => throw new InvalidOperationException(),
-        };
-    private Int Read() => Read(Pointer++);
-    private Int Read(int position) => memory[InMemory(position)];
-    private void Write(int position, Int value)
+    Int ReadImmediate(Mode mode) => mode switch
+    {
+        Mode.Position => Read(),
+        Mode.Relative => Read() + PointerOffset,
+        _ => throw new InvalidOperationException(),
+    };
+    Int Read(Mode mode) => mode switch
+    {
+        Mode.Position => Read((int)Read()),
+        Mode.Relative => Read((int)Read() + PointerOffset),
+        Mode.Immediate => Read(),
+        _ => throw new InvalidOperationException(),
+    };
+    Int Read() => Read(Pointer++);
+    Int Read(int position) => memory[InMemory(position)];
+    void Write(int position, Int value)
     {
         position = InMemory(position);
         memory[position] = value;
     }
-    private int InMemory(int position)
+    int InMemory(int position)
     {
         if (position < 0) { throw new OutOfMemory(); }
         while (position >= Size)

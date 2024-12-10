@@ -3,8 +3,8 @@ namespace Advent_of_Code_2021;
 [Category(Category.ExpressionParsing)]
 public class Day_10
 {
-    private const string Open = "([{<";
-    private const string Close = ")]}>";
+    const string Open = "([{<";
+    const string Close = ")]}>";
 
     [Example(answer: 0, "[[(<{}>)]][()]")]
     [Example(answer: 1197, "{([(<{}[<>[]}>{[]{[(<()>")]

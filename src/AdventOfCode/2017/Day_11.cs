@@ -13,7 +13,7 @@ public class Day_11
     [Puzzle(answer: 1493, O.μs100)]
     public int part_two(string str) => Process(str, d => d.Sum());
 
-    private int Process(string str, Func<int[], int> maximum)
+    int Process(string str, Func<int[], int> maximum)
     {
         var max = 0; var steps = new int[6];
 

@@ -29,7 +29,7 @@ public class Day_19
         public static Workflow Parse(string s)
         {
             var parts = s.Separate('{', '}', ',');
-            return new(parts[0], parts[1..].Select(Condition.Parse).ToArray());
+            return new(parts[0], [.. parts[1..].Select(Condition.Parse)]);
         }
 
         public long Permutations(Ranges ranges, Dictionary<string, Workflow> wfs)

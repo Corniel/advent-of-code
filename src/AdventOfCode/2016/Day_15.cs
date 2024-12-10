@@ -17,7 +17,7 @@ public class Day_15
 
     static ModuloInt32 Modulo(string line)
     {
-        var ns = line.Int32s().ToArray();
+        int[] ns = [..line.Int32s()];
         return (-ns[0] - ns[2] - ns[3]).Modulo(ns[1]);
     }
 }

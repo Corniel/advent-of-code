@@ -75,7 +75,7 @@ public class Day_17
                         }
         }
     }
-    private readonly struct Point4D(int x, int y, int z, int w) : IEquatable<Point4D>
+    readonly struct Point4D(int x, int y, int z, int w) : IEquatable<Point4D>
     {
         public readonly int X = x;
         public readonly int Y = y;

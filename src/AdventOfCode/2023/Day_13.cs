@@ -15,11 +15,11 @@ public class Day_13
         => groups.Select(l => string.Join('\n', l).CharPixels().Grid(c => c == '#')).Sum(m => Reflection(m, errors));
 
     static int Reflection(Grid<bool> map, int errors)
-        => Scan(Range(0, map.Rows).Select(map.Row).Select(Values).ToArray(), errors, 100)
-        ?? Scan(Range(0, map.Cols).Select(map.Col).Select(Values).ToArray(), errors, 1)
+        => Scan([.. Range(0, map.Rows).Select(map.Row).Select(Values)], errors, 100)
+        ?? Scan([.. Range(0, map.Cols).Select(map.Col).Select(Values)], errors, 1)
         ?? throw new NoAnswer();
 
-    static bool[] Values(IEnumerable<KeyValuePair<Point, bool>> cells) => cells.Select(c => c.Value).ToArray();
+    static bool[] Values(IEnumerable<KeyValuePair<Point, bool>> cells) => [..cells.Select(c => c.Value)];
 
     static int? Scan(bool[][] lines, int errors, int factor)
     {

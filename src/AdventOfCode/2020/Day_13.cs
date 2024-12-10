@@ -34,7 +34,7 @@ public class Day_13
 
     static long GetOffset(long bus, long depature) => (-depature).Mod(bus);
 
-    private record Bus(long Period, long Offset)
+    record Bus(long Period, long Offset)
     {
         public Bus Merge(Bus other)
         {

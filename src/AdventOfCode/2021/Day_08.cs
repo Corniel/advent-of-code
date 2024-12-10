@@ -23,7 +23,7 @@ public class Day_08
 
     private readonly int[] segments = new int[7];
 
-    private int Decode(string[] line)
+    int Decode(string[] line)
     {
         var sum = 0; var num1 = 127; var num7 = 127; var len5 = 127; var len6 = 127;
 
@@ -52,17 +52,17 @@ public class Day_08
         return sum;
     }
 
-    private int Value(int length, int display)
+    int Value(int length, int display)
         => length switch { 2 => 1, 3 => 7, 4 => 4, 7 => 8, 5 => Match5(display), _ => Match6(display) };
 
-    private int Match6(int display)
+    int Match6(int display)
     {
         if ((segments[3] & display) == 0) return 0;
         else if ((segments[4] & display) == 0) return 6;
         else return 9;
     }
 
-    private int Match5(int display)
+    int Match5(int display)
     {
         if ((segments[1] & display) == 0) return 2;
         else if ((segments[4] & display) == 0) return 5;

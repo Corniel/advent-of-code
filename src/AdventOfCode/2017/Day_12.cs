@@ -42,7 +42,7 @@ public class Day_12
     {
         public readonly List<Node> Children = [];
         public HashSet<int> SelveAndAncestors() => Visit([]);
-        private HashSet<int> Visit(HashSet<int> visted)
+        HashSet<int> Visit(HashSet<int> visted)
         {
             if (visted.Add(Id)) { foreach (var child in Children) child.Visit(visted); }
             return visted;

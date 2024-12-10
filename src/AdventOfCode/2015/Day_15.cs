@@ -15,7 +15,7 @@ public class Day_15
 
     static int Total(Lines lines, Func<int[], Ingredient[], bool> where)
     {
-        var ingredients = lines.As(Ingredient.Parse).ToArray();
+        var ingredients = lines.ToArray(Ingredient.Parse);
         var selectors = new Func<Ingredient, int>[] { i => i.Capacity, i => i.Durability, i => i.Flavor, i => i.Texture };
         return new Distribution(ingredients.Length)
             .Where(d => where(d, ingredients))
@@ -26,16 +26,12 @@ public class Day_15
 
     record Ingredient(int Capacity, int Durability, int Flavor, int Texture, int Calories)
     {
-        public static Ingredient Parse(string line)
-        {
-            var p = line.Int32s().ToArray();
-            return new(p[0], p[1], p[2], p[3], p[4]);
-        }
+        public static Ingredient Parse(string line) => Ctor.New<Ingredient>(line.Int32s());
     }
 
     struct Distribution(int elements) : Iterator<int[]>
     {
-        private int Number = -1;
+        int Number = -1;
 
         public int[] Current { get; private set; } = new int[elements];
 

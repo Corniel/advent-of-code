@@ -61,7 +61,7 @@ public class Day_19
     {
         public static Blueprint Parse(string line)
         {
-            var n = line.Int32s().Select(n => (short)n).ToArray();
+            short[] n = [..line.Int32s().Select(n => (short)n)];
             return new Blueprint(n[0],
                 Ore: new Bot(new(Ore: n[1]), new(Ore: 1)),
                 Cly: new Bot(new(Ore: n[2]), new(Cly: 1)),

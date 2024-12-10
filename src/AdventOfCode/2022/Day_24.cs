@@ -89,13 +89,13 @@ public class Day_24
             return Pos;
         }
 
-        public static Blizz[] Parse(CharPixels pxs) => pxs.Select(px => px.Value switch
+        public static Blizz[] Parse(CharPixels pxs) => [..pxs.Select(px => px.Value switch
         {
             '^' => new Blizz(px.Key, Vector.N),
             'v' => new Blizz(px.Key, Vector.S),
             '>' => new Blizz(px.Key, Vector.E),
             '<' => new Blizz(px.Key, Vector.W),
             _ => null,
-        }).OfType<Blizz>().ToArray();
+        }).OfType<Blizz>()];
     }
 }

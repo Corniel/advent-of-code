@@ -4,20 +4,13 @@ namespace Advent_of_Code_2019;
 public class Day_04
 {
     [Puzzle(answer: 1178, "235741-706948", O.ms)]
-    public int part_one(string str) => CountValidPasswords(str, PasswordForOne);
+    public int part_one(Ints numbers) => CountValidPasswords(numbers, PasswordForOne);
 
     [Puzzle(answer: 763, "235741-706948", O.ms)]
-    public int part_two(string str) => CountValidPasswords(str, PasswordForTwo);
+    public int part_two(Ints numbers) => CountValidPasswords(numbers, PasswordForTwo);
 
-    static int CountValidPasswords(string str, Func<int, bool> validator)
-    {
-        var boundries = str.Split('-', StringSplitOptions.TrimEntries)
-            .Select(int.Parse)
-            .ToArray();
-
-        return Range(boundries[0], 1 + boundries[1] - boundries[0])
-            .Count(validator);
-    }
+    static int CountValidPasswords(Ints boundries, Func<int, bool> validator)
+        => Range(boundries[0], 1 - boundries[1] - boundries[0]).Count(validator);
 
     static bool PasswordForOne(int password)
     {

@@ -6,14 +6,14 @@ public class Day_17
     [Puzzle(answer: 1304, O.ms10)]
     public int part_one(Ints numbers)
     {
-        var ns = numbers.OrderDescending().ToArray();
+        int[] ns = [..numbers.OrderDescending()];
         return Range(1, (1 << ns.Length) - 2).Count(bits => Fits((uint)bits, ns));
     }
 
     [Puzzle(answer: 18, O.ms10)]
     public int part_two(Ints numbers)
     {
-        var ns = numbers.OrderDescending().ToArray();
+        int[] ns = [.. numbers.OrderDescending()];
         var min = int.MaxValue;
         var count = 0;
         foreach (var containers in Range(1, (1 << ns.Length) - 2)

@@ -21,7 +21,7 @@ public class Day_10
 
     static (int Seconds, Grid<bool> Grid) Simulate(Lines lines)
     {
-        var dots = lines.As(Dot.Parse).ToArray();
+        var dots = lines.ToArray(Dot.Parse);
         for (var s = 1; s < int.MaxValue; s++)
         {
             foreach (var dot in dots) dot.Position += dot.Velocity;
@@ -47,8 +47,8 @@ public class Day_10
 
         public static Dot Parse(string line)
         {
-            var numbers = line.Int32s().ToArray();
-            return new(new Vector(numbers[2], numbers[3])) { Position = new(numbers[0], numbers[1]) };
+            int[] ns = [.. line.Int32s()];
+            return new(new Vector(ns[2], ns[3])) { Position = new(ns[0], ns[1]) };
         }
     }
 }

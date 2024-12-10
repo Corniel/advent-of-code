@@ -16,7 +16,7 @@ public class Day_09
     [Puzzle(answer: 11797310782, O.μs10)]
     public long part_two(string str) => Unzip(str, true);
 
-    private static long Unzip(string str, bool recusive)
+    static long Unzip(string str, bool recusive)
     {
         var len = 0L; var buf = 0;
 

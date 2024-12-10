@@ -69,7 +69,7 @@ public class Day_14
         }
         return bits;
     }
-    private record Inputs(ulong Address, ulong Value)
+    record Inputs(ulong Address, ulong Value)
     {
         public static Inputs Parse(string line)
         {

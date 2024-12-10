@@ -12,7 +12,7 @@ public class Day_03
     [Puzzle(answer: 84495585, O.ms10)]
     public int part_two(CharGrid map) => Scan(map, 2);
 
-    private static int Scan(CharGrid map, int part)
+    static int Scan(CharGrid map, int part)
     {
         map.SetNeighbors(Neighbors.Grid, CompassPoints.All);
 

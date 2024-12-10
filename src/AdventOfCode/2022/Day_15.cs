@@ -11,7 +11,7 @@ public class Day_15
     [Puzzle(answer: 13543690671045, null, 4_000_000, O.s)]
     public long part_two(Lines lines, int max)
     {
-        var instr = lines.As(Instruction.Parse).ToArray();
+        var instr = lines.ToArray(Instruction.Parse);
 
         for (var y = 0; y <= max; y++)
         {
@@ -33,7 +33,7 @@ public class Day_15
 
         public static Instruction Parse(string line)
         {
-            var ns = line.Int32s().ToArray();
+            int[] ns = [..line.Int32s()];
             var s = new Point(ns[0], ns[1]);
             var b = new Point(ns[2], ns[3]);
             return new(s, b, s.ManhattanDistance(b));

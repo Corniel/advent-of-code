@@ -8,17 +8,17 @@ public class Day_03
 
     [Puzzle(answer: 1921, O.μs100)]
     public int part_two(Ints numbers) => 0
-        + Count(numbers.WithStep(3).ToArray())
-        + Count(numbers[1..].WithStep(3).ToArray())
-        + Count(numbers[2..].WithStep(3).ToArray());
+        + Count([..numbers.WithStep(3)])
+        + Count([..numbers[1..].WithStep(3)])
+        + Count([..numbers[2..].WithStep(3)]);
 
     static int Count(int[] numbers) => numbers.ChunkBy(3).Sum(n => Triangle.Is(n));
 
     static class Triangle
     {
-        public static int Is(IEnumerable<int> numbers)
+        public static int Is(IEnumerable<int> ns)
         {
-            var triangle = numbers.Order().ToArray();
+            int[] triangle = [..ns.Order()];
             return triangle[2] < (triangle[1] + triangle[0]) ? 1 : 0;
         }
         public static int Parse(string line) => Is(line.Int32s());

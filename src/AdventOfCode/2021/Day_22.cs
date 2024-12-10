@@ -37,8 +37,8 @@ public class Day_22
     {
         public static Instruction Parse(string line)
         {
-            var numbers = line.Int32s().ToArray();
-            return new(line.StartsWith("on"), new(numbers[0], numbers[1], numbers[2], numbers[3], numbers[4], numbers[5]));
+            int[] ns = [.. line.Int32s()];
+            return new(line.StartsWith("on"), new(ns[0], ns[1], ns[2], ns[3], ns[4], ns[5]));
         }
     }
 

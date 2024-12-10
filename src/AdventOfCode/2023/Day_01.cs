@@ -16,7 +16,7 @@ public class Day_01
 
     int Number(string line, bool words)
     {
-        var n = line.Select(Digit).WithValue().ToArray();
+        int[] n = [..line.Select(Digit).WithValue()];
         return n[0] * 10 + n[^1];
 
         int? Digit(char ch, int i)

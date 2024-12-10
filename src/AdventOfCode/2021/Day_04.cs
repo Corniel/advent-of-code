@@ -46,7 +46,9 @@ public class Day_04
             return bingos.FirstOrDefault();
         }
 
-        public static Game Parse(GroupedLines groups) => new(groups.Skip(1).Select(Card.Parse).ToList(), groups[0][0].Int32s().ToArray());
+        public static Game Parse(GroupedLines groups) => new(
+            [.. groups.Skip(1).Select(Card.Parse)],
+            [.. groups[0][0].Int32s()]);
     }
 
     public sealed record Card(int[] Numbers)
@@ -59,8 +61,8 @@ public class Day_04
             var index = Numbers.IndexOf(number);
             if (index != -1) Numbers[index] = 0;
         }
-        private bool Row(int r) => Numbers.Skip(r * 5).Take(5).All(n => n == 0);
-        private bool Col(int c) => Numbers.Skip(c).WithStep(5).Take(5).All(n => n == 0);
-        public static Card Parse(string[] lines) => new(string.Join(" ", lines).Int32s().ToArray());
+        bool Row(int r) => Numbers.Skip(r * 5).Take(5).All(n => n == 0);
+        bool Col(int c) => Numbers.Skip(c).WithStep(5).Take(5).All(n => n == 0);
+        public static Card Parse(string[] lines) => new([.. string.Join(" ", lines).Int32s()]);
     }
 }

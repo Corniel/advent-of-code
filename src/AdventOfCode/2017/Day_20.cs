@@ -6,7 +6,7 @@ public class Day_20
     [Puzzle(answer: 344, O.μs100)]
     public int part_one(Lines lines)
     {
-        var data = lines.As(Data.Parse).ToArray();
+        var data = lines.ToArray(Data.Parse);
         var best = 0;
         for (var test = 1; test < data.Length; test++)
         {
@@ -57,7 +57,7 @@ public class Day_20
 
         public static Data Parse(string line)
         {
-            var ns = line.Int32s().ToArray();
+            int[] ns = [..line.Int32s()];
             return new(Ctor.New<Point3D>(ns[..3]), Ctor.New<Vector3D>(ns[3..6]), Ctor.New<Vector3D>(ns[6..]));
         }
     }

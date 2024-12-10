@@ -1,5 +1,3 @@
-using System.Security.Cryptography;
-
 namespace Advent_of_Code_2015;
 
 [Category(Category.Cryptography)]
@@ -13,16 +11,12 @@ public class Day_04
     [Puzzle(answer: 9958218, "iwrupvqb", O.s)]
     public int part_two(string str) => Run(str, SixZeros);
 
-#pragma warning disable NUnit1032 // An IDisposable field/property should be Disposed in a TearDown method
-    static readonly HashAlgorithm Hash = MD5.Create();
-#pragma warning restore NUnit1032 // An IDisposable field/property should be Disposed in a TearDown method
-
     static int Run(string str, Func<byte[], bool> condition)
     {
         for (var n = 0; n < int.MaxValue; n++)
         {
             var bytes = Encoding.UTF8.GetBytes(str + n.ToString());
-            var hashed = Hash.ComputeHash(bytes);
+            var hashed = Hashing.MD5.ComputeHash(bytes);
             if (condition(hashed))
             {
                 return n;

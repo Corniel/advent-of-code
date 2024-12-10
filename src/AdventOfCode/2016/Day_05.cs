@@ -1,12 +1,8 @@
-using System.Security.Cryptography;
-
 namespace Advent_of_Code_2016;
 
 [Category(Category.Cryptography)]
 public class Day_05
 {
-    static readonly MD5 md5 = MD5.Create();
-
     [Example(answer: "18f47a30", "abc")]
     [Puzzle(answer: "d4cd2ee1", "ugkcyxxp", O.s)]
     public string part_one(string str) => new([..Hash(str).Take(8).Select(hash => "0123456789abcdef"[hash[0]])]);
@@ -29,7 +25,7 @@ public class Day_05
 
     static IEnumerable<byte[]> Hash(string str)
         => Range(0, int.MaxValue)
-            .Select(index => md5.ComputeHash(Encoding.ASCII.GetBytes($"{str}{index}")))
+            .Select(index => Hashing.MD5.ComputeHash(Encoding.ASCII.GetBytes($"{str}{index}")))
             .Where(bytes => bytes[0] == 0 && bytes[1] == 0 && bytes[2] < 16)
             .Select(bytes => bytes.AsSpan().Slice(2, 2).ToArray());
 }

@@ -98,7 +98,7 @@ public class Reports
 
         var distribution = ItemCounter.New(days.Select(p => (p.LoC * 0.1).Ceil()));
         var factor = 40d / distribution.Max().Count;
-        var max = distribution.Keys.Max();
+        var max = distribution.Items.Max();
 
         var sb = new StringBuilder();
 

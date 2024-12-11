@@ -1,6 +1,6 @@
 namespace Advent_of_Code_2024;
 
-[Category(Category.Computation)]
+[Category(Category.Computation, Category.Sorting)]
 public class Day_05
 {
     [Example(answer: 143, Example._1)]

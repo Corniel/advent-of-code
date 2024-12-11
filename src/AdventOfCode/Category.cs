@@ -22,6 +22,7 @@ public enum Category
     Permutations,
     SequenceProgression,
     Simulation,
+    Sorting,
     VectorAlgebra,
     _2D,
     _3D,

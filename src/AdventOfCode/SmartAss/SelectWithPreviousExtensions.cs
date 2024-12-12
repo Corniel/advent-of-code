@@ -71,12 +71,11 @@ public struct CurrentAndPreviouses : IEnumerator<string>, IEnumerable<string>
 public struct CurrentAndPreviouses<T> : IEnumerator<CurrentAndPrevious<T>>, IEnumerable<CurrentAndPrevious<T>>
 {
     private readonly IEnumerator<T> Iterator;
-    private T Previous;
 
     public CurrentAndPreviouses(IEnumerable<T> enumerable)
     {
         Iterator = enumerable.GetEnumerator();
-        Previous = Iterator.MoveNext() ? Iterator.Current : default;
+        Current = Iterator.MoveNext() ? new CurrentAndPrevious<T>(default, Iterator.Current) : default;
     }
 
     public CurrentAndPrevious<T> Current { get; private set; }
@@ -87,8 +86,7 @@ public struct CurrentAndPreviouses<T> : IEnumerator<CurrentAndPrevious<T>>, IEnu
     {
         if (Iterator.MoveNext())
         {
-            Current = new(Previous, Iterator.Current);
-            Previous = Iterator.Current;
+            Current = new(Current.Current, Iterator.Current);
             return true;
         }
         else return false;

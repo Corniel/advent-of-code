@@ -17,7 +17,7 @@ public class Day_09
         throw new NoAnswer();
     }
 
-    [Puzzle(answer: 20532569, O.μs)]
+    [Puzzle(answer: 20532569, O.ns100)]
     public int part_two(Ints numbers)
     {
         var sum = 144381670;

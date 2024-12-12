@@ -4,7 +4,7 @@ namespace Advent_of_Code_2024;
 public class Day_04
 {
     [Example(answer: 18, Example._1)]
-    [Puzzle(answer: 2500, O.μs10)]
+    [Puzzle(answer: 2500, O.ms10)]
     public int part_one(CharGrid map) => map.Positions()
         .SelectMany(p => CompassPoints.All.Select(d => new Cursor(p, d)))
         .Count(c => Str(c, map) == "XMAS");

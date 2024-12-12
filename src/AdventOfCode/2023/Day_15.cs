@@ -5,7 +5,7 @@ public class Day_15
 {
     [Example(answer: 52, "HASH")]
     [Example(answer: 1320, "rn=1,cm-,qp=3,cm=2,qp-,pc=4,ot=9,ab=5,pc-,pc=6,ot=7")]
-    [Puzzle(answer: 511215, O.μs100)]
+    [Puzzle(answer: 511215, O.μs10)]
     public int part_one(string str) => str.CommaSeparated(Hash).Sum();
 
     [Example(answer: 145, "rn=1,cm-,qp=3,cm=2,qp-,pc=4,ot=9,ab=5,pc-,pc=6,ot=7")]

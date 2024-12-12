@@ -4,7 +4,7 @@ namespace Advent_of_Code_2021;
 public class Day_11
 {
     [Example(answer: 1656, Example._1)]
-    [Puzzle(answer: 1691, O.ms)]
+    [Puzzle(answer: 1691, O.μs100)]
     public int part_one(CharPixels chars) => Simulate(chars).Take(100).Sum();
 
     [Example(answer: 195, Example._1)]

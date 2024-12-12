@@ -8,7 +8,7 @@ public class Day_05
     public long part_one(GroupedLines groups) => Process(groups, One);
 
     [Example(answer: 46, Example._1)]
-    [Puzzle(answer: 6082852L, O.μs100)]
+    [Puzzle(answer: 6082852L, O.ms)]
     public long part_two(GroupedLines groups) => Process(groups, Two);
 
     static IEnumerable<Int64Range> One(long[] ns) => ns.Select(n => new Int64Range(n));

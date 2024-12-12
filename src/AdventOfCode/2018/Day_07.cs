@@ -4,7 +4,7 @@ namespace Advent_of_Code_2018;
 public class Day_07
 {
     [Example(answer: "CABDFE", Example._1)]
-    [Puzzle(answer: "ACHOQRXSEKUGMYIWDZLNBFTJVP", O.μs10)]
+    [Puzzle(answer: "ACHOQRXSEKUGMYIWDZLNBFTJVP", O.μs)]
     public char[] part_one(Lines lines)
     {
         var read = Read(lines); var rules = read.rules; var chs = read.chs;

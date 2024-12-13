@@ -3,8 +3,8 @@ namespace Advent_of_Code_2024;
 [Category(Category.SequenceProgression)]
 public class Day_11
 {
-    [Puzzle(answer: 193269, "475449 2599064 213 0 2 65 5755 51149", O.μs100)]
-    public int part_one(Longs numbers) => (int)Blink(numbers, 25);
+    [Puzzle(answer: 193269L, "475449 2599064 213 0 2 65 5755 51149", O.μs100)]
+    public long part_one(Longs numbers) => Blink(numbers, 25);
 
     [Puzzle(answer: 228449040027793, "475449 2599064 213 0 2 65 5755 51149", O.ms)]
     public long part_two(Longs numbers) => Blink(numbers, 75);

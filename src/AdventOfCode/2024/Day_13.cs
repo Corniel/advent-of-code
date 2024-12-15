@@ -39,7 +39,6 @@ public class Dyα13
 
         return x == B * xb + A * xa 
             && y == B * yb + A * ya
-            ? A * 3 + B
-            : 0;
+            ? A * 3 + B: 0;
     }
 }

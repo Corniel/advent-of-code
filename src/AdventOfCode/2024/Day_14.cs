@@ -52,16 +52,6 @@ public partial class Day_14
         
         for (var step = 0; step < 10000; step++)
         {
-            if (step == 6771)
-            {
-                var temp = new Grid<bool>(wide, tall);
-                foreach (var p in Points(bots, step, wide, tall))
-                {
-                    temp[p] = true;
-                }
-                temp.Console();
-            }
-
             map.Clear();
 
             foreach (var p in Points(bots, step, wide, tall)) map[p] = true;

@@ -15,13 +15,13 @@ public class Day_16
 
         public bool Matches1(Sue aunt) => this.All(kvp => aunt[kvp.Key] == kvp.Value);
         public bool Matches2(Sue aunt) => this.All(kvp => Matches2(kvp, aunt));
-        static bool Matches2(KeyValuePair<Compount, int> kvp, Sue aunt)
-            => kvp.Key switch
-            {
-                Compount.cats or Compount.trees => kvp.Value > aunt[kvp.Key],
-                Compount.pomeranians or Compount.goldfish => kvp.Value < aunt[kvp.Key],
-                _ => kvp.Value == aunt[kvp.Key],
-            };
+        static bool Matches2(KeyValuePair<Compount, int> kvp, Sue aunt) => kvp.Key switch
+        {
+            Compount.cats or Compount.trees => kvp.Value > aunt[kvp.Key],
+            Compount.pomeranians or Compount.goldfish => kvp.Value < aunt[kvp.Key],
+            _ => kvp.Value == aunt[kvp.Key],
+        };
+
         public static Sue Parse(string line)
         {
             line = line[4..];

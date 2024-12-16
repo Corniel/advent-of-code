@@ -24,7 +24,7 @@ public class Day_14
             }
         }
         var counter = ItemCounter.New(lines[0][^1]);
-        foreach (var kvp in pairs) { counter[kvp.Item[0]] += kvp.Count; }
+        foreach (var (word, count) in pairs) { counter[word[0]] += count; }
         return counter.Counts.Max() - counter.Counts.Min();
     }
 

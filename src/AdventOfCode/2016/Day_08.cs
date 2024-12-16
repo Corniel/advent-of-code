@@ -11,7 +11,7 @@ public class Day_08
 
     static string Ascii(Dictionary<Point, bool> grid)
     {
-        var max = grid.Where(k => k.Value).Select(kvp => kvp.Key).Max();
+        var max = grid.Where(k => k.Value).Max(kvp => kvp.Key);
         var canvas = new Grid<bool>(max);
         foreach (var p in grid) canvas[p.Key] = p.Value;
         return canvas.AsciiText();

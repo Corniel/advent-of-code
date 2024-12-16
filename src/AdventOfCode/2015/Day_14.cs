@@ -25,10 +25,8 @@ Dancer can fly 16 km/s for 11 seconds, but then must rest for 162 seconds.")]
                 distances[reindeer] += reindeer.Speed;
             }
             var max = distances.Values.Max();
-            foreach (var kvp in distances.Where(kvp => kvp.Value == max))
-            {
-                points[kvp.Key]++;
-            }
+            
+            foreach (var (key, _) in distances.Where(kvp => kvp.Value == max)) points[key]++;
         }
         return points.Values.Max();
     }

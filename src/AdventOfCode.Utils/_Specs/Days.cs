@@ -160,11 +160,11 @@ public class Reports
         sb.AppendLine("|   Day   |   Solved |");
         sb.AppendLine("|:-------:|---------:|");
 
-        foreach (var kvp in solutions)
+        foreach (var (advent, date) in solutions)
         {
-            if (kvp.Key.Day == 25 ? kvp.Key.Part == 1 : kvp.Key.Part == 2)
+            if (advent.Day == 25 ? advent.Part == 1 : advent.Part == 2)
             {
-                var d = kvp.Value - kvp.Key.AvailableFrom;
+                var d = date - advent.AvailableFrom;
 
                 var display = d.TotalHours >= 1 ? $"{d.TotalHours:0}:{d.Minutes:00}:{d.Seconds:00}" : $"{d.Minutes:0}:{d.Seconds:00}";
 
@@ -176,7 +176,7 @@ public class Reports
                 {
                     display = $"{d.TotalDays.Ceil()} days";
                 }
-                sb.AppendLine($"| {Link(kvp.Key.YearDay)} | {display,8} |");
+                sb.AppendLine($"| {Link(advent.YearDay)} | {display,8} |");
             }
         }
 

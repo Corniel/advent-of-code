@@ -16,7 +16,7 @@ public class Day_05
         .Where(ns => Correct(ns, sort) == correct)
         .Sum(ns => sum(ns, sort));
 
-    static int Two(int[] ns, Sort sorter) { Array.Sort(ns, sorter); return ns[ns.Length / 2]; }
+    static int Two(int[] ns, Sort sort) { Array.Sort(ns, sort); return ns[ns.Length / 2]; }
 
     static bool Correct(int[] ns, Sort sort) => ns.RoundRobin().All(p => sort.Compare(p.First, p.Second) != +1);
 

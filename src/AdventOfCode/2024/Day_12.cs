@@ -33,10 +33,10 @@ public class Day_12
         var map = new CharGrid(chars.Cols * f + 2, chars.Rows * f + 2);
         map.SetNeighbors(Neighbors.Grid);
 
-        foreach (var px in chars)
+        foreach (var (px, ch) in chars)
             for (var x = 1; x <= f; x++)
                 for (var y = 1; y <= f; y++)
-                    map[px.Key.X * f + x, px.Key.Y * f + y] = px.Value;
+                    map[px.X * f + x, px.Y * f + y] = ch;
         return map;
     }
 

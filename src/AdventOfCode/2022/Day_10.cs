@@ -8,12 +8,9 @@ public class Day_10
     public int part_one(Lines lines) => Data.Parse(lines).Skip(19).WithStep(40).Select(x => x.Product).Sum();
 
     [Puzzle(answer: "BRJLFULP", O.μs)]
-    public string part_two(Lines lines)
-    {
-        var grid = new Grid<bool>(40, 6);
-        grid.Set(true, Data.Parse(lines).Where(d => d.Draw).Select(s => s.Point));
-        return grid.AsciiText();
-    }
+    public string part_two(Lines lines) => new Grid<bool>(40, 6)
+        .Set(true, Data.Parse(lines).Where(d => d.Draw).Select(s => s.Point))
+        .AsciiText();
 
     record Data(int Cycle, int Strength)
     {

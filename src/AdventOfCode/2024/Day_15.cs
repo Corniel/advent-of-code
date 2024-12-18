@@ -55,7 +55,7 @@ public class Day_15
         foreach (var (n, c) in q.DequeueAll().Select(p => (p, map[p])))
         {
             // We can not move, return position before moving.
-            if (c == '#') return pos - dir;
+            if (c is '#') return pos - dir;
 
             move.Push(n);
 
@@ -80,20 +80,20 @@ public class Day_15
     static CharGrid Two(CharPixels pixels)
     {
         var map = new CharGrid(pixels.Cols * 2, pixels.Rows);
-        foreach (var (p, c) in pixels)
+        foreach (var ((x, y), c) in pixels)
         {
             if (c is 'O')
             {
-                map[p.X * 2 + 0, p.Y] = '[';
-                map[p.X * 2 + 1, p.Y] = ']';
+                map[x * 2 + 0, y] = '[';
+                map[x * 2 + 1, y] = ']';
             }
             else
             {
-                map[p.X * 2 + 0, p.Y] = c;
-                map[p.X * 2 + 1, p.Y] = c;
+                map[x * 2 + 0, y] = c;
+                map[x * 2 + 1, y] = c;
             }
         }
-        map[map.Position(p => p == '@') + Vector.E] = '.';
+        map[map.Position(p => p is '@') + Vector.E] = '.';
         return map;
     }
 

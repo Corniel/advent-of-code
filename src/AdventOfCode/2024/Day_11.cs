@@ -15,10 +15,8 @@ public class Day_11
 
         for (var blink = 0; blink < blinks; blink++)
         {
-            foreach (var ic in curr)
+            foreach (var (n, count) in curr)
             {
-                var n = ic.Item; var count = ic.Count;
-
                 if (n == 0) next[1] += count;
                 else
                 {

@@ -203,7 +203,7 @@
 | [2024-02](src/AdventOfCode/2024/Day_02.cs) |  13 |    0.57 kb |
 | [2024-03](src/AdventOfCode/2024/Day_03.cs) |  11 |    0.42 kb |
 | [2024-04](src/AdventOfCode/2024/Day_04.cs) |  11 |    0.59 kb |
-| [2024-05](src/AdventOfCode/2024/Day_05.cs) |  11 |    0.86 kb |
+| [2024-05](src/AdventOfCode/2024/Day_05.cs) |  11 |    0.85 kb |
 | [2024-06](src/AdventOfCode/2024/Day_06.cs) |  20 |    0.72 kb |
 | [2024-07](src/AdventOfCode/2024/Day_07.cs) |  27 |    0.84 kb |
 | [2024-08](src/AdventOfCode/2024/Day_08.cs) |   9 |    0.61 kb |

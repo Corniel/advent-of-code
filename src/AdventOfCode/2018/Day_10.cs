@@ -34,8 +34,7 @@ public class Day_10
                 var min = new Vector(dots.Min(d => d.Position.X), min_y);
                 var max = new Vector(dots.Max(d => d.Position.X), max_y);
                 var grid = new Grid<bool>(cols: (max - min).X + 1, rows: (max - min).Y + 1);
-                grid.Set(true, dots.Select(dot => dot.Position - min));
-                return (s, grid);
+                return (s, grid.Set(true, dots.Select(dot => dot.Position - min)));
             }
         }
         throw new InfiniteLoop();

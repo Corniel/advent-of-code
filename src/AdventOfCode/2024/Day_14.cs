@@ -92,5 +92,5 @@ public partial class Day_14
         return qs;
     }
 
-    static IEnumerable<Cursor> Bots(Ints ns) => ns.ChunkBy(4).Select(n => new Cursor(new(n[0], n[1]), new Vector(n[2], n[3])));
+    static IEnumerable<Cursor> Bots(Ints ns) => ns.ChunkBy(4).Select(n => new Cursor((n[0], n[1]), (n[2], n[3])));
 }

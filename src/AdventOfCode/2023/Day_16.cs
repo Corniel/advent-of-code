@@ -15,13 +15,13 @@ public class Day_16
     {
         for (var col = 0; col < map.Cols; col++)
         {
-            yield return new(new(col, 0), Vector.S);
-            yield return new(new(col, map.Rows - 1), Vector.N);
+            yield return new((col, 0), Vector.S);
+            yield return new((col, map.Rows - 1), Vector.N);
         }
         for (var row = 0; row < map.Rows; row++)
         {
-            yield return new(new(0, row), Vector.E);
-            yield return new(new(map.Cols - 1, row), Vector.W);
+            yield return new((0, row), Vector.E);
+            yield return new((map.Cols - 1, row), Vector.W);
         }
     }
 

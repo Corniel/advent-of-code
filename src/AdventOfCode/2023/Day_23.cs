@@ -11,7 +11,7 @@ public class Day_23
     [Puzzle(answer: 6298, O.s)]
     public int part_two(CharGrid map) => Navigate(map, Unrestricted);
 
-    bool Restricted(Point c, Point n, CharGrid map) => map[n] switch
+    static bool Restricted(Point c, Point n, CharGrid map) => map[n] switch
     {
         '#' => false,
         '^' => n - c == Vector.N,
@@ -58,7 +58,7 @@ public class Day_23
 
     static IEnumerable<Connection> Connect(Node node, CharGrid map, Node[] graph, Func<Point, Point, CharGrid, bool> access)
     {
-        var queue = new Queue<Point>().EnqueueRange([node.Point]);
+        var queue = new Queue<Point>().EnqueueRange(node.Point);
         var done = new HashSet<Point>() { node.Point };
         var distance = 0;
 

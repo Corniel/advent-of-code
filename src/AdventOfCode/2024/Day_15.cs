@@ -18,7 +18,7 @@ public class Day_15
         var pos = map.Position(p => p == '@');
         map[pos] = '.';
 
-        foreach (var dir in groups[1].SelectMany(s => s.Select(Parse)))
+        foreach (var dir in groups[1].SelectMany(s => s.Select(Parse.Dir)))
         {
             pos = (pos + dir) switch
             {
@@ -96,6 +96,4 @@ public class Day_15
         map[map.Position(p => p is '@') + Vector.E] = '.';
         return map;
     }
-
-    static Vector Parse(char c) => c switch { '^' => Vector.N, '>' => Vector.E, 'v' => Vector.S, _ => Vector.W };
 }

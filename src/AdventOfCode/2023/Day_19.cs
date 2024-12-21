@@ -16,9 +16,9 @@ public class Day_19
         return wfs["in"].Permutations(new(Ranges.All, Ranges.All, Ranges.All, Ranges.All), wfs);
     }
 
-    Dictionary<string, Workflow> Workflows(GroupedLines groups) => groups[0].Select(Workflow.Parse).ToDictionary(w => w.Name, w => w);
+    static Dictionary<string, Workflow> Workflows(GroupedLines groups) => groups[0].Select(Workflow.Parse).ToDictionary(w => w.Name, w => w);
 
-    int Sum(string name, Dictionary<string, Workflow> wfs, Ranking rank)
+    static int Sum(string name, Dictionary<string, Workflow> wfs, Ranking rank)
     {
         while (name != "R" && name != "A") name = wfs[name].Conditions.First(c => c.Run(rank)).Next;
         return name == "A" ? rank.Sum : 0;

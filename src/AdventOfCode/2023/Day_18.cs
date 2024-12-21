@@ -62,7 +62,7 @@ public class Day_18
 
         public static Dig Two(string s) => new(V(s[^2]), Convert.ToInt32(s[^7..^2], 16));
 
-        static Vector V(char v) => v switch { '0' or 'R' => Vector.E, '1' or 'D' => Vector.S, '2' or 'L' => Vector.W, '3' or 'U' => Vector.N, _ => Vector.O };
+        static Vector V(char v) => v switch { '0' => Vector.E, '1' => Vector.S, '2' => Vector.W, '3' => Vector.N, _ => Parse.Dir(v) };
     };
 
     record struct Line(int Y, Int64Range X)

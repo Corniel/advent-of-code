@@ -56,10 +56,10 @@ public class Day_21
             [new(Center(map), p)] = odd,
             [new(Center(map), p - 1)] = even,
 
-            [new(new Point(mid, 000), p - 1)] = 1,
-            [new(new Point(max, mid), p - 1)] = 1,
-            [new(new Point(mid, max), p - 1)] = 1,
-            [new(new Point(000, mid), p - 1)] = 1,
+            [new((mid, 000), p - 1)] = 1,
+            [new((max, mid), p - 1)] = 1,
+            [new((mid, max), p - 1)] = 1,
+            [new((000, mid), p - 1)] = 1,
 
             [new(ne, p / 2 - 1)] = ps,
             [new(nw, p / 2 - 1)] = ps,
@@ -83,7 +83,7 @@ public class Day_21
     static int Plots(Point start, CharGrid map, int steps)
     {
         if (map.Neighbors is null) map.SetNeighbors(Neighbors.Grid);
-        var queue = new Queue<Point>().EnqueueRange([start]);
+        var queue = new Queue<Point>().EnqueueRange(start);
         var done = new HashSet<Point>() { start };
         var step = 0;
         var phase = steps % 2;

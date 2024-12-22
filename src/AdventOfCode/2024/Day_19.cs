@@ -1,37 +1,77 @@
 namespace Advent_of_Code_2024;
 
 [Category(Category.Computation)]
-public class Day_19
+public sealed class Day_19
 {
     [Example(answer: 6, Example._1)]
-    [Puzzle(answer: 304L, O.ms)]
-    public long part_one(Lines lines) => Count(lines, (ws, ls) => ws.Count(w => Count(w, ls) != 0));
+    [Puzzle(answer: 304L, O.μs100)]
+    public long part_one(Lines lines) => Count(lines, c => c == 0 ? 0L : 1L);
 
     [Example(answer: 16, Example._1)]
-    [Puzzle(answer: 705756472327497, O.ms)]
-    public long part_two(Lines lines) => Count(lines, (ws, ls) => ws.Sum(w => Count(w, ls)));
+    [Puzzle(answer: 705756472327497, O.μs100)]
+    public long part_two(Lines lines) => Count(lines, c => c);
 
-    static long Count(Lines lines, Func<Slice<string>, Dictionary<char, string[]>, long> count)
+    /// <remarks>
+    /// This solution has be altered afterwards to increase performance (a lot).
+    /// 
+    /// Together with https://github.com/renzo-baasdam we reduced the chars to
+    /// match by creating a search tree, a (solution specific) index creation.
+    /// 
+    /// The durations dropped from the solution that got me the right answer
+    /// (22 ms, in steps back to 340 μs). The downside is that the LoC went
+    /// from 13 to 31.
+    /// </remarks>
+    static long Count(Lines lines, Func<long, long> sum)
     {
-        var tokens = lines[0].CommaSeparated().GroupBy(r => r[0]).ToDictionary(r => r.Key, r => r.ToArray());
-        return count(lines[1..], tokens);
+        var root = Node.Root(lines[0]);
+        return lines[1..].Sum(l => sum(Count(l, root)));
     }
 
-    static long Count(ReadOnlySpan<char> word, Dictionary<char, string[]> tokens)
+    private static long Count(string line, Node root)
     {
-        var counts = new long[word.Length + 1]; counts[0] = 1;
+        var cnts = new long[line.Length + 1]; cnts[0] = 1;
 
-        for (var i = 0; i < word.Length; i++)
+        for (var i = 0; i < line.Length; i++)
         {
-            if (counts[i] != 0 && tokens.TryGetValue(word[i], out var startsWith))
+            var node = root; var n = i;
+            
+            while (n < line.Length && node.Next[Index[line[n++]]] is { } next)
             {
-                var cnt = counts[i]; var sub = word[i..];
-                foreach (var token in startsWith)
-                {
-                    if (sub.StartsWith(token)) counts[i + token.Length] += cnt;
-                }
+                if (next.End) cnts[n] += cnts[i];
+                node = next;
             }
         }
-        return counts[^1];
+        return cnts[^1];
+    }
+
+    sealed class Node
+    {
+        public bool End { get; set; }
+        public Node[] Next { get; } = new Node[5];
+        public static Node Root(string line)
+        {
+            var root = new Node();
+
+            foreach (var token in line.CommaSeparated())
+            {
+                var node = root;
+                foreach (var c in token)
+                {
+                    var i = Index[c];
+                    node = node.Next[i] ?? (node.Next[i] = new());
+                }
+                node.End = true;
+            }
+            return root;
+        }
+    }
+
+    static readonly int[] Index = Init();
+
+    private static int[] Init()
+    {
+        var ix = new int['x'];
+        ix['g'] = 1; ix['r'] = 2; ix['u'] = 3; ix['w'] = 4;
+        return ix;
     }
 }

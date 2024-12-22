@@ -6,13 +6,13 @@ public class Day_03
     [Example(answer: 7, Example._1)]
     [Puzzle(answer: 220, O.μs10)]
     public int part_one(Lines lines)
-        => CountTrees([..Row.Parse(lines)], new(3, 1));
+        => CountTrees([..Row.Parse(lines)], (3, 1));
 
     [Puzzle(answer: 2138320800, O.μs10)]
     public int part_two(Lines lines)
     {
         Row[] rows = [..Row.Parse(lines)];
-        return new Vector[] { new(1, 1), new(3, 1), new(5, 1), new(7, 1), new(1, 2) }.Select(slope => CountTrees(rows, slope)).Product();
+        return new Vector[] { (1, 1), (3, 1), (5, 1), (7, 1), (1, 2) }.Select(slope => CountTrees(rows, slope)).Product();
     }
 
     static int CountTrees(Row[] rows, Vector slope)

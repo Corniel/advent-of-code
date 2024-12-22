@@ -21,9 +21,9 @@ public class Day_23
         _ => true
     };
 
-    static bool Unrestricted(Point curr, Point next, CharGrid map) => map[next] != '#';
+    static bool Unrestricted(Point curr, Point next, CharGrid map) => map[next] is not '#';
 
-    int Navigate(CharGrid map, Func<Point, Point, CharGrid, bool> access)
+    static int Navigate(CharGrid map, Func<Point, Point, CharGrid, bool> access)
     {
         var graph = Graph(map, access);
         var queue = new Queue<Path>().EnqueueRange(new Path(graph[0], new(), 0));
@@ -42,12 +42,12 @@ public class Day_23
         return dis;
     }
 
-    Node[] Graph(CharGrid map, Func<Point, Point, CharGrid, bool> access)
+    static Node[] Graph(CharGrid map, Func<Point, Point, CharGrid, bool> access)
     {
-        map.SetNeighbors(Neighbors.Grid);
+        map.SetNeighbors(AocGrid.Neighbors);
         var graph = map
-            .Positions(t => t != '#')
-            .Where(p => map.Neighbors[p].Count(n => Unrestricted(p, n, map)) != 2)
+            .NonHashes()
+            .Where(p => map.Neighbors[p].Count != 2)
             .Select((p, i) => new Node(i, p, []))
             .ToArray();
 

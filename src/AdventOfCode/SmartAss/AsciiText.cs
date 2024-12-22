@@ -7,8 +7,8 @@ public static class AsciiText
         if (grid.Rows != 6) throw new ArgumentException("Should contain 6 rows", nameof(grid));
         try
         {
-            var chs = new TextIterator(grid, trim).Select(bits => Lookup[bits]).ToArray();
-            return new string(chs, 0, chs.Length).Trim();
+            char[] chs = [..new TextIterator(grid, trim).Select(bits => Lookup[bits])];
+            return new string(chs).Trim();
         }
         catch (KeyNotFoundException)
         {

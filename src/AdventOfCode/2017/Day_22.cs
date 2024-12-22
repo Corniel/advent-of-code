@@ -13,7 +13,7 @@ public class Day_22
 
     private static int Run(CharGrid map, int runs, Func<State, State> change)
     {
-        var spots = map.Positions(p => p == '#').ToDictionary(p => p, _ => State.Inf);
+        var spots = map.Hashes().ToDictionary(p => p, _ => State.Inf);
         var carrier = new Cursor(new(map.Cols / 2, map.Rows / 2), Vector.N);
         var burst = 0;
 

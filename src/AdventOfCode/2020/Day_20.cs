@@ -16,7 +16,7 @@ public class Day_20
         foreach (var canvas in tiles.Canvases())
         {
             var occupations = Sea.Monster.Occupations(canvas);
-            if (occupations != 0) { return canvas.Count(p => p.Value == '#') - occupations; }
+            if (occupations != 0) { return canvas.Hashes().Count() - occupations; }
         }
         throw new NoAnswer();
     }

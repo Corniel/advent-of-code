@@ -1,7 +1,7 @@
-namespace AdventofCode2024;
+namespace Advent_of_Code_2024;
 
 [Category(Category.ExpressionEvaluation)]
-public class Dyα13
+public class Day_13
 {
     [Example(answer: 480, Example._1)]
     [Puzzle(answer: 40069L, O.μs)]

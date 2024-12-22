@@ -24,9 +24,9 @@ public class Day_20
     /// </remarks>
     static int Race(CharGrid map, int cheat, int gain = 100)
     {
-        map.SetNeighbors(Neighbors.Grid);
-        var dists = Distances(map, map.Position(c => c is 'E')).Set(short.MaxValue, map.Positions(c => c is '#'));
-        return map.Positions(c => c is not '#').Sum(Shortcuts);
+        map.SetNeighbors(AocGrid.Neighbors);
+        var dists = Distances(map, map.Position(c => c is 'E')).Set(short.MaxValue, map.Hashes());
+        return map.NonHashes().Sum(Shortcuts);
 
         int Shortcuts(Point p)
         {
@@ -44,7 +44,7 @@ public class Day_20
         while (q.Count != 0)
         {
             d++;
-            foreach (var n in q.DequeueCurrent().SelectMany(p => map.Neighbors[p].Where(n => n != from && map[n] != '#' && dis[n] == 0)))
+            foreach (var n in q.DequeueCurrent().SelectMany(p => map.Neighbors[p].Where(n => n != from && dis[n] == 0)))
             {
                 dis[n] = d;
                 q.Enqueue(n);

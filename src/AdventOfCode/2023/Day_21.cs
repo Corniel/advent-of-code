@@ -82,7 +82,7 @@ public class Day_21
 
     static int Plots(Point start, CharGrid map, int steps)
     {
-        if (map.Neighbors is null) map.SetNeighbors(Neighbors.Grid);
+        if (map.Neighbors is null) map.SetNeighbors(AocGrid.Neighbors);
         var queue = new Queue<Point>().EnqueueRange(start);
         var done = new HashSet<Point>() { start };
         var step = 0;
@@ -91,7 +91,7 @@ public class Day_21
 
         while (queue.Any() && ++step <= steps)
         {
-            foreach (var n in queue.DequeueCurrent().SelectMany(p => map.Neighbors[p].Where(n => map[n] != '#' && done.Add(n))))
+            foreach (var n in queue.DequeueCurrent().SelectMany(p => map.Neighbors[p].Where(n => done.Add(n))))
             {
                 if (step % 2 == phase) plots++;
                 queue.Enqueue(n);

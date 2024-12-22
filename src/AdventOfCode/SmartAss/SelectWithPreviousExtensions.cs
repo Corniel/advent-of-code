@@ -8,6 +8,8 @@ public static class SelectWithPreviousExtensions
 
     public static CurrentAndPreviouses<T> SelectWithPrevious<T>(this IEnumerable<T> items) => new(items);
 
+    /// <summary>Gets an read-only collection of items, with item on the last slot being the newest.</summary>
+    [Pure]
     public static IEnumerable<IReadOnlyList<T>> SelectWithPrevious<T>(this IEnumerable<T> items, int size)
     {
         var iterator = items.GetEnumerator();

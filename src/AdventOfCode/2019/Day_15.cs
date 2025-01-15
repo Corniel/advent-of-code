@@ -12,8 +12,8 @@ public class Day_15
     class Space : Dictionary<Point, Tile>
     {
         public Space() => Add(default, Tile.Empty);
-        public int O2Distance => Navigate(Point.O, [O2]).Distance;
-        public int O2Spreading => Navigate(new Point(short.MaxValue, short.MaxValue), [O2]).Distance;
+        public int O2Distance => Navigate((0, 0), [O2]).Distance;
+        public int O2Spreading => Navigate((short.MaxValue, short.MaxValue), [O2]).Distance;
         Point O2 => this.Single(t => t.Value == Tile.Oxygen).Key;
         IEnumerable<Point> Empties => this.Where(kvp => kvp.Value != Tile.Wall).Select(kvp => kvp.Key);
         IEnumerable<Point> Unknowns => Empties.SelectMany(Neighbors).Where(tile => !ContainsKey(tile));

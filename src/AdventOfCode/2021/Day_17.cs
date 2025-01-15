@@ -18,7 +18,7 @@ public class Day_17
         var area = Area.Parse(str);
         var x_lo = (((8 * area.X_lo + 1).Sqrt() - 1) / 2).Ceil();
         return Points
-            .Range(new Point(x_lo, area.Y_lo), new Point(area.X_hi, -area.Y_lo))
+            .Range((x_lo, area.Y_lo), (area.X_hi, -area.Y_lo))
             .Count(v => Hits(v.Vector(), area));
     }
 

@@ -23,8 +23,8 @@ public class Day_12
     [Puzzle(answer: 58606, O.μs10)]
     public int part_two(Lines lines)
     {
-        var ferry = Point.O;
-        var waypoint = new Point(+10, -1);
+        Point ferry = (0, 0);
+        Point waypoint = (+10, -1);
 
         foreach (var i in lines.As(Instruction.Parse))
         {

@@ -4,7 +4,7 @@ namespace Advent_of_Code_2016;
 public class Day_13
 {
     [Puzzle(answer: 82, 1362, O.μs10)]
-    public int part_one(int number) => Navigate(number, int.MaxValue, p => p == new Point(31, 39));
+    public int part_one(int number) => Navigate(number, int.MaxValue, p => p == (31, 39));
 
     [Puzzle(answer: 138, 1362, O.μs10)]
     public int part_two(int number) => Navigate(number, 50, p => false);
@@ -12,7 +12,7 @@ public class Day_13
     static int Navigate(int number, int turns, Predicate<Point> exit)
     {
         var turn = 0; var map = new HashSet<Point>();
-        var q = new Queue<Point>().EnqueueRange(new Point(1, 1));
+        var q = new Queue<Point>().EnqueueRange((1, 1));
 
         while (turn++ < turns)
         {

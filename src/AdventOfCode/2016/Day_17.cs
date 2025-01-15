@@ -21,7 +21,7 @@ public class Day_17
 
         while (q.TryDequeue(out var curr, out _))
         {
-            if (curr.Point == new Point(3, 3)) return curr.Path[str.Length..];
+            if (curr.Point == (3, 3)) return curr.Path[str.Length..];
             foreach (var next in States(curr).Where(s => map.OnGrid(s.Point))) q.Enqueue(next, prio(next));
         }
         throw new NoAnswer();

@@ -37,7 +37,7 @@ public class Day_13
             var index = 0;
             while (index < output.Count)
             {
-                var loc = new Point((int)output[index++], (int)output[index++]);
+                Point loc = ((int)output[index++], (int)output[index++]);
                 var val = (int)output[index++];
                 if (OnGrid(loc)) this[loc] = (Tile)val;
                 else Score = val;

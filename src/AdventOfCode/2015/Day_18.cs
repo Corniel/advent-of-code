@@ -15,11 +15,11 @@ public class Day_18
     public int part_two(CharPixels chars)
     {
         var simulation = new GameOfLife(chars.Grid(ch => ch == '#'));
-        simulation.AddRange([Point.O, new Point(0, 99), new Point(99, 0), new Point(99, 99)]);
+        simulation.AddRange([(0, 0), (0, 99), (99, 0), (99, 99)]);
         for (var step = 1; step <= 100; step++)
         {
             simulation.NextGeneration();
-            simulation.AddRange([Point.O, new Point(0, 99), new Point(99, 0), new Point(99, 99)]);
+            simulation.AddRange([(0, 0), (0, 99), (99, 0), (99, 99)]);
         }
         return simulation.Count;
     }

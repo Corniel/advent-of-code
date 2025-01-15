@@ -17,7 +17,7 @@ public class Day_15
         var distances = new Grid<int>(costs.Cols, costs.Rows);
         distances.Set(short.MaxValue, distances.Positions());
         distances[Point.O] = 0;
-        var target = new Point(costs.Cols - 1, costs.Rows - 1);
+        Point target = (costs.Cols - 1, costs.Rows - 1);
         var tiles = new Queue<Point>();
         tiles.Enqueue(Point.O);
 

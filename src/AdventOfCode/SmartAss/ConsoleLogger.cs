@@ -49,8 +49,8 @@ public static class ConsoleLogger
 
     public static HashSet<Point> Console(this HashSet<Point> grid, string chars = "#.")
     {
-        var min = new Point(int.MaxValue, int.MaxValue);
-        var max = new Point(int.MinValue, int.MinValue);
+        Point min = (int.MaxValue, int.MaxValue);
+        Point max = (int.MinValue, int.MinValue);
 
         foreach (var point in grid)
         {

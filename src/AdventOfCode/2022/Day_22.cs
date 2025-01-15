@@ -40,7 +40,7 @@ public class Day_22
 
     static Cursor Cube(CharGrid map, Cursor cursor)
     {
-        var face = new Point(cursor.Pos.X / RibbonSize, cursor.Pos.Y / RibbonSize);
+        Point face = (cursor.Pos.X / RibbonSize, cursor.Pos.Y / RibbonSize);
         var ribbon = new Ribbon(face, cursor.Dir.CompassPoint());
 
         var pos = ribbon.Direction == CompassPoint.N || ribbon.Direction == CompassPoint.S

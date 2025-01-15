@@ -172,7 +172,7 @@ public class Day_10
                 switch (ch)
                 {
                     case '#':
-                        astroids.Add(new Point(x++, y));
+                        astroids.Add((x++, y));
                         break;
                     case '.':
                         x++;

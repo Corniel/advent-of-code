@@ -34,8 +34,8 @@ public class Day_15
         public static Instruction Parse(string line)
         {
             int[] ns = [..line.Int32s()];
-            var s = new Point(ns[0], ns[1]);
-            var b = new Point(ns[2], ns[3]);
+            Point s = (ns[0], ns[1]);
+            Point b = (ns[2], ns[3]);
             return new(s, b, s.ManhattanDistance(b));
         }
     }

@@ -36,6 +36,7 @@ public class Benchmark
         : typeof(Benchmark_Two<>).MakeGenericType(puzzle.Method.DeclaringType);
 }
 
+[InProcess]
 public abstract class Benchmark<T> : Benchmark where T : class, new()
 {
     private readonly T Instance = new();

@@ -15,15 +15,16 @@ public class Leaderboard
 
     static FileInfo FileLocation(AdventDate date) => new(Path.Combine(Data.Location.FullName, $"{date.Year}/day_{date.Day:00}_leaderboard.html"));
 
+    [TestCase("?")]
     [TestCase("Corniel")]
     public void TODO_list(string name)
     {
         var entries = FetchEntries(new(null, null, 2));
-        var participant = Data.Participants().Search(name)!;
+        var participant = Data.Participants().Search(name);
 
-        var sovled = participant.Solutions.Select(s => s.Key.YearDay).ToHashSet();
+        var solved = participant?.Solutions.Select(s => s.Key.YearDay).ToHashSet() ?? [];
 
-        foreach (var entry in entries.Where(e => !sovled.Contains(e.Date.YearDay)).OrderBy(e => e.Time))
+        foreach (var entry in entries.Where(e => !solved.Contains(e.Date.YearDay)).OrderBy(e => e.Time))
         {
             $"- [ ] {entry.Date.Year}-{entry.Date.Day:00} {entry.Time.TotalMinutes,3:0}:{entry.Time.Seconds:00}".Console();
         }

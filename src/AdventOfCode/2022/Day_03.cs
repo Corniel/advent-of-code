@@ -8,10 +8,10 @@ public class Day_03
     public int part_one(Lines lines) => lines.As(Shared).Sum();
 
     [Example(answer: 70, "vJrwpWtwJgWrhcsFMMfFFhFp;jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL;PmmdzqPrVvPwwTWBwg;wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn;ttgJtRGJQctTZtZT;CrZsJsPPZsGzwwsLwLmpwMDw")]
-    [Puzzle(answer: 2276, O.μs10)]
+    [Puzzle(answer: 2276, O.μs)]
     public int part_two(Lines lines) => lines.ChunkBy(3).Select(Shared).Sum();
 
-    static int Score(char ch) => char.IsUpper(ch) ? ch - 'A' + 27 : ch - 'a' + 1;
+    static int Score(char ch) => ch >= 'A' ? ch - 'A' + 27 : ch - 'a' + 1;
 
     static int Shared(string line)
     {
@@ -20,5 +20,5 @@ public class Day_03
         return Score(l.First(r.Contains));
     }
 
-    public static int Shared(Slice<string> lines) => Score(lines[0].First(ch => lines[1].Contains(ch) && lines[2].Contains(ch)));
+    static int Shared(Slice<string> lines) => Score(lines[0].First(ch => lines[1].Contains(ch) && lines[2].Contains(ch)));
 }

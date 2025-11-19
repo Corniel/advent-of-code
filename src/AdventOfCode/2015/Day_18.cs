@@ -3,7 +3,7 @@ namespace Advent_of_Code_2015;
 [Category(Category.GameOfLife)]
 public class Day_18
 {
-    [Puzzle(answer: 814, O.ms100)]
+    [Puzzle(answer: 814, O.ms10)]
     public int part_one(CharPixels chars)
     {
         var simulation = new GameOfLife(chars.Grid(ch => ch == '#'));
@@ -11,7 +11,7 @@ public class Day_18
         return simulation.Count;
     }
 
-    [Puzzle(answer: 924, O.ms100)]
+    [Puzzle(answer: 924, O.ms10)]
     public int part_two(CharPixels chars)
     {
         var simulation = new GameOfLife(chars.Grid(ch => ch == '#'));

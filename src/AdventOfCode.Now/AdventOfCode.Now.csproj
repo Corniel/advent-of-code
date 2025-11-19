@@ -6,7 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="**/Day_*.txt" />
     <EmbeddedResource Include="**/Day_*.txt" />
   </ItemGroup>
 

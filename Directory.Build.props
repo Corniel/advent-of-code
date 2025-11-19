@@ -1,30 +1,19 @@
 <Project>
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <LangVersion>preview</LangVersion>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>14.0</LangVersion>
     <IsPackable>false</IsPackable>
     <IsPublishable>false</IsPublishable>
     <OutputType>Library</OutputType>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
-    <NoWarn>NU1507</NoWarn>
+    <NuGetAuditMode>all</NuGetAuditMode>
+    <NoWarn>NU1507;Proj1300;Proj0042;Proj0043</NoWarn>
   </PropertyGroup>
 
-  <ItemGroup Label="Analyzers">
-    <PackageReference Include="DotNetProjectFile.Analyzers" PrivateAssets="all" />
-    <PackageReference Include="FluentAssertions.Analyzers" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" PrivateAssets="all" />
-    <PackageReference Include="NUnit.Analyzers" PrivateAssets="all" />
-    <PackageReference Include="SonarAnalyzer.CSharp" PrivateAssets="all" />
-  </ItemGroup>
-
   <ItemGroup Label="Extensions"> 
-    <PackageReference Include="coverlet.collector" PrivateAssets="all" />
-    <PackageReference Include="NUnit3TestAdapter" PrivateAssets="all" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <AdditionalFiles Include="*.??proj" Visible="false" />
+    <PackageReference PrivateAssets="all" Include="coverlet.collector" />
+    <PackageReference PrivateAssets="all" Include="NUnit3TestAdapter" />
   </ItemGroup>
 
 </Project>

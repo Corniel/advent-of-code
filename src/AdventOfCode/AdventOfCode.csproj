@@ -6,7 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="**/Day_*.txt" />
     <EmbeddedResource Include="**/Day_*.txt" />
   </ItemGroup>
 
@@ -15,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentAssertions" />
+    <PackageReference Include="AwesomeAssertions" />
     <PackageReference Include="Microsoft.Z3" />
     <PackageReference Include="NUnit" />
     <PackageReference Include="Qowaiv" />

@@ -4,7 +4,7 @@ namespace Advent_of_Code_2020;
 public class Day_13
 {
     [Example(answer: 295, @"939;7,13,x,x,59,x,31,19")]
-    [Puzzle(answer: 3269L, @"1008713;13,x,x,41,x,x,x,x,x,x,x,x,x,467,x,x,x,x,x,x,x,x,x,x,x,19,x,x,x,x,17,x,x,x,x,x,x,x,x,x,x,x,29,x,353,x,x,x,x,x,37,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,23", O.μs)]
+    [Puzzle(answer: 3269L, @"1008713;13,x,x,41,x,x,x,x,x,x,x,x,x,467,x,x,x,x,x,x,x,x,x,x,x,19,x,x,x,x,17,x,x,x,x,x,x,x,x,x,x,x,29,x,353,x,x,x,x,x,37,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,23", O.ns100)]
     public long part_one(string str)
     {
         var splits = str.StripChars("x").Lines();

@@ -1,0 +1,9 @@
+<Solution>
+  <Project Path="../smart-ass/specs/SmartAss.Specs/SmartAss.Specs.csproj" />
+  <Project Path="../smart-ass/src/SmartAss/SmartAss.csproj" />
+  <Project Path=".net.csproj" />
+  <Project Path="src/AdventOfCode.App/AdventOfCode.App.csproj" />
+  <Project Path="src/AdventOfCode.Now/AdventOfCode.Now.csproj" />
+  <Project Path="src/AdventOfCode.Utils/AdventOfCode.Utils.csproj" />
+  <Project Path="src/AdventOfCode/AdventOfCode.csproj" />
+</Solution>

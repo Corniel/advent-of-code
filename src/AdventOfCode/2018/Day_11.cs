@@ -3,7 +3,7 @@ namespace Advent_of_Code_2018;
 [Category(Category.Grid)]
 public class Day_11
 {
-    [Puzzle(answer: "21,77", "3999", O.ms10)]
+    [Puzzle(answer: "21,77", "3999", O.ms)]
     public Point part_one(string str) => FindMaximum(Grid(str)).Point;
 
     [Puzzle(answer: "224,222,27", "3999", O.s10)]

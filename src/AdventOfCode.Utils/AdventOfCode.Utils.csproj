@@ -5,7 +5,7 @@
     <IsTestProject>true</IsTestProject>
   </PropertyGroup>
 
-  <ItemGroup>
+  <ItemGroup Label="Templates">
     <Compile Remove="Template/Day.cs" />
     <EmbeddedResource Include="Template/Day.cs" />
   </ItemGroup>

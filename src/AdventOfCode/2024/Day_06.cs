@@ -8,7 +8,7 @@ public class Day_06
     public int part_one(CharGrid map) => Walk(Cursor(map), map, []).Count;
 
     [Example(answer: 6, Example._1)]
-    [Puzzle(answer: 1697, O.ms100)]
+    [Puzzle(answer: 1697, O.ms10)]
     public int part_two(CharGrid map)
     {
         var cursor = Cursor(map);

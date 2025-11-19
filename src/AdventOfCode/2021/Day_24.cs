@@ -10,7 +10,7 @@ public class Day_24
     public long part_two(Lines lines) => Serial(Asc, State.Zero, lines.ToArray(Expression.Parse)) ?? throw new NoAnswer();
 
     static readonly int[] Asc = [..Range(1, 9)];
-    static readonly int[] Desc = [..Asc.Reverse()];
+    static readonly int[] Desc = [..Asc.Reversed()];
 
     static long? Serial(int[] digits, State state, IReadOnlyList<Expression> exps, long serial = 0, int level = 0, int index = 0)
     {

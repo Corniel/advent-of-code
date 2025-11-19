@@ -27,17 +27,17 @@ public static class Program
 
         if (Matches.New(date, args)) return Generate(date);
 
-        if (Matches.Benchmark(date, args)) return Benchmarks(Puzzles, date);
+        if (Matches.Benchmark(args)) return Benchmarks(Puzzles, date);
 
         Console.SetOut(new MultiWriter(Console.Out));
 
         return date switch
         {
-            _ when Matches.BenchmarkClassic(date, args) => BenchmarksClassic(date),
-            _ when Matches.DownloadInput(date, args) => await DownloadInput(date, args[0]),
-            _ when Matches.LoC(date, args) => Loc(date, args),
+            _ when Matches.BenchmarkClassic(args) => BenchmarksClassic(date),
+            _ when Matches.DownloadsInput(args) => await DownloadInput(date, args[0]),
+            _ when Matches.LoC(args) => Loc(date),
             _ when Matches.Rank(date, args) => await Rankings(date, args[1..].FirstOrDefault()),
-            _ when Matches.Run(date, args) => RunPuzzle(date, args),
+            _ when Matches.Run(date, args) => RunPuzzle(date),
             _ => NoMethod(date, args),
         };
     }
@@ -73,6 +73,8 @@ public static class Program
         var selection = puzzles
             .Matching(date)
             .Where(puzzle => !puzzle.Date.Matches(new AdventDate(default, 25, 2)))
+            .Where(puzzle => puzzle.Date.Year > 2018)
+            .Where(puzzle => puzzle.Order < O.s10)
             .ToArray();
 
         foreach (var result in Benchmark.Run(selection))
@@ -96,9 +98,9 @@ public static class Program
 
     private static async Task<int> DownloadInput(AdventDate date, string arg)
     {
-        var root = arg == "-in"
-            ? new DirectoryInfo(@".\..\..\..\..\AdventOfCode.Now")
-            : new DirectoryInfo(@".\..\..\..\..\AdventOfCode");
+        var root = arg == "-in"    
+            ? new DirectoryInfo("./../../../../AdventOfCode.Now")
+            : new DirectoryInfo("./../../../../AdventOfCode");
 
         var input = new PuzzleInput(date, root);
 
@@ -114,7 +116,7 @@ public static class Program
         return Success;
     }
 
-    private static int Loc(AdventDate date, string[] _)
+    private static int Loc(AdventDate date)
     {
         foreach (var file in LinesOfCode.Select(date))
         {
@@ -123,7 +125,7 @@ public static class Program
         return Success;
     }
 
-    private static int RunPuzzle(AdventDate date, string[] _)
+    private static int RunPuzzle(AdventDate date)
     {
         foreach (var puzzle in Puzzles.Matching(date))
         {
@@ -189,16 +191,13 @@ public static class Program
         public static bool New(AdventDate date, string[] args)
             => date.SpecifiesYearDay && !Puzzles.Contains(date) && !Arg(args, "i", "in");
 
-        public static bool Benchmark(AdventDate _, string[] args)
-            => Arg(args, "b", "benchmark");
+        public static bool Benchmark(string[] args) => Arg(args, "b", "benchmark");
 
-        public static bool BenchmarkClassic(AdventDate _, string[] args)
-            => Arg(args, "bc");
+        public static bool BenchmarkClassic(string[] args) => Arg(args, "bc");
 
-        public static bool DownloadInput(AdventDate _, string[] args)
-          => Arg(args, "i", "in");
+        public static bool DownloadsInput(string[] args) => Arg(args, "i", "in");
 
-        public static bool LoC(AdventDate _, string[] args) => Arg(args, "LoC");
+        public static bool LoC(string[] args) => Arg(args, "LoC");
 
         public static bool Rank(AdventDate date, string[] args)
             => date.Year.HasValue

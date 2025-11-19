@@ -3,7 +3,7 @@ namespace Advent_of_Code_2019;
 [Category(Category.Grid, Category.Cryptography, Category.ASCII)]
 public class Day_08
 {
-    [Puzzle(answer: 2480, O.μs10)]
+    [Puzzle(answer: 2480, O.μs)]
     public int part_one(string str)
         => Layer.Parse(25, 6, str)
             .OrderBy(layer => layer.Zeros)
@@ -15,7 +15,7 @@ public class Day_08
     {
         var layers = Layer.Parse(25, 6, str).ToArray();
         var merged = layers.Last();
-        foreach (var layer in layers.Reverse().Skip(1))
+        foreach (var layer in layers.Reversed().Skip(1))
         {
             merged = layer.Merge(merged);
         }

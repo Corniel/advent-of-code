@@ -9,7 +9,7 @@ public class Day_02
         => lines.As(Game.parse).Where(g => g.Hands.TrueForAll(h => h.Fits)).Sum(g => g.Id);
 
     [Example(answer: 2286, Example._1)]
-    [Puzzle(answer: 62811, O.μs100)]
+    [Puzzle(answer: 62811, O.μs10)]
     public int part_two(Lines lines) => lines.As(Game.parse).Select(g => g.Smallest.Pow).Sum();
 
     record Game(int Id, Hand[] Hands)
@@ -21,7 +21,7 @@ public class Day_02
             [..line[line.IndexOf(':')..].Separate(';').Select(Hand.Parse)]);
     }
 
-    record struct Hand(int R, int G, int B)
+    readonly record struct Hand(int R, int G, int B)
     {
         public int Pow => R * G * B;
 

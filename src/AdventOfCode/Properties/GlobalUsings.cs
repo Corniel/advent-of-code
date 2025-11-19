@@ -1,5 +1,5 @@
 global using Advent_of_Code;
-global using FluentAssertions;
+global using AwesomeAssertions;
 global using NUnit.Framework;
 global using NUnit.Framework.Interfaces;
 global using NUnit.Framework.Internal;
@@ -37,3 +37,4 @@ global using Int64Ranges = SmartAss.Numerics.NumericRanges<long>;
 global using Ints = SmartAss.Inputs<int>;
 global using Lines = SmartAss.Inputs<string>;
 global using Longs = SmartAss.Inputs<long>;
+global using Sequances = SmartAss.Numerics.Sequence;

@@ -5,7 +5,7 @@ namespace Advent_of_Code_2024;
 partial class Day_14
 {
     [Explicit("Renders the first 10,000 images, to manually spot the tree, we do not automatically want to run this.")]
-    [Puzzle(answer: 0, null, 101, 103, O.s)]
+    [Puzzle(answer: 0, null, 101, 103, O.ms100)]
     public int Render(Ints numbers, int wide, int tall)
     {
         const int Space = 10;

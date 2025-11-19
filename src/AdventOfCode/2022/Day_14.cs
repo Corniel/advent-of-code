@@ -4,7 +4,7 @@ namespace Advent_of_Code_2022;
 public class Day_14
 {
     [Example(answer: 24, "498,4 -> 498,6 -> 496,6;503,4 -> 502,4 -> 502,9 -> 494,9")]
-    [Puzzle(answer: 1016, O.ms)]
+    [Puzzle(answer: 1016, O.μs100)]
     public int part_one(Lines lines) => Area.Parse(lines, false).Drop();
 
     [Example(answer: 93, "498,4 -> 498,6 -> 496,6;503,4 -> 502,4 -> 502,9 -> 494,9")]

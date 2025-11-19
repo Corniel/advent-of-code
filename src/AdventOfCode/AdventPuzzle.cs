@@ -49,10 +49,7 @@ public sealed class AdventPuzzle
     public bool Matches(AdventDate date) => Date.Matches(date);
 
 
-    public TestCaseParameters TestCaseParameters()
-    {
-        return new TestCaseParameters(Input) { ExpectedResult = Answer };
-    }
+    public TestCaseParameters TestCaseParameters() => new(Input) { ExpectedResult = Answer };
 
     /// <inheritdoc />
     [Pure]

@@ -4,7 +4,7 @@ namespace Advent_of_Code_2020;
 public class Day_03
 {
     [Example(answer: 7, Example._1)]
-    [Puzzle(answer: 220, O.μs10)]
+    [Puzzle(answer: 220, O.μs)]
     public int part_one(Lines lines)
         => CountTrees([..Row.Parse(lines)], (3, 1));
 

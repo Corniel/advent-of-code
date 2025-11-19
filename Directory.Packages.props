@@ -1,23 +1,24 @@
 <Project>
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
-    <CentralPackageFloatingVersionsEnabled>true</CentralPackageFloatingVersionsEnabled>
     <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
   </PropertyGroup>
   <ItemGroup>
-    <PackageVersion Include="BenchmarkDotNet" Version="0.14.0" />
+    <PackageVersion Include="AwesomeAssertions" Version="9.3.0" />
+    <PackageVersion Include="BenchmarkDotNet" Version="0.15.6" />
     <PackageVersion Include="coverlet.collector" Version="6.0.4" />
-    <PackageVersion Include="DotNetProjectFile.Analyzers" Version="1.5.6" />
-    <PackageVersion Include="DotNetProjectFile.Analyzers.Sdk" Version="1.5.6" />
-    <PackageVersion Include="FluentAssertions" Version="7.1.0" />
-    <PackageVersion Include="FluentAssertions.Analyzers" Version="*" />
-    <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="*" />
-    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="*" />
+    <PackageVersion Include="DotNetProjectFile.Analyzers.Sdk" Version="1.8.0" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.0.1" />
     <PackageVersion Include="Microsoft.Z3" Version="4.12.2" />
     <PackageVersion Include="NUnit" Version="4.3.2" />
-    <PackageVersion Include="NUnit.Analyzers" Version="*" />
-    <PackageVersion Include="NUnit3TestAdapter" Version="*" />
-    <PackageVersion Include="Qowaiv" Version="7.2.3" />
-    <PackageVersion Include="SonarAnalyzer.CSharp" Version="*" />
+    <PackageVersion Include="NUnit3TestAdapter" Version="5.2.0" />
+    <PackageVersion Include="Qowaiv" Version="7.4.5" />
+  </ItemGroup>
+  <ItemGroup>
+    <GlobalPackageReference Include="AwesomeAssertions.Analyzers" Version="9.0.2" />
+    <GlobalPackageReference Include="DotNetProjectFile.Analyzers" Version="1.8.0" />
+    <GlobalPackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="4.14.0" />
+    <GlobalPackageReference Include="NUnit.Analyzers" Version="4.11.2" />
+    <GlobalPackageReference Include="SonarAnalyzer.CSharp" Version="10.15.0.120848" />
   </ItemGroup>
 </Project>

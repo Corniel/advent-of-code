@@ -3,7 +3,7 @@ namespace Advent_of_Code_2018;
 [Category(Category.Cryptography)]
 public class Day_02
 {
-    [Puzzle(answer: 5928, O.μs100)]
+    [Puzzle(answer: 5928, O.μs10)]
     public int part_one(Lines lines)
         => lines.Count(line => Repeat(line, 2))
         * lines.Count(line => Repeat(line, 3));

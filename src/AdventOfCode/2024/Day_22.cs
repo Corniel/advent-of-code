@@ -5,13 +5,13 @@ public class Day_22
 {
     [Example(answer: 37327623, "1,10,100,2024")]
     [Puzzle(answer: 19854248602, O.ms10)]
-    public long part_one(Longs numbers) => numbers.As(n => Sequence.AdHoc(n, Next).Skip(2000).First()).Sum();
+    public long part_one(Longs numbers) => numbers.As(n => Sequances.AdHoc(n, Next).Skip(2000).First()).Sum();
 
     [Example(answer: 9, "123")]
     [Example(answer: 23, "1,2,3,2024")]
     [Puzzle(answer: 2223L, O.ms100)]
     public long part_two(Longs numbers) => numbers
-        .SelectMany(n => Sequence.AdHoc(n, Next)
+        .SelectMany(n => Sequances.AdHoc(n, Next)
             .Select(n => n % 10).SelectWithPrevious().Take(2000)
             .Select(n => (val: n.Current, dt: n.Current - n.Previous))
             .SelectWithPrevious(4)

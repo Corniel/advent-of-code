@@ -1,5 +1,5 @@
 global using Advent_of_Code;
-global using FluentAssertions;
+global using AwesomeAssertions;
 global using NUnit.Framework;
 global using NUnit.Framework.Internal;
 global using SmartAss;

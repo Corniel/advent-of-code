@@ -34,7 +34,7 @@ public class Day_17
         .###....
         .##.#...
         #.##..##
-        #.####..", O.ms100)]
+        #.####..", O.ms10)]
     public int part_two(CharPixels chars)
     {
         var space = new HyperSpace();

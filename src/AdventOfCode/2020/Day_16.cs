@@ -12,7 +12,7 @@ public class Day_16
         return nearby.Where(number => !rules.Exists(rule => rule.Valid(number))).Sum();
     }
 
-    [Puzzle(answer: 491924517533, O.ms)]
+    [Puzzle(answer: 491924517533, O.μs100)]
     public long part_two(GroupedLines groups)
     {
         var rules = groups[0].Select(Rule.Parse).ToArray();
@@ -42,10 +42,7 @@ public class Day_16
         public bool HasSingle => Positions.Count == 1;
         public bool HasMultiple => Positions.Count > 1;
         public static Option New(Rule rule, IEnumerable<Ticket> tickets)
-        {
-            var positions = Range(0, 20).Where(option => tickets.All(ticket => rule.Valid(ticket.Parts[option])));
-            return new Option(rule, positions.ToList());
-        }
+            => new(rule, [.. Range(0, 20).Where(option => tickets.All(ticket => rule.Valid(ticket.Parts[option])))]);
     }
     record Rule(string Name, Int32Range[] Ranges)
     {
@@ -54,7 +51,7 @@ public class Day_16
         public static Rule Parse(string str)
         {
             var split = str.Separate(':');
-            return new Rule(split[0], split[1].Separate("or").Select(Int32Range.Parse).ToArray());
+            return new Rule(split[0], [.. split[1].Separate("or").Select(Int32Range.Parse)]);
         }
     }
 

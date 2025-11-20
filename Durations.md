@@ -1,6 +1,6 @@
 |   Order |   # | Chart                                              |
 |--------:|----:|:---------------------------------------------------|
-|   10 ns |   1 | ⭐ |
+|   10 ns |   3 | ⭐⭐ |
 |  100 ns |  17 | ⭐⭐⭐⭐⭐⭐ |
 |    1 μs |  34 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ |
 |   10 μs |  56 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ |
@@ -84,6 +84,8 @@
 | [2016-17-2](src/AdventOfCode/2016/Day_17.cs) |   10 ms |
 | [2016-18-1](src/AdventOfCode/2016/Day_18.cs) |    1 μs |
 | [2016-18-2](src/AdventOfCode/2016/Day_18.cs) |  100 ms |
+| [2016-19-1](src/AdventOfCode/2016/Day_19.cs) |   10 ns |
+| [2016-19-2](src/AdventOfCode/2016/Day_19.cs) |   10 ns |
 | [2016-20-1](src/AdventOfCode/2016/Day_20.cs) |  100 μs |
 | [2016-20-2](src/AdventOfCode/2016/Day_20.cs) |  100 μs |
 | [2017-01-1](src/AdventOfCode/2017/Day_01.cs) |   10 μs |

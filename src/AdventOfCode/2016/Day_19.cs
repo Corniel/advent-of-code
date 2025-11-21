@@ -8,7 +8,7 @@ public class Day_19
     // See https://youtu.be/uCsD3ZGzMgE.
     [Example(answer: 3, 5)]
     [Puzzle(answer: 1834903, 3014603, O.ns10)]
-    public long part_one(int input)
+    public int part_one(int input)
         =>  1 + 2 * (input - (1 << BitOperations.Log2((uint)input)));
 
     // My default loop was slow, but gave the right answer

@@ -3,14 +3,14 @@
 |   < 15m |   2 | ⭐ |
 |   < 30m |  12 | ⭐⭐⭐⭐⭐⭐ |
 |   < 60m |  12 | ⭐⭐⭐⭐⭐⭐ |
-|    < 2h |  26 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ |
+|    < 2h |  26 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ |
 |    < 4h |  31 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ |
 |    < 8h |  21 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ |
 |    < 1d |  14 | ⭐⭐⭐⭐⭐⭐⭐ |
 |    < 2d |   4 | ⭐⭐ |
 |    < 1w |   2 | ⭐ |
 |    < 1y |   1 | ⭐ |
-|    > 1y |  85 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ |
+|    > 1y |  87 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ |
 
 |   Day   |   Solved |
 |:-------:|---------:|
@@ -45,10 +45,12 @@
 | [2016-09](src/AdventOfCode/2016/Day_09.cs) |   7 year |
 | [2016-12](src/AdventOfCode/2016/Day_12.cs) |   7 year |
 | [2016-13](src/AdventOfCode/2016/Day_13.cs) |   8 year |
+| [2016-14](src/AdventOfCode/2016/Day_14.cs) |   9 year |
 | [2016-15](src/AdventOfCode/2016/Day_15.cs) |   7 year |
 | [2016-16](src/AdventOfCode/2016/Day_16.cs) |   8 year |
 | [2016-17](src/AdventOfCode/2016/Day_17.cs) |   8 year |
 | [2016-18](src/AdventOfCode/2016/Day_18.cs) |   8 year |
+| [2016-19](src/AdventOfCode/2016/Day_19.cs) |   9 year |
 | [2016-20](src/AdventOfCode/2016/Day_20.cs) |   8 year |
 | [2017-01](src/AdventOfCode/2017/Day_01.cs) |   4 year |
 | [2017-02](src/AdventOfCode/2017/Day_02.cs) |   5 year |

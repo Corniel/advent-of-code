@@ -7,12 +7,12 @@ public class Day_14
 {
     [Example(answer: 22728, "abc")]
     [Puzzle(answer: 23890, "ahsbgdzn", O.ms)]
-    public long part_one(string str) => Find(str, 0);
+    public int part_one(string str) => Find(str, 0);
 
     [Puzzle(answer: 22696, "ahsbgdzn", O.s)]
-    public long part_two(string str) => Find(str, 2016);
+    public int part_two(string str) => Find(str, 2016);
 
-    static long Find(string str, int repeat)
+    static int Find(string str, int repeat)
     {
         var seed = Encoding.ASCII.GetBytes(str);
         var src = new byte[32];

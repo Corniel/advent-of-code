@@ -1,6 +1,7 @@
 # Exclude sensitive data
 **/Rankings/Data
-/src/AdventOfCode/20??/Day_??.txt
+/src/AdventOfCode/20??/Day_*.txt
+/src/AdventOfCode.Now/20??/Day_*.txt
 
 # User-specific files
 *.rsuser

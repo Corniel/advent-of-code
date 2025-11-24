@@ -38,15 +38,15 @@ public class Day_09
 
         foreach (var f in files)
         {
-            if (space.TakeWhile(s => s.Start < f.Start).FirstOrNone(s => s.Size >= f.Size) is { } s)
+            if (space.TakeWhile(s => s.Pos < f.Pos).FirstOrNone(s => s.Size >= f.Size) is { } s)
             {
-                files[f.Index] = f with { Start = s.Start };
-                space[s.Index] = s with { Start = s.Start + f.Size, Size = s.Size - f.Size };
+                files[f.Idx] = f with { Pos = s.Pos };
+                space[s.Idx] = s with { Pos = s.Pos + f.Size, Size = s.Size - f.Size };
             }
         }
         
-        return files.Sum(f => (f.Start * f.Size + (f.Size.Sqr() - f.Size) / 2) * f.Id);
+        return files.Sum(f => (f.Pos * f.Size + (f.Size.Sqr() - f.Size) / 2) * f.Id);
     }
 
-    readonly record struct Frag(int Start, int Size, long Id, int Index);
+    readonly record struct Frag(int Pos, int Size, long Id, int Idx);
 }

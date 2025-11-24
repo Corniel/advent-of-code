@@ -20,14 +20,9 @@ public class Day_10
     static int Hike(Point start, char h, CharGrid map, HashSet<Point> done)
     {
         var paths = new Queue<Point>().EnqueueRange(start);
-
         while (h++ < '9')
-        {
             foreach (var p in paths.DequeueCurrent())
-            {
                 paths.EnqueueRange(map.Neighbors[p].Where(n => map[n] == h && done?.Add(n) is not false));
-            }
-        }
         return paths.Count;
     }
 }

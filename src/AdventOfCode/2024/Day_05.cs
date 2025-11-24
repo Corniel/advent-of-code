@@ -22,7 +22,7 @@ public class Day_05
 
     class Sort(string[] lines) : IComparer<int>
     {
-        readonly HashSet<Pair<int>> Pairs = new(lines.Int32s().ChunkBy(2).Select(c => new Pair<int>(c[0], c[1])));
+        readonly HashSet<Pair<int>> Pairs = [.. lines.Int32s().ChunkBy(2).Select(c => new Pair<int>(c[0], c[1]))];
 
         public int Compare(int x, int y) => Pairs.Contains(new(x, y)) ? -1 : Pairs.Contains(new(y, x)) ? 1 : 0;
     }

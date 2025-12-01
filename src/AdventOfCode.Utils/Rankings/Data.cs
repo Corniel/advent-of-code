@@ -142,5 +142,5 @@ public static class Data
         return reader.ReadLine();
     }
 
-    public static DirectoryInfo Location { get; set; } = new(Path.Combine(typeof(Data).Assembly.Location, "../../../../../AdventOfCode.Utils/Rankings/Data"));
+    public static DirectoryInfo Location { get; } = new(Path.Combine(typeof(Data).Assembly.Location, "../../../../../AdventOfCode.Utils/Rankings/Data"));
 }

@@ -45,7 +45,6 @@ public static class Program
     private static async Task<int> Rankings(AdventDate date, string? list)
     {
         var year = date.Year!.Value;
-        Data.Location = new DirectoryInfo("../../../../AdventOfCode.Utils/Rankings/Data");
 
         foreach (var file in await Data.DownloadRankingFiles())
         {

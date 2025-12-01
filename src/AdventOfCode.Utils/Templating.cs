@@ -1,12 +1,17 @@
+using Advent_of_Code.Rankings;
+
 namespace Advent_of_Code;
 
 public static class Templating
 {
+    private static readonly DirectoryInfo Root = new(Path.Combine(typeof(Templating).Assembly.Location, "../../../../../"));
+
     public static DirectoryInfo Generate(int year, int day)
     {
-        var file = new FileInfo($@".\..\..\..\..\AdventOfCode.Now\{year}\Day_{day:00}.cs");
-        var input = new FileInfo($@".\..\..\..\..\AdventOfCode.Now\{year}\Day_{day:00}.txt");
-        var example = new FileInfo($@".\..\..\..\..\AdventOfCode.Now\{year}\Day_{day:00}_1.txt");
+        Console.WriteLine(Root.FullName);
+        var file = new FileInfo(Path.Combine(Root.FullName, $"AdventOfCode.Now/{year}/Day_{day:00}.cs"));
+        var input = new FileInfo(Path.Combine(Root.FullName, $"AdventOfCode.Now/{year}/Day_{day:00}.txt"));
+        var example = new FileInfo(Path.Combine(Root.FullName, $"AdventOfCode.Now/{year}/Day_{day:00}_1.txt"));
 
         if (!file.Directory.Exists)
         {

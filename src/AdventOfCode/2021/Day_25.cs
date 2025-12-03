@@ -18,7 +18,7 @@ public class Day_25
     bool Move(CharGrid grid, Stack<Point> candidates, CompassPoint dir)
     {
         var ch = grid[candidates.Peek()];
-        while (candidates.NotEmpty() && candidates.Pop() is var tile)
+        while (candidates.NotEmpty && candidates.Pop() is { } tile)
         {
             if (grid.Neighbors[tile][dir] is var target && grid[target] == '.')
             {
@@ -27,7 +27,7 @@ public class Day_25
             }
             else { Stay.Push(tile); }
         }
-        var moved = Clear.NotEmpty();
+        var moved = Clear.NotEmpty;
         while (Clear.Count > 0)
         {
             var move = Step.Pop();

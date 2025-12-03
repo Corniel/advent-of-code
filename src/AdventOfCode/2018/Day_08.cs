@@ -16,7 +16,7 @@ public class Day_08
         public readonly List<Node> Children = [];
         public readonly List<int> MetaData = [];
         public int Sum => MetaData.Sum() + Children.Sum(ch => ch.Sum);
-        public int Value => Children.NotEmpty()
+        public int Value => Children.NotEmpty
             ? MetaData.Where(i => i <= Children.Count).Sum(i => Children[i - 1].Value)
             : MetaData.Sum();
     }

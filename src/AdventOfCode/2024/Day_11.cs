@@ -21,7 +21,7 @@ public class Day_11
                 else
                 {
                     var digits = n.DigitCount();
-                    if (digits.IsEven())
+                    if (digits.IsEven)
                     {
                         var f = 10.Pow(digits / 2);
                         next[n / f] += count; 

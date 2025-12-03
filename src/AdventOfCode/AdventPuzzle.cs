@@ -1,4 +1,3 @@
-using System.Diagnostics.Contracts;
 using System.Reflection;
 
 namespace Advent_of_Code;

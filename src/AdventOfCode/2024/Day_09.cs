@@ -9,7 +9,7 @@ public class Day_09
     [Puzzle(answer: 6461289671426, O.ms)]
     public long part_one(string str)
     {
-        int[] disk = [..str.Select(c => c.Digit()).SelectMany((d, i) => Repeat(i.IsEven() ? i / 2 : Space, d))];
+        int[] disk = [.. str.Select(c => c.Digit()).SelectMany((d, i) => Repeat(i.IsEven ? i / 2 : Space, d))];
         var pos = 0; var end = disk.Length - 1;
 
         while (pos < end)
@@ -29,7 +29,7 @@ public class Day_09
         var space = new Frag[str.Length / 2];
         var start = 0;
 
-        foreach (var s in str.Select((c, i) => new { Size = c.Digit(), Odd = i.IsOdd(), Id = i / 2 }))
+        foreach (var s in str.Select((c, i) => new { Size = c.Digit(), Odd = i.IsOdd, Id = i / 2 }))
         {
             if (s.Odd) space[s.Id] = new(start, s.Size, Space, s.Id);
             else files[^(s.Id + 1)] = new(start, s.Size, s.Id, files.Length - s.Id - 1);
@@ -44,7 +44,7 @@ public class Day_09
                 space[s.Idx] = s with { Pos = s.Pos + f.Size, Size = s.Size - f.Size };
             }
         }
-        
+
         return files.Sum(f => (f.Pos * f.Size + (f.Size.Sqr() - f.Size) / 2) * f.Id);
     }
 

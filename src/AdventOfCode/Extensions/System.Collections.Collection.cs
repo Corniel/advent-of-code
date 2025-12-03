@@ -1,20 +1,24 @@
+using System.Runtime.CompilerServices;
+
 namespace System.Collections;
 
 public static class CollectionExtensions
 {
+    extension<T>(IReadOnlyCollection<T> collection)
+    {
+        /// <summary>Indicates that the collection is not empty.</summary>
+        [OverloadResolutionPriority(10)]
+        public bool NotEmpty => collection.Count is not 0;
+    }
+
+    extension<T>(IEnumerable<T> enumerable)
+    {
+        /// <summary>Indicates that the collection is not empty.</summary>
+        [OverloadResolutionPriority(-1)]
+        public bool NotEmpty => enumerable.Any();
+    }
+
     public static int Count<T>(this IEnumerable<T> enumerable, T item) => enumerable.Count(i => i.Equals(item));
-
-    public static bool NotEmpty<T>(this IEnumerable<T> enumerable) => enumerable.Any();
-
-    public static bool NotEmpty<T>(this T[] array) => array.Length != 0;
-
-    public static bool NotEmpty<TKey, TValue>(this Dictionary<TKey, TValue> dict) => dict.Count != 0;
-
-    public static bool NotEmpty<T>(this List<T> list) => list.Count != 0;
-
-    public static bool NotEmpty<T>(this Queue<T> queue) => queue.Count != 0;
-
-    public static bool NotEmpty<T>(this Stack<T> stack) => stack.Count != 0;
 
     public static T? FirstOrNone<T>(this IEnumerable<T> enumerable, Predicate<T> predicate) where T : struct
     {

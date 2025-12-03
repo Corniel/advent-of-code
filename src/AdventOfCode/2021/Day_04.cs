@@ -9,9 +9,8 @@ public class Day_04
     {
         var game = Game.Parse(groups);
         foreach (var number in game.Numbers)
-        {
             if (game.Play(number) is { } bingo) return bingo.Score * number;
-        }
+
         throw new NoAnswer();
     }
 
@@ -21,12 +20,9 @@ public class Day_04
     {
         var game = Game.Parse(groups);
         foreach (var number in game.Numbers)
-        {
-            if (game.Play(number) is { } bingo && !game.Cards.NotEmpty())
-            {
+            if (game.Play(number) is { } bingo && !game.Cards.NotEmpty)
                 return bingo.Score * number;
-            }
-        }
+
         throw new NoAnswer();
     }
 
@@ -35,14 +31,12 @@ public class Day_04
         public Card Play(int number)
         {
             foreach (var card in Cards)
-            {
                 card.Play(number);
-            }
+
             var bingos = Cards.Where(card => card.Bingo).ToArray();
             foreach (var bingo in bingos)
-            {
                 Cards.Remove(bingo);
-            }
+
             return bingos.FirstOrDefault();
         }
 

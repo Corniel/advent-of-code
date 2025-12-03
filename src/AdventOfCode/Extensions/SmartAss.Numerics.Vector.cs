@@ -1,5 +1,3 @@
-using System.Diagnostics.Contracts;
-
 namespace SmartAss.Numerics;
 
 public static class VectorExtensions

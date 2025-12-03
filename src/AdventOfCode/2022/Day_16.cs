@@ -75,7 +75,7 @@ public class Day_16
             var queue = new Queue<Valve>(Connections.Keys);
             var distance = 1;
 
-            while (distance++ is { } && queue.NotEmpty())
+            while (distance++ is { } && queue.NotEmpty)
             {
                 foreach (var next in queue.DequeueCurrent()
                     .SelectMany(c => c.Connections.Where(d => d.Value == 1 && Connections.TryAdd(d.Key, distance)))

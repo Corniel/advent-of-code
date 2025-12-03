@@ -45,7 +45,7 @@ public class Day_12
         var stack = new Stack<List<Cave>>();
         stack.Push([Start(lines)]);
 
-        while (System.Collections.CollectionExtensions.NotEmpty(stack))
+        while (stack.NotEmpty)
         {
             var path = stack.Pop();
 

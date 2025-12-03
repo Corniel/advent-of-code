@@ -25,7 +25,7 @@ public class Day_13
         return map.Count;
     }
 
-    static bool NoWall(Point p, int number) => Bits.UInt32.Count((uint)(Find(p.X, p.Y) + number)).IsEven();
+    static bool NoWall(Point p, int number) => Bits.UInt32.Count((uint)(Find(p.X, p.Y) + number)).IsEven;
 
     static int Find(int x, int y) => x * x + 3 * x + 2 * x * y + y + y * y;
 

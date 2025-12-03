@@ -113,7 +113,7 @@ public sealed class SolvingRanking(IReadOnlyList<SolvingRankingParticipant> part
                 .Select(kvp => new SolvingRankingResult(kvp.Key, kvp.Value))
                 .ToArray();
 
-            if (results.NotEmpty())
+            if (results.NotEmpty)
             {
                 ranked.Add(new(participant, results));
             }

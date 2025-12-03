@@ -21,7 +21,7 @@ public class Day_15
         var tiles = new Queue<Point>();
         tiles.Enqueue(Point.O);
 
-        while (tiles.NotEmpty())
+        while (tiles.NotEmpty)
         {
             var curr = tiles.Dequeue();
             var distance = distances[curr];

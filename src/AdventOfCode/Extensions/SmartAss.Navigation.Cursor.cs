@@ -1,5 +1,3 @@
-using System.Diagnostics.Contracts;
-
 namespace SmartAss.Navigation;
 
 public static class CursorExtensions

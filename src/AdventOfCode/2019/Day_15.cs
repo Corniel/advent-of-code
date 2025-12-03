@@ -22,10 +22,10 @@ public class Day_15
         {
             var droid = Point.O;
             Navigation nav = null;
-            while (Unknowns.NotEmpty())
+            while (Unknowns.NotEmpty)
             {
                 nav = null;
-                if (System.Collections.CollectionExtensions.NotEmpty(distances))
+                if (distances.NotEmpty)
                 {
                     var target = Neighbors(droid).FirstOrDefault(n => distances.ContainsKey(n) && distances[n] < distances[droid]);
                     if (target != default) { nav = new(target - droid, default); }
@@ -61,7 +61,7 @@ public class Day_15
                 distances[target] = distance;
                 queue.Enqueue(target);
             }
-            while (System.Collections.CollectionExtensions.NotEmpty(queue))
+            while (queue.NotEmpty)
             {
                 distance++;
                 foreach (var tile in queue.DequeueCurrent())
@@ -88,9 +88,9 @@ public class Day_15
 
     static readonly Dictionary<Vector, int> Dirs = new()
     {
-        { Vector.N, 1 },
-        { Vector.S, 2 },
-        { Vector.W, 3 },
-        { Vector.E, 4 },
+        [Vector.N] = 1,
+        [Vector.S] = 2,
+        [Vector.W] = 3,
+        [Vector.E] = 4,
     };
 }

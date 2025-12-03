@@ -34,7 +34,7 @@ public class Day_20
         for (var turn = 1; turn <= turns; turn++)
         {
             var temp = new Dictionary<Point, bool>();
-            var lookup = turn.IsOdd() ? lookup_odd : lookup_even;
+            var lookup = turn.IsOdd ? lookup_odd : lookup_even;
             foreach (var point in map.Keys.OrderBy(p => p.X).ThenBy(p => p.Y))
             {
                 var index = 0;

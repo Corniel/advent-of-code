@@ -42,7 +42,7 @@ public class Day_21
 
         for (var r = 2; r <= ps; r++)
         {
-            if (r.IsOdd()) odd += Ring(r);
+            if (r.IsOdd) odd += Ring(r);
             else even += Ring(r);
         }
 

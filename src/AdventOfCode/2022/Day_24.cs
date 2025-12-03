@@ -30,7 +30,7 @@ public class Day_24
             var nexts = new Grid<bool>(Occupied.Cols, Occupied.Rows);
             var queue = new Queue<Point>([from]);
 
-            while (queue.NotEmpty())
+            while (queue.NotEmpty)
             {
                 Next();
                 nexts.Clear();

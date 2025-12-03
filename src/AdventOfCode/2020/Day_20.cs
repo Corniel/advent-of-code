@@ -122,7 +122,7 @@ public class Day_20
         {
             var points = new Queue<Point>([Point.O]);
 
-            while (System.Collections.CollectionExtensions.NotEmpty(points))
+            while (points.NotEmpty)
             {
                 var point = points.Dequeue();
                 var prev = this[point];

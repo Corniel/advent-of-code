@@ -24,7 +24,7 @@ public sealed record Participant(
     public string ToString(string format, IFormatProvider formatProvider)
     {
         var sb = new StringBuilder(!string.IsNullOrEmpty(Alias) ? Alias : Name);
-        if (format != "name-only" && Boards.NotEmpty())
+        if (format != "name-only" && Boards.NotEmpty)
         {
             sb.Append($" [{string.Join(",", Boards.Select(b => b.Name))}]");
         }

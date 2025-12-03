@@ -21,7 +21,7 @@ public class Day_23
                 case Type.tpl: vals[r] *= 3; i++; break;
                 case Type.inc: vals[r] += 1; i++; break;
                 case Type.jmp: i += inst.Val; break;
-                case Type.jie: i += vals[r].IsEven() ? inst.Val : 1; break;
+                case Type.jie: i += vals[r].IsEven ? inst.Val : 1; break;
                 case Type.jio: i += vals[r] == 1 ? inst.Val : 1; break;
             }
         }

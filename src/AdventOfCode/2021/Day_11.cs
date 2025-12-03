@@ -31,7 +31,7 @@ public class Day_11
             stack.Push(pos);
             dones[pos] = true;
         }
-        while (stack.NotEmpty())
+        while (stack.NotEmpty)
         {
             foreach (var neighbor in grid.Neighbors[stack.Pop()])
             {

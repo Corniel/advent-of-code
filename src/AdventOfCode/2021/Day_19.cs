@@ -24,7 +24,7 @@ public class Day_19
         var queue = new Queue<Scanner>();
         queue.EnqueueRange(scanners[1..]);
 
-        while (queue.NotEmpty())
+        while (queue.NotEmpty)
         {
             var scanner = queue.Dequeue();
             if (!beacons.AddRange(scanner.Locate(beacons)))
@@ -61,7 +61,7 @@ public class Day_19
             return [];
 
             bool IsCandidate(Point3D location, Orientation orientation, HashSet<Point3D> beacons)
-                => !Beacons(location, orientation).Where(c => !beacons.Contains(c)).Skip(Observations.Length - 12).NotEmpty();
+                => !Beacons(location, orientation).Where(c => !beacons.Contains(c)).Skip(Observations.Length - 12).NotEmpty;
         }
         public static Scanner Parse(string[] lines) => new() { Observations = [.. lines[1..].Select(Vector3D.Parse)] };
     }
@@ -78,12 +78,9 @@ public class Day_19
             int[] numbers = [0, 1, 2];
             var all = new List<Orientation>(48);
             foreach (var order in numbers.Permutations())
-            {
                 for (var bits = 0; bits < 8; bits++)
-                {
                     all.Add(new([.. order], [(bits & 1) == 0 ? +1 : -1, (bits & 2) == 0 ? +1 : -1, (bits & 4) == 0 ? +1 : -1]));
-                }
-            }
+
             return [.. all];
         }
     }

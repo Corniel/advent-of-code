@@ -18,7 +18,7 @@ public class Day_16
             while (i >= 0 && len < size) dat[len++] = !dat[i--];
         }
 
-        while (len.IsEven())
+        while (len.IsEven)
         {
             for (var i = 0; i < dat.Length; i += 2) dat[i >> 1] = dat[i] == dat[i + 1];
             len >>= 1;
@@ -26,7 +26,7 @@ public class Day_16
 
         return new([.. dat[..len].Select(x => x ? '1' : '0')]);
     }
-    
+
     [Puzzle(answer: "10100001110101001", "10001001100000001", 35651584, O.ms100)]
     public string part_two(string str, int max) => part_one(str, max);
 }

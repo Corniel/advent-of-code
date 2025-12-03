@@ -1,5 +1,3 @@
-using System.Collections.Immutable;
-
 namespace Advent_of_Code_2024;
 
 [Category(Category.ExpressionEvaluation)]

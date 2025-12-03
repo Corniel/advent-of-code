@@ -42,7 +42,7 @@ public class Day_05
             {
                 buffer.Push(stacks[move.From].Pop());
             }
-            while (buffer.NotEmpty()) stacks[move.To].Push(buffer.Pop());
+            while (buffer.NotEmpty) stacks[move.To].Push(buffer.Pop());
         }
     }
 

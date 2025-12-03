@@ -22,7 +22,7 @@ public class Day_02
         n.TryFormat(chs, out var len);
         var a = chs.AsSpan(..len);
         var h = len / 2;
-        return len.IsEven() && a[0..h].Is(a[^h..]);
+        return len.IsEven && a[0..h].Is(a[^h..]);
     }
 
     static bool Two(long n)

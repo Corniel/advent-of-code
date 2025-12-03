@@ -1,5 +1,3 @@
-using Advent_of_Code.Rankings;
-
 namespace Advent_of_Code;
 
 public static class Templating

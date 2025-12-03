@@ -10,6 +10,8 @@ namespace Advent_of_Code;
 
 public static class Program
 {
+    private static readonly DirectoryInfo Root = new(Path.Combine(typeof(Program).Assembly.Location, "../../../../../"));
+
     private static readonly int Failure = 1;
     private static readonly int Success = 0;
     private static AdventPuzzles Puzzles = new();
@@ -97,8 +99,8 @@ public static class Program
     private static async Task<int> DownloadInput(AdventDate date, string arg)
     {
         var root = arg == "-in"    
-            ? new DirectoryInfo("./../../../../AdventOfCode.Now")
-            : new DirectoryInfo("./../../../../AdventOfCode");
+            ? new DirectoryInfo(Path.Combine(Root.FullName,"AdventOfCode.Now"))
+            : new DirectoryInfo(Path.Combine(Root.FullName,"AdventOfCode"));
 
         var input = new PuzzleInput(date, root);
 

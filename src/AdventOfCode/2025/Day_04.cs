@@ -11,10 +11,10 @@ public class Day_04
 {
     [Example(answer: 13, Example._1)]
     [Puzzle(answer: 1564, O.ms10)]
-    public int part_one(CharGrid grid)
+    public int part_one(CharGrid map)
     {
-        grid.SetNeighbors(Neighbors.Grid, CompassPoints.All);
-        return grid.Positions(p => Accessable(p, grid)).Count();
+        map.SetNeighbors(Neighbors.Grid, CompassPoints.All);
+        return map.Positions(p => Accessable(p, map)).Count();
     }
 
     [Example(answer: 43, Example._1)]
@@ -24,19 +24,19 @@ public class Day_04
         var removed = 0;
 
         // Make a copy so that the benchmark data is not modified.
-        var grid = str.CharPixels().Grid();
+        var map = str.CharPixels().Grid();
 
-        grid.SetNeighbors(Neighbors.Grid, CompassPoints.All);
+        map.SetNeighbors(Neighbors.Grid, CompassPoints.All);
 
         bool change;
         do
         {
             change = false; 
-            foreach (var pos in grid.Positions(x => x is '@').Where(p => Accessable(p, grid)))
+            foreach (var pos in map.Positions(x => x is '@').Where(p => Accessable(p, map)))
             {
                 removed++;
                 change = true;
-                grid[pos] = '.';
+                map[pos] = '.';
             }
         }
         while (change);
@@ -44,5 +44,5 @@ public class Day_04
         return removed;
     }
 
-    static bool Accessable(Point p, CharGrid grid) => grid[p] is '@' && grid.Neighbors[p].Count(n => grid[n] is '@') < 4;
+    static bool Accessable(Point p, CharGrid map) => map[p] is '@' && map.Neighbors[p].Count(n => map[n] is '@') < 4;
 }

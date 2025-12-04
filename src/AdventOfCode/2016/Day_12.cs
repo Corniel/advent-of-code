@@ -39,7 +39,7 @@ public class Day_12
         {
             "inc" => new Inc(b[0][0] - 'a'),
             "dec" => new Dec(b[0][0] - 'a'),
-            "jnz" => b[0][0] == '1'
+            "jnz" => b[0][0] is '1'
                 ? new Jmp(b[1].Int32())
                 : new Jnz(b[0][0] - 'a', b[1].Int32()),
             _ => b[0].Int32N() is { } val
@@ -48,29 +48,10 @@ public class Day_12
         };
     }
 
-    record CpyVal(int Val, int Target)
-    {
-        public int Do(int[] mem) { mem[Target] = Val; return 1; }
-    }
-
-    record CpyRef(int Source, int Target)
-    {
-        public int Do(int[] mem) { mem[Target] = mem[Source]; return 1; }
-    }
-
-    record Inc(int Index)
-    {
-        public int Do(int[] mem) { mem[Index]++; return 1; }
-    }
-
-    record Dec(int Index)
-    {
-        public int Do(int[] mem) { mem[Index]--; return 1; }
-    }
-
-    record Jnz(int Index, int Value)
-    {
-        public int Do(int[] mem) => mem[Index] == 0 ? 1 : Value;
-    }
+    record CpyVal(int Val, int Target) { public int Do(int[] mem) { mem[Target] = Val; return 1; } }
+    record CpyRef(int Source, int Target) { public int Do(int[] mem) { mem[Target] = mem[Source]; return 1; } }
+    record Inc(int Index) { public int Do(int[] mem) { mem[Index]++; return 1; } }
+    record Dec(int Index) { public int Do(int[] mem) { mem[Index]--; return 1; } }
+    record Jnz(int Index, int Value) { public int Do(int[] mem) => mem[Index] == 0 ? 1 : Value; }
     record Jmp(int Value);
 }

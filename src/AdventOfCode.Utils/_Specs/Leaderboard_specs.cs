@@ -41,7 +41,7 @@ public class Leaderboard
 
     static void Fetch(AdventDate filter)
     {
-        var enties = FetchEntries(filter).Where(d => d.Date.Year >= 2017).ToArray();
+        var enties = FetchEntries(filter).Where(d => d.Date.Year >= 2017 && d.Date.Year < 2025).ToArray();
         var factor = 50d / enties.Max(e => e.Time.Ticks);
 
         foreach (var entry in enties)

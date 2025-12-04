@@ -20,15 +20,14 @@ public class Day_13
     [Puzzle(answer: 672754131923874, @"1008713;13,x,x,41,x,x,x,x,x,x,x,x,x,467,x,x,x,x,x,x,x,x,x,x,x,19,x,x,x,x,17,x,x,x,x,x,x,x,x,x,x,x,29,x,353,x,x,x,x,x,37,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,23", O.μs)]
     public long part_two(Lines lines)
     {
-        var busses = lines[1]
+        Bus[] busses = [.. lines[1]
             .CommaSeparated((id, index) => new Bus(id.TryInt32(fallback: 0), index % id.TryInt32(fallback: 1)))
-            .Where(b => b.Period != default);
-        var bus = busses.First();
+            .Where(b => b.Period is not 0)];
+        
+        var bus = busses[0];
 
-        foreach (var other in busses.Skip(1))
-        {
-            bus = bus.Merge(other);
-        }
+        foreach (var other in busses.Skip(1)) bus = bus.Merge(other);
+
         return bus.Offset;
     }
 
@@ -38,14 +37,12 @@ public class Day_13
     {
         public Bus Merge(Bus other)
         {
-            for (var departure = Offset; /* oo */ ; departure += Period)
-            {
+            for (var departure = Offset; /* oo */; departure += Period)
                 if (GetOffset(other.Period, departure) == other.Offset)
-                {
                     return new Bus(Period * other.Period, departure);
-                }
-            }
+
             throw new InfiniteLoop();
         }
+
     }
 }

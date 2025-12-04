@@ -231,4 +231,4 @@
 | [2025-01](src/AdventOfCode/2025/Day_01.cs) |  16 |    0.47 kb |
 | [2025-02](src/AdventOfCode/2025/Day_02.cs) |  22 |    0.83 kb |
 | [2025-03](src/AdventOfCode/2025/Day_03.cs) |  14 |    0.41 kb |
-| [2025-04](src/AdventOfCode/2025/Day_04.cs) |  17 |    0.56 kb |
+| [2025-04](src/AdventOfCode/2025/Day_04.cs) |  15 |    0.55 kb |

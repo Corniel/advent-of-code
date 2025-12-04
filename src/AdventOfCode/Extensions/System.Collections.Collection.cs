@@ -10,6 +10,20 @@ public static class CollectionExtensions
         [OverloadResolutionPriority(10)]
         public bool NotEmpty => collection.Count is not 0;
     }
+    extension<T>(IEnumerable<T> enumerable)
+    {
+        public (T One, T Two, T Three) Take3()
+        {
+            var iterator = enumerable.GetEnumerator();
+            iterator.MoveNext();
+            var one = iterator.Current;
+            iterator.MoveNext();
+            var two = iterator.Current;
+            iterator.MoveNext();
+            var three = iterator.Current;
+            return (one, two, three);
+        }
+    }
 
     extension<T>(IEnumerable<T> enumerable)
     {

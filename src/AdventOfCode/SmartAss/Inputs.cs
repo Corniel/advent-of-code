@@ -7,10 +7,9 @@ namespace SmartAss;
 /// <see cref="ImmutableArray{T}"/> as test method arguments.
 /// </remarks>
 [DebuggerDisplay("Count = {Count}")]
-[DebuggerTypeProxy(typeof(CollectionDebugView))]
 public readonly struct Inputs<T>(ImmutableArray<T> input) : IReadOnlyList<T>
 {
-    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+    [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
     private readonly ImmutableArray<T> collection = input;
 
     /// <inheritdoc />
@@ -24,6 +23,7 @@ public readonly struct Inputs<T>(ImmutableArray<T> input) : IReadOnlyList<T>
     public int Count => collection.Length;
 
     /// <inheritdoc cref="ImmutableArray{T}.Length" />
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
     public int Length => collection.Length;
 
     /// <inheritdoc cref="ImmutableArray{T}.AsSpan()" />

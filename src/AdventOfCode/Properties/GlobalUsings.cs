@@ -26,6 +26,7 @@ global using System.IO;
 global using System.Linq;
 global using System.Text;
 global using System.Text.RegularExpressions;
+global using static Advent_of_Code.Static;
 global using static System.Linq.Enumerable;
 global using CategoryAttribute = Advent_of_Code.CategoryAttribute;
 global using CharGrid = SmartAss.Collections.Grid<char>;

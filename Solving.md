@@ -2,15 +2,15 @@
 |--------:|----:|:---------------------------------------------------|
 |   < 15m |   2 | ⭐ |
 |   < 30m |  13 | ⭐⭐⭐⭐⭐⭐ |
-|   < 60m |  13 | ⭐⭐⭐⭐⭐⭐ |
-|    < 2h |  27 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ |
-|    < 4h |  31 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ |
+|   < 60m |  14 | ⭐⭐⭐⭐⭐⭐⭐ |
+|    < 2h |  27 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ |
+|    < 4h |  31 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ |
 |    < 8h |  22 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ |
 |    < 1d |  14 | ⭐⭐⭐⭐⭐⭐⭐ |
 |    < 2d |   4 | ⭐⭐ |
 |    < 1w |   2 | ⭐ |
 |    < 1y |   1 | ⭐ |
-|    > 1y |  88 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ |
+|    > 1y |  90 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ |
 
 |   Day   |   Solved |
 |:-------:|---------:|
@@ -32,6 +32,7 @@
 | [2015-16](src/AdventOfCode/2015/Day_16.cs) |   6 year |
 | [2015-17](src/AdventOfCode/2015/Day_17.cs) |   6 year |
 | [2015-18](src/AdventOfCode/2015/Day_18.cs) |   6 year |
+| [2015-19](src/AdventOfCode/2015/Day_19.cs) |  10 year |
 | [2015-23](src/AdventOfCode/2015/Day_23.cs) |   9 year |
 | [2015-25](src/AdventOfCode/2015/Day_25.cs) |   8 year |
 | [2016-01](src/AdventOfCode/2016/Day_01.cs) |   5 year |
@@ -53,6 +54,7 @@
 | [2016-19](src/AdventOfCode/2016/Day_19.cs) |   9 year |
 | [2016-20](src/AdventOfCode/2016/Day_20.cs) |   8 year |
 | [2016-21](src/AdventOfCode/2016/Day_21.cs) |   9 year |
+| [2016-25](src/AdventOfCode/2016/Day_25.cs) |   9 year |
 | [2017-01](src/AdventOfCode/2017/Day_01.cs) |   4 year |
 | [2017-02](src/AdventOfCode/2017/Day_02.cs) |   5 year |
 | [2017-03](src/AdventOfCode/2017/Day_03.cs) |   5 year |
@@ -231,3 +233,4 @@
 | [2025-02](src/AdventOfCode/2025/Day_02.cs) |  6:42:04 |
 | [2025-03](src/AdventOfCode/2025/Day_03.cs) |  1:13:43 |
 | [2025-04](src/AdventOfCode/2025/Day_04.cs) |    15:11 |
+| [2025-05](src/AdventOfCode/2025/Day_05.cs) |    37:38 |

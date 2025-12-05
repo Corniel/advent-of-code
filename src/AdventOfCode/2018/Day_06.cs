@@ -48,7 +48,7 @@ public class Day_06
     {
         public HashSet<Point> Tiles { get; } = new([Point]);
         public bool Finate { get; set; } = true;
-        public IReadOnlyCollection<Point> Other { get; set; }
+        public ImmutableArray<Point> Other { get; set; }
         public Queue<Point> Todo { get; } = new Queue<Point>().EnqueueRange(Point);
     }
 }

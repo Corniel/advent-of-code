@@ -3,7 +3,7 @@ namespace Advent_of_Code
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class CategoryAttribute(params Category[] catagories) : Attribute, IApplyToTest
     {
-        public IReadOnlyCollection<Category> Categories { get; } = catagories;
+        public ImmutableArray<Category> Categories { get; } = [.. catagories];
 
         public void ApplyToTest(Test test)
         {

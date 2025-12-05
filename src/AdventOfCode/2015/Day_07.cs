@@ -11,7 +11,7 @@ public class Day_07
     public long part_two(Lines lines)
     {
         var pars = Pars(lines);
-        pars["b"] = SmartAss.Expressions.Expr.Const(956);
+        pars["b"] = Expr.Const(956);
         return pars.Value("a");
     }
 
@@ -20,10 +20,10 @@ public class Day_07
     static Param Param(string line)
     {
         var parts = line.Separate(" ", "->");
-        return new(parts[^1], new Ushort(Expr(parts)));
+        return new(parts[^1], new Ushort(Express(parts)));
     }
 
-    static Expr Expr(IReadOnlyList<string> parts) => parts.Count switch
+    static Expr Express(string[] parts) => parts.Length switch
     {
         2 => Arg(parts[0]),
         3 => new BitNot(Arg(parts[1])),
@@ -36,5 +36,5 @@ public class Day_07
         }
     };
 
-    static Expr Arg(string str) => str.Int32N() is { } n ? SmartAss.Expressions.Expr.Const(n) : SmartAss.Expressions.Expr.Ref(str);
+    static Expr Arg(string str) => str.Int32N() is { } n ? Expr.Const(n) : Expr.Ref(str);
 }

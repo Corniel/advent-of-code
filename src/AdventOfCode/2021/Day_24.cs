@@ -12,7 +12,7 @@ public class Day_24
     static readonly int[] Asc = [..Range(1, 9)];
     static readonly int[] Desc = [..Asc.Reversed()];
 
-    static long? Serial(int[] digits, State state, IReadOnlyList<Expression> exps, long serial = 0, int level = 0, int index = 0)
+    static long? Serial(int[] digits, State state, Expression[] exps, long serial = 0, int level = 0, int index = 0)
     {
         var seri = serial * 10;
         foreach (var digit in digits)
@@ -21,7 +21,7 @@ public class Day_24
             var state_next = State.Zero;
             var test = state.Exc(exps[index].Set(digit));
 
-            for (var i = index + 1; i < exps.Count; i++)
+            for (var i = index + 1; i < exps.Length; i++)
             {
                 var exp = exps[i];
                 if (index_next == -1 && exp.Op == Op.inp)

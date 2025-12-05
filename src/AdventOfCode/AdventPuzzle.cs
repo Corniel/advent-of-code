@@ -33,6 +33,8 @@ public sealed class AdventPuzzle
             else if (target == typeof(CharGrid)) return str.CharPixels().Grid();
             else if (target == typeof(Ints)) return new Ints([.. str.Int32s()]);
             else if (target == typeof(Longs)) return new Longs([.. str.Int64s()]);
+            else if (target == typeof(Int32Ranges)) return Int32Ranges.Parse(str);
+            else if (target == typeof(Int64Ranges)) return Int64Ranges.Parse(str);
             else return str;
         }
         else return obj;

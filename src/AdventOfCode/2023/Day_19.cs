@@ -13,7 +13,7 @@ public class Day_19
     public long part_two(GroupedLines groups)
     {
         var wfs = Workflows(groups);
-        return wfs["in"].Permutations(new(Ranges.All, Ranges.All, Ranges.All, Ranges.All), wfs);
+        return wfs["in"].Permutations(new(1..4000, 1..4000, 1..4000, 1..4000), wfs);
     }
 
     static Dictionary<string, Workflow> Workflows(GroupedLines groups) => groups[0].Select(Workflow.Parse).ToDictionary(w => w.Name, w => w);
@@ -91,8 +91,6 @@ public class Day_19
 
     record Ranges(Int32Ranges X, Int32Ranges M, Int32Ranges A, Int32Ranges S)
     {
-        public static readonly Int32Ranges All = Int32Ranges.New(new Int32Range(1, 4000));
-
         public long Permutations => 1L * X.Size * M.Size * A.Size * S.Size;
 
         public Ranges Edit(Int32Range filter, string name, Func<Int32Ranges, Int32Range, Int32Ranges> edit) => name switch

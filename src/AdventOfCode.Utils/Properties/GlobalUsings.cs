@@ -16,6 +16,8 @@ global using System.Text;
 global using System.Threading.Tasks;
 global using static System.FormattableString;
 global using CharGrid = SmartAss.Collections.Grid<char>;
+global using Int32Ranges = SmartAss.Numerics.NumericRanges<int>;
+global using Int64Ranges = SmartAss.Numerics.NumericRanges<long>;
 global using Ints = SmartAss.Inputs<int>;
 global using Longs = SmartAss.Inputs<long>;
 global using Lines = SmartAss.Inputs<string>;

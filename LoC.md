@@ -1,11 +1,11 @@
 |  LoC |   # | Chart  |
 |-----:|----:|:-------|
-|   10 |  35 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ |
-|   20 |  69 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ |
-|   30 |  52 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ |
+|   10 |  35 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ |
+|   20 |  70 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ |
+|   30 |  51 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ |
 |   40 |  32 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ |
-|   50 |  12 | ⭐⭐⭐⭐⭐⭐⭐ |
-|   60 |   9 | ⭐⭐⭐⭐⭐⭐ |
+|   50 |  13 | ⭐⭐⭐⭐⭐⭐⭐⭐ |
+|   60 |   8 | ⭐⭐⭐⭐⭐ |
 |   70 |   5 | ⭐⭐⭐ |
 |   80 |   0 |  |
 |   90 |   1 | ⭐ |
@@ -55,7 +55,7 @@
 | [2016-17](src/AdventOfCode/2016/Day_17.cs) |  18 |    1.11 kb |
 | [2016-18](src/AdventOfCode/2016/Day_18.cs) |  10 |    0.39 kb |
 | [2016-19](src/AdventOfCode/2016/Day_19.cs) |   9 |    0.29 kb |
-| [2016-20](src/AdventOfCode/2016/Day_20.cs) |   5 |    0.30 kb |
+| [2016-20](src/AdventOfCode/2016/Day_20.cs) |   3 |    0.26 kb |
 | [2016-21](src/AdventOfCode/2016/Day_21.cs) |  57 |    2.29 kb |
 | [2016-25](src/AdventOfCode/2016/Day_25.cs) |   5 |    0.18 kb |
 | [2017-01](src/AdventOfCode/2017/Day_01.cs) |   6 |    0.33 kb |
@@ -199,7 +199,7 @@
 | [2023-16](src/AdventOfCode/2023/Day_16.cs) |  24 |    1.08 kb |
 | [2023-17](src/AdventOfCode/2023/Day_17.cs) |  23 |    1.06 kb |
 | [2023-18](src/AdventOfCode/2023/Day_18.cs) |  39 |    1.79 kb |
-| [2023-19](src/AdventOfCode/2023/Day_19.cs) |  51 |    2.93 kb |
+| [2023-19](src/AdventOfCode/2023/Day_19.cs) |  50 |    2.83 kb |
 | [2023-21](src/AdventOfCode/2023/Day_21.cs) |  33 |    1.21 kb |
 | [2023-23](src/AdventOfCode/2023/Day_23.cs) |  42 |    1.94 kb |
 | [2023-24](src/AdventOfCode/2023/Day_24.cs) |  37 |    1.48 kb |
@@ -230,7 +230,7 @@
 | [2024-24](src/AdventOfCode/2024/Day_24.cs) |  54 |    2.30 kb |
 | [2024-25](src/AdventOfCode/2024/Day_25.cs) |  15 |    0.43 kb |
 | [2025-01](src/AdventOfCode/2025/Day_01.cs) |  16 |    0.47 kb |
-| [2025-02](src/AdventOfCode/2025/Day_02.cs) |  22 |    0.83 kb |
+| [2025-02](src/AdventOfCode/2025/Day_02.cs) |  18 |    0.70 kb |
 | [2025-03](src/AdventOfCode/2025/Day_03.cs) |  14 |    0.41 kb |
 | [2025-04](src/AdventOfCode/2025/Day_04.cs) |  15 |    0.55 kb |
 | [2025-05](src/AdventOfCode/2025/Day_05.cs) |   4 |    0.26 kb |

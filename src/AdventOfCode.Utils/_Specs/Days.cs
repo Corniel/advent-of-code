@@ -31,6 +31,7 @@ public class Are
             else if (type == typeof(CharPixels)) return "chars";
             else if (type == typeof(CharGrid)) return "map";
             else if (type == typeof(Ints) || type == typeof(Longs)) return "numbers";
+            else if (type == typeof(Int32Ranges) || type == typeof(Int64Ranges)) return "ranges";
             else return "*";
         }
     }

@@ -10,7 +10,7 @@
 |    < 2d |   4 | ⭐⭐ |
 |    < 1w |   2 | ⭐ |
 |    < 1y |   1 | ⭐ |
-|    > 1y |  91 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ |
+|    > 1y |  93 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ |
 
 |   Day   |   Solved |
 |:-------:|---------:|
@@ -34,7 +34,9 @@
 | [2015-18](src/AdventOfCode/2015/Day_18.cs) |   6 year |
 | [2015-19](src/AdventOfCode/2015/Day_19.cs) |  10 year |
 | [2015-20](src/AdventOfCode/2015/Day_20.cs) |  10 year |
+| [2015-21](src/AdventOfCode/2015/Day_21.cs) |  10 year |
 | [2015-23](src/AdventOfCode/2015/Day_23.cs) |   9 year |
+| [2015-24](src/AdventOfCode/2015/Day_24.cs) |  10 year |
 | [2015-25](src/AdventOfCode/2015/Day_25.cs) |   8 year |
 | [2016-01](src/AdventOfCode/2016/Day_01.cs) |   5 year |
 | [2016-02](src/AdventOfCode/2016/Day_02.cs) |   6 year |

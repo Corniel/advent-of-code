@@ -3,9 +3,9 @@ namespace Advent_of_Code_@Year;
 [Category(Category.None)]
 public class Day_@Day
 {
-    [Example(answer: 666, Example._1)]
-    [Example(answer: 666, "TEXT")]
-    [Puzzle(answer: 666, O.ms)]
+    [Example(answer: 17, Example._1)]
+    [Example(answer: 17, "TEXT")]
+    [Puzzle(answer: 42, O.ms)]
     public long part_one(string str)
     {
         var lines = str.Lines();
@@ -16,9 +16,7 @@ public class Day_@Day
         throw new NoAnswer();
     }
 
-    [Example(answer: 666, Example._1)]
-    [Example(answer: 666, "TEXT")]
-    [Puzzle(answer: 666, O.ms)]
+    [Puzzle(answer: 69, O.ms)]
     public long part_two(string str)
     {
         throw new NoAnswer();

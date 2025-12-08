@@ -37,4 +37,5 @@ global using Int64Ranges = SmartAss.Numerics.NumericRanges<long>;
 global using Ints = SmartAss.Inputs<int>;
 global using Lines = SmartAss.Inputs<string>;
 global using Longs = SmartAss.Inputs<long>;
+global using Point3Ds = SmartAss.Inputs<SmartAss.Numerics.Point3D>;
 global using Sequances = SmartAss.Numerics.Sequence;

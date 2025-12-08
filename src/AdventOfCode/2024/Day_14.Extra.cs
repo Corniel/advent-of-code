@@ -51,7 +51,7 @@ partial class Day_14
         return 0;
     }
 
-    private static SmartAss.Numerics.Point? Tree(Grid<bool> map, int wide, int tall)
+    static SmartAss.Numerics.Point? Tree(Grid<bool> map, int wide, int tall)
     {
         for (var r = 0; r < tall - 33; r++)
         {

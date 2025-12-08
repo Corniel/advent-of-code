@@ -17,7 +17,7 @@ public class Day_03
     [Puzzle(answer: 169019504359949, O.μs10)]
     public long part_two(Lines lines) => lines.Sum(l => Number(l, 12));
 
-    private static long Number(string s, int len)
+    static long Number(string s, int len)
     {
         var num = 0L; char max; var lo = -1; var f = 0;
 

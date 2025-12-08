@@ -11,7 +11,7 @@ public class Day_22
     [Puzzle(answer: 2510774, O.ms100)]
     public int part_two(CharGrid map) => Run(map, 10000000, s => (State)((int)s + 1).Mod(4));
 
-    private static int Run(CharGrid map, int runs, Func<State, State> change)
+    static int Run(CharGrid map, int runs, Func<State, State> change)
     {
         var spots = map.Hashes().ToDictionary(p => p, _ => State.Inf);
         var carrier = new Cursor(new(map.Cols / 2, map.Rows / 2), Vector.N);

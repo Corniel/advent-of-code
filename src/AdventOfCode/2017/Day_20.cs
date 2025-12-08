@@ -4,44 +4,34 @@ namespace Advent_of_Code_2017;
 public class Day_20
 {
     [Puzzle(answer: 344, O.μs100)]
-    public int part_one(Lines lines)
-    {
-        var data = lines.ToArray(Data.Parse);
-        var best = 0;
-        for (var test = 1; test < data.Length; test++)
-        {
-            best = data[best].Compare(data[test]) > 0 ? test : best;
-        }
-        return best;
-
-    }
+    public int part_one(Point3Ds points) => Init(points).Index().OrderBy(i => i.Item).First().Index;
 
     [Puzzle(answer: 404, O.ms)]
-    public int part_two(Lines lines)
+    public int part_two(Point3Ds points)
     {
-        var curr = lines.As(Data.Parse).ToDictionary(d => d.P, d => d);
-        var next = new Dictionary<Point3D, Data>();
-        var dell = new HashSet<Point3D>();
+        var cur = Init(points).ToDictionary(d => d.P, d => d);
+        var nxt = new Dictionary<Point3D, Data>();
+        var del = new HashSet<Point3D>();
 
         for (var i = 0; i < 50; i++)
         {
-            next.Clear(); dell.Clear();
+            nxt.Clear(); del.Clear();
 
-            foreach (var n in curr.Values)
+            foreach (var n in cur.Values)
             {
-                if (!next.TryAdd(n.P, n.Next())) dell.Add(n.P);
+                if (!nxt.TryAdd(n.P, n.Next())) del.Add(n.P);
             }
-            foreach (var p in dell) next.Remove(p);
+            foreach (var p in del) nxt.Remove(p);
 
-            (next, curr) = (curr, next);
+            (nxt, cur) = (cur, nxt);
         }
-
-        return curr.Count;
+        return cur.Count;
     }
 
-    record struct Data(Point3D P, Vector3D V, Vector3D A)
-    {
+    static IEnumerable<Data> Init(Point3Ds points) => points.ChunkBy(3).Select(c => new Data(c[0], c[1].Vector(), c[2].Vector()));
 
+    readonly record struct Data(Point3D P, Vector3D V, Vector3D A) : IComparable<Data>
+    {
         public Data Next()
         {
             var v = V + A;
@@ -49,16 +39,9 @@ public class Day_20
             return new(p, v, A);
         }
 
-        public int Compare(Data other)
+        public int CompareTo(Data other)
             => A.ManhattanDistance(Vector3D.O).ComparesTo(other.A.ManhattanDistance(Vector3D.O))
             ?? V.ManhattanDistance(Vector3D.O).ComparesTo(other.V.ManhattanDistance(Vector3D.O))
-            ?? P.ManhattanDistance(Point3D.O).ComparesTo(other.P.ManhattanDistance(Point3D.O))
-            ?? 0;
-
-        public static Data Parse(string line)
-        {
-            int[] ns = [..line.Int32s()];
-            return new(Ctor.New<Point3D>(ns[..3]), Ctor.New<Vector3D>(ns[3..6]), Ctor.New<Vector3D>(ns[6..]));
-        }
+            ?? P.ManhattanDistance(Point3D.O).CompareTo(other.P.ManhattanDistance(Point3D.O));
     }
 }

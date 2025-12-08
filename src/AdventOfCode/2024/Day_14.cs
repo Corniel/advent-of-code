@@ -70,7 +70,7 @@ public partial class Day_14
         throw new NoAnswer();
     }
 
-    private static IEnumerable<Point> Points(IEnumerable<Cursor> bots, int step, int wide, int tall)
+    static IEnumerable<Point> Points(IEnumerable<Cursor> bots, int step, int wide, int tall)
         => bots.Select(b => b.Move(step).Pos).Select(b => new Point(b.X.Mod(wide), b.Y.Mod(tall)));
 
     static int[] Quadrants(IEnumerable<Point> points, int wide, int tall)

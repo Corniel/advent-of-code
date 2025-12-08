@@ -5,13 +5,13 @@ public class Day_15
 {
     [Example(answer: 26, null, 10, Example._1)]
     [Puzzle(answer: 4665948, null, 2_000_000, O.μs)]
-    public int part_one(Lines lines, int y) => lines.As(Instruction.Parse).Select(i => i.Range(y)).Merge().Sum(r => r.Size) - 1;
+    public int part_one(Point2Ds points, int y) => points.ChunkBy(2).Select(Instruction.New).Select(i => i.Range(y)).Merge().Sum(r => r.Size) - 1;
 
     [Example(answer: 56000011, null, 20, Example._1)]
     [Puzzle(answer: 13543690671045, null, 4_000_000, O.s)]
-    public long part_two(Lines lines, int max)
+    public long part_two(Point2Ds points, int max)
     {
-        var instr = lines.ToArray(Instruction.Parse);
+        var instr = points.ChunkBy(2).Select(Instruction.New).ToList();
 
         for (var y = 0; y <= max; y++)
         {
@@ -31,11 +31,9 @@ public class Day_15
             ? new(Sensor.X - Dinstance + dy, Sensor.X + Dinstance - dy)
             : Int32Range.Empty;
 
-        public static Instruction Parse(string line)
+        public static Instruction New(Slice<Point> pair)
         {
-            int[] ns = [..line.Int32s()];
-            Point s = (ns[0], ns[1]);
-            Point b = (ns[2], ns[3]);
+            var(s, b) = (pair[0], pair[1]);
             return new(s, b, s.ManhattanDistance(b));
         }
     }

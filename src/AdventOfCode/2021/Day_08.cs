@@ -21,7 +21,7 @@ public class Day_08
     [Puzzle(answer: 1041746, O.μs10)]
     public int part_two(Lines lines) => lines.As(line => line.Split(" | ")).Sum(Decode);
 
-    private readonly int[] segments = new int[7];
+    readonly int[] segments = new int[7];
 
     int Decode(string[] line)
     {

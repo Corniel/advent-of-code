@@ -5,9 +5,9 @@ public class Day_06
 {
     [Example(answer: 17, "1, 1;1, 6;8, 3;3, 4;5, 5;8, 9")]
     [Puzzle(answer: 4976, O.ms10)]
-    public int part_one(Lines lines)
+    public int part_one(Point2Ds points)
     {
-        Area[] areas = [.. lines.As(l => new Area(Point.Parse(l)))];
+        Area[] areas = [.. points.As(p => new Area(p))];
         foreach (var area in areas) { area.Other = [.. areas.Select(a => a.Point).Except(area.Point)]; }
 
         var dis = 0; var min = areas.Select(a => a.Point).Min(); var max = areas.Select(a => a.Point).Max();
@@ -36,11 +36,7 @@ public class Day_06
 
     [Example(answer: 16, "1, 1;1, 6;8, 3;3, 4;5, 5;8, 9", 32)]
     [Puzzle(answer: 46462, null, 10_000, O.ms10)]
-    public int part_two(Lines lines, int max)
-    {
-        var areas = lines.ToArray(Point.Parse);
-        return Points.Range(areas.Min(), areas.Max()).Count(p => areas.Sum(p.ManhattanDistance) < max);
-    }
+    public int part_two(Point2Ds points, int max) => Points.Range(points.Min(), points.Max()).Count(p => points.Sum(p.ManhattanDistance) < max);
 
     static IEnumerable<Point> Neighbors(Point p) => CompassPoints.Primary.Select(c => p + c.ToVector());
 

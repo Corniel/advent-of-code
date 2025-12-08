@@ -18,7 +18,7 @@ public class Day_13
         {
             var flipY = instruction[0] == 'x';
             var fold = instruction[2..].Int32();
-            points = new HashSet<Point>(points.Select(p => Fold(p, flipY, fold)));
+            points = [.. points.Select(p => Fold(p, flipY, fold))];
         }
         return points;
     }

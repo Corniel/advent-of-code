@@ -34,7 +34,13 @@ public readonly struct Inputs<T>(IReadOnlyList<T> input) : IReadOnlyList<T>
 
     public IEnumerable<TOut> As<TOut>(Func<T, TOut> selector) => collection.Select(selector);
 
-    public TOut[] ToArray<TOut>(Func<T, TOut> selector) => [..As(selector)];
+    public TOut[] ToArray<TOut>(Func<T, TOut> selector)
+    {
+        var array = new TOut[collection.Length];
+        for (int i = 0; i < collection.Length; i++)
+            array[i] = selector(collection[i]);
+        return array;
+    }
 
     public IEnumerator<T> GetEnumerator() => ((IReadOnlyCollection<T>)collection).GetEnumerator();
 

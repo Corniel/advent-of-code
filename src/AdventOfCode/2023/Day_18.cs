@@ -47,7 +47,7 @@ public class Day_18
                 }
                 else
                 {
-                    filled = filled.Merge([line]);
+                    filled = filled.Merge(line);
                 }
             }
             fills[y] = filled.Merge(prev);

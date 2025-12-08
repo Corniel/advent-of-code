@@ -15,7 +15,7 @@ public class Day_22
     [Puzzle(answer: 1216, O.ms10)]
     public int part_two(Ints numbers) => Run(numbers, 1);
 
-    private static int Run(Ints numbers, int pen)
+    static int Run(Ints numbers, int pen)
     {
         var (bos, armor) = (numbers[0], numbers[1]);
         var q = new PriorityQueue<State, int>([(new State(0, 500, 50, bos, default), 0)]);
@@ -66,7 +66,7 @@ public class Day_22
             };
         }
 
-        private State Spell()
+        State Spell()
         {
             if (Durs.Value is 0) return this;
 

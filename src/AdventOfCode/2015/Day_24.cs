@@ -17,7 +17,7 @@ public class Day_24
     [Puzzle(answer: 80393059L, O.μs100)]
     public long part_two(Ints numbers) => Solve(numbers, 4);
 
-    private static long Solve(Ints numbers, int size)
+    static long Solve(Ints numbers, int size)
     {
         // Pre-sort descending to reach solutions faster.
         int[] ns = [.. numbers.OrderDescending()];

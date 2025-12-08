@@ -12,7 +12,7 @@ public class Day_15
     [Puzzle(answer: 1397393, O.ms)]
     public int part_two(GroupedLines groups) => Push(groups, Two);
 
-    private static int Push(GroupedLines groups, Func<CharPixels, CharGrid> init)
+    static int Push(GroupedLines groups, Func<CharPixels, CharGrid> init)
     {
         var map = init(groups[0].CharPixels());
         var pos = map.Position(p => p == '@');

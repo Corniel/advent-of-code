@@ -105,7 +105,7 @@ public class Day_14
         return new(bits ?? byte.MaxValue, flags);
     }
 
-    private static readonly Scan[] Cache = new Scan[1024];
-    private static readonly byte[] Ascii = [.. "0123456789abcdef".Select(c => (byte)c)];
+    static readonly Scan[] Cache = new Scan[1024];
+    static readonly byte[] Ascii = [.. "0123456789abcdef".Select(c => (byte)c)];
     readonly record struct Scan(byte Byte, int Flags);
 }

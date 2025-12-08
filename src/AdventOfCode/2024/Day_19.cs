@@ -27,7 +27,7 @@ public sealed class Day_19
         return lines[1..].Sum(l => sum(Count(l, root)));
     }
 
-    private static long Count(string line, Node root)
+    static long Count(string line, Node root)
     {
         var cnts = new long[line.Length + 1]; cnts[0] = 1;
 
@@ -68,7 +68,7 @@ public sealed class Day_19
 
     static readonly int[] Index = Init();
 
-    private static int[] Init()
+    static int[] Init()
     {
         var ix = new int['x'];
         ix['g'] = 1; ix['r'] = 2; ix['u'] = 3; ix['w'] = 4;

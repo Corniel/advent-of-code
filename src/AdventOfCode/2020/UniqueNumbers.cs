@@ -4,7 +4,7 @@ namespace Advent_of_Code_2020;
 [DebuggerDisplay("Count: {Count}, Min: {Minimum}, Max: {Maximum}")]
 public class UniqueNumbers : IEnumerable<int>
 {
-    private readonly byte[] contains = new byte[short.MaxValue];
+    readonly byte[] contains = new byte[short.MaxValue];
     const byte True = 255;
 
     public static UniqueNumbers Empty => new();

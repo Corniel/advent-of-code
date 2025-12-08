@@ -33,7 +33,9 @@ public sealed class AdventPuzzle
             else if (target == typeof(CharGrid)) return str.CharPixels().Grid();
             else if (target == typeof(Ints)) return new Ints([.. str.Int32s()]);
             else if (target == typeof(Longs)) return new Longs([.. str.Int64s()]);
-            else if (target == typeof(Point3Ds)) return new Point3Ds([.. str.Int32s().ChunkBy(3).Select(x => Ctor.New<Point3D>(x))]);
+            else if (target == typeof(Point2Ds)) return new Point2Ds([.. str.Int32s().ChunkBy(2).Select(Ctor.New<Point>)]);
+            else if (target == typeof(Point3Ds)) return new Point3Ds([.. str.Int32s().ChunkBy(3).Select(Ctor.New<Point3D>)]);
+            else if (target == typeof(Point4Ds)) return new Point4Ds([.. str.Int32s().ChunkBy(4).Select(Ctor.New<Point4D>)]);
             else if (target == typeof(Int32Ranges)) return Int32Ranges.Parse(str);
             else if (target == typeof(Int64Ranges)) return Int64Ranges.Parse(str);
             else return str;
@@ -57,7 +59,7 @@ public sealed class AdventPuzzle
     [Pure]
     public override string ToString() => $"{Date} {Method.Name}";
 
-    private string Embedded()
+     string Embedded()
     {
         var assembly = Method.DeclaringType.Assembly;
         var path = $"Advent_of_Code._{Date.Year}.Day_{Date.Day:00}{(Example != Example.None ? $"_{(int)Example}" : "")}.txt";

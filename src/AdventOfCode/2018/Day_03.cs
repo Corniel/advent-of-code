@@ -5,20 +5,19 @@ public class Day_03
 {
     [Example(answer: 4, "#1 @ 1,3: 4x4\r\n#2 @ 3,1: 4x4\r\n#3 @ 5,5: 2x2")]
     [Puzzle(answer: 107043, O.ms10)]
-    public int part_one(Lines lines) => Counters(lines.As(Claim.Parse)).Count(c => c.Count > 1);
+    public int part_one(Inputs<Claim> claims) => Counters(claims).Count(c => c.Count > 1);
 
     [Example(answer: 3, "#1 @ 1,3: 4x4\r\n#2 @ 3,1: 4x4\r\n#3 @ 5,5: 2x2")]
     [Puzzle(answer: 346, O.ms10)]
-    public int part_two(Lines lines)
+    public int part_two(Inputs<Claim> claims)
     {
-        var claims = lines.ToArray(Claim.Parse);
         var counters = Counters(claims);
         return claims.First(c => c.Squares().All(sq => counters[sq] == 1)).Id;
     }
 
-    static ItemCounter<Point> Counters(IEnumerable<Claim> claims) => ItemCounter.New(claims.SelectMany(c => c.Squares()));
+    static ItemCounter<Point> Counters(Inputs<Claim> claims) => ItemCounter.New(claims.SelectMany(c => c.Squares()));
 
-    sealed record Claim(int Id, Point Start, Vector Size)
+    public record Claim(int Id, Point Start, Vector Size)
     {
         public static Claim Parse(string str)
         {

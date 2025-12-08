@@ -22,11 +22,21 @@ public class Benchmark
             .AddLogger(BenchmarkDotNet.Loggers.ConsoleLogger.Default)
             .AddColumnProvider(DefaultColumnProviders.Instance);
 
-        foreach (var puzzle in puzzles)
+        return puzzles.Select(p => Run(p, config)).OfType<BenchmarkResult>();
+    }
+
+    public static BenchmarkResult? Run(AdventPuzzle puzzle, ManualConfig config)
+    {
+        try
         {
             var summary = BenchmarkRunner.Run(Typed(puzzle), config);
             var column = summary.Table.Columns.Single(c => c.Header == "Mean");
-            yield return new BenchmarkResult(puzzle, string.Join("; ", column.Content));
+            return new BenchmarkResult(puzzle, string.Join("; ", column.Content));
+        }
+        catch (Exception x)
+        {
+            x.Console();
+            return null;
         }
     }
 

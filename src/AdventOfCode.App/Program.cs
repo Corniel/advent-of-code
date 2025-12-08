@@ -74,6 +74,7 @@ public static class Program
         var selection = puzzles
             .Matching(date)
             .Where(puzzle => !puzzle.Date.Matches(new AdventDate(default, 25, 2)))
+            .Where(puzzle => puzzle.Order < O.s || date.Year.HasValue && date.Day.HasValue)
             .ToArray();
 
         foreach (var result in Benchmark.Run(selection))

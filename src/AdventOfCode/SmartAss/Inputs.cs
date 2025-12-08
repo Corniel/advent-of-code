@@ -1,3 +1,4 @@
+using System.Reflection;
 using System.Runtime.CompilerServices;
 
 namespace SmartAss;
@@ -50,5 +51,25 @@ public readonly struct Inputs<T>(IReadOnlyList<T> input) : IReadOnlyList<T>
 
 public static class Inputs
 {
-    public static Inputs<T> Create<T>(ReadOnlySpan<T> values) => new([..values]);
+    public static Inputs<T> Create<T>(ReadOnlySpan<T> values) => new([.. values]);
+
+    public static object Parse(Type type, string str)
+        => parses.MakeGenericMethod(type).Invoke(null, [str]);
+
+    public static Inputs<T> Parses<T>(string str)
+    {
+        var parse = ParseMethod<T>();
+        return new Inputs<T>([.. str.Lines().Select(l => (T)parse.Invoke(null, [l]))]);
+    }
+    private static MethodInfo ParseMethod<T>()
+        => typeof(T).GetMethods(Flags).Where(m
+            => m.Name == nameof(Parse)
+            && m.ReturnType == typeof(T)
+            && m.GetParameters() is { Length: 1 } pars
+            && pars[0].ParameterType == typeof(string)).ToArray() is { Length: 1 } methods
+        ? methods[0]
+        : throw new InvalidOperationException($"Could not resolve {typeof(T).ToCSharpString(true)}.Parse(string).");
+
+    private static readonly BindingFlags Flags = BindingFlags.Static | BindingFlags.Public;
+    private static readonly MethodInfo parses = typeof(Inputs).GetMethod(nameof(Parses), Flags);
 }

@@ -7,11 +7,10 @@ public class Day_24
 {
     [Example(answer: 2, "19, 13, 30 @ -2,  1, -2;18, 19, 22 @ -1, -1, -2;20, 25, 34 @ -2, -2, -4;12, 31, 28 @ -1, -2, -1;20, 19, 15 @  1, -5, -3", 7, 27)]
     [Puzzle(answer: 16589, null, 200_000_000_000_000, 400_000_000_000_000, O.μs100)]
-    public int part_one(Lines lines, long min, long max)
-        => lines.As(Fx.Parse).RoundRobin().Count(p => Cross(p, min, max));
+    public int part_one(Inputs<Fx> fxs, long min, long max) => fxs.RoundRobin().Count(p => Cross(p, min, max));
 
     [Puzzle(answer: 781390555762385, O.s)]
-    public long part_two(Lines lines)
+    public long part_two(Inputs<Fx> fxs)
     {
         var c = new Context();
         var s = c.MkSolver();
@@ -19,7 +18,7 @@ public class Day_24
         var x = Const("x"); var y = Const("y"); var z = Const("z");
         var Δx = Const("Δx"); var Δy = Const("Δy"); var Δz = Const("Δz");
 
-        foreach (var fx in lines.As(Fx.Parse))
+        foreach (var fx in fxs)
         {
             var t = c.MkIntConst(fx.ToString());
             s.Add(t >= 0);
@@ -44,7 +43,7 @@ public class Day_24
     }
 
     [DebuggerDisplay("f(x) = {A}x + {B}, ({Pos.X}, {Pos.Y}, {Pos.Z}), ({Dir.X}, {Dir.Y}, {Dir.Z})")]
-    record Fx(double A, double B, Vec Pos, Vec Dir)
+    public record Fx(double A, double B, Vec Pos, Vec Dir)
     {
         public Vec Crosses(Fx other)
         {
@@ -65,5 +64,5 @@ public class Day_24
         }
     }
 
-    record struct Vec(long X, long Y, long Z);
+    public  record struct Vec(long X, long Y, long Z);
 }

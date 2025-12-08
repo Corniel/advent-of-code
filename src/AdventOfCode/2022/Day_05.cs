@@ -46,8 +46,5 @@ public class Day_05
         }
     }
 
-    record Move(int Repeat, int From, int To)
-    {
-        public static Move Parse(string line) => Ctor.New<Move>(line.Int32s());
-    }
+    record Move(int Repeat, int From, int To) { public static Move Parse(string line) => Ctor.New<Move>(line.Int32s()); }
 }

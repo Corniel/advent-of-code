@@ -8,8 +8,7 @@ public class Day_18
     [Example(answer: 437, "5 + (8 * 3 + 9 + 3 * 4 * 3)")]
     [Example(answer: 13632, "((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2")]
     [Puzzle(answer: 21993583522852, O.μs100)]
-    public long part_one(Lines lines)
-        => lines.As(Parentheses.Parse).Sum(token => token.Value);
+    public long part_one(Inputs<Parentheses> input) => input.Sum(token => token.Value);
 
     [Example(answer: 51, "1 + (2 * 3) + (4 * (5 + 6))")]
     [Example(answer: 46, "2 * 3 + (4 * 5)")]
@@ -17,12 +16,11 @@ public class Day_18
     [Example(answer: 669060, "5 * 9 * (7 * 3 * 3 + 9 * 3 + (8 + 6 * 4))")]
     [Example(answer: 23340, "((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2")]
     [Puzzle(answer: 122438593522757, O.μs100)]
-    public long part_two(Lines lines)
-        => lines.As(Parentheses.Parse).Sum(token => token.Parenthese().Value);
+    public long part_two(Inputs<Parentheses> input) => input.Sum(token => token.Parenthese().Value);
 
-    interface Token { }
-    interface ValueToken : Token { long Value { get; } }
-    record Parentheses(Token[] Tokens) : ValueToken
+    public interface Token;
+    public interface ValueToken : Token { long Value { get; } }
+    public record Parentheses(Token[] Tokens) : ValueToken
     {
         public long Value
         {

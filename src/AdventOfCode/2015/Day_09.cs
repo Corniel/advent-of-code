@@ -3,22 +3,16 @@ namespace Advent_of_Code_2015;
 [Category(Category.Computation)]
 public class Day_09
 {
-    const string Example = @"
-London to Dublin = 464
-London to Belfast = 518
-Dublin to Belfast = 141";
-
-    [Example(answer: 605, Example)]
+    [Example(answer: 605, "London to Dublin = 464;London to Belfast = 518;Dublin to Belfast = 141")]
     [Puzzle(answer: 141, O.ms)]
-    public int part_one(Lines lines) => Distances(lines).Min();
+    public int part_one(Inputs<Route> routes) => Distances(routes).Min();
 
-    [Example(answer: 982, Example)]
+    [Example(answer: 982, "London to Dublin = 464;London to Belfast = 518;Dublin to Belfast = 141")]
     [Puzzle(answer: 736, O.ms)]
-    public int part_two(Lines lines) => Distances(lines).Max();
+    public int part_two(Inputs<Route> routes) => Distances(routes).Max();
 
-    static IEnumerable<int> Distances(Lines lines)
+    static IEnumerable<int> Distances(Inputs<Route> routes)
     {
-        var routes = lines.ToArray(Route.Parse);
         var locations = routes.SelectMany(route => route.Locations).Distinct().Order().ToArray();
         var distances = new Grid<int>(locations.Length, locations.Length);
 
@@ -43,7 +37,7 @@ Dublin to Belfast = 141";
         return total;
     }
 
-    record Route(string From, string To, int Distance)
+    public record Route(string From, string To, int Distance)
     {
         public string[] Locations { get; } = [From, To];
 

@@ -5,26 +5,23 @@ public class Day_15
 {
     [Example(answer: 62842880, "Butterscotch: capacity -1, durability -2, flavor 6, texture 3, calories 8;Cinnamon: capacity 2, durability 3, flavor -2, texture -1, calories 3")]
     [Puzzle(answer: 21367368, O.ms10)]
-    public int part_one(Lines lines)
-        => Total(lines, (distribution, ingredients) => true);
+    public int part_one(Inputs<Ingredient> inputs) => Total(inputs, (distribution, ingredients) => true);
 
     [Example(answer: 57600000, "Butterscotch: capacity -1, durability -2, flavor 6, texture 3, calories 8;Cinnamon: capacity 2, durability 3, flavor -2, texture -1, calories 3")]
     [Puzzle(answer: 1766400, O.ms10)]
-    public int part_two(Lines lines)
-        => Total(lines, (distribution, ingredients) => Score(distribution, ingredients, i => i.Calories) == 500);
+    public int part_two(Inputs<Ingredient> inputs) => Total(inputs, (distribution, ingredients) => Score(distribution, ingredients, i => i.Calories) == 500);
 
-    static int Total(Lines lines, Func<int[], Ingredient[], bool> where)
+    static int Total(Inputs<Ingredient> ingredients, Func<int[], Inputs<Ingredient>, bool> where)
     {
-        var ingredients = lines.ToArray(Ingredient.Parse);
         var selectors = new Func<Ingredient, int>[] { i => i.Capacity, i => i.Durability, i => i.Flavor, i => i.Texture };
-        return new Distribution(ingredients.Length)
+        return new Distribution(ingredients.Count)
             .Where(d => where(d, ingredients))
             .Max(distribution => selectors.Select(selector => Score(distribution, ingredients, selector)).Product());
     }
-    static int Score(int[] distribution, Ingredient[] ingredients, Func<Ingredient, int> selector)
+    static int Score(int[] distribution, Inputs<Ingredient> ingredients, Func<Ingredient, int> selector)
         => Math.Max(0, distribution.Select((count, index) => count * selector(ingredients[index])).Sum());
 
-    record Ingredient(int Capacity, int Durability, int Flavor, int Texture, int Calories)
+    public record Ingredient(int Capacity, int Durability, int Flavor, int Texture, int Calories)
     {
         public static Ingredient Parse(string line) => Ctor.New<Ingredient>(line.Int32s());
     }

@@ -5,19 +5,18 @@ public class Day_08
 {
     [Example(answer: 1, "b inc 5 if a > 1;a inc 1 if b < 5;c dec -10 if a >= 1;c inc -20 if c == 10")]
     [Puzzle(answer: 6611L, O.μs100)]
-    public long part_one(Lines lines) => Max(lines);
+    public long part_one(Inputs<Instr> input) => Max(input);
 
     [Example(answer: 10, "b inc 5 if a > 1;a inc 1 if b < 5;c dec -10 if a >= 1;c inc -20 if c == 10")]
     [Puzzle(answer: 6619L, O.μs100)]
-    public long part_two(Lines lines) => Max(lines, true);
+    public long part_two(Inputs<Instr> input) => Max(input, true);
 
-    static long Max(Lines lines, bool intermediate = false)
+    static long Max(Inputs<Instr> input, bool intermediate = false)
     {
-        var instructions = lines.ToArray(Instruction.Parse);
-        var paramaters = Params.New(instructions.Select(instr => instr.Name).Distinct().Select(n => new Param(n, Const.Zero)));
+        var paramaters = Params.New(input.As(instr => instr.Name).Distinct().Select(n => new Param(n, Const.Zero)));
         var max = 0L;
 
-        foreach (var instr in instructions.Where(i => i.Condition.Value(paramaters) == 1))
+        foreach (var instr in input.Where(i => i.Condition.Value(paramaters) == 1))
         {
             var test = instr.Action.Value(paramaters);
             paramaters[instr.Name] = Expr.Const(test);
@@ -26,11 +25,11 @@ public class Day_08
         return intermediate ? max : paramaters.Max(p => paramaters.Value(p.Name));
     }
 
-    internal record Instruction(Binary Action, Binary Condition)
+    public record Instr(Binary Action, Binary Condition)
     {
         public string Name => ((Ref)Action.Left).Name;
 
-        public static Instruction Parse(string line)
+        public static Instr Parse(string line)
         {
             var parts = line.Split(' ');
             var inc = Expr.Const(parts[2].Int32() * (parts[1] == "inc" ? 1 : -1));

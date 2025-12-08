@@ -38,6 +38,9 @@ public sealed class AdventPuzzle
             else if (target == typeof(Point4Ds)) return new Point4Ds([.. str.Int32s().ChunkBy(4).Select(Ctor.New<Point4D>)]);
             else if (target == typeof(Int32Ranges)) return Int32Ranges.Parse(str);
             else if (target == typeof(Int64Ranges)) return Int64Ranges.Parse(str);
+            else if (target.IsGenericType
+                && target.GetGenericTypeDefinition() == typeof(Inputs<>))
+                return Inputs.Parse(target.GenericTypeArguments[0], str);
             else return str;
         }
         else return obj;

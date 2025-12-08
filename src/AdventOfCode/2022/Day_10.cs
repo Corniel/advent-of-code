@@ -12,7 +12,7 @@ public class Day_10
         .Set(true, Data.Parse(lines).Where(d => d.Draw).Select(s => s.Point))
         .AsciiText();
 
-    record Data(int Cycle, int Strength)
+    public record Data(int Cycle, int Strength)
     {
         public int Product => Cycle * Strength;
         public Point Point => new((Cycle - 1).Mod(40), Cycle / 40);

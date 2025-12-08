@@ -5,12 +5,12 @@ public class Day_12
 {
     [Example(answer: 25, "F10;N3;F7;R90;F11")]
     [Puzzle(answer: 1631, O.μs10)]
-    public int part_one(Lines lines)
+    public int part_one(Inputs<Instr> input)
     {
         var ferry = Point.O;
         var orientation = Vector.E;
 
-        foreach (var i in lines.As(Instruction.Parse))
+        foreach (var i in input)
         {
             if (i.Action == Action.F) { ferry += orientation * i.Distance; }
             else if (i.Rotation != 0) { orientation = orientation.Rotate(i.Rotation); }
@@ -21,12 +21,12 @@ public class Day_12
 
     [Example(answer: 286, "F10;N3;F7;R90;F11")]
     [Puzzle(answer: 58606, O.μs10)]
-    public int part_two(Lines lines)
+    public int part_two(Inputs<Instr> input)
     {
         Point ferry = (0, 0);
         Point waypoint = (+10, -1);
 
-        foreach (var i in lines.As(Instruction.Parse))
+        foreach (var i in input)
         {
             if (i.Action == Action.F) { ferry += (waypoint - Point.O) * i.Distance; }
             else if (i.Rotation != default) { waypoint = waypoint.Rotate(Point.O, i.Rotation); }
@@ -35,9 +35,9 @@ public class Day_12
         return ferry.ManhattanDistance(Point.O);
     }
 
-    readonly struct Instruction
+    public readonly struct Instr
     {
-        public Instruction(Action action, int value)
+        public Instr(Action action, int value)
         {
             Action = action;
             Rotation = action == Action.L || action == Action.R ? (DiscreteRotation)(value / (int)action) : default;
@@ -54,9 +54,9 @@ public class Day_12
             Action.N => Vector.N,
             _ => Vector.O,
         };
-        public static Instruction Parse(string str) => new(Enum.Parse<Action>(str[0..1]), str[1..].Int32());
+        public static Instr Parse(string str) => new(Enum.Parse<Action>(str[0..1]), str[1..].Int32());
     }
-    enum Action
+    public enum Action
     {
         N, E, S, W,
         F,

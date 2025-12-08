@@ -4,12 +4,12 @@ namespace Advent_of_Code_2015;
 public class Day_16
 {
     [Puzzle(answer: 103, O.μs100)]
-    public int part_one(Lines lines) => lines.As(Sue.Parse).Single(sue => sue.Matches1(Aunt)).Id;
+    public int part_one(Inputs<Sue> sue) => sue.First(sue => sue.Matches1(Aunt)).Id;
 
     [Puzzle(answer: 405, O.μs100)]
-    public int part_two(Lines lines) => lines.As(Sue.Parse).Single(sue => sue.Matches2(Aunt)).Id;
+    public int part_two(Inputs<Sue> sue) => sue.First(sue => sue.Matches2(Aunt)).Id;
 
-    class Sue(int id) : Dictionary<Compount, int>
+    public class Sue(int id) : Dictionary<Compount, int>
     {
         public int Id { get; } = id;
 
@@ -50,5 +50,5 @@ public class Day_16
         [Compount.cars] = 2,
         [Compount.perfumes] = 1,
     };
-    enum Compount { children, cats, samoyeds, pomeranians, akitas, vizslas, goldfish, trees, cars, perfumes }
+    public enum Compount { children, cats, samoyeds, pomeranians, akitas, vizslas, goldfish, trees, cars, perfumes }
 }

@@ -4,10 +4,10 @@ namespace Advent_of_Code_2016;
 public class Day_08
 {
     [Puzzle(answer: 115, O.μs100)]
-    public int part_one(Lines lines) => Process(lines).Count(c => c.Value);
+    public int part_one(Inputs<Instr> input) => Process(input).Count(c => c.Value);
 
     [Puzzle(answer: "EFEYKFRFIJ", O.μs100)]
-    public string part_two(Lines lines) => Ascii(Process(lines));
+    public string part_two(Inputs<Instr> input) => Ascii(Process(input));
 
     static string Ascii(Dictionary<Point, bool> grid)
     {
@@ -17,18 +17,18 @@ public class Day_08
         return canvas.AsciiText();
     }
 
-    static Dictionary<Point, bool> Process(Lines lines)
+    static Dictionary<Point, bool> Process(Inputs<Instr> input)
     {
         var grid = new Dictionary<Point, bool>();
-        foreach (var inst in lines.As(Instruction.Parse)) inst.Transform(grid);
+        foreach (var inst in input) inst.Transform(grid);
         return grid;
     }
 
-    abstract record Instruction
+    public abstract record Instr
     {
         public abstract void Transform(Dictionary<Point, bool> grid);
 
-        public static Instruction Parse(string line) => new string([..line.Take(10)]) switch
+        public static Instr Parse(string line) => new string([..line.Take(10)]) switch
         {
             "rotate row" => Ctor.New<RotateRow>(line.Int32s()),
             "rotate col" => Ctor.New<RotateCol>(line.Int32s()),
@@ -36,7 +36,7 @@ public class Day_08
         };
     }
 
-    record Rect(int Cols, int Rows) : Instruction
+    record Rect(int Cols, int Rows) : Instr
     {
         public override void Transform(Dictionary<Point, bool> grid)
         {
@@ -44,7 +44,7 @@ public class Day_08
         }
     }
 
-    record RotateCol(int X, int By) : Instruction
+    record RotateCol(int X, int By) : Instr
     {
         public override void Transform(Dictionary<Point, bool> grid)
         {
@@ -54,7 +54,7 @@ public class Day_08
         }
     }
 
-    record RotateRow(int Y, int By) : Instruction
+    record RotateRow(int Y, int By) : Instr
     {
         public override void Transform(Dictionary<Point, bool> grid)
         {

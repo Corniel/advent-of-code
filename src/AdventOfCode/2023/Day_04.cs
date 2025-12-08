@@ -5,7 +5,7 @@ public class Day_04
 {
     [Example(answer: 13, Example._1)]
     [Puzzle(answer: 28750, O.μs100)]
-    public int part_one(Lines lines) => lines.As(Card.Parse).Sum(c => c.Points);
+    public int part_one(Inputs<Card> cards) => cards.Sum(c => c.Points);
 
     [Example(answer: 30, Example._1)]
     [Puzzle(answer: 10212704, O.μs100)]
@@ -24,7 +24,7 @@ public class Day_04
         return cards.Sum(c => c.Total);
     }
 
-    record Card(int[] Winning, int[] Deck)
+    public record Card(int[] Winning, int[] Deck)
     {
         public int Total = 1;
         public int Matches => Deck.Intersect(Winning).Count();

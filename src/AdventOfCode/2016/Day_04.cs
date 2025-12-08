@@ -8,14 +8,14 @@ public class Day_04
     [Example(answer: 404, "not-a-real-room-404[oarel]")]
     [Example(answer: 0, "totally-real-room-200[decoy]")]
     [Puzzle(answer: 158835, O.ms)]
-    public int part_one(Lines lines) => lines.As(Secret.Parse).Sum(s => s.Id);
+    public int part_one(Inputs<Secret> inputs) => inputs.Sum(s => s.Id);
 
     [Puzzle(answer: 993, O.ms)]
-    public int part_two(Lines lines) => lines.As(Secret.Parse)
+    public int part_two(Inputs<Secret> inputs) => inputs
         .Where(s => s.Id != 0)
         .First(s => s.Decrypted() == "northpole object storage").Id;
 
-    record Secret(string Name, string Checksum, int Id)
+    public record Secret(string Name, string Checksum, int Id)
     {
         public string Decrypted() => new([..Name.ToCharArray().Select(Decrypt)]);
 

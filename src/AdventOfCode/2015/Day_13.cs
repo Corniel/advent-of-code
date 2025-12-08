@@ -3,29 +3,16 @@ namespace Advent_of_Code_2015;
 [Category(Category.Computation)]
 public class Day_13
 {
-    [Example(answer: 330, @"
-Alice would gain 54 happiness units by sitting next to Bob.
-Alice would lose 79 happiness units by sitting next to Carol.
-Alice would lose 2 happiness units by sitting next to David.
-Bob would gain 83 happiness units by sitting next to Alice.
-Bob would lose 7 happiness units by sitting next to Carol.
-Bob would lose 63 happiness units by sitting next to David.
-Carol would lose 62 happiness units by sitting next to Alice.
-Carol would gain 60 happiness units by sitting next to Bob.
-Carol would gain 55 happiness units by sitting next to David.
-David would gain 46 happiness units by sitting next to Alice.
-David would lose 7 happiness units by sitting next to Bob.
-David would gain 41 happiness units by sitting next to Carol.")]
+    [Example(answer: 330, Example._1)]
     [Puzzle(answer: 664, O.μs100)]
-    public int part_one(Lines lines) => FindHappiness(lines);
+    public int part_one(Inputs<Relation> relations) => FindHappiness(relations, 0);
 
     [Puzzle(answer: 640, O.ms)]
-    public int part_two(Lines lines) => FindHappiness(lines, +1);
+    public int part_two(Inputs<Relation> relations) => FindHappiness(relations, +1);
 
-    static int FindHappiness(Lines lines, int neutral = 0)
+    static int FindHappiness(Inputs<Relation> relations, int neutral)
     {
-        var relations = lines.ToArray(Relation.Parse);
-        var people = relations.Select(h => h.Obj).Distinct().Order().ToArray();
+        var people = relations.As(h => h.Obj).Distinct().Order().ToArray();
         var likes = new Grid<int>(people.Length + neutral, people.Length + neutral);
 
         foreach (var relation in relations)
@@ -45,7 +32,7 @@ David would gain 41 happiness units by sitting next to Carol.")]
 
     static int Happiness(int l, int r, Grid<int> likes) => likes[l, r] + likes[r, l];
 
-    record Relation(string Obj, string Sub, int Val)
+    public record Relation(string Obj, string Sub, int Val)
     {
         public static Relation Parse(string line)
         {

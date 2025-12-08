@@ -7,7 +7,7 @@ public class Day_25
     [Puzzle(answer: 4225, O.ms10)]
     public int part_one(GroupedLines groups)
     {
-        var all = groups.Skip(1).Select(Instruction.Parse).ToArray();
+        var all = groups.Skip(1).Select(Instr.Parse).ToArray();
         var inst = all[0];
         var curr = 0;
         var tape = new Dictionary<int, bool>();
@@ -25,9 +25,9 @@ public class Day_25
     [Puzzle(answer: "You only need 49 stars to boost it", "You only need 49 stars to boost it")]
     public string part_two(string str) => str;
 
-    record Instruction(Sub False, Sub True)
+    record Instr(Sub False, Sub True)
     {
-        public static Instruction Parse(string[] lines) => new(
+        public static Instr Parse(string[] lines) => new(
             False: new Sub(lines[2].Int32() == 1, lines[3].Contains("left") ? -1 : 1, lines[4][^2] - 'A'),
             True: new Sub(lines[6].Int32() == 1, lines[7].Contains("left") ? -1 : 1, lines[8][^2] - 'A'));
     }

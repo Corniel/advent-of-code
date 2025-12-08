@@ -4,12 +4,12 @@ namespace Advent_of_Code_2021;
 public class Day_22
 {
     [Puzzle(answer: 644257L, O.μs100)]
-    public long part_one(Lines lines) => Count(lines.As(Instruction.Parse).Take(20));
+    public long part_one(Inputs<Instr> input) => Count(input[..20]);
 
     [Puzzle(answer: 1235484513229032, O.ms10)]
-    public long part_two(Lines lines) => Count(lines.As(Instruction.Parse));
+    public long part_two(Inputs<Instr> input) => Count(input);
 
-    static long Count(IEnumerable<Instruction> instructions)
+    static long Count(IEnumerable<Instr> instructions)
     {
         var cubes = new ItemCounter<Cube>();
         var buffer = new ItemCounter<Cube>();
@@ -33,16 +33,16 @@ public class Day_22
         return cubes.Sum(record => record.Item.Points * record.Count);
     }
 
-    record Instruction(bool IsOn, Cube Cube)
+    public record Instr(bool IsOn, Cube Cube)
     {
-        public static Instruction Parse(string line)
+        public static Instr Parse(string line)
         {
             int[] ns = [.. line.Int32s()];
             return new(line.StartsWith("on"), new(ns[0], ns[1], ns[2], ns[3], ns[4], ns[5]));
         }
     }
 
-    readonly struct Cube(int x_min, int x_max, int y_min, int y_max, int z_min, int z_max) : IEquatable<Cube>
+    public readonly struct Cube(int x_min, int x_max, int y_min, int y_max, int z_min, int z_max) : IEquatable<Cube>
     {
         public readonly int Xmin = x_min; public readonly int Xmax = x_max;
         public readonly int Ymin = y_min; public readonly int Ymax = y_max;

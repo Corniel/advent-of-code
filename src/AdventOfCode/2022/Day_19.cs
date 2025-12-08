@@ -7,10 +7,10 @@ public class Day_19
     [Example(answer: 12, "Blueprint 1: Each ore robot costs 2 ore. Each clay robot costs 3 ore. Each obsidian robot costs 3 ore and 08 clay. Each geode robot costs 3 ore and 12 obsidian.")]
     [Example(answer: 00, "Blueprint 1: Each ore robot costs 3 ore. Each clay robot costs 9 ore. Each obsidian robot costs 2 ore and 19 clay. Each geode robot costs 9 ore and 13 obsidian.")]
     [Puzzle(answer: 1081, O.ms100)]
-    public int part_one(Lines lines) => lines.As(Blueprint.Parse).Sum(p => Produces(p, 24) * p.Id);
+    public int part_one(Inputs<Blueprint> input) => input.Sum(p => Produces(p, 24) * p.Id);
 
     [Puzzle(answer: 2415, O.ms100)]
-    public int part_two(Lines lines) => lines.As(Blueprint.Parse).Take(3).Select(p => Produces(p, 32)).Product();
+    public int part_two(Inputs<Blueprint> input) => input[..3].Select(p => Produces(p, 32)).Product();
 
     static int Produces(Blueprint p, int turns) => Max(p, new State(turns, default, new(Ore: 1)), []);
 
@@ -26,7 +26,7 @@ public class Day_19
         }
     }
 
-    record struct Resource(short Ore = 0, short Cly = 0, short Obs = 0, short Geo = 0)
+    public record struct Resource(short Ore = 0, short Cly = 0, short Obs = 0, short Geo = 0)
     {
         public readonly bool CanBuild(Bot bot) => Ore >= bot.Cost.Ore && Cly >= bot.Cost.Cly && Obs >= bot.Cost.Obs && Geo >= bot.Cost.Geo;
 
@@ -55,9 +55,9 @@ public class Day_19
         readonly bool NeedOre(Blueprint p) => Prod.Ore < p.Geo.Cost.Ore || Prod.Ore < p.Obs.Cost.Ore || Prod.Ore < p.Cly.Cost.Ore;
     }
 
-    record Bot(Resource Cost, Resource Prod);
+    public record Bot(Resource Cost, Resource Prod);
 
-    record Blueprint(int Id, Bot Ore, Bot Cly, Bot Obs, Bot Geo)
+    public record Blueprint(int Id, Bot Ore, Bot Cly, Bot Obs, Bot Geo)
     {
         public static Blueprint Parse(string line)
         {

@@ -4,18 +4,18 @@ namespace Advent_of_Code_2015;
 public class Day_06
 {
     [Puzzle(answer: 400410, O.ms100)]
-    public int part_one(Lines lines)
+    public int part_one(Inputs<Instr> inputs)
     {
         var grid = new Grid<bool>(1000, 1000);
 
-        foreach (var instruction in lines.As(Instruction.Parse))
+        foreach (var instr in inputs)
         {
-            foreach (var point in Points.Range(instruction.Start, instruction.End))
+            foreach (var point in Points.Range(instr.Start, instr.End))
             {
-                grid[point] = instruction.Type switch
+                grid[point] = instr.Type switch
                 {
-                    InstructionType.TurnOn => true,
-                    InstructionType.TurnOff => false,
+                    InstrType.TurnOn => true,
+                    InstrType.TurnOff => false,
                     _ => !grid[point],
                 };
             }
@@ -28,14 +28,14 @@ public class Day_06
     {
         var grid = new Grid<int>(1000, 1000);
 
-        foreach (var instruction in lines.As(Instruction.Parse))
+        foreach (var instruction in lines.As(Instr.Parse))
         {
             foreach (var point in Points.Range(instruction.Start, instruction.End))
             {
                 grid[point] = instruction.Type switch
                 {
-                    InstructionType.TurnOn => grid[point] + 1,
-                    InstructionType.TurnOff => Math.Max(0, grid[point] - 1),
+                    InstrType.TurnOn => grid[point] + 1,
+                    InstrType.TurnOff => Math.Max(0, grid[point] - 1),
                     _ => grid[point] + 2,
                 };
             }
@@ -43,19 +43,19 @@ public class Day_06
         return grid.Sum(kvp => kvp.Value);
     }
 
-    enum InstructionType { TurnOn, TurnOff, Toggle }
+    public enum InstrType { TurnOn, TurnOff, Toggle }
 
-    record Instruction(InstructionType Type, Point Start, Point End)
+    public record Instr(InstrType Type, Point Start, Point End)
     {
-        public static Instruction Parse(string line)
+        public static Instr Parse(string line)
         {
             var splitted = line.Split(' ');
-            var type = InstructionType.Toggle;
+            var type = InstrType.Toggle;
             if (splitted.Length == 5)
             {
-                type = splitted[1] == "on" ? InstructionType.TurnOn : InstructionType.TurnOff;
+                type = splitted[1] == "on" ? InstrType.TurnOn : InstrType.TurnOff;
             }
-            return new Instruction(type, Point.Parse(splitted[^3]), Point.Parse(splitted[^1]));
+            return new Instr(type, Point.Parse(splitted[^3]), Point.Parse(splitted[^1]));
         }
     }
 }

@@ -18,7 +18,7 @@ public class Day_01
     }
 
     [Example(answer: 4, "R8, R4, R4, R8")]
-    [Puzzle(answer: 79, O.μs10)]
+    [Puzzle(answer: 79, O.μs)]
     public int part_two(string str)
     {
         var cursor = new Cursor(Point.O, Vector.N);

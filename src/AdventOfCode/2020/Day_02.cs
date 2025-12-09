@@ -4,34 +4,30 @@ namespace Advent_of_Code_2020;
 public class Day_02
 {
     [Example(answer: 2, "1-3 a: abcde;1-3 b: cdefg;2-9 c: ccccccccc")]
-    [Puzzle(answer: 536, O.μs100)]
-    public int part_one(Lines lines) => lines.As(Password.Parse).Count(p => p.Policy.ValidForOne(p.Chars));
+    [Puzzle(answer: 536, O.μs)]
+    public int part_one(Inputs<Pass> pass) => pass.Count(p => p.Policy.One(p.Chars));
 
     [Example(answer: 1, "1-3 a: abcde;1-3 b: cdefg;2-9 c: ccccccccc")]
-    [Puzzle(answer: 558, O.μs100)]
-    public int part_two(Lines lines) => lines.As(Password.Parse).Count(p => p.Policy.ValidForTwo(p.Chars));
+    [Puzzle(answer: 558, O.μs)]
+    public int part_two(Inputs<Pass> pass) => pass.Count(p => p.Policy.Two(p.Chars));
 
-    record PasswordPolicy(int Min, int Max, char Char)
+    public record struct Policy(int Min, int Max, char Char)
     {
-        public bool ValidForOne(string str)
+        public bool One(string str)
         {
             var policy = this;
             return str.Count(policy.Char).InRange(Min, Max);
         }
-        public bool ValidForTwo(string str) => (str[Min - 1] == Char) ^ (str[Max - 1] == Char);
+        public bool Two(string str) => (str[Min - 1] == Char) ^ (str[Max - 1] == Char);
     }
-    record Password(string Chars, PasswordPolicy Policy)
+    public record struct Pass(string Chars, Policy Policy)
     {
-        public static Password Parse(string str)
+        public static Pass Parse(string str)
         {
             var split = str.Split(':');
             var pol = split[0].Split('-', ' ');
             var chars = split[1].Trim();
-            return new Password(chars,
-                new PasswordPolicy(
-                    Min: pol[0].Int32(),
-                    Max: pol[1].Int32(),
-                    Char: pol[2].Char()));
+            return new(chars, new(pol[0].Int32(), pol[1].Int32(), pol[2].Char()));
         }
     }
 }

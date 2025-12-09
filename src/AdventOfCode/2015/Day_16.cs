@@ -3,10 +3,10 @@ namespace Advent_of_Code_2015;
 [Category(Category.Simulation)]
 public class Day_16
 {
-    [Puzzle(answer: 103, O.μs100)]
+    [Puzzle(answer: 103, O.μs)]
     public int part_one(Inputs<Sue> sue) => sue.First(sue => sue.Matches1(Aunt)).Id;
 
-    [Puzzle(answer: 405, O.μs100)]
+    [Puzzle(answer: 405, O.μs)]
     public int part_two(Inputs<Sue> sue) => sue.First(sue => sue.Matches2(Aunt)).Id;
 
     public class Sue(int id) : Dictionary<Compount, int>

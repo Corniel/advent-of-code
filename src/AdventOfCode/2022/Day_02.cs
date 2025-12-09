@@ -15,7 +15,7 @@ public class Day_02
     };
 
     [Example(answer: 12, "A Y;B X;C Z")]
-    [Puzzle(answer: 12683, O.μs10)]
+    [Puzzle(answer: 12683, O.μs)]
     public int part_two(Lines lines) => lines.As(Two).Sum();
 
     static int Two(string battle) => battle switch

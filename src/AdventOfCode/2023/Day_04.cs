@@ -4,7 +4,7 @@ namespace Advent_of_Code_2023;
 public class Day_04
 {
     [Example(answer: 13, Example._1)]
-    [Puzzle(answer: 28750, O.μs100)]
+    [Puzzle(answer: 28750, O.μs10)]
     public int part_one(Inputs<Card> cards) => cards.Sum(c => c.Points);
 
     [Example(answer: 30, Example._1)]

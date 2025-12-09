@@ -3,11 +3,7 @@ namespace Advent_of_Code_2020;
 [Category(Category.Cryptography)]
 public class Day_21
 {
-    [Example(answer: 5, @"
-        mxmxvkd kfcds sqjhc nhms (contains dairy, fish)
-        trh fvjkl sbzzf mxmxvkd (contains dairy)
-        sqjhc fvjkl (contains soy)
-        sqjhc mxmxvkd sbzzf (contains fish)")]
+    [Example(answer: 5, "mxmxvkd kfcds sqjhc nhms (contains dairy, fish);trh fvjkl sbzzf mxmxvkd (contains dairy);sqjhc fvjkl (contains soy);sqjhc mxmxvkd sbzzf (contains fish)")]
     [Puzzle(answer: 2282, O.μs100)]
     public int part_one(Inputs<Food> foods)
     {
@@ -15,12 +11,8 @@ public class Day_21
         return foods.SelectMany(f => f.Ingredients).Count(i => !allergens.Contains(i));
     }
 
-    [Example(answer: "mxmxvkd,sqjhc,fvjkl", @"
-        mxmxvkd kfcds sqjhc nhms (contains dairy, fish)
-        trh fvjkl sbzzf mxmxvkd (contains dairy)
-        sqjhc fvjkl (contains soy)
-        sqjhc mxmxvkd sbzzf (contains fish)")]
-    [Puzzle(answer: "vrzkz,zjsh,hphcb,mbdksj,vzzxl,ctmzsr,rkzqs,zmhnj", O.μs100)]
+    [Example(answer: "mxmxvkd,sqjhc,fvjkl", "mxmxvkd kfcds sqjhc nhms (contains dairy, fish);trh fvjkl sbzzf mxmxvkd (contains dairy);sqjhc fvjkl (contains soy);sqjhc mxmxvkd sbzzf (contains fish)")]
+    [Puzzle(answer: "vrzkz,zjsh,hphcb,mbdksj,vzzxl,ctmzsr,rkzqs,zmhnj", O.μs10)]
     public string part_two(Inputs<Food> foods)
     {
         var allergens = Allergen.Init(foods);

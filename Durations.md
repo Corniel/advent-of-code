@@ -1,19 +1,19 @@
 |   Order |   # | Chart                                              |
 |--------:|----:|:---------------------------------------------------|
 |   10 ns |   4 | ⭐⭐ |
-|  100 ns |  17 | ⭐⭐⭐⭐⭐⭐ |
-|    1 μs |  35 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ |
-|   10 μs |  67 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ |
-|  100 μs | 118 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ |
-|    1 ms |  76 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ |
-|   10 ms |  69 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ |
-|  100 ms |  44 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ |
+|  100 ns |  20 | ⭐⭐⭐⭐⭐⭐⭐⭐ |
+|    1 μs |  42 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ |
+|   10 μs |  72 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ |
+|  100 μs | 110 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ |
+|    1 ms |  71 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ |
+|   10 ms |  68 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ |
+|  100 ms |  43 | ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ |
 |   1 sec |  10 | ⭐⭐⭐⭐ |
 |  10 sec |   2 | ⭐ |
 
 |  Puzzle   |   Order |
 |:---------:|--------:|
-| [2015-01-1](src/AdventOfCode/2015/Day_01.cs) |    1 μs |
+| [2015-01-1](src/AdventOfCode/2015/Day_01.cs) |  100 ns |
 | [2015-01-2](src/AdventOfCode/2015/Day_01.cs) |    1 μs |
 | [2015-02-1](src/AdventOfCode/2015/Day_02.cs) |   10 μs |
 | [2015-02-2](src/AdventOfCode/2015/Day_02.cs) |  100 μs |
@@ -39,12 +39,12 @@
 | [2015-12-2](src/AdventOfCode/2015/Day_12.cs) |  100 μs |
 | [2015-13-1](src/AdventOfCode/2015/Day_13.cs) |  100 μs |
 | [2015-13-2](src/AdventOfCode/2015/Day_13.cs) |    1 ms |
-| [2015-14-1](src/AdventOfCode/2015/Day_14.cs) |    1 μs |
+| [2015-14-1](src/AdventOfCode/2015/Day_14.cs) |  100 ns |
 | [2015-14-2](src/AdventOfCode/2015/Day_14.cs) |  100 μs |
 | [2015-15-1](src/AdventOfCode/2015/Day_15.cs) |   10 ms |
 | [2015-15-2](src/AdventOfCode/2015/Day_15.cs) |   10 ms |
-| [2015-16-1](src/AdventOfCode/2015/Day_16.cs) |  100 μs |
-| [2015-16-2](src/AdventOfCode/2015/Day_16.cs) |  100 μs |
+| [2015-16-1](src/AdventOfCode/2015/Day_16.cs) |    1 μs |
+| [2015-16-2](src/AdventOfCode/2015/Day_16.cs) |    1 μs |
 | [2015-17-1](src/AdventOfCode/2015/Day_17.cs) |   10 ms |
 | [2015-17-2](src/AdventOfCode/2015/Day_17.cs) |   10 ms |
 | [2015-18-1](src/AdventOfCode/2015/Day_18.cs) |   10 ms |
@@ -63,21 +63,21 @@
 | [2015-24-2](src/AdventOfCode/2015/Day_24.cs) |  100 μs |
 | [2015-25-1](src/AdventOfCode/2015/Day_25.cs) |   10 ms |
 | [2016-01-1](src/AdventOfCode/2016/Day_01.cs) |    1 μs |
-| [2016-01-2](src/AdventOfCode/2016/Day_01.cs) |   10 μs |
+| [2016-01-2](src/AdventOfCode/2016/Day_01.cs) |    1 μs |
 | [2016-02-1](src/AdventOfCode/2016/Day_02.cs) |   10 μs |
 | [2016-02-2](src/AdventOfCode/2016/Day_02.cs) |   10 μs |
 | [2016-03-1](src/AdventOfCode/2016/Day_03.cs) |  100 μs |
 | [2016-03-2](src/AdventOfCode/2016/Day_03.cs) |  100 μs |
-| [2016-04-1](src/AdventOfCode/2016/Day_04.cs) |    1 ms |
-| [2016-04-2](src/AdventOfCode/2016/Day_04.cs) |    1 ms |
+| [2016-04-1](src/AdventOfCode/2016/Day_04.cs) |    1 μs |
+| [2016-04-2](src/AdventOfCode/2016/Day_04.cs) |   10 μs |
 | [2016-05-1](src/AdventOfCode/2016/Day_05.cs) |   1 sec |
 | [2016-05-2](src/AdventOfCode/2016/Day_05.cs) |   1 sec |
 | [2016-06-1](src/AdventOfCode/2016/Day_06.cs) |   10 μs |
 | [2016-06-2](src/AdventOfCode/2016/Day_06.cs) |   10 μs |
 | [2016-07-1](src/AdventOfCode/2016/Day_07.cs) |    1 ms |
 | [2016-07-2](src/AdventOfCode/2016/Day_07.cs) |    1 ms |
-| [2016-08-1](src/AdventOfCode/2016/Day_08.cs) |  100 μs |
-| [2016-08-2](src/AdventOfCode/2016/Day_08.cs) |  100 μs |
+| [2016-08-1](src/AdventOfCode/2016/Day_08.cs) |   10 μs |
+| [2016-08-2](src/AdventOfCode/2016/Day_08.cs) |   10 μs |
 | [2016-09-1](src/AdventOfCode/2016/Day_09.cs) |  100 ns |
 | [2016-09-2](src/AdventOfCode/2016/Day_09.cs) |   10 μs |
 | [2016-12-1](src/AdventOfCode/2016/Day_12.cs) |    1 ms |
@@ -98,11 +98,11 @@
 | [2016-19-2](src/AdventOfCode/2016/Day_19.cs) |   10 ns |
 | [2016-20-1](src/AdventOfCode/2016/Day_20.cs) |  100 μs |
 | [2016-20-2](src/AdventOfCode/2016/Day_20.cs) |  100 μs |
-| [2016-21-1](src/AdventOfCode/2016/Day_21.cs) |   10 ms |
-| [2016-21-2](src/AdventOfCode/2016/Day_21.cs) |   10 ms |
+| [2016-21-1](src/AdventOfCode/2016/Day_21.cs) |   10 μs |
+| [2016-21-2](src/AdventOfCode/2016/Day_21.cs) |   10 μs |
 | [2016-25-1](src/AdventOfCode/2016/Day_25.cs) |   10 ns |
 | [2017-01-1](src/AdventOfCode/2017/Day_01.cs) |   10 μs |
-| [2017-01-2](src/AdventOfCode/2017/Day_01.cs) |    1 μs |
+| [2017-01-2](src/AdventOfCode/2017/Day_01.cs) |   10 μs |
 | [2017-02-1](src/AdventOfCode/2017/Day_02.cs) |    1 μs |
 | [2017-02-2](src/AdventOfCode/2017/Day_02.cs) |    1 μs |
 | [2017-03-1](src/AdventOfCode/2017/Day_03.cs) |   10 ns |
@@ -133,8 +133,8 @@
 | [2017-17-2](src/AdventOfCode/2017/Day_17.cs) |  100 ms |
 | [2017-19-1](src/AdventOfCode/2017/Day_19.cs) |   10 ms |
 | [2017-19-2](src/AdventOfCode/2017/Day_19.cs) |   10 ms |
-| [2017-20-1](src/AdventOfCode/2017/Day_20.cs) |  100 μs |
-| [2017-20-2](src/AdventOfCode/2017/Day_20.cs) |    1 ms |
+| [2017-20-1](src/AdventOfCode/2017/Day_20.cs) |   10 μs |
+| [2017-20-2](src/AdventOfCode/2017/Day_20.cs) |  100 μs |
 | [2017-22-1](src/AdventOfCode/2017/Day_22.cs) |  100 μs |
 | [2017-22-2](src/AdventOfCode/2017/Day_22.cs) |  100 ms |
 | [2017-24-1](src/AdventOfCode/2017/Day_24.cs) |   10 ms |
@@ -199,8 +199,8 @@
 | [2019-15-2](src/AdventOfCode/2019/Day_15.cs) |  100 ms |
 | [2020-01-1](src/AdventOfCode/2020/Day_01.cs) |    1 μs |
 | [2020-01-2](src/AdventOfCode/2020/Day_01.cs) |    1 μs |
-| [2020-02-1](src/AdventOfCode/2020/Day_02.cs) |  100 μs |
-| [2020-02-2](src/AdventOfCode/2020/Day_02.cs) |  100 μs |
+| [2020-02-1](src/AdventOfCode/2020/Day_02.cs) |    1 μs |
+| [2020-02-2](src/AdventOfCode/2020/Day_02.cs) |    1 μs |
 | [2020-03-1](src/AdventOfCode/2020/Day_03.cs) |    1 μs |
 | [2020-03-2](src/AdventOfCode/2020/Day_03.cs) |   10 μs |
 | [2020-04-1](src/AdventOfCode/2020/Day_04.cs) |  100 μs |
@@ -219,8 +219,8 @@
 | [2020-10-2](src/AdventOfCode/2020/Day_10.cs) |    1 μs |
 | [2020-11-1](src/AdventOfCode/2020/Day_11.cs) |   10 ms |
 | [2020-11-2](src/AdventOfCode/2020/Day_11.cs) |   10 ms |
-| [2020-12-1](src/AdventOfCode/2020/Day_12.cs) |   10 μs |
-| [2020-12-2](src/AdventOfCode/2020/Day_12.cs) |   10 μs |
+| [2020-12-1](src/AdventOfCode/2020/Day_12.cs) |    1 μs |
+| [2020-12-2](src/AdventOfCode/2020/Day_12.cs) |    1 μs |
 | [2020-13-1](src/AdventOfCode/2020/Day_13.cs) |  100 ns |
 | [2020-13-2](src/AdventOfCode/2020/Day_13.cs) |    1 μs |
 | [2020-14-1](src/AdventOfCode/2020/Day_14.cs) |  100 μs |
@@ -231,14 +231,14 @@
 | [2020-16-2](src/AdventOfCode/2020/Day_16.cs) |  100 μs |
 | [2020-17-1](src/AdventOfCode/2020/Day_17.cs) |    1 ms |
 | [2020-17-2](src/AdventOfCode/2020/Day_17.cs) |   10 ms |
-| [2020-18-1](src/AdventOfCode/2020/Day_18.cs) |  100 μs |
-| [2020-18-2](src/AdventOfCode/2020/Day_18.cs) |  100 μs |
+| [2020-18-1](src/AdventOfCode/2020/Day_18.cs) |   10 μs |
+| [2020-18-2](src/AdventOfCode/2020/Day_18.cs) |   10 μs |
 | [2020-19-1](src/AdventOfCode/2020/Day_19.cs) |    1 ms |
 | [2020-19-2](src/AdventOfCode/2020/Day_19.cs) |    1 ms |
 | [2020-20-1](src/AdventOfCode/2020/Day_20.cs) |   10 ms |
 | [2020-20-2](src/AdventOfCode/2020/Day_20.cs) |   10 ms |
 | [2020-21-1](src/AdventOfCode/2020/Day_21.cs) |  100 μs |
-| [2020-21-2](src/AdventOfCode/2020/Day_21.cs) |  100 μs |
+| [2020-21-2](src/AdventOfCode/2020/Day_21.cs) |   10 μs |
 | [2020-22-1](src/AdventOfCode/2020/Day_22.cs) |    1 μs |
 | [2020-22-2](src/AdventOfCode/2020/Day_22.cs) |  100 ms |
 | [2020-23-1](src/AdventOfCode/2020/Day_23.cs) |  100 ns |
@@ -296,7 +296,7 @@
 | [2022-01-1](src/AdventOfCode/2022/Day_01.cs) |   10 μs |
 | [2022-01-2](src/AdventOfCode/2022/Day_01.cs) |   10 μs |
 | [2022-02-1](src/AdventOfCode/2022/Day_02.cs) |   10 μs |
-| [2022-02-2](src/AdventOfCode/2022/Day_02.cs) |   10 μs |
+| [2022-02-2](src/AdventOfCode/2022/Day_02.cs) |    1 μs |
 | [2022-03-1](src/AdventOfCode/2022/Day_03.cs) |   10 μs |
 | [2022-03-2](src/AdventOfCode/2022/Day_03.cs) |    1 μs |
 | [2022-04-1](src/AdventOfCode/2022/Day_04.cs) |  100 μs |
@@ -321,7 +321,7 @@
 | [2022-13-2](src/AdventOfCode/2022/Day_13.cs) |  100 μs |
 | [2022-14-1](src/AdventOfCode/2022/Day_14.cs) |  100 μs |
 | [2022-14-2](src/AdventOfCode/2022/Day_14.cs) |   10 ms |
-| [2022-15-1](src/AdventOfCode/2022/Day_15.cs) |    1 μs |
+| [2022-15-1](src/AdventOfCode/2022/Day_15.cs) |  100 ns |
 | [2022-15-2](src/AdventOfCode/2022/Day_15.cs) |   1 sec |
 | [2022-16-1](src/AdventOfCode/2022/Day_16.cs) |    1 ms |
 | [2022-16-2](src/AdventOfCode/2022/Day_16.cs) |  100 ms |
@@ -335,8 +335,8 @@
 | [2022-20-2](src/AdventOfCode/2022/Day_20.cs) |  100 ms |
 | [2022-21-1](src/AdventOfCode/2022/Day_21.cs) |  100 μs |
 | [2022-21-2](src/AdventOfCode/2022/Day_21.cs) |  100 μs |
-| [2022-22-1](src/AdventOfCode/2022/Day_22.cs) |    1 ms |
-| [2022-22-2](src/AdventOfCode/2022/Day_22.cs) |    1 ms |
+| [2022-22-1](src/AdventOfCode/2022/Day_22.cs) |  100 μs |
+| [2022-22-2](src/AdventOfCode/2022/Day_22.cs) |  100 μs |
 | [2022-23-1](src/AdventOfCode/2022/Day_23.cs) |    1 ms |
 | [2022-23-2](src/AdventOfCode/2022/Day_23.cs) |  100 ms |
 | [2022-24-1](src/AdventOfCode/2022/Day_24.cs) |   10 ms |
@@ -344,11 +344,11 @@
 | [2022-25-1](src/AdventOfCode/2022/Day_25.cs) |    1 μs |
 | [2023-01-1](src/AdventOfCode/2023/Day_01.cs) |  100 μs |
 | [2023-01-2](src/AdventOfCode/2023/Day_01.cs) |    1 ms |
-| [2023-02-1](src/AdventOfCode/2023/Day_02.cs) |   10 μs |
-| [2023-02-2](src/AdventOfCode/2023/Day_02.cs) |   10 μs |
+| [2023-02-1](src/AdventOfCode/2023/Day_02.cs) |    1 μs |
+| [2023-02-2](src/AdventOfCode/2023/Day_02.cs) |    1 μs |
 | [2023-03-1](src/AdventOfCode/2023/Day_03.cs) |   10 ms |
 | [2023-03-2](src/AdventOfCode/2023/Day_03.cs) |   10 ms |
-| [2023-04-1](src/AdventOfCode/2023/Day_04.cs) |  100 μs |
+| [2023-04-1](src/AdventOfCode/2023/Day_04.cs) |   10 μs |
 | [2023-04-2](src/AdventOfCode/2023/Day_04.cs) |  100 μs |
 | [2023-05-1](src/AdventOfCode/2023/Day_05.cs) |  100 μs |
 | [2023-05-2](src/AdventOfCode/2023/Day_05.cs) |    1 ms |
@@ -409,7 +409,7 @@
 | [2024-10-2](src/AdventOfCode/2024/Day_10.cs) |  100 μs |
 | [2024-11-1](src/AdventOfCode/2024/Day_11.cs) |  100 μs |
 | [2024-11-2](src/AdventOfCode/2024/Day_11.cs) |    1 ms |
-| [2024-12-1](src/AdventOfCode/2024/Day_12.cs) |  100 ms |
+| [2024-12-1](src/AdventOfCode/2024/Day_12.cs) |   10 ms |
 | [2024-12-2](src/AdventOfCode/2024/Day_12.cs) |  100 ms |
 | [2024-13-1](src/AdventOfCode/2024/Day_13.cs) |    1 μs |
 | [2024-13-2](src/AdventOfCode/2024/Day_13.cs) |    1 μs |

@@ -4,7 +4,7 @@ namespace Advent_of_Code_2022;
 public class Day_15
 {
     [Example(answer: 26, null, 10, Example._1)]
-    [Puzzle(answer: 4665948, null, 2_000_000, O.μs)]
+    [Puzzle(answer: 4665948, null, 2_000_000, O.ns100)]
     public int part_one(Point2Ds points, int y) => points.ChunkBy(2).Select(Instruction.New).Select(i => i.Range(y)).Merge().Sum(r => r.Size) - 1;
 
     [Example(answer: 56000011, null, 20, Example._1)]
@@ -14,13 +14,9 @@ public class Day_15
         var instr = points.ChunkBy(2).Select(Instruction.New).ToList();
 
         for (var y = 0; y <= max; y++)
-        {
             if (instr.Select(i => i.Range(y)).Merge() is { Count: 2 } ranges)
-            {
-                long x = ranges[0].Upper + 1;
-                return x * 4_000_000 + y;
-            }
-        }
+                return (ranges[0].Upper + 1L) * 4_000_000 + y;
+
         throw new NoAnswer();
     }
 
@@ -33,7 +29,7 @@ public class Day_15
 
         public static Instruction New(Slice<Point> pair)
         {
-            var(s, b) = (pair[0], pair[1]);
+            var (s, b) = (pair[0], pair[1]);
             return new(s, b, s.ManhattanDistance(b));
         }
     }

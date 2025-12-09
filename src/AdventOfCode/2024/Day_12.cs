@@ -4,7 +4,7 @@ namespace Advent_of_Code_2024;
 public class Day_12
 {
     [Example(answer: 1930, Example._1)]
-    [Puzzle(answer: 1473276, O.ms100)]
+    [Puzzle(answer: 1473276, O.ms10)]
     public int part_one(CharPixels chars) => Price(chars, 1, Borders);
 
     [Example(answer: 1206, Example._1)]

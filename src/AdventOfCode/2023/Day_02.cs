@@ -4,11 +4,11 @@ namespace Advent_of_Code_2023;
 public class Day_02
 {
     [Example(answer: 8, Example._1)]
-    [Puzzle(answer: 2551, O.μs10)]
+    [Puzzle(answer: 2551, O.μs)]
     public int part_one(Inputs<Game> games) => games.Where(g => g.Hands.TrueForAll(h => h.Fits)).Sum(g => g.Id);
 
     [Example(answer: 2286, Example._1)]
-    [Puzzle(answer: 62811, O.μs10)]
+    [Puzzle(answer: 62811, O.μs)]
     public int part_two(Inputs<Game> games) => games.As(g => g.Smallest.Pow).Sum();
 
     public record Game(int Id, Hand[] Hands)

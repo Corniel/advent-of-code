@@ -3,10 +3,10 @@ namespace Advent_of_Code_2016;
 [Category(Category.Grid)]
 public class Day_08
 {
-    [Puzzle(answer: 115, O.μs100)]
+    [Puzzle(answer: 115, O.μs10)]
     public int part_one(Inputs<Instr> input) => Process(input).Count(c => c.Value);
 
-    [Puzzle(answer: "EFEYKFRFIJ", O.μs100)]
+    [Puzzle(answer: "EFEYKFRFIJ", O.μs10)]
     public string part_two(Inputs<Instr> input) => Ascii(Process(input));
 
     static string Ascii(Dictionary<Point, bool> grid)

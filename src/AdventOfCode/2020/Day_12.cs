@@ -4,7 +4,7 @@ namespace Advent_of_Code_2020;
 public class Day_12
 {
     [Example(answer: 25, "F10;N3;F7;R90;F11")]
-    [Puzzle(answer: 1631, O.μs10)]
+    [Puzzle(answer: 1631, O.μs)]
     public int part_one(Inputs<Instr> input)
     {
         var ferry = Point.O;
@@ -20,7 +20,7 @@ public class Day_12
     }
 
     [Example(answer: 286, "F10;N3;F7;R90;F11")]
-    [Puzzle(answer: 58606, O.μs10)]
+    [Puzzle(answer: 58606, O.μs)]
     public int part_two(Inputs<Instr> input)
     {
         Point ferry = (0, 0);
@@ -56,11 +56,5 @@ public class Day_12
         };
         public static Instr Parse(string str) => new(Enum.Parse<Action>(str[0..1]), str[1..].Int32());
     }
-    public enum Action
-    {
-        N, E, S, W,
-        F,
-        L = +90,
-        R = -90,
-    }
+    public enum Action { N, E, S, W, F, L = +90, R = -90 }
 }

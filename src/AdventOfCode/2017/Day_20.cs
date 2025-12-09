@@ -3,10 +3,10 @@ namespace Advent_of_Code_2017;
 [Category(Category._3D)]
 public class Day_20
 {
-    [Puzzle(answer: 344, O.μs100)]
+    [Puzzle(answer: 344, O.μs10)]
     public int part_one(Point3Ds points) => Init(points).Index().OrderBy(i => i.Item).First().Index;
 
-    [Puzzle(answer: 404, O.ms)]
+    [Puzzle(answer: 404, O.μs100)]
     public int part_two(Point3Ds points)
     {
         var cur = Init(points).ToDictionary(d => d.P, d => d);

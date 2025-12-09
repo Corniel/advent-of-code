@@ -3,10 +3,10 @@ namespace Advent_of_Code_2016;
 [Category(Category.ExpressionParsing)]
 public class Day_21
 {
-    [Puzzle(answer: "hcdefbag", O.ms10)]
+    [Puzzle(answer: "hcdefbag", O.μs10)]
     public char[] part_one(Lines lines) => Execute([.. "abcdefgh"], lines, false);
     
-    [Puzzle(answer: "fbhaegdc", O.ms10)]
+    [Puzzle(answer: "fbhaegdc", O.μs10)]
     public char[] part_two(Lines lines) => Execute([.. "fbgdceah"], lines.Reversed(), true);
 
     static char[] Execute(char[] pass, IEnumerable<string> lines, bool reverse)

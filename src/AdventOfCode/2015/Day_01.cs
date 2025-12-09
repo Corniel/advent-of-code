@@ -4,7 +4,7 @@ namespace Advent_of_Code_2015;
 public class Day_01
 {
     [Example(answer: 3, "))(((((")]
-    [Puzzle(answer: 232, O.μs)]
+    [Puzzle(answer: 232, O.ns100)]
     public int part_one(string str) => str.Sum(ch => ch == '(' ? 1 : -1);
 
     [Example(answer: 5, "()())")]

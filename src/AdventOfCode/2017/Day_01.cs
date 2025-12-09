@@ -16,7 +16,7 @@ public class Day_01
     [Example(answer: 4, "123425")]
     [Example(answer: 12, "123123")]
     [Example(answer: 4, "12131415")]
-    [Puzzle(answer: 950, O.μs)]
+    [Puzzle(answer: 950, O.μs10)]
     public int part_two(string str)
     {
         var digits = str.Digits().ToArray();

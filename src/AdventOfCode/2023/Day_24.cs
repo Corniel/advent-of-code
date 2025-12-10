@@ -20,7 +20,7 @@ public class Day_24
 
         foreach (var fx in fxs)
         {
-            var t = c.MkIntConst(fx.ToString());
+            var t = Const(fx);
             s.Add(t >= 0);
             s.Add(c.MkEq(x + (t * Δx), Num(fx.Pos.X) + t * Num(fx.Dir.X)));
             s.Add(c.MkEq(y + (t * Δy), Num(fx.Pos.Y) + t * Num(fx.Dir.Y)));
@@ -30,7 +30,7 @@ public class Day_24
         return Val(x) + Val(y) + Val(z);
 
         long Val(IntExpr e) => s.Model.Eval(e).ToString().Int64();
-        IntExpr Const(string n) => c.MkIntConst(n);
+        IntExpr Const(object n) => c.MkIntConst(n.ToString());
         IntNum Num(long n) => c.MkInt(n);
     }
 

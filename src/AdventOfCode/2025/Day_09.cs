@@ -17,7 +17,7 @@ public class Day_09
     [Puzzle(answer: 1343576598L, O.ms10)]
     public long part_two(Point2Ds points)
     {
-        Rect[] edges = [.. points.SelectWithPrevious().Append(new(points[0], points[^1])).Select(Rect.New)];
+        Rect[] edges = [.. points.SelectWithPrevious().Append(new(points[0], points[^1])).Select(Rect.New).OrderByDescending(e => e.Size)];
         return points.RoundRobin().Select(Rect.New).OrderByDescending(r => r.Size).First(r => edges.None(e => r.Overlap(e))).Size;
     }
    

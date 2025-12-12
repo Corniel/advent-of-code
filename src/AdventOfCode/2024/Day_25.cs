@@ -29,6 +29,6 @@ public class Day_25
         return keys.Sum(k => lcks.Count(l => (l & k) == 0));
     }
 
-    [Puzzle(answer: "You have enough stars to deliver the Chronicle.", O.ms)]
+    [Puzzle(answer: "You have enough stars to deliver the Chronicle.")]
     public string part_two(string str) => "You have enough stars to deliver the Chronicle.";
 }

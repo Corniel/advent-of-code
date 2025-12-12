@@ -15,6 +15,9 @@ public class Day_25
         return steps;
     }
 
+    [Puzzle(answer: "You only need 49 stars to boost it", input: "You only need 49 stars to boost it")]
+    public string part_two(string str) => str;
+
     bool Move(CharGrid grid, Stack<Point> candidates, CompassPoint dir)
     {
         var ch = grid[candidates.Peek()];
@@ -41,7 +44,4 @@ public class Day_25
     readonly Stack<Point> Stay = new();
     readonly Stack<Point> Step = new();
     readonly Stack<Point> Clear = new();
-
-    [Puzzle(answer: "You only need 49 stars to boost it", input: "You only need 49 stars to boost it")]
-    public string part_two(string str) => str;
 }

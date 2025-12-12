@@ -57,7 +57,7 @@ public class Reports
     [Test]
     public void Durations_per_puzzle()
     {
-        var puzzles = AdventPuzzles.Load().Where(p => !p.Date.Matches(new AdventDate(null, 25, 2))).ToArray();
+        var puzzles = AdventPuzzles.Load().Where(p => p.Order != O.Unknown).ToArray();
 
         var distribution = ItemCounter.New(puzzles.Select(p => p.Order));
         var factor = 40d / distribution.Max().Count;

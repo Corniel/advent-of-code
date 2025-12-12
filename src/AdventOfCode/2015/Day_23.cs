@@ -14,7 +14,7 @@ public class Day_23
     static int Run(Inputs<Inst> insts, int[] vals)
     {
         var i = 0;
-        while (i.InRange(0, insts.Count - 1))
+        while (i.InRange(0, insts.Length - 1))
         {
             var inst = insts[i]; var r = inst.Register;
             switch (inst.Type)

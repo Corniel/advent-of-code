@@ -7,8 +7,8 @@ public class Day_25
     [Puzzle(answer: 16902792L, 18356117, 5909654, O.ms10)]
     public long part_one(long loopSize, int key) => EncryptionKey(loopSize, LoopSize(key));
 
-    [Puzzle(answer: "You only have to pay 49 stars", "You only have to pay 49 stars")]
-    public string part_two(string str) => str;
+    [Puzzle(answer: 50, "You only have to pay 49 stars")]
+    public int part_two(string _) => 50;
 
     [TestCase(08, 05764801)]
     [TestCase(11, 17807724)]

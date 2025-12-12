@@ -15,18 +15,11 @@ public static class AocGrid
     [Pure]
     public static IEnumerable<Point> Hashes(this CharGrid grid) => grid.Positions(c => c is '#');
 
-    private sealed class NoHashNeighbors : GridNeighbors
+    private sealed class NoHashNeighbors(CharGrid grid, Point position, IReadOnlyCollection<CompassPoint> directions) : GridNeighbors
     {
-        public NoHashNeighbors(CharGrid grid, Point position, IReadOnlyCollection<CompassPoint> directions)
-        {
-            Grid = grid;
-            Position = position;
-            this.directions = directions;
-        }
-
-        private readonly CharGrid Grid;
-        private readonly Point Position;
-        private readonly IReadOnlyCollection<CompassPoint> directions;
+        private readonly CharGrid Grid = grid;
+        private readonly Point Position = position;
+        private readonly IReadOnlyCollection<CompassPoint> directions = directions;
         
         public int Count => Directions.Count();
 

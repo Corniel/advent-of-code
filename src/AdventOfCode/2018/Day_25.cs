@@ -16,19 +16,19 @@ public class Day_25
         {
             var extra = new Constellatetion(point, points);
 
-            if (constellations.Where(c => c.Contains(point)).ToArray() is { Length: > 0 } existing)
+            if (constellations.Where(c => c.Contains(point)).Fix() is { Length: > 0 } existing)
             {
-                existing.First().AddRange(extra.Concat(existing.Skip(1).SelectMany(c => c)));
+                existing[0].AddRange(extra.Concat(existing[1..].SelectMany(c => c)));
 
-                foreach (var c in existing.Skip(1)) { constellations.Remove(c); }
+                foreach (var c in existing[1..]) constellations.Remove(c);
             }
-            else { constellations.Add(extra); }
+            else constellations.Add(extra);
         }
         return constellations.Count;
     }
 
-    [Puzzle(answer: "You only need 49 stars to boost it", input: "You only need 49 stars to boost it")]
-    public string part_two(string str) => str;
+    [Puzzle(answer: 50, "You only need 49 stars to boost it")]
+    public int part_two(string _) => 50;
 
     sealed class Constellatetion(Point4D point, IEnumerable<Point4D> points)
         : HashSet<Point4D>(points.Where(p => p.ManhattanDistance(point) <= 3)) { }

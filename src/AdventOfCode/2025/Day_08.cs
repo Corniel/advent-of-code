@@ -28,10 +28,11 @@ public class Day_08
             if (f.Contains(pair.Second)) continue;
 
             var s = cs[pair.Second];
+
             f.AddRange(s);
 
             // One clique has occured.
-            if (f.Count == points.Count) return pair.First.X.Long() * pair.Second.X.Long();
+            if (f.Count == points.Length) return pair.First.X.Long() * pair.Second.X;
 
             foreach (var p in s) cs[p] = f;
             f.Add(pair.Second);

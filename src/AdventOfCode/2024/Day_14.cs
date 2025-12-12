@@ -48,7 +48,7 @@ public partial class Day_14
     public int part_two(Ints numbers, int wide, int tall)
     {
         var map = new Grid<bool>(wide, tall);
-        var bots = Bots(numbers).ToArray();
+        var bots = Bots(numbers).Fix();
         
         for (var step = 0; step < 10000; step++)
         {

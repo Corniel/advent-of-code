@@ -13,7 +13,7 @@ public class Day_11
 
     static long Simulate(GroupedLines groups, int simulations, int reduce)
     {
-        var monkeys = groups.Select(Monkey.Parse).ToArray();
+        var monkeys = groups.Select(Monkey.Parse).Fix();
         var modulo = monkeys.Select(m => m.Factor).Product();
 
         foreach (var monkey in Range(1, simulations).SelectMany(_ => monkeys))
@@ -28,7 +28,7 @@ public class Day_11
         public long WorryLevel { get; set; }
         public long Inspected { get; set; }
         public long Factor => Divisible * Operation.Factor;
-        public void Play(Monkey[] other, int reduce, long mod)
+        public void Play(ImmutableArray<Monkey> other, int reduce, long mod)
         {
             foreach (var item in Items.DequeueCurrent())
             {

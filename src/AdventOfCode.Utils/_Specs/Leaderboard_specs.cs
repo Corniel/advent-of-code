@@ -33,9 +33,11 @@ public class Leaderboard
     [Test]
     public void Fetch_all() => Fetch(new AdventDate(null, null, 2));
 
+    [Explicit]
     [TestCaseSource(nameof(Years))]
     public void Fetch_100(int year) => Fetch(new AdventDate(year, null, 2));
 
+    [Explicit]
     [Test]
     public static Task Download_missing() => Task.WhenAll(AdventDate.AllAvailable().Where(d => d.Part == 1).Select(Download).ToArray());
 

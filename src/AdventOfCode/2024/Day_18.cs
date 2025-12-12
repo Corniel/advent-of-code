@@ -12,7 +12,7 @@ public class Day_18
     public Point part_two(Lines lines, int size, int fallen)
     {
         var (map, points) = Parse(lines, size, fallen);
-        return points.Skip(fallen).First(p => NoExit(p, map));
+        return points[fallen..].First(p => NoExit(p, map));
     }
 
     bool NoExit(Point p, Grid<bool> map) => Navigate(map.Set(true, p)) == -1;
@@ -35,11 +35,11 @@ public class Day_18
         return -1;
     }
 
-    static (Grid<bool> map, Point[] points) Parse(Lines lines, int size, int fallen)
+    static (Grid<bool> map, ImmutableArray<Point> points) Parse(Lines lines, int size, int fallen)
     {
         var map = new Grid<bool>(size, size).SetNeighbors(Neighbors.Grid);
-        var points = lines.ToArray(Point.Parse);
-        return (map.Set(true, points.Take(fallen)) , points);
+        var points = lines.Fix(Point.Parse);
+        return (map.Set(true, points[..fallen]), points);
     }
 
     readonly Queue<Point> Q = [];

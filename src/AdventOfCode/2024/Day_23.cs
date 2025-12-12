@@ -54,9 +54,9 @@ public class Day_23
         return string.Join(',', next.First().Order());
     }
 
-    static (Dictionary<string, HashSet<string>> graph, Edge[] edges) Graph(Lines lines)
+    static (Dictionary<string, HashSet<string>> graph, ImmutableArray<Edge> edges) Graph(Lines lines)
     {
-        var edges = lines.ToArray(l => new Edge(l[..2], l[3..]));
+        var edges = lines.Fix(l => new Edge(l[..2], l[3..]));
         var graph = new Dictionary<string, HashSet<string>>();
 
         foreach (var edge in edges)

@@ -16,7 +16,7 @@ public class Day_08
     public int part_two(Inputs<Instr> input)
     {
 
-        for (var fix_pointer = 0; fix_pointer < input.Count; fix_pointer++)
+        for (var fix_pointer = 0; fix_pointer < input.Length; fix_pointer++)
         {
             if (input[fix_pointer].Name == "acc") continue;
             if (Execute(input, fix_pointer, out var accumulator))
@@ -28,7 +28,7 @@ public class Day_08
     }
 
     static bool Execute(
-        Inputs<Instr> instructions,
+        IReadOnlyList<Instr> instructions,
         int fix_pointer,
         out int accumulator)
     {

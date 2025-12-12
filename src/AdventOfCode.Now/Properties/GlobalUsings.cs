@@ -39,4 +39,5 @@ global using Lines = SmartAss.Inputs<string>;
 global using Longs = SmartAss.Inputs<long>;
 global using Point2Ds = SmartAss.Inputs<SmartAss.Numerics.Point>;
 global using Point3Ds = SmartAss.Inputs<SmartAss.Numerics.Point3D>;
+global using Point4Ds = SmartAss.Inputs<SmartAss.Numerics.Point4D>;
 global using Sequances = SmartAss.Numerics.Sequence;

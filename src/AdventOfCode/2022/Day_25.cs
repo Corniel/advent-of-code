@@ -7,8 +7,8 @@ public class Day_25
     [Puzzle(answer: "2=222-2---22=1=--1-2", O.μs)]
     public string part_one(Lines lines) => SNAFU(lines.As(Number).Sum());
 
-    [Puzzle(answer: "You only need 49 stars to boost it", "You only need 49 stars to boost it")]
-    public string part_two(string str) => str;
+    [Puzzle(answer: 50, "You only need 49 stars to boost it")]
+    public int part_two(string _) => 50;
 
     static long Number(string str)
     {

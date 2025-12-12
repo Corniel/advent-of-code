@@ -52,21 +52,18 @@ public class Day_14
         var value_bits = Bits.UInt64.Parse(mask, ones: "10", zeros: "X");
         var mask_bits = Bits.UInt64.Parse(mask, ones: "1", zeros: "0X");
         var address = (value & value_bits) | mask_bits;
-        var indexes = mask.Select((ch, i) => new { ch, i = 35 - i }).Where(p => p.ch == 'X').Select(p => p.i).ToArray();
+        var indexes = mask.Select((ch, i) => new { ch, i = 35 - i }).Where(p => p.ch == 'X').Fix(p => p.i);
         var permutations = 1 << indexes.Length;
 
         return Range(0, permutations).Select(p => address | FloatingBits(p, indexes));
     }
-    static ulong FloatingBits(int permutation, int[] indexes)
+    static ulong FloatingBits(int permutation, ImmutableArray<int> indexes)
     {
         ulong bits = 0;
         for (var pos = 0; pos < indexes.Length; pos++)
-        {
             if (Bits.UInt64.HasFlag((ulong)permutation, pos))
-            {
                 bits = Bits.UInt64.Flag(bits, indexes[pos]);
-            }
-        }
+
         return bits;
     }
     record Inputs(ulong Address, ulong Value)

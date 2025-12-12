@@ -14,15 +14,20 @@ public class Benchmark
 
     public override string ToString() => $"Benchmark {Puzzle.Date}";
 
-    public static IEnumerable<BenchmarkResult> Run(IEnumerable<AdventPuzzle> puzzles)
+    public static IEnumerable<BenchmarkResult> Run(IEnumerable<AdventPuzzle> puzzles, int repeat)
     {
         var config = new ManualConfig()
             .WithOptions(ConfigOptions.DisableOptimizationsValidator)
             .AddValidator(JitOptimizationsValidator.DontFailOnError)
             .AddLogger(BenchmarkDotNet.Loggers.ConsoleLogger.Default)
-            .AddColumnProvider(DefaultColumnProviders.Instance);
+            .AddColumnProvider(DefaultColumnProviders.Instance)
+            .AddColumn(StatisticColumn.Min);
 
-        return puzzles.Select(p => Run(p, config)).OfType<BenchmarkResult>();
+        for(var r = 0; r < repeat; r++)
+        {
+            foreach (var res in puzzles.Select(p => Run(p, config)).OfType<BenchmarkResult>())
+                yield return res;
+        }
     }
 
     public static BenchmarkResult? Run(AdventPuzzle puzzle, ManualConfig config)
@@ -30,7 +35,7 @@ public class Benchmark
         try
         {
             var summary = BenchmarkRunner.Run(Typed(puzzle), config);
-            var column = summary.Table.Columns.Single(c => c.Header == "Mean");
+            var column = summary.Table.Columns.Single(c => c.Header == "Min");
             return new BenchmarkResult(puzzle, string.Join("; ", column.Content));
         }
         catch (Exception x)

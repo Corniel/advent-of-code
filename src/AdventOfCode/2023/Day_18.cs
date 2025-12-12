@@ -27,7 +27,7 @@ public class Day_18
 
     static Dictionary<long, Int64Ranges> Lines(IEnumerable<Dig> digs)
     {
-        var horizontal = Line.Horizontals(digs).ToArray();
+        var horizontal = Line.Horizontals(digs).Fix();
         var fills = new Dictionary<long, Int64Ranges>();
         var filled = Int64Ranges.Empty;
 

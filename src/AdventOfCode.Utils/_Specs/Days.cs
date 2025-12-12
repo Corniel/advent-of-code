@@ -21,7 +21,8 @@ public class Are
     public void Parameter_matching_type(AdventPuzzle puzzle)
     {
         var parameter = puzzle.Method.GetParameters()[0];
-        parameter.Name.Should().Match(Name(parameter.ParameterType), because: puzzle.Date.ToString());
+        if (parameter.Name != "_")
+            parameter.Name.Should().Match(Name(parameter.ParameterType), because: puzzle.Date.ToString());
 
         static string Name(Type type)
         {

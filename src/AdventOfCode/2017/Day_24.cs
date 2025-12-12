@@ -22,7 +22,7 @@ public class Day_24
     static int Walk(Ints numbers, Func<State, State, bool> improves)
     {
         var flags = new Dictionary<Bridge, int>();
-        var graph = Range(0, 51).Select(_ => new HashSet<int>()).ToArray();
+        var graph = Range(0, 51).Fix(_ => new HashSet<int>());
         var best = default(State);
         var queue = new Queue<State>().EnqueueRange(best);
 

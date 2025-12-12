@@ -15,8 +15,8 @@ public class Day_25
         return steps;
     }
 
-    [Puzzle(answer: "You only need 49 stars to boost it", input: "You only need 49 stars to boost it")]
-    public string part_two(string str) => str;
+    [Puzzle(answer: 50, "You only need 49 stars to boost it")]
+    public int part_two(string _) => 50;
 
     bool Move(CharGrid grid, Stack<Point> candidates, CompassPoint dir)
     {

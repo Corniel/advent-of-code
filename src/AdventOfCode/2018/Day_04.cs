@@ -12,7 +12,7 @@ public class Day_04
     public int part_two(Inputs<Log> logs) => Occurences(logs).OrderByDescending(c => AsleepMostMinutes(c.Value)).Select(Score).First();
 
     static long AsleepMostMinutes(ItemCounter<int> o) => o.OrderByDescending(kvp => kvp.Count).First().Count;
-    static int MinuteAsleepMost(ItemCounter<int> o) => o.OrderByDescending(kvp => kvp.Count).Select(kvp => kvp.Item).First();
+    static int MinuteAsleepMost(ItemCounter<int> o) => o.OrderByDescending(kvp => kvp.Count).First().Item;
     static int Score(KeyValuePair<int, ItemCounter<int>> o) => o.Key * MinuteAsleepMost(o.Value);
 
     static Dictionary<int, ItemCounter<int>> Occurences(Inputs<Log> logs)

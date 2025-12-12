@@ -7,7 +7,7 @@ public class Day_03
     [Puzzle(answer: 845186UL, O.μs100)]
     public ulong part_one(Lines lines)
     {
-        var numbers = lines.ToArray(BinaryNumber.Parse);
+        var numbers = lines.Fix(BinaryNumber.Parse);
         var size = numbers[0].Size;
         var threshold = numbers.Length / 2;
         var gamma = BinaryNumber.Empty(size);
@@ -32,20 +32,20 @@ public class Day_03
     [Puzzle(answer: 4636702UL, O.μs100)]
     public ulong part_two(Lines lines)
     {
-        var numbers = lines.ToArray(BinaryNumber.Parse);
+        var numbers = lines.Fix(BinaryNumber.Parse);
         var oxygen = Select(numbers, true, numbers[0].Size);
         var co2 = Select(numbers, false, numbers[0].Size);
         return oxygen.Value * co2.Value;
     }
 
-    BinaryNumber Select(BinaryNumber[] numbers, bool preferOne, int position)
+    static BinaryNumber Select(ImmutableArray<BinaryNumber> numbers, bool preferOne, int position)
     {
         position--;
         if (numbers.Length == 1) return numbers[0];
         else
         {
-            var ones = numbers.Where(number => number.HasFlag(position)).ToArray();
-            var zero = numbers.Where(number => !number.HasFlag(position)).ToArray();
+            var ones = numbers.Where(number => number.HasFlag(position)).Fix();
+            var zero = numbers.Where(number => !number.HasFlag(position)).Fix();
             var keepOnes = preferOne ? ones.Length >= zero.Length : ones.Length < zero.Length;
             return Select(keepOnes ? ones : zero, preferOne, position);
         }

@@ -7,7 +7,7 @@ public class Day_25
     [Puzzle(answer: 4225, O.ms10)]
     public int part_one(GroupedLines groups)
     {
-        var all = groups.Skip(1).Select(Instr.Parse).ToArray();
+        var all = groups[1..].Fix(Instr.Parse);
         var inst = all[0];
         var curr = 0;
         var tape = new Dictionary<int, bool>();

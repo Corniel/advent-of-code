@@ -12,7 +12,7 @@ public class Day_13
 
     static int FindHappiness(Inputs<Relation> relations, int neutral)
     {
-        var people = relations.As(h => h.Obj).Distinct().Order().ToArray();
+        var people = relations.As(h => h.Obj).Distinct().Order().Fix();
         var likes = new Grid<int>(people.Length + neutral, people.Length + neutral);
 
         foreach (var relation in relations)

@@ -1,4 +1,5 @@
 using System.Reflection;
+using static Advent_of_Code_2021.Day_24;
 
 namespace Advent_of_Code;
 
@@ -23,27 +24,35 @@ public sealed class AdventPuzzle
         var targets = Method.GetParameters().Select(p => p.ParameterType);
         return [.. input.Zip(targets, Tweak)];
     }
-    static object Tweak(object obj, Type target)
+    object Tweak(object obj, Type target)
     {
-        if (obj is string str)
-        {
-            if (target == typeof(Lines)) return new Lines(str.Lines());
-            else if (target == typeof(GroupedLines)) return new GroupedLines([.. str.GroupedLines(StringSplitOptions.None)]);
-            else if (target == typeof(CharPixels)) return str.CharPixels();
-            else if (target == typeof(CharGrid)) return str.CharPixels().Grid();
-            else if (target == typeof(Ints)) return new Ints([.. str.Int32s()]);
-            else if (target == typeof(Longs)) return new Longs([.. str.Int64s()]);
-            else if (target == typeof(Point2Ds)) return new Point2Ds([.. str.Int32s().ChunkBy(2).Select(Ctor.New<Point>)]);
-            else if (target == typeof(Point3Ds)) return new Point3Ds([.. str.Int32s().ChunkBy(3).Select(Ctor.New<Point3D>)]);
-            else if (target == typeof(Point4Ds)) return new Point4Ds([.. str.Int32s().ChunkBy(4).Select(Ctor.New<Point4D>)]);
-            else if (target == typeof(Int32Ranges)) return Int32Ranges.Parse(str);
-            else if (target == typeof(Int64Ranges)) return Int64Ranges.Parse(str);
-            else if (target.IsGenericType
-                && target.GetGenericTypeDefinition() == typeof(Inputs<>))
-                return Inputs.Parse(target.GenericTypeArguments[0], str);
-            else return str;
-        }
-        else return obj;
+        return obj is not string str
+            ? obj
+            : target switch
+            {
+                _ when GenericInput() is { } generic && Inputs.Parse(generic, Method.DeclaringType, str) is { } tweak => tweak,
+                _ when Is<Lines>() => Inputs.New(str.Lines()),
+                _ when Is<Ints>() => Inputs.New(str.Int32s()),
+                _ when Is<Longs>() => Inputs.New(str.Int64s()),
+                _ when Is<Point2Ds>() => Inputs.New(str.Int32s().ChunkBy(2).Fix(Ctor.New<Point>)),
+                _ when Is<Point3Ds>() => Inputs.New(str.Int32s().ChunkBy(3).Fix(Ctor.New<Point3D>)),
+                _ when Is<Point4Ds>() => Inputs.New(str.Int32s().ChunkBy(4).Fix(Ctor.New<Point4D>)),
+                _ when Is<Int32Ranges>() => Int32Ranges.Parse(str),
+                _ when Is<GroupedLines>() => new GroupedLines([.. str.GroupedLines(StringSplitOptions.None)]),
+                _ when Is<CharPixels>() => str.CharPixels(),
+                _ when Is<CharGrid>() => str.CharPixels().Grid(),
+                _ when Is<Int64Ranges>() => Int64Ranges.Parse(str),
+                _ when GenericInput() is { } generic => Inputs.Parse(generic, str),
+                _ => str,
+            };
+
+        bool Is<T>() => typeof(T) == target;
+
+        Type GenericInput()
+            => target.IsGenericType
+            && target.GetGenericTypeDefinition() == typeof(Inputs<>)
+            ? target.GenericTypeArguments[0]
+            : null;
     }
 
     public AdventDate Date { get; }
@@ -100,10 +109,13 @@ public sealed class AdventPuzzle
     {
         if (type == typeof(Int))
         {
-            if (answer is int int32) { return (Int)int32; }
-            else if (answer is long int64) { return (Int)int64; }
-            else if (answer is string str) { return Int.Parse(str); }
-            else { return answer; }
+            return answer switch
+            {
+                int int32 => (Int)int32,
+                long int64 => (Int)int64,
+                string str => Int.Parse(str),
+                _ => answer,
+            };
         }
         else if (type == typeof(string) && answer is string str) { return str.Trim(); }
         else if (type == typeof(Point) && answer is string point) { return Point.Parse(point); }

@@ -27,5 +27,5 @@ public class Day_05
         => Range(0, int.MaxValue)
             .Select(index => Hashing.MD5.ComputeHash(Encoding.ASCII.GetBytes($"{str}{index}")))
             .Where(bytes => bytes[0] == 0 && bytes[1] == 0 && bytes[2] < 16)
-            .Select(bytes => bytes.AsSpan().Slice(2, 2).ToArray());
+            .Select(bytes => bytes[2..4]);
 }

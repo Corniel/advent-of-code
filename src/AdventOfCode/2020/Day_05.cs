@@ -10,7 +10,7 @@ public class Day_05
     [Puzzle(answer: 676U, O.μs10)]
     public uint part_two(Lines lines)
     {
-        var seats = lines.As(Seat).Order().ToArray();
+        var seats = lines.As(Seat).Order().Fix();
         return seats.Where((seat, index) => seats[index + 1] - seat > 1).First() + 1;
     }
 

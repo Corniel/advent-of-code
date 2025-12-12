@@ -10,7 +10,7 @@ namespace Advent_of_Code_2025;
 public class Day_11
 {
     [Example(answer: 5, Example._1)]
-    [Example(answer: 2, Example._3)]
+    [Example(answer: 634, Example._3)]
     [Puzzle(answer: 590L, O.μs10)]
     public long part_one(Lines lines) => Graph.New(lines).Paths("you", "out");
 
@@ -24,9 +24,9 @@ public class Day_11
         return graph.Paths("svr", "fft") * graph.Paths("fft", "dac") * graph.Paths("dac", "out");
     }
 
-    class Graph(Dictionary<string, string[]> nodes) : Dictionary<string, long>
+    class Graph(Dictionary<string, string[]> nodes) : Dictionary<Key, long>
     {
-        public long Paths(string f, string t) => (f + t) switch
+        public long Paths(string f, string t) => new Key(f, t) switch
         {
             var p when TryGetValue(p, out var c) => c,
             var _ when f == t => 1,
@@ -35,5 +35,9 @@ public class Day_11
 
         public static Graph New(Lines lines)
             => new(lines.As(l => l.Separate(' ', ':')).Concat([["out"]]).ToDictionary(p => p[0], p => p));
+    }
+    readonly record struct Key(string F, string T)
+    {
+        public override int GetHashCode() => F[0] ^ (F[1] << 4) ^ (F[2] << 8) ^ (T[0] << 12) ^ (T[1] << 16) ^ (T[2] << 20);
     }
 }

@@ -13,12 +13,11 @@ public class Day_08
     [Puzzle(answer: "ZYBLH", O.μs10)]
     public string part_two(string str)
     {
-        var layers = Layer.Parse(25, 6, str).ToArray();
-        var merged = layers.Last();
-        foreach (var layer in layers.Reversed().Skip(1))
-        {
+        var layers = Layer.Parse(25, 6, str).Fix();
+        var merged = layers[^1];
+        foreach (var layer in layers[..^1].Reversed())
             merged = layer.Merge(merged);
-        }
+
         return merged.AsciiText(25);
     }
 
@@ -48,12 +47,9 @@ public class Day_08
         {
             var merged = pixels.ToCharArray();
             for (var i = 0; i < Size; i++)
-            {
                 if (pixels[i] == Transprant)
-                {
                     merged[i] = lower.pixels[i];
-                }
-            }
+
             return new Layer(new string(merged));
         }
 

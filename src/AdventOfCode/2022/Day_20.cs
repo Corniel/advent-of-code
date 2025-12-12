@@ -13,7 +13,7 @@ public class Day_20
 
     static long Decrypt(Longs numbers, int key, int times)
     {
-        var sort = Loop.NewRange(numbers.As(n => n * key)).ToArray();
+        var sort = Loop.NewRange(numbers.As(n => n * key)).Fix();
         var zero = sort.First(n => n.Value == 0);
 
         foreach (var nr in Repeat(sort, times).SelectMany(n => n)) nr.Move(nr.Value);

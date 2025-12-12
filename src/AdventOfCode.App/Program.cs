@@ -2,6 +2,7 @@ using Advent_of_Code.Benchmarking;
 using Advent_of_Code.Diagnostics;
 using Advent_of_Code.Rankings;
 using SmartAss;
+using SmartAss.Parsing;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,7 +30,7 @@ public static class Program
 
         if (Matches.New(date, args)) return Generate(date);
 
-        if (Matches.Benchmark(args)) return Benchmarks(Puzzles, date);
+        if (Matches.Benchmark(args)) return Benchmarks(Puzzles, date, args);
 
         Console.SetOut(new MultiWriter(Console.Out));
 
@@ -69,18 +70,18 @@ public static class Program
         return Success;
     }
 
-    private static int Benchmarks(AdventPuzzles puzzles, AdventDate date)
+    private static int Benchmarks(AdventPuzzles puzzles, AdventDate date, string[] args)
     {
         var selection = puzzles
             .Matching(date)
-            .Where(puzzle => !puzzle.Date.Matches(new AdventDate(default, 25, 2)))
-            .Where(puzzle => puzzle.Order < O.s || date.Year.HasValue && date.Day.HasValue)
+            .Where(puzzle => (puzzle.Order is > O.Unknown and < O.s) || date.Year.HasValue && date.Day.HasValue)
             .ToArray();
 
-        foreach (var result in Benchmark.Run(selection))
-        {
+        var repeats = args.Length >= 2 ? args[1].Int32N() : null;
+
+        foreach (var result in Benchmark.Run(selection, repeats ?? 1))
             result.Console();
-        }
+
         return Success;
     }
 

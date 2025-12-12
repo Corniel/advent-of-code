@@ -110,7 +110,7 @@ public class Day_10
         var relations = Astroids.Relations(station, astroids)
             .OrderBy(r => r.Angle)
             .ThenBy(r => r.Distance)
-            .ToArray();
+            .Fix();
 
         var vaporized = new HashSet<Point>();
         var started = false;
@@ -123,9 +123,8 @@ public class Day_10
             started |= relation.Angle >= Math.PI / 2;
 
             if (started && last.Angle != relation.Angle && vaporized.Add(relation.Astroid))
-            {
                 last = relation;
-            }
+
             if (postion >= relations.Length) { postion = 0; }
         }
         return last.Astroid.X * 100 + last.Astroid.Y;

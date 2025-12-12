@@ -20,7 +20,7 @@ public class Day_07
     {
         public int Files { get; set; }
         public int Size => All.Sum(f => f.Files);
-        public IEnumerable<Dir> All => Dirs.SelectMany(dir => dir.All).Concat(Repeat(this, 1));
+        public IEnumerable<Dir> All => [.. Dirs.SelectMany(dir => dir.All), .. Repeat(this, 1)];
         public static Dir Parse(Lines lines)
         {
             var root = new Dir(null, "/", []);

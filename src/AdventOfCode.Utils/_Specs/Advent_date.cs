@@ -15,4 +15,8 @@ public class All_available
     [Test]
     public void _50_per_year()
         => AdventDate.AllAvailable(new Date(2015, 12, 26)).Should().HaveCount(50);
+
+    [Test]
+    public void _24_per_year_since_2025()
+        => AdventDate.AllAvailable(new Date(2025, 12, 26)).Where(d => d.Year == 2025).Should().HaveCount(24);
 }

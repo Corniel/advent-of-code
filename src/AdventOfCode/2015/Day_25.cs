@@ -10,6 +10,6 @@ public class Day_25
 
     static int Skip(int row, int col) => (col + row - 1) * (col + row) / 2 - row;
 
-    [Puzzle(answer: "You only need 49 stars to boost it", "You only need 49 stars to boost it")]
-    public string part_two(string str) => str;
+    [Puzzle(answer: 50, "You only need 49 stars to boost it")]
+    public int part_two(string _) => 50;
 }

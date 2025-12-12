@@ -14,7 +14,7 @@ public class Day_22
 
     static int Play(GroupedLines groups, Func<Deck, Deck, int> play)
     {
-        var decks = groups.Select(Deck.Parse).ToArray();
+        var decks = groups.Select(Deck.Parse).Fix();
         return play(decks[0], decks[1]);
     }
 

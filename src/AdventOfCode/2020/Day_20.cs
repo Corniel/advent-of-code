@@ -54,24 +54,23 @@ public class Day_20
 
         public Tile Rotate(DiscreteRotation rotation) => new(Id, Grid.Rotate(rotation));
         public Tile Flip() => new(Id, Grid.Flip(true));
-        public IEnumerable<Tile> Orientations()
-        {
-            yield return this;
-            yield return Rotate(DiscreteRotation.Deg090);
-            yield return Rotate(DiscreteRotation.Deg180);
-            yield return Rotate(DiscreteRotation.Deg270);
-            yield return Flip();
-            yield return Flip().Rotate(DiscreteRotation.Deg090);
-            yield return Flip().Rotate(DiscreteRotation.Deg180);
-            yield return Flip().Rotate(DiscreteRotation.Deg270);
-        }
+        public IEnumerable<Tile> Orientations() =>
+        [
+            this,
+            Rotate(DiscreteRotation.Deg090),
+            Rotate(DiscreteRotation.Deg180),
+            Rotate(DiscreteRotation.Deg270),
+            Flip(),
+            Flip().Rotate(DiscreteRotation.Deg090),
+            Flip().Rotate(DiscreteRotation.Deg180),
+            Flip().Rotate(DiscreteRotation.Deg270),
+        ];
         public override string ToString() => $"ID: {Id}, N: {N:000}, E: {E:000}, S: {S:000}, W: {W:000}";
 
-        public static Tile[] Parse(GroupedLines groups)
+        public static ImmutableArray<Tile> Parse(GroupedLines groups)
         {
-            var tiles = groups.Select(Parse)
-                .SelectMany(i => i.Orientations())
-                .ToArray();
+            var tiles = groups.Select(Parse).FixMany(i => i.Orientations());
+
             foreach (var tile in tiles)
             {
                 tile.Neighbors.AddRange(Others(tiles, tile).Where(o => tile.N == o.S));
@@ -112,7 +111,7 @@ public class Day_20
             yield return canvas.Flip(horizontal: true).Rotate(DiscreteRotation.Deg180);
             yield return canvas.Flip(horizontal: true).Rotate(DiscreteRotation.Deg270);
         }
-        void FillO(Tile[] tiles)
+        void FillO(ImmutableArray<Tile> tiles)
         {
             this[Point.O] = tiles.First(t => t.IsCorner &&
                 !t.Neighbors.Exists(n => t.N == n.S) &&
@@ -141,7 +140,7 @@ public class Day_20
             }
         }
 
-        public static Tiles Create(Tile[] tiles)
+        public static Tiles Create(ImmutableArray<Tile> tiles)
         {
             var matrix = new Tiles((tiles.Length / 8d).Sqrt().Floor());
             matrix.FillO(tiles);

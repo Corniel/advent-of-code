@@ -39,5 +39,5 @@ public class Day_04
         return removed;
     }
 
-    static bool Accessable(Point p, CharGrid map) => map[p] is '@' && map.Neighbors[p].Count(n => map[n] is '@') < 4;
+    static bool Accessable(Point p, CharGrid map) => map[p] is '@' && map.Neighbors[p].HasAtmost(3, n => map[n] is '@');
 }

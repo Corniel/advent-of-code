@@ -19,7 +19,7 @@ public class Day_05
     {
         var sources = Int64Ranges.New(select([..groups[0][0].Int64s()]));
 
-        foreach (var maps in groups.Skip(1).Select(Map.Parse))
+        foreach (var maps in groups[1..].Select(Map.Parse))
         {
             var targets = Int64Ranges.Empty;
             var unchanged = sources;

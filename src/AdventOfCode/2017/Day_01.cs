@@ -19,7 +19,7 @@ public class Day_01
     [Puzzle(answer: 950, O.μs10)]
     public int part_two(string str)
     {
-        var digits = str.Digits().ToArray();
+        var digits = str.Digits().Fix();
         var half = digits.Length / 2;
         return digits.Where((digit, index) => digits[(index + half) % digits.Length] == digit).Sum();
     }

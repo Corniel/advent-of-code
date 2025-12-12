@@ -88,7 +88,7 @@ public class Day_16
 
         public static Valve[] Parse(string str)
         {
-            var lines = str.Replace(";", "").Replace("to valve ", "to valves ").Lines(Line.Parse).OrderBy(l => l.Name).ToArray();
+            var lines = str.Replace(";", "").Replace("to valve ", "to valves ").Lines(Line.Parse).OrderBy(l => l.Name).Fix();
             var tmp = lines.ToDictionary(l => l.Name, l => new Valve(l.Name, l.Rate, []));
 
             foreach (var line in lines)
@@ -98,10 +98,10 @@ public class Day_16
                 foreach (var c in line.Connections.Select(n => tmp[n])) valve.Connections[c] = 1;
             }
             foreach (var valve in tmp.Values) valve.Connect();
-            foreach (var valve in tmp.Values.Where(v => v.Rate == 0 && v.Name != "AA").ToArray()) tmp.Remove(valve.Name);
+            foreach (var valve in tmp.Values.Where(v => v.Rate == 0 && v.Name != "AA").Fix()) tmp.Remove(valve.Name);
             foreach (var valve in tmp.Values)
             {
-                foreach (var c in valve.Connections.Keys.Where(c => c.Rate == 0 || c == valve).ToArray()) valve.Connections.Remove(c);
+                foreach (var c in valve.Connections.Keys.Where(c => c.Rate == 0 || c == valve).Fix()) valve.Connections.Remove(c);
             }
             byte id = 0;
             foreach (var valve in tmp.Values) valve.Id = id++;

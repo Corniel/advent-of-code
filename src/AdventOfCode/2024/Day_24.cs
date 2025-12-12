@@ -10,7 +10,7 @@ public class Day_24
     [Puzzle(answer: "bpf,fdw,hcc,hqc,qcw,z05,z11,z35", O.ms100)]
     public string part_two(GroupedLines groups) => string.Join(',', Swaps(0, Pars(groups), []).First().Order());
 
-    public IEnumerable<ImmutableArray<string>> Swaps(int bit, Params gates, ImmutableHashSet<string> prev)
+    static IEnumerable<ImmutableArray<string>> Swaps(int bit, Params gates, ImmutableHashSet<string> prev)
     {
         if (bit >= 44) yield return [];
 

@@ -23,29 +23,30 @@ public class Day_06
     {
         // To keep white space.
         var lines = str.Lines(default);
-        
-        var total = 0L; var rows = lines.Count - 1; var i = 0;
+        var (total, rows,  i) = (0L, lines.Count - 1, 0);
         var ops = Op(lines[^1]);
-        List<long> nums = [];
-       
+        var (buf, mp) = ops[0] is '*' ? (1L, true) : (0, false);
+               
         for (var col = 0; col < lines[0].Length; col++)
         {
             var num = 0;
 
-            // read top top bottom and skip non-digits
+            // Read top top bottom and skip non-digits
             for (var r = 0; r < rows; r++)
                 if (lines[r][col].TryDigit() is { } d) num = num * 10 + d;
 
             if (num is 0)
             {
-                total += Exe(ops[i++], nums);
-                nums.Clear();
+                total += buf;
+                (buf, mp) = ops[++i] is '*' ? (1, true) : (0, false);
             }
-            else nums.Add(num);
+            // based on operator.
+            else if (mp) buf *= num;
+            else buf += num;
         }
-        return total + Exe(ops[i], nums);
+        return total + buf;
     }
 
-    static long Exe(char op, IEnumerable<long> vs) => op == '+' ? vs.Sum() : vs.Product();
+    static long Exe(char op, IEnumerable<long> ns) => op == '+' ? ns.Sum() : ns.Product();
     static char[] Op(string s) => [..s.Where(c => c != ' ')];
 }

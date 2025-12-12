@@ -18,7 +18,7 @@ public partial class Day_18
     public int part_one(Lines lines)
     {
         var expression = Pair.Parse(lines[0]);
-        for (var i = 1; i < lines.Count; i++)
+        for (var i = 1; i < lines.Length; i++)
         {
             expression += Pair.Parse(lines[i]);
         }
@@ -27,8 +27,8 @@ public partial class Day_18
 
     [Example(answer: 4635, Example._1)]
     [Puzzle(answer: 4832, O.ms100)]
-    public int part_two(Lines lines) => Range(0, lines.Count)
-        .SelectMany(f => Range(0, lines.Count).Select(s => new { f, s }))
+    public int part_two(Lines lines) => Range(0, lines.Length)
+        .SelectMany(f => Range(0, lines.Length).Select(s => new { f, s }))
         .Where(pair => pair.f != pair.s)
         .Max(pair => (Pair.Parse(lines[pair.f]) + Pair.Parse(lines[pair.s])).Magnitude);
 

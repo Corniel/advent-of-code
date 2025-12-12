@@ -28,15 +28,10 @@ public class Day_03
             for (var i = s.Length - rem; i > lo; i--)
             {
                 var ch = s[i];
-                if (ch >= max)
-                {
-                    max = ch;
-                    f = i;
-                }
+                if (ch >= max) { max = ch; f = i; }
             }
             // update the lowerbound.
-            lo = f;
-            num = num * 10 + (max - '0');
+            lo = f; num = num * 10 + (max - '0');
         }
         return num;
     }

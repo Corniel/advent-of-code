@@ -20,5 +20,5 @@ public class Day_03
         return Score(line[0..h].First(r.Contains));
     }
 
-    static int Shared(Slice<string> lines) => Score(lines[0].First(ch => lines[1].Contains(ch) && lines[2].Contains(ch)));
+    static int Shared(ImmutableArray<string> lines) => Score(lines[0].First(ch => lines[1].Contains(ch) && lines[2].Contains(ch)));
 }

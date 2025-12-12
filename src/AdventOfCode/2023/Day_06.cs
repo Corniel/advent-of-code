@@ -10,7 +10,7 @@ public class Day_06
 
     [Example(answer: 71503, "Time: 7 15 30; Distance: 9 40 200")]
     [Puzzle(answer: 36992486, O.ns100)]
-    public int part_two(string str) => part_one([.. str.StripChars(" ").Int64s()]);
+    public int part_two(string str) => part_one(new([.. str.StripChars(" ").Int64s()]));
 
     static IEnumerable<Race> Races(IReadOnlyList<long> ns)
             => Range(0, ns.Count / 2).Select(n => new Race(ns[n], ns[n + ns.Count / 2]));

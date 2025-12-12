@@ -6,7 +6,7 @@ public class Day_09
     [Puzzle(answer: 144381670, O.μs10)]
     public int part_one(Ints numbers)
     {
-        for (var i = 25; i < numbers.Count; i++)
+        for (var i = 25; i < numbers.Length; i++)
         {
             var number = numbers[i];
             if (!Matches(numbers, i, number))
@@ -28,7 +28,7 @@ public class Day_09
         var top = numbers[hi];
         var test = bottom + top;
 
-        while (hi < numbers.Count)
+        while (hi < numbers.Length)
         {
             if (test == sum)
             {

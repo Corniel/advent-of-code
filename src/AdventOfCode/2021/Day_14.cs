@@ -17,12 +17,9 @@ public class Day_14
         var pairs = ItemCounter.New(lines[0].SelectWithPrevious());
 
         for (var step = 0; step < steps; step++)
-        {
-            foreach (var pair in pairs.ToArray())
-            {
+            foreach (var pair in pairs.Fix())
                 Adjust(insertions, pairs, pair.Item, pair.Count);
-            }
-        }
+
         var counter = ItemCounter.New(lines[0][^1]);
         foreach (var (word, count) in pairs) { counter[word[0]] += count; }
         return counter.Counts.Max() - counter.Counts.Min();

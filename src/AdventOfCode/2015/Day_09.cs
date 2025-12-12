@@ -13,7 +13,7 @@ public class Day_09
 
     static IEnumerable<int> Distances(Inputs<Route> routes)
     {
-        var locations = routes.SelectMany(route => route.Locations).Distinct().Order().ToArray();
+        var locations = routes.SelectMany(route => route.Locations).Distinct().Order().Fix();
         var distances = new Grid<int>(locations.Length, locations.Length);
 
         foreach (var route in routes)

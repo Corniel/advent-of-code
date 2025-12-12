@@ -2,7 +2,7 @@
   "profiles": {
     "AdventOfCode.Now": {
       "commandName": "Project",
-      "commandLineArgs": "2024 -r Tweakers"
+      "commandLineArgs": "2024 -b 20"
     }
   }
 }

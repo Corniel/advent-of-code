@@ -9,7 +9,7 @@ public class Day_15
 
     [Example(answer: 618, Example._2)]
     [Example(answer: 9021, Example._3)]
-    [Puzzle(answer: 1397393, O.ms)]
+    [Puzzle(answer: 1397393, O.μs100)]
     public int part_two(GroupedLines groups) => Push(groups, Two);
 
     static int Push(GroupedLines groups, Func<CharPixels, CharGrid> init)

@@ -7,7 +7,7 @@ public class Day_06
     [Puzzle(answer: 6681, "4 1 15 12 0 9 9 5 5 8 7 3 14 5 12 3", O.ms)]
     public int part_one(Ints numbers)
     {
-        var banks = new Banks(numbers.ToArray(n => (byte)n));
+        var banks = new Banks([.. numbers.As(n => (byte)n)]);
         var set = new HashSet<Banks>();
         while (set.Add(banks)) banks = banks.Next();
         return set.Count;
@@ -17,16 +17,14 @@ public class Day_06
     [Puzzle(answer: 2392, "4 1 15 12 0 9 9 5 5 8 7 3 14 5 12 3", O.ms)]
     public int part_two(Ints numbers)
     {
-        var banks = new Banks(numbers.ToArray(n => (byte)n));
+        var banks = new Banks([.. numbers.As(n => (byte)n)]);
         var set = new Dictionary<Banks, int>();
         while (set.TryAdd(banks, set.Count)) banks = banks.Next();
         return set.Count - set[banks];
     }
 
-    readonly struct Banks(byte[] numbers) : IEquatable<Banks>
+    readonly record struct Banks(byte[] Numbers) : IEquatable<Banks>
     {
-        readonly byte[] Numbers = numbers;
-
         public Banks Next()
         {
             byte[] next = [.. Numbers];

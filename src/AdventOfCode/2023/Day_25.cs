@@ -14,15 +14,14 @@ public class Day_25
         while (main.Intersect(edge).Count() != 3)
         {
             var other = main.OrderByDescending(s => nodes[s].Connections.Intersect(edge).Count()).First();
-
             main.Remove(other);
             edge.AddRange(nodes[other].Connections);
         }
         return main.Count * (nodes.Length - main.Count);
     }
 
-    [Puzzle(answer: "Power required is now 49 stars.", "Power required is now 49 stars.")]
-    public string part_two(string str) => str;
+    [Puzzle(answer: 50, "Power required is now 49 stars.")]
+    public int part_two(string _) => 50;
 
     record Node(int Id, HashSet<int> Connections)
     {

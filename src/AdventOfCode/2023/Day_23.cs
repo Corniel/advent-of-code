@@ -62,15 +62,13 @@ public class Day_23
         var done = new HashSet<Point>() { node.Point };
         var distance = 0;
 
-        while (queue.Any())
+        while (queue.NotEmpty)
         {
             distance++;
             foreach (var n in queue.DequeueCurrent().SelectMany(p => map.Neighbors[p].Where(n => access(p, n, map) && done.Add(n))))
             {
                 if (graph.Find(x => x.Point == n) is { } target)
-                {
                     yield return new Connection(target, distance);
-                }
                 else queue.Enqueue(n);
             }
         }

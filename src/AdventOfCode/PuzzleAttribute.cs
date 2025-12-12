@@ -11,10 +11,9 @@ public class PuzzleAttribute : Attribute, ITestBuilder, IApplyToTest, IImplyFixt
         Input = Filter(input);
     }
     static object[] Filter(IEnumerable<object> input)
-    {
-        var filtered = input.Where(o => o is not O && o is not Example).ToArray();
-        return filtered.Length == 0 ? [null] : filtered;
-    }
+        => input.Where(o => o is not O && o is not Example).ToArray() is { Length :> 0 } f 
+        ? f
+        : [null];
 
     public object Answer { get; }
 

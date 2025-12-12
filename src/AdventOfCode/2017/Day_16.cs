@@ -44,7 +44,7 @@ public class Day_16
     {
         's' => new Spin(str.Int32()),
         'x' => new Exchange(str.Int32(), str.Int32s().Skip(1).First()),
-        _ /* 'p' */ => new Partner(str[1], str[3]),
+        _  => new Partner(str[1], str[3]),
     };
 
     readonly struct Spin(int P)

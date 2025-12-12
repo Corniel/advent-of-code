@@ -27,11 +27,11 @@ public class Day_07
 
                 foreach (var sub in split[1].CommaSeparated())
                 {
-                    var parts = sub.SpaceSeparated().ToArray();
+                    var parts = sub.SpaceSeparated().Fix();
 
                     if (int.TryParse(parts[0], out var repeats))
                     {
-                        var other = new Leaf(string.Join(" ", parts.Skip(1)));
+                        var other = new Leaf(string.Join(" ", parts[1..]));
                         other = bags.TryAdd(other);
                         bag.Leaves.Add(other, repeats);
                     }

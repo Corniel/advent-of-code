@@ -20,7 +20,7 @@ public class Day_17
             {
                 if (Run(a_, prog).SequenceEqual(prog[^size..]))
                 {
-                    if (size == prog.Count) return a_;
+                    if (size == prog.Length) return a_;
                     q.Enqueue(new(a_, size + 1));
                 }
             }
@@ -38,11 +38,11 @@ public class Day_17
     /// * The first 3 bit match digit 0, the 3 bit the last digit.
     /// * Starting at the end cuts of a lot of options.
     /// </remarks>
-    static List<long> Run(long A, Slice<long> program)
+    static List<long> Run(long A, ImmutableArray<long> program)
     {
         var p = 0; var B = 0L; var C = 0L; var output = new List<long>();
 
-        while (p < program.Count - 1)
+        while (p < program.Length - 1)
         {
             var op = program[p++];
             var code = program[p++];

@@ -22,6 +22,6 @@ public class Day_25
         return i - prod;
     }
 
-    [Puzzle(answer: "Power required is now 49 stars.", "Power required is now 49 stars.")]
-    public string part_two(string str) => str;
+    [Puzzle(answer: 50, "Power required is now 49 stars.")]
+    public int part_two(string _) => 50;
 }

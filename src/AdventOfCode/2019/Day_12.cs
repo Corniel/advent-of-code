@@ -8,7 +8,7 @@ public class Day_12
     [Puzzle(answer: 56202, "<x=17, y=-9, z=4>;<x=2, y=2, z=-13>;<x=-1, y=5, z=-1>;<x=4, y=7, z=-7>", O.μs100)]
     public int part_one(Point3Ds points)
     {
-        var moons = points.ToArray(p => new Moon(p, default));
+        var moons = points.Fix(p => new Moon(p, default));
         for (var s = 0; s < 10_000; s++) Moon.SetStep(moons);
         return moons.Sum(moon => moon.TotalEnergy);
     }
@@ -18,7 +18,7 @@ public class Day_12
     [Puzzle(answer: 537881600740876L, "<x=17, y=-9, z=4>;<x=2, y=2, z=-13>;<x=-1, y=5, z=-1>;<x=4, y=7, z=-7>", O.ms)]
     public long part_two(Point3Ds points)
     {
-        var moons = points.ToArray(p => new Moon(p, default));
+        var moons = points.Fix(p => new Moon(p, default));
         return Maths.Lcm([
             Cycle(moons.Select(moon => Pair(moon.Position.X, default)).ToArray()),
             Cycle(moons.Select(moon => Pair(moon.Position.Y, default)).ToArray()),

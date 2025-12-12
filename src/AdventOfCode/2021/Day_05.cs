@@ -13,7 +13,7 @@ public class Day_05
 
       static int Run(Point2Ds points, bool diagonal) => ItemCounter.New(points.ChunkBy(2).Select(pair => Select(pair, diagonal)).SelectMany(p => p)).Count(p => p.Count >= 2);
 
-    static IEnumerable<Point> Select(Slice<Point> pair , bool diagonal = true)
+    static IEnumerable<Point> Select(ImmutableArray<Point> pair , bool diagonal = true)
     {
         var (start, end) = (pair[0], pair[1]);
         var delta = (end - start).Sign();

@@ -33,7 +33,7 @@ public class Day_04
             foreach (var card in Cards)
                 card.Play(number);
 
-            var bingos = Cards.Where(card => card.Bingo).ToArray();
+            var bingos = Cards.Where(card => card.Bingo).Fix();
             foreach (var bingo in bingos)
                 Cards.Remove(bingo);
 
@@ -41,7 +41,7 @@ public class Day_04
         }
 
         public static Game Parse(GroupedLines groups) => new(
-            [.. groups.Skip(1).Select(Card.Parse)],
+            [.. groups[1..].Select(Card.Parse)],
             [.. groups[0][0].Int32s()]);
     }
 

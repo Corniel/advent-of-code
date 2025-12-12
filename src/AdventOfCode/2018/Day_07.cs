@@ -58,7 +58,7 @@ public class Day_07
     static (List<Rule> rules, HashSet<char> chs) Read(Lines lines)
     {
         var rules = lines.As(l => new Rule(l[5], l[36])).ToList();
-        var chs = rules.SelectMany(r => new char[] { r.Before, r.After }).Distinct().Order().ToHashSet();
+        var chs = rules.SelectMany(r => new char[] { r.Before, r.After }).Order().ToHashSet();
         return (rules, chs);
     }
 

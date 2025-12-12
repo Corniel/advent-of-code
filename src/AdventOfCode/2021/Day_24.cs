@@ -21,7 +21,7 @@ public class Day_24
             var state_next = State.Zero;
             var test = state.Exc(exps[index].Set(digit));
 
-            for (var i = index + 1; i < exps.Count; i++)
+            for (var i = index + 1; i < exps.Length; i++)
             {
                 var exp = exps[i];
                 if (index_next == -1 && exp.Op == Op.inp)
@@ -47,8 +47,8 @@ public class Day_24
         public override string ToString() => $"{Op} {string.Join(' ', Args.AsEnumerable())}";
         public static Expr Parse(string line)
         {
-            var args = line.SpaceSeparated().ToArray();
-            return new(Enum.Parse<Op>(args[0]), [.. args[1..].Select(ParseArgument)]);
+            var args = line.SpaceSeparated().Fix();
+            return new(Enum.Parse<Op>(args[0]), [..args[1..].As(ParseArgument)]);
         }
         static Arg ParseArgument(string str) => Enum.Parse<Arg>(str);
     }

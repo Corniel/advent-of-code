@@ -7,33 +7,26 @@ public class Day_16
     [Puzzle(answer: 27850, O.μs100)]
     public int part_one(GroupedLines groups)
     {
-        var rules = groups[0].Select(Rule.Parse).ToArray();
-        var nearby = groups[2][1..].Select(Ticket.Parse).SelectMany(n => n.Parts).ToArray();
-        return nearby.Where(number => !rules.Exists(rule => rule.Valid(number))).Sum();
+        var rules = groups[0].Fix(Rule.Parse);
+        return groups[2][1..].Select(Ticket.Parse).SelectMany(n => n.Parts)
+            .Where(number => !rules.Exists(rule => rule.Valid(number))).Sum();
     }
 
     [Puzzle(answer: 491924517533, O.μs100)]
     public long part_two(GroupedLines groups)
     {
-        var rules = groups[0].Select(Rule.Parse).ToArray();
+        var rules = groups[0].Fix(Rule.Parse);
         var tickets = new List<Ticket> { Ticket.Parse(groups[1][1]) };
         tickets.AddRange(groups[2][1..].Select(Ticket.Parse).Where(ticket => ticket.Valid(rules)));
-        var options = rules.Select(rule => Option.New(rule, tickets)).ToArray();
+        var options = rules.Fix(rule => Option.New(rule, tickets));
 
         while (options.Take(6).Any(option => option.HasMultiple))
-        {
             foreach (var option in options.Where(option => option.HasSingle))
-            {
                 foreach (var other in options.Where(o => option != o))
-                {
                     other.Positions.Remove(option.Position);
-                }
-            }
-        }
 
         var yours = tickets[0];
-        return options.Take(6).Select(option => (long)yours.Parts[option.Position]).Product();
-
+        return options[..6].Select(option => (long)yours.Parts[option.Position]).Product();
     }
 
     record Option(Rule Rule, List<int> Positions)

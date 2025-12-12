@@ -7,7 +7,7 @@ public class Day_21
     [Puzzle(answer: 2282, O.μs100)]
     public int part_one(Inputs<Food> foods)
     {
-        var allergens = Allergen.Init(foods).Select(allergen => allergen.Ingredient).ToArray();
+        var allergens = Allergen.Init(foods).As(allergen => allergen.Ingredient);
         return foods.SelectMany(f => f.Ingredients).Count(i => !allergens.Contains(i));
     }
 
@@ -19,27 +19,26 @@ public class Day_21
         return string.Join(',', allergens.OrderBy(m => m.Name).Select(m => m.Ingredient));
     }
 
-    record Allergen(string Name, List<string> Ingredients)
+    public record Allergen(string Name, List<string> Ingredients)
     {
         public string Ingredient => Ingredients[0];
         public bool Resolved => Ingredients.Count == 1;
-        void Reduce(IEnumerable<Allergen> allergens)
+        
+        public void Reduce(IEnumerable<Allergen> allergens)
         {
             foreach (var ingredient in allergens.Where(allergen => allergen != this && allergen.Resolved).Select(other => other.Ingredient))
-            {
                 Ingredients.Remove(ingredient);
-            }
         }
-        public static Allergen[] Init(Inputs<Food> foods)
+
+        public static ImmutableArray<Allergen> Init(Inputs<Food> foods)
         {
             var allergens = foods
                 .SelectMany(food => food.Allergens).Distinct().Order()
-                .Select(allergen => new Allergen(
+                .Fix(allergen => new Allergen(
                     Name: allergen,
                     Ingredients: [.. foods
                         .Where(food => food.Allergens.Contains(allergen))
-                        .IntersectMany(food => food.Ingredients)]))
-                .ToArray();
+                        .IntersectMany(food => food.Ingredients)]));
 
             while (allergens.Exists(allergen => !allergen.Resolved))
             {

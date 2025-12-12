@@ -21,7 +21,7 @@ public class Day_10
 
     static (int Seconds, Grid<bool> Grid) Simulate(Lines lines)
     {
-        var dots = lines.ToArray(Dot.Parse);
+        var dots = lines.Fix(Dot.Parse);
         for (var s = 1; s < int.MaxValue; s++)
         {
             foreach (var dot in dots) dot.Position += dot.Velocity;

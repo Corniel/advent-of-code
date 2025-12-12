@@ -16,7 +16,7 @@ public class Day_11
 
     static Result FindMaximum(Grid<int> grid, int size = 3)
     {
-        var vectors = Points.Range(Point.O, new(size - 1, size - 1)).Select(p => p.Vector()).ToArray();
+        var vectors = Points.Range(Point.O, new(size - 1, size - 1)).Fix(p => p.Vector());
         return grid.Positions(p => p.X <= 300 - size && p.Y <= 300 - size)
             .Select(p => new Result(p, vectors.Sum(v => grid[p + v]), size))
             .OrderByDescending(r => r.Max)

@@ -20,8 +20,8 @@ public class Day_07
     /// </remarks>
     static long Do(string line, int ops)
     {
-        Longs ns = [.. line.Int64s()];
-        var pers = ops.Pow(ns.Count - 1);
+        var ns = line.Int64s().Fix();
+        var pers = ops.Pow(ns.Length - 1);
 
         for (var per = 0; per < pers; per++)
         {
@@ -30,10 +30,10 @@ public class Day_07
         return 0;
     }
 
-    static long Test(Longs ns, int per, int ops)
+    static long Test(ImmutableArray<long> ns, int per, int ops)
     {
         var opr = per; var tot = ns[0];
-        for (var n = ns.Count - 1; n > 0; n--)
+        for (var n = ns.Length - 1; n > 0; n--)
         {
             if ((opr % ops) switch
             {

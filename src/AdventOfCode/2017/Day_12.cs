@@ -11,19 +11,18 @@ public class Day_12
     [Puzzle(answer: 209, O.ms)]
     public int part_two(Lines lines)
     {
-        var nodes = Nodes(lines).Select(n => n.SelveAndAncestors()).ToArray();
+        var nodes = Nodes(lines).Fix(n => n.SelveAndAncestors());
         var groups = 1;
 
         for (var id = 1; id < nodes.Length; id++)
-        {
             groups += Range(0, id).Any(index => nodes[index].Contains(id)) ? 0 : 1;
-        }
+
         return groups;
     }
 
     static Node[] Nodes(Lines lines)
     {
-        var nodes = new Node[lines.Count];
+        var nodes = new Node[lines.Length];
         foreach (var line in lines)
         {
             var node = new Node(line.Int32());
@@ -31,9 +30,8 @@ public class Day_12
         }
         var id = 0;
         foreach (var line in lines)
-        {
             nodes[id++].Children.AddRange(line.Int32s().Skip(1).Select(i => nodes[i]));
-        }
+
         return nodes;
     }
 

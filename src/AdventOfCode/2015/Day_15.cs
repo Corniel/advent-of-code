@@ -14,7 +14,7 @@ public class Day_15
     static int Total(Inputs<Ingredient> ingredients, Func<int[], Inputs<Ingredient>, bool> where)
     {
         var selectors = new Func<Ingredient, int>[] { i => i.Capacity, i => i.Durability, i => i.Flavor, i => i.Texture };
-        return new Distribution(ingredients.Count)
+        return new Distribution(ingredients.Length)
             .Where(d => where(d, ingredients))
             .Max(distribution => selectors.Select(selector => Score(distribution, ingredients, selector)).Product());
     }

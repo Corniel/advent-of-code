@@ -48,7 +48,7 @@ public class Day_08
     {
         public override void Transform(Dictionary<Point, bool> grid)
         {
-            var column = grid.Where(p => p.Key.X == X && p.Value).Select(p => p.Key).ToArray();
+            var column = grid.Where(p => p.Key.X == X && p.Value).Fix(p => p.Key);
             foreach (var cell in column) grid[cell] = false;
             foreach (var cell in column) grid[new(cell.X, (cell.Y + By).Mod(6))] = true;
         }
@@ -58,7 +58,7 @@ public class Day_08
     {
         public override void Transform(Dictionary<Point, bool> grid)
         {
-            var column = grid.Where(p => p.Key.Y == Y && p.Value).Select(p => p.Key).ToArray();
+            var column = grid.Where(p => p.Key.Y == Y && p.Value).Fix(p => p.Key);
             foreach (var cell in column) grid[cell] = false;
             foreach (var cell in column) grid[new((cell.X + By).Mod(50), cell.Y)] = true;
         }

@@ -11,10 +11,10 @@ public class Day_15
     [Puzzle(answer: 13543690671045, null, 4_000_000, O.s)]
     public long part_two(Point2Ds points, int max)
     {
-        var instr = points.ChunkBy(2).Select(Instruction.New).ToList();
+        var instr = points.ChunkBy(2).Select(Instruction.New).Fix();
 
         for (var y = 0; y <= max; y++)
-            if (instr.Select(i => i.Range(y)).Merge() is { Count: 2 } ranges)
+            if (instr.As(i => i.Range(y)).Merge() is { Count: 2 } ranges)
                 return (ranges[0].Upper + 1L) * 4_000_000 + y;
 
         throw new NoAnswer();
@@ -27,7 +27,7 @@ public class Day_15
             ? new(Sensor.X - Dinstance + dy, Sensor.X + Dinstance - dy)
             : Int32Range.Empty;
 
-        public static Instruction New(Slice<Point> pair)
+        public static Instruction New(ImmutableArray<Point> pair)
         {
             var (s, b) = (pair[0], pair[1]);
             return new(s, b, s.ManhattanDistance(b));

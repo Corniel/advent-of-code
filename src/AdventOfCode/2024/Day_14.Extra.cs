@@ -10,7 +10,7 @@ partial class Day_14
     {
         const int Space = 10;
 
-        var bots = Bots(numbers).ToArray();
+        var bots = Bots(numbers).Fix();
         var map = new Grid<bool>(wide, tall);
 
         for (var hundred = 0; hundred < 100; hundred++)

@@ -17,9 +17,9 @@ public class Day_19
             .Max(p => scanners[p.f].Position.ManhattanDistance(scanners[p.s].Position));
     }
 
-    static HashSet<Point3D> Run(GroupedLines groups, out Scanner[] scanners)
+    static HashSet<Point3D> Run(GroupedLines groups, out ImmutableArray<Scanner> scanners)
     {
-        scanners = groups.Select(Scanner.Parse).ToArray();
+        scanners = groups.Fix(Scanner.Parse);
         var beacons = new HashSet<Point3D>(scanners[0].Beacons(Point3D.O, Orientation.All[0]));
         var queue = new Queue<Scanner>();
         queue.EnqueueRange(scanners[1..]);

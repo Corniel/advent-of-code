@@ -47,7 +47,7 @@ public readonly struct AdventDate(int? year, int? day, int? part) : IComparable<
             else { year = y; }
             if (length > 1)
             {
-                if (!int.TryParse(parts[1], out int d) || d < 0 || d > 25) { return false; }
+                if (!int.TryParse(parts[1], out int d) || d < 0 || d > 25 || (d > 12 && y >= 2025)) { return false; }
                 else { day = d; }
             }
 
@@ -77,7 +77,7 @@ public readonly struct AdventDate(int? year, int? day, int? part) : IComparable<
 
     public static IEnumerable<AdventDate> AllAvailable(DateTime? now = default)
         => Range(2015, 1 + Clock.Today().Year - 2015)
-        .SelectMany(year => Range(1, 25).Select(d => new AdventDate(year, d, default)))
+        .SelectMany(year => Range(1, year >= 2025 ? 12 : 25).Select(d => new AdventDate(year, d, default)))
         .SelectMany(date => new[]
         {
             new AdventDate(date.Year, date.Day, 1),

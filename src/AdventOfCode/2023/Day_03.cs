@@ -34,12 +34,10 @@ public class Day_03
 
         foreach (var tile in map.Positions(t => t == '*'))
         {
-            var neighbors = map.Neighbors[tile].ToArray();
+            var neighbors = map.Neighbors[tile].Fix();
 
-            if (parts.Where(p => p.Span.Exists(x => neighbors.Contains(x))).ToArray() is { Length: 2 } ps)
-            {
+            if (parts.Where(p => p.Span.Exists(x => neighbors.Contains(x))).Fix() is { Length: 2 } ps)
                 ratio += ps.Product(p => p.Val);
-            }
         }
         return ratio;
 

@@ -4,10 +4,10 @@ namespace SmartAss.Expressions;
 [DebuggerDisplay("Count = {Count}")]
 public sealed class Params : IReadOnlyCollection<Param>
 {
-    public Params() : this([], [], [], false) { }
+    public Params() : this(new([]), [], [], false) { }
 
     private Params(
-        ImmutableArray<string> visited,
+        Lines visited,
         Dictionary<string, Expr> lookup,
         Dictionary<string, long> cache,
         bool withCache)
@@ -18,7 +18,7 @@ public sealed class Params : IReadOnlyCollection<Param>
         WithCache = withCache;
     }
 
-    private readonly ImmutableArray<string> Visited;
+    private readonly Lines Visited;
     private readonly Dictionary<string, Expr> Lookup;
     private readonly Dictionary<string, long> Stored;
     private bool WithCache;
@@ -71,7 +71,7 @@ public sealed class Params : IReadOnlyCollection<Param>
     private Params Trace(string param)
     {
         if (Visited.Contains(param)) return null;
-        return new(Visited.Add(param), Lookup, Stored, WithCache);
+        return new(new([..Visited, param]), Lookup, Stored, WithCache);
     }
 
     public IDisposable Cache() => new Cached(this);

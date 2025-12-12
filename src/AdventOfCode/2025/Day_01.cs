@@ -11,11 +11,11 @@ public class Day_01
 {
     [Example(answer: 3, "L68;L30;R48;L5;R60;L55;L1;L99;R14;L82")]
     [Puzzle(answer: 1150, O.μs10)]
-    public int part_one(Lines lines)
+    public int part_one(Ints numbers)
     {
         var pt = 50; var zero = 0;
 
-        foreach (var rot in lines.As(Rot))
+        foreach (var rot in numbers)
             if ((pt = (pt + rot).Mod(100)) is 0) zero++;
 
         return zero;
@@ -24,11 +24,11 @@ public class Day_01
     [Example(answer: 6, "L68;L30;R48;L5;R60;L55;L1;L99;R14;L82")]
     [Example(answer: 10, "R1000")]
     [Puzzle(answer: 6738, O.μs10)]
-    public int part_two(Lines lines)
+    public int part_two(Ints numbers)
     {
         var pt = 50; var pass = 0;
 
-        foreach (var rot in lines.As(Rot))
+        foreach (var rot in numbers)
         {
             var (mod, rot_) = Math.DivRem(rot.Abs(), 100);
 
@@ -47,5 +47,5 @@ public class Day_01
     }
 
     /// <summary>L is positive, R negative.</summary>
-    static int Rot(string l) => l[0] is 'L' ? l.Int32() : -l.Int32();
+    public static int Parse(string l) => l[0] is 'L' ? l.Int32() : -l.Int32();
 }

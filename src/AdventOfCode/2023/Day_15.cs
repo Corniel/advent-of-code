@@ -12,7 +12,7 @@ public class Day_15
     [Puzzle(answer: 236057, O.μs100)]
     public int part_two(string str)
     {
-        var boxes = Range(0, 256).Select(_ => new List<Lens>()).ToArray();
+        var boxes = Range(0, 256).Fix(_ => new List<Lens>());
 
         foreach (var step in str.CommaSeparated(Parse))
         {

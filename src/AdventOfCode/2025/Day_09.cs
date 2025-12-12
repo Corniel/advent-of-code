@@ -23,7 +23,7 @@ public class Day_09
    
     readonly record struct Rect(Point Min, Point Max)
     {
-        public long Size => 1L * (Max.X - Min.X + 1) * (Max.Y - Min.Y + 1);
+        public long Size => (Max.X - Min.X + 1L) * (Max.Y - Min.Y + 1);
 
         public bool Overlap(Rect o) 
             => Max.X > o.Min.X && Min.X < o.Max.X

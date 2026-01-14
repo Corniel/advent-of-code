@@ -4,7 +4,7 @@ namespace Advent_of_Code_2022;
 public class Day_02
 {
     [Example(answer: 15, "A Y;B X;C Z")]
-    [Puzzle(answer: 12458, O.μs10)]
+    [Puzzle(answer: 12458, O.μs)]
     public int part_one(Lines lines) => lines.As(One).Sum();
 
     static int One(string battle) => battle switch

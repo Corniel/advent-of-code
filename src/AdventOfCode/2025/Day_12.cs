@@ -9,7 +9,7 @@ namespace Advent_of_Code_2025;
 [Category(Category.Computation)]
 public class Day_12
 {
-    [Puzzle(answer: 521, O.μs)] // We skip the first 6 numbers (id's of the shapes)
+    [Puzzle(answer: 521, O.ns100)] // We skip the first 6 numbers (id's of the shapes)
     public int part_one(Ints numbers)
     {
         var count = 0; var n = numbers.AsSpan()[6..];

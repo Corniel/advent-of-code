@@ -8,7 +8,7 @@ public class Day_17
     public string part_one(Longs numbers) => string.Join(',', Run(numbers[0], numbers[3..]));
 
     [Example(answer: 117440, "A: 2024; B: 0; C: 0; Program: 0,3,5,4,3,0")]
-    [Puzzle(answer: 105843716614554, O.ms)]
+    [Puzzle(answer: 105843716614554, O.ns100)]
     public long part_two(Longs numbers)
     {
         var prog = numbers[3..];

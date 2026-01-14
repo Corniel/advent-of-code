@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 
 namespace SmartAss;
@@ -35,39 +36,28 @@ public static class SelectWithPreviousExtensions
         => pair.Current - pair.Previous;
 }
 
-public struct CurrentAndPreviouses : IEnumerator<string>, IEnumerable<string>
+public struct CurrentAndPreviouses(string str, int size) : IEnumerator<string>, IEnumerable<string>
 {
-    private readonly string Str;
-    private readonly int Size;
-    private int Pos;
+    private readonly string Str = str;
+    private readonly int Size = size;
+    private int Pos = -1;
 
-    public CurrentAndPreviouses(string str, int size)
-    {
-        Str = str;
-        Size = size;
-        Pos = -1;
-    }
-    public string Current { get; private set; }
+    public readonly string Current => Str.Substring(Pos, Size);
 
     readonly object IEnumerator.Current => Current;
 
-    public bool MoveNext()
-    {
-        if (++Pos <= Str.Length - Size)
-        {
-            Current = Str[Pos..(Pos + Size)];
-            return true;
-        }
-        else return false;
-    }
+    public bool MoveNext() => ++Pos <= Str.Length - Size;
 
-    public IEnumerator<string> GetEnumerator() => this;
+    [Pure]
+    public readonly IEnumerator<string> GetEnumerator() => this;
 
-    IEnumerator IEnumerable.GetEnumerator() => this;
+    [Pure]
+    readonly IEnumerator IEnumerable.GetEnumerator() => this;
 
+    [DoesNotReturn]
     public void Reset() => throw new NotSupportedException();
 
-    public void Dispose() { /* Nothing to dispose. */ }
+    public readonly void Dispose() { /* Nothing to dispose. */ }
 }
 
 public struct CurrentAndPreviouses<T> : IEnumerator<CurrentAndPrevious<T>>, IEnumerable<CurrentAndPrevious<T>>
@@ -94,13 +84,16 @@ public struct CurrentAndPreviouses<T> : IEnumerator<CurrentAndPrevious<T>>, IEnu
         else return false;
     }
 
-    public IEnumerator<CurrentAndPrevious<T>> GetEnumerator() => this;
+    [Pure]
+    public readonly IEnumerator<CurrentAndPrevious<T>> GetEnumerator() => this;
 
-    IEnumerator IEnumerable.GetEnumerator() => this;
+    [Pure]
+    readonly IEnumerator IEnumerable.GetEnumerator() => this;
 
+    [DoesNotReturn]
     public void Reset() => throw new NotSupportedException();
 
-    public void Dispose() { /* Nothing to dispose. */ }
+    public readonly void Dispose() { /* Nothing to dispose. */ }
 }
 
 public readonly struct CurrentAndPrevious<T>(T prev, T curr)

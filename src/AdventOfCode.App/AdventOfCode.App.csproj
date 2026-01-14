@@ -14,9 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="nuget.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Update="NuGet.config" CopyToOutputDirectory="Always" />
   </ItemGroup>
 
 </Project>

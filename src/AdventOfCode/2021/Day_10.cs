@@ -12,7 +12,7 @@ public class Day_10
     [Example(answer: 57, "[{[{({}]{}}([{[{{{}}([]")]
     [Example(answer: 3, "[<(<(<(<{}))><([]([]()")]
     [Example(answer: 25137, "<{([([[(<>()){}]>(<<{{")]
-    [Puzzle(answer: 411471, O.μs10)]
+    [Puzzle(answer: 411471, O.μs)]
     public int part_one(Lines lines) => lines.As(Parse).Select(One).Sum();
 
     [Example(answer: 288957, "[({(<(())[]>[[{[]{<()<>>")]

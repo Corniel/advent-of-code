@@ -6,6 +6,10 @@ public sealed record BenchmarkResult(AdventPuzzle Puzzle, string Log)
     public O Order => Time is { } time ? time.O() : default;
 
     public override string ToString()
-        => $"{Puzzle.Date}: {Log,9}, {Order}"
-        + $"{(Puzzle.Order != Order ? $" != {Puzzle.Order}" : "")}";
+        => $"{Puzzle.Date}: {Log,9}, {Order}" + Order.ComparesTo(Puzzle.Order) switch
+        {
+            > 0 => $" > {Puzzle.Order}",
+            < 0 => $" < {Puzzle.Order}",
+            _ =>  string.Empty,
+        };
 }
